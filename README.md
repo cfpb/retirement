@@ -1,4 +1,3 @@
-#### CFPB Open Source Project Template Instructions
 # Retirement
 
 **Description**:  Put a meaningful, short, plain-language description of what
