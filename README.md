@@ -1,7 +1,9 @@
 # Retirement
 
-**Description**:  
+This is a project aimed at helping workers make choices about retirement, including when to claim Social Security benefits.   
   - **Status**: pre-Alpha
+
+<!--
 
 ## Dependencies
 
@@ -20,7 +22,7 @@
 ## Getting involved
 
 [CONTRIBUTING](CONTRIBUTING.md).
-
+-->
 
 ----
 
@@ -32,4 +34,7 @@
 
 ----
 
+
+<!--
 ## Credits and references
+-->
