@@ -25,10 +25,10 @@ import datetime
 from bs4 import BeautifulSoup as bs
 
 # sample minimal form data needed
-yob = 1957
+yob = 1956
 mob = 8
 dayob = 14
-earnings = 103000
+earnings = 50000
 
 base_url = "http://www.ssa.gov"
 quick_url = "%s/OACT/quickcalc/" % base_url# where users go, but not needed for our request
@@ -50,11 +50,15 @@ comment = re.compile(r"<!--[\s\S]*?-->")
 def clean_comment(comment):
     return comment.replace('<!--', '').replace('-->', '').strip()
 
-def num_test(value):
+def num_test(value=''):
     try:
-        x = int(value)
+        num = int(value)
     except:
-        return False
+        try:
+            num = int(float(value))
+        except:
+            return False
+        else: return True
     else:
         return True
 
@@ -70,7 +74,7 @@ def parse_details(rows):
 
 def get_retire_data(params):
     starter = datetime.datetime.now()
-    results = {'summary_data': {}, 'detail_data': [], 'detail_notes': {}}
+    results = {'benefits': {}, 'earnings_data': [], 'benefit_details': {}, 'params': params}
     req = requests.post(result_url, data=params)
     if req.reason != 'OK':
         print "request to SS failed: %s %s" % (req.reason, req.status_code)
@@ -81,7 +85,7 @@ def get_retire_data(params):
             ret_age = soup.find(id='ret_age').text.strip()
             ret_year = soup.find(id='ret_date').text.strip()
             ret_amt = soup.find(id='ret_amount').text.replace(',', '').partition('.')[0]
-            results['summary_data']['%s in %s' % (ret_age, ret_year)] = int(ret_amt)
+            results['benefits']['%s in %s' % (ret_age, ret_year)] = int(ret_amt)
         else:
             tables = soup.findAll('table', {'bordercolor': '#6699ff'})
             results_table = tables[1]
@@ -89,7 +93,7 @@ def get_retire_data(params):
             for row in result_rows:
                 cells = row.findAll('td')
                 if cells:
-                    results['summary_data'][cells[0].text] = cells[1].text
+                    results['benefits'][cells[0].text] = cells[1].text
 
         # detail data
         raw_comments = comment.findall(req.text)
@@ -105,10 +109,10 @@ def get_retire_data(params):
             else:
                 details.append(row)
         for row in detail_rows:
-            results['detail_data'].append({tup[0]: tup[1] for tup in zip(headings, row)})
-        results['detail_notes']['family_max'] = details.pop(-1)
-        results['detail_notes']['indexing']={}
-        INDEXING = results['detail_notes']['indexing']
+            results['earnings_data'].append({tup[0]: tup[1] for tup in zip(headings, row)})
+        results['benefit_details']['family_max'] = details.pop(-1)
+        results['benefit_details']['indexing']={}
+        INDEXING = results['benefit_details']['indexing']
         sets = len(details) / 3
         i1, i2 = (-3, 0)
         for i in range(sets):
@@ -116,8 +120,9 @@ def get_retire_data(params):
             i2 += 3
             INDEXING.update(parse_details(details[i1:i2]))
         print "exporting ssa.json"
+        jout = json.dumps(results)
         with open('ssa.json', 'w') as f:
-            f.write(json.dumps(results))
+            f.write(jout)
         print "script took %s to run" % (datetime.datetime.now() - starter)
-        return details, results['detail_data']
+        return jout
 
