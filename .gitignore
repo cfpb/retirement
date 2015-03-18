@@ -23,6 +23,10 @@ __pycache__/
 *.egg-info
 .installed.cfg
 
+# sqlite #
+#################
+db.sqlite3
+
 # Unit test / coverage reports
 #################
 htmlcov/

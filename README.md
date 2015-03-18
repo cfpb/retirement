@@ -1,4 +1,6 @@
-# Retirement
+ [![Build Status](https://travis-ci.org/cfpb/retirement.png)](https://travis-ci.org/cfpb/retirement)
+
+ [![Coverage Status](https://coveralls.io/repos/cfpb/retirement/badge.svg)](https://coveralls.io/r/cfpb/retirement)# Retirement
 
 This is a project aimed at helping workers make choices about retirement, including when to claim Social Security benefits.   
   - **Status**: pre-Alpha
