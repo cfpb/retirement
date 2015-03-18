@@ -1,6 +1,7 @@
 language: python
 python:
   - "2.7"
+env: DJ_KEY=testkey
 install:
   # - |
   #   echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'travisdb'}}" > api/settings.py
