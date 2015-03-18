@@ -67,6 +67,7 @@ def get_delay_bonus(birth_year):
     """
     given a worker's year of birth,
     returns the annual bonus for delaying retirement 
+    past full retirement age
     """
     b_string = yob_test(birth_year)
     if b_string:

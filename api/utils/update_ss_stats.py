@@ -1,3 +1,9 @@
+"""
+terms:
+    PIA:  Primary Insurance Amount, the basic SS benefit
+    AIME: Average Indexed Monthly Earnings
+"""
+
 import os
 import sys
 import datetime
@@ -20,8 +26,17 @@ ss_table_urls = {
     'cola': "http://www.socialsecurity.gov/OACT/COLA/colaseries.html",
     'actuarial_life': "http://www.socialsecurity.gov/OACT/STATS/table4c6.html",
     'retirement_ages': "http://www.socialsecurity.gov/OACT/ProgData/nra.html",# handled by get_retirement_age()
+    'benefit_bases': 'http://www.socialsecurity.gov/OACT/COLA/cbb.html',# not needed if we use SS calculator
     'delay_credits': "http://www.socialsecurity.gov/retire2/delayret.htm",
-}
+    'awi_series': 'http://www.socialsecurity.gov/OACT/COLA/AWI.html',
+    'bend_points': 'http://www.socialsecurity.gov/OACT/COLA/bendpoints.html',# not needed if we use SS calculator
+    'early_retirement_example': 'http://www.socialsecurity.gov/OACT/quickcalc/earlyretire.html',# useful as viz
+    'explainer of AMI calculations': 'http://www.socialsecurity.gov/OACT/COLA/piaformula.html',# info only
+    'benefit_terms': 'http://www.socialsecurity.gov/OACT/COLA/Benefits.html#aime',# explanation of terms; info only
+    'credit_rules': 'http://www.socialsecurity.gov/planners/retire/credits2.html',# out of scope: rules for achieving 40 work credits (10 years of work); not envisioned for app
+    'quarter_of_coverage': 'http://www.socialsecurity.gov/OACT/COLA/QC.html',# out of scope: basic work-credit unit to determine whether a worker is covered by SS; you can earn 4 credits a year
+    'death_probabilities': 'http://www.socialsecurity.gov/OACT/HistEst/DeathProbabilities2014.html',# out of scope: historical and projected male/female death probability tables
+}   'automatic_values': 'http://www.socialsecurity.gov/OACT/COLA/autoAdj.html',# out of scope: compendium of bend points, COlA and other adjustment values used in SS calculations
 
 def output_csv(filepath, headings, bs_rows):
     with open(filepath, 'w') as f:
@@ -42,16 +57,65 @@ def output_json(filepath, headings, bs_rows):
                 json_out[cells[0]] = {tup[0]: tup[1] for tup in tups}
         f.write(json.dumps(json_out))
 
+def make_soup(url):
+    req = requests.get(url)
+    if req.reason != 'OK':
+        print "request to %s failed: %s %s" % (url, req.status_code, req.reason)
+        return ''
+    else:
+        soup = bs(req.text)
+        return soup
+
+def update_example_reduction():
+    """
+    SSA's example shows Primary and spousal benefits at age 62,
+    assuming a primary insurance amount of $1,000
+    """
+    url = ss_table_urls['early_retirement_example']
+    outcsv = "%s/early_penalty_%s.csv" % (data_dir, TODAY.year)
+    outjson = "%s/early_penalty_%s.json" % (data_dir, TODAY.year)
+    headings = [
+            'YOB', 
+            'FRA', 
+            'reduction_months', 
+            'primary_pia', 
+            'primary_pct_reduction', 
+            'spouse_pia', 
+            'spouse_pct_reduction'
+            ]
+    soup = make_soup(url)
+    if soup:
+        table = soup.findAll('table')[5].find('table')
+        rows = [row for row in table.findAll('tr') if row.findAll('td')]
+        output_csv(outcsv, headings, rows)
+        print "updated %s with %s rows" % (outcsv, len(rows))
+        output_json(outjson, headings, rows)
+        print "updated %s with %s entries" % (outjson, len(rows))
+
+def update_awi_series():
+    url = ss_table_urls['awi_series']
+    outcsv = "%s/awi_series_%s.csv" % (data_dir, TODAY.year)
+    outjson = "%s/awi_series_%s.json" % (data_dir, TODAY.year)
+    headings = ['Year', 'Index']
+    soup = make_soup(url)
+    if soup:
+        tables = soup.findAll('table')[1].findAll('table')
+        rows = []
+        print "found %s tables" % len(tables)
+        for table in tables:
+            rows.extend([row for row in table.findAll('tr') if row.findAll('td')])
+        output_csv(outcsv, headings, rows)
+        print "updated %s with %s rows" % (outcsv, len(rows))
+        output_json(outjson, headings, rows)
+        print "updated %s with %s entries" % (outjson, len(rows))
+
 def update_cola():
     url = ss_table_urls['cola']
     outcsv = "%s/ss_cola_%s.csv" % (data_dir, TODAY.year)
     outjson = "%s/ss_cola_%s.json" % (data_dir, TODAY.year)
     headings = ['Year', 'COLA']
-    req = requests.get(url)
-    if req.reason != 'OK':
-        print "request to %s failed: %s %s" % (url, req.status_code, req.reason)
-    else:
-        soup = bs(req.text)
+    soup = make_soup(url)
+    if soup:
         [s.extract() for s in soup('small')]
         tables = soup.findAll('table')[-3:]
     rows = []
@@ -62,8 +126,6 @@ def update_cola():
     print "updated %s with %s rows" % (outcsv, len(rows))
     output_json(outjson, headings, rows)
     print "updated %s with %s entries" % (outjson, len(rows))
-        # else:
-        #     print "didn't find more than 30 rows at %s" % url
 
 def update_life():
     url = ss_table_urls['actuarial_life']
@@ -78,11 +140,8 @@ def update_life():
         'female_number_of_lives',
         'female_life_expectancy',
     ]
-    req = requests.get(url)
-    if req.reason != 'OK':
-        print "request to %s failed: %s %s" % (url, req.status_code, req.reason)
-    else:
-        soup = bs(req.text)
+    soup = make_soup(url)
+    if soup:
         table = soup.find('table').find('table')
         if not table:
             print "couldn't find table at %s" % url
@@ -96,6 +155,17 @@ def update_life():
             else:
                 print "didn't find more than 100 rows at %s" % url
 
-# if __name__ == "__main__":
-#     update_life(ss_table_urls['actuarial_life'], update=True)
-#     update_cola(ss_table_urls['cola'], update=True)
+def harvest_all():
+    update_life()
+    update_cola()
+    update_awi_series()
+    update_example_reduction()
+
+if __name__ == "__main__":
+    starter = datetime.datetime.now()
+    harvest_all()
+    print "update took %s to update four data stores" % (datetime.datetime.now()-starter)
+
+
+
+
