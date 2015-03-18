@@ -7,13 +7,13 @@ Well need to ask user for DOB and current annual earnings
 we'll return estimated benefits at 62, 67, and 70 based the value of the dollar today
 
 inputs needed:
-    Date of birth: 8/14/1957
-    Current earnings: 70000
+    Date of birth: 8/14/1956
+    Current earnings: 50000
 
 optional inputs:
     Last year with earnings # could be useful for users who are retired or unemployed
     Last earnings # ditto
-    Retirement month/year: 8/2027) # feed won't return 3 retire options if we provide this
+    Retirement month/year: 8/2026) # feed won't return 3 retire options if we provide this
     Benefit in year-2015 dollars) # SS can take today's dollars (1) or future, inflated dollars (0)
 """
 
