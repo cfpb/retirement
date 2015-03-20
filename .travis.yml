@@ -7,7 +7,7 @@ install:
   # - |
   #   echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'travisdb'}}" > api/settings.py
   - pip install -r requirements.txt --use-mirrors
-  - pip install coverage coveralls
+  - pip install coveralls
 script: 
   - nosetests --with-coverage --cover-erase --cover-package api.utils
   # - coverage run --source='.' manage.py test
