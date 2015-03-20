@@ -9,7 +9,7 @@ install:
   - pip install -r requirements.txt --use-mirrors
   - pip install coverage coveralls
 script: 
-  - nosetests
+  - nosetests --with-coverage --cover-erase --cover-package api.utils
   # - coverage run --source='.' manage.py test
-# after_success:
-  # - coveralls
+after_success:
+  - coveralls
