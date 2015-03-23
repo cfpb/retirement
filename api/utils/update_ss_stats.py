@@ -36,8 +36,8 @@ ss_table_urls = {
     'credit_rules': 'http://www.socialsecurity.gov/planners/retire/credits2.html',# out of scope: rules for achieving 40 work credits (10 years of work); not envisioned for app
     'quarter_of_coverage': 'http://www.socialsecurity.gov/OACT/COLA/QC.html',# out of scope: basic work-credit unit to determine whether a worker is covered by SS; you can earn 4 credits a year
     'death_probabilities': 'http://www.socialsecurity.gov/OACT/HistEst/DeathProbabilities2014.html',# out of scope: historical and projected male/female death probability tables
-}   'automatic_values': 'http://www.socialsecurity.gov/OACT/COLA/autoAdj.html',# out of scope: compendium of bend points, COlA and other adjustment values used in SS calculations
-
+    'automatic_values': 'http://www.socialsecurity.gov/OACT/COLA/autoAdj.html',# out of scope: compendium of bend points, COlA and other adjustment values used in SS calculations
+    }
 def output_csv(filepath, headings, bs_rows):
     with open(filepath, 'w') as f:
         writer = csv.writer(f)
