@@ -27,10 +27,6 @@ __pycache__/
 #################
 db.sqlite3
 
-# app data from ssa
-#################
-qpi/data/*
-
 # Unit test / coverage reports
 #################
 cover/
