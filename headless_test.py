@@ -6,15 +6,17 @@ from django.conf import settings
 
 class QuickDjangoTest(object):
     """
-    A quick way to run the Django test suite without a fully-configured project.
+    Django tests without a fully-configured project.
 
     Example usage:
 
         >>> QuickDjangoTest('app1', 'app2')
 
-    Based on a script published by Lukasz Dziedzia at: 
+    Based on work published by Ben Welsh Lukasz Dziedzia at: 
+    http://datadesk.latimes.com/posts/2012/06/test-your-django-app-with-travisci/
     http://stackoverflow.com/questions/3841725/how-to-launch-tests-for-django-reusable-app
     """
+
     DIRNAME = os.path.dirname(__file__)
     INSTALLED_APPS = (
         'django.contrib.auth',
