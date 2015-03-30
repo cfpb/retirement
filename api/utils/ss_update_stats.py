@@ -1,14 +1,16 @@
+import os
+import sys
+import datetime
+import json
+import csv
+
 """
 terms:
     PIA:  Primary Insurance Amount, the basic SS benefit
     AIME: Average Indexed Monthly Earnings
 """
 
-import os
-import sys
-import datetime
-import json
-import csv
+from StringIO import StringIO
 
 import requests
 # from django.template.defaultfilters import slugify
@@ -21,6 +23,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 data_dir = "%s/data" % BASE_DIR
 backup_dir = "%s/data/backups" % BASE_DIR
+outcsv = "%s/early_penalty_%s.csv" % (data_dir, TODAY.year)
+outjson = "%s/early_penalty_%s.json" % (data_dir, TODAY.year)
 
 ss_table_urls = {
     'cola': "http://www.socialsecurity.gov/OACT/COLA/colaseries.html",
@@ -38,6 +42,7 @@ ss_table_urls = {
     'death_probabilities': 'http://www.socialsecurity.gov/OACT/HistEst/DeathProbabilities2014.html',# out of scope: historical and projected male/female death probability tables
     'automatic_values': 'http://www.socialsecurity.gov/OACT/COLA/autoAdj.html',# out of scope: compendium of bend points, COlA and other adjustment values used in SS calculations
     }
+
 def output_csv(filepath, headings, bs_rows):
     with open(filepath, 'w') as f:
         writer = csv.writer(f)
@@ -46,15 +51,15 @@ def output_csv(filepath, headings, bs_rows):
             writer.writerow([cell.text.replace(',', '').strip() for cell in row.findAll('td') if row.findAll('td')])
 
 def output_json(filepath, headings, bs_rows):
+    json_out = {}
+    for row in bs_rows:
+        cells = [cell.text.replace(',', '').strip() for cell in row.findAll('td') if row.findAll('td')]
+        if len(cells) == 2:
+            json_out[cells[0]] = cells[1]
+        else:
+            tups = zip(headings[1:], cells[1:])
+            json_out[cells[0]] = {tup[0]: tup[1] for tup in tups}
     with open(filepath, 'w') as f:
-        json_out = {}
-        for row in bs_rows:
-            cells = [cell.text.replace(',', '').strip() for cell in row.findAll('td') if row.findAll('td')]
-            if len(cells) == 2:
-                json_out[cells[0]] = cells[1]
-            else:
-                tups = zip(headings[1:], cells[1:])
-                json_out[cells[0]] = {tup[0]: tup[1] for tup in tups}
         f.write(json.dumps(json_out))
 
 def make_soup(url):
@@ -72,8 +77,6 @@ def update_example_reduction():
     assuming a primary insurance amount of $1,000
     """
     url = ss_table_urls['early_retirement_example']
-    outcsv = "%s/early_penalty_%s.csv" % (data_dir, TODAY.year)
-    outjson = "%s/early_penalty_%s.json" % (data_dir, TODAY.year)
     headings = [
             'YOB', 
             'FRA', 
@@ -128,9 +131,11 @@ def update_cola():
     print "updated %s with %s entries" % (outjson, len(rows))
 
 def update_life():
+    """update the actuarial life tables from SSA"""
+    msg = ''
     url = ss_table_urls['actuarial_life']
-    outcsv = "%s/actuarial_life_%s.csv" % (data_dir, TODAY.year)
-    outjson = "%s/actuarial_life_%s.json" % (data_dir, TODAY.year)
+    # outcsv = "%s/actuarial_life_%s.csv" % (data_dir, TODAY.year)
+    # outjson = "%s/actuarial_life_%s.json" % (data_dir, TODAY.year)
     headings = [
         'exact_age',
         'male_death_probability',
@@ -149,11 +154,13 @@ def update_life():
             rows = table.findAll('tr')[2:]
             if len(rows) > 100:
                 output_csv(outcsv, headings, rows)
-                print "updated %s with %s rows" % (outcsv, len(rows))
+                msg += "updated %s with %s rows" % (outcsv, len(rows))
                 output_json(outjson, headings, rows)
-                print "updated %s with %s entries" % (outjson, len(rows))
+                msg += "updated %s with %s entries" % (outjson, len(rows))
             else:
-                print "didn't find more than 100 rows at %s" % url
+                msg +=  "didn't find more than 100 rows at %s" % url
+    print msg
+    return msg
 
 def harvest_all():
     update_life()
