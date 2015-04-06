@@ -4,7 +4,7 @@
 
 # Retirement
 
-This is a project aimed at helping workers make choices about retirement, including when to claim Social Security benefits.   
+This is a project aimed at helping Americans make choices about retirement, including when to claim Social Security benefits.   
   - **Status**: pre-Alpha
 
 <!--
