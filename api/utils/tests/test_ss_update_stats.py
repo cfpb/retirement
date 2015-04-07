@@ -25,7 +25,7 @@ sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 import utils.ss_update_stats
 # from utils.ss_update_stats import output_csv, output_json, make_soup, update_life, update_cola, ss_table_urls
-from ..ss_update_stats import output_csv, output_json, make_soup, update_life, update_cola, ss_table_urls
+from ..ss_update_stats import output_csv, output_json, make_soup, update_life, update_cola, ss_table_urls, requests
 mock_data_path = "%s/data/mock_data" % BASE_DIR
 
 class UpdateSsStatsTests(TestCase):
@@ -110,6 +110,13 @@ class UpdateSsStatsTests(TestCase):
         url = 'http://www.socialsecurity.gov/OACT/ProgData/nra.html'
         soup = make_soup(url)
         self.assertEqual(soup.find('h1').text, 'Social Security')
+
+    @mock.patch('requests.get')
+    def test_make_soup_error(self, mock_requests):
+        url = 'http://www.socialsecurity.gov/xxxx/'
+        mock_requests.return_value.reason = 'Not found'
+        soup = make_soup(url)
+        self.assertEqual(soup, '')
 
     # @mock.patch('utils.ss_update_stats.requests.get')
     # @mock.patch('utils.ss_update_stats.update_life')
