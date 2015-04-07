@@ -17,7 +17,7 @@ from django.test import TestCase
 # from mock import Mock, patch
 
 if __name__ == '__main__':
-    BASE_DIR = '/Users/higginsw/Projects/retirement/api'
+    BASE_DIR = '~/Projects/retirement/api'
 else:
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 

@@ -9,8 +9,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 datafile  = "%s/data/unique_retirement_ages_%s.json" % (BASE_DIR, today.year)
-if not os.path.isfile(datafile):
-    datafile  = "%s/data/unique_retirement_ages_2015.json" % BASE_DIR
+# if not os.path.isfile(datafile):
+#     datafile  = "%s/data/unique_retirement_ages_2015.json" % BASE_DIR
 
 # this datafile specifies years that have unique retirement age values
 # since this may change, it is maintained in an external file
