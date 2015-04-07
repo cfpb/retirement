@@ -125,9 +125,23 @@ class UtilitiesTests(TestCase):
         benefit_keys = [u'62 and 1 month in 2018', u'70 in 2026', u'66 and 4 months in 2022']
         data = json.loads(get_retire_data(sample_params))
         self.assertTrue(isinstance(data, dict))
+        self.assertEqual(data['params']['yob'], 1956)
         for each in data.keys():
             self.assertTrue(each in data_keys)    
         for each in data['benefits'].keys():
             self.assertTrue(each in benefit_keys)    
-        self.assertEqual(data['params']['yob'], 1956)
+        sample_params['retiremonth'] = 6
+        sample_params['retireyear'] = 2025
+        data2 = json.loads(get_retire_data(sample_params))
+        self.assertTrue(isinstance(data2, dict))
+        self.assertEqual(data2['params']['yob'], 1956)
+        for each in data.keys():
+            self.assertTrue(each in data_keys)    
+        for each in data['benefits'].keys():
+            self.assertTrue(each in benefit_keys)    
+
+
+
+
+
         
