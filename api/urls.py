@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),  
     # url(r'^retire-api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^retire-api/estimator/$', 'api.views.estimator', name='estimator'),
-    url(r'^retire-api/get_fra/$', 'api.views.get_fra', name='get_fra'),
+    url(r'^retire-api/estimator/(?P<dob>[^/]+)/(?P<income>\d+)/$', 'api.views.estimator', name='estimator'),
+    url(r'^retire-api/get-retirement-age/(?P<birth_year>\d+)/$', 'api.views.get_full_retirement_age', name='get_full_retirement_age'),
 
 )
