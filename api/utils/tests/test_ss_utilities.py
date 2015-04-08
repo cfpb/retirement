@@ -4,6 +4,8 @@ import json
 import datetime
 today = datetime.datetime.now().date()
 
+import mock
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
@@ -13,10 +15,22 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 from django.test import TestCase
 
 from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test, age_map
-from ..ss_calculator import get_retire_data, num_test, parse_details
+from ..ss_calculator import get_retire_data, num_test, parse_details, requests
 # from mock import Mock, patch
 
 class UtilitiesTests(TestCase):
+    sample_params = {
+        'dobmon': 8,
+        'dobday': 14,
+        'yob': 1956,
+        'earnings': 50000,
+        'lastYearEarn': '',# possible use for unemployed or already retired
+        'lastEarn': '',# possible use for unemployed or already retired
+        'retiremonth': '',# leve blank to get triple calculation -- 62, 67 and 70
+        'retireyear': '',# leve blank to get triple calculation -- 62, 67 and 70
+        'dollars': 1,# benefits to be calculated in current-year dollars
+        'prgf': 2
+    }
 
     def test_parse_details(self):
         sample_rows = [
@@ -88,6 +102,7 @@ class UtilitiesTests(TestCase):
             "1963": 8.0,
             "1973": 8.0,
             "1983": 8.0,
+            "1922": None,
         }
         for year in sample_inputs:
             self.assertEqual(get_delay_bonus(year), sample_inputs[year])
@@ -109,25 +124,30 @@ class UtilitiesTests(TestCase):
         """ given a birth date and annual pay value,
         return a dictionary of social security values
         """
-        sample_params = {
-            'dobmon': 8,
-            'dobday': 14,
-            'yob': 1956,
-            'earnings': 50000,
-            'lastYearEarn': '',# possible use for unemployed or already retired
-            'lastEarn': '',# possible use for unemployed or already retired
-            'retiremonth': '',# leve blank to get triple calculation -- 62, 67 and 70
-            'retireyear': '',# leve blank to get triple calculation -- 62, 67 and 70
-            'dollars': 1,# benefits to be calculated in current-year dollars
-            'prgf': 2
-        }
         data_keys = [u'benefits', u'params', u'earnings_data', u'benefit_details']
         benefit_keys = [u'62 and 1 month in 2018', u'70 in 2026', u'66 and 4 months in 2022']
-        data = json.loads(get_retire_data(sample_params))
+        data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(isinstance(data, dict))
+        self.assertEqual(data['params']['yob'], 1956)
         for each in data.keys():
             self.assertTrue(each in data_keys)    
         for each in data['benefits'].keys():
             self.assertTrue(each in benefit_keys)    
-        self.assertEqual(data['params']['yob'], 1956)
+        self.sample_params['retiremonth'] = 6
+        self.sample_params['retireyear'] = 2025
+        data2 = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue(isinstance(data2, dict))
+        self.assertEqual(data2['params']['yob'], 1956)
+        for each in data.keys():
+            self.assertTrue(each in data_keys)    
+        for each in data['benefits'].keys():
+            self.assertTrue(each in benefit_keys)    
+
+    @mock.patch('requests.post')
+    def test_ss_calculator_bad_request(self, mock_requests):
+        mock_requests.return_value.reason = 'Not found'
+        results = get_retire_data(self.sample_params)
+        self.assertEqual(results['benefits'], {})
+
+
         
