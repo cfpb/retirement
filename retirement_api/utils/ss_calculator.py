@@ -120,7 +120,7 @@ def get_retire_data(params):
             i2 += 3
             INDEXING.update(parse_details(details[i1:i2]))
         # print "exporting ssa.json"
-        # jout = json.dumps(results)
+        jout = json.dumps(results)
         # with open('ssa.json', 'w') as f:
         #     f.write(jout)
         print "script took %s to run" % (datetime.datetime.now() - starter)
