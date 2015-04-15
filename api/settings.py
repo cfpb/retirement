@@ -16,6 +16,10 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = (
+    '%s/api/templates'% BASE_DIR,
+    )
+
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
