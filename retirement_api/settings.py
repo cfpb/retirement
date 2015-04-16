@@ -8,7 +8,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = (
-    '%s/api/templates' % BASE_DIR,
+    '%s/retirement_api/templates' % BASE_DIR,
     )
 
 ALLOWED_HOSTS = []
