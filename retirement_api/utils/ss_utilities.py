@@ -1,14 +1,17 @@
 import os
+import math
 # import sys
 import json
 import datetime
+# from datetime import timedelta
+from dateutil import parser
 
-today = datetime.datetime.now().date()
+TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # sys.path.append(BASE_DIR)
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
-datafile  = "%s/data/unique_retirement_ages_%s.json" % (BASE_DIR, today.year)
+datafile  = "%s/data/unique_retirement_ages_%s.json" % (BASE_DIR, TODAY.year)
 # if not os.path.isfile(datafile):
 #     datafile  = "%s/data/unique_retirement_ages_2015.json" % BASE_DIR
 
@@ -25,6 +28,7 @@ def yob_test(yob=None):
     tests to make sure suppied birth year is valid;
     returns valid birth year as a string or None
     """
+    today = datetime.datetime.now().date()
     if not yob:
         return None
     try:
@@ -62,6 +66,36 @@ def get_retirement_age(birth_year):
             return (67, 0)
     else:
         return None
+
+def past_fra_test(dob=None):
+    """
+    tests whether a person is past his/her full retirement age
+    """
+    if not dob:
+        return 'invalid birth year'
+    DOB = parser.parse(dob).date()
+    today = datetime.datetime.now().date()
+    if DOB > today:
+        return 'invalid birth year'
+    fra_tuple = get_retirement_age(DOB.year)
+    if not fra_tuple:
+        return 'invalid birth year'
+    fra_year = fra_tuple[0]
+    fra_month = fra_tuple[1]
+    months_at_birth = DOB.year*12 + DOB.month - 1
+    months_today = today.year*12 + today.month - 1
+    delta = months_today - months_at_birth
+    age_tuple = (math.floor(delta/12), (delta%12))
+    if age_tuple[0] < 22:
+        return 'too young to calculate benefits'
+    if age_tuple[0] > fra_tuple[0]:
+        return True
+    elif age_tuple[0] < fra_tuple:
+        return False
+    elif age_tuple[1] >= fra_tuple[1]:
+        return True
+    else:
+        return False
 
 def get_delay_bonus(birth_year):
     """

@@ -20,7 +20,7 @@ class ViewTests(unittest.TestCase):
     req_invalid = HttpRequest()
     req_invalid.GET['dob'] = '1-2-%s' % (today.year + 5)
     req_invalid.GET['income'] = 'x'
-    return_keys = ['params', 'benefits', 'earnings_data', 'benefit_details']
+    return_keys = ['data', 'error']
 
     def test_param_check(self):
         self.assertEqual(param_check(self.req_good, 'dob'), '1955-05-05')        
