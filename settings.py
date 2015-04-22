@@ -27,7 +27,7 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
-    '%s/retirement_api/templates' % BASE_DIR,
+    '%s/templates' % BASE_DIR,
     )
 
 # Application definition
@@ -51,9 +51,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'retirement_api.urls'
+ROOT_URLCONF = 'urls'
 
-WSGI_APPLICATION = 'retirement_api.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
