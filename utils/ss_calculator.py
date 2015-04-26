@@ -79,10 +79,10 @@ def interpolate_benefits(benefits, fra_tuple, current_age):
     # fill out the missing years, working backward and forward from the FRA
     if fra == 67:
         base = benefits['age 67']
-        benefits['age 63'] = int(round(base - base*( 4*12*(0.00555555) )))
+        benefits['age 63'] = int(round(base - base*( 3*12*(0.00555555) ) - base*( 1*12*0.004166666 ) ))
         benefits['age 64'] = int(round(base - base*( 3*12*(0.00555555) )))
-        benefits['age 65'] = int(round(base - base*( 2*12*(0.004166666) )))
-        benefits['age 66'] = int(round(base - base*( 1*12*(0.004166666) )))
+        benefits['age 65'] = int(round(base - base*( 2*12*(0.00555555) )))
+        benefits['age 66'] = int(round(base - base*( 1*12*(0.00555555) )))
         benefits['age 68'] = int(round(base + (base * 0.08)))
         benefits['age 69'] = int(round(base + (2 * (base * 0.08))))
     elif fra == 66:
@@ -92,16 +92,16 @@ def interpolate_benefits(benefits, fra_tuple, current_age):
         benefits['age 69'] = int(round(base + (3 * (base* 0.08))))
         if current_age == 65:# FRA is 66; need to fill in 65
             base = benefits['age 66']
-            benefits['age 65'] = int(round(base - base*( 12*(0.004166666) )))
+            benefits['age 65'] = int(round(base - base*( 12*(0.00555555) )))
         elif current_age == 64:#FRA is 66; need to fill in 64 and 65
             base = benefits['age 66']
             benefits['age 64'] = int(round(base - base*( 2*12*(0.00555555) )))
-            benefits['age 65'] = int(round(base - base*( 12*(0.004166666) )))
+            benefits['age 65'] = int(round(base - base*( 12*(0.00555555) )))
         elif current_age in range(55, 64):# 55 to 63: FRA is 66
             base = benefits['age 66']
             benefits['age 63'] = int(round(base - base*( 3*12*(0.00555555) )))
             benefits['age 64'] = int(round(base - base*( 2*12*(0.00555555) )))
-            benefits['age 65'] = int(round(base - base*( 12*(0.004166666) )))
+            benefits['age 65'] = int(round(base - base*( 12*(0.00555555) )))
     return benefits
 
 #sample params
