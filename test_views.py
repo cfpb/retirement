@@ -1,12 +1,27 @@
+import sys
+import os
 import datetime
 import json
 
 import mock
 
+try:
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+except:
+    BASE_DIR = "/Users/higginsw/Projects/retirement1.6/retirement_api"
+sys.path.append(BASE_DIR)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+# import settings
+# settings.configure()
+# setup_environ(settings)
+
+# if __name__ == "__main__" and __package__ is None:
+#     __package__ = "utils.tests.test_ss_utilities"
+
 import unittest
 from django.http import HttpRequest
-from .views import param_check, income_check, estimator, get_full_retirement_age
-from .utils.ss_calculator import get_retire_data, params
+from views import param_check, income_check, estimator, get_full_retirement_age
+from utils.ss_calculator import get_retire_data, params
 
 today = datetime.datetime.now().date()
 
