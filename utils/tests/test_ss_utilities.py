@@ -7,24 +7,33 @@ today = datetime.datetime.now().date()
 
 import mock
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-sys.path.append(BASE_DIR)
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+# try:
+#     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+# except:
+#     BASE_DIR = "/Users/higginsw/Projects/retirement1.6/retirement_api"
+# sys.path.append(BASE_DIR)
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+# setup_environ(settings)
+# import settings
+# from django.core.management import setup_environ
+# setup_environ(settings)
+# settings.configure()
+
 # if __name__ == "__main__" and __package__ is None:
 #     __package__ = "utils.tests.test_ss_utilities"
 
-from django.test import TestCase
+# from django.test import TestCase
+import unittest
 
 from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test, age_map, past_fra_test
 from ..ss_calculator import get_retire_data, num_test, parse_details, requests, interpolate_benefits
-# from mock import Mock, patch
 
-class UtilitiesTests(TestCase):
+class UtilitiesTests(unittest.TestCase):
     sample_params = {
-        'dobmon': 8,
-        'dobday': 14,
-        'yob': 1956,
-        'earnings': 50000,
+        'dobmon': 7,
+        'dobday': 7,
+        'yob': 1970,
+        'earnings': 70000,
         'lastYearEarn': '',# possible use for unemployed or already retired
         'lastEarn': '',# possible use for unemployed or already retired
         'retiremonth': '',# leve blank to get triple calculation -- 62, 67 and 70
@@ -35,81 +44,41 @@ class UtilitiesTests(TestCase):
 
     def test_interpolate_benefits(self):
         benefits = {
-            'age 62': 1452,
+            'age 62': 1476,
             'age 63': 0,
             'age 64': 0,
             'age 65': 0,
             'age 66': 0,
-            'age 67': 2113,
+            'age 67': 2137,
             'age 68': 0,
             'age 69': 0,
-            'age 70': 2650,
+            'age 70': 2675,
             }
-        bens = interpolate_benefits(benefits)
-        for key in sorted(bens.keys()):
-            self.assertTrue(bens[key] != 0)
+        results = {
+            'age 62': 1476,
+            'age 63': 1603,
+            'age 64': 1710,
+            'age 65': 1852,
+            'age 66': 1995,
+            'age 67': 2137,
+            'age 68': 2308,
+            'age 69': 2479,
+            'age 70': 2675,
+            }
+        bens = interpolate_benefits(benefits, (67, 0), 44)
+        for key in bens.keys():
+            self.assertEqual(bens[key], results[key])
         benefits['age 66'] = benefits['age 67']
         benefits['age 67'] = 0
-        bens = interpolate_benefits(benefits)
+        bens = interpolate_benefits(benefits, (66, 0), 55)
         for key in sorted(bens.keys()):
             self.assertTrue(bens[key] != 0)
-        benefits['age 65'] = benefits['age 66']
-        benefits['age 66'] = 0
-        bens = interpolate_benefits(benefits)
-        for key in sorted(bens.keys()):
+        bens = interpolate_benefits(benefits, (66, 0), 64)
+        for key in sorted(bens.keys())[2:]:
             self.assertTrue(bens[key] != 0)
-        benefits['age 62'] = 0
-        bens = interpolate_benefits(benefits)
+        bens = interpolate_benefits(benefits, (66, 0), 65)
         for key in sorted(bens.keys())[3:]:
             self.assertTrue(bens[key] != 0)
-        benefits['age 66'] = benefits['age 65']
-        benefits['age 65'] = 0
-        bens = interpolate_benefits(benefits)
-        for key in sorted(bens.keys())[4:]:
-            self.assertTrue(bens[key] != 0)
-        benefits['age 67'] = benefits['age 66']
-        benefits['age 66'] = 0
-        bens = interpolate_benefits(benefits)
-        for key in sorted(bens.keys())[5:]:
-            self.assertTrue(bens[key] != 0)
-        benefits['age 68'] = benefits['age 67']
-        benefits['age 67'] = 0
-        bens = interpolate_benefits(benefits)
-        for key in sorted(bens.keys())[6:]:
-            self.assertTrue(bens[key] != 0)
-        benefits['age 69'] = benefits['age 68']
-        benefits['age 68'] = 0
-        bens = interpolate_benefits(benefits)
-        for key in sorted(bens.keys())[7:]:
-            self.assertTrue(bens[key] != 0)
-        benefits['age 66'] = benefits['age 69']
-        benefits['age 65'] = 0
-        benefits['age 64'] = 0
-        benefits['age 63'] = 0
-        benefits['age 62'] = 0
-        bens = interpolate_benefits(benefits)
-        for key in sorted(bens.keys())[4:]:
-            self.assertTrue(bens[key] != 0)
-        benefits['age 67'] = benefits['age 66']
-        benefits['age 66'] = 0
-        bens = interpolate_benefits(benefits)
-        for key in sorted(bens.keys())[5:]:
-            self.assertTrue(bens[key] != 0)
-        benefits['age 68'] = benefits['age 67']
-        benefits['age 67'] = 0
-        bens = interpolate_benefits(benefits)
-        for key in sorted(bens.keys())[6:]:
-            self.assertTrue(bens[key] != 0)
-        benefits['age 69'] = benefits['age 68']
-        benefits['age 68'] = 0
-        bens = interpolate_benefits(benefits)
-        for key in sorted(bens.keys())[7:]:
-            self.assertTrue(bens[key] != 0)
-        benefits['age 69'] = 0
-        bens = interpolate_benefits(benefits)
-        for key in sorted(bens.keys())[8:]:
-            self.assertTrue(bens[key] != 0)
-
 
     def test_parse_details(self):
         sample_rows = [
@@ -172,10 +141,10 @@ class UtilitiesTests(TestCase):
         edge = "%s" % (today-timedelta(days=67*365))
         self.assertTrue(past_fra_test(too_old) == True)
         self.assertTrue(past_fra_test(ok) == False)
-        self.assertTrue(past_fra_test(too_young) == 'too young to calculate benefits')
-        self.assertTrue(past_fra_test(invalid) == "invalid birth year")
+        self.assertTrue(past_fra_test(too_young) == 'Visitor too young to calculate benefits')
+        self.assertTrue(past_fra_test(invalid) == "invalid birth year entered")
         self.assertTrue(past_fra_test(way_old) == True)
-        self.assertTrue(past_fra_test(edge) == False)
+        self.assertTrue(past_fra_test(edge) == True)
 
     def test_age_map(self):
         self.assertTrue(isinstance(age_map, dict))
@@ -268,7 +237,7 @@ class UtilitiesTests(TestCase):
                         'age 70']
         data = json.loads(get_retire_data(self.sample_params))['data']
         self.assertTrue(isinstance(data, dict))
-        self.assertEqual(data['params']['yob'], 1956)
+        self.assertEqual(data['params']['yob'], 1970)
         for each in data.keys():
             self.assertTrue(each in data_keys)    
         for each in data['benefits'].keys():
@@ -277,7 +246,7 @@ class UtilitiesTests(TestCase):
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(isinstance(data, dict))
         self.assertEqual(data['data']['params']['yob'], 1937)
-        self.assertTrue('already past' in data['error'])
+        self.assertTrue('past full retirement age' in data['error'])
 
     @mock.patch('requests.post')
     def test_ss_calculator_bad_request(self, mock_requests):
