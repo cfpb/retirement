@@ -5,18 +5,13 @@ import json
 
 import mock
 
-if __name__ == '__main__':
-    BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
-else:
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+# if __name__ == '__main__':
+#     BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
+# else:
+#     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-# import settings
-# settings.configure()
-# setup_environ(settings)
-
-# if __name__ == "__main__" and __package__ is None:
-#     __package__ = "utils.tests.test_ss_utilities"
 
 import unittest
 from django.http import HttpRequest

@@ -7,11 +7,12 @@ today = datetime.datetime.now().date()
 
 import mock
 
-if __name__ == '__main__':
-    BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
-    # BASE_DIR = '~/Projects/retirement1.6/retirement'
-else:
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+# if __name__ == '__main__':
+#     BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
+#     # BASE_DIR = '~/Projects/retirement1.6/retirement'
+# else:
+#     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 

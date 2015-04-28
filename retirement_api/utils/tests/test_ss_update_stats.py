@@ -12,13 +12,12 @@ TODAY = datetime.datetime.now().date()
 from bs4 import BeautifulSoup as bs
 import requests
 import mock
-# from mock import MagicMock
-# from mock import Mock, patch
 
-if __name__ == '__main__':
-    BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
-else:
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+# if __name__ == '__main__':
+#     BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
+# else:
+#     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 sys.path.append("%s/retirement_api" % BASE_DIR)
@@ -52,12 +51,6 @@ class UpdateSsStatsTests(TestCase):
 
     def tearDown(self):
         shutil.rmtree(self.tempdir)
-
-    # @mock.patch('utils.ss_update_stats.harvest_all')
-    # def test_ss_update_stats(self, mock_harvest_all):
-    #     self.__name__ = '__main__'
-    #     import utils.ss_update_stats
-    #     assert mock_harvest_all.call_count == 1
 
     # def output_csv(filepath, headings, bs_rows):
     def test_output_csv(self):
