@@ -17,12 +17,13 @@ import requests
 from bs4 import BeautifulSoup as bs
 
 TODAY = datetime.datetime.now().date()
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+APP_DIR = "%s/retirement_api"
 
-data_dir = "%s/data" % BASE_DIR
-backup_dir = "%s/data/backups" % BASE_DIR
+data_dir = "%s/data" % APP_DIR
+backup_dir = "%s/data/backups" % APP_DIR
 outcsv = "%s/early_penalty_%s.csv" % (data_dir, TODAY.year)
 outjson = "%s/early_penalty_%s.json" % (data_dir, TODAY.year)
 
