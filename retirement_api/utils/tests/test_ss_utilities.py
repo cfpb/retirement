@@ -11,13 +11,14 @@ if __name__ == '__main__':
     BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
     # BASE_DIR = '~/Projects/retirement1.6/retirement'
 else:
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 # from django.test import TestCase
 import unittest
-from retirement_api import utils
+# from ...utils import ss_update_stats
+# from retirement_api import utils
 from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test, age_map, past_fra_test, get_current_age
 from ..ss_calculator import num_test, parse_details, requests, interpolate_benefits, get_retire_data 
 

@@ -7,11 +7,11 @@ import datetime
 from dateutil import parser
 
 TODAY = datetime.datetime.now().date()
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # sys.path.append(BASE_DIR)
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
-datafile  = "%s/data/unique_retirement_ages_%s.json" % (BASE_DIR, TODAY.year)
+datafile  = "%s/retirement_api/data/unique_retirement_ages_%s.json" % (BASE_DIR, TODAY.year)
 # if not os.path.isfile(datafile):
 #     datafile  = "%s/data/unique_retirement_ages_2015.json" % BASE_DIR
 
