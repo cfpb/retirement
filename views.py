@@ -21,9 +21,9 @@ today = datetime.datetime.now().date()
 #     'prgf': 2
 # }
 
-def main(request):
-    cdict = {'tstamp': datetime.datetime.now()}
-    return render_to_response('main.html', cdict)
+# def main(request):
+#     cdict = {'tstamp': datetime.datetime.now()}
+#     return render_to_response('main.html', cdict)
 
 def param_check(request, param):
     if param in request.GET and request.GET[param]:

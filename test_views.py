@@ -5,10 +5,10 @@ import json
 
 import mock
 
-try:
+if __name__ == '__main__':
+    BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
+else:
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-except:
-    BASE_DIR = "/Users/higginsw/Projects/retirement1.6/retirement_api"
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 # import settings
