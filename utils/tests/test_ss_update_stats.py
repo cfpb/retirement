@@ -13,17 +13,16 @@ from bs4 import BeautifulSoup as bs
 import requests
 import mock
 # from mock import MagicMock
-from django.test import TestCase
 # from mock import Mock, patch
 
 if __name__ == '__main__':
-    BASE_DIR = '~/Projects/retirement/api'
+    BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
 else:
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 import utils.ss_update_stats
+from django.test import TestCase
 # from utils.ss_update_stats import output_csv, output_json, make_soup, update_life, update_cola, ss_table_urls
 from ..ss_update_stats import output_csv, output_json, make_soup, update_life, update_cola, ss_table_urls, requests
 mock_data_path = "%s/data/mock_data" % BASE_DIR

@@ -7,31 +7,24 @@ today = datetime.datetime.now().date()
 
 import mock
 
-# try:
-#     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-# except:
-#     BASE_DIR = "/Users/higginsw/Projects/retirement1.6/retirement_api"
-# sys.path.append(BASE_DIR)
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-# setup_environ(settings)
-# import settings
-# from django.core.management import setup_environ
-# setup_environ(settings)
-# settings.configure()
-
-# if __name__ == "__main__" and __package__ is None:
-#     __package__ = "utils.tests.test_ss_utilities"
+if __name__ == '__main__':
+    BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
+    # BASE_DIR = '~/Projects/retirement1.6/retirement'
+else:
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+sys.path.append(BASE_DIR)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 # from django.test import TestCase
 import unittest
-
-from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test, age_map, past_fra_test
-from ..ss_calculator import get_retire_data, num_test, parse_details, requests, interpolate_benefits
+from retirement_api import utils
+from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test, age_map, past_fra_test, get_current_age
+from ..ss_calculator import num_test, parse_details, requests, interpolate_benefits, get_retire_data 
 
 class UtilitiesTests(unittest.TestCase):
     sample_params = {
-        'dobmon': 7,
-        'dobday': 7,
+        'dobmon': 1,
+        'dobday': 1,
         'yob': 1970,
         'earnings': 70000,
         'lastYearEarn': '',# possible use for unemployed or already retired
@@ -41,6 +34,29 @@ class UtilitiesTests(unittest.TestCase):
         'dollars': 1,# benefits to be calculated in current-year dollars
         'prgf': 2
     }
+
+    @mock.patch('datetime.date')
+    def test_get_current_age(self, mock_datetime):
+        fake_today = datetime.datetime(2000, 1, 2).date()
+        mock_datetime.today.return_value = fake_today
+        age_pairs = [
+        ( '1999-1-1', 1),
+        ( '1980-1-1', 20),
+        ( '1980-1-3', 19),
+        ( '1940-1-1', 60),
+        ( '1920-1-1', 80),
+        ( '2001-1-1', None),
+        ( '1999-1-xx', None),
+        ( '2000-1-2', None),
+        ( '1999-1-3', 0)]
+        print "fake_today is %s" % fake_today
+        for pair in age_pairs:
+            print "get_current_age(%s) is %s" % (pair[0], get_current_age(pair[0]))
+            self.assertEqual(get_current_age(pair[0]), pair[1])
+        fake_today = datetime.datetime(2005, 2, 28).date()
+        mock_datetime.today.return_value = fake_today
+        self.assertEqual(get_current_age('2000-2-29'), 5)
+
 
     def test_interpolate_benefits(self):
         benefits = {
@@ -216,7 +232,7 @@ class UtilitiesTests(unittest.TestCase):
                   }
     """
 
-    def test_ss_calculator(self):
+    def test_get_retire_data(self):
         """ given a birth date and annual pay value,
         return a dictionary of social security values
         """
@@ -247,12 +263,34 @@ class UtilitiesTests(unittest.TestCase):
         self.assertTrue(isinstance(data, dict))
         self.assertEqual(data['data']['params']['yob'], 1937)
         self.assertTrue('past full retirement age' in data['error'])
+        self.sample_params['yob'] = 193
+        data = json.loads(get_retire_data(self.sample_params))
+        print "'invalid' error is returning %s" % data['error']
+        self.assertTrue(data['error'] == 'invalid birth year entered')
+        self.sample_params['yob'] = today.year-21
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue(data['error'] == 'Visitor too young to calculate benefits')
+        self.sample_params['yob'] = today.year-67
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        self.sample_params['yob'] = today.year-68
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        self.sample_params['yob'] = today.year-69
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        self.sample_params['yob'] = today.year-70
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
 
-    @mock.patch('requests.post')
-    def test_ss_calculator_bad_request(self, mock_requests):
-        mock_requests.return_value.reason = 'Not found'
-        results = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue('error' in results)
+    # @mock.patch('utils.ss_calculator.requests')
+    # def test_ss_calculator_bad_request(self, mock_request):
+    #     mock_request.post.return_value.reason = 'Not found'
+    #     # self.sample_params['lastYearEarn'] = 19
+    #     result_json = utils.ss_calculator.get_retire_data(self.sample_params)
+    #     results = json.loads(result_json)
+    #     print "results error message is %s" % results['error']
+    #     self.assertTrue('failed' in results['error'])
 
 
         
