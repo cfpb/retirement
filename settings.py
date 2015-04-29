@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'retirement_api',
+    'retirement_api',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,7 +56,14 @@ WSGI_APPLICATION = 'wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
+# DATABASES = {
+#     'default': {
+#            'ENGINE': 'django.db.backends.mysql',
+#            'NAME': 'retirement',
+#            'USER': 'retirement_user',
+#            'PASSWORD': 'retirement',
+#    }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
