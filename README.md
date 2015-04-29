@@ -5,11 +5,32 @@
 This is a project aimed at helping Americans make choices about retirement, including when to claim Social Security benefits.   
   - **Status**: pre-Alpha
 
+
+**Dependencies**  
+ * [Django 1.6.11](https://docs.djangoproject.com/en/1.6/)
+ * [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+ * [Python-dateutil](https://dateutil.readthedocs.org/en/latest/)
+ * [Requests](http://docs.python-requests.org/en/latest/)
+ * [virtualenv](https://virtualenv.pypa.io/en/latest/)
+ * [pip](https://pypi.python.org/pypi/pip)
+ * [Homebrew](http://brew.sh)
+
+**For testing**
+ * [nose](https://nose.readthedocs.org/en/latest/)
+ * [coverage](http://nedbatchelder.com/code/coverage/)
+ 
 <!--
+ * [Django localflavor](https://github.com/django/django-localflavor)
+ * [Django Rest Framework](http://www.django-rest-framework.org)
+ * [MySQL Python](http://mysql-python.sourceforge.net/)
+ * [South](http://south.aeracode.org)
+ * [django-cors-headers](https://github.com/ottoyiu/django-cors-headers)
+-->
+**Installation**  
+The tool is a Django module and can be installed and run inside a Django project.
 
-## Dependencies
-
-## Installation
+These instructons assume that you are using a Mac with OS X Yosemite and with [Homebrew](http://brew.sh) installed
+<!--
 
 ## Configuration
 
