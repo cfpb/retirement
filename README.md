@@ -13,6 +13,11 @@ This is a project aimed at helping Americans make choices about retirement, incl
  * [Requests](http://docs.python-requests.org/en/latest/)
  * [virtualenv](https://virtualenv.pypa.io/en/latest/)
  * [pip](https://pypi.python.org/pypi/pip)
+ * [Homebrew](http://brew.sh)
+
+**For testing**
+ * [nose](https://nose.readthedocs.org/en/latest/)
+ * [coverage](http://nedbatchelder.com/code/coverage/)
  
 <!--
  * [Django localflavor](https://github.com/django/django-localflavor)
@@ -20,12 +25,12 @@ This is a project aimed at helping Americans make choices about retirement, incl
  * [MySQL Python](http://mysql-python.sourceforge.net/)
  * [South](http://south.aeracode.org)
  * [django-cors-headers](https://github.com/ottoyiu/django-cors-headers)
-
+-->
 **Installation**  
 The tool is a Django module and can be installed and run inside a Django project.
-Here's help for setting up a Django project and adding modules:
- - [Starting a project](https://docs.djangoproject.com/en/1.6/intro/tutorial01/)
- - [Adding modules](https://docs.djangoproject.com/en/1.6/ref/django-admin/#startproject-projectname-destination)
+
+These instructons assume that you are using a Mac with OS X Yosemite and with [Homebrew](http://brew.sh) installed
+<!--
 
 ## Configuration
 
