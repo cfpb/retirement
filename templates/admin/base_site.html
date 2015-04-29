@@ -1,0 +1,19 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Claiming Social Security content' %}{% endblock %}
+
+{% block extrastyle %}
+<link rel="shortcut icon" type="image/ico" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-72x72-precomposed.png" />
+<style>
+#header{ background-color:#50b948; border-bottom: solid 3px #999; }
+ 
+#branding h1{ color: #fff; }
+</style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'Claiming Social Secuirty content' %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

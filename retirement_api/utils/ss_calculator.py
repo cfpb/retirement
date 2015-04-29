@@ -35,8 +35,42 @@ for age in chart_ages:
     benefits["age %s" % age] = 0
 
 comment = re.compile(r"<!--[\s\S]*?-->")# regex for parsing indexing data; not used yet
+
 def clean_comment(comment):
     return comment.replace('<!--', '').replace('-->', '').strip()
+
+## unused, but needs a test
+# def parse_comments(req, results):
+#     """
+#     this pulls indexing details out of the source comments 
+#     on SSA's quick-calculator results page 
+#     and adds it to the results payload;  
+#     we are not yet using this data
+#     """
+#     raw_comments = comment.findall(req.text)
+#     comments = [clean_comment(com) for com in raw_comments if clean_comment(com) and not clean_comment(com).startswith('Indexed') and not clean_comment(com).startswith('Nominal')]
+#     headings = [term.strip() for term in comments[0].split()]
+#     headings.pop(headings.index('max'))
+#     headings[headings.index('Tax')] = 'Tax_max'
+#     detail_rows = []
+#     details = []
+#     for row in comments[1:]:
+#         if num_test(row.split()[0]):
+#             detail_rows.append([cell.strip() for cell in row.split()])
+#         else:
+#             details.append(row)
+#     for row in detail_rows:
+#         results['earnings_data'].append({tup[0]: tup[1] for tup in zip(headings, row)})
+#     results['benefit_details']['family_max'] = details.pop(-1)
+#     results['benefit_details']['indexing']={}
+#     INDEXING = results['benefit_details']['indexing']
+#     sets = len(details) / 3
+#     i1, i2 = (-3, 0)
+#     for i in range(sets):
+#         i1 += 3
+#         i2 += 3
+#         INDEXING.update(parse_details(details[i1:i2]))
+#     return results
 
 def num_test(value=''):
     try:
@@ -175,72 +209,85 @@ def get_retire_data(params):
         pass
     else:
         tables = soup.findAll('table', {'bordercolor': '#6699ff'})
-        results_table = tables[1]
-        result_rows = results_table.findAll('tr')
-        for row in result_rows:
-            cells = row.findAll('td')
-            if cells:
-                collector[cells[0].text] = cells[1].text
-        """
-        collector:
-        70 in 2047: "$2,719.00",
-        67 in 2044: "$2,180.00",
-        62 and 1 month in 2039: "$1,515.00"
+        results_table, disability_table, survivors_table = (None, None, None)
+        for each in tables:
+            if each.find('th') and 'Retirement age' in each.find('th').text:
+                results_table = each
+            elif each.find('th') and 'Disability' in each.find('th').text:
+                disability_table = each
+            elif each.find('th') and "Survivors" in each.find('th').text:
+                survivors_table = each
+        if results_table:
+            result_rows = results_table.findAll('tr')
+            for row in result_rows:
+                cells = row.findAll('td')
+                if cells:
+                    collector[cells[0].text] = cells[1].text
+            """
+            collector:
+            70 in 2047: "$2,719.00",
+            67 in 2044: "$2,180.00",
+            62 and 1 month in 2039: "$1,515.00"
 
-        results['data']:
-            'early retirement age': '', 
-            'full retirement age': '', 
-            'benefits': {
-                'age 62': 0, 
+            results['data']:
+                'early retirement age': '', 
+                'full retirement age': '', 
+                'benefits': {
+                    'age 62': 0, 
 
-        """
-        for key in collector:
-            bits = key.split(' in ')
-            benefit_age_raw = bits[0]
-            benefit_age_year = bits[0].split()[0]
-            # benefit_in_year = bits[1]# not using
-            benefit_raw = collector[key]
-            benefit = int(benefit_raw.split('.')[0].replace(',', '').replace('$', ''))
-            if benefit_age_year == str(fra_tuple[0]):
-                results['data']['full retirement age'] = benefit_age_raw
-                BENS['age %s' % benefit_age_year] = benefit
-            if benefit_age_year == '62':
-                results['data']['early retirement age'] = benefit_age_raw
-                BENS['age %s' % benefit_age_year] = benefit
-            if benefit_age_year == '70':
-                BENS['age %s' % benefit_age_year] = benefit
-        additions = interpolate_benefits(BENS, fra_tuple, current_age)
-        for key in BENS:
-            if additions[key] and not BENS[key]:
-                BENS[key] = additions[key]
+            """
+            for key in collector:
+                bits = key.split(' in ')
+                benefit_age_raw = bits[0]
+                benefit_age_year = bits[0].split()[0]
+                # benefit_in_year = bits[1]# not using
+                benefit_raw = collector[key]
+                benefit = int(benefit_raw.split('.')[0].replace(',', '').replace('$', ''))
+                if benefit_age_year == str(fra_tuple[0]):
+                    results['data']['full retirement age'] = benefit_age_raw
+                    BENS['age %s' % benefit_age_year] = benefit
+                if benefit_age_year == '62':
+                    results['data']['early retirement age'] = benefit_age_raw
+                    BENS['age %s' % benefit_age_year] = benefit
+                if benefit_age_year == '70':
+                    BENS['age %s' % benefit_age_year] = benefit
+            additions = interpolate_benefits(BENS, fra_tuple, current_age)
+            for key in BENS:
+                if additions[key] and not BENS[key]:
+                    BENS[key] = additions[key]
+        if disability_table:
+            results['data']['disability'] = disability_table.findAll('td')[1].text.split('.')[0]
+        # SURVIVORS KEYS 
+        # 'Your child'
+        # 'Family maximum'
+        # 'Your spouse at normal retirement age'
+        # 'Your spouse caring for your child'
+        #
+        # RESULTS['DATA']['SURVIVOR BENEFITS'] KEYS
+        # 'spouse at full retirement age'
+        # 'family maximum'
+        # 'spouse caring for child'
+        # 'child'
+        if survivors_table:
+            SURV = results['data']['survivor benefits']
+            survivors = {}
+            survivor_rows = survivors_table.findAll('tr')
+            for row in survivor_rows:
+                cells = row.findAll('td')
+                if cells:
+                    survivors[cells[0].text] = cells[1].text.split('.')[0]
+            if 'Your child' in survivors:
+                SURV['child'] = survivors['Your child']
+            if 'Family maximum' in survivors:
+                SURV['family maximum'] = survivors['Family maximum']
+            if 'Your spouse at normal retirement age' in survivors:
+                SURV['spouse at full retirement age'] = survivors['Your spouse at normal retirement age']
+            if 'Your spouse caring for your child' in survivors:
+                SURV['spouse caring for child'] = survivors['Your spouse caring for your child']
     print "script took %s to run" % (datetime.datetime.now() - starter)
     # # to dump json for testing:
     # with open('/tmp/ssa.json', 'w') as f:
     #     f.write(json.dumps(results))
     return json.dumps(results)
 
-    ## park detail scraper until indexing data is needed 
-    # raw_comments = comment.findall(req.text)
-    # comments = [clean_comment(com) for com in raw_comments if clean_comment(com) and not clean_comment(com).startswith('Indexed') and not clean_comment(com).startswith('Nominal')]
-    # headings = [term.strip() for term in comments[0].split()]
-    # headings.pop(headings.index('max'))
-    # headings[headings.index('Tax')] = 'Tax_max'
-    # detail_rows = []
-    # details = []
-    # for row in comments[1:]:
-    #     if num_test(row.split()[0]):
-    #         detail_rows.append([cell.strip() for cell in row.split()])
-    #     else:
-    #         details.append(row)
-    # for row in detail_rows:
-    #     results['earnings_data'].append({tup[0]: tup[1] for tup in zip(headings, row)})
-    # results['benefit_details']['family_max'] = details.pop(-1)
-    # results['benefit_details']['indexing']={}
-    # INDEXING = results['benefit_details']['indexing']
-    # sets = len(details) / 3
-    # i1, i2 = (-3, 0)
-    # for i in range(sets):
-    #     i1 += 3
-    #     i2 += 3
-    #     INDEXING.update(parse_details(details[i1:i2]))
 
