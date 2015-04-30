@@ -1,4 +1,643 @@
-{% extends 'base.html' %}
-{% block content%}
-<h1>Claiming Social Security</h1>
-{% endblock %}
+<!DOCTYPE html>
+
+<!--
+Hey! If you're viewing this, you should probably come work on our Technology
+& Innovation team. We're always looking for a few great designers, developers, data
+scientists, and network, infrastructure, privacy and security pros. Keep
+an eye on our job opportunities at: http://www.consumerfinance.gov/jobs/
+ 
+Also, you can see more of our code at https://github.com/cfpb
+ 
+And by the way, there’s another hidden message somewhere on the following page: http://www.consumerfinance.gov/jobs/technology-innovation-fellows/. See if you can find it! Hint: picture yourself embedded in our work.
+-->
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" dir="ltr" lang="en-US"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" dir="ltr" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" dir="ltr" lang="en-US"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html dir="ltr" lang="en-US"> <!--<![endif]-->
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Claiming Social Security > Consumer Financial Protection Bureau</title>
+
+    <!-- Meta -->
+    <meta name="google-site-verification" content=""> <!-- http://google.com/webmasters -->
+    <meta name="Copyright" content="Public domain">
+
+    <meta property="og:type" content="government">
+    <meta property="og:site_name" content="Consumer Financial Protection Bureau">
+    <meta property="fb:app_id" content="210516218981921">
+
+    
+    <meta property="og:image" content="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.svg">
+    
+
+    
+<meta charset="UTF-8" />
+<meta property="og:title" content="Paying for College &gt; Consumer Financial Protection Bureau"/>
+<meta property="og:type" content="government"/>
+<meta property="og:url" content=""/>
+
+
+       
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon" size="72x72" href="/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" size="114x114" href="/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" size="144x144" href="/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-144x144-precomposed.png">
+
+
+    <script src="/wp-content/themes/cfpb_nemo/_/js/jquery-1.9.1.min.js?ver=v4.2.10v4.2.24"></script>
+    <!--[if lt IE 9]>
+    <script src="/wp-content/themes/cfpb_nemo/_/js/html5shim.js"></script>
+    <![endif]-->
+
+    <!-- Styles -->
+
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/woff.css?ver=v4.2.10v4.2.24">
+    <!--<![endif]-->
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/eot.css">
+    <![endif]-->
+    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/styles.css?ver=v4.2.10v4.2.24">
+
+    
+    
+
+    
+    <link rel="stylesheet" href="/static/landing/css/landing.css">
+    <link rel='stylesheet' id='cfpb_icon_font-css'  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons.css?ver=all" type="text/css" media="all">
+    <!--[if IE 7]>
+    <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons-ie7.css?ver=all" type="text/css" media="all" />
+    <![endif]-->
+
+
+    <!-- Feeds -->
+    <link rel="alternate" type="application/rss+xml" title="Consumer Financial Protection Bureau &raquo; Feed" href="/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="Consumer Financial Protection Bureau &raquo; Comments Feed" href="/comments/feed/" />
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/claiming.css">
+    <script src="js/raphael-min.js"></script>
+    <script src="js/claiming-social-security.js"></script>
+    
+    <script src="/static/js/analytics.js?ver=v4.2.10v4.2.24"></script>
+
+    <!-- this is where we put our custom analytics -->
+    <script src="/wp-content/themes/cfpb_nemo/_/js/analytics-global.js?ver=v4.2.10v4.2.24"></script>
+
+    <!-- H5BP's Asynchronous Google Analytics snippet. -->
+    <script>
+      var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>    
+
+    
+</head>
+
+<body class="page">
+
+<!-- Google Tag Manager -->
+
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KMMLRS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KMMLRS');</script>
+<!-- End Google Tag Manager -->
+
+<script>
+  if(document.getElementsByTagName("body")) {
+    var bodyTag = document.getElementsByTagName("body")[0];
+    bodyTag.className += " js";
+  }
+  if (document.getElementsByTagName("html")) {
+    var htmlTag = document.getElementsByTagName("html")[0];
+    var classes = htmlTag.className;
+    htmlTag.className = classes.replace("no-js", "");
+  }
+</script>
+    <div id="page">
+        
+        
+        <div class="wrapper-banner">
+            <div class="wrapper-container">
+                <span class="split">
+                    <span class="official-website">An official website of the United States Government</span>
+                    <div class="split-right">
+                      <a href="/es/" hreflang="es" class="espanol-link">Español</a>
+                      
+                      <a href="/lang/#zh" hreflang="zh">中文</a>
+                      <a href="/lang/#vi" hreflang="vi">Tiếng Việt</a>
+                      <a href="/lang/#ko" hreflang="ko">한국어</a>
+                      <a href="/lang/#tl" hreflang="tl">Tagalog</a>
+                      <a href="/lang/#ru" hreflang="ru">Pусский</a>
+                      <a href="/lang/#ar" hreflang="ar">العربية</a>
+                      <a href="/lang/#ht" hreflang="ht">Kreyòl Ayisyen</a>
+                      
+                  </div>
+                </span>
+            </div>
+        </div><!-- .wrapper-banner -->
+
+        <header id="header">
+            <div>
+                <a href="/">
+                    <img id="logo"
+                         class="logo__js"
+                         src="/wp-content/themes/cfpb_nemo/_/img/logo.svg"
+                         onerror="this.src='/wp-content/themes/cfpb_nemo/_/img/logo.png';"
+                         alt="Consumer Financial Protection Bureau"
+                         width="262"
+                         height="66">
+                    <noscript>
+                        <img id="logo"
+                             class="logo__no-js"
+                             src="/wp-content/themes/cfpb_nemo/_/img/logo.png"
+                             alt="Consumer Financial Protection Bureau"
+                             width="262"
+                             height="66">
+                    </noscript>
+                </a>
+                <p class="lang"><span class="tel"><a href="tel:+18554112372">Contact us&nbsp;&nbsp;<strong>(855) 411-2372</strong></a></span></p>
+                <form accept-charset="UTF-8" action="http://search.consumerfinance.gov/search" class="single" id="search_form" method="get">
+                                    <input name="utf8" type="hidden" value="&#x2713;" />
+                                    <input id="affiliate" name="affiliate" type="hidden" value="cfpb" />
+                                    <div class='inf'>
+                                        <label for="query">Search</label>
+                                        <input id="query" name="query" type="text" />
+                                    </div>
+                                    <button>Go</button>
+                                </form>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#inside">Inside the CFPB</a></li>
+                    <li><a href="#assistance">Get assistance</a></li>
+                    <li><a href="#participate">Participate</a></li>
+                    <li><a href="#regulation">Law &amp; Regulation</a></li>
+                    <li><a href="#alert" class="complaint">Submit a complaint</a></li>
+                </ul>
+            </nav>
+        </header>
+
+            
+<div id="claiming-social-security" class="claiming-social-security">
+  <div id="claiming-hero-bg" class="version-a"></div>
+        <div id="wrapper">
+        <section id="maincontent">
+            <ul class="bread meta">
+                
+
+            </ul> <!-- /class=bread -->
+  <div class="claiming-hero version-a">
+    <h1>Claiming Social Security— a choice to fit your lifestyle</h1>
+    <p>Your claiming decision has a big impact. We’re here to help you maximize your lifetime income.</p>
+  </div>
+  <div class="claiming-hero-b version-b">
+    <h1>Claiming Social Security</h1>
+    <p>You may have questions on what claiming age makes sense for you. We’ll help you think through those questions here.</p>
+  </div>
+  <div class="content-l step-one">
+    <div class="content-l_col content-l_col-2-3">
+      <h2>Step 1: Explore how claiming age affects your Social Security retirement benefit</h2>
+      <p>Enter your data to update the example below.</p>
+      <div class="content-l">
+        <div class="content-l_col content-l_col-1-4 birthdate-inputs">
+          <p><strong>Date of birth</strong></p>
+          <label for="bd-month" class="input-labels"><input id="bd-month" type="text" maxlength="2" placeholder="MM" value=""></label>
+          <label for="bd-day" class="input-labels"><input id="bd-day" type="text" maxlength="2" placeholder="DD" value=""></label>
+          <label for="bd-year" class="input-labels"><input id="bd-year" type="text" maxlength="4" placeholder="YYYY" value=""></label>
+        </div>
+        <div class="content-l_col content-l_col-1-4">
+          <label for="salary-input" class="input-labels"><p><strong>Current annual salary</strong></p><input id="salary-input" type="text" maxlength="7" placeholder="$" value=""></label>
+        </div>
+        <div class="content-l_col content-l_col-1-2">
+          <button id="get-your-estimates" class="btn">Get your estimates</button>
+        </div>
+      </div>
+    </div>
+    <div class="content-l_col content-l_col-1-3 estimate-info">
+      <p>We base our estimate on formulas from the Social Security Administration. Your answers are not saved, are anonymous, and only generate estimates during this session.</p>
+    </div>
+  </div>
+
+  <hr>
+  <div id="estimated-benefits-input">
+    Estimated benefits shown as  <label><input type="radio" name="benefits-display" value="monthly" checked> monthly income</label> <label><input type="radio" name="benefits-display" value="annual"> annual income</label> 
+  </div>
+  <hr>
+
+  <div id="graph-container" class="content-l">
+    <div class="content-l_col content-l_col-1-6">
+      <p class="full-retirement-age">Age <span class="full-retirement-age-value">67</span> is your full retirement age.</p>
+      <p><strong>Total lifetime benefits at age 85</strong><span class="lifetime-benefits-value"></span></p>
+      <p>Social Security retirement benefits are not designed to be your sole source of
+        retirement income, but waiting even one month will increase your benefits.
+        <a href="somelink">Learn how estimates are calculated.</a></p>
+    </div>
+    <div class="content-l_col content-l_col-1-2">
+      <div id="claim-canvas">
+        <div id="min-age-text" class="age-text">62</div>
+        <div id="max-age-text" class="age-text">70</div>
+        <div id="selected-age-text" class="age-text">67</div>
+        <div id="benefits-text">
+          <span class="monthly-view">$1,000</span>
+          <span class="annual-view">$12,000</span>
+        </div>
+      </div>
+      <button id="add-to-comparison-button" class="btn btn__disabled"><span class="cf-icon cf-icon-plus-round"></span> Add to comparison</button>
+    </div>
+    <div class="content-l_col content-l_col-1-3 benefits-comparison">
+       <p><strong>Compare your <span class="monthly-view">monthly</span><span class="annual-view">annual</span> benefits</strong></p>
+       <div class="benefit-selections-area">
+         <div class="benefit-selection-sample">
+          <button class="selected-remove">Remove <span class="cf-icon cf-icon-delete-round"></span></button>
+          <p class="selected-age">67 and 10 months</p>
+          <p class="selected-full-retirement">Full retirement</p>
+          <p class="selected-amount"><span class="monthly-view">$1,000</span><span class="annual-view">$12,000</span></p>
+         </div>
+       </div>
+    </div>
+  </div>
+  <hr>
+  <div class="content-l step-two">
+    <div class="content-l_col content-l_col-1-3">
+      <h2>Step 2: Learn tips to make your claiming decision</h2>
+      <p class="question">Tell us about your lifestyle for personalized information.</p>
+    </div>
+    <div class="content-l_col content-l_col-1-3 question question-married">
+      <img src="lifestyle-married.png" class="lifestyle-img">
+      <hr>
+      <h3 class="lifestyle-question">Are you married?</h3>
+      <div class="lifestyle-response" data-responds-to="yes">
+        <h4>The age you claim will affect your benefits, as well as your spouse’s.</h4>
+        <p>If you or your spouse wait until full retirement age to claim, you will have claiming options such as “file and suspend” and “restricted application”. Additionally, if you are the higher earner in the household, it’s particularly important to wait until full retirement age because your spouse will receive a higher survivor benefit.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="no">
+        <h4>The longer you delay claiming, the higher your monthly Social Security benefit will be.</h4>
+        <p>Because you’re unmarried, your claiming decision is simpler. For every year that you wait until age 70, you will get a permanent increase in your benefits, protecting you from running out of money in retirement.</p>
+      </div>
+      <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">Yes</button>
+      <button class="lifestyle-btn btn btn__grouped-last" data-base-value="no" value="no">No</button>
+    </div>
+    <div class="content-l_col content-l_col-1-3 question question-working age-split">
+      <img src="lifestyle-working.png" class="lifestyle-img">
+      <hr>
+      <h3 class="lifestyle-question">Do you plan on working in your 60s?</h3>
+      <div class="lifestyle-response" data-responds-to="yes-under50">
+        <h4>Stay on track for a secure retirement.</h4>
+        <p>Working longer will help you maximize your Social Security benefits. Because your benefit is based on your highest 35 years of earnings, working longer can add higher earnings to your record by replacing years with low earnings. This might be especially helpful if there were years you were a student, were unemployed, or were taking time off to care for someone. When you work and wait to claim, you can nearly double your benefits by age 70!</p>
+      </div> 
+      <div class="lifestyle-response" data-responds-to="yes-over50">
+        <h4>Working longer will help you maximize your retirement income.</h4>
+        <p>Because your Social Security benefit is based on your highest 35 years of earnings, working longer can add higher earnings to your record by replacing years with low earnings. This might be helpful if there were years you were a student, were unemployed, or took time off to care for someone. When you work and wait to claim, you can nearly double your benefits by age 70! Additionally, now’s a good time to take advantage of annual catch-up contributions to 401(k)s or other retirement savings.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="no-under50">
+        <h4>Working longer can help you maximize your benefits.</h4>
+        <p>Because most people make more money later in their careers, working longer can increase your monthly benefit. Your benefit is based on your highest 35 years of earnings, so working longer can add higher earnings to your record by replacing years with low earnings. This might be especially helpful if there were years you were a student, were unemployed, or were taking time off to care for someone. When you work and wait to claim, you can nearly double your benefits by age 70!</p>
+      </div> 
+      <div class="lifestyle-response" data-responds-to="no-over50">
+        <h4>Consider working fewer hours or changing careers.</h4>
+        <p>Waiting to claim increases your monthly benefits every year until age 70. Working full-time is not the only option in your 60s. Many people plan a career change or work part-time. If you stop or reduce your work hours, it’s still possible to increase your Social Security benefits by waiting to claim. You could use a portion of your 401(k) or other retirement savings to supplement your earnings. You’ll need to decide whether doing this is financially possible.</p>
+        <p><a href="http://www.socialsecurity.gov/planners/retire/stopwork.html" target="_blank"></a></p>
+      </div> 
+      <div class="lifestyle-response" data-responds-to="notsure-under50">
+        <h4>Stay on track for a secure retirement.</h4>
+        <p>Working longer will help you maximize your Social Security benefits. Because most people make more money later in their careers, working longer can increase your monthly benefit. When you work and wait to claim, you can nearly double your benefits by age 70!</p>
+        <p>Did you know that your Social Security benefit is based on your highest 35 years of earnings? Working longer can add higher earnings to your record by replacing years with low and no earnings.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="notsure-over50">
+        <h4>Stay on track for a secure retirement.</h4>
+        <p>Waiting to claim increases your monthly benefits every year until age 70. Working full-time is not the only option in your 60s. Many people plan a career change or work part-time. When you work and wait to claim, you can nearly double your benefits by age 70!</p>
+        <p>Did you know that your Social Security benefit is based on your highest 35 years of earnings? Working longer can add higher earnings to your record by replacing years with low and no earnings.</p>
+      </div>
+      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">Yes</button>
+      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">No</button>
+      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">Not Sure</button>
+    </div>
+  </div>
+  <div class="content-l step-two">
+    <div class="content-l_col content-l_col-1-3 question question-expenses age-split">
+      <img src="lifestyle-expenses.png" class="lifestyle-img">
+      <hr>
+      <h3 class="lifestyle-question">Will your expenses decrease after you retire?</h3>
+      <div class="lifestyle-response" data-responds-to="yes-under50">
+        <h4>Some people find retirement is more expensive than expected.</h4>
+        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you’ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Out-of-pocket health care costs will likely increase as you get older. You can make adjustments, like downsizing or paying off your mortgage before you retire. You can also wait to claim Social Security up to age 70, which increases your benefits, creating a buffer against future increases in expenses.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="yes-over50">
+        <h4>Some people find retirement is more expensive than expected.</h4>
+        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you’ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Additionally, out-of-pocket health care costs are likely to increase as you get older. One solution is to wait to claim Social Security up to age 70, which increases your benefits. This will help other retirement savings, like 401(k)s, last longer.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="no-under50">
+        <h4>It’s good to plan for increased expenses.</h4>
+        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. Creating a buffer against future increases in expenses will help. You can maximize your Social Security benefit by waiting to claim (up to age 70), and at the same time help maintain other retirement savings, like 401(k)s.</p>
+        <p>Other things to consider are downsizing your home or paying off your mortgage before you retire.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="no-over50">
+        <h4>It’s good to plan for increased expenses.</h4>
+        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. Creating a buffer against future increases in expenses will help. You can maximize your Social Security benefit by waiting to claim (up to age 70), and at the same time help maintain other retirement savings, like 401(k)s.</p>
+        <p>Other things to consider are downsizing your home or paying off your mortgage before you retire.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="notsure-under50">
+        <h4>Some people find retirement is more expensive than expected.</h4>
+        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you’ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Out-of-pocket health care costs will likely increase as you get older. You can make adjustments, like downsizing or paying off your mortgage before you retire. You can also wait to claim Social Security up to age 70, which increases your benefits, creating a buffer against future increases in expenses.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="notsure-over50">
+        <h4>Some people find retirement is more expensive than expected.</h4>
+        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you’ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Additionally, out-of-pocket health care costs are likely to increase as you get older. One solution is to wait to claim Social Security up to age 70, which increases your benefits. This will help other retirement savings, like 401(k)s, last longer.</p>
+      </div>
+      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">Yes</button>
+      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">No</button>
+      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">Not Sure</button>
+    </div>
+    <div class="content-l_col content-l_col-1-3 question question-income age-split">
+      <img src="lifestyle-income.png" class="lifestyle-img">
+      <hr>
+      <h3 class="lifestyle-question">Will you have sources of income in addition to Social Security benefits?</h3>
+      <div class="lifestyle-response" data-responds-to="yes-under50">
+        <h4>Continue to save for a secure retirement.</h4>
+        <p>Social Security was never intended to be your only source of retirement income. That means your other sources, like savings, a 401(k) or an IRA will need to fill the gap. Waiting to claim your benefits (up to age 70) will ensure that this gap is as small as possible. If you claim before your full retirement age, your monthly benefit is permanently reduced by as much as 30 percent. Claiming early means that you will need to save more on your own for a secure retirement.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="yes-over50">
+        <h4>Take advantage of catch-up contributions.</h4>
+        <p>Social Security was never intended to be your only source of retirement income. That means your other sources will need to fill this gap. Two steps you can take to ensure that this gap is as small as possible: 1) wait to claim your Social Security benefits (up to age 70) and 2) after age 50, take advantage of 401(k) annual catch-up contributions.</p>
+        <p>Did you know retirement savings plans including 401(k)s come with penalties if you take your money out before age 59½? Consider accessing your 401(k) assets later in retirement.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="no-under50">
+        <h4>You have time and options to save.</h4>
+        <p>You could save through your employer’s retirement plan, IRA or myRA. Make sure to take an employer match if one is offered. We understand you may not be able to save as much as you’d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="no-over50">
+        <h4>It’s never too late to start saving.</h4>
+        <p>You could save through your employer’s retirement plan, IRA or myRA. After age 50, you have the opportunity to catch-up on saving for retirement through annual catch-up contributions. We understand you may not be able to save as much as you’d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.</p>
+        <p>You can also cut costs by downsizing to a smaller home or paying off your mortgage.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="notsure-under50">
+        <h4>It’s never too late to start saving.</h4>
+        <p>You could save through your employer’s retirement plan, IRA or myRA. Make sure to take an employer match if one is offered. We understand you may not be able to save as much as you’d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="notsure-over50">
+        <h4>It’s never too late to start saving.</h4>
+        <p>You could save through your employer’s retirement plan, IRA or myRA. After age 50, you have the opportunity to catch-up on saving for retirement through annual catch-up contributions. We understand you may not be able to save as much as you’d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.</p>
+        <p>You can also cut costs by downsizing to a smaller home or paying off your mortgage.</p>
+      </div>
+      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">Yes</button>
+      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">No</button>
+      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">Not Sure</button>
+    </div>
+    <div class="content-l_col content-l_col-1-3 question question-longevity">
+      <img src="lifestyle-longevity.png" class="lifestyle-img">
+      <hr>
+      <h3 class="lifestyle-question">Do you expect to live a long time?</h3>
+      <div class="lifestyle-response" data-responds-to="yes">
+        <h4>Delaying claiming of your Social Security benefits is the best way to protect yourself in old age.</h4>
+        <p>The average life expectancy is 84 for men and 87 for women. Because Social Security provides lifetime guaranteed income, it is especially valuable to you in your 80s and beyond. Waiting to claim your Social Security benefits is the best way to cover expenses if you live a long time. Your benefit increases the longer you wait to claim, up to age 70, and are adjusted every year to keep up with the cost of living.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="no">
+        <h4>There’s a good chance that you may live into your 80s.</h4>
+        <p>Only you know your personal circumstances. The best way to think about this is to look at your health and family history. You may want to plan for the possibility that you (or your spouse) may live a long time. The average life expectancy is 84 for men and 87 for women. Waiting to claim your Social Security benefits is the best way to cover expenses if you live a long time. Your benefit increases the longer you wait to claim, up to age 70, and are adjusted every year to keep up with the cost of living.</p>
+      </div>
+      <div class="lifestyle-response" data-responds-to="notsure">
+        <h4>There’s a good chance that you may live into your 80s.</h4>
+        <p>We understand it’s difficult to predict how long you will live. The best way to think about this is to look at your health and family history. You may want to plan for the possibility that you (or your spouse) may live a long time. The average life expectancy is 84 for men and 87 for women. Waiting to claim your Social Security benefits is the best way to cover expenses if you live a long time. Your benefit increases the longer you wait to claim, up to age 70, and are adjusted every year to keep up with the cost of living.</p>
+      </div>
+      <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">Yes</button>
+      <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">No</button>
+      <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="notsure">Not Sure</button>
+    </div>
+  </div>
+  <hr> 
+  <div class="step-three">
+    <h2>Step 3: Learn your next steps</h2>
+    <div class="hidden-content">
+      <h3>Select the age you plan to claim your Social Security retirement benefits.</h3>
+        <p>(This will not affect your Social Security account or begin an application.)</p>
+        <select id="retirement-age-selector">
+          <option value="">Choose age</option>
+          <option value="62">62</option>
+          <option value="63">63</option>
+          <option value="64">64</option>
+          <option value="65">65</option>
+          <option value="66">66</option>
+          <option value="67">67</option>
+          <option value="68">68</option>
+          <option value="69">69</option>
+          <option value="70">70</option>
+        </select>
+        <div id="age-selector-response">
+          <hr>
+          <h3>You’ve chosen age <span class="age-response-value"></span>. Here are some steps to help you in the next few years.</h3>
+          <ol>
+            <li>Create a my Social Security account to review your actual earnings history and expected benefits.</li>
+            <li>Based on the year you’ve chosen, make any necessary changes to your retirement savings plans, like adding catch-up contributions or opening a myRA account.</li>
+            <li>Visit us again if your income, employment, or marital status changes.</li>
+            <p>Was this page helpful in thinking about your claiming age decision?</p>
+              <button class="helpful-btn btn btn__grouped-first" value="yes">Yes</button>
+              <button class="helpful-btn btn btn__grouped-last" value="no">No</button>
+          </ol>
+          <p class="thank-you">Thank you for your feedback!</p>
+        </div>
+    </div>
+  </div>
+        </section><!--/main_content-->
+        </div><!-- /wrapper -->
+</div>
+
+
+                
+      
+
+        <section id="subnav">
+        <nav id="inside">
+            <h4>Inside the CFPB</h4>
+            <ul>
+                <li><h5><a href="/the-bureau/">About us</a></h5></li>
+                <li><h5><a href="/jobs/">Jobs</a></h5></li>
+                <li><h5><a href="/contact-us/">Contact us</a></h5></li>
+                <li><h5><a href="/newsroom/">Newsroom</a></h5></li>
+                <li><h5><a href="/reports/">Reports</a></h5></li>
+                <li><h5><a href="/budget/">Budget and performance</a></h5></li>
+                <li><h5><a href="/strategic-plan/">Strategic plan</a></h5></li>
+                <li><h5><a href="/blog/">Blog</a></h5></li>
+                <li><h5><a href="/advisory-groups/">Advisory groups</a></h5></li>
+                <li><h5><a href="/doing-business-with-us/">Doing business with us</a></h5></li>
+        </ul>
+        </nav>
+        <nav id="assistance">
+            <h4>Get assistance</h4>
+            <ul>
+                <li><h5><a href="/askcfpb/">Ask CFPB</a></h5>
+                  <p>Get answers to your financial questions.</p></li>
+                <li><h5><a href="/paying-for-college/">Paying for College</a></h5></li>
+                <li><h5><a href="/owning-a-home/">Owning a Home</a></h5></li>
+                <li><h5><a href="/mortgagehelp/">Trouble paying your mortgage?</a></h5></li>
+                <li><h5><a href="https://help.consumerfinance.gov/app/account/complaints/list">Check the status of a complaint</a></h5></li>
+                <li><h5><a href="/fair-lending/">Protections against credit discrimination</a></h5></li>
+                <li>
+                    <h5>Information for:</h5>
+                    <ul>
+                        <li><a href="/students/">Students</a></li>
+                        <li><a href="/older-americans/">Older Americans</a></li>
+                        <li><a href="/servicemembers/">Servicemembers and Veterans</a></li>
+                        <li><a href="/small-financial-services-providers/">Community Banks &amp; Credit Unions</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <nav id="participate">
+            <h4>Participate</h4>
+            <ul>
+                <li>
+                    <h5>Know Before You Owe</h5>
+                    <p>Making costs and risks clear.</p>
+                    <ul>
+                        <li><a href="/credit-cards/knowbeforeyouowe/">Credit cards</a></li>
+                        <li><a href="/knowbeforeyouowe/">Mortgages</a></li>
+                        <li><a href="/students/knowbeforeyouowe/">Student loans</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5><a href="/your-story/">Tell Your Story</a></h5>
+                    <p>Help inform how we protect consumers &amp; create a fairer marketplace.</p>
+                </li>
+                <li>
+                    <h5><a href="/complaintdatabase">Consumer Complaint Database</a></h5>
+                </li>
+                <li>
+                    <h5><a href="/hmda">Home Mortgage Disclosure Act Database</a></h5>
+                </li>       
+                <li>
+                    <h5><a href="/open/">Open government</a></h5>
+                    <ul>
+                        <li><a href="/leadership-calendar/">Leadership calendar</a></li>
+                        <li><a href="/foia/">FOIA</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h5><a href="/notice-and-comment/">Notice and comment</a></h5>
+                    <p>Weigh in on current rulemakings.</p>
+                </li>
+            </ul>
+        </nav>
+        <nav id="regulation">
+            <h4>Regulation</h4>
+            <ul>
+                <li><h5><a href="/guidance/supervision/manual/">Examination manual</a></h5></li>
+                <li><h5><a href="/guidance/">Guidance</a></h5></li>
+                <li><h5><a href="/notice-and-comment/">Notice and comment</a></h5></li>
+                <li><h5><a href="/regulations/">Regulations</a></h5></li>
+                <li><h5><a href="/regulatory-implementation/">Regulatory implementation</a></h5></li>
+                <li><h5><a href="/administrativeadjudication/">Administrative adjudication</a></h5></li>
+                <li><h5><a href="/amicus/">Amicus program</a></h5></li>
+            </ul>
+        </nav>
+        <nav id="alert">
+            <h4>Submit a complaint</h4>
+            <ul>
+                <li>
+                    <h5><a href="/complaint">Submit a complaint</a></h5>
+                </li>
+                <li><h5><a href="https://help.consumerfinance.gov/app/account/complaints/list">Check the status of your complaint</a></h5></li>
+                <li>
+                    <h5><a href="/the-cfpb-wants-you-to-blow-the-whistle-on-lawbreakers/">Whistleblowers</a></h5>
+                    <p>Confidentially report any wrongdoing you have observed.</p>
+                </li>
+            </ul>
+        </nav>
+        </section>
+
+        <footer id="footer">
+            <div>
+                <a href="/"><img src="/wp-content/themes/cfpb_nemo/_/img/logo-vert.png" alt="Consumer Financial Protection Bureau" title="CFPB"></a>
+                <nav>
+                    <ul>
+                        <li><a href="/privacy-policy/">Privacy policy and legal notices</a></li>
+                        <li><a href="/accessibility/">Accessibility</a></li>
+                        <li><a href="/plain-writing/">Plain writing</a></li>
+                        <li><a href="/no-fear-act/">No FEAR Act</a></li>
+                        <li><a href="/foia/">FOIA</a></li>
+                        <li><a href="/equal-employment-opportunity/whistleblowers/">Whistleblower Act</a></li>
+                    </ul>
+                </nav>
+                <nav>
+                    <ul>
+                        <li><a href="http://usa.gov/">USA.gov</a></li>
+                        <li><a href="http://www.federalreserve.gov/oig/default.htm">Office of Inspector General</a></li>
+                        <li><a href="/ombudsman/">Ombudsman</a></li>
+                    </ul>
+                </nav>
+                <nav>
+                    <ul>
+                        <li class="horizontal-list-item"><a href="http://facebook.com/cfpb" class="noStyles"><img src="/wp-content/themes/cfpb_nemo/_/img/fb_footer_icon.png" alt="Visit us on Facebook"></a>&nbsp;&nbsp;</li>
+                        <li class="horizontal-list-item"><a href="http://twitter.com/cfpb" class="noStyles"><img src="/wp-content/themes/cfpb_nemo/_/img/twitter_footer_icon.png" alt="Visit us on Twitter"></a>&nbsp;&nbsp;</li>
+                        <li class="horizontal-list-item"><a href="http://youtube.com/CFPB" class="noStyles"><img src="/wp-content/themes/cfpb_nemo/_/img/youtube_footer_icon.png" alt="Visit us on Youtube"></a>&nbsp;&nbsp;</li>
+                        <li class="horizontal-list-item"><a href="http://flickr.com/cfpbphotos" class="noStyles"><img src="/wp-content/themes/cfpb_nemo/_/img/flickr_footer_icon.png" alt="Visit us on Flickr"></a>&nbsp;&nbsp;</li>
+                        <li class="horizontal-list-item"><a href="/feed/" class="noStyles"><img src="/wp-content/themes/cfpb_nemo/_/img/rss_footer_icon.png" alt="Subscribe to updates with RSS"></a></li>
+                    </ul>
+                    <p>Visite nuestro sitio web 
+                    en español</p>
+                    <p><a class="link-button espanol-link" href="/es/" hreflang="es">Español</a></p>
+                </nav>
+            </div>
+            <nav class="bottom">
+                <ul>
+                    <li><a href="/contact-us/">Contact us</a></li>
+                    <li><a href="/newsroom/">Newsroom</a></li>
+                    <li><a href="/jobs/">Jobs</a></li>
+                    <li><a href="/open/">Open government</a></li>
+                </ul>
+            </nav>
+        </footer>
+
+        <div class="shareavatar">
+            <img alt="" class="shareavatar" height=0 width=0 src="/wp-content/themes/cfpb_nemo/_/img/facebookshareavatar.png" />
+        </div> <!-- Avatar for Facebook, hidden by CSS -->
+    </div><!-- /#page -->
+
+    
+    
+
+
+<script src="/wp-content/themes/cfpb_nemo/_/js/functions.js?ver=v4.2.10v4.2.24"></script>
+<script type="text/javascript" src="/static/agreements/js/chosen.jquery.js?ver=v4.2.10v4.2.24"></script>
+
+
+
+<!-- for search.usa.gov indexing -->
+<script type="text/javascript">
+  //<![CDATA[
+    var aid = "cfpb";
+    var script = document.createElement('script');
+    script.type = "text/javascript";
+    script.src = "http://search.usa.gov/javascripts/stats.js";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  //]]>
+</script>
+
+<script type="text/javascript">
+    // If there are no breadcrumbs on this page, remove the ul tag so that screen
+    // readers don't read it (since the ul has nothing in it).  
+    $(function(){
+        var numBreadCrumbs = $("ul.bread").children("li").length;
+        if(numBreadCrumbs == 0){
+            $("ul.bread").remove();
+        }
+    });
+</script>
+
+</body>
+</html>
