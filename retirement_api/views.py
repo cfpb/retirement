@@ -6,6 +6,7 @@ from utils.ss_calculator import get_retire_data, params
 from utils.ss_utilities import get_retirement_age
 from dateutil import parser
 import datetime
+from retirement_api.models import Step, AgeChoice, Page, Tooltip, Question
 
 today = datetime.datetime.now().date()
 # params = {
@@ -21,9 +22,17 @@ today = datetime.datetime.now().date()
 #     'prgf': 2
 # }
 
-# def main(request):
-#     cdict = {'tstamp': datetime.datetime.now()}
-#     return render_to_response('main.html', cdict)
+def choosing(request):
+    ages = {}
+    for age in AgeChoice.objects.all():
+        ages[age.age] = age.aside
+    page = Page.objects.get(title='Choosing Social Security')
+    cdict = {
+        'tstamp': datetime.datetime.now(),
+        'ages': ages,
+        'page': page,
+        }
+    return render_to_response('main.html', cdict)
 
 def param_check(request, param):
     if param in request.GET and request.GET[param]:
