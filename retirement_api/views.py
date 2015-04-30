@@ -22,7 +22,7 @@ today = datetime.datetime.now().date()
 #     'prgf': 2
 # }
 
-def choosing(request):
+def claiming(request):
     ages = {}
     for age in AgeChoice.objects.all():
         ages[age.age] = age.aside
@@ -32,7 +32,7 @@ def choosing(request):
         'ages': ages,
         'page': page,
         }
-    return render_to_response('choosing.html', cdict)
+    return render_to_response('claiming.html', cdict)
 
 def param_check(request, param):
     if param in request.GET and request.GET[param]:
