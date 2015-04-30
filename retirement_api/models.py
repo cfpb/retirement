@@ -12,6 +12,9 @@ class Step(models.Model):
     instructions = models.TextField(max_length=255, blank=True)
     note = models.TextField(max_length=255, blank=True)
 
+    def __unicode__(self):
+        return self.title
+
 class AgeChoice(models.Model):
     age = models.IntegerField()
     aside = models.CharField(max_length=500)
