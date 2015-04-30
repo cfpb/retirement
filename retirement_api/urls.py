@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^retirement-api/estimator/$', 'retirement_api.views.estimator', name='estimator'),
     url(r'^retirement-api/estimator/(?P<dob>[^/]+)/(?P<income>\d+)/$', 'retirement_api.views.estimator', name='estimator'),
     url(r'^retirement-api/get-retirement-age/(?P<birth_year>\d+)/$', 'retirement_api.views.get_full_retirement_age', name='get_full_retirement_age'),
+    url(r'^choosing-social-security/$', 'retirement_api.views.choosing', name='choosing'),
 )
 
 urlpatterns += staticfiles_urlpatterns()
