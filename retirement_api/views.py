@@ -32,7 +32,7 @@ def choosing(request):
         'ages': ages,
         'page': page,
         }
-    return render_to_response('main.html', cdict)
+    return render_to_response('choosing.html', cdict)
 
 def param_check(request, param):
     if param in request.GET and request.GET[param]:
