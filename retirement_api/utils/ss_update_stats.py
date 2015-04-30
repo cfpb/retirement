@@ -3,6 +3,7 @@ import sys
 import datetime
 import json
 import csv
+import lxml
 
 """
 terms:
@@ -20,7 +21,7 @@ TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-APP_DIR = "%s/retirement_api"
+APP_DIR = "%s/retirement_api" % BASE_DIR
 
 data_dir = "%s/data" % APP_DIR
 backup_dir = "%s/data/backups" % APP_DIR
@@ -72,7 +73,7 @@ def make_soup(url):
         print "request to %s failed: %s %s" % (url, req.status_code, req.reason)
         return ''
     else:
-        soup = bs(req.text)
+        soup = bs(req.text, 'lxml')
         return soup
 
 def update_example_reduction():

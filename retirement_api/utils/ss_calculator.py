@@ -22,6 +22,7 @@ import requests
 import json
 import datetime
 import math
+import lxml
 
 from bs4 import BeautifulSoup as bs
 from .ss_utilities import get_retirement_age, get_current_age, past_fra_test
@@ -192,7 +193,7 @@ def get_retire_data(params):
     #     return json.dumps(results)
     # else:
     fra_tuple = get_retirement_age(params['yob'])
-    soup = bs(req.text)
+    soup = bs(req.text, 'lxml')
     if past_fra == True:
         ret_amount = soup.find('span', {'id': 'ret_amount'}).text.split('.')[0].replace(',', '')
         if current_age == 67:
