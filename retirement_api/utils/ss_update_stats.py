@@ -59,7 +59,10 @@ def output_json(filepath, headings, bs_rows):
             json_out[cells[0]] = cells[1]
         else:
             tups = zip(headings[1:], cells[1:])
-            json_out[cells[0]] = {tup[0]: tup[1] for tup in tups}
+            tupd = {}
+            for tup in tups:
+                tupd[tup[0]] = tup[1]
+            json_out[cells[0]] = tupd
     with open(filepath, 'w') as f:
         f.write(json.dumps(json_out))
 
