@@ -6,6 +6,7 @@ import shutil
 import tempfile
 import csv
 import datetime
+import lxml
 
 TODAY = datetime.datetime.now().date()
 
@@ -23,7 +24,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 sys.path.append("%s/retirement_api" % BASE_DIR)
 import utils
 from django.test import TestCase
-from ..ss_update_stats import output_csv, output_json, make_soup, update_life, update_cola, ss_table_urls, requests
+from utils import ss_update_stats
+from utils.ss_update_stats import output_csv, output_json, make_soup, update_life, update_cola, ss_table_urls, requests
 mock_data_path = "%s/retirement_api/data/mock_data" % BASE_DIR
 
 class UpdateSsStatsTests(TestCase):
@@ -60,7 +62,7 @@ class UpdateSsStatsTests(TestCase):
         mockpath = "%s/mock_life.csv" % self.tempdir
         with open(self.life_page, 'r') as f:
             mockpage = f.read()
-        table = bs(mockpage).find('table').find('table')
+        table = bs(mockpage, 'lxml').find('table').find('table')
         rows = table.findAll('tr')[2:]
         output_csv(mockpath, self.life_headings, rows)
         self.assertTrue(os.path.isfile(mockpath))
@@ -83,7 +85,7 @@ class UpdateSsStatsTests(TestCase):
         }
         with open(self.life_page, 'r') as f:
             mockpage = f.read()
-        table = bs(mockpage).find('table').find('table')
+        table = bs(mockpage, 'lxml').find('table').find('table')
         rows = table.findAll('tr')[2:]
         output_json(mockpath, self.life_headings, rows)
         self.assertTrue(os.path.isfile(mockpath))
@@ -131,7 +133,7 @@ class UpdateSsStatsTests(TestCase):
         # arrange
         with open(self.earlyretire_page, 'r') as f:
             mockpage = f.read()
-        mock_soup.return_value = bs(mockpage)
+        mock_soup.return_value = bs(mockpage, 'lxml')
 
         # action
         utils.ss_update_stats.update_example_reduction()
@@ -150,7 +152,7 @@ class UpdateSsStatsTests(TestCase):
         # arrange
         with open(self.life_page, 'r') as f:
             mockpage = f.read()
-        mock_soup.return_value = bs(mockpage)
+        mock_soup.return_value = bs(mockpage, 'lxml')
 
         # action
         msg = utils.ss_update_stats.update_life()
@@ -170,7 +172,7 @@ class UpdateSsStatsTests(TestCase):
         # arrange
         with open(self.cola_page, 'r') as f:
             mockpage = f.read()
-        mock_soup.return_value = bs(mockpage)
+        mock_soup.return_value = bs(mockpage, 'lxml')
 
         # action
         utils.ss_update_stats.update_cola()
@@ -187,7 +189,7 @@ class UpdateSsStatsTests(TestCase):
         # arrange
         with open(self.awi_page, 'r') as f:
             mockpage = f.read()
-        mock_soup.return_value = bs(mockpage)
+        mock_soup.return_value = bs(mockpage, 'lxml')
 
         # action
         utils.ss_update_stats.update_awi_series()
