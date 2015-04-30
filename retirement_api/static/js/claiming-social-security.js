@@ -137,7 +137,8 @@
         year = $('#bd-year').val(),
         salary = $('#salary-input').val().replace(/\D/g,'');
     var dates = validDates( month, day, year );
-    var url = '/retirement-testing/api.php?birthday=' + dates.concat + '&salary=' + Number(salary);
+    // var url = '/retirement-testing/api.php?birthday=' + dates.concat + '&salary=' + Number(salary);
+    var url = '/retirement/retirement-api/estimator/' + dates.concat + '/' + Number(salary) + '/';
     var response = "";
     currentAge = calculateAge( month, day, year );
     if ( currentAge < 50 ) {
