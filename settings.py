@@ -26,7 +26,7 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
-    '%s/templates' % BASE_DIR,
+    '%s/retirement_api/templates' % BASE_DIR,
     )
 
 # Application definition
