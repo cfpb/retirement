@@ -44,6 +44,9 @@ class Tooltip(models.Model):
     title = models.CharField(max_length=500)
     text = models.TextField(max_length=255, blank=True)
 
+    def __unicode__(self):
+        return self.title
+
 class Question(models.Model):
     title = models.CharField(max_length=500)
     slug = models.SlugField(blank=True)
