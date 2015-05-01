@@ -12,13 +12,13 @@ def read_file(filename):
         return ''
 
 setup(
-    name='retirement-api',
+    name='retirement',
     version='0.0.1',
     author='CFPB',
     author_email='tech@cfpb.gov',
-    packages=[''],
+    packages=['retirement_api'],
     include_package_data=True,
-    description=u'Retirement api',
+    description=u'Retirement app and api',
     classifiers=[
         'Topic :: Internet :: WWW/HTTP',
         'Intended Audience :: Developers',
