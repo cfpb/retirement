@@ -11,8 +11,11 @@ class AgeChoiceAdmin(admin.ModelAdmin):
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('title', 'question')
 
+class TooltipAdmin(admin.ModelAdmin):
+    list_display = ('title', 'text')
+
 admin.site.register(Page, PageAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Step)
 admin.site.register(AgeChoice, AgeChoiceAdmin)
-admin.site.register(Tooltip)
+admin.site.register(Tooltip, TooltipAdmin)
