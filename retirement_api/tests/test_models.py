@@ -17,4 +17,5 @@ class ViewModels(unittest.TestCase):
     def test_question_slug(self):
         self.testquestion.save()
         self.assertTrue(self.testquestion.slug == "test_q")
+        self.testquestion.delete()
 
