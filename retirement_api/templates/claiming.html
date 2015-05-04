@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 {% load i18n %}
 {% trans page.title as title %}
+{% trans "Yes" as YES %}
+{% trans "No" as NO %}
+{% trans "Not Sure" as NOTSURE %}
 <!--
 Hey! If you're viewing this, you should probably come work on our Technology
 & Innovation team. We're always looking for a few great designers, developers, data
@@ -22,7 +25,7 @@ And by the way, there’s another hidden message somewhere on the following page
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{title}} > Consumer Financial Protection Bureau</title>
+    <title>{{title}} | {% trans "Consumer Financial Protection Bureau" %}</title>
 
     <!-- Meta -->
     <meta name="google-site-verification" content=""> <!-- http://google.com/webmasters -->
@@ -108,6 +111,7 @@ And by the way, there’s another hidden message somewhere on the following page
 <body class="page">
 
 <!-- {{ available_languages }} -->
+<!-- {{ available_languages }} -->
  <!-- Google Tag Manager -->
 
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KMMLRS"
@@ -139,7 +143,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <span class="official-website">An official website of the United States Government</span>
                     <div class="split-right">
                       <a href="/es/" hreflang="es" class="espanol-link">Español</a>
-                      
                       <a href="/lang/#zh" hreflang="zh">中文</a>
                       <a href="/lang/#vi" hreflang="vi">Tiếng Việt</a>
                       <a href="/lang/#ko" hreflang="ko">한국어</a>
@@ -205,50 +208,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             </ul> <!-- /class=bread -->
   <div class="claiming-hero version-a">
-    <h1>{{title}}– {% trans "a choice to fit your lifestyle" %}</h1>
-    <p>Your claiming decision has a big impact. We’re here to help you maximize your lifetime income.</p>
+    <h1>{% trans page.h1 %}</h1>
+    <p>{% trans page.intro %}</p>
   </div>
   <div class="claiming-hero-b version-b">
-    <h1>Claiming Social Security</h1>
-    <p>You may have questions on what claiming age makes sense for you. We’ll help you think through those questions here.</p>
+    <h1>{% trans page.h1 %}</h1>
+    <p>{% trans page.intro %}</p>
   </div>
   <div class="content-l step-one">
     <div class="content-l_col content-l_col-2-3">
-      <h2>Step 1: Explore how claiming age affects your Social Security retirement benefit</h2>
-      <p>Enter your data to update the example below.</p>
+      <h2>{% trans page.step1.title %}</h2>
+      <p>{% trans page.step1.instructions %}</p>
       <div class="content-l">
         <div class="content-l_col content-l_col-1-4 birthdate-inputs">
-          <p><strong>Date of birth</strong></p>
+          <p><strong>{% trans "Date of birth" %}</strong></p>
           <label for="bd-month" class="input-labels"><input id="bd-month" type="text" maxlength="2" placeholder="MM" value=""></label>
           <label for="bd-day" class="input-labels"><input id="bd-day" type="text" maxlength="2" placeholder="DD" value=""></label>
           <label for="bd-year" class="input-labels"><input id="bd-year" type="text" maxlength="4" placeholder="YYYY" value=""></label>
         </div>
         <div class="content-l_col content-l_col-1-4">
-          <label for="salary-input" class="input-labels"><p><strong>Current annual salary</strong></p><input id="salary-input" type="text" maxlength="7" placeholder="$" value=""></label>
+          <label for="salary-input" class="input-labels"><p><strong>{% trans "Current annual salary" %}</strong></p><input id="salary-input" type="text" maxlength="7" placeholder="$" value=""></label>
         </div>
         <div class="content-l_col content-l_col-1-2">
-          <button id="get-your-estimates" class="btn">Get your estimates</button>
+          <button id="get-your-estimates" class="btn">{% trans "Get your estimates" %}</button>
         </div>
       </div>
     </div>
     <div class="content-l_col content-l_col-1-3 estimate-info">
-      <p>We base our estimate on formulas from the Social Security Administration. Your answers are not saved, are anonymous, and only generate estimates during this session.</p>
+      <p>{% trans page.step1.note %}</p>
     </div>
   </div>
 
   <hr>
   <div id="estimated-benefits-input">
-    Estimated benefits shown as  <label><input type="radio" name="benefits-display" value="monthly" checked> monthly income</label> <label><input type="radio" name="benefits-display" value="annual"> annual income</label> 
+    {% trans "Estimated benefits shown as" %}  <label><input type="radio" name="benefits-display" value="monthly" checked> {% trans "monthly income" %}</label> <label><input type="radio" name="benefits-display" value="annual"> {% trans "annual income" %}</label> 
   </div>
   <hr>
 
   <div id="graph-container" class="content-l">
     <div class="content-l_col content-l_col-1-6">
-      <p class="full-retirement-age">Age <span class="full-retirement-age-value">67</span> is your full retirement age.</p>
-      <p><strong>Total lifetime benefits at age 85</strong><span class="lifetime-benefits-value"></span></p>
-      <p>Social Security retirement benefits are not designed to be your sole source of
-        retirement income, but waiting even one month will increase your benefits.
-        <a href="somelink">Learn how estimates are calculated.</a></p>
+      <p class="full-retirement-age">Age <span class="full-retirement-age-value">67</span> {% trans "is your full retirement age." %}</p>
+      <p><strong>{% trans "Total lifetime benefits at age 85" %}</strong><span class="lifetime-benefits-value"></span></p>
+      <p>{% trans tips.sole_source %} <a href="somelink">Learn how estimates are calculated.</a></p>
+        <!--a tooltip explainer can be called in with {% trans tips.calculations.text %} -->
     </div>
     <div class="content-l_col content-l_col-1-2">
       <div id="claim-canvas">
@@ -277,159 +279,152 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <hr>
   <div class="content-l step-two">
     <div class="content-l_col content-l_col-1-3">
-      <h2>Step 2: Learn tips to make your claiming decision</h2>
-      <p class="question">Tell us about your lifestyle for personalized information.</p>
+      <h2>{% trans page.step2.title %}</h2>
+      <p class="question">{% trans page.step2.instructions %}</p>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-married">
       <img src="/retirement/static/images/lifestyle-married.png" class="lifestyle-img">
       <hr>
-      <h3 class="lifestyle-question">Are you married?</h3>
+      <h3 class="lifestyle-question">{% trans questions.marriage.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes">
-        <h4>The age you claim will affect your benefits, as well as your spouse’s.</h4>
-        <p>If you or your spouse wait until full retirement age to claim, you will have claiming options such as “file and suspend” and “restricted application”. Additionally, if you are the higher earner in the household, it’s particularly important to wait until full retirement age because your spouse will receive a higher survivor benefit.</p>
+        <h4>{% trans questions.marriage.answer_yes_a_subhed %}</h4>
+        <p>{% trans questions.marriage.answer_yes_a %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no">
-        <h4>The longer you delay claiming, the higher your monthly Social Security benefit will be.</h4>
-        <p>Because you’re unmarried, your claiming decision is simpler. For every year that you wait until age 70, you will get a permanent increase in your benefits, protecting you from running out of money in retirement.</p>
+        <h4>{% trans questions.marriage.answer_no_a_subhed %}</h4>
+        <p>{% trans questions.marriage.answer_no_a %}</p>
       </div>
-      <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">Yes</button>
-      <button class="lifestyle-btn btn btn__grouped-last" data-base-value="no" value="no">No</button>
+      <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
+      <button class="lifestyle-btn btn btn__grouped-last" data-base-value="no" value="no">{{NO}}</button>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-working age-split">
       <img src="/retirement/static/images/lifestyle-working.png" class="lifestyle-img">
       <hr>
-      <h3 class="lifestyle-question">Do you plan on working in your 60s?</h3>
+      <h3 class="lifestyle-question">{% trans questions.sixties.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes-under50">
-        <h4>Stay on track for a secure retirement.</h4>
-        <p>Working longer will help you maximize your Social Security benefits. Because your benefit is based on your highest 35 years of earnings, working longer can add higher earnings to your record by replacing years with low earnings. This might be especially helpful if there were years you were a student, were unemployed, or were taking time off to care for someone. When you work and wait to claim, you can nearly double your benefits by age 70!</p>
+        <h4>{% trans questions.sixties.answer_yes_a_subhed %}</h4>
+        <p>{% trans questions.sixties.answer_yes_a %}</p>
       </div> 
       <div class="lifestyle-response" data-responds-to="yes-over50">
-        <h4>Working longer will help you maximize your retirement income.</h4>
-        <p>Because your Social Security benefit is based on your highest 35 years of earnings, working longer can add higher earnings to your record by replacing years with low earnings. This might be helpful if there were years you were a student, were unemployed, or took time off to care for someone. When you work and wait to claim, you can nearly double your benefits by age 70! Additionally, now’s a good time to take advantage of annual catch-up contributions to 401(k)s or other retirement savings.</p>
+        <h4>{% trans questions.sixties.answer_yes_b_subhed %}</h4>
+        <p>{% trans questions.sixties.answer_yes_b %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-under50">
-        <h4>Working longer can help you maximize your benefits.</h4>
-        <p>Because most people make more money later in their careers, working longer can increase your monthly benefit. Your benefit is based on your highest 35 years of earnings, so working longer can add higher earnings to your record by replacing years with low earnings. This might be especially helpful if there were years you were a student, were unemployed, or were taking time off to care for someone. When you work and wait to claim, you can nearly double your benefits by age 70!</p>
+        <h4>{% trans questions.sixties.answer_no_a_subhed %}</h4>
+        <p>{% trans questions.sixties.answer_no_a %}</p>
       </div> 
       <div class="lifestyle-response" data-responds-to="no-over50">
-        <h4>Consider working fewer hours or changing careers.</h4>
-        <p>Waiting to claim increases your monthly benefits every year until age 70. Working full-time is not the only option in your 60s. Many people plan a career change or work part-time. If you stop or reduce your work hours, it’s still possible to increase your Social Security benefits by waiting to claim. You could use a portion of your 401(k) or other retirement savings to supplement your earnings. You’ll need to decide whether doing this is financially possible.</p>
+        <h4>{% trans questions.sixties.answer_no_b_subhed %}</h4>
+        <p>{% trans questions.sixties.answer_no_a %}</p>
         <p><a href="http://www.socialsecurity.gov/planners/retire/stopwork.html" target="_blank"></a></p>
       </div> 
       <div class="lifestyle-response" data-responds-to="notsure-under50">
-        <h4>Stay on track for a secure retirement.</h4>
-        <p>Working longer will help you maximize your Social Security benefits. Because most people make more money later in their careers, working longer can increase your monthly benefit. When you work and wait to claim, you can nearly double your benefits by age 70!</p>
-        <p>Did you know that your Social Security benefit is based on your highest 35 years of earnings? Working longer can add higher earnings to your record by replacing years with low and no earnings.</p>
+        <h4>{% trans questions.sixties.answer_unsure_a_subhed %}</h4>
+        <p>{% trans questions.sixties.answer_unsure_a %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure-over50">
-        <h4>Stay on track for a secure retirement.</h4>
-        <p>Waiting to claim increases your monthly benefits every year until age 70. Working full-time is not the only option in your 60s. Many people plan a career change or work part-time. When you work and wait to claim, you can nearly double your benefits by age 70!</p>
-        <p>Did you know that your Social Security benefit is based on your highest 35 years of earnings? Working longer can add higher earnings to your record by replacing years with low and no earnings.</p>
+        <h4>{% trans questions.sixties.answer_unsure_b_subhed %}</h4>
+        <p>{% trans questions.sixties.answer_unsure_b %}</p>
       </div>
-      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">Yes</button>
-      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">No</button>
-      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">Not Sure</button>
+      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
+      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
+      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
     </div>
   </div>
   <div class="content-l step-two">
     <div class="content-l_col content-l_col-1-3 question question-expenses age-split">
       <img src="/retirement/static/images/lifestyle-expenses.png" class="lifestyle-img">
       <hr>
-      <h3 class="lifestyle-question">Will your expenses decrease after you retire?</h3>
+      <h3 class="lifestyle-question">{% trans questions.expenses.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes-under50">
-        <h4>Some people find retirement is more expensive than expected.</h4>
-        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you’ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Out-of-pocket health care costs will likely increase as you get older. You can make adjustments, like downsizing or paying off your mortgage before you retire. You can also wait to claim Social Security up to age 70, which increases your benefits, creating a buffer against future increases in expenses.</p>
+        <h4>{% trans questions.expenses.answer_yes_a_subhed %}</h4>
+        <p>{% trans questions.expenses.answer_yes_a %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="yes-over50">
-        <h4>Some people find retirement is more expensive than expected.</h4>
-        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you’ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Additionally, out-of-pocket health care costs are likely to increase as you get older. One solution is to wait to claim Social Security up to age 70, which increases your benefits. This will help other retirement savings, like 401(k)s, last longer.</p>
+        <h4>{% trans questions.expenses.answer_yes_b_subhed %}</h4>
+        <p>{% trans questions.expenses.answer_yes_b %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-under50">
-        <h4>It’s good to plan for increased expenses.</h4>
-        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. Creating a buffer against future increases in expenses will help. You can maximize your Social Security benefit by waiting to claim (up to age 70), and at the same time help maintain other retirement savings, like 401(k)s.</p>
-        <p>Other things to consider are downsizing your home or paying off your mortgage before you retire.</p>
+        <h4>{% trans questions.expenses.answer_no_a_subhed %}</h4>
+        <p>{% trans questions.expenses.answer_no_a %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-over50">
-        <h4>It’s good to plan for increased expenses.</h4>
-        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. Creating a buffer against future increases in expenses will help. You can maximize your Social Security benefit by waiting to claim (up to age 70), and at the same time help maintain other retirement savings, like 401(k)s.</p>
-        <p>Other things to consider are downsizing your home or paying off your mortgage before you retire.</p>
+        <h4>{% trans questions.expenses.answer_no_b_subhed %}</h4>
+        <p>{% trans questions.expenses.answer_no_b %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure-under50">
-        <h4>Some people find retirement is more expensive than expected.</h4>
-        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you’ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Out-of-pocket health care costs will likely increase as you get older. You can make adjustments, like downsizing or paying off your mortgage before you retire. You can also wait to claim Social Security up to age 70, which increases your benefits, creating a buffer against future increases in expenses.</p>
+        <h4>{% trans questions.expenses.answer_unsure_a_subhed %}</h4>
+        <p>{% trans questions.expenses.answer_unsure_a %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure-over50">
-        <h4>Some people find retirement is more expensive than expected.</h4>
-        <p>You’re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you’ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Additionally, out-of-pocket health care costs are likely to increase as you get older. One solution is to wait to claim Social Security up to age 70, which increases your benefits. This will help other retirement savings, like 401(k)s, last longer.</p>
+        <h4>{% trans questions.expenses.answer_unsure_b_subhed %}</h4>
+        <p>{% trans questions.expenses.answer_unsure_b %}</p>
       </div>
-      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">Yes</button>
-      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">No</button>
-      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">Not Sure</button>
+      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
+      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
+      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-income age-split">
       <img src="/retirement/static/images/lifestyle-income.png" class="lifestyle-img">
       <hr>
-      <h3 class="lifestyle-question">Will you have sources of income in addition to Social Security benefits?</h3>
+      <h3 class="lifestyle-question">{% trans questions.income.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes-under50">
-        <h4>Continue to save for a secure retirement.</h4>
-        <p>Social Security was never intended to be your only source of retirement income. That means your other sources, like savings, a 401(k) or an IRA will need to fill the gap. Waiting to claim your benefits (up to age 70) will ensure that this gap is as small as possible. If you claim before your full retirement age, your monthly benefit is permanently reduced by as much as 30 percent. Claiming early means that you will need to save more on your own for a secure retirement.</p>
+        <h4>{% trans questions.income.answer_yes_a_subhed %}</h4>
+        <p>{% trans questions.income.answer_yes_a %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="yes-over50">
-        <h4>Take advantage of catch-up contributions.</h4>
-        <p>Social Security was never intended to be your only source of retirement income. That means your other sources will need to fill this gap. Two steps you can take to ensure that this gap is as small as possible: 1) wait to claim your Social Security benefits (up to age 70) and 2) after age 50, take advantage of 401(k) annual catch-up contributions.</p>
-        <p>Did you know retirement savings plans including 401(k)s come with penalties if you take your money out before age 59½? Consider accessing your 401(k) assets later in retirement.</p>
+        <h4>{% trans questions.income.answer_yes_b_subhed %}</h4>
+        <p>{% trans questions.income.answer_yes_b %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-under50">
-        <h4>You have time and options to save.</h4>
-        <p>You could save through your employer’s retirement plan, IRA or myRA. Make sure to take an employer match if one is offered. We understand you may not be able to save as much as you’d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.</p>
+        <h4>{% trans questions.income.answer_no_a_subhed %}</h4>
+        <p>{% trans questions.income.answer_no_a %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-over50">
-        <h4>It’s never too late to start saving.</h4>
-        <p>You could save through your employer’s retirement plan, IRA or myRA. After age 50, you have the opportunity to catch-up on saving for retirement through annual catch-up contributions. We understand you may not be able to save as much as you’d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.</p>
-        <p>You can also cut costs by downsizing to a smaller home or paying off your mortgage.</p>
+        <h4>{% trans questions.income.answer_no_b_subhed %}</h4>
+        <p>{% trans questions.income.answer_no_b %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure-under50">
-        <h4>It’s never too late to start saving.</h4>
-        <p>You could save through your employer’s retirement plan, IRA or myRA. Make sure to take an employer match if one is offered. We understand you may not be able to save as much as you’d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.</p>
+        <h4>{% trans questions.income.answer_unsure_a_subhed %}</h4>
+        <p>{% trans questions.income.answer_unsure_a %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure-over50">
-        <h4>It’s never too late to start saving.</h4>
-        <p>You could save through your employer’s retirement plan, IRA or myRA. After age 50, you have the opportunity to catch-up on saving for retirement through annual catch-up contributions. We understand you may not be able to save as much as you’d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.</p>
-        <p>You can also cut costs by downsizing to a smaller home or paying off your mortgage.</p>
+        <h4>{% trans questions.income.answer_unsure_b_subhed %}</h4>
+        <p>{% trans questions.income.answer_unsure_b %}</p>
       </div>
-      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">Yes</button>
-      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">No</button>
-      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">Not Sure</button>
+      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
+      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
+      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-longevity">
       <img src="/retirement/static/images/lifestyle-longevity.png" class="lifestyle-img">
       <hr>
-      <h3 class="lifestyle-question">Do you expect to live a long time?</h3>
+      <h3 class="lifestyle-question">{% trans questions.longlife.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes">
-        <h4>Delaying claiming of your Social Security benefits is the best way to protect yourself in old age.</h4>
-        <p>The average life expectancy is 84 for men and 87 for women. Because Social Security provides lifetime guaranteed income, it is especially valuable to you in your 80s and beyond. Waiting to claim your Social Security benefits is the best way to cover expenses if you live a long time. Your benefit increases the longer you wait to claim, up to age 70, and are adjusted every year to keep up with the cost of living.</p>
+        <h4>{% trans questions.longlife.answer_yes_a_subhed %}</h4>
+        <p>{% trans questions.longlife.answer_yes_a %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no">
-        <h4>There’s a good chance that you may live into your 80s.</h4>
-        <p>Only you know your personal circumstances. The best way to think about this is to look at your health and family history. You may want to plan for the possibility that you (or your spouse) may live a long time. The average life expectancy is 84 for men and 87 for women. Waiting to claim your Social Security benefits is the best way to cover expenses if you live a long time. Your benefit increases the longer you wait to claim, up to age 70, and are adjusted every year to keep up with the cost of living.</p>
+        <h4>{% trans questions.longlife.answer_no_a_subhed %}</h4>
+        <p>{% trans questions.longlife.answer_no_a %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure">
-        <h4>There’s a good chance that you may live into your 80s.</h4>
-        <p>We understand it’s difficult to predict how long you will live. The best way to think about this is to look at your health and family history. You may want to plan for the possibility that you (or your spouse) may live a long time. The average life expectancy is 84 for men and 87 for women. Waiting to claim your Social Security benefits is the best way to cover expenses if you live a long time. Your benefit increases the longer you wait to claim, up to age 70, and are adjusted every year to keep up with the cost of living.</p>
+        <h4>{% trans questions.longlife.answer_unsure_a_subhed %}</h4>
+        <p>{% trans questions.longlife.answer_unsure_a %}</p>
       </div>
-      <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">Yes</button>
-      <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">No</button>
-      <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="notsure">Not Sure</button>
+      <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
+      <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">{{NO}}</button>
+      <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
     </div>
   </div>
   <hr> 
   <div class="step-three">
-    <h2>Step 3: Learn your next steps</h2>
+    <h2>{% trans page.step3.title %}</h2>
     <div class="hidden-content">
-      <h3>Select the age you plan to claim your Social Security retirement benefits.</h3>
-        <p>(This will not affect your Social Security account or begin an application.)</p>
+      <h3>{% trans page.step3.instructions %}</h3>
+        <p>{% trans page.step3.note %}</p>
         <select id="retirement-age-selector">
-          <option value="">Choose age</option>
+          <option value="">{% trans "Choose age" %}</option>
           <option value="62">62</option>
           <option value="63">63</option>
           <option value="64">64</option>
@@ -442,14 +437,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </select>
         <div id="age-selector-response">
           <hr>
-          <h3>You’ve chosen age <span class="age-response-value"></span>. Here are some steps to help you in the next few years.</h3>
+          <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>. {% trans "Here are some steps to help you in the next few years." %}</h3>
           <ol>
-            <li>Create a my Social Security account to review your actual earnings history and expected benefits.</li>
-            <li>Based on the year you’ve chosen, make any necessary changes to your retirement savings plans, like adding catch-up contributions or opening a myRA account.</li>
-            <li>Visit us again if your income, employment, or marital status changes.</li>
-            <p>Was this page helpful in thinking about your claiming age decision?</p>
-              <button class="helpful-btn btn btn__grouped-first" value="yes">Yes</button>
-              <button class="helpful-btn btn btn__grouped-last" value="no">No</button>
+            <li>{% trans final_steps.final_step_1.instructions %}</li>
+            <li>{% autoescape off %}{% trans final_steps.final_step_2.instructions %}{% endautoescape %}</li>
+            <li>{% trans final_steps.final_step_3.instructions %}</li>
+            <p>{% trans final_steps.final_step_4.instructions %}</p>
+            
+              <button class="helpful-btn btn btn__grouped-first" value="yes">{{YES}}</button>
+              <button class="helpful-btn btn btn__grouped-last" value="no">{{NO}}</button>
           </ol>
           <p class="thank-you">Thank you for your feedback!</p>
         </div>

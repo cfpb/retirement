@@ -27,8 +27,20 @@ def claiming(request):
     for age in AgeChoice.objects.all():
         ages[age.age] = age.aside
     page = Page.objects.get(title='Choosing Social Security')
+    tips = {}
+    for tooltip in Tooltip.objects.all():
+        tips[tooltip.title] = tooltip.text
+    questions = {}
+    for q in Question.objects.all():
+        questions[q.slug] = q
+    final_steps = {}
+    for step in Step.objects.filter(title__contains='final_'):
+        final_steps[step.title] = step
     cdict = {
         'tstamp': datetime.datetime.now(),
+        'final_steps': final_steps,
+        'questions': questions,
+        'tips': tips,
         'ages': ages,
         'page': page,
         'available_languages': ['en', 'es'],
