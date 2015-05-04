@@ -31,6 +31,7 @@ def claiming(request):
         'tstamp': datetime.datetime.now(),
         'ages': ages,
         'page': page,
+        'available_languages': ['en', 'es'],
         }
     return render_to_response('claiming.html', cdict)
 

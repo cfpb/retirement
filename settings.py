@@ -3,9 +3,14 @@ test settings
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 BASE_DIR = os.path.dirname(__file__)
 
 SECRET_KEY = 'secret_for_testing_only'
+LANGUAGES = (
+    ('es', _('Spanish')),
+    ('en', _('English')),
+)
 
 DEBUG = True
 
@@ -31,6 +36,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
