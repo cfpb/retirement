@@ -9,7 +9,7 @@ class AgeChoiceAdmin(admin.ModelAdmin):
     list_display = ('age', 'aside')
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'question')
+    list_display = ('title', 'question', 'workflow_state')
 
 class TooltipAdmin(admin.ModelAdmin):
     list_display = ('title', 'text')

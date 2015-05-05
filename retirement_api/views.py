@@ -7,6 +7,8 @@ from utils.ss_utilities import get_retirement_age
 from dateutil import parser
 import datetime
 from retirement_api.models import Step, AgeChoice, Page, Tooltip, Question
+from django.utils.translation import ugettext as _
+from django.utils.translation import activate
 
 today = datetime.datetime.now().date()
 # params = {
@@ -22,15 +24,30 @@ today = datetime.datetime.now().date()
 #     'prgf': 2
 # }
 
-def claiming(request):
+def claiming(request, es=False):
+    if es == True:
+        activate('es')
     ages = {}
     for age in AgeChoice.objects.all():
-        ages[age.age] = age.aside
+        ages[age.age] = _(age.aside)
     page = Page.objects.get(title='Choosing Social Security')
+    tips = {}
+    for tooltip in Tooltip.objects.all():
+        tips[tooltip.title] = tooltip.text
+    questions = {}
+    for q in Question.objects.all():
+        questions[q.slug] = q
+    final_steps = {}
+    for step in Step.objects.filter(title__contains='final_'):
+        final_steps[step.title] = step
     cdict = {
         'tstamp': datetime.datetime.now(),
+        'final_steps': final_steps,
+        'questions': questions,
+        'tips': tips,
         'ages': ages,
         'page': page,
+        'available_languages': ['en', 'es'],
         }
     return render_to_response('claiming.html', cdict)
 
