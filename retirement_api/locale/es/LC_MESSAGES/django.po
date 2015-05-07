@@ -1,20 +1,11 @@
-# Spanish translations for Claiming Social Security.
-# This file is distributed under the same license as the cfpb/retirement package.
-# FIRST AUTHOR Consumer Financial Protection Bureau, tech@cfpb.gov, 2015.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.0.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-04 23:58-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Serena Villalba <Serena.Villalba@cfpb.gov>\n"
-"Language-Team: NOTEAM <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: retirement\n"
+"Language: es\n"
 
 #: templates/claiming.html:4
 msgid "Yes"
@@ -30,35 +21,35 @@ msgstr "No estoy seguro"
 
 #: templates/claiming.html:28
 msgid "Consumer Financial Protection Bureau"
-msgstr ""
+msgstr "Oficina para la Protección Financiera del Consumidor"
 
 #: templates/claiming.html
 msgid "Claiming Social Security— a choice to fit your lifestyle"
-msgstr ""
+msgstr "Reivindicación de Seguridad- Social una opción para adaptarse a su estilo de vida"
 
 #: templates/claiming.html
 msgid "Your claiming decision has a big impact. We're here to help you maximize your lifetime income."
-msgstr ""
+msgstr "Su decisión alegando tiene un gran impacto. Estamos aquí para ayudarle a maximizar sus ingresos de por vida."
 
 #: templates/claiming.html
 msgid "Step 1: Explore how claiming age affects your Social Security retirement benefit"
-msgstr ""
+msgstr "Paso 1: Explorar cómo reclamar la edad afecta sus beneficios de jubilación del Seguro Social"
 
 #: templates/claiming.html
 msgid "Enter your data to update the example below."
-msgstr ""
+msgstr "Introduzca sus datos para actualizar el ejemplo siguiente."
 
-#: templates/claiming.html
+#: 
 msgid "We base our estimate on formulas from the Social Security Administration. Your information is not saved, is anonymous, and is used only to generate estimates during this session."
-msgstr ""
+msgstr "Basamos nuestra estimación de las fórmulas de la Administración del Seguro Social. Su información no se guarda, es anónima, y ​​sólo se utiliza para generar estimaciones durante esta sesión."
 
 #: templates/claiming.html:224
 msgid "Date of birth"
-msgstr ""
+msgstr "Fecha de nacimiento"
 
 #: templates/claiming.html:230
 msgid "Current annual salary"
-msgstr ""
+msgstr "Salario anual actual"
 
 #: templates/claiming.html:233
 msgid "Get your estimates"
@@ -66,32 +57,53 @@ msgstr "Consiga sus estimaciones"
 
 #: templates/claiming.html:244
 msgid "Estimated benefits shown as"
-msgstr ""
+msgstr "Beneficios estimados que se muestran como"
 
 #: templates/claiming.html:244
 msgid "monthly income"
-msgstr ""
+msgstr "ingreso mensual"
 
 #: templates/claiming.html:244
 msgid "annual income"
-msgstr ""
+msgstr "renta anual"
 
 #: templates/claiming.html:250
 msgid "is your full retirement age."
-msgstr ""
+msgstr "es su plena edad de jubilación."
 
 #: templates/claiming.html:251
 msgid "Total lifetime benefits at age 85"
-msgstr ""
+msgstr "Total de beneficios de por vida a los 85 años"
 
 #: templates/claiming.html:427
 msgid "Choose age"
-msgstr ""
+msgstr "Elija la edad"
 
 #: templates/claiming.html:440
 msgid "You’ve chosen age"
-msgstr ""
+msgstr "Has elegido la edad"
 
 #: templates/claiming.html:440
 msgid "Here are some steps to help you in the next few years."
-msgstr ""
+msgstr "Aquí hay algunos pasos que le ayudarán en los próximos años."
+
+#: 
+msgid "Social Security retirement benefits are not designed to be your sole source of retirement income, but waiting even one month will increase your benefits."
+msgstr "Beneficios de jubilación del Seguro Social no están diseñados para ser su única fuente de ingresos de jubilación, pero esperando ni un solo mes se aumentar sus beneficios."
+
+#: 
+msgid "Learn how estimates are calculated."
+msgstr "Conozca cómo se calculan las estimaciones."
+
+#: 
+msgid "Step 2: Learn tips to make your claiming decision"
+msgstr "Paso 2: Aprenda consejos para tomar su decisión alegando"
+
+#: 
+msgid "Step 3: Learn your next steps"
+msgstr "Paso 3: Conozca sus próximos pasos"
+
+#: 
+msgid "Select the age you plan to claim your Social Security retirement benefits."
+msgstr "Seleccione la edad va a reclamar sus beneficios de jubilación del Seguro Social."
+
