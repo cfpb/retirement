@@ -1,5 +1,16 @@
 body {
   background-image: none;
+  font-size: 16px;
+}
+
+#claiming-social-security .cf-icon.cf-icon-help-round {
+  color: #0072CD;
+  font-size: .8em;
+}
+
+#claiming-social-security .btn {
+  font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+  font-weight: normal;
 }
 
 #maincontent {
@@ -106,9 +117,13 @@ body {
 #claim-canvas .age-text {
   color: #babbbd;
   font-family: 'AvenirNextLTW01-Regular', Arial, sans-serif;
-  font-size: 1.2em;
+  font-size: 1.15em;
   position: absolute;
-  top: 322px;
+  top: 292px;
+}
+
+#claim-canvas .age-text.selected-age {
+  color: #000;
 }
 
 #claim-canvas #min-age-text {
@@ -161,17 +176,22 @@ body {
 }
 
 #claiming-social-security .input-labels input {
-  font-size: .9em;
   display: inline; 
-  width: 15%;
+  width: 20%;
+  padding: 2px;
 }
 
 #claiming-social-security #bd-year {
-  width: 25%;
+  width: 40%;
 }
 
 #claiming-social-security #salary-input {
   width: 90%;
+}
+
+#claiming-social-security .btn.get-your-estimates {
+  position: relative;
+  top: 5px;
 }
 
 #claiming-social-security .benefits-comparison .annual-view {
@@ -180,7 +200,6 @@ body {
 
 #claiming-social-security .estimate-info {
   vertical-align: bottom;
-  font-size: .9em;
   font-weight: bold;
 }
 
@@ -216,7 +235,6 @@ body {
   background: none;
   border: none;
   float: right;
-  font-size: .8em;
 }
 
 #claiming-social-security #graph-container + hr {
@@ -247,6 +265,37 @@ body {
 #claiming-social-security .step-three {
   opacity: .35;
 }
+
+#claiming-social-security .step-three .selector-container {
+  overflow: hidden;
+  position: relative;
+  background: #ffffff url('/retirement/static/images/select.png') no-repeat right 0;
+  border: solid 1px #d0d0ce;
+  height: 32px;
+  font-family: "AvenirNextLTW01-Medium", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  width: 150px;
+}
+
+#claiming-social-security .step-three #retirement-age-selector {
+  width: 100%;
+  padding-right: 40px;
+  background-color: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 0 4px;
+  font-size: 1em;
+  color: #101820;
+  height: 100%;
+}
+
+#claiming-social-security #age-selector-response .next-steps li {
+
+} 
 
 /* ====================================================================
    Medium and small screens
