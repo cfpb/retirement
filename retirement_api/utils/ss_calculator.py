@@ -104,7 +104,7 @@ def interpolate_benefits(benefits, fra_tuple, current_age):
         visitor could be between the ages of 55 and 65, which requires special handliing
             their FRA is less than 67, which changes where we need to fill in the chart
         visitor could be too young to use the tool (< 22)
-        visitor's age could be past the FRA, in which case only current benefit is returned
+        visitor's age could be past the FRA, in which case only current benefit is returned (this is handled in get_retire_data)
             if current age is 67, 68, 69 or 70, we can show that beneift in the chart
             if current age is > 70, chart should zero out; all we can deliver is what current benefit would be 
     """
@@ -210,8 +210,8 @@ def get_retire_data(params):
             survivors_table = each
     if past_fra == True:
         results['data']['disability'] = "You have reached full retirement age and are not eligible for disability benefits."
-        ret_amount = soup.find('span', {'id': 'ret_amount'}).text.split('.')[0].replace(',', '')
-        base = int(ret_amount)
+        ret_amount = soup.find('span', {'id': 'ret_amount'}).text.split('.')[0]
+        base = int(ret_amount.replace(',', ''))
         increment = base * 0.08
         if current_age == 66:
             BENS['age 66'] = round(base)
@@ -234,7 +234,7 @@ def get_retire_data(params):
         elif current_age == 70:
             BENS['age 70'] = round(base)
         else:# older than 70
-            results['note'] = "Your monthly benefit at %s is %s" % (current_age, base)
+            results['note'] = "Your monthly benefit at %s is $%s" % (current_age, ret_amount)
     else:
         if results_table:
             result_rows = results_table.findAll('tr')
