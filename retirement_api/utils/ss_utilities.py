@@ -96,7 +96,10 @@ def past_fra_test(dob=None):
     today = datetime.datetime.now().date()
     if DOB >= today:
         return 'invalid birth year entered'
-    fra_tuple = get_retirement_age(DOB.year)
+    if DOB.month == 1 and DOB.day == 1:
+        fra_tuple = get_retirement_age(DOB.year-1)
+    else:
+        fra_tuple = get_retirement_age(DOB.year)
     if not fra_tuple:
         return 'invalid birth year entered'
     fra_year = fra_tuple[0]
