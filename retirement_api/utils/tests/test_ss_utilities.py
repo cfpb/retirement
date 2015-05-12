@@ -27,7 +27,7 @@ class UtilitiesTests(unittest.TestCase):
     sample_params = {
         'dobmon': 1,
         'dobday': 1,
-        'yob': 1970,
+        'yob': today.year-45,
         'earnings': 70000,
         'lastYearEarn': '',# possible use for unemployed or already retired
         'lastEarn': '',# possible use for unemployed or already retired
@@ -151,17 +151,19 @@ class UtilitiesTests(unittest.TestCase):
             self.assertEqual(get_retirement_age(year), sample_inputs[year])
 
     def test_past_fra_test(self):
+        jan1 =  "%s" % datetime.date((today.year-57), 1, 1)
         way_old = "%s" % (today-timedelta(days=80*365))
         too_old = "%s" % (today-timedelta(days=68*365))
         ok = "%s" % (today-timedelta(days=57*365))
         too_young = "%s" % (today-timedelta(days=21*365))
         invalid = "%s" % (today+timedelta(days=365))
         edge = "%s" % (today-timedelta(days=67*365))
+        self.assertTrue(past_fra_test(jan1) == False)
+        self.assertTrue(past_fra_test(way_old) == True)
         self.assertTrue(past_fra_test(too_old) == True)
         self.assertTrue(past_fra_test(ok) == False)
         self.assertTrue(past_fra_test(too_young) == 'Visitor too young to calculate benefits')
         self.assertTrue(past_fra_test(invalid) == "invalid birth year entered")
-        self.assertTrue(past_fra_test(way_old) == True)
         self.assertTrue(past_fra_test(edge) == True)
 
     def test_age_map(self):
@@ -264,14 +266,17 @@ class UtilitiesTests(unittest.TestCase):
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(isinstance(data, dict))
         self.assertEqual(data['data']['params']['yob'], 1937)
-        self.assertTrue('past full retirement age' in data['error'])
+        self.assertTrue('monthly benefit' in data['note'])
         self.sample_params['yob'] = 193
         data = json.loads(get_retire_data(self.sample_params))
         print "'invalid' error is returning %s" % data['error']
         self.assertTrue(data['error'] == 'invalid birth year entered')
         self.sample_params['yob'] = today.year-21
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue(data['error'] == 'Visitor too young to calculate benefits')
+        self.assertTrue(data['note'] == 'Visitor too young to calculate benefits')
+        self.sample_params['yob'] = today.year-66
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-67
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
@@ -284,6 +289,9 @@ class UtilitiesTests(unittest.TestCase):
         self.sample_params['yob'] = today.year-70
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        self.sample_params['yob'] = today.year-72
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue("monthly benefit" in data['note'])
 
     # @mock.patch('utils.ss_calculator.requests')
     # def test_ss_calculator_bad_request(self, mock_request):
