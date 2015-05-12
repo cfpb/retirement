@@ -45,7 +45,7 @@
   else {
     var barGraphHeight = 240,
       barWidth = 38,
-      gutterWidth = 30,
+      gutterWidth = 40,
       indicatorWidth = 36,
       indicatorSide = 30,
       graphWidth = 600;      
@@ -161,6 +161,8 @@
           resetView();
           $('.step-two, #estimated-benefits-input, #graph-container').css('opacity', 1);
           $('.step-two .question').css('display', 'inline-block');
+          $('.step-three').css('opacity', 1);
+          $('.step-three .hidden-content').show();
         }
         else {
           alert('An error occurred! ' + dump.error )
@@ -187,6 +189,41 @@
     }
   }
 
+  //--*** toolTipper(): Handles tooltips ***--//
+
+  function toolTipper( target ) {
+    // position tooltip-container based on the element clicked
+    var tooltip = $('.tooltip-container[data-target="' + target + '"]');
+    var thisoff = tooltip.offset();
+    var ttc = $("#tooltip-container");
+    ttc.show();
+    ttc.css(
+        {"left": (thisoff.left + 10) + "px",
+         "top": (thisoff.top + $(this).height() + 5) + "px"});
+    var ttcoff = ttc.offset();
+    var right = ttcoff.left + ttc.outerWidth(true);
+    if (right > $(window).width()) {
+        var left = $(window).width() - ttc.outerWidth(true) - 20;
+        ttc.offset({"left": left});
+    }
+    // check offset again, properly set tips to point to the element clicked
+    ttcoff = ttc.offset();
+    var tipset = Math.max(thisoff.left - ttcoff.left, 0);
+    ttc.find(".innertip").css("left", (tipset + 8));
+    ttc.find(".outertip").css("left", (tipset + 5));
+    $("#tooltip-container > p").html($(this).attr("data-tooltip"));
+    
+    $("html").on('click', "body", function() {
+        $("#tooltip-container").hide();
+        $("html").off('click');
+    });
+    var tooltip = $(this).attr("data-tipname");
+    if ( tooltip == undefined ){
+        tooltip = "Name not found";
+    }    
+  }
+
+
   //--*** setTextByAge(): Changes text of benefits and age fields based on selectedAge
   function setTextByAge() {
     var x = ages.indexOf( selectedAge ) * barGut + indicatorLeftSet;
@@ -204,6 +241,24 @@
     var benefitsLeft = bars[ 'age ' + selectedAge ].attr('x') - $('#benefits-text').width() / 2 + barWidth / 2;
     $('#benefits-text').css( 'left', benefitsLeft );
     $('.lifetime-benefits-value').text( lifetimeBenefits );
+
+    $('.selected-retirement-age-value').text( selectedAge );
+    if ( selectedAge === SSData.fullAge ) {
+      $('.benefit-modification-text').html( 'is your full retirement age.' )
+      $('.compared-to-full').hide();
+    }
+    else if ( selectedAge < SSData.fullAge ) {
+      var percent = ( SSData['age ' + SSData.fullAge] - SSData['age ' + selectedAge] ) / SSData['age ' + SSData.fullAge];
+      percent = Math.abs( Math.floor( percent * 100 ) );
+      $('.benefit-modification-text').html( '<strong>reduces</strong> your benefit by ' + percent + '%' );
+      $('.compared-to-full').show();
+    }
+    else if ( selectedAge > SSData.fullAge ) {
+      var percent = ( SSData['age ' + SSData.fullAge] - SSData['age ' + selectedAge] ) / SSData['age ' + SSData.fullAge];
+      percent = Math.abs( Math.floor( percent * 100 ) );
+      $('.benefit-modification-text').html( '<strong>increases</strong> your benefit by ' + percent + '%' );
+      $('.compared-to-full').show();
+    }
   }
 
   /***-- moveIndicator(dx, dy): Move the pointed indicator based on mouse delta.
@@ -302,9 +357,10 @@
     drawBars();
     createIndicator();
     $('#claim-canvas').width( barWidth * 9 + gutterWidth * 8 );
+    $('#claim-canvas').css( 'left', '40px');
     var leftOffset = 0;
     $.each( ages, function(i, val) {
-      $('#claim-canvas').append('<div class="age-text">' + val + '</div>');
+      $('#claim-canvas').append('<div class="age-text"><p class="h3"><strong>' + val + '<strong></p></div>');
       var ageDiv = $('#claim-canvas .age-text:last');
       ageDiv.attr('data-age-value', val);
       var left = Math.ceil( leftOffset + ( indicatorWidth - ageDiv.width() ) / 2 );
@@ -350,7 +406,7 @@
     });
 
     $(document).keypress( function(ev) {
-      if ( ev.which == 58 ) {
+      if ( ev.which === 58 ) {
         $.each( bars, function(i ,val ) {
           var rot = 360;
           if ( this.transform().length !== 0 ) {
@@ -382,10 +438,7 @@
       $container.find('.lifestyle-response[data-responds-to="' + respTo + '"]').slideDown();
 
       $container.attr('data-answered', 'yes');
-      if ( $('.step-two .question[data-answered="yes"]').length === 5 ) {
-        $('.step-three').css('opacity', 1);
-        $('.step-three .hidden-content').show();
-      }
+
     })
 
     $('#retirement-age-selector').change( function() {
@@ -395,7 +448,7 @@
 
     $('#age-selector-response .helpful-btn').click( function() {
       $('#age-selector-response .thank-you').show();
-      $('#age-selector-response .helpful-btn').attr('disabled', true).addClass('btn__disabled');
+      $('#age-selector-response .helpful-btn').attr('disabled', true).addClass('btn__disabled').hide();
     });
 
     $('#salary-input').blur( function() {
@@ -419,6 +472,12 @@
       $('.version-b').show();
       $('.step-one').css('border-top', '1px solid #e3e3e1')
     }
+
+    // Tooltip handler
+    $('.tooltip-target').click( function() {
+      event.preventDefault();
+      event.stopPropagation();
+    });
 
   });
 // })(jQuery);
