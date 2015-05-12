@@ -200,34 +200,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             
 <div id="claiming-social-security" class="claiming-social-security">
-  <div id="claiming-hero-bg" class="version-a"></div>
+  <div id="claiming-hero-bg"></div>
         <div id="wrapper">
         <section id="maincontent">
             <ul class="bread meta">
                 
 
             </ul> <!-- /class=bread -->
-  <div class="claiming-hero version-a">
-    <h1>{% trans page.h1 %}</h1>
-    <p>{% trans page.intro %}</p>
-  </div>
-  <div class="claiming-hero-b version-b">
+  <div class="claiming-hero">
     <h1>{% trans page.h1 %}</h1>
     <p>{% trans page.intro %}</p>
   </div>
   <div class="content-l step-one">
     <div class="content-l_col content-l_col-2-3">
-      <h2>{% trans page.step1.title %}</h2>
-      <p>{% trans page.step1.instructions %}</p>
+      <h2>{% trans page.step1.title|safe %}</h2>
+      <p class="h3">{% trans page.step1.instructions %}</p>
       <div class="content-l">
         <div class="content-l_col content-l_col-1-3 birthdate-inputs">
-          <p><strong>{% trans "Date of birth" %}</strong></p>
+          <p>{% trans "Date of birth" %}</p>
           <label for="bd-month" class="input-labels"><input id="bd-month" type="text" maxlength="2" placeholder="MM" value=""></label>
           <label for="bd-day" class="input-labels"><input id="bd-day" type="text" maxlength="2" placeholder="DD" value=""></label>
           <label for="bd-year" class="input-labels"><input id="bd-year" type="text" maxlength="4" placeholder="YYYY" value=""></label>
         </div>
         <div class="content-l_col content-l_col-1-3">
-          <label for="salary-input" class="input-labels"><p><strong>{% trans "Current annual salary" %} <span class="cf-icon cf-icon-help-round"></span></strong></p><input id="salary-input" type="text" maxlength="7" placeholder="$" value=""></label>
+          <label for="salary-input" class="input-labels"><p>{% trans "Current annual salary" %} <span class="cf-icon cf-icon-help-round"></span></p><input id="salary-input" type="text" maxlength="7" placeholder="$" value=""></label>
+        </div>
+        <div class="tooltip-container" data-tooltip-name="salary">
+          <p>
         </div>
         <div class="content-l_col content-l_col-1-3">
           <button id="get-your-estimates" class="get-your-estimates btn">{% trans "Get your estimates" %}</button>
@@ -240,34 +239,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 
   <hr>
-  <div id="estimated-benefits-input">
-    {% trans "Estimated benefits shown as" %}  <label><input type="radio" name="benefits-display" value="monthly" checked> {% trans "monthly income" %}</label> <label><input type="radio" name="benefits-display" value="annual"> {% trans "annual income" %}</label> 
+  <div id="estimated-benefits-input" class="estimated-benefits-input">
+    <span class="h3">{% trans "Estimated benefits shown as" %}  <label><input type="radio" name="benefits-display" value="monthly" checked> {% trans "monthly income" %}</label> <label><input type="radio" name="benefits-display" value="annual"> {% trans "annual income" %}</label> </span>
   </div>
   <hr>
 
   <div id="graph-container" class="content-l">
     <div class="content-l_col content-l_col-1-3">
-      <p class="full-retirement-age">Age <span class="full-retirement-age-value">67</span> {% trans "is your full retirement age." %}</p>
-      <p><strong>{% trans "Total lifetime benefits at age 85" %}</strong><span class="lifetime-benefits-value"></span></p>
+      <p class="selected-retirement-age h3">Age 
+        <span class="selected-retirement-age-value">67</span> <span class="benefit-modification-text">is your full retirement age.</span>
+        <span class="compared-to-full explainer">Compared to your full retirement age.</span>
+      </p>
+      
+      <p class="total-benefits-text h4"><strong>{% trans "Total lifetime benefits at age 85" %}</strong></p>
+      <p>  
+        <span class="lifetime-benefits-value h3"></span>&nbsp;<span class="todays-dollars explainer">(Today's dollars)</span>
+      </p>
       <p>{% trans tips.sole_source %}<p>
-        <p><a href="somelink">Learn how estimates are calculated. <span class="cf-icon cf-icon-right"></span></a></p>
+      <p><a href="somelink">Learn how estimates are calculated. <span class="cf-icon cf-icon-right"></span></a></p>
         <!--a tooltip explainer can be called in with {% trans tips.calculations.text %} -->
     </div>
-    <div class="content-l_col content-l_col-2-3">
+    <div class="content-l_col content-l_col-2-3 canvas-container">
       <div id="claim-canvas">
-        <div id="benefits-text">
-          <span class="monthly-view">$1,000</span>
-          <span class="annual-view">$12,000</span>
+        <div id="benefits-text" class="h3">
         </div>
       </div>
-      <button id="add-to-comparison-button" class="btn btn__disabled"><span class="cf-icon cf-icon-plus-round"></span> Add to comparison</button>
+      <p class="y-axis-label">Estimated benefits</p>
+      <p class="x-axis-label">Slide to explore claiming age</p>
     </div>
   </div>
   <hr>
   <div class="content-l step-two">
     <div class="content-l_col content-l_col-1-3">
-      <h2>{% trans page.step2.title %}</h2>
-      <p class="question">{% trans page.step2.instructions %}</p>
+      <h2>{% trans page.step2.title|safe %}</h2>
+      <p class="question h3">{% trans page.step2.instructions %}</p>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-married">
       <img src="/retirement/static/images/lifestyle-married.png" class="lifestyle-img">
@@ -406,10 +411,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
   <hr> 
   <div class="step-three">
-    <h2>{% trans page.step3.title %}</h2>
+    <h2>{% trans page.step3.title|safe %}</h2>
     <div class="hidden-content">
       <h3>{% trans page.step3.instructions %}</h3>
-        <p>{% trans page.step3.note %}</p>
+        <p class="explainer">{% trans page.step3.note %}</p>
         <div class="selector-container">
           <select id="retirement-age-selector">
             <option value="">{% trans "Choose age" %}</option>
