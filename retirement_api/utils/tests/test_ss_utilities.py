@@ -159,8 +159,8 @@ class UtilitiesTests(unittest.TestCase):
         edge = "%s" % (today-timedelta(days=67*365))
         self.assertTrue(past_fra_test(too_old) == True)
         self.assertTrue(past_fra_test(ok) == False)
-        self.assertTrue(past_fra_test(too_young) == 'Visitor too young to calculate benefits')
-        self.assertTrue(past_fra_test(invalid) == "invalid birth year entered")
+        self.assertTrue("too young" in past_fra_test(too_young))
+        self.assertTrue("invalid birth" in past_fra_test(invalid))
         self.assertTrue(past_fra_test(way_old) == True)
         self.assertTrue(past_fra_test(edge) == True)
 
@@ -264,14 +264,20 @@ class UtilitiesTests(unittest.TestCase):
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(isinstance(data, dict))
         self.assertEqual(data['data']['params']['yob'], 1937)
-        self.assertTrue('past full retirement age' in data['error'])
+        self.assertTrue('monthly benefit' in data['note'])
         self.sample_params['yob'] = 193
         data = json.loads(get_retire_data(self.sample_params))
         print "'invalid' error is returning %s" % data['error']
-        self.assertTrue(data['error'] == 'invalid birth year entered')
+        self.assertTrue("invalid" in data['error'])
         self.sample_params['yob'] = today.year-21
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue(data['error'] == 'Visitor too young to calculate benefits')
+        self.assertTrue("too young" in data['note'])
+        self.sample_params['yob'] = today.year-64
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        self.sample_params['yob'] = today.year-65
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-67
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
