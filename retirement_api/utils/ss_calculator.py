@@ -126,8 +126,13 @@ def interpolate_benefits(benefits, fra_tuple, current_age):
         benefits['age 68'] = int(round(base + (2 * (base* 0.08))))
         benefits['age 69'] = int(round(base + (3 * (base* 0.08))))
         if current_age == 65:# FRA is 66; need to fill in 65
+            benefits['age 62'] = 0
+            benefits['age 63'] = 0
+            benefits['age 64'] = 0
             benefits['age 65'] = int(round(base - base*( 12*(0.00555555) )))
         elif current_age == 64:#FRA is 66; need to fill in 64 and 65
+            benefits['age 62'] = 0
+            benefits['age 63'] = 0
             benefits['age 64'] = int(round(base - base*( 2*12*(0.00555555) )))
             benefits['age 65'] = int(round(base - base*( 12*(0.00555555) )))
         elif current_age in range(55, 64):# 55 to 63: FRA is 66; need to fill in 63, 64 and 65

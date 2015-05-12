@@ -272,6 +272,12 @@ class UtilitiesTests(unittest.TestCase):
         self.sample_params['yob'] = today.year-21
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue("too young" in data['note'])
+        self.sample_params['yob'] = today.year-64
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        self.sample_params['yob'] = today.year-65
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-67
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
