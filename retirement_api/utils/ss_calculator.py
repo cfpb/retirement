@@ -40,7 +40,7 @@ comment = re.compile(r"<!--[\s\S]*?-->")# regex for parsing indexing data; not u
 def clean_comment(comment):
     return comment.replace('<!--', '').replace('-->', '').strip()
 
-## unused, but needs a test
+## unused, needs a test
 # def parse_comments(req, results):
 #     """
 #     this pulls indexing details out of the source comments 
@@ -100,17 +100,17 @@ def interpolate_benefits(benefits, fra_tuple, current_age):
     """
     estimates missing benefit values, because SSA provides no more than 3
     need to handle these cases:
-        FRA could be 66, or 67 (folks with FRA of 65 older than their FRA)
+        FRA could be 66, or 67 (folks whose FRA is 65 are older than their FRA and can't use our app)
         visitor could be between the ages of 55 and 65, which requires special handliing
-            their FRA is 66, which changes where we need to fill in the chart
+            their FRA is less than 67, which changes where we need to fill in the chart
         visitor could be too young to use the tool (< 22)
-        visitor's age could be past the FRA, in which case only current benefit is returned
+        visitor's age could be past the FRA, in which case only current benefit is returned (this is handled in get_retire_data)
             if current age is 67, 68, 69 or 70, we can show that beneift in the chart
-            if current age is > 70, chart zeroes out and we deliver benefit in text
+            if current age is > 70, chart should zero out; all we can deliver is what current benefit would be 
     """
     fra = fra_tuple[0]# could be 66 or 67
-    if not fra:
-        return benefits
+    # if not fra:
+    #     return benefits
     # fill out the missing years, working backward and forward from the FRA
     if fra == 67:
         base = benefits['age 67']
@@ -126,14 +126,16 @@ def interpolate_benefits(benefits, fra_tuple, current_age):
         benefits['age 68'] = int(round(base + (2 * (base* 0.08))))
         benefits['age 69'] = int(round(base + (3 * (base* 0.08))))
         if current_age == 65:# FRA is 66; need to fill in 65
-            base = benefits['age 66']
+            benefits['age 62'] = 0
+            benefits['age 63'] = 0
+            benefits['age 64'] = 0
             benefits['age 65'] = int(round(base - base*( 12*(0.00555555) )))
         elif current_age == 64:#FRA is 66; need to fill in 64 and 65
-            base = benefits['age 66']
+            benefits['age 62'] = 0
+            benefits['age 63'] = 0
             benefits['age 64'] = int(round(base - base*( 2*12*(0.00555555) )))
             benefits['age 65'] = int(round(base - base*( 12*(0.00555555) )))
-        elif current_age in range(55, 64):# 55 to 63: FRA is 66
-            base = benefits['age 66']
+        elif current_age in range(55, 64):# 55 to 63: FRA is 66; need to fill in 63, 64 and 65
             benefits['age 63'] = int(round(base - base*( 3*12*(0.00555555) )))
             benefits['age 64'] = int(round(base - base*( 2*12*(0.00555555) )))
             benefits['age 65'] = int(round(base - base*( 12*(0.00555555) )))
@@ -170,19 +172,20 @@ def get_retire_data(params):
                                     }
                     },
                 'current_age': 0,
-                'error': ''
+                'error': '',
+                'note': ''
               }
     BENS = results['data']['benefits']
     past_fra = past_fra_test(dobstring)
     if past_fra == False:
         pass
     elif past_fra == True:
-        results['error'] = 'Visitor is past full retirement age'
+        results['note'] = 'You are past full retirement age'
     elif 'invalid' in past_fra:
         results['error'] = past_fra
         return json.dumps(results)
     elif 'too young' in past_fra:
-        results['error'] = past_fra
+        results['note'] = past_fra
         return json.dumps(results)
     current_age = get_current_age(dobstring)
     results['current_age'] = current_age
@@ -192,32 +195,50 @@ def get_retire_data(params):
     #     print results['error']
     #     return json.dumps(results)
     # else:
-    fra_tuple = get_retirement_age(params['yob'])
-    soup = bs(req.text, 'lxml')
-    if past_fra == True:
-        ret_amount = soup.find('span', {'id': 'ret_amount'}).text.split('.')[0].replace(',', '')
-        if current_age == 67:
-            BENS['age 68'] = int(ret_amount)
-            BENS['age 69'] = round(BENS['age 68'] + BENS['age 68'] * 0.08)
-            BENS['age 70'] = round(BENS['age 68'] + 2*BENS['age 68'] * 0.08)
-        elif current_age == 68:
-            BENS['age 69'] = int(ret_amount)
-            BENS['age 70'] = round(BENS['age 69'] + BENS['age 69'] * 0.08)
-        elif current_age == 69:
-            BENS['age 70'] = int(ret_amount)
-        elif current_age == 70:
-            BENS['age 70'] = int(ret_amount)
-        pass
+    if int(params['dobmon']) == 1 and int(params['dobday']) == 1:# SSA has a special rule for people born on Jan. 1 http://www.socialsecurity.gov/OACT/ProgData/nra.html
+        yob = int(params['yob']) - 1
+        yobstring = "%s" % yob
     else:
-        tables = soup.findAll('table', {'bordercolor': '#6699ff'})
-        results_table, disability_table, survivors_table = (None, None, None)
-        for each in tables:
-            if each.find('th') and 'Retirement age' in each.find('th').text:
-                results_table = each
-            elif each.find('th') and 'Disability' in each.find('th').text:
-                disability_table = each
-            elif each.find('th') and "Survivors" in each.find('th').text:
-                survivors_table = each
+        yobstring = params['yob']
+    fra_tuple = get_retirement_age(yobstring)
+    soup = bs(req.text, 'lxml')
+    tables = soup.findAll('table', {'bordercolor': '#6699ff'})
+    results_table, disability_table, survivors_table = (None, None, None)
+    for each in tables:
+        if each.find('th') and 'Retirement age' in each.find('th').text:
+            results_table = each
+        elif each.find('th') and 'Disability' in each.find('th').text:
+            disability_table = each
+        elif each.find('th') and "Survivors" in each.find('th').text:
+            survivors_table = each
+    if past_fra == True:
+        results['data']['disability'] = "You have reached full retirement age and are not eligible for disability benefits."
+        ret_amount = soup.find('span', {'id': 'ret_amount'}).text.split('.')[0]
+        base = int(ret_amount.replace(',', ''))
+        increment = base * 0.08
+        if current_age == 66:
+            BENS['age 66'] = round(base)
+            BENS['age 67'] = round(base + increment)
+            BENS['age 68'] = round(base + 2*increment)
+            BENS['age 69'] = round(base + 3*increment)
+            BENS['age 70'] = round(base + 4*increment)
+        elif current_age == 67:
+            BENS['age 67'] = round(base)
+            BENS['age 68'] = round(base + increment)
+            BENS['age 69'] = round(base + 2*increment)
+            BENS['age 70'] = round(base + 3*increment)
+        elif current_age == 68:
+            BENS['age 68'] = round(base)
+            BENS['age 69'] = round(base + increment)
+            BENS['age 70'] = round(base + 2*increment)
+        elif current_age == 69:
+            BENS['age 69'] = round(base)
+            BENS['age 70'] = round(base + increment)
+        elif current_age == 70:
+            BENS['age 70'] = round(base)
+        else:# older than 70
+            results['note'] = "Your monthly benefit at %s is $%s" % (current_age, ret_amount)
+    else:
         if results_table:
             result_rows = results_table.findAll('tr')
             for row in result_rows:
@@ -229,13 +250,6 @@ def get_retire_data(params):
             70 in 2047: "$2,719.00",
             67 in 2044: "$2,180.00",
             62 and 1 month in 2039: "$1,515.00"
-
-            results['data']:
-                'early retirement age': '', 
-                'full retirement age': '', 
-                'benefits': {
-                    'age 62': 0, 
-
             """
             for key in collector:
                 bits = key.split(' in ')
@@ -258,33 +272,42 @@ def get_retire_data(params):
                     BENS[key] = additions[key]
         if disability_table:
             results['data']['disability'] = disability_table.findAll('td')[1].text.split('.')[0]
-        # SURVIVORS KEYS 
-        # 'Your child'
-        # 'Family maximum'
-        # 'Your spouse at normal retirement age'
-        # 'Your spouse caring for your child'
-        #
-        # RESULTS['DATA']['SURVIVOR BENEFITS'] KEYS
-        # 'spouse at full retirement age'
-        # 'family maximum'
-        # 'spouse caring for child'
-        # 'child'
-        if survivors_table:
-            SURV = results['data']['survivor benefits']
-            survivors = {}
-            survivor_rows = survivors_table.findAll('tr')
-            for row in survivor_rows:
-                cells = row.findAll('td')
-                if cells:
-                    survivors[cells[0].text] = cells[1].text.split('.')[0]
-            if 'Your child' in survivors:
-                SURV['child'] = survivors['Your child']
-            if 'Family maximum' in survivors:
-                SURV['family maximum'] = survivors['Family maximum']
-            if 'Your spouse at normal retirement age' in survivors:
-                SURV['spouse at full retirement age'] = survivors['Your spouse at normal retirement age']
-            if 'Your spouse caring for your child' in survivors:
-                SURV['spouse caring for child'] = survivors['Your spouse caring for your child']
+    # SURVIVORS KEYS 
+    # 'Your child'
+    # 'Family maximum'
+    # 'Your spouse at normal retirement age'
+    # 'Your spouse caring for your child'
+    #
+    # RESULTS['DATA']['SURVIVOR BENEFITS'] KEYS
+    # 'spouse at full retirement age'
+    # 'family maximum'
+    # 'spouse caring for child'
+    # 'child'
+    if survivors_table:
+        SURV = results['data']['survivor benefits']
+        survivors = {}
+        survivor_rows = survivors_table.findAll('tr')
+        for row in survivor_rows:
+            cells = row.findAll('td')
+            if cells:
+                survivors[cells[0].text] = cells[1].text.split('.')[0]
+        if 'Your child' in survivors:
+            SURV['child'] = survivors['Your child']
+        if 'Family maximum' in survivors:
+            SURV['family maximum'] = survivors['Family maximum']
+        if 'Your spouse at normal retirement age' in survivors:
+            SURV['spouse at full retirement age'] = survivors['Your spouse at normal retirement age']
+        if 'Your spouse caring for your child' in survivors:
+            SURV['spouse caring for child'] = survivors['Your spouse caring for your child']
+    if not results['data']['full retirement age']:
+        if fra_tuple[1]:
+            if fra_tuple[1] > 1:
+                FRA = "%s and %s months" % (fra_tuple[0], fra_tuple[1])
+            else:
+                FRA = "%s and %s month" % (fra_tuple[0], fra_tuple[1])
+        else:
+            FRA = "%s" % fra_tuple[0]
+        results['data']['full retirement age'] = FRA
     print "script took %s to run" % (datetime.datetime.now() - starter)
     # # to dump json for testing:
     # with open('/tmp/ssa.json', 'w') as f:
