@@ -219,7 +219,7 @@ def get_retire_data(params):
             BENS['age 68'] = round(base + 2*increment)
             BENS['age 69'] = round(base + 3*increment)
             BENS['age 70'] = round(base + 4*increment)
-        if current_age == 67:
+        elif current_age == 67:
             BENS['age 67'] = round(base)
             BENS['age 68'] = round(base + increment)
             BENS['age 69'] = round(base + 2*increment)
