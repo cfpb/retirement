@@ -36,9 +36,17 @@ class ViewModels(TestCase):
     def test_quesiton_dump(self):
         dumplist = self.testquestion.dump_translation_text()
         self.assertTrue(type(dumplist) == list)
-        outfile = "/tmp/%s.po" % self.testquestion.slug
-        self.testquestion.dump_translation_text(output=True)
-        self.assertTrue(os.path.isfile(outfile))
+        # outfile = "/tmp/%s.po" % self.testquestion.slug
+        # self.testquestion.dump_translation_text(output=True)
+        # self.assertTrue(os.path.isfile(outfile))
+
+    def test_question_dump_mock_output(self):
+        open_name = '%s.open' % __name__
+        with mock.patch(open_name, create=True) as mock_open:
+            mock_open.return_value = mock.MagicMock(spec=file)
+            self.testquestion.dump_translation_text(output=True)
+            file_handle = mock_open.return_value.__enter__.return_value
+            file_handle.write.assert_call_count==5
 
     def test_agechoice_translist(self):
         tlist = self.testcase.translist()
