@@ -75,21 +75,22 @@ body {
 }
 
 #claiming-social-security #claiming-hero-bg {
-background-color: #FFCE8D;
+  background-color: #FFCE8D;
   height: 350px;
   width: 100%;
   position: absolute;
   z-index: 0;
   background-image: url('../images/retirement-hero.png');
-  background-position: 700px 88px;
+  background-position: 700px 65px;
   background-repeat: no-repeat;
   background-size: 40%;
 }
 
 #claiming-social-security .claiming-hero {
-  margin-bottom: 20px;
-  padding: 50px 0px;
+  margin-bottom: 30px;
+  padding: 70px 0px 75px;
   width: 100%;
+  height: 205px;
   position: relative;
 }
 
@@ -313,6 +314,11 @@ background-color: #FFCE8D;
 #claiming-social-security #age-selector-response .next-steps li {
 
 } 
+
+#claiming-social-security .tooltip-container {
+  display: none;
+  position: absolute;
+}
 
 /* ====================================================================
    Medium and small screens
