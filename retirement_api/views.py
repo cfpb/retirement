@@ -8,7 +8,7 @@ from dateutil import parser
 import datetime
 from retirement_api.models import Step, AgeChoice, Page, Tooltip, Question
 from django.utils.translation import ugettext as _
-from django.utils.translation import activate
+from django.utils.translation import activate, deactivate_all
 
 today = datetime.datetime.now().date()
 # params = {
@@ -27,6 +27,8 @@ today = datetime.datetime.now().date()
 def claiming(request, es=False):
     if es == True:
         activate('es')
+    else:
+        deactivate_all()
     ages = {}
     for age in AgeChoice.objects.all():
         ages[age.age] = _(age.aside)
