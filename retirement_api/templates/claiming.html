@@ -223,10 +223,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <label for="bd-year" class="input-labels"><input id="bd-year" type="text" maxlength="4" placeholder="YYYY" value=""></label>
         </div>
         <div class="content-l_col content-l_col-1-3">
-          <label for="salary-input" class="input-labels"><p>{% trans "Current annual salary" %} <span class="cf-icon cf-icon-help-round"></span></p><input id="salary-input" type="text" maxlength="7" placeholder="$" value=""></label>
-        </div>
-        <div class="tooltip-container" data-tooltip-name="salary">
-          <p>
+          <label for="salary-input" class="input-labels"><p>{% trans "Current annual salary" %} <span  data-tooltip-target="salary" class="cf-icon cf-icon-help-round"></span></p><input id="salary-input" type="text" maxlength="7" placeholder="$" value=""></label>
+          <div class="tooltip-content" data-tooltip-name="salary">
+            <p>{% trans tips.salary %}</p>
+          </div>
         </div>
         <div class="content-l_col content-l_col-1-3">
           <button id="get-your-estimates" class="get-your-estimates btn">{% trans "Get your estimates" %}</button>
@@ -248,14 +248,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="content-l_col content-l_col-1-3">
       <p class="selected-retirement-age h3">Age 
         <span class="selected-retirement-age-value">67</span> <span class="benefit-modification-text">is your full retirement age.</span>
-        <span class="compared-to-full explainer">Compared to your full retirement age.</span>
+        <p class="compared-to-full explainer">Compared to your full retirement age.</p>
       </p>
       
-      <p class="total-benefits-text h4"><strong>{% trans "Total lifetime benefits at age 85" %}</strong></p>
+      <p class="total-benefits-text h4"><strong>{% trans "Total lifetime benefits at age 85" %}</strong>  <span  data-tooltip-target="lifetime" class="cf-icon cf-icon-help-round"></p>
+      <div class="tooltip-content" data-tooltip-name="lifetime">
+        <p>{% trans tips.lifetime %}</p>
+      </div>
       <p>  
         <span class="lifetime-benefits-value h3"></span>&nbsp;<span class="todays-dollars explainer">(Today's dollars)</span>
       </p>
-      <p>{% trans tips.sole_source %}<p>
+      <div class="graph-content">
+        <div class="content-container">
+          <p>{% trans tips.sole_source %}<p>
+        </div>
+        <div class="content-container full-retirement">
+          <h4 class="explainer">Full retirement age</h4>
+          <ul>
+            <li>Between 66 and 67 depending on your birthdate</li>
+            <li>Age you receive a full benefit without reduction</li>
+          </ul>
+          <p>This refers to your Social Security claiming decision, not the age you decide to stop working.</p>
+        </div>
+        <div class="content-container early-retirement">
+          <h4 class="explainer">Early retirement age</h4>
+          <ul>
+            <li>Any time before your full retirement age</li>
+            <li>Earliest age you can claim your benefit is 62</li>
+            <li>Claiming before your full retirement age will permanently reduce your benefits</li>
+          </ul>
+          <p>This refers to your Social Security claiming decision, not the age you decide to stop working.</p>
+        </div>
+      </div>
+      
       <p><a href="somelink">Learn how estimates are calculated. <span class="cf-icon cf-icon-right"></span></a></p>
         <!--a tooltip explainer can be called in with {% trans tips.calculations.text %} -->
     </div>
@@ -279,12 +304,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <hr>
       <h3 class="lifestyle-question">{% trans questions.marriage.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes">
-        <h4>{% trans questions.marriage.answer_yes_a_subhed %}</h4>
-        <p>{% trans questions.marriage.answer_yes_a %}</p>
+        <h4>{% trans questions.marriage.answer_yes_a_subhed|safe %}</h4>
+        <p>{% trans questions.marriage.answer_yes_a|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no">
-        <h4>{% trans questions.marriage.answer_no_a_subhed %}</h4>
-        <p>{% trans questions.marriage.answer_no_a %}</p>
+        <h4>{% trans questions.marriage.answer_no_a_subhed|safe %}</h4>
+        <p>{% trans questions.marriage.answer_no_a|safe %}</p>
+      </div>
+      <div class="tooltip-content" data-tooltip-name="file-and-suspend">
+        <p>{% trans tips.file_and_suspend|safe %}</p>
       </div>
       <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
       <button class="lifestyle-btn btn btn__grouped-last" data-base-value="no" value="no">{{NO}}</button>
@@ -294,29 +322,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <hr>
       <h3 class="lifestyle-question">{% trans questions.sixties.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes-under50">
-        <h4>{% trans questions.sixties.answer_yes_a_subhed %}</h4>
-        <p>{% trans questions.sixties.answer_yes_a %}</p>
+        <h4>{% trans questions.sixties.answer_yes_a_subhed|safe %}</h4>
+        <p>{% trans questions.sixties.answer_yes_a|safe %}</p>
       </div> 
       <div class="lifestyle-response" data-responds-to="yes-over50">
-        <h4>{% trans questions.sixties.answer_yes_b_subhed %}</h4>
-        <p>{% trans questions.sixties.answer_yes_b %}</p>
+        <h4>{% trans questions.sixties.answer_yes_b_subhed|safe %}</h4>
+        <p>{% trans questions.sixties.answer_yes_b|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-under50">
-        <h4>{% trans questions.sixties.answer_no_a_subhed %}</h4>
-        <p>{% trans questions.sixties.answer_no_a %}</p>
+        <h4>{% trans questions.sixties.answer_no_a_subhed|safe %}</h4>
+        <p>{% trans questions.sixties.answer_no_a|safe %}</p>
       </div> 
       <div class="lifestyle-response" data-responds-to="no-over50">
-        <h4>{% trans questions.sixties.answer_no_b_subhed %}</h4>
-        <p>{% trans questions.sixties.answer_no_a %}</p>
+        <h4>{% trans questions.sixties.answer_no_b_subhed|safe %}</h4>
+        <p>{% trans questions.sixties.answer_no_a|safe %}</p>
         <p><a href="http://www.socialsecurity.gov/planners/retire/stopwork.html" target="_blank"></a></p>
       </div> 
       <div class="lifestyle-response" data-responds-to="notsure-under50">
-        <h4>{% trans questions.sixties.answer_unsure_a_subhed %}</h4>
-        <p>{% trans questions.sixties.answer_unsure_a %}</p>
+        <h4>{% trans questions.sixties.answer_unsure_a_subhed|safe %}</h4>
+        <p>{% trans questions.sixties.answer_unsure_a|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure-over50">
-        <h4>{% trans questions.sixties.answer_unsure_b_subhed %}</h4>
-        <p>{% trans questions.sixties.answer_unsure_b %}</p>
+        <h4>{% trans questions.sixties.answer_unsure_b_subhed|safe %}</h4>
+        <p>{% trans questions.sixties.answer_unsure_b|safe %}</p>
       </div>
       <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
       <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
@@ -329,28 +357,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <hr>
       <h3 class="lifestyle-question">{% trans questions.expenses.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes-under50">
-        <h4>{% trans questions.expenses.answer_yes_a_subhed %}</h4>
-        <p>{% trans questions.expenses.answer_yes_a %}</p>
+        <h4>{% trans questions.expenses.answer_yes_a_subhed|safe %}</h4>
+        <p>{% trans questions.expenses.answer_yes_a|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="yes-over50">
-        <h4>{% trans questions.expenses.answer_yes_b_subhed %}</h4>
-        <p>{% trans questions.expenses.answer_yes_b %}</p>
+        <h4>{% trans questions.expenses.answer_yes_b_subhed|safe %}</h4>
+        <p>{% trans questions.expenses.answer_yes_b|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-under50">
-        <h4>{% trans questions.expenses.answer_no_a_subhed %}</h4>
-        <p>{% trans questions.expenses.answer_no_a %}</p>
+        <h4>{% trans questions.expenses.answer_no_a_subhed|safe %}</h4>
+        <p>{% trans questions.expenses.answer_no_a|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-over50">
-        <h4>{% trans questions.expenses.answer_no_b_subhed %}</h4>
-        <p>{% trans questions.expenses.answer_no_b %}</p>
+        <h4>{% trans questions.expenses.answer_no_b_subhed|safe %}</h4>
+        <p>{% trans questions.expenses.answer_no_b|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure-under50">
-        <h4>{% trans questions.expenses.answer_unsure_a_subhed %}</h4>
-        <p>{% trans questions.expenses.answer_unsure_a %}</p>
+        <h4>{% trans questions.expenses.answer_unsure_a_subhed|safe %}</h4>
+        <p>{% trans questions.expenses.answer_unsure_a|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure-over50">
-        <h4>{% trans questions.expenses.answer_unsure_b_subhed %}</h4>
-        <p>{% trans questions.expenses.answer_unsure_b %}</p>
+        <h4>{% trans questions.expenses.answer_unsure_b_subhed|safe %}</h4>
+        <p>{% trans questions.expenses.answer_unsure_b|safe %}</p>
       </div>
       <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
       <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
@@ -361,32 +389,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <hr>
       <h3 class="lifestyle-question">{% trans questions.income.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes-under50">
-        <h4>{% trans questions.income.answer_yes_a_subhed %}</h4>
-        <p>{% trans questions.income.answer_yes_a %}</p>
+        <h4>{% trans questions.income.answer_yes_a_subhed|safe %}</h4>
+        <p>{% trans questions.income.answer_yes_a|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="yes-over50">
-        <h4>{% trans questions.income.answer_yes_b_subhed %}</h4>
-        <p>{% trans questions.income.answer_yes_b %}</p>
+        <h4>{% trans questions.income.answer_yes_b_subhed|safe %}</h4>
+        <p>{% trans questions.income.answer_yes_b|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-under50">
-        <h4>{% trans questions.income.answer_no_a_subhed %}</h4>
-        <p>{% trans questions.income.answer_no_a %}</p>
+        <h4>{% trans questions.income.answer_no_a_subhed|safe  %}</h4>
+        <p>{% trans questions.income.answer_no_a|safe  %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-over50">
-        <h4>{% trans questions.income.answer_no_b_subhed %}</h4>
-        <p>{% trans questions.income.answer_no_b %}</p>
+        <h4>{% trans questions.income.answer_no_b_subhed|safe  %}</h4>
+        <p>{% trans questions.income.answer_no_b|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure-under50">
-        <h4>{% trans questions.income.answer_unsure_a_subhed %}</h4>
-        <p>{% trans questions.income.answer_unsure_a %}</p>
+        <h4>{% trans questions.income.answer_unsure_a_subhed|safe %}</h4>
+        <p>{% trans questions.income.answer_unsure_a|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure-over50">
-        <h4>{% trans questions.income.answer_unsure_b_subhed %}</h4>
-        <p>{% trans questions.income.answer_unsure_b %}</p>
+        <h4>{% trans questions.income.answer_unsure_b_subhed|safe %}</h4>
+        <p>{% trans questions.income.answer_unsure_b|safe %}</p>
       </div>
       <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
       <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
       <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+      <div class="tooltip-content" data-tooltip-name="myra">
+        <p>{% trans tips.myra|safe %}</p>
+      </div>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-longevity">
       <img src="/retirement/static/images/lifestyle-longevity.png" class="lifestyle-img">
@@ -444,8 +475,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </div>
   </div>
-        </section><!--/main_content-->
-        </div><!-- /wrapper -->
+  </section><!--/main_content-->
+  </div><!-- /wrapper -->
+  <div id="tooltip-container">
+    <div class="outertip"> </div>
+    <div class="innertip"> </div>
+    <div class="content">content</div>
+  </div>
 </div>
 
 
