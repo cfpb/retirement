@@ -25,7 +25,7 @@
 
   // Graph settings
   if ($(window).width() < 768) {
-    var barGraphHeight = 240,
+    var barGraphHeight = 280,
       gutterWidth = 10,
       barWidth = ($(window).width() - 40 - (gutterWidth * 8)) / 9,
       indicatorWidth = 36,
@@ -34,7 +34,7 @@
   }
 
   else if ($(window).width() >= 768 && $(window).width() < 1051) {
-    var barGraphHeight = 240,
+    var barGraphHeight = 280,
       gutterWidth = 10,
       barWidth = (($(window).width() * 0.66666) - 40 - (gutterWidth * 8)) / 9,
       indicatorWidth = 36,
@@ -43,8 +43,8 @@
   }
 
   else {
-    var barGraphHeight = 240,
-      barWidth = 38,
+    var barGraphHeight = 280,
+      barWidth = 40,
       gutterWidth = 40,
       indicatorWidth = 36,
       indicatorSide = 30,
@@ -291,13 +291,13 @@
     else if ( selectedAge < SSData.fullAge ) {
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
       percent = Math.abs( Math.floor( percent * 100 ) );
-      $('.benefit-modification-text').html( '<strong>reduces</strong> your benefit by <strong>' + percent + '</strong>%' );
+      $('.benefit-modification-text').html( '<strong>reduces</strong> your benefit by&nbsp;<strong>' + percent + '</strong>%' );
       $('.compared-to-full').show();
     }
     else if ( selectedAge > SSData.fullAge ) {
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
       percent = Math.abs( Math.floor( percent * 100 ) );
-      $('.benefit-modification-text').html( '<strong>increases</strong> your benefit by <strong>' + percent + '</strong>%' );
+      $('.benefit-modification-text').html( '<strong>increases</strong> your benefit by&nbsp;<strong>' + percent + '</strong>%' );
       $('.compared-to-full').show();
     }
   }
@@ -342,11 +342,12 @@
     indicator = barGraph.set();
     
     // greenPath outlines and fills the indicator handle
-    greenPath = barGraph.path( 'M0 380 H34 V350 L17 345 L0 350 V380' )
+    greenPath = barGraph.path( 'M0 372 H34 V342 L17 337 L0 342 V372' )
     greenPath.attr( { 'fill': '#34b14f', 'stroke': '#34b14f' } ) ;
+    greenPath.node.id = "indicator-handle";
     
     // whiteLines are the three lines on the indicator handle
-    whiteLines = barGraph.path( 'M12 370 V360 M17 372.5 V357.5 M22 370 V360');
+    whiteLines = barGraph.path( 'M12 362 V352 M17 364.5 V349.5 M22 362 V352');
     whiteLines.attr( { 'fill': '#fff', 'stroke': '#fff' } );
 
     // greenPath and whiteLines are added to the indicator set
@@ -398,9 +399,31 @@
     });
   }
 
-  /***-- drawParts(): initializes the graph with bars and an indicator. Adds the age text placed
-    under each bar.  --***/
+  /***-- drawGraphBackground(): draws the background lines for the chart --***/
+  function drawGraphBackground() {
+    var graphBackground,
+        blackLine,
+        barInterval = barGraphHeight / 4,
+        totalWidth = ( barWidth * 9 ) + ( gutterWidth * 8 ),
+        yCoord = barGraphHeight + 1,
+        path = '';
+        
+    for ( var i = 1; i <= 5; i++ ) {
+      path = path + 'M 0 ' + yCoord + ' H' + totalWidth;
+      console.log( path );
+      yCoord = barGraphHeight - Math.round( barInterval * i ) + 1;
+    }
+    graphBackground = barGraph.path( path );
+    graphBackground.attr('stroke', '#E3E4E5');
+
+    blackLine = barGraph.path( 'M0 ' + ( barGraphHeight + 77 ) + ' H' + totalWidth );
+    blackLine.attr('stroke', '#000')
+  }
+
+  /***-- drawParts(): Draws graph background. Initializes the graph with bars and an indicator. Adds
+    the age text placed under each bar.  --***/
   function drawParts() {
+    drawGraphBackground();
     drawBars();
     createIndicator();
     $('#claim-canvas').width( barWidth * 9 + gutterWidth * 8 );

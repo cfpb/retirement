@@ -211,10 +211,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h1>{% trans page.h1 %}</h1>
     <p>{% trans page.intro %}</p>
   </div>
+
   <div class="content-l step-one">
+    <h2>{% trans page.step1.title|safe %}</h2>
     <div class="content-l_col content-l_col-2-3">
-      <h2>{% trans page.step1.title|safe %}</h2>
-      <p class="h3">{% trans page.step1.instructions %}</p>
+      <p class="h3 step-one-instructions">{% trans page.step1.instructions %}</p>
       <div class="content-l">
         <div class="content-l_col content-l_col-1-3 birthdate-inputs">
           <p>{% trans "Date of birth" %}</p>
@@ -246,43 +247,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div id="graph-container" class="content-l">
     <div class="content-l_col content-l_col-1-3">
-      <p class="selected-retirement-age h3">Age 
-        <span class="selected-retirement-age-value">67</span> <span class="benefit-modification-text">is your full retirement age.</span>
-        <p class="compared-to-full explainer">Compared to your full retirement age.</p>
-      </p>
-      
-      <p class="total-benefits-text h4"><strong>{% trans "Total lifetime benefits at age 85" %}</strong>  <span  data-tooltip-target="lifetime" class="cf-icon cf-icon-help-round"></p>
-      <div class="tooltip-content" data-tooltip-name="lifetime">
-        <p>{% trans tips.lifetime %}</p>
+      <div class="selected-retirement-age-container">
+        <p class="h3 selected-retirement-age">Age 
+          <span class="selected-retirement-age-value">67</span> <span class="benefit-modification-text">is your full retirement age.</span>
+          <p class="compared-to-full explainer">Compared to your full retirement age.</p>
+        </p>
       </div>
-      <p>  
-        <span class="lifetime-benefits-value h3"></span>&nbsp;<span class="todays-dollars explainer">(Today's dollars)</span>
-      </p>
+      <div class="total-benefits-container">
+        <p class="total-benefits-text h4"><strong>{% trans "Total lifetime benefits at age 85" %}</strong>  <span  data-tooltip-target="lifetime" class="cf-icon cf-icon-help-round"></p>
+        <div class="tooltip-content" data-tooltip-name="lifetime">
+          <p>{% trans tips.lifetime %}</p>
+        </div>
+        <p>  
+          <span class="lifetime-benefits-value h3"></span>&nbsp;<span class="todays-dollars explainer">(Today's dollars)</span>
+        </p>
+      </div>
       <div class="graph-content">
         <div class="content-container">
           <p>{% trans tips.sole_source %}<p>
         </div>
         <div class="content-container full-retirement">
-          <h4 class="explainer">Full retirement age</h4>
+          <h3 class="retirement-age">Full retirement age</h3>
           <ul>
             <li>Between 66 and 67 depending on your birthdate</li>
             <li>Age you receive a full benefit without reduction</li>
           </ul>
-          <p>This refers to your Social Security claiming decision, not the age you decide to stop working.</p>
         </div>
         <div class="content-container early-retirement">
-          <h4 class="explainer">Early retirement age</h4>
+          <h3 class="retirement-age">Early retirement age</h3>
           <ul>
             <li>Any time before your full retirement age</li>
             <li>62 is the earliest age you can claim your retirement benefit</li>
             <li>Claiming before your full retirement age will permanently reduce your benefits</li>
           </ul>
-          <p>This refers to your Social Security claiming decision, not the age you decide to stop working.</p>
         </div>
+        <p>This refers to your Social Security claiming decision, not the age you decide to stop working.</p>
       </div>
       
-      <p><a href="somelink">Learn how estimates are calculated. <span class="cf-icon cf-icon-right"></span></a></p>
-        <!--a tooltip explainer can be called in with {% trans tips.calculations.text %} -->
+      <p class="learn-how"><a href="http://www.ssa.gov/OACT/quickcalc/faqs.html" class="external-link" target="_blank">Learn how estimates are calculated.</a> <span class="cf-icon cf-icon-right"></span></p>
+
     </div>
     <div class="content-l_col content-l_col-2-3 canvas-container">
       <div id="claim-canvas">
@@ -293,7 +296,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <p class="x-axis-label">Slide to explore claiming age</p>
     </div>
   </div>
-  <hr>
+  <hr class="before-step-two">
   <div class="content-l step-two">
     <div class="content-l_col content-l_col-1-3">
       <h2>{% trans page.step2.title|safe %}</h2>
@@ -336,7 +339,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="lifestyle-response" data-responds-to="no-over50">
         <h4>{% trans questions.sixties.answer_no_b_subhed|safe %}</h4>
         <p>{% trans questions.sixties.answer_no_a|safe %}</p>
-        <p><a href="http://www.socialsecurity.gov/planners/retire/stopwork.html" target="_blank"></a></p>
+        <p><a href="http://www.socialsecurity.gov/planners/retire/stopwork.html" class="external-link" target="_blank"></a></p>
       </div> 
       <div class="lifestyle-response" data-responds-to="notsure-under50">
         <h4>{% trans questions.sixties.answer_unsure_a_subhed|safe %}</h4>
@@ -445,7 +448,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h2>{% trans page.step3.title|safe %}</h2>
     <div class="hidden-content">
       <h3>{% trans page.step3.instructions %}</h3>
-        <p class="explainer">{% trans page.step3.note %}</p>
+        <p class="explainer step-three-note">{% trans page.step3.note %}</p>
         <div class="selector-container">
           <select id="retirement-age-selector">
             <option value="">{% trans "Choose age" %}</option>
@@ -464,9 +467,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <hr>
           <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>. {% trans "Here are some steps to help you in the next few years." %}</h3>
           <ol class="next-steps content-l">
-            <li class="content-l_col content-l_col-1-3">{% autoescape off %}{% trans final_steps.final_step_1.instructions %}</li>
-            <li class="content-l_col content-l_col-1-3">{% trans final_steps.final_step_2.instructions %}{% endautoescape %}</li>
-            <li class="content-l_col content-l_col-1-3">{% trans final_steps.final_step_3.instructions %}</li>
+            <li class="content-l_col content-l_col-1-3 next-step-one">{% autoescape off %}{% trans final_steps.final_step_1.instructions %}</li>
+            <li class="content-l_col content-l_col-1-3 next-step-two">{% trans final_steps.final_step_2.instructions %}{% endautoescape %}</li>
+            <li class="content-l_col content-l_col-1-3 next-step-three">{% trans final_steps.final_step_3.instructions %}</li>
           </ol>
           <p class="h3">{% trans final_steps.final_step_4.instructions %}</p>
               <button class="helpful-btn btn btn__grouped-first" value="yes">{{YES}}</button>
