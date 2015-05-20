@@ -464,8 +464,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <hr>
           <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>. {% trans "Here are some steps to help you in the next few years." %}</h3>
           <ol class="next-steps content-l">
-            <li class="content-l_col content-l_col-1-3">{% trans final_steps.final_step_1.instructions %}</li>
-            <li class="content-l_col content-l_col-1-3">{% autoescape off %}{% trans final_steps.final_step_2.instructions %}{% endautoescape %}</li>
+            <li class="content-l_col content-l_col-1-3">{% autoescape off %}{% trans final_steps.final_step_1.instructions %}</li>
+            <li class="content-l_col content-l_col-1-3">{% trans final_steps.final_step_2.instructions %}{% endautoescape %}</li>
             <li class="content-l_col content-l_col-1-3">{% trans final_steps.final_step_3.instructions %}</li>
           </ol>
           <p class="h3">{% trans final_steps.final_step_4.instructions %}</p>
