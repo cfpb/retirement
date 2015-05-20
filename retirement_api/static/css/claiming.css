@@ -350,7 +350,7 @@ body {
   }
 
   #claiming-social-security .claiming-hero {
-    background-color: #FAAF4A;
+    background-color: #FFCE8D;
     background-image: url('../images/retirement-hero.png');
     background-origin: content-box;
     background-position: right center;
@@ -462,7 +462,7 @@ body {
   }
 
   #claiming-social-security .claiming-hero {
-    background-color: #FAAF4A;
+    background-color: #FFCE8D;
     background-image: url('../images/retirement-hero.png');
     background-position: center 20px;
     background-repeat: no-repeat;
@@ -589,7 +589,7 @@ body {
 }
 
 #claiming-social-security #tooltip-container {
-    background-color: #fff;
+    background-color: #E4E2E0;
     border: 2px solid #000;
     display: none;
     font-style: normal;
@@ -624,7 +624,7 @@ body {
 
 #claiming-social-security #tooltip-container .innertip {
     border: 7px solid transparent;
-    border-bottom-color: #fff;
+    border-bottom-color: #E4E2E0;
     content: ' ';
     height: 0;
     position: absolute;
