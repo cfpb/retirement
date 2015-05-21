@@ -29,11 +29,13 @@ def step(context, link_name):
 
 
 @when(u'I click on the "{link_name}" link')
+@handle_error
 def step(context, link_name):
     context.navigation.click_link(link_name)
 
 
 @then(u'I should see the "{relative_url}" URL with page title "{page_title}"')
+@handle_error
 def step(context, relative_url, page_title):
     actual_url = context.base.get_current_url()
     assert_that(actual_url, contains_string(relative_url))
