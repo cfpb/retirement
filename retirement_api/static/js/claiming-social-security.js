@@ -25,7 +25,7 @@
 
   // Graph settings
   if ($(window).width() < 768) {
-    var barGraphHeight = 240,
+    var barGraphHeight = 280,
       gutterWidth = 10,
       barWidth = ($(window).width() - 40 - (gutterWidth * 8)) / 9,
       indicatorWidth = 36,
@@ -34,7 +34,7 @@
   }
 
   else if ($(window).width() >= 768 && $(window).width() < 1051) {
-    var barGraphHeight = 240,
+    var barGraphHeight = 280,
       gutterWidth = 10,
       barWidth = (($(window).width() * 0.66666) - 40 - (gutterWidth * 8)) / 9,
       indicatorWidth = 36,
@@ -43,8 +43,8 @@
   }
 
   else {
-    var barGraphHeight = 240,
-      barWidth = 38,
+    var barGraphHeight = 280,
+      barWidth = 40,
       gutterWidth = 40,
       indicatorWidth = 36,
       indicatorSide = 30,
@@ -59,7 +59,7 @@
       selectedAge = 67,
       currentAge = 0;
 
-  //-- Delay calculations after keyup --//
+  /***-- delay(): Delay a function ---**/
   var delay = (function(){ 
     var t = 0;
     return function(callback, delay) {
@@ -68,7 +68,7 @@
     };
   })(); // end delay()
 
-  //--*** numToMoney(n): Convert from number to money string --//
+  /***-- numToMoney(n): Convert from number to money string ---**/
   function numToMoney(n) { 
     // When n is a string, we should, ironically, strip its numbers first.
     if (typeof n === 'string') {
@@ -94,6 +94,9 @@
     return money;
   }
 
+  /***-- calculateAge(month, day, year): Calculates an age based on inputs
+    parameters: month is numeric month (1-12), day is numeric day (1-31), year is numeric year
+    ---**/
   function calculateAge( month, day, year ) {
     var now = new Date();
     var birthdate = new Date(year, Number(month) - 1, day);
@@ -105,8 +108,9 @@
     return age;
   }
 
-  //--*** enforceRange(n, min, max): enforce range of 'min' to 'max' on variable 'n' ***--/
-  // Note: If min or max is 'false' then that min or max is not enforced
+  /***-- enforceRange(n, min, max): ensures ( min <= n <= max ) is true 
+    NOTE: If min or max is 'false' then that min or max is not enforced  
+    ---**/
   function enforceRange(n, min, max) {
     if ( n > max && max !== false ) {
       n = max;
@@ -117,6 +121,10 @@
     return n;
   }
 
+  /***-- validDates(month, day, year): makes sure the date given is valid, and changes it to
+    something valid if it's not (guessing at user intent, a bit).
+    parameters: month is numeric month (1-12), day is numeric day (1-31), year is numeric year
+    ---**/
   function validDates( month, day, year ) {
     // get parts of birthday and salary, strip non-numeric strings
     var monthMaxes = { '1': 31, '2': 29, '3': 31, '4': 30, '5': 31, '6': 30,
@@ -130,7 +138,7 @@
     return { 'month': month, 'day': day, 'year': year, 'concat': month + '-' + day + '-' + year };
   }
 
-  //--*** getData(): performs a get call, sets SSData with incoming data ***--//
+  /***-- getData(): performs a get call, sets SSData with incoming data --***/
   function getData() {
     var day = $('#bd-day').val(),
         month = $('#bd-month').val(),
@@ -183,6 +191,7 @@
       return response;
   }
 
+  /***-- toggleMonthlyAnnual(): toggles the graph text between monthly view and annual view --***/
   function toggleMonthlyAnnual() {
     var benefitsValue = SSData['age' + selectedAge];
     if ( $('input[name="benefits-display"]:checked').val() === 'annual' ) {
@@ -196,7 +205,7 @@
     }
   }
 
-  //--*** toolTipper( jQuery object ): Handles tooltips ***--//
+  /***-- toolTipper( jQuery object ): Handles tooltips --***/
   function toolTipper( $elem ) {
     // position tooltip-container based on the element clicked
     var ttc = $('#tooltip-container'),
@@ -237,7 +246,7 @@
   }
 
 
-  //--*** setTextByAge(): Changes text of benefits and age fields based on selectedAge
+  /***-- setTextByAge(): Changes text of benefits and age fields based on selectedAge --***/
   function setTextByAge() {
     var x = ages.indexOf( selectedAge ) * barGut + indicatorLeftSet;
     var lifetimeBenefits = numToMoney( ( 85 - selectedAge ) * 12 * SSData[ 'age' + selectedAge ] );
@@ -282,13 +291,13 @@
     else if ( selectedAge < SSData.fullAge ) {
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
       percent = Math.abs( Math.floor( percent * 100 ) );
-      $('.benefit-modification-text').html( '<strong>reduces</strong> your benefit by <strong>' + percent + '</strong>%' );
+      $('.benefit-modification-text').html( '<strong>reduces</strong> your benefit by&nbsp;<strong>' + percent + '</strong>%' );
       $('.compared-to-full').show();
     }
     else if ( selectedAge > SSData.fullAge ) {
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
       percent = Math.abs( Math.floor( percent * 100 ) );
-      $('.benefit-modification-text').html( '<strong>increases</strong> your benefit by <strong>' + percent + '</strong>%' );
+      $('.benefit-modification-text').html( '<strong>increases</strong> your benefit by&nbsp;<strong>' + percent + '</strong>%' );
       $('.compared-to-full').show();
     }
   }
@@ -325,6 +334,7 @@
     moveIndicator( ( newX - iPosX ), 0 );
   }
 
+  /***-- createIndicator(): draws the indicator --***/
   function createIndicator() {
     var greenPath,
         whiteLines, // vision dreams of passion
@@ -332,11 +342,12 @@
     indicator = barGraph.set();
     
     // greenPath outlines and fills the indicator handle
-    greenPath = barGraph.path( 'M0 380 H34 V350 L17 345 L0 350 V380' )
+    greenPath = barGraph.path( 'M0 372 H34 V342 L17 337 L0 342 V372' )
     greenPath.attr( { 'fill': '#34b14f', 'stroke': '#34b14f' } ) ;
+    greenPath.node.id = "indicator-handle";
     
     // whiteLines are the three lines on the indicator handle
-    whiteLines = barGraph.path( 'M12 370 V360 M17 372.5 V357.5 M22 370 V360');
+    whiteLines = barGraph.path( 'M12 362 V352 M17 364.5 V349.5 M22 362 V352');
     whiteLines.attr( { 'fill': '#fff', 'stroke': '#fff' } );
 
     // greenPath and whiteLines are added to the indicator set
@@ -360,6 +371,7 @@
     setTextByAge();
   }
 
+  /***-- drawBars(): draws and redraws the indicator bars for each age --***/
   function drawBars() {
     var leftOffset =  0;
     var heightRatio = barGraphHeight / SSData['age70'];
@@ -387,7 +399,31 @@
     });
   }
 
+  /***-- drawGraphBackground(): draws the background lines for the chart --***/
+  function drawGraphBackground() {
+    var graphBackground,
+        blackLine,
+        barInterval = barGraphHeight / 4,
+        totalWidth = ( barWidth * 9 ) + ( gutterWidth * 8 ),
+        yCoord = barGraphHeight + 1,
+        path = '';
+        
+    for ( var i = 1; i <= 5; i++ ) {
+      path = path + 'M 0 ' + yCoord + ' H' + totalWidth;
+      console.log( path );
+      yCoord = barGraphHeight - Math.round( barInterval * i ) + 1;
+    }
+    graphBackground = barGraph.path( path );
+    graphBackground.attr('stroke', '#E3E4E5');
+
+    blackLine = barGraph.path( 'M0 ' + ( barGraphHeight + 77 ) + ' H' + totalWidth );
+    blackLine.attr('stroke', '#000')
+  }
+
+  /***-- drawParts(): Draws graph background. Initializes the graph with bars and an indicator. Adds
+    the age text placed under each bar.  --***/
   function drawParts() {
+    drawGraphBackground();
     drawBars();
     createIndicator();
     $('#claim-canvas').width( barWidth * 9 + gutterWidth * 8 );
@@ -408,6 +444,7 @@
     $('#max-age-text').css( 'left', minAgeRight );
   }
 
+  /***-- resetView(): Draws new bars and updates text. For use after new data is received. --***/
   function resetView() {
     drawBars();
     setTextByAge();
@@ -514,8 +551,10 @@
 
     // Tooltip resize handler
     $(window).resize( function() {
-      $('#tooltip-container').hide();
-      toolTipper( $('[data-tooltip-current-target]') );
+      if ( $('#tooltip-container').is(':visible') ) {
+        $('#tooltip-container').hide();
+        toolTipper( $('[data-tooltip-current-target]') );        
+      }
     });
   });
 // })(jQuery);
