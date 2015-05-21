@@ -8,18 +8,26 @@ body {
   font-size: .8em;
 }
 
+#claiming-social-security input[type='text'],
+#claiming-social-security select {
+  font-family: 'AvenirNextLTW01-Regular', Arial, sans-serif;
+}
+
 #claiming-social-security .btn {
   font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
   font-weight: normal;
 }
 
 #maincontent {
-  width: 1052px;
+  width: 1168px;
   padding-top: 0px;  
 }
 
-#claiming-social-security h2, h4, h6 {
+#claiming-social-security h2,
+#claiming-social-security h4,
+#claiming-social-security h6 {
   text-transform: none;
+  letter-spacing: 0em;
 }
 
 #claiming-social-security hr {
@@ -32,13 +40,13 @@ body {
 
 #claiming-social-security .canvas-container .x-axis-label {
   position: relative;
-  top: -20px;
+  top: -30px;
   left: 40px;
 }
 
 #claiming-social-security p.y-axis-label {
   position: absolute;
-  top: 225px;
+  top: 250px;
   left: -50px;
 
   /* Safari */
@@ -58,7 +66,7 @@ body {
 }
 
 #claim-canvas {
-  background-image: url('../graph-background.jpg');
+  /*background-image: url('../graph-background.jpg');*/
   background-repeat: repeat-x;
   background-position: 0px 40px;
   position: relative;
@@ -104,7 +112,7 @@ body {
 #claiming-social-security .claiming-hero h1,
 #claiming-social-security .claiming-hero p {
   font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
-  width: 470px;
+  width: 480px;
 }
 
 #claiming-social-security .claiming-hero-b h1 {
@@ -125,6 +133,30 @@ body {
 
 #claiming-social-security .step-one {
   padding-top: 20px;
+  padding-bottom: 14px;
+}
+
+#claiming-social-security .step-one h2 {
+  border-left: 15px solid rgba(0, 0, 0, 0);
+  margin-bottom: 30px;
+}
+
+#claiming-social-security .step-one .birthdate-inputs label.input-labels  {
+  margin-right: 5px;
+}
+
+#claiming-social-security .step-one .birthdate-inputs label.input-labels:last-child {
+  margin-right: 0px;
+}
+
+#claiming-social-security .step-one .input-labels input {
+  height: 32px;
+  padding-left: 10px;
+}
+
+#claiming-social-security .birthdate-inputs p,
+#claiming-social-security label[for="salary-input"] p {
+  margin-bottom: 8px;
 }
 
 #claiming-social-security .estimated-benefits-input + hr {
@@ -133,11 +165,15 @@ body {
 
 #claiming-social-security #graph-container .content-l_col {
   margin-top: 0px;
-  padding: 20px 0;
+  padding: 45px 0;
 }
 
 #claiming-social-security .step-one .content-l_col {
   vertical-align: bottom;
+}
+
+#claim-canvas #indicator-handle {
+  cursor: pointer;
 }
 
 #claim-canvas .age-text {
@@ -147,6 +183,10 @@ body {
   position: absolute;
   top: 292px;
   height: 75px;
+}
+
+#claim-canvas .age-text.selected-age {
+  height: 25px;
 }
 
 #claim-canvas .age-text.selected-age p {
@@ -169,6 +209,8 @@ body {
 
 #claim-canvas #benefits-text {
   position: absolute;
+  font-family: 'AvenirNextLTW01-Demi', 'Arial', sans-serif;
+  font-weight: 500;
 }
 
 #claiming-social-security .estimated-longevity {
@@ -176,6 +218,7 @@ body {
 
 }
 #claiming-social-security .lifetime-benefits-value {
+  font-family: 'AvenirNextLTW01-Demi', 'Arial', sans-serif;
   font-weight: bold;
 }
 
@@ -186,6 +229,10 @@ body {
 #claiming-social-security .estimated-benefits-input label {
   display: inline;
   margin-left: 40px;
+}
+
+#claiming-social-security input[type="text"] {
+  border-color: #BABBBD;
 }
 
 #claiming-social-security #graph-container .content-l_col.benefits-comparison {
@@ -208,43 +255,66 @@ body {
 
 #claiming-social-security .input-labels input {
   display: inline; 
-  width: 20%;
+  width: 15%;
   padding: 2px;
 }
 
 #claiming-social-security #bd-year {
-  width: 40%;
+  width: 30%;
 }
 
 #claiming-social-security #salary-input {
   width: 90%;
 }
 
-#claiming-social-security .btn.get-your-estimates {
-  position: relative;
-  top: 5px;
-}
-
 #claiming-social-security .benefits-comparison .annual-view {
   display: none;
 }
 
-#claiming-social-security .estimate-info {
+#claiming-social-security .step-one .estimate-info {
   vertical-align: bottom;
   font-size: 0.875em;
+  margin-top: 0px;
+}
+
+#claiming-social-security .step-one .estimate-info p {
+  margin-bottom: -5px;
+}
+
+#claiming-social-security .step-one .step-one-instructions {
+  margin-bottom: 60px;
 }
 
 #claiming-social-security .compared-to-full {
   display: none;
 }
 
+#claiming-social-security .selected-retirement-age-container {
+  height: 77px;
+  margin-bottom: 30px;
+}
+
+#claiming-social-security .selected-retirement-age-container p {
+  margin-bottom: 0px;
+}
+
+
 #claiming-social-security .selected-retirement-age {
   margin-bottom: 2px;
-  white-space: nowrap;
 }
 
 #claiming-social-security .total-benefits-text {
-  margin-top: 20px;
+  font-family: 'AvenirNextLTW01-Regular', 'Arial', sans-serif;
+  font-weight: normal;
+  line-height: 24px;
+}
+
+#claiming-social-security .total-benefits-container {
+  margin-bottom: 30px;
+}
+
+#claiming-social-security .total-benefits-container p {
+  margin: 0px;
 }
 
 #claiming-social-security .benefit-selection p.selected-full-retirement,
@@ -267,6 +337,26 @@ body {
   display: none;
 }
 
+#claiming-social-security .graph-content .content-container ul {
+  padding-left: 20px;
+  list-style-position: outside;
+}
+
+#claiming-social-security .graph-content h3.retirement-age {
+  font-size: 1em;
+  font-family: 'AvenirNextLTW01-Demi', 'Arial', sans-serif;
+  font-weight: 500;
+  margin: 0px;
+}
+
+#claiming-social-security #graph-container p.learn-how {
+  margin-bottom: 0;
+}
+
+#claiming-social-security hr.before-step-two {
+  margin-bottom: 45px;
+}
+
 #claiming-social-security .step-two .lifestyle-img {
   display: block;
   margin: 100px auto 80px;
@@ -278,6 +368,10 @@ body {
 
 #claiming-social-security .step-two + hr {
   margin: 50px 0;
+}
+
+#claiming-social-security .step-two .question-married .lifestyle-btn {
+  width: 4em;
 }
 
 #claiming-social-security .step-two .question,
@@ -292,6 +386,18 @@ body {
   opacity: .35;
 }
 
+#claiming-social-security .step-three h2 {
+  margin-bottom: 30px;
+}
+
+#claiming-social-security .step-three h3 {
+  margin-bottom: 5px;
+}
+
+#claiming-social-security .step-three .step-three-note {
+  margin-bottom: 30px;
+}
+
 #claiming-social-security .step-three .selector-container {
   overflow: hidden;
   position: relative;
@@ -301,27 +407,56 @@ body {
   font-family: "AvenirNextLTW01-Medium", Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
-  width: 150px;
+  width: 16.6666666%;
 }
 
 #claiming-social-security .step-three #retirement-age-selector {
   width: 100%;
-  padding-right: 40px;
   background-color: transparent;
   background-image: none;
   -webkit-appearance: none;
   border: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
-  padding: 0 4px;
+  padding: 0 4px 0 10px;
   font-size: 1em;
   color: #101820;
   height: 100%;
 }
 
-#claiming-social-security #age-selector-response .next-steps li {
+#age-selector-response hr {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
 
+#claiming-social-security #age-selector-response .next-steps {
+  padding-left: 0px;
+  padding-top: 20px;
+  margin-bottom: 60px;
+}
+
+#claiming-social-security #age-selector-response .next-steps li {
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  padding-left: 34px;
+}  
+
+#claiming-social-security #age-selector-response .next-steps li.next-step-one {
+  background-image: url('../images/step_1.png');
 } 
+
+#claiming-social-security #age-selector-response .next-steps li.next-step-two {
+  background-image: url('../images/step_2.png');
+} 
+
+#claiming-social-security #age-selector-response .next-steps li.next-step-three {
+  background-image: url('../images/step_3.png');
+} 
+
+#claiming-social-security .step-three .helpful-btn {
+  width: 4em;
+}
+
 
 /* ====================================================================
    Medium and small screens
@@ -350,7 +485,7 @@ body {
   }
 
   #claiming-social-security .claiming-hero {
-    background-color: #FAAF4A;
+    background-color: #FFCE8D;
     background-image: url('../images/retirement-hero.png');
     background-origin: content-box;
     background-position: right center;
@@ -462,7 +597,7 @@ body {
   }
 
   #claiming-social-security .claiming-hero {
-    background-color: #FAAF4A;
+    background-color: #FFCE8D;
     background-image: url('../images/retirement-hero.png');
     background-position: center 20px;
     background-repeat: no-repeat;
@@ -589,8 +724,8 @@ body {
 }
 
 #claiming-social-security #tooltip-container {
-    background-color: #fff;
-    border: 2px solid #000;
+    background-color: #E4E2E0;
+    border: 0px solid #000;
     display: none;
     font-style: normal;
     font-size: .8em;
@@ -612,7 +747,7 @@ body {
 /* These elements, .outertip and .innertip, make the little speech-balloon styled
    tip appear along the top of the tooltip. */
 #claiming-social-security  #tooltip-container .outertip {
-    border: 10px solid transparent;
+    border: 0px solid transparent;
     border-bottom-color: #000;
     content: ' ';
     height: 0;
@@ -624,7 +759,7 @@ body {
 
 #claiming-social-security #tooltip-container .innertip {
     border: 7px solid transparent;
-    border-bottom-color: #fff;
+    border-bottom-color: #E4E2E0;
     content: ' ';
     height: 0;
     position: absolute;
