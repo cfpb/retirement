@@ -17,7 +17,7 @@ import time
 default_driver_wait = 10
 
 # ELEMENT ID'S FOR SELECTORS
-retirement_age_selector = "retirement-age-selector"
+ret_age_selector = "retirement-age-selector"
 search = "query"
 
 # XPATH LOCATORS
@@ -47,7 +47,6 @@ class Base(object):
             self.logger.info("Unexpected error running: %s" % full_url)
             self.logger.info("Exception type: %s" % sys.exc_info()[0])
             self.logger.info("Currently at: %s" % (self.driver.current_url))
-            self.get_screenshot(full_url)
             raise
 
     def wait(self, driver_wait=default_driver_wait):
@@ -93,5 +92,5 @@ class Base(object):
         return (self.driver.current_url)
 
     def choose_age(self, age):
-        select = Select(self.driver.find_element_by_id(retirement_age_selector))
+        select = Select(self.driver.find_element_by_id(ret_age_selector))
         select.select_by_visible_text(age)

@@ -21,8 +21,18 @@ except ImportError:
 
 
 def before_all(context):
+    fast_fail = os.getenv('FAST_FAIL', False)
+
     setup_config(context)
     setup_logger(context)
+
+    if(fast_fail):
+        connection = httplib.HTTPConnection("build.consumerfinance.gov", timeout=10)
+        connection.request("GET", "/retirement")
+        page_response = connection.getresponse()
+
+        if page_response.status == 404:
+            raise Exception(str(page_response.status) + " " + page_response.reason)
 
     if context.browser == 'Sauce':
         context.logger.info("Using Sauce Labs")
@@ -71,7 +81,6 @@ def before_all(context):
 
     context.utils = Utils(context.base)
 
-    context.logger.info('TEST ENVIRONMENT = %s' % context.base_url)
 
 def before_feature(context, feature):
     context.logger.info('STARTING FEATURE %s' % feature)
@@ -151,6 +160,8 @@ def setup_logger(context):
     logger.addHandler(ch)
     context.logger = logger
 
+
+    context.logger.info('TEST ENVIRONMENT = %s' % context.base_url)
 
 def setup_config(context):
     config = ConfigParser.ConfigParser()
