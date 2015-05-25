@@ -96,7 +96,7 @@ def past_fra_test(dob=None):
     today = datetime.datetime.now().date()
     if DOB >= today:
         return 'invalid birth year entered'
-    if DOB.month == 1 and DOB.day == 1:
+    if DOB.month == 1 and DOB.day == 1:# SSA has a special rule for people born on Jan. 1 http://www.socialsecurity.gov/OACT/ProgData/nra.html
         fra_tuple = get_retirement_age(DOB.year-1)
     else:
         fra_tuple = get_retirement_age(DOB.year)
@@ -110,7 +110,7 @@ def past_fra_test(dob=None):
     age_tuple = (int(math.floor(delta/12)), (delta%12))
     print "age_tuple: %s; fra_tuple: %s" % (age_tuple, fra_tuple)
     if age_tuple[0] < 22:
-        return 'Visitor too young to calculate benefits'
+        return 'You are too young to have your benefits calculated'
     if age_tuple[0] > fra_tuple[0]:
         return True
     elif age_tuple[0] < fra_tuple[0]:
