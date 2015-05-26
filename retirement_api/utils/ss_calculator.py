@@ -31,9 +31,6 @@ base_url = "http://www.ssa.gov"
 quick_url = "%s/OACT/quickcalc/" % base_url# where users go, but not needed for our request
 result_url = "%s/cgi-bin/benefit6.cgi" % base_url
 chart_ages = range(62,71)
-benefits = {}
-for age in chart_ages:
-    benefits["age %s" % age] = 0
 
 comment = re.compile(r"<!--[\s\S]*?-->")# regex for parsing indexing data; not used yet
 
@@ -120,7 +117,7 @@ def interpolate_benefits(benefits, fra_tuple, current_age):
         benefits['age 66'] = int(round(base - base*( 1*12*(0.00555555) )))
         benefits['age 68'] = int(round(base + (base * 0.08)))
         benefits['age 69'] = int(round(base + (2 * (base * 0.08))))
-    elif fra == 66:
+    elif fra == 66 and current_age < 66:
         base = benefits['age 66']
         benefits['age 67'] = int(round(base + (base * 0.08)))
         benefits['age 68'] = int(round(base + (2 * (base* 0.08))))
@@ -156,8 +153,11 @@ params = {
 }
 def get_retire_data(params):
     starter = datetime.datetime.now()
-    dobstring = "%s-%s-%s" % (params['yob'], params['dobmon'], params['dobday'])
     collector = {}
+    benefits = {}
+    for age in chart_ages:
+        benefits["age %s" % age] = 0
+    dobstring = "%s-%s-%s" % (params['yob'], params['dobmon'], params['dobday'])
     results = {'data': {
                     'early retirement age': '', 
                     'full retirement age': '', 
@@ -190,11 +190,6 @@ def get_retire_data(params):
     current_age = get_current_age(dobstring)
     results['current_age'] = current_age
     req = requests.post(result_url, data=params)
-    # if req.reason != 'OK':
-    #     results['error'] = "request to Social Security failed: %s %s" % (req.reason, req.status_code)
-    #     print results['error']
-    #     return json.dumps(results)
-    # else:
     if int(params['dobmon']) == 1 and int(params['dobday']) == 1:# SSA has a special rule for people born on Jan. 1 http://www.socialsecurity.gov/OACT/ProgData/nra.html
         yob = int(params['yob']) - 1
         yobstring = "%s" % yob
