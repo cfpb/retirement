@@ -5,7 +5,7 @@
     "fields": {
         "note": "We base our estimate on formulas from the Social Security Administration. Your information is not saved, is anonymous, and is used only to generate estimates during this session.", 
         "instructions": "Enter your data to update the example below.", 
-        "title": "<strong>Step 1:</strong> Explore how claiming age affects your Social Security retirement benefit"
+        "title": "Explore how claiming age affects your Social Security benefit"
     }
 },
 {
@@ -14,7 +14,7 @@
     "fields": {
         "note": "", 
         "instructions": "Tell us about your lifestyle for personalized information.", 
-        "title": "<strong>Step 2:</strong> Learn tips to make your claiming decision"
+        "title": "Learn tips to make your claiming decision"
     }
 },
 {
@@ -23,7 +23,7 @@
     "fields": {
         "note": "This will not affect your Social Security account or begin an application.", 
         "instructions": "Select the age you plan to claim your Social Security retirement benefits.", 
-        "title": "<strong>Step 3:</strong> Learn your next steps"
+        "title": "Learn your next steps"
     }
 },
 {
@@ -162,7 +162,7 @@
     "pk": 2, 
     "model": "retirement_api.tooltip", 
     "fields": {
-        "text": "arly retirement: Any time before your full retirement age. If you claim your benefits before your full retirement age, they will be permanently reduced. The earliest age you can claim your retirement benefit is 62.", 
+        "text": "Early retirement: Any time before your full retirement age. If you claim your benefits before your full retirement age, they will be permanently reduced. The earliest age you can claim your retirement benefit is 62.", 
         "title": "early"
     }
 },
@@ -210,7 +210,7 @@
     "pk": 8, 
     "model": "retirement_api.tooltip", 
     "fields": {
-        "text": "\"File and suspend\" is a claiming strategy that can be useful for married couples, particularly if one spouse earns more than the other. For details, see <a href=\"http://www.socialsecurity.gov/planners/retire/suspend.html\">Social Security's guide</a> explanation.", 
+        "text": "If you and your spouse are full retirement age, you can apply for benefits but have the payments suspended. This allows your spouse to file for spousal benefits without affecting your personal benefits. For details, see <a href=\"http://www.socialsecurity.gov/planners/retire/suspend.html\" target=\"_blank\">Social Security's guide</a>.", 
         "title": "file_and_suspend"
     }
 },
@@ -220,6 +220,14 @@
     "fields": {
         "text": "The Treasury Department sponsors the myRA program, which provides personal retirement savings accounts, backed by the Treasury, for people who make less than $131,000 a year and don't have access to employer-sponsored retirement plans. For details, see the Treasury's <a href=\"https://myra.treasury.gov/about/\">myRA page</a>. ", 
         "title": "myra"
+    }
+},
+{
+    "pk": 10, 
+    "model": "retirement_api.tooltip", 
+    "fields": {
+        "text": "If both spouses are full retirement age, you can apply for spousal benefits if you haven't filed before and if your spouse has already filed (regardless of your spouse's suspension status). For details, see <a href=\"\" target=\"_blank\">Social Security's guide</a>.", 
+        "title": "restricted_application"
     }
 },
 {
@@ -257,8 +265,8 @@
         "answer_yes_a": "Working longer will help you maximize your Social Security benefits. Because your benefit is based on your highest 35 years of earnings, working longer can add higher earnings to your record by replacing years with low earnings. This might be especially helpful if there were years you were a student, were unemployed, or were taking time off to care for someone. When you work and wait to claim, you can nearly double your benefits by age 70!", 
         "workflow_state": "SUBMITTED", 
         "question": "Do you plan to continue working in your 60s?", 
-        "answer_unsure_b": "Waiting to claim increases your monthly benefits every year until age 70. Working full-time is not the only option in your 60s. Many people plan a career change or work part-time. When you work and wait to claim, you can nearly double your benefits by age 70!\r\n\r\n\r\nDid you know that your Social Security benefit is based on your highest 35 years of earnings? Working longer can add higher earnings to your record by replacing years with low and no earnings.", 
-        "answer_unsure_a": "Working longer will help you maximize your Social Security benefits. Because most people make more money later in their careers, working longer can increase your monthly benefit. When you work and wait to claim, you can nearly double your benefits by age 70!\r\n\r\n\r\nDid you know that your Social Security benefit is based on your highest 35 years of earnings? Working longer can add higher earnings to your record by replacing years with low and no earnings.", 
+        "answer_unsure_b": "Waiting to claim increases your monthly benefits every year until age 70. Working full-time is not the only option in your 60s. Many people plan a career change or work part-time. When you work and wait to claim, you can nearly double your benefits by age 70! Did you know that your Social Security benefit is based on your highest 35 years of earnings? Working longer can add higher earnings to your record by replacing years with low and no earnings.", 
+        "answer_unsure_a": "Working longer will help you maximize your Social Security benefits. Because most people make more money later in their careers, working longer can increase your monthly benefit. When you work and wait to claim, you can nearly double your benefits by age 70! Did you know that your Social Security benefit is based on your highest 35 years of earnings? Working longer can add higher earnings to your record by replacing years with low and no earnings.", 
         "answer_unsure_b_subhed": "Stay on track for a secure retirement.", 
         "answer_yes_a_subhed": "Stay on track for a secure retirement.", 
         "answer_no_b": "Waiting to claim increases your monthly benefits every year until age 70. Working full-time is not the only option in your 60s. Many people plan a career change or work part-time. If you stop or reduce your work hours, it\u2019s still possible to increase your Social Security benefits by waiting to claim. You could use a portion of your 401(k) or other retirement savings to supplement your earnings. You\u2019ll need to decide whether doing this is financially possible.", 
@@ -283,8 +291,8 @@
         "answer_unsure_a": "You\u2019re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you\u2019ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Out-of-pocket health care costs will likely increase as you get older. You can make adjustments, like downsizing or paying off your mortgage before you retire. You can also wait to claim Social Security up to age 70, which increases your benefits, creating a buffer against future increases in expenses.", 
         "answer_unsure_b_subhed": "Some people find retirement is more expensive than expected.", 
         "answer_yes_a_subhed": "Some people find retirement is more expensive than expected.", 
-        "answer_no_b": "You\u2019re likely to spend 20 years in retirement and income needs are difficult to predict. Creating a buffer against future increases in expenses will help. You can maximize your Social Security benefit by waiting to claim (up to age 70), and at the same time help maintain other retirement savings, like 401(k)s.\r\n\r\n\r\nOther things to consider are downsizing your home or paying off your mortgage before you retire.", 
-        "answer_no_a": "You\u2019re likely to spend 20 years in retirement and income needs are difficult to predict. Creating a buffer against future increases in expenses will help. You can maximize your Social Security benefit by waiting to claim (up to age 70), and at the same time help maintain other retirement savings, like 401(k)s.\r\n\r\n\r\nOther things to consider are downsizing your home or paying off your mortgage before you retire.", 
+        "answer_no_b": "You\u2019re likely to spend 20 years in retirement and income needs are difficult to predict. Creating a buffer against future increases in expenses will help. You can maximize your Social Security benefit by waiting to claim (up to age 70), and at the same time help maintain other retirement savings, like 401(k)s. Other things to consider are downsizing your home or paying off your mortgage before you retire.", 
+        "answer_no_a": "You\u2019re likely to spend 20 years in retirement and income needs are difficult to predict. Creating a buffer against future increases in expenses will help. You can maximize your Social Security benefit by waiting to claim (up to age 70), and at the same time help maintain other retirement savings, like 401(k)s. Other things to consider are downsizing your home or paying off your mortgage before you retire.", 
         "slug": "expenses"
     }
 },
