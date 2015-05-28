@@ -22,6 +22,7 @@ __pycache__/
 #################
 *.egg-info
 .installed.cfg
+settings.py
 
 # sqlite #
 #################
