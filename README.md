@@ -68,7 +68,7 @@ The "Claiming Social Security" page should load at `localhost:8000/claiming-soci
 ### How to run software tests
 - You can use nose to run the test suite and see code coverage information
 ```bash
-nosetests --with-coverage --cover-erase --config=.coveragerc --cover-package retirement_api
+nosetests --with-coverage --config=.coveragerc --cover-package retirement_api/utils
 ```
 
 ## Getting involved
