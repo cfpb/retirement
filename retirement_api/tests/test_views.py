@@ -5,6 +5,9 @@ import json
 
 import mock
 
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
 # if __name__ == '__main__':
 #     BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
 # else:
@@ -15,12 +18,13 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 import unittest
 from django.http import HttpRequest
-from views import param_check, income_check, estimator, get_full_retirement_age
-from utils.ss_calculator import get_retire_data, params
+from retirement_api.views import param_check, income_check, estimator, get_full_retirement_age, claiming
+from retirement_api.utils.ss_calculator import get_retire_data, params
 
 today = datetime.datetime.now().date()
 
 class ViewTests(unittest.TestCase):
+    req_base = HttpRequest()
     req_good = HttpRequest()
     req_good.GET['dob'] = '1955-05-05'
     req_good.GET['income'] = '40000'
@@ -31,6 +35,21 @@ class ViewTests(unittest.TestCase):
     req_invalid.GET['dob'] = '1-2-%s' % (today.year + 5)
     req_invalid.GET['income'] = 'x'
     return_keys = ['data', 'error']
+
+    def test_base_view(self):
+        # response = claiming(req_base)
+        mock_render_to_response = mock.MagicMock()
+        with mock.patch.multiple('retirement_api.views',
+            render_to_response=mock_render_to_response,
+            RequestContext=mock.MagicMock()):
+            from retirement_api.views import claiming
+            mock_request = mock.Mock()
+            claiming(mock_request)
+            _, args, _ = mock_render_to_response.mock_calls[0]
+            self.assertEquals(args[0], 'claiming.html',
+                            'The wrong template is in our render')
+            self.assertEquals(args[1]['available_languages'], ['en', 'es'],
+                            'Passing the wrong available_languages variable in')
 
     def test_param_check(self):
         self.assertEqual(param_check(self.req_good, 'dob'), '1955-05-05')        
