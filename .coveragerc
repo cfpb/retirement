@@ -1,3 +1,8 @@
+[run]
+omit = 
+    ../*admin*
+    ../*urls*
+
 [report]
 
 exclude_lines = 
