@@ -1,3 +1,4 @@
+import os
 import json
 
 from django.shortcuts import render_to_response
@@ -9,9 +10,10 @@ import datetime
 from retirement_api.models import Step, AgeChoice, Page, Tooltip, Question
 from django.utils.translation import ugettext as _
 from django.utils.translation import activate, deactivate_all
+BASEDIR = os.path.dirname(__file__)
 
-import settings
 try:
+    import settings
     standalone = settings.STANDALONE
 except:
     standalone = False
@@ -51,7 +53,7 @@ def claiming(request, es=False):
     if standalone:
         base_template = "standalone_base.html"
     else:
-        base_template = "base.html"
+        base_template = "%s/templates/base.html" % BASEDIR
     cdict = {
         'tstamp': datetime.datetime.now(),
         'final_steps': final_steps,
