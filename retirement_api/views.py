@@ -10,6 +10,12 @@ from retirement_api.models import Step, AgeChoice, Page, Tooltip, Question
 from django.utils.translation import ugettext as _
 from django.utils.translation import activate, deactivate_all
 
+import settings
+try:
+    standalone = settings.STANDALONE
+except:
+    standalone = False
+
 today = datetime.datetime.now().date()
 # params = {
 #     'dobmon': mob,
@@ -42,6 +48,10 @@ def claiming(request, es=False):
     final_steps = {}
     for step in Step.objects.filter(title__contains='final_'):
         final_steps[step.title] = step
+    if standalone:
+        base_template = "standalone_base.html"
+    else:
+        base_template = "base.html"
     cdict = {
         'tstamp': datetime.datetime.now(),
         'final_steps': final_steps,
@@ -49,6 +59,7 @@ def claiming(request, es=False):
         'tips': tips,
         'ages': ages,
         'page': page,
+        'base_template': base_template,
         'available_languages': ['en', 'es'],
         }
     return render_to_response('claiming.html', cdict)

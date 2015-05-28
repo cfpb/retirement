@@ -11,15 +11,15 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 class ViewModels(TestCase):
 
-    testcase = AgeChoice.objects.get(age=61)
+    testcase = AgeChoice.objects.get(age=62)
     testquestion = Question.objects.all()[0]
     teststep = Step.objects.all()[0]
     testpage = Page.objects.all()[0]
     testtip = Tooltip.objects.all()[0]
 
     def test_get_subhed(self):
-        tc = AgeChoice.objects.get(age=61)
-        self.assertTrue("You've chosen age 61" in tc.get_subhed())
+        tc = AgeChoice.objects.get(age=62)
+        self.assertTrue("You've chosen age 62" in tc.get_subhed())
 
     def test_question_slug(self):
         question_slugger = Question(title='test q')
