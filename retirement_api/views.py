@@ -18,7 +18,6 @@ try:
 except:
     standalone = False
 
-today = datetime.datetime.now().date()
 # params = {
 #     'dobmon': mob,
 #     'dobday': dayob,
@@ -82,6 +81,7 @@ def income_check(param):
         return clean_income
 
 def estimator(request, dob=None, income=None):
+    today = datetime.datetime.now().date()
     legal_year = today.year - 22 # calculator should not be used for people under 22
     if dob == None:
         dob = param_check(request, 'dob')
