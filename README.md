@@ -32,13 +32,9 @@ This is a project aimed at helping Americans make choices about retirement, incl
 -->
 
 ### Installation
-The tool is a Django module, intended to be installed and run inside a larger Django project. But you can run it as its own project for testing by copying the test_settings.py file as settings.py
+The tool is a Django module, intended to be installed in a larger Django project. But it can run on its own in a Mac or Linux environment, assuming you have the setup dependencies of pip, virtualenv and virtualenvwrapper installed. Here's how:
 
-These instructons assume a Mac or Linux environment with pip, virtualenv and virtualenvwrapper installed.
-
-<!--[Homebrew](http://brew.sh) -->
-
-Go to where you want the project to be created, make a virtual environment, clone this repository (or, better yet, your own fork of it) and install requirements and settings.
+Go to where you want the project to be created, make a virtual environment, clone this repository (or your own fork of it) and install requirements and settings.
 ```bash
 mkvirtualenv retirement
 git clone https://github.com/cfpb/retirement.git
@@ -54,7 +50,7 @@ python manage.py syncdb
 python manage.py loaddata retiredata.json
 ```
 
-Fire up a development server to see if everything's working.
+Fire up a development server.
 ```bash
 python manage.py runserver
 ```
