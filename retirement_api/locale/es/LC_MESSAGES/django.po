@@ -25,7 +25,7 @@ msgstr "Oficina para la Protección Financiera del Consumidor"
 
 #: templates/claiming.html
 msgid "Claiming Social Security— a choice to fit your lifestyle"
-msgstr "Reivindicación de Seguridad- Social una opción para adaptarse a su estilo de vida"
+msgstr "Reclamando Seguridad Social– una opción para adaptarse a su estilo de vida"
 
 #: templates/claiming.html
 msgid "Your claiming decision has a big impact. We're here to help you maximize your lifetime income."
@@ -373,4 +373,8 @@ msgstr "Paso"
 #: 
 msgid "Today's dollars"
 msgstr "Dólares de hoy"
+
+#: 
+msgid "Claiming Social Security"
+msgstr "Reclamando Seguridad Social"
 

@@ -36,7 +36,7 @@ And by the way, there’s another hidden message somewhere on the following page
     <meta property="fb:app_id" content="210516218981921">
 
     
-    <meta property="og:image" content="/wp-content/themes/cfpb_nemo/_/img/logo.svg">
+    <meta property="og:image" content="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.svg">
     
 
     
@@ -51,35 +51,35 @@ And by the way, there’s another hidden message somewhere on the following page
     
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-precomposed.png">
-    <link rel="apple-touch-icon" size="72x72" href="/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" size="114x114" href="/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" size="144x144" href="/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="apple-touch-icon" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon" size="72x72" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" size="114x114" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" size="144x144" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-144x144-precomposed.png">
 
 
-    <script src="/wp-content/themes/cfpb_nemo/_/js/jquery-1.9.1.min.js?ver=v4.2.10v4.2.24"></script>
+    <script src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/js/jquery-1.9.1.min.js?ver=v4.2.10v4.2.24"></script>
     <!--[if lt IE 9]>
-    <script src="/wp-content/themes/cfpb_nemo/_/js/html5shim.js"></script>
+    <script src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/js/html5shim.js"></script>
     <![endif]-->
 
     <!-- Styles -->
 
     <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/woff.css?ver=v4.2.10v4.2.24">
+    <link rel="stylesheet" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/c/woff.css?ver=v4.2.10v4.2.24">
     <!--<![endif]-->
     <!--[if lt IE 9]>
-    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/eot.css">
+    <link rel="stylesheet" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/c/eot.css">
     <![endif]-->
-    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/styles.css?ver=v4.2.10v4.2.24">
+    <link rel="stylesheet" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/c/styles.css?ver=v4.2.10v4.2.24">
 
     
     
 
     
-    <link rel="stylesheet" href="/retirement/static/landing/css/landing.css">
-    <link rel='stylesheet' id='cfpb_icon_font-css'  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons.css?ver=all" type="text/css" media="all">
+    <link rel="stylesheet" href="http://www.consumerfinance.gov/static/landing/css/landing.css">
+    <link rel='stylesheet' id='cfpb_icon_font-css'  href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons.css?ver=all" type="text/css" media="all">
     <!--[if IE 7]>
-    <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons-ie7.css?ver=all" type="text/css" media="all" />
+    <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons-ie7.css?ver=all" type="text/css" media="all" />
     <![endif]-->
 
 
@@ -92,10 +92,10 @@ And by the way, there’s another hidden message somewhere on the following page
     <script src="/retirement/static/js/raphael-min.js"></script>
     <script src="/retirement/static/js/claiming-social-security.js"></script>
     
-    <script src="/static/js/analytics.js?ver=v4.2.10v4.2.24"></script>
+    <script src="http://www.consumerfinance.gov/static/js/analytics.js?ver=v4.2.10v4.2.24"></script>
 
     <!-- this is where we put our custom analytics -->
-    <script src="/wp-content/themes/cfpb_nemo/_/js/analytics-global.js?ver=v4.2.10v4.2.24"></script>
+    <script src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/js/analytics-global.js?ver=v4.2.10v4.2.24"></script>
 
     <!-- H5BP's Asynchronous Google Analytics snippet. -->
     <script>
@@ -105,7 +105,8 @@ And by the way, there’s another hidden message somewhere on the following page
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>    
 
-    
+{% block head_css %}{% endblock %}
+{% block head_js %}{% endblock %}
 </head>
 
 <body class="page">
@@ -126,7 +127,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {% block content %}{% endblock %}
         <footer id="footer">
             <div>
-                <a href="/"><img src="/wp-content/themes/cfpb_nemo/_/img/logo-vert.png" alt="Consumer Financial Protection Bureau" title="CFPB"></a>
+                <a href="/"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo-vert.png" alt="Consumer Financial Protection Bureau" title="CFPB"></a>
                 <nav>
                     <ul>
                         <li><a href="/privacy-policy/">Privacy policy and legal notices</a></li>
@@ -146,11 +147,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </nav>
                 <nav>
                     <ul>
-                        <li class="horizontal-list-item"><a href="http://facebook.com/cfpb" class="noStyles"><img src="/wp-content/themes/cfpb_nemo/_/img/fb_footer_icon.png" alt="Visit us on Facebook"></a>&nbsp;&nbsp;</li>
-                        <li class="horizontal-list-item"><a href="http://twitter.com/cfpb" class="noStyles"><img src="/wp-content/themes/cfpb_nemo/_/img/twitter_footer_icon.png" alt="Visit us on Twitter"></a>&nbsp;&nbsp;</li>
-                        <li class="horizontal-list-item"><a href="http://youtube.com/CFPB" class="noStyles"><img src="/wp-content/themes/cfpb_nemo/_/img/youtube_footer_icon.png" alt="Visit us on Youtube"></a>&nbsp;&nbsp;</li>
-                        <li class="horizontal-list-item"><a href="http://flickr.com/cfpbphotos" class="noStyles"><img src="/wp-content/themes/cfpb_nemo/_/img/flickr_footer_icon.png" alt="Visit us on Flickr"></a>&nbsp;&nbsp;</li>
-                        <li class="horizontal-list-item"><a href="/feed/" class="noStyles"><img src="/wp-content/themes/cfpb_nemo/_/img/rss_footer_icon.png" alt="Subscribe to updates with RSS"></a></li>
+                        <li class="horizontal-list-item"><a href="http://facebook.com/cfpb" class="noStyles"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/fb_footer_icon.png" alt="Visit us on Facebook"></a>&nbsp;&nbsp;</li>
+                        <li class="horizontal-list-item"><a href="http://twitter.com/cfpb" class="noStyles"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/twitter_footer_icon.png" alt="Visit us on Twitter"></a>&nbsp;&nbsp;</li>
+                        <li class="horizontal-list-item"><a href="http://youtube.com/CFPB" class="noStyles"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/youtube_footer_icon.png" alt="Visit us on Youtube"></a>&nbsp;&nbsp;</li>
+                        <li class="horizontal-list-item"><a href="http://flickr.com/cfpbphotos" class="noStyles"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/flickr_footer_icon.png" alt="Visit us on Flickr"></a>&nbsp;&nbsp;</li>
+                        <li class="horizontal-list-item"><a href="/feed/" class="noStyles"><img src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/rss_footer_icon.png" alt="Subscribe to updates with RSS"></a></li>
                     </ul>
                     <p>Visite nuestro sitio web 
                     en español</p>
@@ -168,11 +169,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </footer>
 
         <div class="shareavatar">
-            <img alt="" class="shareavatar" height=0 width=0 src="/wp-content/themes/cfpb_nemo/_/img/facebookshareavatar.png" />
+            <img alt="" class="shareavatar" height=0 width=0 src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/facebookshareavatar.png" />
         </div> <!-- Avatar for Facebook, hidden by CSS -->
-    <script src="/wp-content/themes/cfpb_nemo/_/js/functions.js?ver=v4.2.10v4.2.24"></script>
-    <script type="text/javascript" src="/static/agreements/js/chosen.jquery.js?ver=v4.2.10v4.2.24"></script>
+    <script src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/js/functions.js?ver=v4.2.10v4.2.24"></script>
+    <script type="text/javascript" src="http://www.consumerfinance.gov/static/agreements/js/chosen.jquery.js?ver=v4.2.10v4.2.24"></script>
 
+
+        
 {% block foot_js %}{% endblock %}
 
 </body>
