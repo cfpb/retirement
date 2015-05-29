@@ -1,6 +1,8 @@
+import os
 import json
 
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.http import Http404, HttpResponse, HttpResponseBadRequest
 from utils.ss_calculator import get_retire_data, params
 from utils.ss_utilities import get_retirement_age
@@ -9,8 +11,14 @@ import datetime
 from retirement_api.models import Step, AgeChoice, Page, Tooltip, Question
 from django.utils.translation import ugettext as _
 from django.utils.translation import activate, deactivate_all
+BASEDIR = os.path.dirname(__file__)
 
-today = datetime.datetime.now().date()
+try:
+    import settings
+    standalone = settings.STANDALONE
+except:# pragma: no cover
+    standalone = False
+
 # params = {
 #     'dobmon': mob,
 #     'dobday': dayob,
@@ -42,6 +50,10 @@ def claiming(request, es=False):
     final_steps = {}
     for step in Step.objects.filter(title__contains='final_'):
         final_steps[step.title] = step
+    if standalone:
+        base_template = "standalone_base.html"
+    else:
+        base_template = "%s/templates/base.html" % BASEDIR
     cdict = {
         'tstamp': datetime.datetime.now(),
         'final_steps': final_steps,
@@ -49,6 +61,7 @@ def claiming(request, es=False):
         'tips': tips,
         'ages': ages,
         'page': page,
+        'base_template': base_template,
         'available_languages': ['en', 'es'],
         }
     return render_to_response('claiming.html', cdict)
@@ -69,6 +82,7 @@ def income_check(param):
         return clean_income
 
 def estimator(request, dob=None, income=None):
+    today = datetime.datetime.now().date()
     legal_year = today.year - 22 # calculator should not be used for people under 22
     if dob == None:
         dob = param_check(request, 'dob')

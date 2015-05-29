@@ -296,10 +296,7 @@ def get_retire_data(params):
             SURV['spouse caring for child'] = survivors['Your spouse caring for your child']
     if not results['data']['full retirement age']:
         if fra_tuple[1]:
-            if fra_tuple[1] > 1:
-                FRA = "%s and %s months" % (fra_tuple[0], fra_tuple[1])
-            else:
-                FRA = "%s and %s month" % (fra_tuple[0], fra_tuple[1])
+            FRA = "%s and %s months" % (fra_tuple[0], fra_tuple[1])
         else:
             FRA = "%s" % fra_tuple[0]
         results['data']['full retirement age'] = FRA
