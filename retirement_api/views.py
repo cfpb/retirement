@@ -16,7 +16,7 @@ BASEDIR = os.path.dirname(__file__)
 try:
     import settings
     standalone = settings.STANDALONE
-except:
+except:# pragma: no cover
     standalone = False
 
 # params = {
