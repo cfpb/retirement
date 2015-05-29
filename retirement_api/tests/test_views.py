@@ -24,7 +24,6 @@ from retirement_api.utils.ss_calculator import get_retire_data, params
 today = datetime.datetime.now().date()
 
 class ViewTests(unittest.TestCase):
-    req_base = HttpRequest()
     req_good = HttpRequest()
     req_good.GET['dob'] = '1955-05-05'
     req_good.GET['income'] = '40000'
@@ -37,7 +36,6 @@ class ViewTests(unittest.TestCase):
     return_keys = ['data', 'error']
 
     def test_base_view(self):
-        # response = claiming(req_base)
         mock_render_to_response = mock.MagicMock()
         with mock.patch.multiple('retirement_api.views',
             render_to_response=mock_render_to_response,
@@ -49,7 +47,11 @@ class ViewTests(unittest.TestCase):
             self.assertEquals(args[0], 'claiming.html',
                             'The wrong template is in our render')
             self.assertEquals(args[1]['available_languages'], ['en', 'es'],
-                            'Passing the wrong available_languages variable in')
+                            'Passing the wrong available_languages variable')
+            claiming(mock_request, es=True)
+            _, args, _ = mock_render_to_response.mock_calls[0]
+            self.assertEquals(args[1]['available_languages'], ['en', 'es'],
+                            'Passing the wrong available_languages variable')
 
     def test_param_check(self):
         self.assertEqual(param_check(self.req_good, 'dob'), '1955-05-05')        

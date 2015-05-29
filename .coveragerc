@@ -6,4 +6,6 @@ omit =
 [report]
 
 exclude_lines = 
+    pragma: no cover
+    def __unicode__
     if __name__ == .__main__.:
