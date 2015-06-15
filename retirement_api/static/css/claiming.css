@@ -3,6 +3,10 @@ body {
   font-size: 16px;
 }
 
+#claiming-social-security button {
+  letter-spacing: 0;
+}
+
 #claiming-social-security .cf-icon.cf-icon-help-round {
   color: #0072CD;
   font-size: .8em;
@@ -207,10 +211,14 @@ body {
   left: 443px;
 }
 
-#claim-canvas #benefits-text {
+#claim-canvas #benefits-text,
+#claim-canvas #full-age-benefits-text {
   position: absolute;
   font-family: 'AvenirNextLTW01-Demi', 'Arial', sans-serif;
   font-weight: 500;
+}
+#claim-canvas #full-age-benefits-text {
+  color: #e3e4e5;
 }
 
 #claiming-social-security .estimated-longevity {
@@ -775,4 +783,13 @@ body {
   color: #0072ce;
   cursor: pointer;
   text-decoration: none;  
+}
+
+#claiming-social-security .selection-disabled {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
