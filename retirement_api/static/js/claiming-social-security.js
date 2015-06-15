@@ -155,13 +155,19 @@
     }
   }
 
-  /***-- getData(): performs a get call, sets SSData with incoming data --***/
+  /***-- getData(): performs a get call (and performs a few cleanup activities), sets SSData with incoming data --***/
   function getData() {
     var day = $('#bd-day').val(),
         month = $('#bd-month').val(),
         year = $('#bd-year').val(),
         salary = $('#salary-input').val().replace(/\D/g,'');
     var dates = validDates( month, day, year );
+
+    // update the inputs with validated values
+    $('#bd-day').val( dates['day'] );
+    $('#bd-month').val( dates['month'] );
+    $('#bd-year').val( dates['year'] );
+    
     var url = '/retirement/retirement-api/estimator/' + dates.concat + '/' + Number(salary) + '/';
     var response = "";
     currentAge = calculateAge( month, day, year );
