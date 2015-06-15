@@ -2,16 +2,19 @@
 // var CFPBClaimingSocialSecurity = ( function($) {
   var SSData = {
     'fullAge': 67,
-    'age62': 1800,
-    'age63': 2000,
-    'age64': 2200,
-    'age65': 2400,
-    'age66': 2650,
-    'age67': 3000,
-    'age68': 3200,
-    'age69': 3400,
-    'age70': 3600,
-    'earlyAge': "62 and 1 month"
+    'age62': 1515,
+    'age63': 1635,
+    'age64': 1744,
+    'age65': 1889,
+    'age66': 2035,
+    'age67': 2180,
+    'age68': 2354,
+    'age69': 2529,
+    'age70': 2719,
+    'earlyAge': 62,
+    'currentAge': 37,
+    'earlyRetirementAge': "62 and 1 month",
+    'fullRetirementAge': "67"
   };
 
   // Raphael object
@@ -56,7 +59,7 @@
 
   // global vars
   var ages = [62,63,64,65,66,67,68,69,70],
-      selectedAge = 67,
+      selectedAge = SSData.fullAge,
       currentAge = 0;
 
   /***-- delay(): Delay a function ---**/
@@ -138,13 +141,33 @@
     return { 'month': month, 'day': day, 'year': year, 'concat': month + '-' + day + '-' + year };
   }
 
-  /***-- getData(): performs a get call, sets SSData with incoming data --***/
+  /***-- checkEstimateReady(): checks if the page is ready for the Estimate button to be hit. --***/
+  function checkEstimateReady() {
+    var m = ( $('#bd-month').val() !== "" ),
+        d = ( $('#bd-day').val() !== "" ),
+        y = ( $('#bd-year').val() !== "" ),
+        s = ( $('#salary-input').val() !== "" );
+    if ( m && d && y && s ) {
+      $('#get-your-estimates').attr('disabled', false).removeClass('btn__disabled');
+    }
+    else {
+      $('#get-your-estimates').attr('disabled', true).addClass('btn__disabled');
+    }
+  }
+
+  /***-- getData(): performs a get call (and performs a few cleanup activities), sets SSData with incoming data --***/
   function getData() {
     var day = $('#bd-day').val(),
         month = $('#bd-month').val(),
         year = $('#bd-year').val(),
         salary = $('#salary-input').val().replace(/\D/g,'');
     var dates = validDates( month, day, year );
+
+    // update the inputs with validated values
+    $('#bd-day').val( dates['day'] );
+    $('#bd-month').val( dates['month'] );
+    $('#bd-year').val( dates['year'] );
+    
     var url = '/retirement/retirement-api/estimator/' + dates.concat + '/' + Number(salary) + '/';
     var response = "";
     currentAge = calculateAge( month, day, year );
@@ -173,6 +196,9 @@
           SSData.earlyRetirementAge = data['early retirement age'];
           SSData.fullAge = Number( data['full retirement age'].substr(0,2) );
           SSData.earlyAge = Number( data['early retirement age'].substr(0,2) );
+          if ( SSData.currentAge > SSData.fullAge ) {
+            SSData.fullAge = SSData.currentAge;
+          }
           resetView();
           $('.step-two, #estimated-benefits-input, #graph-container').css('opacity', 1);
           $('.step-two .question').css('display', 'inline-block');
@@ -185,7 +211,7 @@
         }
       })
       .error( function(xhr, status, error) {
-        alert("An AJAX error occured: " + status + "\nError: " + error + "\nError detail: " + xhr.responseText);
+        alert("An error occured! " + "\nError detail: " + xhr.responseText);
         response = "error";
       });
       return response;
@@ -248,28 +274,52 @@
 
   /***-- setTextByAge(): Changes text of benefits and age fields based on selectedAge --***/
   function setTextByAge() {
-    var x = ages.indexOf( selectedAge ) * barGut + indicatorLeftSet;
-    var lifetimeBenefits = numToMoney( ( 85 - selectedAge ) * 12 * SSData[ 'age' + selectedAge ] );
-    var benefitsValue = SSData['age' + selectedAge];
+    var x = ages.indexOf( selectedAge ) * barGut + indicatorLeftSet,
+        lifetimeBenefits = numToMoney( ( 85 - selectedAge ) * 12 * SSData[ 'age' + selectedAge ] ),
+        benefitsValue = SSData['age' + selectedAge],
+        benefitsTop,
+        benefitsLeft,
+        fullAgeTop,
+        fullAgeLeft;
+
     if ( $('#estimated-benefits-input [name="benefits-display"]:checked').val() === 'annual' ) {
       benefitsValue = benefitsValue * 12;
     }
     toggleMonthlyAnnual();
+
     $('#claim-canvas .age-text').removeClass('selected-age');
-    var selectedAgeDiv = $('#claim-canvas .age-text[data-age-value="' + selectedAge + '"]').addClass('selected-age');
+    // Set selected-age 
+    $('#claim-canvas .age-text[data-age-value="' + selectedAge + '"]').addClass('selected-age'),
+
+    // set text and position for #benefits-text div
     $('#benefits-text').text( numToMoney( benefitsValue ) );
-    var benefitsTop = bars[ 'age' + selectedAge ].attr('y') - $('#benefits-text').height() - 10;
+    benefitsTop = bars[ 'age' + selectedAge ].attr('y') - $('#benefits-text').height() - 10;
+    benefitsLeft = bars[ 'age' + selectedAge ].attr('x') - $('#benefits-text').width() / 2 + barWidth / 2;
     $('#benefits-text').css( 'top', benefitsTop );
-    var benefitsLeft = bars[ 'age' + selectedAge ].attr('x') - $('#benefits-text').width() / 2 + barWidth / 2;
     $('#benefits-text').css( 'left', benefitsLeft );
+
+    // set text, position and visibility of #full-age-benefits-text
+    $('#full-age-benefits-text').text( numToMoney( SSData[ 'age' + SSData.fullAge ] ) );
+    fullAgeTop = bars[ 'age' + SSData.fullAge ].attr('y') - $('#full-age-benefits-text').height() - 10;
+    fullAgeLeft = bars[ 'age' + SSData.fullAge ].attr('x') - $('#full-age-benefits-text').width() / 2 + barWidth / 2;
+    $('#full-age-benefits-text').css( 'top', fullAgeTop );
+    $('#full-age-benefits-text').css( 'left', fullAgeLeft );
+    if ( selectedAge === SSData.fullAge ) {
+      $('#full-age-benefits-text').hide();
+    }
+    else {
+      $('#full-age-benefits-text').show();
+    }
+
+    // set lifetime benefits text
     $('.lifetime-benefits-value').text( lifetimeBenefits );
 
     // Set extra text for early and full retirement ages
     if ( selectedAge === SSData.earlyAge ) {
       $('.selected-retirement-age-value').text( SSData.earlyRetirementAge );      
     }
-    else if ( selectedAge === SSData.fullAge ) {
-      $('.selected-retirement-age-value').text( SSData.fullRetirementAge );
+    else if ( selectedAge === SSData.fullAge && SSData.currentAge < SSData.fullAge ) {
+      $('.selected-retirement-age-value').text( SSData.fullRetirementAge   );
     }
     else {
       $('.selected-retirement-age-value').text( selectedAge );
@@ -317,9 +367,13 @@
     indicator.transform('t' + newX + ',0');
     if ( selectedAge !== Math.round( newX / barGut ) ) {
       selectedAge = 62 + Math.round( newX / barGut );
-      var key = 'age' + selectedAge;
-      setTextByAge();
+      // Don't let the user select an age younger than they are now
+      if ( SSData.currentAge >= SSData.fullAge && selectedAge < SSData.currentAge ) {
+        selectedAge = SSData.currentAge;
+        moveIndicatorToAge( selectedAge );
+      }
       drawBars();
+      setTextByAge();
     }
   };
 
@@ -410,7 +464,6 @@
         
     for ( var i = 1; i <= 5; i++ ) {
       path = path + 'M 0 ' + yCoord + ' H' + totalWidth;
-      console.log( path );
       yCoord = barGraphHeight - Math.round( barInterval * i ) + 1;
     }
     graphBackground = barGraph.path( path );
@@ -512,8 +565,18 @@
     })
 
     $('#retirement-age-selector').change( function() {
+      $('.next-step-two .step-two_option').hide();
       $('#age-selector-response').show();
       $('#age-selector-response .age-response-value').text( $(this).find('option:selected').val() );
+      if ( SSData.currentAge < SSData.fullAge ) {
+        $('.next-step-two_under').show();
+      }
+      else if ( SSData.currentAge > SSData.fullAge ) {
+        $('.next-step-two_over').show();
+      }
+      else {
+        $('.next-step-two_equal').show();
+      }
     });
 
     $('#age-selector-response .helpful-btn').click( function() {
@@ -530,11 +593,15 @@
       var month = $( '#bd-month' ).val().replace(/\D/g,''),
           day = $( '#bd-day' ).val().replace(/\D/g,''),
           year = $( '#bd-year' ).val().replace(/\D/g,'');
+    });
 
+    $('.birthdate-inputs, #salary-input').keyup( function() {
+      checkEstimateReady();
     });
 
     // Initialize the app
     drawParts();
+    setTextByAge();
 
     if ( location.hash === '#B' ) {
       $('.version-a').hide();
