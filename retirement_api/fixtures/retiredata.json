@@ -261,7 +261,7 @@
     "model": "retirement_api.question", 
     "fields": {
         "answer_no_b_subhed": "", 
-        "answer_unsure_a_subhed": "", 
+        "answer_unsure_a_subhed": "Your claiming age matters for your own retirement benefits and your survivor\u2019s benefits. ", 
         "answer_yes_b_subhed": "", 
         "title": "Marriage", 
         "answer_no_a_subhed": "The longer you delay claiming, the higher your monthly Social Security benefit will be.", 
@@ -270,7 +270,7 @@
         "workflow_state": "SUBMITTED", 
         "question": "Are you married?", 
         "answer_unsure_b": "", 
-        "answer_unsure_a": "", 
+        "answer_unsure_a": "If you are the widow(er) of a person who worked long enough to qualify for Social Security, you can receive full survivor benefits at your full retirement age or you can get reduced survivor benefits starting at age 60. Your decision about survivor benefits is independent from your decision regarding when to start receiving your own benefits. In other words, even if you claim your survivor benefit early, you can still wait to claim benefits on your own record up to age 70 to maximize your monthly benefit.", 
         "answer_unsure_b_subhed": "", 
         "answer_yes_a_subhed": "The age you claim will affect your benefits, as well as your spouse\u2019s.", 
         "answer_no_b": "", 
