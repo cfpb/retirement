@@ -200,14 +200,15 @@
         <p>{% trans questions.marriage.answer_no_a|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="widowed">
-        <h4>{% trans questions.marriage.answer_widowed_a_subhed|safe %}</h4>
-        <p>{% trans questions.marriage.answer_widowed_a|safe %}</p>
+        <h4>{% trans questions.marriage.answer_unsure_a_subhed|safe %}</h4>
+        <p>{% trans questions.marriage.answer_unsure_a|safe %}</p>
       </div>
       <div class="tooltip-content" data-tooltip-name="file-and-suspend">
         <p>{% trans tips.file_and_suspend|safe %}</p>
       </div>
       <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
-      <button class="lifestyle-btn btn btn__grouped-last" data-base-value="no" value="no">{{NO}}</button>
+      <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">{{NO}}</button>
+      <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="widowed">{% trans "Widowed" %}</button>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-working age-split">
       <img src="/retirement/static/images/lifestyle-working.png" class="lifestyle-img">
