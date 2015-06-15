@@ -190,6 +190,9 @@
           SSData.earlyRetirementAge = data['early retirement age'];
           SSData.fullAge = Number( data['full retirement age'].substr(0,2) );
           SSData.earlyAge = Number( data['early retirement age'].substr(0,2) );
+          if ( SSData.currentAge > SSData.fullAge ) {
+            SSData.fullAge = SSData.currentAge;
+          }
           resetView();
           $('.step-two, #estimated-benefits-input, #graph-container').css('opacity', 1);
           $('.step-two .question').css('display', 'inline-block');
@@ -268,10 +271,10 @@
     var x = ages.indexOf( selectedAge ) * barGut + indicatorLeftSet,
         lifetimeBenefits = numToMoney( ( 85 - selectedAge ) * 12 * SSData[ 'age' + selectedAge ] ),
         benefitsValue = SSData['age' + selectedAge],
-        benefitsTop = bars[ 'age' + selectedAge ].attr('y') - $('#benefits-text').height() - 10,
-        benefitsLeft = bars[ 'age' + selectedAge ].attr('x') - $('#benefits-text').width() / 2 + barWidth / 2,
-        fullAgeTop = bars[ 'age' + SSData.fullAge ].attr('y') - $('#full-age-benefits-text').height() - 10,
-        fullAgeLeft = bars[ 'age' + SSData.fullAge ].attr('x') - $('#full-age-benefits-text').width() / 2 + barWidth / 2;
+        benefitsTop,
+        benefitsLeft,
+        fullAgeTop,
+        fullAgeLeft;
 
     if ( $('#estimated-benefits-input [name="benefits-display"]:checked').val() === 'annual' ) {
       benefitsValue = benefitsValue * 12;
@@ -284,11 +287,15 @@
 
     // set text and position for #benefits-text div
     $('#benefits-text').text( numToMoney( benefitsValue ) );
+    benefitsTop = bars[ 'age' + selectedAge ].attr('y') - $('#benefits-text').height() - 10;
+    benefitsLeft = bars[ 'age' + selectedAge ].attr('x') - $('#benefits-text').width() / 2 + barWidth / 2;
     $('#benefits-text').css( 'top', benefitsTop );
     $('#benefits-text').css( 'left', benefitsLeft );
 
     // set text, position and visibility of #full-age-benefits-text
     $('#full-age-benefits-text').text( numToMoney( SSData[ 'age' + SSData.fullAge ] ) );
+    fullAgeTop = bars[ 'age' + SSData.fullAge ].attr('y') - $('#full-age-benefits-text').height() - 10;
+    fullAgeLeft = bars[ 'age' + SSData.fullAge ].attr('x') - $('#full-age-benefits-text').width() / 2 + barWidth / 2;
     $('#full-age-benefits-text').css( 'top', fullAgeTop );
     $('#full-age-benefits-text').css( 'left', fullAgeLeft );
     if ( selectedAge === SSData.fullAge ) {
@@ -305,7 +312,7 @@
     if ( selectedAge === SSData.earlyAge ) {
       $('.selected-retirement-age-value').text( SSData.earlyRetirementAge );      
     }
-    else if ( selectedAge === SSData.fullAge ) {
+    else if ( selectedAge === SSData.fullAge && SSData.currentAge < SSData.fullAge ) {
       $('.selected-retirement-age-value').text( SSData.fullRetirementAge   );
     }
     else {
@@ -354,9 +361,13 @@
     indicator.transform('t' + newX + ',0');
     if ( selectedAge !== Math.round( newX / barGut ) ) {
       selectedAge = 62 + Math.round( newX / barGut );
-      var key = 'age' + selectedAge;
-      setTextByAge();
+      // Don't let the user select an age younger than they are now
+      if ( SSData.currentAge >= SSData.fullAge && selectedAge < SSData.currentAge ) {
+        selectedAge = SSData.currentAge;
+        moveIndicatorToAge( selectedAge );
+      }
       drawBars();
+      setTextByAge();
     }
   };
 
