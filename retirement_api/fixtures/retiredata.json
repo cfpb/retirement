@@ -40,8 +40,8 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "Based on the year you\u2019ve chosen, make any necessary changes to your retirement savings plans, like adding catch-up contributions or opening a <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA account</a>.", 
-        "title": "final_step_2"
+        "instructions": "Your retirement income outside of Social Security is very important. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan, if you don\u2019t have a savings account.", 
+        "title": "final_step_2_under"
     }
 },
 {
@@ -60,6 +60,24 @@
         "note": "", 
         "instructions": "Was this page helpful in thinking about your claiming age decision?", 
         "title": "final_step_4"
+    }
+},
+{
+    "pk": 8, 
+    "model": "retirement_api.step", 
+    "fields": {
+        "note": "", 
+        "instructions": "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"http://www.irs.gov/Retirement-Plans/Plan-Participant,-Employee/Retirement-Topics-Catch-Up-Contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan, if you don\u2019t have a savings account.\r\n", 
+        "title": "final_step_2_equal"
+    }
+},
+{
+    "pk": 9, 
+    "model": "retirement_api.step", 
+    "fields": {
+        "note": "", 
+        "instructions": "While you let your benefits grow further, you can continue working if you want. You can also stop working and use a portion of your savings to cover your needs. <a href=\"http://www.irs.gov/Retirement-Plans/Retirement-Plans-FAQs-regarding-IRAs-Distributions-(Withdrawals)\" target=\"_blank\">Learn the rules</a> about withdrawing money from your retirement accounts.", 
+        "title": "final_step_2_over"
     }
 },
 {
@@ -228,6 +246,14 @@
     "fields": {
         "text": "If both spouses are full retirement age, you can apply for spousal benefits if you haven't filed before and if your spouse has already filed (regardless of your spouse's suspension status). For details, see <a href=\"\" target=\"_blank\">Social Security's guide</a>.", 
         "title": "restricted_application"
+    }
+},
+{
+    "pk": 11, 
+    "model": "retirement_api.tooltip", 
+    "fields": {
+        "text": "Enter your total work income before taxes and other deductions. If your work income is 0 (zero) because you are now retired or unemployed, enter the income for the last year in which you worked.", 
+        "title": "estimated_benefits"
     }
 },
 {
