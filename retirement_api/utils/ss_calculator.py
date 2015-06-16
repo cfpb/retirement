@@ -220,6 +220,12 @@ def get_retire_data(params):
     current_age = get_current_age(dobstring)
     results['current_age'] = current_age
     req = requests.post(result_url, data=params)
+    if not req.ok:
+        results['error'] = "Social Security's Quick Calculator \
+                            is not responding. \
+                            Status code: %s (%s)" % (req.status_code,
+                                                     req.reason)
+        return results
     if int(params['dobmon']) == 1 and int(params['dobday']) == 1:
         # SSA has a special rule for people born on Jan. 1:
         # http://www.socialsecurity.gov/OACT/ProgData/nra.html
