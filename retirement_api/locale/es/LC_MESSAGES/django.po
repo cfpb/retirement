@@ -25,7 +25,7 @@ msgstr "Oficina para la Protección Financiera del Consumidor"
 
 #: templates/claiming.html
 msgid "Claiming Social Security— a choice to fit your lifestyle"
-msgstr "Reivindicación de Seguridad- Social una opción para adaptarse a su estilo de vida"
+msgstr "Reclamando Seguridad Social– una opción para adaptarse a su estilo de vida"
 
 #: templates/claiming.html
 msgid "Your claiming decision has a big impact. We're here to help you maximize your lifetime income."
@@ -373,4 +373,16 @@ msgstr "Paso"
 #: 
 msgid "Today's dollars"
 msgstr "Dólares de hoy"
+
+#: 
+msgid "Claiming Social Security"
+msgstr "Reclamando Seguridad Social"
+
+#: 
+msgid "Enter your total work income before taxes and other deductions. If your work income is 0 (zero) because you are now retired or unemployed, enter the income for the last year in which you worked."
+msgstr "Entrar su ingreso de trabajo total antes de impuestos y otras deducciones. Si su ingreso del trabajo es 0 (cero) porque eres ahora jubilados o desempleados, entrar en la renta para el último año en el que trabajaste."
+
+#: 
+msgid "Widowed"
+msgstr "Viuda"
 
