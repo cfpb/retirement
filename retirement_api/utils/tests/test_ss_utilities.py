@@ -3,25 +3,24 @@ import sys
 import json
 import datetime
 from datetime import timedelta
-today = datetime.datetime.now().date()
 
 import mock
+import unittest
 
-# if __name__ == '__main__':
-#     BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
-#     # BASE_DIR = '~/Projects/retirement1.6/retirement'
-# else:
-#     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test
+from ..ss_utilities import age_map, past_fra_test, get_current_age
+from ..ss_calculator import num_test, parse_details, requests
+from ..ss_calculator import interpolate_benefits, get_retire_data
+
+today = datetime.datetime.now().date()
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
-# from django.test import TestCase
-import unittest
 # from ...utils import ss_update_stats
 # from retirement_api import utils
-from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test, age_map, past_fra_test, get_current_age
-from ..ss_calculator import num_test, parse_details, requests, interpolate_benefits, get_retire_data 
+
 
 class UtilitiesTests(unittest.TestCase):
     sample_params = {
@@ -29,11 +28,11 @@ class UtilitiesTests(unittest.TestCase):
         'dobday': 1,
         'yob': 1970,
         'earnings': 70000,
-        'lastYearEarn': '',# possible use for unemployed or already retired
-        'lastEarn': '',# possible use for unemployed or already retired
-        'retiremonth': '',# leve blank to get triple calculation -- 62, 67 and 70
-        'retireyear': '',# leve blank to get triple calculation -- 62, 67 and 70
-        'dollars': 1,# benefits to be calculated in current-year dollars
+        'lastYearEarn': '',
+        'lastEarn': '',
+        'retiremonth': '',
+        'retireyear': '',
+        'dollars': 1,
         'prgf': 2
     }
 
@@ -41,47 +40,46 @@ class UtilitiesTests(unittest.TestCase):
     def test_get_current_age(self, mock_datetime):
         fake_today = datetime.datetime(2000, 1, 2).date()
         mock_datetime.today.return_value = fake_today
-        age_pairs = [
-        ( '1999-1-1', 1),
-        ( '1980-1-1', 20),
-        ( '1980-1-3', 19),
-        ( '1940-1-1', 60),
-        ( '1920-1-1', 80),
-        ( '2001-1-1', None),
-        ( '1999-1-xx', None),
-        ( '2000-1-2', None),
-        ( '1999-1-3', 0)]
+        age_pairs = [('1999-1-1', 1),
+                     ('1980-1-1', 20),
+                     ('1980-1-3', 19),
+                     ('1940-1-1', 60),
+                     ('1920-1-1', 80),
+                     ('2001-1-1', None),
+                     ('1999-1-xx', None),
+                     ('2000-1-2', None),
+                     ('1999-1-3', 0)]
         print "fake_today is %s" % fake_today
         for pair in age_pairs:
-            print "get_current_age(%s) is %s" % (pair[0], get_current_age(pair[0]))
+            print "get_current_age(%s) is %s" % (pair[0],
+                                                 get_current_age(pair[0]))
             self.assertEqual(get_current_age(pair[0]), pair[1])
         fake_today = datetime.datetime(2005, 2, 28).date()
         mock_datetime.today.return_value = fake_today
         self.assertEqual(get_current_age('2000-2-29'), 5)
 
-
     def test_interpolate_benefits(self):
         benefits = {
-            'age 62': 1476,
+            'age 62': 1551,
             'age 63': 0,
             'age 64': 0,
             'age 65': 0,
             'age 66': 0,
-            'age 67': 2137,
+            'age 67': 2261,
             'age 68': 0,
             'age 69': 0,
-            'age 70': 2675,
+            'age 70': 0,
             }
         results = {
-            'age 62': 1476,
-            'age 63': 1603,
-            'age 64': 1710,
-            'age 65': 1852,
-            'age 66': 1995,
-            'age 67': 2137,
-            'age 68': 2308,
-            'age 69': 2479,
-            'age 70': 2675,
+            'age 62': 1551,
+            'age 63': 1696,
+            'age 64': 1809,
+            'age 65': 1960,
+            'age 66': 2110,
+            'age 67': 2261,
+            'age 68': 2442,
+            'age 69': 2623,
+            'age 70': 2804,
             }
         bens = interpolate_benefits(benefits, (67, 0), 44)
         for key in bens.keys():
@@ -100,11 +98,14 @@ class UtilitiesTests(unittest.TestCase):
 
     def test_parse_details(self):
         sample_rows = [
-            "early: Base year for indexing is 2013.  Bend points are 826 & 4980",
-            "AIME = 2930 & PIA in 2018 is 1416.6.",
-            "PIA in 2018 after COLAs is $1,416.60."
-        ]
-        output = {'EARLY': {'AIME': 'AIME = 2930 & PIA in 2018 is 1416.6.', 'Bend points': 'Base year for indexing is 2013.  Bend points are 826 & 4980', 'COLA': 'PIA in 2018 after COLAs is $1,416.60.'}}
+           "early: Base year for indexing is 2013. Bend points are 826 & 4980",
+           "AIME = 2930 & PIA in 2018 is 1416.6.",
+           "PIA in 2018 after COLAs is $1,416.60."
+           ]
+        output = {'EARLY':
+                  {'AIME': 'AIME = 2930 & PIA in 2018 is 1416.6.',
+                   'Bend points': 'Base year for indexing is 2013. Bend points are 826 & 4980',
+                   'COLA': 'PIA in 2018 after COLAs is $1,416.60.'}}
         self.assertEqual(parse_details(sample_rows), output)
 
     def test_num_test(self):
@@ -122,8 +123,9 @@ class UtilitiesTests(unittest.TestCase):
             self.assertEqual(num_test(tup[0]), tup[1])
 
     def test_get_retirement_age(self):
-        """ given a worker's birth year, 
-            should return full retirement age in years and months
+        """
+        given a worker's birth year,
+        should return full retirement age in years and months
         """
         sample_inputs = {
             "1920": (65, 0),
@@ -207,19 +209,19 @@ class UtilitiesTests(unittest.TestCase):
             'yob': 1956,
             'earnings': 50000,
 
-    ## sample results: ##    
+    ## sample results: ##
         results = {'data': {
-                        'early retirement age': '', 
-                        u'full retirement age': '', 
+                        'early retirement age': '',
+                        u'full retirement age': '',
                         'benefits': {
-                            'age 62': 0, 
-                            'age 63': 0, 
-                            'age 64': 0, 
-                            'age 65': 0, 
-                            'age 66': 0, 
-                            'age 67': 0, 
-                            'age 68': 0, 
-                            'age 69': 0, 
+                            'age 62': 0,
+                            'age 63': 0,
+                            'age 64': 0,
+                            'age 65': 0,
+                            'age 66': 0,
+                            'age 67': 0,
+                            'age 68': 0,
+                            'age 69': 0,
                             'age 70': 0
                             }
                         'params': params,
@@ -238,26 +240,26 @@ class UtilitiesTests(unittest.TestCase):
         """ given a birth date and annual pay value,
         return a dictionary of social security values
         """
-        data_keys = [u'early retirement age', 
-                     u'full retirement age', 
-                     u'benefits', 
-                     u'params', 
+        data_keys = [u'early retirement age',
+                     u'full retirement age',
+                     u'benefits',
+                     u'params',
                      u'disability',
                      u'survivor benefits']
-        benefit_keys = ['age 62', 
-                        'age 63', 
-                        'age 64', 
-                        'age 65', 
-                        'age 66', 
-                        'age 67', 
-                        'age 68', 
-                        'age 69', 
+        benefit_keys = ['age 62',
+                        'age 63',
+                        'age 64',
+                        'age 65',
+                        'age 66',
+                        'age 67',
+                        'age 68',
+                        'age 69',
                         'age 70']
         data = json.loads(get_retire_data(self.sample_params))['data']
         self.assertTrue(isinstance(data, dict))
         self.assertEqual(data['params']['yob'], 1970)
         for each in data.keys():
-            self.assertTrue(each in data_keys)    
+            self.assertTrue(each in data_keys)
         for each in data['benefits'].keys():
             self.assertTrue(each in benefit_keys)
         self.sample_params['yob'] = 1937
