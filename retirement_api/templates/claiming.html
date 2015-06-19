@@ -103,7 +103,7 @@
           <label for="bd-year" class="input-labels"><input id="bd-year" type="text" maxlength="4" placeholder="YYYY" value=""></label>
         </div>
         <div class="content-l_col content-l_col-1-3">
-          <label for="salary-input" class="input-labels"><p>{% trans "Current annual salary" %} <span  data-tooltip-target="salary" class="cf-icon cf-icon-help-round"></span></p><input id="salary-input" type="text" maxlength="7" placeholder="$" value=""></label>
+          <label for="salary-input" class="input-labels"><p>{% trans "Current annual work income" %} <span  data-tooltip-target="salary" class="cf-icon cf-icon-help-round"></span></p><input id="salary-input" type="text" maxlength="7" placeholder="$" value=""></label>
           <div class="tooltip-content" data-tooltip-name="salary">
             <p>{% trans tips.salary %}</p>
           </div>
@@ -120,7 +120,7 @@
 
   <hr>
   <div id="estimated-benefits-input" class="estimated-benefits-input">
-    <span class="h3">{% trans "Estimated benefits" %} <span  data-tooltip-target="estimated-benefits" class="cf-icon cf-icon-help-round"></span> {% trans "shown as" %}  <label><input type="radio" name="benefits-display" value="monthly" checked> {% trans "monthly income" %}</label> <label><input type="radio" name="benefits-display" value="annual"> {% trans "annual income" %}</label> </span>
+    <span class="h3">{% trans "Show my estimated benefits" %} <span  data-tooltip-target="estimated-benefits" class="cf-icon cf-icon-help-round"></span> {% trans "as" %}  <label><input type="radio" name="benefits-display" value="monthly" checked> {% trans "monthly income" %}</label> <label><input type="radio" name="benefits-display" value="annual"> {% trans "annual income" %}</label> </span>
   </div>
   <div class="tooltip-content" data-tooltip-name="estimated-benefits">
     <p>{% trans tips.estimated_benefits %}</p>
@@ -130,19 +130,19 @@
   <div id="graph-container" class="content-l">
     <div class="content-l_col content-l_col-1-3">
       <div class="selected-retirement-age-container">
-        <p class="h3 selected-retirement-age">{% trans "Age" %} 
+        <p class="h3 selected-retirement-age">{% trans "Claiming at age" %} 
           <span class="selected-retirement-age-value">67</span> <span class="benefit-modification-text">
-          {% trans "is your full retirement age." %}</span>
-          <p class="compared-to-full explainer">{% trans "Compared to your full retirement age." %}</p>
+          {% trans "is your full benefit claiming age." %}</span>
+          <p class="compared-to-full explainer">{% trans "Compared to claiming at your full benefit claiming age." %}</p>
         </p>
       </div>
       <div class="total-benefits-container">
-        <p class="total-benefits-text h4"><strong>{% trans "Total lifetime benefits at age 85" %}</strong>  <span  data-tooltip-target="lifetime" class="cf-icon cf-icon-help-round"></p>
+        <p class="total-benefits-text h4"><strong>By age 85, your estimated benefits</strong> <span  data-tooltip-target="lifetime" class="cf-icon cf-icon-help-round"></span> <strong>will total</strong> </p>
         <div class="tooltip-content" data-tooltip-name="lifetime">
           <p>{% trans tips.lifetime %}</p>
         </div>
         <p>  
-          <span class="lifetime-benefits-value h3"></span>&nbsp;<span class="todays-dollars explainer">({% trans "Today's dollars" %})</span>
+          <span class="lifetime-benefits-value h3"></span>&nbsp;<span class="todays-dollars explainer">({% trans "in today's dollars" %})</span>
         </p>
       </div>
       <div class="graph-content">
@@ -150,21 +150,22 @@
           <p>{% trans tips.sole_source %}<p>
         </div>
         <div class="content-container full-retirement">
-          <h3 class="retirement-age">{% trans "Full retirement age" %}</h3>
+          <h3 class="retirement-age">{% trans "About your full benefit claiming age:" %}</h3>
           <ul>
-            <li>{% trans "Age 66 to 67, depending on your birthdate" %}</li>
-            <li>{% trans "Age you receive a full benefit without reduction" %}</li>
+            <li>{% trans "At this age, you will receive your full benefit with no reductions." %}</li>
+            <li>{% trans "It is based on the year you were born." %}</li>
+            <li>{% trans "For each month that you wait to claim after this age, you get a permanent increase in your benefit." %}</li>
           </ul>
         </div>
         <div class="content-container early-retirement">
-          <h3 class="retirement-age">{% trans "Early retirement age" %}</h3>
+          <h3 class="retirement-age">{% trans "About your early benefit claiming age:" %}</h3>
           <ul>
-            <li>{% trans "Any time before your full retirement age" %}</li>
-            <li>{% trans "62 is the earliest age you can claim your retirement benefit" %}</li>
-            <li>{% trans "Claiming before your full retirement age will permanently reduce your benefits" %}</li>
+            <li>{% trans "Any time before your full benefit claiming age." %}</li>
+            <li>{% trans "The earliest age you can claim your benefit is 62." %}</li>
+            <li>{% trans "If you claim your benefit before your full claiming age, it will be reduced." %}</li>
           </ul>
         </div>
-        <p>{% trans "This refers to your Social Security claiming decision, not the age you decide to stop working." %}</p>
+        <p>{% trans "Remember, claiming age here refers only to your Social Security retirement benefit, and not when you decide to stop working or apply for Medicare." %}</p>
       </div>
       
       <p class="learn-how"><a href="http://www.ssa.gov/OACT/quickcalc/faqs.html" class="external-link" target="_blank">{% trans "Learn how estimates are calculated." %}</a> <span class="cf-icon cf-icon-right"></span></p>
@@ -178,7 +179,7 @@
         </div>
       </div>
       <p class="y-axis-label">{% trans "Estimated benefits" %}</p>
-      <p class="x-axis-label">{% trans "Slide to explore claiming age" %}</p>
+      <p class="x-axis-label">{% trans "Slide to see your estimated benefits at each claiming age." %}</p>
     </div>
   </div>
   <hr class="before-step-two">
@@ -355,7 +356,7 @@
         </div>
         <div id="age-selector-response">
           <hr>
-          <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>. {% trans "Here are some steps to help you in the next few years." %}</h3>
+          <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, which is before your Social Security full retirement claiming age. At this age you will receive less than your full benefit amount. Remember, you can claim at any point between age 62 and 70. Each additional month that you wait to claim gives you a permanent increase in your monthly benefit. Here are steps to help you in the next few years.</h3>
           <ol class="next-steps content-l">
             <li class="content-l_col content-l_col-1-3 next-step-one">{% autoescape off %}{% trans final_steps.final_step_1.instructions %}</li>
             <li class="content-l_col content-l_col-1-3 next-step-two">
