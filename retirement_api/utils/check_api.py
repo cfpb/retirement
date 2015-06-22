@@ -23,8 +23,6 @@ collector = Collector()
 log_header = ['data', 'date', 'status', 'error', 'note', 'api_fail']
 
 local_base = 'http://localhost:8080'
-build_base = 'http://build.consumerfinance.gov'
-live_base = 'http://www.consumerfinance.gov'
 api_base = '/retirement/retirement-api'
 api_string = '%s/%s/estimator/%s-%s-%s/70000/'
 
