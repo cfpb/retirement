@@ -3,9 +3,9 @@
     "pk": 1, 
     "model": "retirement_api.step", 
     "fields": {
-        "note": "We base our estimate on formulas from the Social Security Administration. Your information is not saved, is anonymous, and is used only to generate estimates during this session.", 
-        "instructions": "Enter your data to update the example below.", 
-        "title": "Explore how claiming age affects your Social Security benefit"
+        "note": "We base your benefit estimate on current formulas from the Social Security Administration using your age and current income. Your answers are anonymous. Because we do not access or use your Social Security earnings record, your actual benefits may vary from this estimate.\r\n", 
+        "instructions": "Enter your information below to see your estimated benefits.", 
+        "title": "Explore how your claiming age affects your Social Security retirement benefits"
     }
 },
 {
@@ -13,17 +13,17 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "Tell us about your lifestyle for personalized information.", 
-        "title": "Learn tips to make your claiming decision"
+        "instructions": "Tell us more about yourself for additional tips to make your decision.  ", 
+        "title": "Consider these five factors"
     }
 },
 {
     "pk": 3, 
     "model": "retirement_api.step", 
     "fields": {
-        "note": "This will not affect your Social Security account or begin an application.", 
-        "instructions": "Select the age you plan to claim your Social Security retirement benefits.", 
-        "title": "Learn your next steps"
+        "note": "(This will not affect your Social Security account or begin an application.)", 
+        "instructions": "Select the age you plan to claim your Social Security retirement benefits.\r\n", 
+        "title": "Take your next steps"
     }
 },
 {
@@ -31,7 +31,7 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "Create a <a href=\"http://www.ssa.gov/myaccount/\" target=\"_blank\">my Social Security account</a> to review your actual earnings history and expected benefits.", 
+        "instructions": "Create a <a href=\"http://www.ssa.gov/myaccount/\" target=\"_blank\"><em>my</em> Social Security account</a> to review your expected benefits based on your actual Social Security record. You'll receive an annual reminder to review your benefits. You will also find additional information about your eligibility and other benefits including disability and survivor benefits.", 
         "title": "final_step_1"
     }
 },
@@ -40,7 +40,7 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "Your retirement income outside of Social Security is very important. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan, if you don\u2019t have a savings account.", 
+        "instructions": "Your retirement income outside of Social Security is an important way to fill the gap between your Social Security benefit and the income that you will need to cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan.", 
         "title": "final_step_2_under"
     }
 },
@@ -49,7 +49,7 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "Visit us again if your income, employment, or marital status changes.", 
+        "instructions": "If your income, employment, or marital status changes, you may need to reconsider your claiming age. Visit us again!", 
         "title": "final_step_3"
     }
 },
@@ -67,7 +67,7 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"http://www.irs.gov/Retirement-Plans/Plan-Participant,-Employee/Retirement-Topics-Catch-Up-Contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan, if you don\u2019t have a savings account.\r\n", 
+        "instructions": "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"http://www.irs.gov/Retirement-Plans/Plan-Participant,-Employee/Retirement-Topics-Catch-Up-Contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan.\r\n", 
         "title": "final_step_2_equal"
     }
 },
@@ -76,7 +76,7 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "While you let your benefits grow further, you can continue working if you want. You can also stop working and use a portion of your savings to cover your needs. <a href=\"http://www.irs.gov/Retirement-Plans/Retirement-Plans-FAQs-regarding-IRAs-Distributions-(Withdrawals)\" target=\"_blank\">Learn the rules</a> about withdrawing money from your retirement accounts.", 
+        "instructions": "While you let your benefits continue to grow, you can keep working if you want. You can also stop working and use a portion of your savings to cover your needs. <a href=\"http://www.irs.gov/Retirement-Plans/Retirement-Plans-FAQs-regarding-IRAs-Distributions-(Withdrawals)\" target=\"_blank\">Learn the rules about withdrawing money</a> from your retirement accounts.", 
         "title": "final_step_2_over"
     }
 },
@@ -159,9 +159,9 @@
         "title": "Claiming Social Security", 
         "h2": "", 
         "h3": "", 
-        "h1": "Claiming Social Security\u2014 a choice to fit your lifestyle", 
+        "h1": "Claiming Social Security\u2014choices to fit your needs", 
         "h4": "", 
-        "intro": "Your claiming decision has a big impact. We're here to help you maximize your lifetime income.", 
+        "intro": "The age you claim your benefits matters for your lifetime income. We'll help you think through this important decision.", 
         "step3": 3, 
         "step2": 2, 
         "step1": 1, 
@@ -212,7 +212,7 @@
     "pk": 6, 
     "model": "retirement_api.tooltip", 
     "fields": {
-        "text": "Enter your most recent annual salary. If you are unemployed, enter earnings for the most recent year you were employed.", 
+        "text": "Enter your total work income before taxes and other deductions. If your work income is 0 (zero) because you are now retired or unemployed, enter the income for the last year in which you worked.", 
         "title": "salary"
     }
 },
@@ -220,7 +220,7 @@
     "pk": 7, 
     "model": "retirement_api.tooltip", 
     "fields": {
-        "text": "Lifetime benefits are calculated by multiplying a chosen monthly benefit by the number of months until you reach 85. This is only a rough estimate, for comparison purposes only, and is not your actual lifetime benefit.", 
+        "text": "On average, a woman reaching age 65 today will live to age 87, and a man will live to age 84.", 
         "title": "lifetime"
     }
 },
@@ -236,7 +236,7 @@
     "pk": 9, 
     "model": "retirement_api.tooltip", 
     "fields": {
-        "text": "The Treasury Department sponsors the myRA program, which provides personal retirement savings accounts, backed by the Treasury, for people who make less than $131,000 a year and don't have access to employer-sponsored retirement plans. For details, see the Treasury's <a href=\"https://myra.treasury.gov/about/\">myRA page</a>. ", 
+        "text": "myRA (my Retirement Account) is a retirement savings program offered by the U.S. Department of Treasury with no minimum contributions, fees, or risky investments, for those without a retirement savings program from their employer.", 
         "title": "myra"
     }
 },
@@ -252,8 +252,48 @@
     "pk": 11, 
     "model": "retirement_api.tooltip", 
     "fields": {
-        "text": "Enter your total work income before taxes and other deductions. If your work income is 0 (zero) because you are now retired or unemployed, enter the income for the last year in which you worked.", 
+        "text": "Our tool shows your estimated benefit for nine specific claiming points. However, you can claim at any point between age 62 and 70, and your benefit amount will depend on the specific month that you claim.", 
         "title": "estimated_benefits"
+    }
+},
+{
+    "pk": 12, 
+    "model": "retirement_api.tooltip", 
+    "fields": {
+        "text": "Once you reach your full retirement benefits claiming age, you can work and earn as much as you want and your benefits will not be reduced. If you claim before this age and continue to work, your benefits could be temporarily reduced if you earn over a certain limit, but any reductions you receive will be credited back to you once you reach full retirement age.", 
+        "title": "working_longer"
+    }
+},
+{
+    "pk": 13, 
+    "model": "retirement_api.tooltip", 
+    "fields": {
+        "text": "A type of retirement savings account offered by employers to help their employees save for retirement.", 
+        "title": "401k"
+    }
+},
+{
+    "pk": 14, 
+    "model": "retirement_api.tooltip", 
+    "fields": {
+        "text": "Your Social Security benefits could be reduced if you receive federal, state, or local government pensions that are based on work where you did not pay Social Security taxes.", 
+        "title": "pensions"
+    }
+},
+{
+    "pk": 15, 
+    "model": "retirement_api.tooltip", 
+    "fields": {
+        "text": "IRAs are types of retirement savings plans with special tax incentives. In these plans, your savings equal the contributions that you make to the account plus the gains or losses of your investments.", 
+        "title": "iras"
+    }
+},
+{
+    "pk": 16, 
+    "model": "retirement_api.tooltip", 
+    "fields": {
+        "text": "Catch-up contributions are additional contributions that individuals who are age 50 or older can make to their 401(k), IRA, or myRA accounts to help them boost their savings as they approach retirement.", 
+        "title": "catchup_contributions"
     }
 },
 {
@@ -261,20 +301,20 @@
     "model": "retirement_api.question", 
     "fields": {
         "answer_no_b_subhed": "", 
-        "answer_unsure_a_subhed": "Your claiming age matters for your own retirement benefits and your survivor\u2019s benefits. ", 
+        "answer_unsure_a_subhed": "Your survivor benefits may help you get a higher retirement benefit.", 
         "answer_yes_b_subhed": "", 
         "title": "Marriage", 
-        "answer_no_a_subhed": "The longer you delay claiming, the higher your monthly Social Security benefit will be.", 
+        "answer_no_a_subhed": "You can protect the financial security of your surviving spouse.", 
         "answer_yes_b": "", 
-        "answer_yes_a": "If you or your spouse wait until full retirement age to claim, you will have claiming options such as \u201cfile and suspend\u201d and \u201crestricted application\u201d. Additionally, if you are the higher earner in the household, it\u2019s particularly important to wait until full retirement age because your spouse will receive a higher survivor benefit.", 
+        "answer_yes_a": "Your decision of when to claim your Social Security could affect the benefits  your spouse will receive after you die. Surviving spouses can keep either their own benefit or choose to keep their spouse's benefit, whichever is higher. If you are married, and are the higher earner in the household, claiming at your full benefit age will ensure your spouse will receive the higher benefit. Talk to your spouse about your claiming options so you can make this important decision together. ", 
         "workflow_state": "SUBMITTED", 
         "question": "Are you married?", 
         "answer_unsure_b": "", 
-        "answer_unsure_a": "If you are the widow(er) of a person who worked long enough to qualify for Social Security, you can receive full survivor benefits at your full retirement age or you can get reduced survivor benefits starting at age 60. Your decision about survivor benefits is independent from your decision regarding when to start receiving your own benefits. In other words, even if you claim your survivor benefit early, you can still wait to claim benefits on your own record up to age 70 to maximize your monthly benefit.", 
+        "answer_unsure_a": "If your deceased spouse qualified for Social Security, you may qualify for a survivor benefit. You can claim a reduced survivor benefit as early as age 60 or wait until age 70 to get the maximum benefit possible. Your decision about when to start receiving your survivor benefit is independent from your decision of when to start receiving your own retirement benefit. If you expect your own retirement benefit to be higher than your survivor benefit, consider claiming your survivor benefit first. This could help you wait as long as you can to maximize your own retirement benefit. You will only receive one benefit at a time, though.", 
         "answer_unsure_b_subhed": "", 
-        "answer_yes_a_subhed": "The age you claim will affect your benefits, as well as your spouse\u2019s.", 
+        "answer_yes_a_subhed": "You can protect the financial security of your surviving spouse.", 
         "answer_no_b": "", 
-        "answer_no_a": "Because you\u2019re unmarried, your claiming decision is simpler. For every year that you wait until age 70, you will get a permanent increase in your benefits, protecting you from running out of money in retirement.", 
+        "answer_no_a": "If you claim at your full Social Security benefit age or later, you will avoid a reduction in your monthly benefit. In addition, if you choose to wait to claim past your full benefit age until age 70, you can get an increase for every month that you wait. If you are divorced, your former spouse's claiming decision will not affect your benefit, so it should not affect your decision of when to claim.", 
         "slug": "marriage"
     }
 },
@@ -282,21 +322,21 @@
     "pk": 2, 
     "model": "retirement_api.question", 
     "fields": {
-        "answer_no_b_subhed": "Consider working fewer hours or changing careers.", 
-        "answer_unsure_a_subhed": "Stay on track for a secure retirement.", 
-        "answer_yes_b_subhed": "Working longer will help you maximize your retirement income.", 
+        "answer_no_b_subhed": "You can maximize your benefits even if you work fewer hours or stop working.", 
+        "answer_unsure_a_subhed": "Consider working in your 60s for an extra boost to your income and savings.", 
+        "answer_yes_b_subhed": "Working in your 60s will help you maximize your income and savings.", 
         "title": "Sixties", 
-        "answer_no_a_subhed": "Working longer can help you maximize your benefits.", 
-        "answer_yes_b": "Because your Social Security benefit is based on your highest 35 years of earnings, working longer can add higher earnings to your record by replacing years with low earnings. This might be helpful if there were years you were a student, were unemployed, or took time off to care for someone. When you work and wait to claim, you can nearly double your benefits by age 70! Additionally, now\u2019s a good time to take advantage of annual catch-up contributions to 401(k)s or other retirement savings.", 
-        "answer_yes_a": "Working longer will help you maximize your Social Security benefits. Because your benefit is based on your highest 35 years of earnings, working longer can add higher earnings to your record by replacing years with low earnings. This might be especially helpful if there were years you were a student, were unemployed, or were taking time off to care for someone. When you work and wait to claim, you can nearly double your benefits by age 70!", 
+        "answer_no_a_subhed": "You can maximize your benefits even if you work fewer hours or stop working.", 
+        "answer_yes_b": "Your benefits are based on your highest 35 years of earnings. Each year of work can add higher earnings to your record by replacing years with low earnings such as those when you were a student, were unemployed, or took time off to care for someone. When you work and wait <span data-tooltip-target=\"working-longer\" class=\"cf-icon cf-icon-help-round\"></span> to claim until age 70, you can increase your monthly benefit by more than 75 percent! Working in your 60s also gives you more time to save on your own for retirement.", 
+        "answer_yes_a": "Your benefits are based on your highest 35 years of earnings. Each year of work can add higher earnings to your record by replacing years with low earnings such as those when you were a student, were unemployed, or took time off to care for someone. When you work and wait <span data-tooltip-target=\"working-longer\" class=\"cf-icon cf-icon-help-round\"></span> to claim until age 70, you can increase your monthly benefit by more than 75 percent! Working in your 60s also gives you more time to save on your own for retirement. ", 
         "workflow_state": "SUBMITTED", 
         "question": "Do you plan to continue working in your 60s?", 
-        "answer_unsure_b": "Waiting to claim increases your monthly benefits every year until age 70. Working full-time is not the only option in your 60s. Many people plan a career change or work part-time. When you work and wait to claim, you can nearly double your benefits by age 70! Did you know that your Social Security benefit is based on your highest 35 years of earnings? Working longer can add higher earnings to your record by replacing years with low and no earnings.", 
-        "answer_unsure_a": "Working longer will help you maximize your Social Security benefits. Because most people make more money later in their careers, working longer can increase your monthly benefit. When you work and wait to claim, you can nearly double your benefits by age 70! Did you know that your Social Security benefit is based on your highest 35 years of earnings? Working longer can add higher earnings to your record by replacing years with low and no earnings.", 
-        "answer_unsure_b_subhed": "Stay on track for a secure retirement.", 
-        "answer_yes_a_subhed": "Stay on track for a secure retirement.", 
-        "answer_no_b": "Waiting to claim increases your monthly benefits every year until age 70. Working full-time is not the only option in your 60s. Many people plan a career change or work part-time. If you stop or reduce your work hours, it\u2019s still possible to increase your Social Security benefits by waiting to claim. You could use a portion of your 401(k) or other retirement savings to supplement your earnings. You\u2019ll need to decide whether doing this is financially possible.", 
-        "answer_no_a": "Because most people make more money later in their careers, working longer can increase your monthly benefit. Your benefit is based on your highest 35 years of earnings, so working longer can add higher earnings to your record by replacing years with low earnings. This might be especially helpful if there were years you were a student, were unemployed, or were taking time off to care for someone. When you work and wait to claim, you can nearly double your benefits by age 70!", 
+        "answer_unsure_b": "Working in your 60s <span data-tooltip-target=\"working-longer\" class=\"cf-icon cf-icon-help-round\"></span> may add higher earnings to your record, getting you a higher monthly benefit. Remember, your monthly benefit will be significantly higher when you claim at your full Social Security benefit age or later. If you need to work fewer hours, you could use a portion of your retirement savings such as your 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span> or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> account to supplement your income until full retirement age. However, this may not be an option if it eliminates your savings completely. ", 
+        "answer_unsure_a": "Working in your 60s <span data-tooltip-target=\"working-longer\" class=\"cf-icon cf-icon-help-round\"></span> may increase your monthly benefit in a few ways. Because your benefits are based on your highest 35 years of earnings, each year of work can add higher earnings to your record by replacing years with low earnings, such as those when you were a student, were unemployed, or took time off. When you claim at your full retirement age, you can increase your monthly benefit by 25 percent or more. Working in your 60s also gives you more time to save on your own for retirement.", 
+        "answer_unsure_b_subhed": "Consider working in your 60s for an extra boost to your income and savings.", 
+        "answer_yes_a_subhed": "Working in your 60s will help you maximize your income and savings.", 
+        "answer_no_b": "You may choose to work fewer hours or stop working in your 60s. If you decide to do so, you could use a portion of your retirement savings such as your 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> account to supplement your income in your early 60s until you reach your full Social Security benefit claiming age. If you can continue working in your 60s, you may add higher earnings to your record, getting you a higher monthly benefit. Remember, your monthly benefit will be significantly higher when you claim at your full benefit age or later. The age at which you decide to stop working doesn't have to be the same as your claiming age.", 
+        "answer_no_a": "You may choose to work fewer hours or stop working in your 60s. If you decide to do so, you could use a portion of your retirement savings such as your 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> account to supplement your income in your early 60s until you reach your full Social Security benefit claiming age. If you can continue working in your 60s, you may add higher earnings to your record, getting you a higher monthly benefit. Remember, your monthly benefit will be significantly higher when you claim at your full benefit age or later. The age at which you decide to stop working doesn't have to be the same as your claiming age.", 
         "slug": "sixties"
     }
 },
@@ -304,21 +344,21 @@
     "pk": 3, 
     "model": "retirement_api.question", 
     "fields": {
-        "answer_no_b_subhed": "It\u2019s good to plan for increased expenses.", 
-        "answer_unsure_a_subhed": "Some people find retirement is more expensive than expected.", 
-        "answer_yes_b_subhed": "Some people find retirement is more expensive than expected.", 
+        "answer_no_b_subhed": "Many people find retirement is more expensive than expected.", 
+        "answer_unsure_a_subhed": "You can protect your lifestyle by planning ahead.", 
+        "answer_yes_b_subhed": "It's good to plan ahead.", 
         "title": "Expenses", 
-        "answer_no_a_subhed": "It\u2019s good to plan for increased expenses.", 
-        "answer_yes_b": "You\u2019re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you\u2019ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Additionally, out-of-pocket health care costs are likely to increase as you get older. One solution is to wait to claim Social Security up to age 70, which increases your benefits. This will help other retirement savings, like 401(k)s, last longer.", 
-        "answer_yes_a": "You\u2019re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you\u2019ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Out-of-pocket health care costs will likely increase as you get older. You can make adjustments, like downsizing or paying off your mortgage before you retire. You can also wait to claim Social Security up to age 70, which increases your benefits, creating a buffer against future increases in expenses.", 
+        "answer_no_a_subhed": "Many people find retirement is more expensive than expected.", 
+        "answer_yes_b": "If you're planning an active retirement or carry a mortgage or other debt, your first few years in retirement may be more expensive than you expect. Some regular expenses like your out-of-pocket health care costs will likely increase as you get older. You can protect your retirement lifestyle by reducing your largest expenses. You can also increase your regular income by claiming at your full Social Security benefit age or later. If you claim earlier, your monthly benefit could be reduced by as much as 30 percent. ", 
+        "answer_yes_a": "If you're planning an active retirement or carry a mortgage or other debt, your first few years in retirement may be more expensive than you expect. Some regular expenses like your out-of-pocket health care costs will likely increase as you get older. You can protect your retirement lifestyle by reducing your largest expenses. You can also increase your regular income by claiming at your full Social Security benefit age or later. If you claim earlier, your monthly benefit could be reduced by as much as 30 percent. ", 
         "workflow_state": "SUBMITTED", 
         "question": "Will your expenses decrease after you retire?", 
-        "answer_unsure_b": "You\u2019re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you\u2019ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Additionally, out-of-pocket health care costs are likely to increase as you get older. One solution is to wait to claim Social Security up to age 70, which increases your benefits. This will help other retirement savings, like 401(k)s, last longer.", 
-        "answer_unsure_a": "You\u2019re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you\u2019ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Out-of-pocket health care costs will likely increase as you get older. You can make adjustments, like downsizing or paying off your mortgage before you retire. You can also wait to claim Social Security up to age 70, which increases your benefits, creating a buffer against future increases in expenses.", 
-        "answer_unsure_b_subhed": "Some people find retirement is more expensive than expected.", 
-        "answer_yes_a_subhed": "Some people find retirement is more expensive than expected.", 
-        "answer_no_b": "You\u2019re likely to spend 20 years in retirement and income needs are difficult to predict. Creating a buffer against future increases in expenses will help. You can maximize your Social Security benefit by waiting to claim (up to age 70), and at the same time help maintain other retirement savings, like 401(k)s. Other things to consider are downsizing your home or paying off your mortgage before you retire.", 
-        "answer_no_a": "You\u2019re likely to spend 20 years in retirement and income needs are difficult to predict. Creating a buffer against future increases in expenses will help. You can maximize your Social Security benefit by waiting to claim (up to age 70), and at the same time help maintain other retirement savings, like 401(k)s. Other things to consider are downsizing your home or paying off your mortgage before you retire.", 
+        "answer_unsure_b": "Future expenses are difficult to predict. Some regular expenses like out-of-pocket health care costs will likely increase as you get older. You can protect your retirement lifestyle by reducing your largest expenses. Consider downsizing or paying off your mortgage before you retire. You can also increase your regular income by claiming at your full Social Security benefit age or later. If you claim earlier, your monthly benefit could be reduced by as much as 30 percent.", 
+        "answer_unsure_a": "Future expenses are difficult to predict. Some regular expenses like out-of-pocket health care costs will likely increase as you get older. You can protect your retirement lifestyle by reducing your largest expenses. Consider downsizing or paying off your mortgage before you retire. You can also increase your regular income by claiming at your full Social Security benefit age or later. If you claim earlier, your monthly benefit could be reduced by as much as 30 percent.", 
+        "answer_unsure_b_subhed": "You can protect your lifestyle by planning ahead.", 
+        "answer_yes_a_subhed": "It's good to plan ahead.", 
+        "answer_no_b": "Future expenses are difficult to predict. Some regular expenses like out-of-pocket health care costs will likely increase as you get older. You can protect your retirement lifestyle by reducing your largest expenses. Consider downsizing or paying off your mortgage before you retire. You can also increase your regular income by claiming at your full Social Security benefit age or later. If you claim earlier, your monthly benefit could be reduced by as much as 30 percent.", 
+        "answer_no_a": "Future expenses are difficult to predict. Some regular expenses like out-of-pocket health care costs will likely increase as you get older. You can protect your retirement lifestyle by reducing your largest expenses. Consider downsizing or paying off your mortgage before you retire. You can also increase your regular income by claiming at your full Social Security benefit age or later. If you claim earlier, your monthly benefit could be reduced by as much as 30 percent.", 
         "slug": "expenses"
     }
 },
@@ -326,21 +366,21 @@
     "pk": 4, 
     "model": "retirement_api.question", 
     "fields": {
-        "answer_no_b_subhed": "It\u2019s never too late to start saving.", 
-        "answer_unsure_a_subhed": "It\u2019s never too late to start saving.", 
-        "answer_yes_b_subhed": "Take advantage of catch-up contributions.", 
+        "answer_no_b_subhed": "It's never too late to start saving!", 
+        "answer_unsure_a_subhed": "There are many ways to plan for a secure retirement outside of Social Security.", 
+        "answer_yes_b_subhed": "You have an opportunity to continue growing your money.", 
         "title": "Income", 
-        "answer_no_a_subhed": "You have time and options to save.", 
-        "answer_yes_b": "Social Security was never intended to be your only source of retirement income. That means your other sources will need to fill this gap. Two steps you can take to ensure that this gap is as small as possible: 1) wait to claim your Social Security benefits (up to age 70) and 2) after age 50, take advantage of 401(k) annual catch-up contributions.\r\n\r\n\r\nDid you know retirement savings plans including 401(k)s come with penalties if you take your money out before age 59\u00bd? Consider accessing your 401(k) assets later in retirement.", 
-        "answer_yes_a": "Social Security was never intended to be your only source of retirement income. That means your other sources, like savings, a 401(k) or an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> will need to fill the gap. Waiting to claim your benefits (up to age 70) will ensure that this gap is as small as possible. If you claim before your full retirement age, your monthly benefit is permanently reduced by as much as 30 percent. Claiming early means that you will need to save more on your own for a secure retirement.", 
+        "answer_no_a_subhed": " It's a perfect time to start saving.", 
+        "answer_yes_b": "If you can, get the highest monthly Social Security benefit possible by claiming at your full Social Security benefit age or later. If you claim before your full retirement age, your monthly benefit could be permanently reduced by as much as 30 percent. Also, take advantage of catch-up contributions <span data-tooltip-target=\"catchup-contributions\" class=\"cf-icon cf-icon-help-round\"></span> to your 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"ira\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span>  after age 50. Lastly, avoid losing your retirement savings to unnecessary tax penalties. If you withdraw your 401(k), IRA, or myRA savings before age 59\u00bd, you will likely face an early withdrawal penalty.", 
+        "answer_yes_a": "Social Security won't replace all of your pre-retirement income <span data-tooltip-target=\"working-longer\" class=\"cf-icon cf-icon-help-round\"></span>. On average, Social Security replaces 40 percent of a worker's income. That means your retirement savings, pension <span data-tooltip-target=\"pensions\" class=\"cf-icon cf-icon-help-round\"></span>,  401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span>\r\n will need to fill the gap. Claiming at your full Social Security benefit age or later (up to age 70) can minimize this gap and maximize your monthly benefit. If you claim before your full retirement age, your monthly benefit could be reduced by as much as 30 percent. ", 
         "workflow_state": "SUBMITTED", 
-        "question": "Will you have sources of income in addition to Social Security benefits?", 
-        "answer_unsure_b": "You could save through your employer\u2019s retirement plan, <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a>. After age 50, you have the opportunity to catch-up on saving for retirement through annual catch-up contributions. We understand you may not be able to save as much as you\u2019d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.\r\n\r\n\r\nYou can also cut costs by downsizing to a smaller home or paying off your mortgage.", 
-        "answer_unsure_a": "You could save through your employer\u2019s retirement plan, <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a>. Make sure to take an employer match if one is offered. We understand you may not be able to save as much as you\u2019d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.", 
-        "answer_unsure_b_subhed": "It\u2019s never too late to start saving.", 
-        "answer_yes_a_subhed": "Continue to save for a secure retirement.", 
-        "answer_no_b": "You could save through your employer\u2019s retirement plan, <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a>. After age 50, you have the opportunity to catch-up on saving for retirement through annual catch-up contributions. We understand you may not be able to save as much as you\u2019d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.\r\n\r\n\r\nYou can also cut costs by downsizing to a smaller home or paying off your mortgage.", 
-        "answer_no_a": "You could save through your employer\u2019s retirement plan, <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a>. Make sure to take an employer match if one is offered. We understand you may not be able to save as much as you\u2019d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.", 
+        "question": "Do you expect to have additional sources of retirement income beyond Social Security?", 
+        "answer_unsure_b": "You may be able to save through your employer's retirement plan, an Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span>. Maximize an employer match if one is offered. This will help you grow your retirement savings faster.  You can also make additional contributions to these accounts called catch-up contributions <span data-tooltip-target=\"catchup-contributions\" class=\"cf-icon cf-icon-help-round\"></span>. Your decision about when to claim your Social Security benefits is especially important if you cannot or did not save as much as you would like.  When you claim at your full Social Security benefit age or later, you avoid a reduction in your monthly benefit. You will also get increases for every month that you wait to claim past your full benefit age until age 70.  ", 
+        "answer_unsure_a": "You may be able to save through your employer's 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, an Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span>. Maximize an employer match if one is offered. Some employers match some of the money you put in your 401(k) retirement plan, helping you grow your retirement savings faster.  Your decision about when to claim your Social Security benefits is especially important if you cannot or did not save as much as you would like. When you claim at your full Social Security benefit age or later, you avoid a reduction in your monthly benefit. You will also get increases for every month that you wait to claim past your full benefit age until age 70.  ", 
+        "answer_unsure_b_subhed": "It's never too late to start saving.", 
+        "answer_yes_a_subhed": "Continue saving in the coming years.", 
+        "answer_no_b": "You could save through your employer's 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, an Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span>. Make sure to maximize an employer match if one is offered. Some employers match some of the money you put in your 401(k) plan which helps to grow your retirement savings faster. You can also make additional contributions to these accounts called catch-up contributions <span data-tooltip-target=\"catchup-contributions\" class=\"cf-icon cf-icon-help-round\"></span>. If you expect Social Security to be your only source of income, you can still make the most out of it by waiting to claim at your full Social Security benefit age or later. When you claim before your full retirement age, your monthly benefit could be reduced by as much as 30 percent.  ", 
+        "answer_no_a": "You could save through your employer's 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, an Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> to fill the gap. Maximize an employer match if one is offered. Some employers match the money you put in your 401(k) plan which helps to grow your retirement savings.  Even if you're unable to save as much as you'd like, your small savings today will grow over time and can become extra income or emergency savings in the future. If you expect Social Security to be your only source of income, you can still make the most out of it by claiming at your full Social Security benefit age or later. If you claim before your full retirement age, your monthly benefit could be reduced by as much as 30 percent. On the other hand, you can get extra increases for every month that you wait to claim past your full benefit age until age 70.  ", 
         "slug": "income"
     }
 },
@@ -349,20 +389,20 @@
     "model": "retirement_api.question", 
     "fields": {
         "answer_no_b_subhed": "", 
-        "answer_unsure_a_subhed": "There\u2019s a good chance that you may live into your 80s.", 
+        "answer_unsure_a_subhed": "There's a good chance that you'll live into your 80s and beyond.", 
         "answer_yes_b_subhed": "", 
         "title": "Long life", 
-        "answer_no_a_subhed": "There\u2019s a good chance that you may live into your 80s.", 
+        "answer_no_a_subhed": "Claiming at your full benefit age could still make sense for you.", 
         "answer_yes_b": "", 
-        "answer_yes_a": "The average life expectancy is 84 for men and 87 for women. Because Social Security provides lifetime guaranteed income, it is especially valuable to you in your 80s and beyond. Waiting to claim your Social Security benefits is the best way to cover expenses if you live a long time. Your benefit increases the longer you wait to claim, up to age 70, and are adjusted every year to keep up with the cost of living.", 
+        "answer_yes_a": "Because Social Security provides guaranteed income for life, it's especially valuable to you when you reach age 80 and beyond. Claiming benefits at your full Social Security benefit age or later could be a good way to secure your monthly income during your later years.  Your benefit increases the longer you wait to claim, up to age 70, and is adjusted annually with the cost of living. If you live into your 80s but claim at age 62 instead of your full retirement age or later, your total lifetime benefits will be lower by thousands of dollars.", 
         "workflow_state": "SUBMITTED", 
-        "question": "Do you expect to live a long time?", 
+        "question": "Do you expect to live a long life?", 
         "answer_unsure_b": "", 
-        "answer_unsure_a": "We understand it\u2019s difficult to predict how long you will live. The best way to think about this is to look at your health and family history. You may want to plan for the possibility that you (or your spouse) may live a long time. The average life expectancy is 84 for men and 87 for women. Waiting to claim your Social Security benefits is the best way to cover expenses if you live a long time. Your benefit increases the longer you wait to claim, up to age 70, and are adjusted every year to keep up with the cost of living.", 
+        "answer_unsure_a": "We understand it's difficult to make predictions. You may want to plan for the possibility that you (or your spouse) may live a long life. On average, a woman reaching age 65 today will live to age 87, and a man will live to age 84. Claiming benefits at your full Social Security benefit age or later could be a good way to secure your monthly income during your later years. Your monthly benefit increases the longer you wait to claim, up to age 70, and is adjusted annually with the cost of living. If you live into your 80s but claim at age 62 instead of your full retirement age or later, your total lifetime benefits will be lower by thousands of dollars.", 
         "answer_unsure_b_subhed": "", 
-        "answer_yes_a_subhed": "Delaying claiming of your Social Security benefits is the best way to protect yourself in old age.", 
+        "answer_yes_a_subhed": "Protect yourself from outliving your money.", 
         "answer_no_b": "", 
-        "answer_no_a": "Only you know your personal circumstances. The best way to think about this is to look at your health and family history. You may want to plan for the possibility that you (or your spouse) may live a long time. The average life expectancy is 84 for men and 87 for women. Waiting to claim your Social Security benefits is the best way to cover expenses if you live a long time. Your benefit increases the longer you wait to claim, up to age 70, and are adjusted every year to keep up with the cost of living.", 
+        "answer_no_a": "We understand it's difficult to make predictions. You may want to plan for the possibility that you (or your spouse) may live a long life. On average, a woman reaching age 65 today will live to age 87, and a man will live to age 84. Waiting to claim as long as you can could still make sense for you if you are married, are the higher earner in the household, and want your surviving spouse to keep the highest monthly benefit after you die. Remember, you can claim at any point between age 62 and 70. Each additional month that you wait to claim gives you a permanent increase in your monthly benefit which becomes more valuable as you age. ", 
         "slug": "longlife"
     }
 }

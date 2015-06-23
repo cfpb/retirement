@@ -12,6 +12,8 @@ LANGUAGES = (
     ('en', _('English')),
 )
 
+STANDALONE = True
+
 DEBUG = True
 
 TEMPLATE_DEBUG = True

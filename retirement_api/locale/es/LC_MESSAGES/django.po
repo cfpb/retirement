@@ -48,7 +48,7 @@ msgid "Date of birth"
 msgstr "Fecha de nacimiento"
 
 #: templates/claiming.html:230
-msgid "Current annual salary"
+msgid "Current annual work income"
 msgstr "Salario anual actual"
 
 #: templates/claiming.html:233
@@ -359,7 +359,7 @@ msgid "This refers to your Social Security claiming decision, not the age you de
 msgstr "Esto se refiere a su decisión que la Seguridad Social, no la edad que decide dejar de trabajar."
 
 #: 
-msgid "Estimated benefits"
+msgid "Show my estimated benefits"
 msgstr "Beneficios estimados"
 
 #: 
