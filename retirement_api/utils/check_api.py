@@ -106,7 +106,7 @@ def run(base):
                 collector.api_fail = 'FAIL'
     collector.timer = "%s" % (end - start)
     msg = print_msg(collector)
-    with open('tests/logs/api_check.log', 'a') as f:
+    with open('retirement_api/tests/logs/api_check.log', 'a') as f:
         f.write(msg)
     # print url
     return collector
@@ -120,6 +120,6 @@ if __name__ == '__main__':
             collector.domain = parsed.netloc
             base = arg
         else:
-            collector.domain = urlparse(local_base)
+            collector.domain = urlparse(local_base).netloc
             base = local_base
     run(base)
