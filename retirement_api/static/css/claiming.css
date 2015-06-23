@@ -3,6 +3,11 @@ body {
   font-size: 16px;
 }
 
+form { 
+  margin: 0;
+  padding: 0;
+}
+
 #claiming-social-security button {
   letter-spacing: 0;
 }
