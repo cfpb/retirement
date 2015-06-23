@@ -1,6 +1,7 @@
 # script to check the retirement api to make sure
 # the SSA Quick Calculator is operational
 # and to log the result to a csv (currently via cron)
+import os
 import sys
 import requests
 import datetime
@@ -14,6 +15,8 @@ timestamp = datetime.datetime.now()
 # rolling dob to guarantee subject is 44 and full retirement age is 67
 dob = timestamp - datetime.timedelta(days=44*365+30)
 timeout_seconds = 15
+
+API_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 
 class TimeoutError(Exception):
@@ -106,7 +109,7 @@ def run(base):
                 collector.api_fail = 'FAIL'
     collector.timer = "%s" % (end - start)
     msg = print_msg(collector)
-    with open('retirement_api/tests/logs/api_check.log', 'a') as f:
+    with open('%s/tests/logs/api_check.log' % API_ROOT, 'a') as f:
         f.write(msg)
     # print url
     return collector
