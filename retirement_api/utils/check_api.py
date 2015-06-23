@@ -94,6 +94,7 @@ def run(base):
             collector.data = check_data(data)
     collector.timer = "%s" % (end - start)
     print_msg(collector)
+    print url
     return collector
 
 if __name__ == '__main__':
