@@ -26,7 +26,8 @@ def handler(signum, frame):
 
 class Collector(object):
     data = ''
-    date = "%s" % timestamp
+    date = ("%s" % timestamp)[:16]
+    domain = ''
     status = ''
     error = ''
     note = ''
@@ -34,7 +35,14 @@ class Collector(object):
     timer = ''
 
 collector = Collector()
-log_header = ['data', 'date', 'status', 'error', 'note', 'api_fail', 'timer']
+log_header = ['data',
+              'date',
+              'domain',
+              'status',
+              'error',
+              'note',
+              'api_fail',
+              'timer']
 
 local_base = 'http://localhost:8080'
 api_base = 'retirement/retirement-api'
@@ -94,9 +102,13 @@ def run(base):
             collector.error = data['error']
             collector.note = data['note']
             collector.data = check_data(data)
+            if collector.data == "BAD DATA":
+                collector.api_fail = 'FAIL'
     collector.timer = "%s" % (end - start)
-    print_msg(collector)
-    print url
+    msg = print_msg(collector)
+    with open('tests/logs/api_check.log', 'a') as f:
+        f.write(msg)
+    # print url
     return collector
 
 if __name__ == '__main__':
@@ -105,7 +117,9 @@ if __name__ == '__main__':
     for arg in sys.argv:
         parsed = urlparse(arg)
         if parsed.netloc:
+            collector.domain = parsed.netloc
             base = arg
         else:
+            collector.domain = urlparse(local_base)
             base = local_base
     run(base)
