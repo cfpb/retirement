@@ -4,11 +4,22 @@
 import requests
 import datetime
 import json
+import time
+import signal
 
 timestamp = datetime.datetime.now()
 
 # rolling dob to guarantee subject is 44 and full retirement age is 67
 dob = timestamp - datetime.timedelta(days=44*365+30)
+timeout_seconds = 15
+
+
+class TimeoutError(Exception):
+    pass
+
+
+def handler(signum, frame):
+    raise TimeoutError("Request timed out")
 
 
 class Collector(object):
@@ -17,13 +28,14 @@ class Collector(object):
     status = ''
     error = ''
     note = ''
-    api_fail = 'False'
+    api_fail = ''
+    timer = ''
 
 collector = Collector()
-log_header = ['data', 'date', 'status', 'error', 'note', 'api_fail']
+log_header = ['data', 'date', 'status', 'error', 'note', 'api_fail', 'timer']
 
 local_base = 'http://localhost:8080'
-api_base = '/retirement/retirement-api'
+api_base = 'retirement/retirement-api'
 api_string = '%s/%s/estimator/%s-%s-%s/70000/'
 
 
@@ -45,23 +57,44 @@ def check_data(data):
     else:
         return "BAD DATA"
 
+
 def run(base):
     url = api_string % (base, api_base, dob.month, dob.day, dob.year)
-    test_request = requests.get(url)
-    if test_request.status_code != 200:
-        collector.status = "%s" % test_request.status_code
-        collector.error = test_request.reason
-        collector.api_fail = 'True'
-        print_msg(collector)
-        return collector
+    signal.signal(signal.SIGALRM, handler)
+    signal.alarm(timeout_seconds)
+    start = time.time()
+    try:
+        test_request = requests.get(url)
+    except requests.ConnectionError:
+        end = time.time()
+        signal.alarm(0)
+        collector.status = "ABORTED"
+        collector.error = 'Server connection error'
+        collector.api_fail = 'FAIL'
+    except TimeoutError:
+        end = time.time()
+        signal.alarm(0)
+        collector.status = "TIMEDOUT"
+        collector.error = 'SSA request exceeded 15 sec'
+        collector.api_fail = 'FAIL'
     else:
-        data = json.loads(test_request.text)
-        collector.status = "%s" % test_request.status_code
-        collector.error = data['error']
-        collector.note = data['note']
-        collector.data = check_data(data)
-        print_msg(collector)
-        return collector
+        if test_request.status_code != 200:
+            signal.alarm(0)
+            end = time.time()
+            collector.status = "%s" % test_request.status_code
+            collector.error = test_request.reason
+            collector.api_fail = 'FAIL'
+        else:
+            end = time.time()
+            signal.alarm(0)
+            data = json.loads(test_request.text)
+            collector.status = "%s" % test_request.status_code
+            collector.error = data['error']
+            collector.note = data['note']
+            collector.data = check_data(data)
+    collector.timer = "%s" % (end - start)
+    print_msg(collector)
+    return collector
 
 if __name__ == '__main__':
     """runs against a local url unless a domain is passed
