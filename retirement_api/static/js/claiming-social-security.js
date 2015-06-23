@@ -341,7 +341,7 @@
     else if ( selectedAge < SSData.fullAge ) {
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
       percent = Math.abs( Math.floor( percent * 100 ) );
-      $('.benefit-modification-text').html( '<strong>reduces</strong> your benefit by&nbsp;<strong>' + percent + '</strong>%' );
+      $('.benefit-modification-text').html( '<strong>reduces</strong> your monthly benefit by&nbsp;<strong>' + percent + '</strong>%' );
       $('.compared-to-full').show();
     }
     else if ( selectedAge > SSData.fullAge ) {
@@ -520,7 +520,10 @@
       setTextByAge();
     });
 
-    $('#get-your-estimates').click( function() {
+    $('#step-one-form').submit( function(e) {
+      e.preventDefault();
+      $('#salary-input').blur();
+      checkEstimateReady();
       getData();
     });
 
@@ -546,7 +549,7 @@
         $('#bd-month').val("7");
         $('#bd-year').val("1977");
         $('#salary-input').val("70000");
-        $('#get-your-estimates').click();
+        $('#step-one-form').submit();
       }
     });
 
