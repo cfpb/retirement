@@ -1,11 +1,13 @@
 # script to check the retirement api to make sure
 # the SSA Quick Calculator is operational
 # and to log the result to a csv (currently via cron)
+import sys
 import requests
 import datetime
 import json
 import time
 import signal
+from urlparse import urlparse
 
 timestamp = datetime.datetime.now()
 
@@ -100,9 +102,10 @@ def run(base):
 if __name__ == '__main__':
     """runs against a local url unless a domain is passed
     """
-
-    try:
-        base = sys.argv[1]
-    except:
-        base = local_base
+    for arg in sys.argv:
+        parsed = urlparse(arg)
+        if parsed.netloc:
+            base = arg
+        else:
+            base = local_base
     run(base)
