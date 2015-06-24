@@ -14,7 +14,7 @@ timestamp = datetime.datetime.now()
 
 # rolling dob to guarantee subject is 44 and full retirement age is 67
 dob = timestamp - datetime.timedelta(days=44*365+30)
-timeout_seconds = 15
+timeout_seconds = 20
 
 API_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
