@@ -108,10 +108,10 @@ def estimator(request, dob=None, income=None):
         DOB = dob_parsed.date()
     if DOB == today:
         print "birth date can't be parsed"
-        return HttpResponseBadRequest("birth date can't be parsed")
+        return HttpResponseBadRequest("Your birth date can't be parsed")
     elif DOB.year >= legal_year:
-        print "subject is too young to use SSA quick calculator"
-        return HttpResponseBadRequest("subject is too young to use SSA quick calculator")
+        print "You are too young to use Social Security's quick calculator"
+        return HttpResponseBadRequest("You are too young to use Social Security's quick calculator")
     else:
         params['dobmon'] = DOB.month
         params['dobday'] = DOB.day
