@@ -211,6 +211,8 @@ def get_retire_data(params):
                'note': ''
                }
     BENS = results['data']['benefits']
+    current_age = get_current_age(dobstring)
+    results['current_age'] = current_age
     past_fra = past_fra_test(dobstring)
     if past_fra is False:
         pass
@@ -222,8 +224,6 @@ def get_retire_data(params):
     elif 'too young' in past_fra:
         results['note'] = past_fra
         return json.dumps(results)
-    current_age = get_current_age(dobstring)
-    results['current_age'] = current_age
     req = requests.post(result_url, data=params)
     if not req.ok:
         results['error'] = "Social Security's Quick Calculator \
