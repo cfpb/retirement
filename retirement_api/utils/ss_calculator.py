@@ -217,7 +217,7 @@ def get_retire_data(params):
     if past_fra is False:
         pass
     elif past_fra is True:
-        results['note'] = 'You are past full retirement age'
+        results['note'] = "You are past Social Security's full retirement age."
     elif 'invalid' in past_fra:
         results['error'] = past_fra
         return json.dumps(results)
