@@ -120,7 +120,6 @@ def interpolate_benefits(benefits, fra_tuple, current_age):
         base = benefits['age 67']
         benefits['age 62'] = int(round(base - base*(3*12*(0.00555555)) -
                                        base*(2*11*0.004166666)))
-        base = benefits['age 67']
         benefits['age 63'] = int(round(base - base*(3*12*(0.00555555)) -
                                        base*(1*12*0.004166666)))
         benefits['age 64'] = int(round(base - base*(3*12*(0.00555555))))
