@@ -118,6 +118,8 @@ def interpolate_benefits(benefits, fra_tuple, current_age):
     # fill out the missing years, working backward and forward from the FRA
     if fra == 67:
         base = benefits['age 67']
+        benefits['age 62'] = int(round(base - base*(3*12*(0.00555555)) -
+                                       base*(2*11*0.004166666)))
         benefits['age 63'] = int(round(base - base*(3*12*(0.00555555)) -
                                        base*(1*12*0.004166666)))
         benefits['age 64'] = int(round(base - base*(3*12*(0.00555555))))
@@ -155,7 +157,10 @@ def interpolate_benefits(benefits, fra_tuple, current_age):
             benefits['age 65'] = int(round(base -
                                      base*(diff_back*(0.00555555))))
         elif current_age in range(55, 64):
-            # ages 55 to 63: FRA is 66; need to fill in 63, 64 and 65
+            # ages 55 to 63: FRA is 66; need to fill in 62, 63, 64 and 65
+            benefits['age 62'] = int(round(base -
+                                     base*((diff_back + 24)*(0.00555555)) -
+                                     base*(1*11*0.004166666)))
             benefits['age 63'] = int(round(base -
                                      base*((diff_back + 24)*(0.00555555))))
             benefits['age 64'] = int(round(base -
@@ -297,9 +302,9 @@ def get_retire_data(params):
                 if benefit_age_year == str(fra_tuple[0]):
                     results['data']['full retirement age'] = benefit_age_raw
                     BENS['age %s' % benefit_age_year] = benefit
-                if benefit_age_year == '62':
-                    results['data']['early retirement age'] = benefit_age_raw
-                    BENS['age %s' % benefit_age_year] = benefit
+                # if benefit_age_year == '62':
+                #     results['data']['early retirement age'] = benefit_age_raw
+                #     BENS['age %s' % benefit_age_year] = benefit
                 # if benefit_age_year == '70':
                 #     BENS['age %s' % benefit_age_year] = benefit
             additions = interpolate_benefits(BENS, fra_tuple, current_age)
