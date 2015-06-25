@@ -58,7 +58,7 @@ class TestApi(unittest.TestCase):
         self.assertTrue(msg == 'OK')
 
     def test_print_msg(self):
-        target_text = ',%s,,,,,' % self.test_collector.date
+        target_text = ',%s,,,,,,' % self.test_collector.date
         test_text = print_msg(self.test_collector)
         print "test_text: %s" % test_text
         print "target_text: %s" % target_text
@@ -69,5 +69,6 @@ class TestApi(unittest.TestCase):
     def test_run(self, mock_print_msg, mock_requests):
         mock_requests.return_value.text = json.dumps(self.test_data)
         mock_requests.return_value.status_code = 200
+        mock_print_msg.return_value = ',%s,,,mock error,,,' % self.test_collector.date
         run('fake.com')
         self.assertTrue(mock_print_msg.call_count == 1)

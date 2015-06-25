@@ -60,7 +60,7 @@ class UtilitiesTests(unittest.TestCase):
 
     def test_interpolate_benefits(self):
         benefits = {
-            'age 62': 1551,
+            'age 62': 1602,
             'age 63': 0,
             'age 64': 0,
             'age 65': 0,
@@ -71,7 +71,7 @@ class UtilitiesTests(unittest.TestCase):
             'age 70': 0,
             }
         results = {
-            'age 62': 1551,
+            'age 62': 1602,
             'age 63': 1696,
             'age 64': 1809,
             'age 65': 1960,
