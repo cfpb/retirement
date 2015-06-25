@@ -21,9 +21,20 @@ import json
 import datetime
 import math
 import lxml
+import time
+import signal
 
 from bs4 import BeautifulSoup as bs
 from .ss_utilities import get_retirement_age, get_current_age, past_fra_test
+from .check_api import TimeoutError, handler
+
+timeout_seconds = 10
+
+down_note = "\
+The Social Security website is not responding, \
+so we can't estimate your benefits right now. \
+Please try again in a few minutes.\
+"
 
 base_url = "http://www.ssa.gov"
 quick_url = "%s/OACT/quickcalc/" % base_url  # where users go; not needed here
@@ -218,19 +229,43 @@ def get_retire_data(params):
         pass
     elif past_fra is True:
         results['note'] = "You are past Social Security's full retirement age."
-    elif 'invalid' in past_fra:
-        results['error'] = past_fra
-        return json.dumps(results)
-    elif 'too young' in past_fra:
-        results['note'] = past_fra
-        return json.dumps(results)
-    req = requests.post(result_url, data=params)
-    if not req.ok:
-        results['error'] = "Social Security's Quick Calculator \
-                            is not responding. \
+    else:  # if neither False nor True, there's an error and we need to bail
+        if current_age > 70:
+            results['note'] = past_fra
+            results['error'] = "visitor too old for tool"
+            return json.dumps(results)
+        elif current_age < 22:
+            results['note'] = past_fra
+            results['error'] = "visitor too young for tool"
+            return json.dumps(results)
+        elif 'invalid' in past_fra:
+            results['note'] = "An invalid date was entered."
+            results['error'] = past_fra
+            return json.dumps(results)
+    signal.signal(signal.SIGALRM, handler)
+    signal.alarm(timeout_seconds)
+    try:
+        req = requests.post(result_url, data=params)
+    except requests.ConnectionError:
+        signal.alarm(0)
+        results['error'] = "Social Security's website is not responding.\
                             Status code: %s (%s)" % (req.status_code,
                                                      req.reason)
-        return results
+        results['note'] = down_note
+        return json.dumps(results)
+    except TimeoutError:
+        signal.alarm(0)
+        results['error'] = "Social Security's website is not responding."
+        results['note'] = down_note
+        return json.dumps(results)
+    else:
+        signal.alarm(0)
+    if not req.ok:
+        results['error'] = "Social Security's website is not responding.\
+                            Status code: %s (%s)" % (req.status_code,
+                                                     req.reason)
+        results['note'] = down_note
+        return json.dumps(results)
     if int(params['dobmon']) == 1 and int(params['dobday']) == 1:
         # SSA has a special rule for people born on Jan. 1:
         # http://www.socialsecurity.gov/OACT/ProgData/nra.html

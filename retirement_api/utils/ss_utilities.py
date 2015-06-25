@@ -8,20 +8,29 @@ from dateutil import parser
 
 TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-# sys.path.append(BASE_DIR)
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-
-datafile  = "%s/retirement_api/data/unique_retirement_ages_%s.json" % (BASE_DIR, TODAY.year)
-# if not os.path.isfile(datafile):
-#     datafile  = "%s/data/unique_retirement_ages_2015.json" % BASE_DIR
-
+TOO_YOUNG = """\
+We're sorry. Our tool cannot provide an estimate \
+if you not at least 22 years old. Please visit the \
+Social Security Administration's \
+<a href="http://www.ssa.gov/people/youngpeople/" \
+target="blank">advice page</a> for students and younger workers.\
+"""
+TOO_OLD = """\
+We're sorry. We cannot provide an estimate because you are older than \
+Social Security's maximum claiming age. To check your benefits, contact \
+the Social Security Administration or open a \
+<a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
+my Social Security</a> account.\
+"""
 # this datafile specifies years that have unique retirement age values
 # since this may change, it is maintained in an external file
-
+datafile = "%s/retirement_api/data/unique_retirement_ages_%s.json" % (BASE_DIR,
+                                                                      TODAY.year)
 with open(datafile, 'r') as f:
     age_map = json.loads(f.read())
     for year in age_map:
         age_map[year] = tuple(age_map[year])
+
 
 def get_current_age(dob):
     today = datetime.date.today()
@@ -31,7 +40,7 @@ def get_current_age(dob):
         return None
     else:
         if DOB and DOB < today:
-            try: # raised when birth date is February 29 and the current year is not a leap year
+            try:  # when dob is 2/29 and the current year is not a leap year
                 birthday = DOB.replace(year=today.year)
             except ValueError:
                 birthday = DOB.replace(year=today.year, day=DOB.day-1)
@@ -41,6 +50,7 @@ def get_current_age(dob):
                 return today.year - DOB.year
         else:
             return None
+
 
 def yob_test(yob=None):
     """
@@ -66,9 +76,10 @@ def yob_test(yob=None):
         else:
             return b_string
 
+
 def get_retirement_age(birth_year):
-    """ 
-    given a worker's birth year, 
+    """
+    given a worker's birth year,
     returns full retirement age in years and months;
     returns None if the supplied year isn't valid
     """
@@ -76,7 +87,7 @@ def get_retirement_age(birth_year):
     if b_string:
         yob = int(birth_year)
         if b_string in age_map.keys():
-            return age_map[b_string]        
+            return age_map[b_string]
         elif yob <= 1937:
             return (65, 0)
         elif yob >= 1943 and yob <= 1954:
@@ -85,6 +96,7 @@ def get_retirement_age(birth_year):
             return (67, 0)
     else:
         return None
+
 
 def past_fra_test(dob=None):
     """
@@ -97,7 +109,9 @@ def past_fra_test(dob=None):
     current_age = get_current_age(dob)
     if DOB >= today:
         return 'invalid birth year entered'
-    if DOB.month == 1 and DOB.day == 1:# SSA has a special rule for people born on Jan. 1 http://www.socialsecurity.gov/OACT/ProgData/nra.html
+    # SSA has a special rule for people born on Jan. 1
+    # http://www.socialsecurity.gov/OACT/ProgData/nra.html
+    if DOB.month == 1 and DOB.day == 1:
         fra_tuple = get_retirement_age(DOB.year-1)
     else:
         fra_tuple = get_retirement_age(DOB.year)
@@ -108,10 +122,12 @@ def past_fra_test(dob=None):
     months_at_birth = DOB.year*12 + DOB.month - 1
     months_today = today.year*12 + today.month - 1
     delta = months_today - months_at_birth
-    age_tuple = (current_age, (delta%12))
+    age_tuple = (current_age, (delta % 12))
     print "age_tuple: %s; fra_tuple: %s" % (age_tuple, fra_tuple)
     if age_tuple[0] < 22:
-        return 'You are too young to have your benefits calculated. Feel free to explore benefits using a birth date on or before %s.' % today.replace(year=(today.year-22)).strftime('%m/%d/%Y')
+        return TOO_YOUNG
+    if age_tuple[0] > 70:
+        return TOO_OLD
     if age_tuple[0] > fra_tuple[0]:
         return True
     elif age_tuple[0] < fra_tuple[0]:
@@ -121,10 +137,11 @@ def past_fra_test(dob=None):
     else:
         return False
 
+
 def get_delay_bonus(birth_year):
     """
     given a worker's year of birth,
-    returns the annual bonus for delaying retirement 
+    returns the annual bonus for delaying retirement
     past full retirement age
     """
     b_string = yob_test(birth_year)
@@ -144,4 +161,3 @@ def get_delay_bonus(birth_year):
             return 8.0
         else:
             return None
-

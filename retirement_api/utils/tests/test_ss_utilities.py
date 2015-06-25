@@ -161,9 +161,9 @@ class UtilitiesTests(unittest.TestCase):
         edge = "%s" % (today-timedelta(days=67*365))
         self.assertTrue(past_fra_test(too_old) == True)
         self.assertTrue(past_fra_test(ok) == False)
-        self.assertTrue("too young" in past_fra_test(too_young))
+        self.assertTrue("least 22" in past_fra_test(too_young))
         self.assertTrue("invalid birth" in past_fra_test(invalid))
-        self.assertTrue(past_fra_test(way_old) == True)
+        self.assertTrue("older" in past_fra_test(way_old))
         self.assertTrue(past_fra_test(edge) == True)
 
     def test_age_map(self):
@@ -266,14 +266,14 @@ class UtilitiesTests(unittest.TestCase):
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(isinstance(data, dict))
         self.assertEqual(data['data']['params']['yob'], 1937)
-        self.assertTrue('monthly benefit' in data['note'])
+        self.assertTrue('older' in data['note'])
         self.sample_params['yob'] = 193
         data = json.loads(get_retire_data(self.sample_params))
         print "'invalid' error is returning %s" % data['error']
-        self.assertTrue("invalid" in data['error'])
+        self.assertTrue("too old" in data['error'])
         self.sample_params['yob'] = today.year-21
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue("too young" in data['note'])
+        self.assertTrue("least 22" in data['note'])
         self.sample_params['yob'] = today.year-57
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(data['data']['benefits']['age 62'] != 0)
