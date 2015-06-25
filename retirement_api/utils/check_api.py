@@ -88,7 +88,7 @@ def run(base):
         end = time.time()
         signal.alarm(0)
         collector.status = "TIMEDOUT"
-        collector.error = 'SSA request exceeded 15 sec'
+        collector.error = 'SSA request exceeded %s sec' % timeout_seconds
         collector.api_fail = 'FAIL'
     else:
         if test_request.status_code != 200:
@@ -107,10 +107,11 @@ def run(base):
             collector.data = check_data(data)
             if collector.data == "BAD DATA":
                 collector.api_fail = 'FAIL'
+
     collector.timer = "%s" % (end - start)
     msg = print_msg(collector)
     with open('%s/tests/logs/api_check.log' % API_ROOT, 'a') as f:
-        f.write(msg)
+        f.write("%s\n" % msg)
     # print url
     return collector
 
