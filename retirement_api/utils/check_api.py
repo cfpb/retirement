@@ -89,7 +89,6 @@ def run(base):
         signal.alarm(0)
         collector.status = "TIMEDOUT"
         collector.error = 'SSA request exceeded %s sec' % timeout_seconds
-        collector.api_fail = 'FAIL'
     else:
         if test_request.status_code != 200:
             signal.alarm(0)
