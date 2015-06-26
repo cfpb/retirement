@@ -106,7 +106,8 @@ def run(base):
             collector.data = check_data(data)
             if collector.data == "BAD DATA":
                 collector.api_fail = 'FAIL'
-    collector.timer = "%s" % round(end - start, 1)
+
+    collector.timer = "%s" % (end - start)
     msg = print_msg(collector)
     with open('%s/tests/logs/api_check.log' % API_ROOT, 'a') as f:
         f.write("%s\n" % msg)

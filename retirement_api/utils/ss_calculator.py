@@ -195,7 +195,7 @@ params = {
 }
 
 
-def get_retire_data(params, timeout=True):
+def get_retire_data(params):
     starter = datetime.datetime.now()
     collector = {}
     benefits = {}
@@ -242,14 +242,12 @@ def get_retire_data(params, timeout=True):
             results['note'] = "An invalid date was entered."
             results['error'] = past_fra
             return json.dumps(results)
-    if timeout:
-        signal.signal(signal.SIGALRM, handler)
-        signal.alarm(timeout_seconds)
+    signal.signal(signal.SIGALRM, handler)
+    signal.alarm(timeout_seconds)
     try:
         req = requests.post(result_url, data=params)
     except requests.ConnectionError:
-        if timeout:
-            signal.alarm(0)
+        signal.alarm(0)
         results['error'] = "Social Security's website is not responding.\
                             Status code: %s (%s)" % (req.status_code,
                                                      req.reason)
@@ -261,10 +259,7 @@ def get_retire_data(params, timeout=True):
         results['note'] = down_note
         return json.dumps(results)
     else:
-        if timeout:
-            signal.alarm(0)
-        else:
-            pass
+        signal.alarm(0)
     if not req.ok:
         results['error'] = "Social Security's website is not responding.\
                             Status code: %s (%s)" % (req.status_code,
