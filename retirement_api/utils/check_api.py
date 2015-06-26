@@ -14,7 +14,7 @@ timestamp = datetime.datetime.now()
 
 # rolling dob to guarantee subject is 44 and full retirement age is 67
 dob = timestamp - datetime.timedelta(days=44*365+30)
-timeout_seconds = 15
+timeout_seconds = 20
 
 API_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
@@ -88,8 +88,7 @@ def run(base):
         end = time.time()
         signal.alarm(0)
         collector.status = "TIMEDOUT"
-        collector.error = 'SSA request exceeded 15 sec'
-        collector.api_fail = 'FAIL'
+        collector.error = 'SSA request exceeded %s sec' % timeout_seconds
     else:
         if test_request.status_code != 200:
             signal.alarm(0)
@@ -107,10 +106,11 @@ def run(base):
             collector.data = check_data(data)
             if collector.data == "BAD DATA":
                 collector.api_fail = 'FAIL'
+
     collector.timer = "%s" % (end - start)
     msg = print_msg(collector)
     with open('%s/tests/logs/api_check.log' % API_ROOT, 'a') as f:
-        f.write(msg)
+        f.write("%s\n" % msg)
     # print url
     return collector
 
