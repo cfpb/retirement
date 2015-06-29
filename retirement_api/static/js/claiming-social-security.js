@@ -154,6 +154,16 @@
       $('#get-your-estimates').attr('disabled', true).addClass('btn__disabled');
     }
   }
+  /** 
+    * 
+    */
+  function highlightAgeFields( bool ) {
+    if ( bool ) {
+      $('#bd-day, #bd-month, #bd-year').addClass( 'notification-input__warning' );
+    } else {
+      $('#bd-day, #bd-month, #bd-year').removeClass( 'notification-input__warning' );
+    }
+  }
 
   /***-- getData(): performs a get call (and performs a few cleanup activities), sets SSData with incoming data --***/
   function getData() {
@@ -166,6 +176,7 @@
     // Hide warnings
     $( '.cf-notification' ).hide();
     $( '.step-one-instructions' ).show();
+    highlightAgeFields( false );
 
     // update the inputs with validated values
     $('#bd-day').val( dates['day'] );
@@ -212,7 +223,11 @@
         else {
           $( '.cf-notification' ).show();
           $( '.cf-notification .cf-notification_text' ).text( dump.error );
-          $( '.step-one-instructions' ).hide();
+          $( '.step-one-instructions' ).hide();       
+          if ( dump.current_age >= 71 || dump.current_age < 22 ) {
+            highlightAgeFields( true );
+          }
+
           response = "error";
         }
       })

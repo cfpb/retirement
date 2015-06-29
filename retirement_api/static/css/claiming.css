@@ -815,18 +815,22 @@ form {
   background: #e3e4e5;
   border: 1px solid #75787b;
 }
+
 #claiming-social-security .cf-notification__error {
   background: #f6d9d3;
   border-color: #d12124;
 }
+
 #claiming-social-security .cf-notification__success {
   background: #dbedd4;
   border-color: #2cb34a;
 }
+
 #claiming-social-security .cf-notification__warning {
   background: #ffecd1;
   border-color: #ff9e1b;
 }
+
 #claiming-social-security .cf-notification_icon {
   position: absolute;
   top: 13px;
@@ -834,19 +838,28 @@ form {
   color: #e3e4e5;
   font-size: 1.125em;
 }
+
 #claiming-social-security .cf-notification_icon__error {
   color: #d14327;
 }
+
 #claiming-social-security .cf-notification_icon__success {
   color: #2cb34a;
 }
+
 #claiming-social-security .cf-notification_icon__warning {
   color: #ff931b;
 }
+
 #claiming-social-security .cf-notification_text {
   margin: 0;
 }
+
 #claiming-social-security .cf-notification_text .short-desc {
   display: block;
   font-size: 16px;
+}
+
+#claiming-social-security .step-one .notification-input__warning {
+  border-color: #FF921B;
 }
