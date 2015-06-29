@@ -574,20 +574,16 @@
     })
 
     $('#retirement-age-selector').change( function() {
-      $('.next-steps-description').hide();
-      $('.next-step-two .step-two_option').hide();
+      $('.next-step-description .next-step-two .step-two_option').hide();
       $('#age-selector-response').show();
       $('#age-selector-response .age-response-value').text( $(this).find('option:selected').val() );
       if ( $(this).find('option:selected').val() < SSData.fullAge ) {
-        $('#next-steps-early').show();
         $('.next-step-two_under').show();
       }
       else if ( $(this).find('option:selected').val() > SSData.fullAge ) {
-        $('#next-steps-over').show();
         $('.next-step-two_over').show();
       }
       else {
-        $('#next-steps-full').show();
         $('.next-step-two_equal').show();
       }
     });
