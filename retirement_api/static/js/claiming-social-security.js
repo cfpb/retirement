@@ -315,7 +315,10 @@
     $('.lifetime-benefits-value').text( lifetimeBenefits );
 
     // Set extra text for early and full retirement ages
-    if ( selectedAge === SSData.earlyAge ) {
+    if ( selectedAge === 70 ) {
+      $('.selected-retirement-age-value').text( 70 );      
+    }
+    else if ( selectedAge === SSData.earlyAge ) {
       $('.selected-retirement-age-value').text( SSData.earlyRetirementAge );      
     }
     else if ( selectedAge === SSData.fullAge && SSData.currentAge < SSData.fullAge ) {
@@ -327,7 +330,10 @@
 
     // Graph content
     $('.graph-content .content-container').hide();
-    if ( selectedAge < SSData.fullAge ) {
+    if ( selectedAge === 70 ) {
+      $('.graph-content .content-container.max-retirement').show();
+    }
+    else if ( selectedAge < SSData.fullAge ) {
       $('.graph-content .content-container.early-retirement').show();
     }
     else {
@@ -568,13 +574,14 @@
     })
 
     $('#retirement-age-selector').change( function() {
+      $('.next-step-description').hide();
       $('.next-step-two .step-two_option').hide();
       $('#age-selector-response').show();
       $('#age-selector-response .age-response-value').text( $(this).find('option:selected').val() );
-      if ( SSData.currentAge < SSData.fullAge ) {
+      if ( $(this).find('option:selected').val() < SSData.fullAge ) {
         $('.next-step-two_under').show();
       }
-      else if ( SSData.currentAge > SSData.fullAge ) {
+      else if ( $(this).find('option:selected').val() > SSData.fullAge ) {
         $('.next-step-two_over').show();
       }
       else {

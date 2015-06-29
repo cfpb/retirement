@@ -149,6 +149,13 @@
         <div class="content-container">
           <p>{% trans tips.sole_source %}<p>
         </div>
+        <div class="content-container max-retirement">
+          <h3 class="retirement-age">{% trans "About your maximum benefit claiming age:" %}</h3>
+          <ul>
+            <li>Always 70.</li>
+            <li>At this age, you will get the maximum possible monthly benefit.</li>
+          </ul>
+        </div>
         <div class="content-container full-retirement">
           <h3 class="retirement-age">{% trans "About your full benefit claiming age:" %}</h3>
           <ul>
@@ -383,7 +390,18 @@
         </div>
         <div id="age-selector-response">
           <hr>
-          <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, which is before your Social Security full retirement claiming age. At this age you will receive less than your full benefit amount. Remember, you can claim at any point between age 62 and 70. Each additional month that you wait to claim gives you a permanent increase in your monthly benefit. Here are steps to help you in the next few years.</h3>
+          <div class="next-step-description next-step-two_over">
+            <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, which is after your Social Security full retirement claiming age.</h3>
+            <p>This means you will get an increase in your monthly benefits!  Here are steps to help you in the next few years.</p>
+          </div>
+          <div class="next-step-description next-step-two_equal">
+            <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, which is your Social Security full retirement claiming age.</h3>
+            <p>That means you’ll receive your full benefit with no reductions! Here are steps to help you in the next few years.</p>
+          </div>
+          <div class="next-step-description next-step-two_under">
+            <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, which is before your Social Security full retirement claiming age.</h3>
+            <p>At this age you will receive less than your full benefit amount. Remember, you can claim at any point between age 62 and 70. Each additional month that you wait to claim gives you a permanent increase in your monthly benefit. Here are steps to help you in the next few years.</p>
+          </div>
           <ol class="next-steps content-l">
             <li class="content-l_col content-l_col-1-3 next-step-one">{% autoescape off %}{% trans final_steps.final_step_1.instructions %}</li>
             <li class="content-l_col content-l_col-1-3 next-step-two">
