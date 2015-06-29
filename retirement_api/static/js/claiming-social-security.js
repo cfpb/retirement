@@ -574,7 +574,8 @@
     })
 
     $('#retirement-age-selector').change( function() {
-      $('.next-step-description .next-step-two .step-two_option').hide();
+      $('.next-step-description').hide();
+      $('.next-step-two .step-two_option').hide();
       $('#age-selector-response').show();
       $('#age-selector-response .age-response-value').text( $(this).find('option:selected').val() );
       if ( $(this).find('option:selected').val() < SSData.fullAge ) {
