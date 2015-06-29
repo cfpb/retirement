@@ -3,29 +3,32 @@ import math
 # import sys
 import json
 import datetime
-# from datetime import timedelta
 from dateutil import parser
+
+from retirement_api.models import ErrorText
 
 TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-TOO_YOUNG = """\
-We're sorry. Our tool cannot provide an estimate \
-if you not at least 22 years old. Please visit the \
-Social Security Administration's \
-<a href="http://www.ssa.gov/people/youngpeople/" \
-target="blank">advice page</a> for students and younger workers.\
-"""
-TOO_OLD = """\
-We're sorry. We cannot provide an estimate because you are older than \
-Social Security's maximum claiming age. To check your benefits, contact \
-the Social Security Administration or open a \
-<a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
-my Social Security</a> account.\
-"""
+TOO_YOUNG = ErrorText.objects.get(slug='too_young').note
+TOO_OLD = ErrorText.objects.get(slug='too_old').note
+# TOO_YOUNG = """\
+# We're sorry. Our tool cannot provide an estimate \
+# if you not at least 22 years old. Please visit the \
+# Social Security Administration's \
+# <a href="http://www.ssa.gov/people/youngpeople/" \
+# target="blank">advice page</a> for students and younger workers.\
+# """
+# TOO_OLD = """\
+# We're sorry. We cannot provide an estimate because you are older than \
+# Social Security's maximum claiming age. To check your benefits, contact \
+# the Social Security Administration or open a \
+# <a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
+# my Social Security</a> account.\
+# """
+
 # this datafile specifies years that have unique retirement age values
-# since this may change, it is maintained in an external file
-datafile = "%s/retirement_api/data/unique_retirement_ages_%s.json" % (BASE_DIR,
-                                                                      TODAY.year)
+# since this may change, it is maintained in the repo
+datafile = "%s/retirement_api/data/unique_retirement_ages_%s.json" % (BASE_DIR, TODAY.year)
 with open(datafile, 'r') as f:
     age_map = json.loads(f.read())
     for year in age_map:

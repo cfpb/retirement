@@ -23,6 +23,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 
 class UtilitiesTests(unittest.TestCase):
+    fixtures = ['retiredata.json']
     sample_params = {
         'dobmon': 1,
         'dobday': 1,
@@ -163,6 +164,7 @@ class UtilitiesTests(unittest.TestCase):
         self.assertTrue(past_fra_test(ok) == False)
         self.assertTrue("least 22" in past_fra_test(too_young))
         self.assertTrue("invalid birth" in past_fra_test(invalid))
+        print "'way_old' fra_test returns %s" % past_fra_test(way_old)
         self.assertTrue("older" in past_fra_test(way_old))
         self.assertTrue(past_fra_test(edge) == True)
 
