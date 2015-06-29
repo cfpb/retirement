@@ -89,6 +89,9 @@ class ErrorText(models.Model):
         ordering = ['slug']
         verbose_name_plural = u"Error text"
 
+    def __unicode__(self):
+        return self.slug
+
 
 class Question(models.Model):
     title = models.CharField(max_length=500)
