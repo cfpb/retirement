@@ -17,18 +17,18 @@ sys.path.append(BASE_DIR)
 # TOO_YOUNG = ErrorText.objects.get(slug='too_young').note
 # TOO_OLD = ErrorText.objects.get(slug='too_old').note
 TOO_YOUNG = """\
-We're sorry. Our tool cannot provide an estimate \
-if you not at least 22 years old. Please visit the \
+<p class="h4">We're sorry. Our tool cannot provide an estimate \
+if you not at least 22 years old.</p><p>Please visit the \
 Social Security Administration's \
 <a href="http://www.ssa.gov/people/youngpeople/" \
-target="blank">advice page</a> for students and younger workers.\
+target="blank">advice page</a> for students and younger workers.</p>\
 """
 TOO_OLD = """\
-We're sorry. We cannot provide an estimate because you are older than \
-Social Security's maximum claiming age. To check your benefits, contact \
+<p class="h4">We're sorry. We cannot provide an estimate because you are older than \
+Social Security's maximum claiming age.</p><p>To check your benefits, contact \
 the Social Security Administration or open a \
 <a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
-my Social Security</a> account.\
+my Social Security</a> account.</p>\
 """
 
 # this datafile specifies years that have unique retirement age values

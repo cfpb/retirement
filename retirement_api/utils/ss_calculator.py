@@ -33,11 +33,11 @@ timeout_seconds = 10
 
 # ssa_down = ErrorText.objects.get(slug='ssa_down')
 down_error = "SSA's Quick Calculator is not responding"
-down_note = "\
-The Social Security website is not responding, \
-so we can't estimate your benefits right now. \
-Please try again in a few minutes.\
-"
+down_note = """\
+<p class="h4">The Social Security website is not responding, \
+so we can't estimate your benefits right now.</p> \
+<p>Please try again in a few minutes.</p>\
+"""
 
 base_url = "http://www.ssa.gov"
 quick_url = "%s/OACT/quickcalc/" % base_url  # where users go; not needed here
