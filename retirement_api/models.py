@@ -147,24 +147,24 @@ class Question(models.Model):
             ]
         return fieldlist
 
-    def dump_translation_text(self, output=False):
-        """
-        translation utility:
-        returns a list of phrases to be translated,
-        or outputs a utf-8 .po file to /tmp/
-        """
-        fieldlist = self.translist()
-        outfile = "/tmp/%s.po" % self.slug
-        phrases = [self.__getattribute__(attr) for attr in fieldlist if
-                   self.__getattribute__(attr)]
-        if output is True:
-            with open(outfile, 'w') as f:
-                for line in POHEADER:
-                    f.write(line.encode('utf-8'))
-                for phrase in phrases:
-                    f.write('#: templates/claiming.html\n'.encode('utf-8'))
-                    f.write(unicode('msgid "%s"\n' % phrase).encode('utf-8'))
-                    f.write('msgstr ""\n'.encode('utf-8'))
-                    f.write("\n")
-        else:
-            return phrases
+    # def dump_translation_text(self, output=False):
+    #     """
+    #     translation utility:
+    #     returns a list of phrases to be translated,
+    #     or outputs a utf-8 .po file to /tmp/
+    #     """
+    #     fieldlist = self.translist()
+    #     outfile = "/tmp/%s.po" % self.slug
+    #     phrases = [self.__getattribute__(attr) for attr in fieldlist if
+    #                self.__getattribute__(attr)]
+    #     if output is True:
+    #         with open(outfile, 'w') as f:
+    #             for line in POHEADER:
+    #                 f.write(line.encode('utf-8'))
+    #             for phrase in phrases:
+    #                 f.write('#: templates/claiming.html\n'.encode('utf-8'))
+    #                 f.write(unicode('msgid "%s"\n' % phrase).encode('utf-8'))
+    #                 f.write('msgstr ""\n'.encode('utf-8'))
+    #                 f.write("\n")
+    #     else:
+    #         return phrases
