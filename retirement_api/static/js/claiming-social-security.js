@@ -154,6 +154,16 @@
       $('#get-your-estimates').attr('disabled', true).addClass('btn__disabled');
     }
   }
+  /** 
+    * 
+    */
+  function highlightAgeFields( bool ) {
+    if ( bool ) {
+      $('#bd-day, #bd-month, #bd-year').addClass( 'notification-input__warning' );
+    } else {
+      $('#bd-day, #bd-month, #bd-year').removeClass( 'notification-input__warning' );
+    }
+  }
 
   /***-- getData(): performs a get call (and performs a few cleanup activities), sets SSData with incoming data --***/
   function getData() {
@@ -162,6 +172,11 @@
         year = $('#bd-year').val(),
         salary = $('#salary-input').val().replace(/\D/g,'');
     var dates = validDates( month, day, year );
+
+    // Hide warnings
+    $( '.cf-notification' ).hide();
+    $( '.step-one-instructions' ).show();
+    highlightAgeFields( false );
 
     // update the inputs with validated values
     $('#bd-day').val( dates['day'] );
@@ -206,12 +221,18 @@
           $('.step-three .hidden-content').show();
         }
         else {
-          alert('An error occurred! ' + dump.error )
+          $( '.cf-notification' ).show();
+          $( '.cf-notification .cf-notification_text' ).html( dump.note );
+          $( '.step-one-instructions' ).hide();       
+          if ( dump.current_age >= 71 || dump.current_age < 22 ) {
+            highlightAgeFields( true );
+          }
+
           response = "error";
         }
       })
       .error( function(xhr, status, error) {
-        alert("An error occured! " + "\nError detail: " + xhr.responseText);
+        // alert("An error occured! " + "\nError detail: " + xhr.responseText);
         response = "error";
       });
       return response;
@@ -346,13 +367,13 @@
     }
     else if ( selectedAge < SSData.fullAge ) {
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
-      percent = Math.abs( Math.floor( percent * 100 ) );
+      percent = Math.abs( Math.round( percent * 100 ) );
       $('.benefit-modification-text').html( '<strong>reduces</strong> your monthly benefit by&nbsp;<strong>' + percent + '</strong>%' );
       $('.compared-to-full').show();
     }
     else if ( selectedAge > SSData.fullAge ) {
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
-      percent = Math.abs( Math.floor( percent * 100 ) );
+      percent = Math.abs( Math.round( percent * 100 ) );
       $('.benefit-modification-text').html( '<strong>increases</strong> your benefit by&nbsp;<strong>' + percent + '</strong>%' );
       $('.compared-to-full').show();
     }
@@ -522,11 +543,11 @@
     $('#claim-canvas svg').css('overflow', 'visible')
   
     // Event handlers
-    $('input[name="benefits-display"]').click( function() {
+    $( 'input[name="benefits-display"]' ).click( function() {
       setTextByAge();
     });
 
-    $('#step-one-form').submit( function(e) {
+    $( '#step-one-form' ).submit( function(e) {
       e.preventDefault();
       $('#salary-input').blur();
       checkEstimateReady();
@@ -547,9 +568,6 @@
           this.animate( { transform: 'r' + rot }, 2000 ) ;
         })
       }
-    });
-
-    $(document).keypress( function(ev) {
       if ( ev.which === 55 && ev.ctrlKey === true ) {
         $('#bd-day').val("7");
         $('#bd-month').val("7");
@@ -612,12 +630,6 @@
     // Initialize the app
     drawParts();
     setTextByAge();
-
-    if ( location.hash === '#B' ) {
-      $('.version-a').hide();
-      $('.version-b').show();
-      $('.step-one').css('border-top', '1px solid #e3e3e1')
-    }
 
     // Tooltip handler
     $('[data-tooltip-target]').click( function() {
