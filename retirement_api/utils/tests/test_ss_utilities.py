@@ -14,9 +14,9 @@ from ..ss_calculator import interpolate_benefits, get_retire_data
 
 today = datetime.datetime.now().date()
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-sys.path.append(BASE_DIR)
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+# sys.path.append(BASE_DIR)
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 # from ...utils import ss_update_stats
 # from retirement_api import utils
