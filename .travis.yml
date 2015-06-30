@@ -11,8 +11,8 @@ install:
   - pip install -r requirements.txt --use-mirrors
   - pip install coveralls
 script: 
-  # - nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
   - cp test_settings.py settings.py
-  - coverage run --source='.' manage.py test
+  - nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
+  # - coverage run --source='.' manage.py test
 after_success:
   - coveralls
