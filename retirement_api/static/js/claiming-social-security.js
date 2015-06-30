@@ -222,7 +222,7 @@
         else {
           $( '.cf-notification' ).slideDown();
           $( '.cf-notification .cf-notification_text' ).html( dump.note );   
-          if ( dump.current_age >= 71 || dump.current_age < 22 ) {
+          if ( dump.current_age >= 71 || dump.current_age < 21 ) {
             highlightAgeFields( true );
           }
 
@@ -295,6 +295,7 @@
   function setTextByAge() {
     var x = ages.indexOf( selectedAge ) * barGut + indicatorLeftSet,
         lifetimeBenefits = numToMoney( ( 85 - selectedAge ) * 12 * SSData[ 'age' + selectedAge ] ),
+        fullAgeBenefitsValue = SSData[ 'age' + SSData.fullAge ],
         benefitsValue = SSData['age' + selectedAge],
         benefitsTop,
         benefitsLeft,
@@ -303,6 +304,7 @@
 
     if ( $('#estimated-benefits-input [name="benefits-display"]:checked').val() === 'annual' ) {
       benefitsValue = benefitsValue * 12;
+      fullAgeBenefitsValue = fullAgeBenefitsValue * 12;
     }
     toggleMonthlyAnnual();
 
@@ -318,7 +320,7 @@
     $('#benefits-text').css( 'left', benefitsLeft );
 
     // set text, position and visibility of #full-age-benefits-text
-    $('#full-age-benefits-text').text( numToMoney( SSData[ 'age' + SSData.fullAge ] ) );
+    $('#full-age-benefits-text').text( numToMoney( fullAgeBenefitsValue ) );
     fullAgeTop = bars[ 'age' + SSData.fullAge ].attr('y') - $('#full-age-benefits-text').height() - 10;
     fullAgeLeft = bars[ 'age' + SSData.fullAge ].attr('x') - $('#full-age-benefits-text').width() / 2 + barWidth / 2;
     $('#full-age-benefits-text').css( 'top', fullAgeTop );
