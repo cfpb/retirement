@@ -222,7 +222,7 @@
         }
         else {
           $( '.cf-notification' ).show();
-          $( '.cf-notification .cf-notification_text' ).text( dump.error );
+          $( '.cf-notification .cf-notification_text' ).html( dump.note );
           $( '.step-one-instructions' ).hide();       
           if ( dump.current_age >= 71 || dump.current_age < 22 ) {
             highlightAgeFields( true );
