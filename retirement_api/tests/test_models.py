@@ -18,11 +18,11 @@ class ViewModels(TestCase):
     teststep = Step.objects.all()[0]
     testpage = Page.objects.all()[0]
     testtip = Tooltip.objects.all()[0]
-    fixtures = ['retiredata.json']
+    # fixtures = ['retiredata.json']
 
-    def test_errortext(self):
-        test_et = ErrorText.objects.get(slug='too_old')
-        self.assertTrue("sorry" in test_et.note)
+    # def test_errortext(self):
+    #     test_et = ErrorText.objects.get(slug='too_old')
+    #     self.assertTrue("sorry" in test_et.note)
 
     # def test_get_subhed(self):
     #     tc = AgeChoice.objects.get(age=62)
