@@ -9,6 +9,7 @@ from dateutil import parser
 TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(BASE_DIR)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 from retirement_api.models import ErrorText
 # from ..models import ErrorText
