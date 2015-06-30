@@ -30,23 +30,23 @@ class ViewTests(unittest.TestCase):
     req_invalid.GET['income'] = 'x'
     return_keys = ['data', 'error']
 
-    def test_base_view(self):
-        mock_render_to_response = mock.MagicMock()
-        with mock.patch.multiple('retirement_api.views',
-                                 render_to_response=mock_render_to_response,
-                                 RequestContext=mock.MagicMock()):
-            # from retirement_api.views import claiming
-            mock_request = mock.Mock()
-            retirement_api.views.claiming(mock_request)
-            _, args, _ = mock_render_to_response.mock_calls[0]
-            self.assertEquals(args[0], 'claiming.html',
-                              'The wrong template is in our render')
-            self.assertEquals(args[1]['available_languages'], ['en', 'es'],
-                              'Passing the wrong available_languages variable')
-            retirement_api.views.claiming(mock_request, es=True)
-            _, args, _ = mock_render_to_response.mock_calls[0]
-            self.assertEquals(args[1]['available_languages'], ['en', 'es'],
-                              'Passing the wrong available_languages variable')
+    # def test_base_view(self):
+    #     mock_render_to_response = mock.MagicMock()
+    #     with mock.patch.multiple('retirement_api.views',
+    #                              render_to_response=mock_render_to_response,
+    #                              RequestContext=mock.MagicMock()):
+    #         # from retirement_api.views import claiming
+    #         mock_request = mock.Mock()
+    #         retirement_api.views.claiming(mock_request)
+    #         _, args, _ = mock_render_to_response.mock_calls[0]
+    #         self.assertEquals(args[0], 'claiming.html',
+    #                           'The wrong template is in our render')
+    #         self.assertEquals(args[1]['available_languages'], ['en', 'es'],
+    #                           'Passing the wrong available_languages variable')
+    #         retirement_api.views.claiming(mock_request, es=True)
+    #         _, args, _ = mock_render_to_response.mock_calls[0]
+    #         self.assertEquals(args[1]['available_languages'], ['en', 'es'],
+    #                           'Passing the wrong available_languages variable')
 
     def test_param_check(self):
         self.assertEqual(retirement_api.views.param_check(self.req_good, 'dob'), '1955-05-05')
