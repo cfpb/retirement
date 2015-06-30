@@ -14,6 +14,7 @@ from django.utils.translation import activate, deactivate_all
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(BASE_DIR)
 from retirement_api.models import Step, Page, Tooltip, Question  # AgeChoice
+page = Page.objects.get(title='Claiming Social Security')
 
 try:
     import settings
@@ -43,7 +44,7 @@ def claiming(request, es=False):
     # ages = {}
     # for age in AgeChoice.objects.all():
     #     ages[age.age] = _(age.aside)
-    page = Page.objects.get(title='Claiming Social Security')
+    # page = Page.objects.get(title='Claiming Social Security')
     tips = {}
     for tooltip in Tooltip.objects.all():
         tips[tooltip.title] = tooltip.text
