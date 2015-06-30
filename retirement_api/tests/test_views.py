@@ -9,12 +9,12 @@ import unittest
 from django.http import HttpRequest
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from retirement_api.views import param_check, income_check, estimator, get_full_retirement_age, claiming
-from retirement_api.utils.ss_calculator import get_retire_data, params
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(BASE_DIR)
 # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+from retirement_api.views import param_check, income_check, estimator, get_full_retirement_age, claiming
+from retirement_api.utils.ss_calculator import get_retire_data, params
 
 today = datetime.datetime.now().date()
 

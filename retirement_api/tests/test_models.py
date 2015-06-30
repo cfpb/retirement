@@ -14,7 +14,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 class ViewModels(TestCase):
 
     # testcase = AgeChoice.objects.get(age=62)
-    testquestion = Question.objects.all()[0]
+    testquestion = Question(title='test')
     teststep = Step.objects.all()[0]
     testpage = Page.objects.all()[0]
     testtip = Tooltip.objects.all()[0]
