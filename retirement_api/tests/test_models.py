@@ -13,7 +13,7 @@ from retirement_api.models import Tooltip, ErrorText
 
 class ViewModels(TestCase):
 
-    # fixtures = ['retiredata.json']
+    fixtures = ['retiredata.json']
     # testcase = AgeChoice.objects.get(age=62)
     testquestion = Question(title='test')
     teststep = Step(title='test')
