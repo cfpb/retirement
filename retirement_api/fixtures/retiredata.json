@@ -3,7 +3,7 @@
     "pk": 1, 
     "model": "retirement_api.step", 
     "fields": {
-        "note": "We base your benefit estimate on current formulas from the Social Security Administration using your age and current income. Your answers are anonymous. Because we do not access or use your Social Security earnings record, your actual benefits may vary from this estimate.\r\n", 
+        "note": "We base your benefit estimate on current formulas from the Social Security Administration using your age and current income. Your answers are anonymous. Because we do not access or use your Social Security earnings record, your actual benefits may vary from this estimate.", 
         "instructions": "Enter your information below to see your estimated benefits.", 
         "title": "Explore how your claiming age affects your Social Security retirement benefits"
     }
@@ -67,7 +67,7 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"http://www.irs.gov/Retirement-Plans/Plan-Participant,-Employee/Retirement-Topics-Catch-Up-Contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan.\r\n", 
+        "instructions": "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"http://www.irs.gov/Retirement-Plans/Plan-Participant,-Employee/Retirement-Topics-Catch-Up-Contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able to open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan.\r\n", 
         "title": "final_step_2_equal"
     }
 },
@@ -294,6 +294,36 @@
     "fields": {
         "text": "Catch-up contributions are additional contributions that individuals who are age 50 or older can make to their 401(k), IRA, or myRA accounts to help them boost their savings as they approach retirement.", 
         "title": "catchup_contributions"
+    }
+},
+{
+    "pk": 1, 
+    "model": "retirement_api.errortext", 
+    "fields": {
+        "note": "The Social Security website is not responding, so we can't estimate your benefits right now. Please try again in a few minutes.", 
+        "internal_note": "for use when SSA doesn't respond, returns bad data or times out", 
+        "slug": "ssa_down", 
+        "error": "SSA's Quick Calculator is not responding"
+    }
+},
+{
+    "pk": 2, 
+    "model": "retirement_api.errortext", 
+    "fields": {
+        "note": "We're sorry. Our tool cannot provide an estimate if you not at least 22 years old. Please visit the Social Security Administration's <a href=\"http://www.ssa.gov/people/youngpeople/\" target=\"blank\">advice page</a> for students and younger workers.", 
+        "internal_note": "SSA Quick Calculator won't work for people younger than 22.", 
+        "slug": "too_young", 
+        "error": "respondent younger than 22"
+    }
+},
+{
+    "pk": 3, 
+    "model": "retirement_api.errortext", 
+    "fields": {
+        "note": "We're sorry. We cannot provide an estimate because you are older than Social Security's maximum claiming age. To check your benefits, contact the Social Security Administration or open a <a href=\"http://www.socialsecurity.gov/myaccount/\" target=\"_blank\">my Social Security</a> account.", 
+        "internal_note": "SSA will deliver a benefit for people older than 70, but our tool is not relevant for them.", 
+        "slug": "too_old", 
+        "error": "respondent older than 70"
     }
 },
 {

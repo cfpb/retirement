@@ -7,22 +7,25 @@ from datetime import timedelta
 import mock
 import unittest
 
-from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test
-from ..ss_utilities import age_map, past_fra_test, get_current_age
-from ..ss_calculator import num_test, parse_details, requests
-from ..ss_calculator import interpolate_benefits, get_retire_data
+# from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test
+# from ..ss_utilities import age_map, past_fra_test, get_current_age
+# from ..ss_calculator import num_test, parse_details, requests
+# from ..ss_calculator import interpolate_benefits, get_retire_data
 
 today = datetime.datetime.now().date()
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-sys.path.append(BASE_DIR)
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+# sys.path.append(BASE_DIR)
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
-# from ...utils import ss_update_stats
-# from retirement_api import utils
+from retirement_api.utils.ss_utilities import get_retirement_age, get_delay_bonus, yob_test
+from retirement_api.utils.ss_utilities import age_map, past_fra_test, get_current_age
+from retirement_api.utils.ss_calculator import num_test, parse_details, requests
+from retirement_api.utils.ss_calculator import interpolate_benefits, get_retire_data
 
 
 class UtilitiesTests(unittest.TestCase):
+    fixtures = ['retiredata.json']
     sample_params = {
         'dobmon': 1,
         'dobday': 1,
@@ -163,6 +166,7 @@ class UtilitiesTests(unittest.TestCase):
         self.assertTrue(past_fra_test(ok) == False)
         self.assertTrue("least 22" in past_fra_test(too_young))
         self.assertTrue("invalid birth" in past_fra_test(invalid))
+        print "'way_old' fra_test returns %s" % past_fra_test(way_old)
         self.assertTrue("older" in past_fra_test(way_old))
         self.assertTrue(past_fra_test(edge) == True)
 

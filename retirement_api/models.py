@@ -7,6 +7,7 @@ WORKFLOW_STATE = [
     ('SUBMITTED', 'Submitted'),
 ]
 
+
 class Step(models.Model):
     title = models.CharField(max_length=500)
     instructions = models.TextField(max_length=255, blank=True)
@@ -19,6 +20,7 @@ class Step(models.Model):
         """returns list of fields that should be translated"""
         return ['title', 'instructions', 'note']
 
+
 class AgeChoice(models.Model):
     age = models.IntegerField()
     aside = models.CharField(max_length=500)
@@ -26,13 +28,14 @@ class AgeChoice(models.Model):
     def get_subhed(self):
         return "You've chosen age %s. %s Here are some steps \
                 to help you in the next few years." % (self.age, self.aside)
-    
+
     def translist(self):
         """returns list of fields that should be translated"""
         return ['aside']
 
     class Meta:
         ordering = ['age']
+
 
 class Page(models.Model):
     title = models.CharField(max_length=255)
@@ -45,7 +48,7 @@ class Page(models.Model):
     step2 = models.ForeignKey(Step, related_name='step2', blank=True, null=True)
     step3 = models.ForeignKey(Step, related_name='step3', blank=True, null=True)
     final_steps = models.TextField(blank=True)
-    
+
     def translist(self):
         """returns list of fields that should be translated"""
         return ['title', 'h1', 'intro', 'h2', 'h3', 'h4', 'final_steps']
@@ -53,10 +56,11 @@ class Page(models.Model):
     def __unicode__(self):
         return self.title
 
+
 class Tooltip(models.Model):
     title = models.CharField(max_length=500)
     text = models.TextField(max_length=255, blank=True)
-    
+
     def translist(self):
         """returns list of fields that should be translated"""
         return ['text']
@@ -74,21 +78,44 @@ POHEADER = [
     '"Language: es\\n"\n\n'
     ]
 
+
+class ErrorText(models.Model):
+    slug = models.CharField(max_length=100)
+    error = models.TextField(blank=True)
+    note = models.TextField(blank=True)
+    internal_note = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ['slug']
+        verbose_name_plural = "Error text"
+
+    def __unicode__(self):
+        return self.slug
+
+
 class Question(models.Model):
     title = models.CharField(max_length=500)
     slug = models.SlugField(blank=True)
     question = models.TextField(blank=True)
-    answer_yes_a_subhed = models.CharField(max_length=255, blank=True, help_text="Under 50")
+    answer_yes_a_subhed = models.CharField(max_length=255, blank=True,
+                                           help_text="Under 50")
     answer_yes_a = models.TextField(blank=True, help_text="Under 50")
-    answer_yes_b_subhed = models.CharField(max_length=255, blank=True, help_text="50 and older")
+    answer_yes_b_subhed = models.CharField(max_length=255, blank=True,
+                                           help_text="50 and older")
     answer_yes_b = models.TextField(blank=True, help_text="50 and older")
-    answer_no_a_subhed = models.CharField(max_length=255, blank=True, help_text="Under 50")
-    answer_no_a = models.TextField(blank=True, help_text="Under 50")
-    answer_no_b_subhed = models.CharField(max_length=255, blank=True, help_text="50 and older")
-    answer_no_b = models.TextField(blank=True, help_text="50 and older")
-    answer_unsure_a_subhed = models.CharField(max_length=255, blank=True, help_text="Under 50")
+    answer_no_a_subhed = models.CharField(max_length=255, blank=True,
+                                          help_text="Under 50")
+    answer_no_a = models.TextField(blank=True,
+                                   help_text="Under 50")
+    answer_no_b_subhed = models.CharField(max_length=255, blank=True,
+                                          help_text="50 and older")
+    answer_no_b = models.TextField(blank=True,
+                                   help_text="50 and older")
+    answer_unsure_a_subhed = models.CharField(max_length=255, blank=True,
+                                              help_text="Under 50")
     answer_unsure_a = models.TextField(blank=True, help_text="Under 50")
-    answer_unsure_b_subhed = models.CharField(max_length=255, blank=True, help_text="50 and older")
+    answer_unsure_b_subhed = models.CharField(max_length=255, blank=True,
+                                              help_text="50 and older")
     answer_unsure_b = models.TextField(blank=True, help_text="50 and older")
     workflow_state = models.CharField(
         max_length=255, choices=WORKFLOW_STATE, default='SUBMITTED')
@@ -100,7 +127,7 @@ class Question(models.Model):
         if not self.slug:
             self.slug = slugify(self.title).replace('-', '_')
         super(Question, self).save(*args, **kwargs)
-    
+
     def translist(self):
         """returns list of fields that should be translated"""
         fieldlist = [
@@ -120,24 +147,24 @@ class Question(models.Model):
             ]
         return fieldlist
 
-    def dump_translation_text(self, output=False):
-        """
-        translation utility
-        
-        returns a list of phrases to be translated, 
-        or outputs a utf-8 .po file to /tmp/
-        """
-        fieldlist = self.translist()
-        outfile = "/tmp/%s.po" % self.slug
-        phrases = [self.__getattribute__(attr) for attr in fieldlist if self.__getattribute__(attr)]
-        if output == True:
-            with open(outfile, 'w') as f:
-                for line in POHEADER:
-                    f.write(line.encode('utf-8'))
-                for phrase in phrases:
-                    f.write('#: templates/claiming.html\n'.encode('utf-8'))
-                    f.write(unicode('msgid "%s"\n' % phrase).encode('utf-8'))
-                    f.write('msgstr ""\n'.encode('utf-8'))
-                    f.write("\n")
-        else:
-            return phrases
+    # def dump_translation_text(self, output=False):
+    #     """
+    #     translation utility:
+    #     returns a list of phrases to be translated,
+    #     or outputs a utf-8 .po file to /tmp/
+    #     """
+    #     fieldlist = self.translist()
+    #     outfile = "/tmp/%s.po" % self.slug
+    #     phrases = [self.__getattribute__(attr) for attr in fieldlist if
+    #                self.__getattribute__(attr)]
+    #     if output is True:
+    #         with open(outfile, 'w') as f:
+    #             for line in POHEADER:
+    #                 f.write(line.encode('utf-8'))
+    #             for phrase in phrases:
+    #                 f.write('#: templates/claiming.html\n'.encode('utf-8'))
+    #                 f.write(unicode('msgid "%s"\n' % phrase).encode('utf-8'))
+    #                 f.write('msgstr ""\n'.encode('utf-8'))
+    #                 f.write("\n")
+    #     else:
+    #         return phrases

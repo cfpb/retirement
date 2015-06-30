@@ -1,1 +1,0 @@
-/var/www/django/cfpb/cfpb_django/settings/local.py

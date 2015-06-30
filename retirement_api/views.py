@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 
 from django.shortcuts import render_to_response
@@ -8,10 +9,12 @@ from utils.ss_calculator import get_retire_data, params
 from utils.ss_utilities import get_retirement_age
 from dateutil import parser
 import datetime
-from retirement_api.models import Step, AgeChoice, Page, Tooltip, Question
 from django.utils.translation import ugettext as _
 from django.utils.translation import activate, deactivate_all
-BASEDIR = os.path.dirname(__file__)
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(BASE_DIR)
+import retirement_api.models
+from retirement_api.models import Step, Page, Tooltip, Question  # AgeChoice
 
 try:
     import settings
@@ -38,10 +41,10 @@ def claiming(request, es=False):
         activate('es')
     else:
         deactivate_all()
-    ages = {}
-    for age in AgeChoice.objects.all():
-        ages[age.age] = _(age.aside)
-    page = Page.objects.get(title='Claiming Social Security')
+    # ages = {}
+    # for age in AgeChoice.objects.all():
+    #     ages[age.age] = _(age.aside)
+    page = retirement_api.models.Page.objects.get(title='Claiming Social Security')
     tips = {}
     for tooltip in Tooltip.objects.all():
         tips[tooltip.title] = tooltip.text
@@ -60,7 +63,7 @@ def claiming(request, es=False):
         'final_steps': final_steps,
         'questions': questions,
         'tips': tips,
-        'ages': ages,
+        # 'ages': ages,
         'page': page,
         'base_template': base_template,
         'available_languages': ['en', 'es'],

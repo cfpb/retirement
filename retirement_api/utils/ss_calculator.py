@@ -27,14 +27,17 @@ import signal
 from bs4 import BeautifulSoup as bs
 from .ss_utilities import get_retirement_age, get_current_age, past_fra_test
 from .check_api import TimeoutError, handler
+from ..models import ErrorText
 
 timeout_seconds = 10
 
-down_note = "\
-The Social Security website is not responding, \
-so we can't estimate your benefits right now. \
-Please try again in a few minutes.\
-"
+# ssa_down = ErrorText.objects.get(slug='ssa_down')
+down_error = "SSA's Quick Calculator is not responding"
+down_note = """\
+<p class="h4">The Social Security website is not responding, \
+so we can't estimate your benefits right now.</p> \
+<p>Please try again in a few minutes.</p>\
+"""
 
 base_url = "http://www.ssa.gov"
 quick_url = "%s/OACT/quickcalc/" % base_url  # where users go; not needed here
@@ -250,14 +253,14 @@ def get_retire_data(params, timeout=True):
     except requests.ConnectionError:
         if timeout:
             signal.alarm(0)
-        results['error'] = "Social Security's website is not responding.\
-                            Status code: %s (%s)" % (req.status_code,
-                                                     req.reason)
+        results['error'] = "%s\nStatus code: %s (%s)" % (down_error,
+                                                         req.status_code,
+                                                         req.reason)
         results['note'] = down_note
         return json.dumps(results)
     except TimeoutError:
         signal.alarm(0)
-        results['error'] = "Social Security's website is not responding."
+        results['error'] = "The request to SSA timed out."
         results['note'] = down_note
         return json.dumps(results)
     else:
@@ -266,9 +269,9 @@ def get_retire_data(params, timeout=True):
         else:
             pass
     if not req.ok:
-        results['error'] = "Social Security's website is not responding.\
-                            Status code: %s (%s)" % (req.status_code,
-                                                     req.reason)
+        results['error'] = "%s\nStatus code: %s (%s)" % (down_error,
+                                                         req.status_code,
+                                                         req.reason)
         results['note'] = down_note
         return json.dumps(results)
     if int(params['dobmon']) == 1 and int(params['dobday']) == 1:
@@ -292,8 +295,13 @@ def get_retire_data(params, timeout=True):
     if past_fra is True:
         results['data']['disability'] = "You have reached full retirement age \
                                 and are not eligible for disability benefits."
-        ret_amount = soup.find('span', {'id': 'ret_amount'}).text.split('.')[0]
-        base = int(ret_amount.replace(',', ''))
+        try:
+            ret_amount = soup.find('span', {'id': 'ret_amount'}).text.split('.')[0]
+            base = int(ret_amount.replace(',', ''))
+        except:
+            results['error'] = "SSA is not returning a benefit"
+            results['note'] = down_note
+            return json.dumps(results)
         increment = base * 0.08
         if current_age == 66:
             BENS['age 66'] = round(base)
@@ -347,6 +355,12 @@ def get_retire_data(params, timeout=True):
                 #     BENS['age %s' % benefit_age_year] = benefit
                 # if benefit_age_year == '70':
                 #     BENS['age %s' % benefit_age_year] = benefit
+            if BENS['age %s' % str(fra_tuple[0])]:
+                pass
+            else:
+                results['error'] = "SSA is not returning a benefit"
+                results['note'] = down_note
+                return json.dumps(results)
             additions = interpolate_benefits(BENS, fra_tuple, current_age)
             for key in BENS:
                 if additions[key] and not BENS[key]:
