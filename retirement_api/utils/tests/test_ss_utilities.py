@@ -7,10 +7,15 @@ from datetime import timedelta
 import mock
 import unittest
 
-from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test
-from ..ss_utilities import age_map, past_fra_test, get_current_age
-from ..ss_calculator import num_test, parse_details, requests
-from ..ss_calculator import interpolate_benefits, get_retire_data
+# from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test
+# from ..ss_utilities import age_map, past_fra_test, get_current_age
+# from ..ss_calculator import num_test, parse_details, requests
+# from ..ss_calculator import interpolate_benefits, get_retire_data
+
+from retirement_api.utils.ss_utilities import get_retirement_age, get_delay_bonus, yob_test
+from retirement_api.utils.ss_utilities import age_map, past_fra_test, get_current_age
+from retirement_api.utils.ss_calculator import num_test, parse_details, requests
+from retirement_api.utils.ss_calculator import interpolate_benefits, get_retire_data
 
 today = datetime.datetime.now().date()
 
