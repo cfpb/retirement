@@ -1,7 +1,5 @@
 import os
 import sys
-from retirement_api.models import Question, Step, Page  # AgeChoice
-from retirement_api.models import Tooltip, ErrorText
 import mock
 
 from django.test import TestCase
@@ -9,6 +7,8 @@ from django.test import TestCase
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+from retirement_api.models import Question, Step, Page  # AgeChoice
+from retirement_api.models import Tooltip, ErrorText
 
 
 class ViewModels(TestCase):

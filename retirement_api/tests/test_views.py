@@ -20,6 +20,7 @@ today = datetime.datetime.now().date()
 
 
 class ViewTests(unittest.TestCase):
+    fixtures = ['retiredata.json']
     req_good = HttpRequest()
     req_good.GET['dob'] = '1955-05-05'
     req_good.GET['income'] = '40000'
@@ -30,7 +31,6 @@ class ViewTests(unittest.TestCase):
     req_invalid.GET['dob'] = '1-2-%s' % (today.year + 5)
     req_invalid.GET['income'] = 'x'
     return_keys = ['data', 'error']
-    fixtures = ['retiredata.json']
 
     def test_base_view(self):
         mock_render_to_response = mock.MagicMock()
