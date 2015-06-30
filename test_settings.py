@@ -4,7 +4,8 @@ test settings
 
 import os
 from django.utils.translation import ugettext_lazy as _
-BASE_DIR = os.path.dirname(__file__)
+# BASE_DIR = os.path.dirname(__file__)
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 SECRET_KEY = 'secret_for_testing_only'
 LANGUAGES = (
@@ -21,7 +22,7 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
-    '%s/retirement_api/templates' % BASE_DIR,
+    '%s/retirement_api/templates' % PROJECT_PATH,
     )
 
 # Application definition
@@ -51,7 +52,7 @@ ROOT_URLCONF = 'retirement_api.urls'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(PROJECT_PATH, 'db.sqlite3'),
     }
 }
 
@@ -66,4 +67,4 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/retirement/static/'
-STATIC_ROOT = '%s/retirement_api/static/' % BASE_DIR
+STATIC_ROOT = '%s/retirement_api/static/' % PROJECT_PATH
