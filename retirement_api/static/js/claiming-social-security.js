@@ -174,8 +174,7 @@
     var dates = validDates( month, day, year );
 
     // Hide warnings
-    $( '.cf-notification' ).hide();
-    $( '.step-one-instructions' ).show();
+    $( '.cf-notification' ).slideUp();
     highlightAgeFields( false );
 
     // update the inputs with validated values
@@ -221,9 +220,8 @@
           $('.step-three .hidden-content').show();
         }
         else {
-          $( '.cf-notification' ).show();
-          $( '.cf-notification .cf-notification_text' ).html( dump.note );
-          $( '.step-one-instructions' ).hide();       
+          $( '.cf-notification' ).slideDown();
+          $( '.cf-notification .cf-notification_text' ).html( dump.note );   
           if ( dump.current_age >= 71 || dump.current_age < 22 ) {
             highlightAgeFields( true );
           }

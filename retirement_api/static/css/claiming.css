@@ -299,6 +299,7 @@ form {
 }
 
 #claiming-social-security #step-one-form {
+  margin-top: 0;
   padding: 0;
 }
 
@@ -806,12 +807,11 @@ form {
 /* cf-notification */
 #claiming-social-security .cf-notification {
   display: none;
-  height: 64px;
   position: relative;
   padding: 11px;
   padding-left: 40px;
   margin-bottom: 20px;
-  margin-top: -20px;
+  margin-top: -40px;
   background: #e3e4e5;
   border: 1px solid #75787b;
 }
