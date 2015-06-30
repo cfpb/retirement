@@ -165,6 +165,27 @@
     }
   }
 
+  function lifestyleHeightFix() {
+    var tallestResponse = 0,
+        tallestQuestion = 0,
+        newHeight;
+    // find the tallest content section
+    $( '.step-two .lifestyle-response' ).each( function() {
+      if ( $(this).outerHeight() > tallestResponse ) {
+        tallestResponse = $(this).outerHeight();
+      }
+    });
+    $( '.step-two .lifestyle-question_container' ).each( function() {
+      if ( $(this).outerHeight() > tallestQuestion ) {
+        tallestQuestion = $(this).outerHeight();
+      }
+    });
+    // Set both rows to tallest possible content
+    newHeight = tallestQuestion + tallestResponse;
+    console.log( newHeight );
+    $( '.step-two' ).css('height', newHeight + 'px');
+  }
+
   /***-- getData(): performs a get call (and performs a few cleanup activities), sets SSData with incoming data --***/
   function getData() {
     var day = $('#bd-day').val(),
@@ -174,8 +195,7 @@
     var dates = validDates( month, day, year );
 
     // Hide warnings
-    $( '.cf-notification' ).hide();
-    $( '.step-one-instructions' ).show();
+    $( '.cf-notification' ).slideUp();
     highlightAgeFields( false );
 
     // update the inputs with validated values
@@ -219,12 +239,14 @@
           $('.step-two .question').css('display', 'inline-block');
           $('.step-three').css('opacity', 1);
           $('.step-three .hidden-content').show();
+
+          // Set lifestyle question height
+          lifestyleHeightFix();
         }
         else {
-          $( '.cf-notification' ).show();
-          $( '.cf-notification .cf-notification_text' ).html( dump.note );
-          $( '.step-one-instructions' ).hide();       
-          if ( dump.current_age >= 71 || dump.current_age < 22 ) {
+          $( '.cf-notification' ).slideDown();
+          $( '.cf-notification .cf-notification_text' ).html( dump.note );   
+          if ( dump.current_age >= 71 || dump.current_age < 21 ) {
             highlightAgeFields( true );
           }
 
@@ -297,6 +319,7 @@
   function setTextByAge() {
     var x = ages.indexOf( selectedAge ) * barGut + indicatorLeftSet,
         lifetimeBenefits = numToMoney( ( 85 - selectedAge ) * 12 * SSData[ 'age' + selectedAge ] ),
+        fullAgeBenefitsValue = SSData[ 'age' + SSData.fullAge ],
         benefitsValue = SSData['age' + selectedAge],
         benefitsTop,
         benefitsLeft,
@@ -305,6 +328,7 @@
 
     if ( $('#estimated-benefits-input [name="benefits-display"]:checked').val() === 'annual' ) {
       benefitsValue = benefitsValue * 12;
+      fullAgeBenefitsValue = fullAgeBenefitsValue * 12;
     }
     toggleMonthlyAnnual();
 
@@ -320,7 +344,7 @@
     $('#benefits-text').css( 'left', benefitsLeft );
 
     // set text, position and visibility of #full-age-benefits-text
-    $('#full-age-benefits-text').text( numToMoney( SSData[ 'age' + SSData.fullAge ] ) );
+    $('#full-age-benefits-text').text( numToMoney( fullAgeBenefitsValue ) );
     fullAgeTop = bars[ 'age' + SSData.fullAge ].attr('y') - $('#full-age-benefits-text').height() - 10;
     fullAgeLeft = bars[ 'age' + SSData.fullAge ].attr('x') - $('#full-age-benefits-text').width() / 2 + barWidth / 2;
     $('#full-age-benefits-text').css( 'top', fullAgeTop );
@@ -591,6 +615,7 @@
 
     })
 
+    // Retirement age selector handler
     $('#retirement-age-selector').change( function() {
       $('.next-step-description').hide();
       $('.next-step-two .step-two_option').hide();

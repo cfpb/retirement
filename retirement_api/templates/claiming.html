@@ -201,8 +201,6 @@
     </div>
     <div class="content-l_col content-l_col-1-3 question question-married">
       <img src="/retirement/static/images/lifestyle-married.png" class="lifestyle-img">
-      <hr>
-      <h3 class="lifestyle-question">{% trans questions.marriage.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes">
         <h4>{% trans questions.marriage.answer_yes_a_subhed|safe %}</h4>
         <p>{% trans questions.marriage.answer_yes_a|safe %}</p>
@@ -215,14 +213,16 @@
         <h4>{% trans questions.marriage.answer_unsure_a_subhed|safe %}</h4>
         <p>{% trans questions.marriage.answer_unsure_a|safe %}</p>
       </div>
-      <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
-      <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">{{NO}}</button>
-      <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="widowed">{% trans "Widowed" %}</button>
+      <div class="lifestyle-question_container">
+        <hr>
+        <h3 class="lifestyle-question">{% trans questions.marriage.question %}</h3>
+        <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
+        <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">{{NO}}</button>
+        <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="widowed">{% trans "Widowed" %}</button>
+      </div>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-working age-split">
       <img src="/retirement/static/images/lifestyle-working.png" class="lifestyle-img">
-      <hr>
-      <h3 class="lifestyle-question">{% trans questions.sixties.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes-under50">
         <h4>{% trans questions.sixties.answer_yes_a_subhed|safe %}</h4>
         <p>{% trans questions.sixties.answer_yes_a|safe %}</p>
@@ -260,16 +260,18 @@
       <div class="tooltip-content" data-tooltip-name="myra" role="tooltip" aria-haspopup="true">
         <p>{% trans tips.myra %}</p>
       </div>
-      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
-      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
-      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+      <div class="lifestyle-question_container">
+        <hr>
+        <h3 class="lifestyle-question">{% trans questions.sixties.question %}</h3>
+        <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
+        <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
+        <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+      </div>
     </div>
   </div>
   <div class="content-l step-two">
     <div class="content-l_col content-l_col-1-3 question question-expenses age-split">
       <img src="/retirement/static/images/lifestyle-expenses.png" class="lifestyle-img">
-      <hr>
-      <h3 class="lifestyle-question">{% trans questions.expenses.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes-under50">
         <h4>{% trans questions.expenses.answer_yes_a_subhed|safe %}</h4>
         <p>{% trans questions.expenses.answer_yes_a|safe %}</p>
@@ -294,14 +296,16 @@
         <h4>{% trans questions.expenses.answer_unsure_b_subhed|safe %}</h4>
         <p>{% trans questions.expenses.answer_unsure_b|safe %}</p>
       </div>
-      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
-      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
-      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+      <div class="lifestyle-question_container">
+        <hr>
+        <h3 class="lifestyle-question">{% trans questions.expenses.question %}</h3>
+        <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
+        <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
+        <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+      </div>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-income age-split">
       <img src="/retirement/static/images/lifestyle-income.png" class="lifestyle-img">
-      <hr>
-      <h3 class="lifestyle-question">{% trans questions.income.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes-under50">
         <h4>{% trans questions.income.answer_yes_a_subhed|safe %}</h4>
         <p>{% trans questions.income.answer_yes_a|safe %}</p>
@@ -344,17 +348,19 @@
       <div class="tooltip-content" data-tooltip-name="catchup-contributions" role="tooltip" aria-haspopup="true">
         <p>{% trans tips.catchup_contributions %}</p>
       </div>
-      <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
-      <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
-      <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+      <div class="lifestyle-question_container">
+        <hr>
+        <h3 class="lifestyle-question">{% trans questions.income.question %}</h3>
+        <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
+        <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
+        <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+      </div>
       <div class="tooltip-content" data-tooltip-name="myra" role="tooltip" aria-haspopup="true">
         <p>{% trans tips.myra|safe %}</p>
       </div>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-longevity">
       <img src="/retirement/static/images/lifestyle-longevity.png" class="lifestyle-img">
-      <hr>
-      <h3 class="lifestyle-question">{% trans questions.longlife.question %}</h3>
       <div class="lifestyle-response" data-responds-to="yes">
         <h4>{% trans questions.longlife.answer_yes_a_subhed %}</h4>
         <p>{% trans questions.longlife.answer_yes_a %}</p>
@@ -367,9 +373,13 @@
         <h4>{% trans questions.longlife.answer_unsure_a_subhed %}</h4>
         <p>{% trans questions.longlife.answer_unsure_a %}</p>
       </div>
-      <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
-      <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">{{NO}}</button>
-      <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+      <div class="lifestyle-question_container">
+        <hr>
+        <h3 class="lifestyle-question">{% trans questions.longlife.question %}</h3>
+        <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
+        <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">{{NO}}</button>
+        <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+      </div>
     </div>
   </div>
   <hr> 
