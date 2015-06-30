@@ -31,13 +31,13 @@ from ..models import ErrorText
 
 timeout_seconds = 10
 
-ssa_down = ErrorText.objects.get(slug='ssa_down')
-
-# down_note = "\
-# The Social Security website is not responding, \
-# so we can't estimate your benefits right now. \
-# Please try again in a few minutes.\
-# "
+# ssa_down = ErrorText.objects.get(slug='ssa_down')
+down_error = "SSA's Quick Calculator is not responding"
+down_note = "\
+The Social Security website is not responding, \
+so we can't estimate your benefits right now. \
+Please try again in a few minutes.\
+"
 
 base_url = "http://www.ssa.gov"
 quick_url = "%s/OACT/quickcalc/" % base_url  # where users go; not needed here
@@ -253,15 +253,15 @@ def get_retire_data(params, timeout=True):
     except requests.ConnectionError:
         if timeout:
             signal.alarm(0)
-        results['error'] = "%s\nStatus code: %s (%s)" % (ssa_down.error,
+        results['error'] = "%s\nStatus code: %s (%s)" % (down_error,
                                                          req.status_code,
                                                          req.reason)
-        results['note'] = ssa_down.note
+        results['note'] = down_note
         return json.dumps(results)
     except TimeoutError:
         signal.alarm(0)
         results['error'] = "The request to SSA timed out."
-        results['note'] = ssa_down.note
+        results['note'] = down_note
         return json.dumps(results)
     else:
         if timeout:
@@ -269,10 +269,10 @@ def get_retire_data(params, timeout=True):
         else:
             pass
     if not req.ok:
-        results['error'] = "%s\nStatus code: %s (%s)" % (ssa_down.error,
+        results['error'] = "%s\nStatus code: %s (%s)" % (down_error,
                                                          req.status_code,
                                                          req.reason)
-        results['note'] = ssa_down.note
+        results['note'] = down_note
         return json.dumps(results)
     if int(params['dobmon']) == 1 and int(params['dobday']) == 1:
         # SSA has a special rule for people born on Jan. 1:
@@ -300,7 +300,7 @@ def get_retire_data(params, timeout=True):
             base = int(ret_amount.replace(',', ''))
         except:
             results['error'] = "SSA is not returning a benefit"
-            results['note'] = ssa_down.note
+            results['note'] = down_note
             return json.dumps(results)
         increment = base * 0.08
         if current_age == 66:
@@ -359,7 +359,7 @@ def get_retire_data(params, timeout=True):
                 pass
             else:
                 results['error'] = "SSA is not returning a benefit"
-                results['note'] = ssa_down.note
+                results['note'] = down_note
                 return json.dumps(results)
             additions = interpolate_benefits(BENS, fra_tuple, current_age)
             for key in BENS:
