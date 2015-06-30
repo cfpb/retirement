@@ -31,8 +31,8 @@ from .check_api import TimeoutError, handler
 timeout_seconds = 10
 
 down_note = "\
-The Social Security website is not responding, \
-so we can't estimate your benefits right now. \
+Sorry, the Social Security website is not responding, \
+so we can't estimate your benefits. \
 Please try again in a few minutes.\
 "
 
