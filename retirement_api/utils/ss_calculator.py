@@ -27,7 +27,7 @@ import signal
 from bs4 import BeautifulSoup as bs
 from .ss_utilities import get_retirement_age, get_current_age, past_fra_test
 from .check_api import TimeoutError, handler
-from retirement_api.models import ErrorText
+from ..models import ErrorText
 
 timeout_seconds = 10
 

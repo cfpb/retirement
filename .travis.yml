@@ -5,15 +5,11 @@ python:
 env: 
   global:
     - DJ_KEY=testkey
-    # - DJANGO_SETTINGS_MODULE=test_settings
 install:
   # - |
   #   echo "DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'travisdb'}}" > api/settings.py
   - pip install -r requirements.txt --use-mirrors
   - pip install coveralls
-before_script:
-  # - python manage.py syncdb
-  # - python manage.py loaddata retiredata.json
 script: 
   # - nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
   - coverage run --source='.' manage.py test

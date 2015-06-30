@@ -5,10 +5,11 @@ import json
 import datetime
 from dateutil import parser
 
-from retirement_api.models import ErrorText
-
 TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+
+from ..models import ErrorText
+
 TOO_YOUNG = ErrorText.objects.get(slug='too_young').note
 TOO_OLD = ErrorText.objects.get(slug='too_old').note
 # TOO_YOUNG = """\
