@@ -13,9 +13,9 @@ install:
   - pip install coveralls
 before_script:
   # - python manage.py syncdb
-  - python manage.py loaddata retiredata.json
+  # - python manage.py loaddata retiredata.json
 script: 
-  - nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
-  # - coverage run --source='.' manage.py test
+  # - nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
+  - coverage run --source='.' manage.py test
 after_success:
   - coveralls
