@@ -87,7 +87,7 @@ class ErrorText(models.Model):
 
     class Meta:
         ordering = ['slug']
-        verbose_name_plural = u"Error text"
+        verbose_name_plural = "Error text"
 
     def __unicode__(self):
         return self.slug
