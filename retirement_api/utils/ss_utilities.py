@@ -18,7 +18,7 @@ sys.path.append(BASE_DIR)
 # TOO_OLD = ErrorText.objects.get(slug='too_old').note
 TOO_YOUNG = """\
 <p class="h4">We're sorry. Our tool cannot provide an estimate \
-if you not at least 22 years old.</p><p>Please visit the \
+if you are not at least 22 years old.</p><p>Please visit the \
 Social Security Administration's \
 <a href="http://www.ssa.gov/people/youngpeople/" \
 target="blank">advice page</a> for students and younger workers.</p>\
