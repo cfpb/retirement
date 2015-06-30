@@ -1,4 +1,5 @@
 import os
+import sys
 import math
 # import sys
 import json
@@ -7,8 +8,10 @@ from dateutil import parser
 
 TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+sys.path.append(BASE_DIR)
 
-from ..models import ErrorText
+from retirement_api.models import ErrorText
+# from ..models import ErrorText
 
 TOO_YOUNG = ErrorText.objects.get(slug='too_young').note
 TOO_OLD = ErrorText.objects.get(slug='too_old').note
