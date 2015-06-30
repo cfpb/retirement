@@ -17,6 +17,10 @@ STANDALONE = True
 
 DEBUG = True
 
+FIXTURE_DIRS = (
+   '%s/retirement_api/fixtures/' % PROJECT_PATH,
+)
+
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
