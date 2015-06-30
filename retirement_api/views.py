@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 
 from django.shortcuts import render_to_response
@@ -8,10 +9,11 @@ from utils.ss_calculator import get_retire_data, params
 from utils.ss_utilities import get_retirement_age
 from dateutil import parser
 import datetime
-from retirement_api.models import Step, AgeChoice, Page, Tooltip, Question
 from django.utils.translation import ugettext as _
 from django.utils.translation import activate, deactivate_all
-BASEDIR = os.path.dirname(__file__)
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(BASE_DIR)
+from retirement_api.models import Step, AgeChoice, Page, Tooltip, Question
 
 try:
     import settings
