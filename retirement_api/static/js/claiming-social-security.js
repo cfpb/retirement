@@ -165,6 +165,27 @@
     }
   }
 
+  function lifestyleHeightFix() {
+    var tallestResponse = 0,
+        tallestQuestion = 0,
+        newHeight;
+    // find the tallest content section
+    $( '.step-two .lifestyle-response' ).each( function() {
+      if ( $(this).outerHeight() > tallestResponse ) {
+        tallestResponse = $(this).outerHeight();
+      }
+    });
+    $( '.step-two .lifestyle-question_container' ).each( function() {
+      if ( $(this).outerHeight() > tallestQuestion ) {
+        tallestQuestion = $(this).outerHeight();
+      }
+    });
+    // Set both rows to tallest possible content
+    newHeight = tallestQuestion + tallestResponse;
+    console.log( newHeight );
+    $( '.step-two' ).css('height', newHeight + 'px');
+  }
+
   /***-- getData(): performs a get call (and performs a few cleanup activities), sets SSData with incoming data --***/
   function getData() {
     var day = $('#bd-day').val(),
@@ -218,6 +239,9 @@
           $('.step-two .question').css('display', 'inline-block');
           $('.step-three').css('opacity', 1);
           $('.step-three .hidden-content').show();
+
+          // Set lifestyle question height
+          lifestyleHeightFix();
         }
         else {
           $( '.cf-notification' ).slideDown();
@@ -591,6 +615,7 @@
 
     })
 
+    // Retirement age selector handler
     $('#retirement-age-selector').change( function() {
       $('.next-step-description').hide();
       $('.next-step-two .step-two_option').hide();
