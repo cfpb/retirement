@@ -9,18 +9,18 @@ from dateutil import parser
 TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 TOO_YOUNG = """\
-We're sorry. Our tool cannot provide an estimate \
-if you not at least 22 years old. Please visit the \
+<span class="h4">Sorry, our tool cannot provide an estimate \
+if you are under 22 years of age.</span></p><p>Please visit the \
 Social Security Administration's \
 <a href="http://www.ssa.gov/people/youngpeople/" \
 target="blank">advice page</a> for students and younger workers.\
 """
 TOO_OLD = """\
-We're sorry. We cannot provide an estimate because you are older than \
-Social Security's maximum claiming age. To check your benefits, contact \
+<span class="h4">Sorry, we cannot provide an estimate because your current age \
+falls outside the Social Security claiming ages of 62 to 70.</span></p><p>To check your benefits based on your actual earnings record, contact \
 the Social Security Administration or open a \
 <a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
-my Social Security</a> account.\
+my Social Security</a> account.</p>\
 """
 # this datafile specifies years that have unique retirement age values
 # since this may change, it is maintained in an external file
