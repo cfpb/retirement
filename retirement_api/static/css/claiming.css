@@ -385,7 +385,7 @@ form {
 
 #claiming-social-security .step-two .lifestyle-img {
   display: block;
-  margin: 60px auto 80px;
+  margin: 60px auto 60px;
 }
 
 #claiming-social-security .step-two .lifestyle-response {
@@ -401,16 +401,16 @@ form {
 }
 
 #claiming-social-security .step-two .lifestyle-question_container {
-  position: absolute;
-  bottom: 0px;
-  height: 10em;
-  width: 100%;
+  margin-bottom: 30px;
 }
 
-#claiming-social-security .step-two .question {
-  position: relative;
-  padding-bottom: 10em;
+.step-two .lifestyle-question_container hr {
+    margin-top: 0;
 }
+
+/*#claiming-social-security .step-two .question {
+  padding-bottom: 10em;
+}*/
 
 #claiming-social-security .step-two .question,
 #claiming-social-security .step-three .hidden-content {
