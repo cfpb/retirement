@@ -20,12 +20,12 @@ def step(context):
     context.base.go()
 
 
-@then(u'I should see "{link_name}" displayed in the page title')
-@handle_error
-def step(context, link_name):
-    # Verify that the page title matches the link we clicked
-    page_title = context.base.get_page_title()
-    assert_that(page_title, contains_string(link_name))
+# @then(u'I should see "{link_name}" displayed in the page title')
+# @handle_error
+# def step(context, link_name):
+#     # Verify that the page title matches the link we clicked
+#     page_title = context.base.get_page_title()
+#     assert_that(page_title, contains_string(link_name))
 
 
 @when(u'I click on the "{link_name}" link')

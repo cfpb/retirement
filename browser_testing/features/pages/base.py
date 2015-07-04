@@ -22,10 +22,6 @@ search = "query"
 
 # XPATH LOCATORS
 button = "//button[text()='Sign up']"
-month_field = "//*[@id='bd-month']"
-day_field = "//*[@id='bd-day']"
-year_field = "//*[@id='bd-year']"
-income_field = "//*[@id='salary-input']"
 get_estimates_button = "//*[@id='get-your-estimates']"
 age_selector = "//*[@id='age-selector-response']/div[1]/h3/span"
 option_70 = "//*[@id='retirement-age-selector']/option[10]"
@@ -47,7 +43,7 @@ class Base(object):
         self.utils = Utils(delay_secs)
         self.results_folder = results_folder
 
-    def go(self, relative_url=''):
+    def go(self, relative_url='retirement/claiming-social-security'):
         full_url = self.utils.build_url(self.base_url, relative_url)
         try:
             self.logger.info("Getting %s" % full_url)
@@ -100,41 +96,36 @@ class Base(object):
     def get_current_url(self):
         return (self.driver.current_url)
 
-    def choose_age(self, age):
-        select = Select(self.driver.find_element_by_id(ret_age_selector))
-        select.select_by_visible_text(age)
-
     def enter_month(self, month):
-        select = Select(self.driver.find_element_by_xpath(month_field))
-        select.send_keys(month)
+        month_input = self.driver.find_element_by_id('bd-month')
+        month_input.send_keys(month)
 
     def enter_day(self, day):
-        select = Select(self.driver.find_element_by_xpath(day_field))
-        select.send_keys(day)
+        day_input = self.driver.find_element_by_id('bd-day')
+        day_input.send_keys(day)
 
-    def enter_day(self, year):
-        select = Select(self.driver.find_element_by_xpath(year_field))
-        select.send_keys(year)
+    def enter_year(self, year):
+        year_input = self.driver.find_element_by_id('bd-year')
+        year_input.send_keys(year)
 
     def enter_income(self, income):
-        select = Select(self.driver.find_element_by_xpath(income_field))
-        select.send_keys(income)
+        income_input = self.driver.find_element_by_id('salary-input')
+        income_input.send_keys(income)
 
     def get_estimate(self):
-        select = Select(self.driver.find_element_by_xpath(get_estimates_button))
-        select.click()
+        estimate_button = self.driver.find_element_by_xpath(get_estimates_button)
+        estimate_button.click()
+        Utils().zzz(1)
 
     def get_fra_result(self):
-        select = Select(self.driver.find_element_by_xpath(fra_result_text))
+        select = self.driver.find_element_by_xpath(fra_result_text)
         return select.text
 
-    def choose_age_70(self):
-        select_box = Select(self.driver.find_element_by_xpath(age_selector))
-        all_options = select_box.find_elements_by_tag_name("option")
-        for option in all_options:
-            if option.get_attribute("value") == '70':
-                option.click()
+    def choose_retirement_age(self, retirement_age):
+        age_selector = Select(self.driver.find_element_by_id("retirement-age-selector"))
+        age_selector.select_by_value(retirement_age)
+        # Utils().zzz(1)
 
-    def get_age_choice_result(age_selection_result):
-        select = Select(self.driver.find_element_by_xpath(age_selection_result))
-        return select.text
+    def get_age_choice_result(self):
+        age_result = self.driver.find_element_by_xpath(age_selection_result)
+        return age_result.text

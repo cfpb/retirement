@@ -1,6 +1,7 @@
 from behave import given, when, then
 from hamcrest.core import assert_that
 from hamcrest.core.core.isequal import equal_to
+from hamcrest.library.text.stringcontains import contains_string
 from decorators import *
 
 from pages.home import Home
@@ -38,8 +39,21 @@ def step(context, income):
 # Choose age
 @when(u'I click get estimate')
 @handle_error
-def step(context, get_estimate):
+def step(context):
     context.base.get_estimate()
+
+
+@when(u'I choose retirement age "{retirement_age}"')
+@handle_error
+def step(context, retirement_age):
+    result = context.base.choose_retirement_age(retirement_age)
+
+
+@then(u'I should see "{retirement_age}" in age_selector_response')
+@handle_error
+def step_impl(context, retirement_age):
+    result = context.base.get_age_choice_result()
+    assert_that(result, contains_string(retirement_age))
 
 
 # see results in chart
@@ -49,16 +63,3 @@ def step(context, expected_result):
     # Verify that the resulting retirement age appears in the chart
     result = context.base.get_fra_result()
     assert_that(result, contains_string(expected_result))
-
-
-@when(u'I Choose age "70"')
-@handle_error
-def step(context):
-    result = context.base.choose_age_70()
-
-
-@then(u'I should see "70" displayed in age_selector_response')
-@handle_error
-def step_impl(context):
-    result = context.base.get_age_choice_result()
-    assert_that(result, contains_string('expected_result'))
