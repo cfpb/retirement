@@ -7,6 +7,14 @@ from decorators import *
 from pages.home import Home
 from pages.base import Base
 
+# import datetime
+# timestamp = datetime.datetime.now()
+# rolling dob to guarantee subject is 49 and full retirement age is 67
+# dob = timestamp - datetime.timedelta(days=44*365+30)
+# month = dob.month
+# day = dob.day
+# year = dob.year
+
 
 # choose month
 @when(u'I enter month "{month}"')
