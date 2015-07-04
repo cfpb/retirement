@@ -14,10 +14,10 @@ from pages.utils import Utils
 HOME = 'index.html'
 
 
-@given(u'I navigate to the Retirement Landing page')
+@given(u'I navigate to the Retirement landing page')
 @handle_error
 def step(context):
-    context.base.go()
+    context.base.go('retirement/claiming-social-security')
 
 
 # @then(u'I should see "{link_name}" displayed in the page title')
@@ -31,14 +31,15 @@ def step(context):
 @when(u'I click on the "{link_name}" link')
 @handle_error
 def step(context, link_name):
-    context.navigation.click_link(link_name)
+    context.base.click_link(link_name)
+    Utils().zzz(2)
 
 
 @then(u'I should see the "{relative_url}" URL with page title "{page_title}"')
 @handle_error
 def step(context, relative_url, page_title):
-    actual_url = context.base.get_current_url()
-    assert_that(actual_url, contains_string(relative_url))
+    current_page_title = context.base.get_blank_handle_title()
+    assert_that(current_page_title, contains_string(page_title))
 
-    actual_page_title = context.base.get_page_title()
-    assert_that(actual_page_title, contains_string(page_title))
+    actual_url = context.base.get_blank_handle_url()
+    assert_that(actual_url, contains_string(relative_url))

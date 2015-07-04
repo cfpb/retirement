@@ -15,10 +15,7 @@ class Navigation(Base):
                                          driver, driver_wait, delay_secs)
 
     def click_link(self, link_text):
-        xpath_text = "//a[contains(text(),'" + link_text + "')]"
-        xpath_span = "//a/span[contains(text(),'" + link_text + "')]/.."
-
-        element = self.driver.find_element_by_xpath(xpath_text)
+        element = self.driver.find_element_by_link_text(link_text)
 
         # scroll the element into view so it can be
         # observed with SauceLabs screencast
@@ -26,3 +23,16 @@ class Navigation(Base):
         self.driver.execute_script(script, element)
 
         element.click()
+
+    # def click_link(self, link_text):
+    #     xpath_text = "//a[contains(text(),'" + link_text + "')]"
+    #     xpath_span = "//a/span[contains(text(),'" + link_text + "')]/.."
+
+    #     element = self.driver.find_element_by_xpath(xpath_text)
+
+    #     # scroll the element into view so it can be
+    #     # observed with SauceLabs screencast
+    #     script = "arguments[0].scrollIntoView(true);"
+    #     self.driver.execute_script(script, element)
+
+    #     element.click()
