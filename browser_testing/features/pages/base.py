@@ -22,6 +22,15 @@ search = "query"
 
 # XPATH LOCATORS
 button = "//button[text()='Sign up']"
+month_field = "//*[@id='bd-month']"
+day_field = "//*[@id='bd-day']"
+year_field = "//*[@id='bd-year']"
+income_field = "//*[@id='salary-input']"
+get_estimates_button = "//*[@id='get-your-estimates']"
+age_selector = "//*[@id='age-selector-response']/div[1]/h3/span"
+option_70 = "//*[@id='retirement-age-selector']/option[10]"
+age_selection_result = "//*[@id='age-selector-response']/div[1]/h3/span"
+fra_result_text = "//*[@id='graph-container']/div[1]/div[1]/p[1]/span[1]"
 
 
 class Base(object):
@@ -94,3 +103,38 @@ class Base(object):
     def choose_age(self, age):
         select = Select(self.driver.find_element_by_id(ret_age_selector))
         select.select_by_visible_text(age)
+
+    def enter_month(self, month):
+        select = Select(self.driver.find_element_by_xpath(month_field))
+        select.send_keys(month)
+
+    def enter_day(self, day):
+        select = Select(self.driver.find_element_by_xpath(day_field))
+        select.send_keys(day)
+
+    def enter_day(self, year):
+        select = Select(self.driver.find_element_by_xpath(year_field))
+        select.send_keys(year)
+
+    def enter_income(self, income):
+        select = Select(self.driver.find_element_by_xpath(income_field))
+        select.send_keys(income)
+
+    def get_estimate(self):
+        select = Select(self.driver.find_element_by_xpath(get_estimates_button))
+        select.click()
+
+    def get_fra_result(self):
+        select = Select(self.driver.find_element_by_xpath(fra_result_text))
+        return select.text
+
+    def choose_age_70(self):
+        select_box = Select(self.driver.find_element_by_xpath(age_selector))
+        all_options = select_box.find_elements_by_tag_name("option")
+        for option in all_options:
+            if option.get_attribute("value") == '70':
+                option.click()
+
+    def get_age_choice_result(age_selection_result):
+        select = Select(self.driver.find_element_by_xpath(age_selection_result))
+        return select.text
