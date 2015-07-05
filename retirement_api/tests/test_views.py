@@ -24,6 +24,7 @@ from retirement_api.utils.ss_calculator import get_retire_data, params
 today = datetime.datetime.now().date()
 
 class ViewTests(unittest.TestCase):
+    fixtures = ['retiredata.json']
     req_good = HttpRequest()
     req_good.GET['dob'] = '1955-05-05'
     req_good.GET['income'] = '40000'
@@ -35,23 +36,30 @@ class ViewTests(unittest.TestCase):
     req_invalid.GET['income'] = 'x'
     return_keys = ['data', 'error']
 
-    def test_base_view(self):
+    @mock.patch('retirement_api.models.Page.objects.get')
+    @mock.patch('retirement_api.models.AgeChoice.objects.all')
+    @mock.patch('retirement_api.models.Tooltip.objects.all')
+    @mock.patch('retirement_api.models.Question.objects.all')
+    @mock.patch('retirement_api.models.Step.objects.filter')
+    def test_base_view(self,
+                       mock_step,
+                       mock_question,
+                       mock_tooltip,
+                       mock_agechoice,
+                       mock_page):
+        mock_step.return_value = []
+        mock_question.return_value = []
+        mock_tooltip.return_value = []
+        mock_agechoice.return_value = []
+        mock_page.return_value = []
         mock_render_to_response = mock.MagicMock()
-        with mock.patch.multiple('retirement_api.views',
-            render_to_response=mock_render_to_response,
-            RequestContext=mock.MagicMock()):
-            from retirement_api.views import claiming
-            mock_request = mock.Mock()
-            claiming(mock_request)
-            _, args, _ = mock_render_to_response.mock_calls[0]
-            self.assertEquals(args[0], 'claiming.html',
-                            'The wrong template is in our render')
-            self.assertEquals(args[1]['available_languages'], ['en', 'es'],
-                            'Passing the wrong available_languages variable')
-            claiming(mock_request, es=True)
-            _, args, _ = mock_render_to_response.mock_calls[0]
-            self.assertEquals(args[1]['available_languages'], ['en', 'es'],
-                            'Passing the wrong available_languages variable')
+        mock_request = mock.Mock()
+        claiming(mock_request)
+        self.assertTrue(mock_step.call_count == 1)
+        self.assertTrue(mock_question.call_count == 1)
+        self.assertTrue(mock_tooltip.call_count == 1)
+        self.assertTrue(mock_agechoice.call_count == 1)
+        self.assertTrue(mock_page.call_count == 1)
 
     def test_param_check(self):
         self.assertEqual(param_check(self.req_good, 'dob'), '1955-05-05')        

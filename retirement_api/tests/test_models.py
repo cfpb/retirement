@@ -11,6 +11,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 class ViewModels(TestCase):
 
+    fixtures = ['retiredata.json']
     testcase = AgeChoice.objects.get(age=62)
     testquestion = Question.objects.all()[0]
     teststep = Step.objects.all()[0]
