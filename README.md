@@ -17,10 +17,15 @@ This is a project aimed at helping Americans make choices about retirement, incl
  * [Requests](http://docs.python-requests.org/en/latest/)
  * [lxml](http://lxml.de/installation.html)
 
-### For testing
+### For Python testing
  * [nose](https://nose.readthedocs.org/en/latest/)
  * [mock](https://mock.readthedocs.org/en/latest/)
  * [coverage](http://nedbatchelder.com/code/coverage/)
+
+### For browser testing
+* [selenium](http://selenium.googlecode.com/svn/trunk/docs/api/py/index.html)
+* [behave](http://pythonhosted.org/behave/)
+* [pyhamcrest](https://pyhamcrest.readthedocs.org/)
  
 <!--
  * [Homebrew](http://brew.sh)
