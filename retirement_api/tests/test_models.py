@@ -12,7 +12,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 class ViewModels(TestCase):
 
-    # fixtures = ['retiredata.json']
     testagechoice = AgeChoice(age=62, aside="Aside.")
     testquestion = Question(title="Test Question")
     teststep = Step(title="Test Step")
@@ -33,7 +32,10 @@ class ViewModels(TestCase):
     def test_question_translist(self):
         tlist = self.testquestion.translist()
         self.assertTrue(type(tlist) == list)
-        for term in ['question', 'answer_yes_a', 'answer_no_b', 'answer_unsure_a_subhed']:
+        for term in ['question',
+                     'answer_yes_a',
+                     'answer_no_b',
+                     'answer_unsure_a_subhed']:
             self.assertTrue(term in tlist)
 
     def test_quesiton_dump(self):
