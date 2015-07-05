@@ -4,13 +4,15 @@ import json
 import datetime
 from datetime import timedelta
 
+import requests
 import mock
 import unittest
 
 from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test
 from ..ss_utilities import age_map, past_fra_test, get_current_age
-from ..ss_calculator import num_test, parse_details, requests
+from ..ss_calculator import num_test, parse_details
 from ..ss_calculator import interpolate_benefits, get_retire_data
+from ..check_api import TimeoutError
 
 today = datetime.datetime.now().date()
 
@@ -301,14 +303,21 @@ class UtilitiesTests(unittest.TestCase):
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
 
-    # @mock.patch('utils.ss_calculator.requests')
-    # def test_ss_calculator_bad_request(self, mock_request):
-    #     mock_request.post.return_value.reason = 'Not found'
-    #     # self.sample_params['lastYearEarn'] = 19
-    #     result_json = utils.ss_calculator.get_retire_data(self.sample_params)
-    #     results = json.loads(result_json)
-    #     print "results error message is %s" % results['error']
-    #     self.assertTrue('failed' in results['error'])
-
-
-        
+    @mock.patch('retirement_api.utils.ss_calculator.requests.post')
+    def test_bad_calculator_requests(self, mock_requests):
+        mock_requests.return_value.ok = False
+        mock_json = get_retire_data(self.sample_params)
+        mock_results = json.loads(mock_json)
+        self.assertTrue('not responding' in mock_results['error'])
+        mock_requests.return_value.ok = True
+        mock_requests.side_effect = requests.ConnectionError
+        mock_json = get_retire_data(self.sample_params)
+        mock_results = json.loads(mock_json)
+        print "results error message is %s" % mock_results['error']
+        self.assertTrue('connection error' in mock_results['error'])
+        mock_requests.return_value.ok = True
+        mock_requests.side_effect = TimeoutError
+        mock_json = get_retire_data(self.sample_params)
+        mock_results = json.loads(mock_json)
+        print "results error message is %s" % mock_results['error']
+        self.assertTrue('not responding' in mock_results['error'])
