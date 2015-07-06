@@ -650,11 +650,14 @@ form {
     width: auto;
   }
 
-    /* Reduce font size, for spacing and readability. H1/H2 sizes shift to H2/H4. */
-  #claiming-social-security .claiming-hero h1 {
+  /* Reduce font size, for spacing and readability. H1->H2, H2->H3, H3->H4. */
+  #claiming-social-security #maincontent h1 {
     font-size: 1.625em;
   }
-  #claiming-social-security .claiming-hero p {
+  #claiming-social-security #maincontent h2, #claiming-social-security .claiming-hero p {
+    font-size: 1.375em;
+  }
+  #claiming-social-security #maincontent .h3 {
     font-size: 1.125em;
   }
 
