@@ -12,6 +12,10 @@ LANGUAGES = (
     ('en', _('English')),
 )
 
+FIXTURE_DIRS = (
+   '%s/retirement_api/fixtures/' % BASE_DIR,
+)
+
 STANDALONE = True
 
 DEBUG = True
