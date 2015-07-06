@@ -31,8 +31,8 @@ from .check_api import TimeoutError, handler
 timeout_seconds = 10
 
 down_note = "\
-The Social Security website is not responding, \
-so we can't estimate your benefits right now. \
+Sorry, the Social Security website is not responding, \
+so we can't estimate your benefits. \
 Please try again in a few minutes.\
 "
 
@@ -250,9 +250,7 @@ def get_retire_data(params, timeout=True):
     except requests.ConnectionError:
         if timeout:
             signal.alarm(0)
-        results['error'] = "Social Security's website is not responding.\
-                            Status code: %s (%s)" % (req.status_code,
-                                                     req.reason)
+        results['error'] = "connection error at Social Security's website"
         results['note'] = down_note
         return json.dumps(results)
     except TimeoutError:

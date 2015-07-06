@@ -6,10 +6,11 @@ Feature: verify the navigation tabs/links works according to requirements
 
 @smoke_testing @landing_page
 Scenario Outline: Test links in the landing page
-   Given I navigate to the Retirement Landing page
+   Given I navigate to the Retirement landing page
    When I click on the "<link_name>" link
    Then I should see the "<full_url>" URL with page title "<page_title>"
 
 Examples:
-  | link_name                                       | page_title               | full_url                             |
-  | Learn how estimates are calculated.             | Quick Calculator FAQs    | www.ssa.gov/OACT/quickcalc/faqs.html |
+  | link_name                           | page_title               | full_url                             |
+  | Learn how estimates are calculated. | Quick Calculator FAQs    | www.ssa.gov/OACT/quickcalc/faqs.html |
+  

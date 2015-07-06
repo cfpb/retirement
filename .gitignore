@@ -27,9 +27,11 @@ settings.py
 # sqlite #
 #################
 db.sqlite3
+retire.db
 
 # Unit test / coverage reports
 #################
+environment.cfg
 cover/
 ssa.json
 htmlcov/
