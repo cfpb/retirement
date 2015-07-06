@@ -7,7 +7,7 @@ html,body {
   height: 100%;
 }
 
-form { 
+form {
   margin: 0;
   padding: 0;
 }
@@ -33,7 +33,7 @@ form {
 
 #maincontent {
   width: 1168px;
-  padding-top: 0px;  
+  padding-top: 0px;
 }
 
 #claiming-social-security h2,
@@ -278,7 +278,7 @@ form {
 }
 
 #claiming-social-security .input-labels input {
-  display: inline; 
+  display: inline;
   width: 15%;
   padding: 2px;
 }
@@ -484,19 +484,19 @@ form {
   background-repeat: no-repeat;
   background-position: 0 0;
   padding-left: 34px;
-}  
+}
 
 #claiming-social-security #age-selector-response .next-steps li.next-step-one {
   background-image: url('../images/step_1.png');
-} 
+}
 
 #claiming-social-security #age-selector-response .next-steps li.next-step-two {
   background-image: url('../images/step_2.png');
-} 
+}
 
 #claiming-social-security #age-selector-response .next-steps li.next-step-three {
   background-image: url('../images/step_3.png');
-} 
+}
 
 #claiming-social-security .step-three .helpful-btn {
   width: 4em;
@@ -518,6 +518,15 @@ form {
   #footer {
     display: none;
   }
+
+  #claiming-social-security #step-one-form {
+    margin-bottom: 30px;
+  }
+
+  #claiming-social-security .step-one .step-one-instructions {
+    margin-bottom: 30px;
+  }
+
 }
 
 /* ====================================================================
@@ -667,6 +676,18 @@ form {
     margin-bottom: 0px;
   }
 
+  #claiming-social-security .step-one h2 {
+    border-left: none;
+  }
+
+  #claiming-social-security #step-one-form .content-l_col-1-3 {
+    max-width: 236px;
+  }
+
+  #claiming-social-security .content-l_col.content-l_col-1-3 + .content-l_col.content-l_col-1-3 {
+    margin-top: 1.875em;
+  }
+
   #claiming-social-security .birthdate-inputs p,
   #claiming-social-security label[for="salary-input"] p {
     margin-bottom: 0;
@@ -677,8 +698,12 @@ form {
   }
 
   #claiming-social-security #estimated-benefits-input label {
-    display: inline-block;
-    margin-right: 1em;
+    display: block;
+    margin-left: 0;
+  }
+
+  #claiming-social-security #estimated-benefits-input label:first-of-type {
+    margin-top: 8px;
   }
 
   #claiming-social-security #graph-container {
@@ -829,7 +854,7 @@ form {
   border-color: #0072ce;
   color: #0072ce;
   cursor: pointer;
-  text-decoration: none;  
+  text-decoration: none;
 }
 
 #claiming-social-security .selection-disabled {
