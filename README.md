@@ -63,7 +63,7 @@ python manage.py runserver
 The "Claiming Social Security" page should load at `localhost:8000/claiming-social-security/`.  
 
 ### Usage notes
-- The app is set up to run inside [consumerfinance.gov](http://www.consumerfinance.gov), so if you run it locally, some fonts may not load because of Cross-Origin Resource Sharing rules.
+- The app is set up to run inside [consumerfinance.gov](http://www.consumerfinance.gov), so if you run it locally, some fonts may not load because of [Cross-Origin Resource Sharing](http://www.w3.org/TR/cors/) policies.
 - The app sends http requests to the Social Security Administration's [Quick Calculator](http://www.ssa.gov/OACT/quickcalc/index.html) to get benefit estimates for the chart. 
 
 ### How to run software tests
