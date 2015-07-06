@@ -22,6 +22,11 @@ search = "query"
 
 # XPATH LOCATORS
 button = "//button[text()='Sign up']"
+get_estimates_button = "//*[@id='get-your-estimates']"
+age_selector = "//*[@id='age-selector-response']/div[1]/h3/span"
+option_70 = "//*[@id='retirement-age-selector']/option[10]"
+age_selection_div = "//*[@id='age-selector-response']"
+fra_result_text = "//*[@id='graph-container']/div[1]/div[1]/p[1]/span[1]"
 
 
 class Base(object):
@@ -86,11 +91,71 @@ class Base(object):
         self.driver.save_screenshot(full_path)
 
     def get_page_title(self):
-        return (self.driver.title)
+        print "handles: %s" % self.driver.window_handles
+        print "current handle: %s" % self.driver.current_window_handle
+        print "current title: %s" % self.driver.title
+        return self.driver.title
 
     def get_current_url(self):
-        return (self.driver.current_url)
+        print "handles: %s" % self.driver.window_handles
+        print "current handle: %s" % self.driver.current_window_handle
+        print "current url: %s" % self.driver.current_url
+        return self.driver.current_url
 
-    def choose_age(self, age):
-        select = Select(self.driver.find_element_by_id(ret_age_selector))
-        select.select_by_visible_text(age)
+    def enter_month(self, month):
+        month_input = self.driver.find_element_by_id('bd-month')
+        month_input.send_keys(month)
+
+    def enter_day(self, day):
+        day_input = self.driver.find_element_by_id('bd-day')
+        day_input.send_keys(day)
+
+    def enter_year(self, year):
+        year_input = self.driver.find_element_by_id('bd-year')
+        year_input.send_keys(year)
+
+    def enter_income(self, income):
+        income_input = self.driver.find_element_by_id('salary-input')
+        income_input.send_keys(income)
+
+    def get_estimate(self):
+        estimate_button = self.driver.find_element_by_xpath(get_estimates_button)
+        estimate_button.click()
+        Utils().zzz(1)
+
+    def get_fra_result(self):
+        select = self.driver.find_element_by_xpath(fra_result_text)
+        return select.text
+
+    def choose_retirement_age(self, retirement_age):
+        age_selector = Select(self.driver.find_element_by_id("retirement-age-selector"))
+        age_selector.select_by_value(retirement_age)
+        # Utils().zzz(1)
+
+    def click_link(self, link_text):
+        element = self.driver.find_element_by_link_text(link_text)
+        script = "arguments[0].scrollIntoView(true);"
+        self.driver.execute_script(script, element)
+        element.click()
+
+    def get_blank_handle_title(self):
+        blank_handle = self.driver.window_handles[1]
+        self.driver.switch_to.window(blank_handle)
+        # print "handles: %s" % self.driver.window_handles
+        # print "current handle: %s" % self.driver.current_window_handle
+        # print "current title: %s" % self.driver.title
+        return self.driver.title
+
+    def get_blank_handle_url(self):
+        blank_handle = self.driver.window_handles[1]
+        self.driver.switch_to.window(blank_handle)
+        # print "handles: %s" % self.driver.window_handles
+        # print "current handle: %s" % self.driver.current_window_handle
+        # print "current url: %s" % self.driver.current_url
+        return self.driver.current_url
+
+    def get_age_choice_result(self):
+        age_div = self.driver.find_element_by_xpath(age_selection_div)
+        for div in age_div.find_elements_by_tag_name('div'):
+            if div.is_displayed():
+                return div.find_element_by_class_name("age-response-value").text
