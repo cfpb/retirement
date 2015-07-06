@@ -3,12 +3,12 @@ import sys
 import json
 import datetime
 
+import requests
 import mock
 import unittest
 
-from ..check_api import Collector, print_msg, check_data, run
+from ..check_api import Collector, print_msg, check_data, run, TimeoutError
 timestamp = datetime.datetime.now()
-
 
 class TestApi(unittest.TestCase):
     """test the tester"""
@@ -64,11 +64,23 @@ class TestApi(unittest.TestCase):
         print "target_text: %s" % target_text
         self.assertTrue(test_text == target_text)
 
-    @mock.patch('retirement.retirement_api.utils.check_api.requests')
+    @mock.patch('retirement.retirement_api.utils.check_api.requests.get')
     @mock.patch('retirement.retirement_api.utils.check_api.print_msg')
     def test_run(self, mock_print_msg, mock_requests):
         mock_requests.return_value.text = json.dumps(self.test_data)
         mock_requests.return_value.status_code = 200
         mock_print_msg.return_value = ',%s,,,mock error,,,' % self.test_collector.date
-        run('fake.com')
+        run('fakeplaceholder.com')
         self.assertTrue(mock_print_msg.call_count == 1)
+        mock_requests.side_effect = requests.ConnectionError
+        run('fakeplaceholder.com')
+        self.assertTrue(mock_print_msg.call_count == 2)
+        # self.assertEqual(mock_collector.error, 'Server connection error')
+        mock_requests.side_effect = TimeoutError
+        run('fakeplaceholder.com')
+        self.assertTrue(mock_print_msg.call_count == 3)
+        mock_requests.return_value.status_code = 404
+        run('fakeplaceholder.com')
+        self.assertTrue(mock_print_msg.call_count == 4)
+
+        # self.assertTrue('SSA request exceeded' in mock_collector2.error)

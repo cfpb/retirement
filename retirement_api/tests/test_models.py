@@ -9,28 +9,33 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
+
 class ViewModels(TestCase):
 
-    testcase = AgeChoice.objects.get(age=62)
-    testquestion = Question.objects.all()[0]
-    teststep = Step.objects.all()[0]
-    testpage = Page.objects.all()[0]
-    testtip = Tooltip.objects.all()[0]
+    testagechoice = AgeChoice(age=62, aside="Aside.")
+    testquestion = Question(title="Test Question")
+    teststep = Step(title="Test Step")
+    testpage = Page(title="Page title", intro="Intro")
+    testtip = Tooltip(title="Test Tooltip")
 
     def test_get_subhed(self):
-        tc = AgeChoice.objects.get(age=62)
+        tc = self.testagechoice
         self.assertTrue("You've chosen age 62" in tc.get_subhed())
 
-    def test_question_slug(self):
+    @mock.patch('retirement_api.models.Question.save')
+    def test_question_slug(self, mock_save):
+        mock_save.return_value = "test_q"
         question_slugger = Question(title='test q')
         question_slugger.save()
-        self.assertTrue(question_slugger.slug == "test_q")
-        question_slugger.delete()
+        self.assertTrue(mock_save.call_count == 1)
 
     def test_question_translist(self):
         tlist = self.testquestion.translist()
         self.assertTrue(type(tlist) == list)
-        for term in ['question', 'answer_yes_a', 'answer_no_b', 'answer_unsure_a_subhed']:
+        for term in ['question',
+                     'answer_yes_a',
+                     'answer_no_b',
+                     'answer_unsure_a_subhed']:
             self.assertTrue(term in tlist)
 
     def test_quesiton_dump(self):
@@ -46,10 +51,10 @@ class ViewModels(TestCase):
             mock_open.return_value = mock.MagicMock(spec=file)
             self.testquestion.dump_translation_text(output=True)
             file_handle = mock_open.return_value.__enter__.return_value
-            file_handle.write.assert_call_count==5
+            file_handle.write.assert_call_count == 5
 
     def test_agechoice_translist(self):
-        tlist = self.testcase.translist()
+        tlist = self.testagechoice.translist()
         self.assertTrue(type(tlist) == list)
 
     def test_step_translist(self):

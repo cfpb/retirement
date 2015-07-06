@@ -24,23 +24,23 @@ msgid "Consumer Financial Protection Bureau"
 msgstr "Oficina para la Protección Financiera del Consumidor"
 
 #: templates/claiming.html
-msgid "Claiming Social Security— a choice to fit your lifestyle"
+msgid "Claiming Social Security—choices to fit your needs"
 msgstr "Reclamando Seguridad Social– una opción para adaptarse a su estilo de vida"
 
 #: templates/claiming.html
-msgid "Your claiming decision has a big impact. We're here to help you maximize your lifetime income."
+msgid "The age you claim your benefits matters for your lifetime income. We'll help you think through this important decision."
 msgstr "Su decisión alegando tiene un gran impacto. Estamos aquí para ayudarle a maximizar sus ingresos de por vida."
 
 #: templates/claiming.html
-msgid "Explore how claiming age affects your Social Security benefit"
+msgid "Explore how your claiming age affects your Social Security retirement benefits"
 msgstr "Explorar cómo reclamar la edad afecta sus beneficios de jubilación del Seguro Social"
 
 #: templates/claiming.html
-msgid "Enter your data to update the example below."
+msgid "Enter your information below to see your estimated benefits."
 msgstr "Introduzca sus datos para actualizar el ejemplo siguiente."
 
 #: templates/claiming.html
-msgid "We base our estimate on formulas from the Social Security Administration. Your information is not saved, is anonymous, and is used only to generate estimates during this session."
+msgid "We base your benefit estimate on current formulas from the Social Security Administration using your age and current income. Your answers are anonymous. Because we do not access or use your Social Security earnings record, your actual benefits may vary from this estimate."
 msgstr "Basamos nuestra estimación de las fórmulas de la Administración del Seguro Social. Su información no se guarda, es anónima, y ​​sólo se utiliza para generar estimaciones durante esta sesión."
 
 #: templates/claiming.html:224
@@ -385,4 +385,12 @@ msgstr "Entrar su ingreso de trabajo total antes de impuestos y otras deduccione
 #: 
 msgid "Widowed"
 msgstr "Viuda"
+
+#: 
+msgid "Consider these five factors"
+msgstr "Tener en cuenta estos cinco factores"
+
+#: 
+msgid "Take your next steps"
+msgstr "Tomar sus siguientes pasos"
 

@@ -31,6 +31,7 @@ retire.db
 
 # Unit test / coverage reports
 #################
+environment.cfg
 cover/
 ssa.json
 htmlcov/

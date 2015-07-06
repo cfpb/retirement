@@ -100,18 +100,25 @@ form {
   width: 100%;
   position: absolute;
   z-index: 0;
-  background-image: url('../images/retirement-hero.png');
+  /*background-image: url('../images/retirement-hero.png');
   background-position: 700px 65px;
   background-repeat: no-repeat;
-  background-size: 40%;
+  background-size: 665px auto;*/
 }
 
 #claiming-social-security .claiming-hero {
-  margin-bottom: 30px;
-  padding: 70px 0px 75px;
+  margin-bottom: 0px;
+  padding: 60px 0px 30px 0px;
   width: 100%;
-  height: 205px;
+  /* height: 205px; */
   position: relative;
+  background-color: #FFCE8D;
+  background-image: url('../images/retirement-hero.png');
+  background-origin: content-box;
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: 665px auto;
+
 }
 
 #claiming-social-security .claiming-hero h1 {
@@ -500,7 +507,7 @@ form {
    Medium and small screens
 ==================================================================== */
 
-@media (max-width: 1051px) {
+@media (max-width: 1190px) {
   #claiming-social-security #maincontent {
     box-sizing: border-box;
     width: 100%;
@@ -517,7 +524,7 @@ form {
    Medium screens
 ==================================================================== */
 
-@media (max-width: 1051px) and (min-width: 768px) {
+@media (max-width: 1190px) and (min-width: 850px) {
   #claiming-social-security #claiming-hero-bg {
     display: none;
   }
@@ -530,7 +537,7 @@ form {
     background-repeat: no-repeat;
     background-size: 350px auto;
     margin: 0 -20px 10px -20px;
-    padding: 40px 20px;
+    padding: 60px 30px;
     width: auto;
   }
 
@@ -618,7 +625,7 @@ form {
    Small screens
 ==================================================================== */
 
-@media (max-width: 767px) {
+@media (max-width: 850px) {
   #claiming-social-security .content-l {
     margin-left: 0;
     margin-right: 0;
@@ -629,25 +636,35 @@ form {
     display: block;
     width: auto;
   }
-
   #claiming-social-security #claiming-hero-bg {
     display: none;
   }
 
   #claiming-social-security .claiming-hero {
+    padding-left: 20px;
+    padding-right: 20px;
     background-color: #FFCE8D;
-    background-image: url('../images/retirement-hero.png');
-    background-position: center 20px;
-    background-repeat: no-repeat;
-    background-size: auto 100px;
-    margin: 0 -20px 10px -20px;
-    padding: 140px 20px 10px 20px;
+    background-image: none;
+    margin: 0 -20px 0px -20px;
+    padding: 30px 15px;
     width: auto;
+  }
+
+    /* Reduce font size, for spacing and readability. H1/H2 sizes shift to H2/H4. */
+  #claiming-social-security .claiming-hero h1 {
+    font-size: 1.625em;
+  }
+  #claiming-social-security .claiming-hero p {
+    font-size: 1.125em;
   }
 
   #claiming-social-security .claiming-hero h1,
   #claiming-social-security .claiming-hero p {
     width: 100%;
+  }
+
+  #claiming-social-security .claiming-hero p {
+    margin-bottom: 0px;
   }
 
   #claiming-social-security .birthdate-inputs p,
