@@ -450,6 +450,7 @@ form {
   font-family: "AvenirNextLTW01-Medium", Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
+  min-width: 195px;
   width: 16.6666666%;
 }
 
