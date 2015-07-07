@@ -151,7 +151,7 @@ form {
 }
 
 #claiming-social-security .step-one {
-  padding-top: 20px;
+  padding-top: 60px;
   padding-bottom: 14px;
 }
 
@@ -546,8 +546,8 @@ form {
     background-position: right center;
     background-repeat: no-repeat;
     background-size: 570px auto;
-    margin: 0 -20px 10px -20px;
-    padding: 60px 30px;
+    margin: 0 -20px 0px -20px;
+    padding: 60px 15px;
     width: auto;
   }
 
@@ -676,6 +676,14 @@ form {
   #claiming-social-security .claiming-hero p {
     margin-bottom: 0px;
   }
+
+  #claiming-social-security .step-one {
+    padding-top: 30px;
+  }
+
+  #claiming-social-security .step-one h2 {
+    border-left: none;
+  }
 }
 
 
@@ -726,6 +734,10 @@ form {
 
   #claiming-social-security .claiming-hero p {
     margin-bottom: 0px;
+  }
+
+  #claiming-social-security .step-one {
+    padding-top: 30px;
   }
 
   #claiming-social-security .step-one h2 {
