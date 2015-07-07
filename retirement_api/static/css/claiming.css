@@ -519,11 +519,13 @@ form {
   }
 }
 
+
 /* ====================================================================
    Medium screens
 ==================================================================== */
 
-@media (max-width: 1190px) and (min-width: 850px) {
+
+@media (max-width: 1190px) and (min-width: 1045px) {
   #claiming-social-security #claiming-hero-bg {
     display: none;
   }
@@ -619,6 +621,54 @@ form {
     margin-left: 30px;
   }
 }
+
+@media (max-width: 1045px) and (min-width: 850px) {
+
+  #claiming-social-security .content-l {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #claiming-social-security .content-l_col {
+    border: none;
+    display: block;
+    width: auto;
+  }
+  #claiming-social-security #claiming-hero-bg {
+    display: none;
+  }
+
+  #claiming-social-security .claiming-hero {
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #FFCE8D;
+    background-image: none;
+    margin: 0 -20px 0px -20px;
+    padding: 30px 15px;
+    width: auto;
+  }
+
+  /* Reduce font size, for spacing and readability. H1->H2, H2->H3, H3->H4. */
+  #claiming-social-security #maincontent h1 {
+    font-size: 1.625em;
+  }
+  #claiming-social-security #maincontent h2, #claiming-social-security .claiming-hero p {
+    font-size: 1.375em;
+  }
+  #claiming-social-security #maincontent .h3 {
+    font-size: 1.125em;
+  }
+
+  #claiming-social-security .claiming-hero h1,
+  #claiming-social-security .claiming-hero p {
+    width: 100%;
+  }
+
+  #claiming-social-security .claiming-hero p {
+    margin-bottom: 0px;
+  }
+}
+
 
 /* ====================================================================
    Small screens
