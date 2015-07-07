@@ -17,45 +17,28 @@
     'fullRetirementAge': "67"
   };
 
-  // Raphael object
+  // Raphael object for bar graph
   var barGraph;
 
   // Raphael elements
-  var indicator,
-      minAgeText,
-      maxAgeText;
+  var indicator = false,
+      blackLine,
+      graphBackground;
+
+  // Objects to contain Raphael individual bars
   var bars = {};
 
   // Graph settings
-  if ($(window).width() < 768) {
-    var barGraphHeight = 280,
-      gutterWidth = 10,
-      barWidth = ($(window).width() - 40 - (gutterWidth * 8)) / 9,
-      indicatorWidth = 36,
-      indicatorSide = 30,
-      graphWidth = 400; 
-  }
-
-  else if ($(window).width() >= 768 && $(window).width() < 1051) {
-    var barGraphHeight = 280,
-      gutterWidth = 10,
-      barWidth = (($(window).width() * 0.66666) - 40 - (gutterWidth * 8)) / 9,
-      indicatorWidth = 36,
-      indicatorSide = 30,
-      graphWidth = 400; 
-  }
-
-  else {
-    var barGraphHeight = 280,
-      barWidth = 40,
-      gutterWidth = 40,
-      indicatorWidth = 36,
-      indicatorSide = 30,
-      graphWidth = 600;      
-  }
-
-  var barGut = barWidth + gutterWidth, // Useful for quick calculations in graph
-      indicatorLeftSet = Math.ceil( ( barWidth - indicatorWidth ) / 2 );
+  var gset = {
+      'barGraphHeight' : 0,
+      'gutterWidth' : 0,
+      'barWidth' : 0,
+      'indicatorWidth' : 0,
+      'indicatorSide' : 0,
+      'graphWidth' : 0,
+      'barGut' : 0,
+      'indicatorLeftSet' : 0
+    }
 
   // global vars
   var ages = [62,63,64,65,66,67,68,69,70],
@@ -293,7 +276,7 @@
 
   /***-- setTextByAge(): Changes text of benefits and age fields based on selectedAge --***/
   function setTextByAge() {
-    var x = ages.indexOf( selectedAge ) * barGut + indicatorLeftSet,
+    var x = ages.indexOf( selectedAge ) * gset.barGut + gset.indicatorLeftSet,
         lifetimeBenefits = numToMoney( ( 85 - selectedAge ) * 12 * SSData[ 'age' + selectedAge ] ),
         fullAgeBenefitsValue = SSData[ 'age' + SSData.fullAge ],
         benefitsValue = SSData['age' + selectedAge],
@@ -315,14 +298,14 @@
     // set text and position for #benefits-text div
     $('#benefits-text').text( numToMoney( benefitsValue ) );
     benefitsTop = bars[ 'age' + selectedAge ].attr('y') - $('#benefits-text').height() - 10;
-    benefitsLeft = bars[ 'age' + selectedAge ].attr('x') - $('#benefits-text').width() / 2 + barWidth / 2;
+    benefitsLeft = bars[ 'age' + selectedAge ].attr('x') - $('#benefits-text').width() / 2 + gset.barWidth / 2;
     $('#benefits-text').css( 'top', benefitsTop );
     $('#benefits-text').css( 'left', benefitsLeft );
 
     // set text, position and visibility of #full-age-benefits-text
     $('#full-age-benefits-text').text( numToMoney( fullAgeBenefitsValue ) );
     fullAgeTop = bars[ 'age' + SSData.fullAge ].attr('y') - $('#full-age-benefits-text').height() - 10;
-    fullAgeLeft = bars[ 'age' + SSData.fullAge ].attr('x') - $('#full-age-benefits-text').width() / 2 + barWidth / 2;
+    fullAgeLeft = bars[ 'age' + SSData.fullAge ].attr('x') - $('#full-age-benefits-text').width() / 2 + gset.barWidth / 2;
     $('#full-age-benefits-text').css( 'top', fullAgeTop );
     $('#full-age-benefits-text').css( 'left', fullAgeLeft );
     if ( selectedAge === SSData.fullAge ) {
@@ -384,16 +367,16 @@
   --***/
   function moveIndicator(dx, dy) {
     var newX = indicator[0].odx + dx;
-    if ( newX > barGut * 8 ) {
-      newX = barGut * 8;
+    if ( newX > gset.barGut * 8 ) {
+      newX = gset.barGut * 8;
     }
     if ( newX < 0 ) {
       newX = 0;
     }
-    newX = Math.round( newX / ( barGut ) ) * ( barGut ) + indicatorLeftSet;
+    newX = Math.round( newX / ( gset.barGut ) ) * ( gset.barGut ) + gset.indicatorLeftSet;
     indicator.transform('t' + newX + ',0');
-    if ( selectedAge !== Math.round( newX / barGut ) ) {
-      selectedAge = 62 + Math.round( newX / barGut );
+    if ( selectedAge !== Math.round( newX / gset.barGut ) ) {
+      selectedAge = 62 + Math.round( newX / gset.barGut );
       // Don't let the user select an age younger than they are now
       if ( SSData.currentAge >= SSData.fullAge && selectedAge < SSData.currentAge ) {
         selectedAge = SSData.currentAge;
@@ -410,16 +393,21 @@
   function moveIndicatorToAge( age ) {
     age = Number( age );
     var iPosX = indicator[0].transform()[0][1];
-    var newX = Math.round( ages.indexOf( age ) ) * ( barGut ) + indicatorLeftSet;
+    var newX = Math.round( ages.indexOf( age ) ) * ( gset.barGut ) + gset.indicatorLeftSet;
     indicator[0].odx = iPosX;
     moveIndicator( ( newX - iPosX ), 0 );
   }
 
-  /***-- createIndicator(): draws the indicator --***/
-  function createIndicator() {
+  /***-- drawIndicator(): draws the indicator --***/
+  function drawIndicator() {
     var greenPath,
         whiteLines, // vision dreams of passion
         posX;
+
+    // Clear existing indicator, set up new one.
+    if ( typeof indicator === "object" ) {
+      indicator.remove();
+    }
     indicator = barGraph.set();
     
     // greenPath outlines and fills the indicator handle
@@ -436,7 +424,7 @@
 
     // set up initial indicator text and position
     selectedAge = SSData.fullAge;
-    posX = ages.indexOf( selectedAge ) * barGut + indicatorLeftSet  
+    posX = ages.indexOf( selectedAge ) * gset.barGut + gset.indicatorLeftSet  
     indicator.transform( 't' + posX + ',0' );
     selectedAge = SSData.fullAge;
 
@@ -452,10 +440,46 @@
     setTextByAge();
   }
 
+  /**
+    *
+    */
+  function setGraphDimensions() {
+    // Graph width settings
+    if ( $(window).width() < 768 ) {
+        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8;    
+        gset.barGraphHeight = 280;
+        gset.barWidth = gset.graphWidth / 15;
+        gset.gutterWidth = gset.graphWidth / 15;
+        gset.indicatorWidth = gset.graphWidth / 16.66666667;
+        gset.indicatorSide = gset.graphWidth / 20;
+    }
+
+    else if ( $(window).width() >= 768 && $(window).width() < 1051 ) {
+        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8;    
+        gset.barGraphHeight = 280;
+        gset.barWidth = gset.graphWidth / 15;
+        gset.gutterWidth = gset.graphWidth / 15;
+        gset.indicatorWidth = gset.graphWidth / 16.66666667;
+        gset.indicatorSide = gset.graphWidth / 20;
+    }
+
+    else {
+        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8;    
+        gset.barGraphHeight = 280;
+        gset.barWidth = gset.graphWidth / 15;
+        gset.gutterWidth = gset.graphWidth / 15;
+        gset.indicatorWidth = gset.graphWidth / 16.66666667;
+        gset.indicatorSide = gset.graphWidth / 20;
+    }
+    gset.barGut = gset.barWidth + gset.gutterWidth;
+    gset.indicatorLeftSet = Math.ceil( ( gset.barWidth - gset.indicatorWidth ) / 2 );
+
+  }
+
   /***-- drawBars(): draws and redraws the indicator bars for each age --***/
   function drawBars() {
     var leftOffset =  0;
-    var heightRatio = barGraphHeight / SSData['age70'];
+    var heightRatio = gset.barGraphHeight / SSData['age70'];
     $.each( ages, function(i, val) {
       var color = '#e3e4e5';
       var key = 'age' + val;
@@ -463,8 +487,8 @@
       if ( bars[key] !== undefined ) {
         bars[key].remove();
       }
-      bars[key] = barGraph.rect( leftOffset, 282 - height, barWidth, height);
-      leftOffset = leftOffset + barGut;
+      bars[key] = barGraph.rect( leftOffset, 282 - height, gset.barWidth, height);
+      leftOffset = leftOffset + gset.barGut;
       if ( val >= SSData.fullAge ) {
         color = '#aedb94';
       }
@@ -482,46 +506,67 @@
 
   /***-- drawGraphBackground(): draws the background lines for the chart --***/
   function drawGraphBackground() {
-    var graphBackground,
-        blackLine,
-        barInterval = barGraphHeight / 4,
-        totalWidth = ( barWidth * 9 ) + ( gutterWidth * 8 ),
-        yCoord = barGraphHeight + 1,
+    var barInterval = gset.barGraphHeight / 4,
+        totalWidth = ( gset.barWidth * 9 ) + ( gset.gutterWidth * 8 ),
+        yCoord = gset.barGraphHeight + 1,
         path = '';
-        
+
+    // remove existing background
+    if ( typeof graphBackground === "object" && typeof graphBackground.remove !== "undefined" ) {
+      graphBackground.remove();
+    }
+    // draw a new background
     for ( var i = 1; i <= 5; i++ ) {
       path = path + 'M 0 ' + yCoord + ' H' + totalWidth;
-      yCoord = barGraphHeight - Math.round( barInterval * i ) + 1;
+      yCoord = gset.barGraphHeight - Math.round( barInterval * i ) + 1;
     }
     graphBackground = barGraph.path( path );
     graphBackground.attr('stroke', '#E3E4E5');
 
-    blackLine = barGraph.path( 'M0 ' + ( barGraphHeight + 77 ) + ' H' + totalWidth );
+    // remove existing black line
+    if ( typeof blackLine === "object" && typeof blackLine.remove !== "undefined" ) {
+      blackLine.remove();
+    }
+    // draw a new black line
+    blackLine = barGraph.path( 'M0 ' + ( gset.barGraphHeight + 77 ) + ' H' + totalWidth );
     blackLine.attr('stroke', '#000')
   }
 
-  /***-- drawParts(): Draws graph background. Initializes the graph with bars and an indicator. Adds
-    the age text placed under each bar.  --***/
-  function drawParts() {
-    drawGraphBackground();
-    drawBars();
-    createIndicator();
-    $('#claim-canvas').width( barWidth * 9 + gutterWidth * 8 );
-    $('#claim-canvas').css( 'left', '40px');
+  /**
+    *
+    */
+  function drawAgeBoxes() {
     var leftOffset = 0;
+    // remove existing boxes
+    $( '#claim-canvas .age-text' ).remove();
     $.each( ages, function(i, val) {
+      var left,
+          ageDiv;
       $('#claim-canvas').append('<div class="age-text"><p class="h3">' + val + '</p></div>');
-      var ageDiv = $('#claim-canvas .age-text:last');
+      ageDiv = $('#claim-canvas .age-text:last');
       ageDiv.attr('data-age-value', val);
-      var left = Math.ceil( leftOffset + ( indicatorWidth - ageDiv.width() ) / 2 );
+      left = Math.ceil( leftOffset + ( gset.indicatorWidth - ageDiv.width() ) / 2 );
       ageDiv.css('left', left );
-      leftOffset = leftOffset + barGut;
+      leftOffset = leftOffset + gset.barGut;
     });
 
-    var minAgeLeft = Math.ceil( indicatorLeftSet + ( indicatorWidth - $('#min-age-text').width() ) / 2 );
+    var minAgeLeft = Math.ceil( gset.indicatorLeftSet + ( gset.indicatorWidth - $('#min-age-text').width() ) / 2 );
     $('#min-age-text').css( 'left', minAgeLeft );
-    var minAgeRight = Math.ceil( ( ages.length - 1 ) * barGut + indicatorLeftSet + ( indicatorWidth - $('#max-age-text').width() ) / 2 );
+    var minAgeRight = Math.ceil( ( ages.length - 1 ) * gset.barGut + gset.indicatorLeftSet + ( gset.indicatorWidth - $('#max-age-text').width() ) / 2 );
     $('#max-age-text').css( 'left', minAgeRight );
+  }
+
+  /** 
+    * redrawGraph(): Iterates each drawing function
+    */
+  function redrawGraph() {
+    setGraphDimensions();
+    drawGraphBackground();
+    drawBars();
+    drawIndicator();
+    drawAgeBoxes();
+    indicator.toFront();
+    moveIndicatorToAge( selectedAge );
   }
 
   /***-- resetView(): Draws new bars and updates text. For use after new data is received. --***/
@@ -538,7 +583,6 @@
   }
 
   $(document).ready( function() {
-    
     barGraph = new Raphael( $("#claim-canvas")[0] , 600, 400 );
     $('#claim-canvas svg').css('overflow', 'visible')
   
@@ -629,8 +673,7 @@
     });
 
     // Initialize the app
-    drawParts();
-    setTextByAge();
+    redrawGraph();
 
     // Tooltip handler
     $('[data-tooltip-target]').click( function() {
@@ -639,12 +682,13 @@
       toolTipper( $(this) );
     });
 
-    // Tooltip resize handler
+    // Window resize handler
     $(window).resize( function() {
       if ( $('#tooltip-container').is(':visible') ) {
         $('#tooltip-container').hide();
         toolTipper( $('[data-tooltip-current-target]') );        
       }
+      redrawGraph();
     });
   });
 // })(jQuery);

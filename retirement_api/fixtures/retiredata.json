@@ -67,7 +67,7 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"http://www.irs.gov/Retirement-Plans/Plan-Participant,-Employee/Retirement-Topics-Catch-Up-Contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan.\r\n", 
+        "instructions": "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"http://www.irs.gov/Retirement-Plans/Plan-Participant,-Employee/Retirement-Topics-Catch-Up-Contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able to  open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan.\r\n", 
         "title": "final_step_2_equal"
     }
 },
