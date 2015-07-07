@@ -37,7 +37,8 @@
       'indicatorSide' : 0,
       'graphWidth' : 0,
       'barGut' : 0,
-      'indicatorLeftSet' : 0
+      'indicatorLeftSet' : 0,
+      'barOffset' : 94
     }
 
   // global vars
@@ -445,43 +446,41 @@
     */
   function setGraphDimensions() {
     // Graph width settings
-    var canvasLeft = $( '#claim-canvas' ).css( 'left' ).replace(/\D/g, '' );
+    var canvasLeft = Number( $( '#claim-canvas' ).css( 'left' ).replace( /\D/g, '' ) );
+    canvasLeft += Number( $( '#claim-canvas' ).css( 'padding-left' ).replace( /\D/g, '' ) );
+
+    gset.graphWidth = $( '.canvas-container' ).width() - canvasLeft;
+    if ( gset.graphWidth > ( ( $( window ).width() - canvasLeft ) ) * .95 )  {
+      gset.graphWidth = ( $(window).width() - canvasLeft ) * .95;
+    }
+    gset.graphHeight = 380;
+    gset.barWidth = Math.floor( gset.graphWidth / 17 );
+    gset.gutterWidth = Math.floor( gset.graphWidth / 17 );
+    gset.indicatorWidth = 30;
+    gset.indicatorSide = gset.graphHeight / 20;
+
     if ( $(window).width() < 768 ) {
-        gset.graphWidth = $( '.canvas-container' ).width() - canvasLeft;    
-        gset.graphHeight = 280;
-        gset.barWidth = Math.floor( gset.graphWidth / 17 );
-        gset.gutterWidth = Math.floor( gset.graphWidth / 17 );
-        gset.indicatorWidth = 30;
-        gset.indicatorSide = gset.graphHeight / 20;
+
     }
 
     else if ( $(window).width() >= 768 && $(window).width() < 1051 ) {
-        gset.graphWidth = $( '.canvas-container' ).width() - canvasLeft;    
-        gset.graphHeight = 280;
-        gset.barWidth = Math.floor( gset.graphWidth / 17 );
-        gset.gutterWidth = Math.floor( gset.graphWidth / 17 );
-        gset.indicatorWidth = 30;
-        gset.indicatorSide = gset.graphHeight / 20;
+
     }
 
     else {
-        gset.graphWidth = $( '.canvas-container' ).width() - canvasLeft;    
-        gset.graphHeight = 280;
-        gset.barWidth = Math.floor( gset.graphWidth / 17 );
-        gset.gutterWidth = Math.floor( gset.graphWidth / 17 );
-        gset.indicatorWidth = 30;
-        gset.indicatorSide = gset.graphHeight / 20;
+
     }
     gset.barGut = gset.barWidth + gset.gutterWidth;
     gset.indicatorLeftSet = Math.ceil( ( gset.barWidth - gset.indicatorWidth ) / 2 );
-    barGraph.setSize( gset.graphWidth - 15, gset.graphHeight );
-    $( '#claim-canvas, .x-axis-label' ).width( gset.graphWidth - 15 );
+    barGraph.setSize( gset.graphWidth, gset.graphHeight );
+    $( '#claim-canvas, .x-axis-label' ).width( gset.graphWidth );
+    console.log( gset.graphWidth );
   }
 
   /***-- drawBars(): draws and redraws the indicator bars for each age --***/
   function drawBars() {
     var leftOffset =  0;
-    var heightRatio = gset.graphHeight / SSData['age70'];
+    var heightRatio = ( gset.graphHeight - gset.barOffset ) / SSData['age70'];
     $.each( ages, function(i, val) {
       var color = '#e3e4e5';
       var key = 'age' + val;
@@ -489,7 +488,7 @@
       if ( bars[key] !== undefined ) {
         bars[key].remove();
       }
-      bars[key] = barGraph.rect( leftOffset, 282 - height, gset.barWidth, height);
+      bars[key] = barGraph.rect( leftOffset, gset.graphHeight - gset.barOffset - height, gset.barWidth, height);
       leftOffset = leftOffset + gset.barGut;
       if ( val >= SSData.fullAge ) {
         color = '#aedb94';
@@ -530,7 +529,7 @@
       blackLine.remove();
     }
     // draw a new black line
-    blackLine = barGraph.path( 'M0 ' + ( gset.graphHeight + 77 ) + ' H' + totalWidth );
+    blackLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 22 ) + ' H' + totalWidth );
     blackLine.attr('stroke', '#000')
   }
 
@@ -567,7 +566,6 @@
     drawBars();
     drawIndicator();
     drawAgeBoxes();
-    indicator.toFront();
     moveIndicatorToAge( selectedAge );
   }
 

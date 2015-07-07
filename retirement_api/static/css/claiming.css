@@ -53,7 +53,7 @@ form {
 
 #claiming-social-security .canvas-container .x-axis-label {
   position: relative;
-  top: 40px;
+  top: 0px;
   left: 40px;
 }
 
@@ -546,24 +546,24 @@ form {
     background-size: 570px auto;
     margin: 0 -20px 0px -20px;
     padding: 60px 15px;
-    width: auto;
+    width: 100%;
   }
 
   #claiming-social-security .claiming-hero h1,
   #claiming-social-security .claiming-hero p {
     padding-right: 575px;
-    width: auto;
+    width: 100%;
   }
 
   #claiming-social-security .step-one > .content-l_col {
     display: block;
-    width: auto;
+    width: 100%;
   }
 
   #claiming-social-security #graph-container {
     display: table;
     height: auto !important;
-    width: auto;
+    width: 100%;
   }
 
   #claiming-social-security #graph-container > .content-l_col-1-6 {
@@ -583,7 +583,7 @@ form {
 
   #claiming-social-security .step-two .content-l_col {
     display: block;
-    width: auto;
+    width: 100%;
   }
 
   #claiming-social-security div.question {
@@ -639,7 +639,7 @@ form {
   #claiming-social-security .content-l_col {
     border: none;
     display: block;
-    width: auto;
+    width: 100%;
   }
   #claiming-social-security #claiming-hero-bg {
     display: none;
@@ -652,7 +652,7 @@ form {
     background-image: none;
     margin: 0 -20px 0px -20px;
     padding: 30px 15px;
-    width: auto;
+    width: 100%;
   }
 
   /* Reduce font size, for spacing and readability. H1->H2, H2->H3, H3->H4. */
@@ -698,7 +698,7 @@ form {
   #claiming-social-security .content-l_col {
     border: none;
     display: block;
-    width: auto;
+    width: 100%;
   }
   #claiming-social-security #claiming-hero-bg {
     display: none;
@@ -711,7 +711,7 @@ form {
     background-image: none;
     margin: 0 -20px 0px -20px;
     padding: 30px 15px;
-    width: auto;
+    width: 100%;
   }
 
   /* Reduce font size, for spacing and readability. H1->H2, H2->H3, H3->H4. */
@@ -775,6 +775,7 @@ form {
   #claiming-social-security #graph-container {
     display: table;
     height: auto !important;
+    margin-left: -20px;
     width: 100%;
   }
 
