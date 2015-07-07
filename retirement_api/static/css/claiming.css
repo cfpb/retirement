@@ -44,7 +44,7 @@ form {
 }
 
 #claiming-social-security hr {
-  width: 101.4%;
+  
 }
 
 #claiming-social-security .canvas-container {
@@ -53,7 +53,7 @@ form {
 
 #claiming-social-security .canvas-container .x-axis-label {
   position: relative;
-  top: -30px;
+  top: 40px;
   left: 40px;
 }
 
