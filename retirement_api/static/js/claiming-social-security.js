@@ -22,8 +22,8 @@
 
   // Raphael elements
   var indicator = false,
-      minAgeText,
-      maxAgeText;
+      blackLine,
+      graphBackground;
 
   // Objects to contain Raphael individual bars
   var bars = {};
@@ -446,33 +446,30 @@
   function setGraphDimensions() {
     // Graph width settings
     if ( $(window).width() < 768 ) {
-        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8 - 20;    
+        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8;    
         gset.barGraphHeight = 280;
         gset.barWidth = gset.graphWidth / 15;
         gset.gutterWidth = gset.graphWidth / 15;
         gset.indicatorWidth = gset.graphWidth / 16.66666667;
         gset.indicatorSide = gset.graphWidth / 20;
-        console.log( gset );
     }
 
     else if ( $(window).width() >= 768 && $(window).width() < 1051 ) {
-        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8 - 20;    
+        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8;    
         gset.barGraphHeight = 280;
         gset.barWidth = gset.graphWidth / 15;
         gset.gutterWidth = gset.graphWidth / 15;
         gset.indicatorWidth = gset.graphWidth / 16.66666667;
         gset.indicatorSide = gset.graphWidth / 20;
-        console.log( gset );
     }
 
     else {
-        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8 - 20;    
+        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8;    
         gset.barGraphHeight = 280;
         gset.barWidth = gset.graphWidth / 15;
         gset.gutterWidth = gset.graphWidth / 15;
         gset.indicatorWidth = gset.graphWidth / 16.66666667;
         gset.indicatorSide = gset.graphWidth / 20;
-        console.log( gset );
     }
     gset.barGut = gset.barWidth + gset.gutterWidth;
     gset.indicatorLeftSet = Math.ceil( ( gset.barWidth - gset.indicatorWidth ) / 2 );
@@ -509,13 +506,16 @@
 
   /***-- drawGraphBackground(): draws the background lines for the chart --***/
   function drawGraphBackground() {
-    var graphBackground,
-        blackLine,
-        barInterval = gset.barGraphHeight / 4,
+    var barInterval = gset.barGraphHeight / 4,
         totalWidth = ( gset.barWidth * 9 ) + ( gset.gutterWidth * 8 ),
         yCoord = gset.barGraphHeight + 1,
         path = '';
-        
+
+    // remove existing background
+    if ( typeof graphBackground === "object" && typeof graphBackground.remove !== "undefined" ) {
+      graphBackground.remove();
+    }
+    // draw a new background
     for ( var i = 1; i <= 5; i++ ) {
       path = path + 'M 0 ' + yCoord + ' H' + totalWidth;
       yCoord = gset.barGraphHeight - Math.round( barInterval * i ) + 1;
@@ -523,6 +523,11 @@
     graphBackground = barGraph.path( path );
     graphBackground.attr('stroke', '#E3E4E5');
 
+    // remove existing black line
+    if ( typeof blackLine === "object" && typeof blackLine.remove !== "undefined" ) {
+      blackLine.remove();
+    }
+    // draw a new black line
     blackLine = barGraph.path( 'M0 ' + ( gset.barGraphHeight + 77 ) + ' H' + totalWidth );
     blackLine.attr('stroke', '#000')
   }
@@ -555,13 +560,13 @@
     * redrawGraph(): Iterates each drawing function
     */
   function redrawGraph() {
-    drawGraphBackground();
     setGraphDimensions();
+    drawGraphBackground();
     drawBars();
     drawIndicator();
     drawAgeBoxes();
     indicator.toFront();
-    moveIndicatorToAge( currentAge );
+    moveIndicatorToAge( selectedAge );
   }
 
   /***-- resetView(): Draws new bars and updates text. For use after new data is received. --***/
@@ -579,7 +584,6 @@
 
   $(document).ready( function() {
     barGraph = new Raphael( $("#claim-canvas")[0] , 600, 400 );
-    $('#claim-canvas').css( 'left', '40px');
     $('#claim-canvas svg').css('overflow', 'visible')
   
     // Event handlers

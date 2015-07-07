@@ -79,10 +79,8 @@ form {
 }
 
 #claim-canvas {
-  /*background-image: url('../graph-background.jpg');*/
-  background-repeat: repeat-x;
-  background-position: 0px 40px;
   position: relative;
+  left: 40px;
 }
 #claim-canvas text {
   font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
@@ -704,6 +702,10 @@ form {
 
   #claiming-social-security #estimated-benefits-input label:first-of-type {
     margin-top: 8px;
+  }
+
+  #claim-canvas {
+    left: 0px;
   }
 
   #claiming-social-security #graph-container {
