@@ -44,7 +44,7 @@ form {
 }
 
 #claiming-social-security hr {
-  
+
 }
 
 #claiming-social-security .canvas-container {
@@ -200,6 +200,7 @@ form {
   position: absolute;
   top: 292px;
   height: 75px;
+  text-align: center;
 }
 
 #claim-canvas .age-text.selected-age {
