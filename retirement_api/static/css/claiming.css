@@ -527,6 +527,10 @@ form {
     margin-bottom: 30px;
   }
 
+  #claiming-social-security .step-two .content-l_col {
+    width: 100%;
+  }
+
 }
 
 /* ====================================================================
@@ -582,14 +586,17 @@ form {
     width: 66.6666666%;
   }
 
-  #claiming-social-security .step-two .content-l_col {
-    display: block;
-    width: auto;
+  #claiming-social-security .content-l.step-two {
+    margin-top: 30px;
   }
 
   #claiming-social-security div.question {
     border-bottom: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+    margin-right: 25px;
     margin-bottom: 2em;
+    margin-left: 15px;
     padding-bottom: 2em;
   }
 
@@ -619,14 +626,9 @@ form {
     width: 200px !important;
   }
 
-  #claiming-social-security .step-two .lifestyle-question,
-  #claiming-social-security .step-two .lifestyle-response,
-  #claiming-social-security .step-two [data-answered] .lifestyle-btn.btn__grouped-first {
+  #claiming-social-security .step-two .lifestyle-question_container,
+  #claiming-social-security .step-two .lifestyle-response {
     margin-left: 230px;
-  }
-
-  #claiming-social-security .step-two .lifestyle-btn.btn__grouped-first {
-    margin-left: 30px;
   }
 }
 
@@ -752,10 +754,6 @@ form {
 
   #claiming-social-security .step-two div.question {
     border-top: 1px solid #ccc;
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
   }
 
   #claiming-social-security .question hr {
