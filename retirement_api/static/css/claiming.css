@@ -566,7 +566,7 @@ form {
 
   #claiming-social-security #graph-container > .content-l_col-1-2,
   #claiming-social-security #graph-container > .content-l_col-1-3 {
-    display: table-cell;
+    /*display: table-cell;*/
   }
 
   #claiming-social-security #graph-container > .content-l_col-1-2 {
