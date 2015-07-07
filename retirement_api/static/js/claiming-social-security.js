@@ -546,13 +546,12 @@
       $('#claim-canvas').append('<div class="age-text"><p class="h3">' + val + '</p></div>');
       ageDiv = $('#claim-canvas .age-text:last');
       ageDiv.attr('data-age-value', val);
-      left = Math.ceil( leftOffset + ( gset.indicatorWidth - ageDiv.width() ) / 2 );
-      ageDiv.css('left', left );
+
+      // set width to bar width (minus stroke width x2)
+      ageDiv.width( gset.barWidth );
+      ageDiv.css('left', leftOffset );
       leftOffset = leftOffset + gset.barGut;
     });
-
-    // set width to bar width (minus stroke width x2)
-    $( '#claim-canvas .age-text p' ).width( gset.barWidth - 2 );
 
     var minAgeLeft = Math.ceil( gset.indicatorLeftSet + ( gset.indicatorWidth - $('#min-age-text').width() ) / 2 );
     $('#min-age-text').css( 'left', minAgeLeft );
