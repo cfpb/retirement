@@ -113,10 +113,9 @@ form {
   background-color: #FFCE8D;
   background-image: url('../images/retirement-hero.png');
   background-origin: content-box;
-  background-position: right center;
+  background-position: right top;
   background-repeat: no-repeat;
-  background-size: 665px auto;
-
+  background-size: 570px auto;
 }
 
 #claiming-social-security .claiming-hero h1 {
@@ -150,7 +149,7 @@ form {
 }
 
 #claiming-social-security .step-one {
-  padding-top: 20px;
+  padding-top: 60px;
   padding-bottom: 14px;
 }
 
@@ -527,11 +526,13 @@ form {
 
 }
 
+
 /* ====================================================================
    Medium screens
 ==================================================================== */
 
-@media (max-width: 1190px) and (min-width: 850px) {
+
+@media (max-width: 1190px) and (min-width: 1045px) {
   #claiming-social-security #claiming-hero-bg {
     display: none;
   }
@@ -542,15 +543,15 @@ form {
     background-origin: content-box;
     background-position: right center;
     background-repeat: no-repeat;
-    background-size: 350px auto;
-    margin: 0 -20px 10px -20px;
-    padding: 60px 30px;
+    background-size: 570px auto;
+    margin: 0 -20px 0px -20px;
+    padding: 60px 15px;
     width: auto;
   }
 
   #claiming-social-security .claiming-hero h1,
   #claiming-social-security .claiming-hero p {
-    padding-right: 375px;
+    padding-right: 575px;
     width: auto;
   }
 
@@ -628,6 +629,62 @@ form {
   }
 }
 
+@media (max-width: 1045px) and (min-width: 850px) {
+
+  #claiming-social-security .content-l {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #claiming-social-security .content-l_col {
+    border: none;
+    display: block;
+    width: auto;
+  }
+  #claiming-social-security #claiming-hero-bg {
+    display: none;
+  }
+
+  #claiming-social-security .claiming-hero {
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #FFCE8D;
+    background-image: none;
+    margin: 0 -20px 0px -20px;
+    padding: 30px 15px;
+    width: auto;
+  }
+
+  /* Reduce font size, for spacing and readability. H1->H2, H2->H3, H3->H4. */
+  #claiming-social-security #maincontent h1 {
+    font-size: 1.625em;
+  }
+  #claiming-social-security #maincontent h2, #claiming-social-security .claiming-hero p {
+    font-size: 1.375em;
+  }
+  #claiming-social-security #maincontent .h3 {
+    font-size: 1.125em;
+  }
+
+  #claiming-social-security .claiming-hero h1,
+  #claiming-social-security .claiming-hero p {
+    width: 100%;
+  }
+
+  #claiming-social-security .claiming-hero p {
+    margin-bottom: 0px;
+  }
+
+  #claiming-social-security .step-one {
+    padding-top: 30px;
+  }
+
+  #claiming-social-security .step-one h2 {
+    border-left: none;
+  }
+}
+
+
 /* ====================================================================
    Small screens
 ==================================================================== */
@@ -657,11 +714,14 @@ form {
     width: auto;
   }
 
-    /* Reduce font size, for spacing and readability. H1/H2 sizes shift to H2/H4. */
-  #claiming-social-security .claiming-hero h1 {
+  /* Reduce font size, for spacing and readability. H1->H2, H2->H3, H3->H4. */
+  #claiming-social-security #maincontent h1 {
     font-size: 1.625em;
   }
-  #claiming-social-security .claiming-hero p {
+  #claiming-social-security #maincontent h2, #claiming-social-security .claiming-hero p {
+    font-size: 1.375em;
+  }
+  #claiming-social-security #maincontent .h3 {
     font-size: 1.125em;
   }
 
@@ -672,6 +732,10 @@ form {
 
   #claiming-social-security .claiming-hero p {
     margin-bottom: 0px;
+  }
+
+  #claiming-social-security .step-one {
+    padding-top: 30px;
   }
 
   #claiming-social-security .step-one h2 {
