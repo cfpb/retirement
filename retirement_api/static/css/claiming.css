@@ -641,6 +641,10 @@ form {
     margin-left: 230px;
   }
 
+  #claiming-social-security .step-two .lifestyle-response > p:last-child {
+    margin-bottom: 0;
+  }
+
   #claiming-social-security .content-l.step-two + hr {
     margin-top: 60px;
     margin-bottom: 60px;
@@ -767,6 +771,11 @@ form {
 
   #claiming-social-security .content-l.step-two h2 {
     margin-bottom: 0;
+  }
+
+  #claiming-social-security .content-l.step-two h3.lifestyle-question {
+    font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+    font-size: 22px;
   }
 
   #claiming-social-security .question {
