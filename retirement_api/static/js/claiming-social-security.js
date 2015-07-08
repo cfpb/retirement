@@ -47,7 +47,7 @@
       currentAge = 0;
 
   /***-- delay(): Delay a function ---**/
-  var delay = (function(){ 
+  var delay = (function(){
     var t = 0;
     return function(callback, delay) {
       clearTimeout(t);
@@ -56,7 +56,7 @@
   })(); // end delay()
 
   /***-- numToMoney(n): Convert from number to money string ---**/
-  function numToMoney(n) { 
+  function numToMoney(n) {
     // When n is a string, we should, ironically, strip its numbers first.
     if (typeof n === 'string') {
         n =  Number(n.replace(/[^0-9\.]+/g,""));
@@ -95,8 +95,8 @@
     return age;
   }
 
-  /***-- enforceRange(n, min, max): ensures ( min <= n <= max ) is true 
-    NOTE: If min or max is 'false' then that min or max is not enforced  
+  /***-- enforceRange(n, min, max): ensures ( min <= n <= max ) is true
+    NOTE: If min or max is 'false' then that min or max is not enforced
     ---**/
   function enforceRange(n, min, max) {
     if ( n > max && max !== false ) {
@@ -138,8 +138,8 @@
       $('#get-your-estimates').attr('disabled', true).addClass('btn__disabled');
     }
   }
-  /** 
-    * 
+  /**
+    *
     */
   function highlightAgeFields( bool ) {
     if ( bool ) {
@@ -165,7 +165,7 @@
     $('#bd-day').val( dates['day'] );
     $('#bd-month').val( dates['month'] );
     $('#bd-year').val( dates['year'] );
-    
+
     var url = '/retirement/retirement-api/estimator/' + dates.concat + '/' + Number(salary) + '/';
     var response = "";
     currentAge = calculateAge( month, day, year );
@@ -177,7 +177,7 @@
     else {
       $('.lifestyle-btn.age-split').each( function() {
         $(this).val( $(this).attr('data-base-value') + '-over50' );
-      });    
+      });
     }
     $.get( url )
       .done( function( dump ) {
@@ -189,7 +189,7 @@
               SSData[key] = val;
             }
           });;
-          SSData.currentAge = dump.current_age; 
+          SSData.currentAge = dump.current_age;
           SSData.fullRetirementAge = data['full retirement age'];
           SSData.earlyRetirementAge = data['early retirement age'];
           SSData.fullAge = Number( data['full retirement age'].substr(0,2) );
@@ -205,7 +205,7 @@
         }
         else {
           $( '.cf-notification' ).slideDown();
-          $( '.cf-notification .cf-notification_text' ).html( dump.note );   
+          $( '.cf-notification .cf-notification_text' ).html( dump.note );
           if ( dump.current_age >= 71 || dump.current_age < 21 ) {
             highlightAgeFields( true );
           }
@@ -246,7 +246,7 @@
         newLeft,
         tipset;
 
-    ttc.width( $('#claiming-social-security').width() / 3 );  
+    ttc.width( $('#claiming-social-security').width() / 3 );
 
     ttc.find('.content').html( content );
     $('[data-tooltip-current-target]').removeAttr('data-tooltip-current-target');
@@ -265,7 +265,7 @@
     tipOffset = Math.floor( ttc.outerWidth() / 2 );
     innerTip.css("left", Math.floor( tipOffset - ( innerTip.outerWidth() / 2 ) ) );
     outerTip.css("left", Math.floor( tipOffset - ( outerTip.outerWidth() / 2 ) ) );
-    
+
     $( 'html' ).on('click', 'body:not(#tooltip-container a)', function() {
         ttc.hide();
         ttc.find( '.content' ).html('');
@@ -293,7 +293,7 @@
     toggleMonthlyAnnual();
 
     $( '#claim-canvas .age-text' ).removeClass( 'selected-age' );
-    // Set selected-age 
+    // Set selected-age
     $('#claim-canvas .age-text[data-age-value="' + selectedAge + '"]').addClass('selected-age'),
 
     // set text and position for #benefits-text div
@@ -321,17 +321,17 @@
 
     // Set extra text for early and full retirement ages
     if ( selectedAge === 70 ) {
-      $('.selected-retirement-age-value').text( 70 );      
+      $('.selected-retirement-age-value').text( 70 );
     }
     else if ( selectedAge === SSData.earlyAge ) {
-      $('.selected-retirement-age-value').text( SSData.earlyRetirementAge );      
+      $('.selected-retirement-age-value').text( SSData.earlyRetirementAge );
     }
     else if ( selectedAge === SSData.fullAge && SSData.currentAge < SSData.fullAge ) {
       $('.selected-retirement-age-value').text( SSData.fullRetirementAge   );
     }
     else {
       $('.selected-retirement-age-value').text( selectedAge );
-    }    
+    }
 
     // Graph content
     $('.graph-content .content-container').hide();
@@ -342,7 +342,7 @@
       $('.graph-content .content-container.early-retirement').show();
     }
     else {
-      $('.graph-content .content-container.full-retirement').show();  
+      $('.graph-content .content-container.full-retirement').show();
     }
 
     if ( selectedAge === SSData.fullAge ) {
@@ -388,7 +388,7 @@
     }
   };
 
-  /***-- moveIndicatorToAge(age): Uses moveIndicator to move the indicator to age 
+  /***-- moveIndicatorToAge(age): Uses moveIndicator to move the indicator to age
     NOTE: This function is all that's require to change the chart to a different age
   --***/
   function moveIndicatorToAge( age ) {
@@ -410,12 +410,12 @@
       indicator.remove();
     }
     indicator = barGraph.set();
-    
+
     // greenPath outlines and fills the indicator handle
     greenPath = barGraph.path( 'M0 372 H34 V342 L17 337 L0 342 V372' )
     greenPath.attr( { 'fill': '#34b14f', 'stroke': '#34b14f' } ) ;
     greenPath.node.id = "indicator-handle";
-    
+
     // whiteLines are the three lines on the indicator handle
     whiteLines = barGraph.path( 'M12 362 V352 M17 364.5 V349.5 M22 362 V352');
     whiteLines.attr( { 'fill': '#fff', 'stroke': '#fff' } );
@@ -425,7 +425,7 @@
 
     // set up initial indicator text and position
     selectedAge = SSData.fullAge;
-    posX = ages.indexOf( selectedAge ) * gset.barGut + gset.indicatorLeftSet  
+    posX = ages.indexOf( selectedAge ) * gset.barGut + gset.indicatorLeftSet
     indicator.transform( 't' + posX + ',0' );
     selectedAge = SSData.fullAge;
 
@@ -546,8 +546,10 @@
       $('#claim-canvas').append('<div class="age-text"><p class="h3">' + val + '</p></div>');
       ageDiv = $('#claim-canvas .age-text:last');
       ageDiv.attr('data-age-value', val);
-      left = Math.ceil( leftOffset + ( gset.indicatorWidth - ageDiv.width() ) / 2 );
-      ageDiv.css('left', left );
+
+      // set width to bar width (minus stroke width x2)
+      ageDiv.width( gset.barWidth );
+      ageDiv.css('left', leftOffset );
       leftOffset = leftOffset + gset.barGut;
     });
 
@@ -557,7 +559,7 @@
     $('#max-age-text').css( 'left', minAgeRight );
   }
 
-  /** 
+  /**
     * redrawGraph(): Iterates each drawing function
     */
   function redrawGraph() {
@@ -585,7 +587,7 @@
   $(document).ready( function() {
     barGraph = new Raphael( $("#claim-canvas")[0] , 600, 400 );
     // $('#claim-canvas svg').css('overflow', 'visible')
-  
+
     // Event handlers
     $( 'input[name="benefits-display"]' ).click( function() {
       setTextByAge();
@@ -686,7 +688,7 @@
     $(window).resize( function() {
       if ( $('#tooltip-container').is(':visible') ) {
         $('#tooltip-container').hide();
-        toolTipper( $('[data-tooltip-current-target]') );        
+        toolTipper( $('[data-tooltip-current-target]') );
       }
       redrawGraph();
     });
