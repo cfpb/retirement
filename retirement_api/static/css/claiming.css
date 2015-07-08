@@ -44,7 +44,7 @@ form {
 }
 
 #claiming-social-security hr {
-  
+
 }
 
 #claiming-social-security .canvas-container {
@@ -182,7 +182,7 @@ form {
 
 #claiming-social-security #graph-container .content-l_col {
   margin-top: 0px;
-  padding: 45px 0;
+  padding: 45px 0 60px 0;
 }
 
 #claiming-social-security .step-one .content-l_col {
@@ -200,6 +200,7 @@ form {
   position: absolute;
   top: 292px;
   height: 75px;
+  text-align: center;
 }
 
 #claim-canvas .age-text.selected-age {
@@ -449,6 +450,7 @@ form {
   font-family: "AvenirNextLTW01-Medium", Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
+  min-width: 195px;
   width: 16.6666666%;
 }
 
@@ -518,13 +520,15 @@ form {
     margin-bottom: 30px;
   }
 
+  #claiming-social-security .step-two .lifestyle-response > p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 
 /* ====================================================================
    Medium screens
 ==================================================================== */
-
 
 @media (max-width: 1190px) and (min-width: 1045px) {
   #claiming-social-security #claiming-hero-bg {
@@ -540,54 +544,115 @@ form {
     background-size: 570px auto;
     margin: 0 -20px 0px -20px;
     padding: 60px 15px;
-    width: 100%;
+    width: auto;
   }
 
   #claiming-social-security .claiming-hero h1,
   #claiming-social-security .claiming-hero p {
     padding-right: 575px;
+    width: auto;
+  }
+}
+
+@media (max-width: 1044px) and (min-width: 850px) {
+  #claiming-social-security #claiming-hero-bg {
+    display: none;
+  }
+
+  #claiming-social-security .claiming-hero {
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #FFCE8D;
+    background-image: none;
+    margin: 0 -20px 0px -20px;
+    padding: 30px 15px;
+    width: auto;
+  }
+
+  #claiming-social-security .claiming-hero h1,
+  #claiming-social-security .claiming-hero p {
     width: 100%;
   }
 
-  #claiming-social-security .step-one > .content-l_col {
-    display: block;
+  #claiming-social-security .claiming-hero p {
+    margin-bottom: 0px;
+  }
+
+  /* Reduce font size, for spacing and readability. H1->H2, H2->H3, H3->H4. */
+  #claiming-social-security #maincontent h1 {
+    font-size: 1.625em;
+  }
+  #claiming-social-security #maincontent h2, #claiming-social-security .claiming-hero p {
+    font-size: 1.375em;
+  }
+  #claiming-social-security #maincontent .h3 {
+    font-size: 1.125em;
+  }
+
+  #claiming-social-security .step-one {
+    padding-top: 30px;
+  }
+
+  #claiming-social-security .step-one .content-l_col-2-3,
+  #claiming-social-security .estimate-info {
     width: 100%;
   }
 
-  #claiming-social-security #graph-container {
-    display: table;
-    height: auto !important;
-    width: 100%;
+  #claiming-social-security .step-one h2 {
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
   }
 
-  #claiming-social-security #graph-container > .content-l_col-1-6 {
-    caption-side: bottom;
-    display: table-caption;
-    width: 100%;
+  #claiming-social-security #graph-container .content-l_col-1-3 {
+    width: 40%;
   }
 
-  #claiming-social-security #graph-container > .content-l_col-1-2,
-  #claiming-social-security #graph-container > .content-l_col-1-3 {
-    /*display: table-cell;*/
+  #claiming-social-security #graph-container .content-l_col-2-3 {
+    width: 60%;
   }
 
-  #claiming-social-security #graph-container > .content-l_col-1-2 {
-    width: 66.6666666%;
+  #claiming-social-security #maincontent .h3.selected-retirement-age {
+    font-size: 1.375em;
+  }
+
+  #claiming-social-security .content-l.step-two {
+    margin-top: 0;
+    margin-right: 15px;
+    margin-left: 0;
   }
 
   #claiming-social-security .step-two .content-l_col {
-    display: block;
+    border-right: none;
+    border-left: none;
+    margin-right: 0;
     width: 100%;
   }
 
+  #claiming-social-security .content-l.step-two h2 {
+    margin-bottom: 0;
+  }
+
+  #claiming-social-security .content-l.step-two h2 + .question.h3 {
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+
   #claiming-social-security div.question {
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 2em;
-    padding-bottom: 2em;
+    border-top: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+    margin-right: 25px;
+    margin-left: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  #claiming-social-security div.question.question-married {
+    border-top: none;
   }
 
   #claiming-social-security div.question.question-longevity {
-    border-bottom: none;
+    padding-bottom: 10px;
   }
 
   #claiming-social-security .question:before,
@@ -612,69 +677,18 @@ form {
     width: 200px !important;
   }
 
-  #claiming-social-security .step-two .lifestyle-question,
-  #claiming-social-security .step-two .lifestyle-response,
-  #claiming-social-security .step-two [data-answered] .lifestyle-btn.btn__grouped-first {
+  #claiming-social-security .step-two .lifestyle-question_container,
+  #claiming-social-security .step-two .lifestyle-response {
     margin-left: 230px;
   }
 
-  #claiming-social-security .step-two .lifestyle-btn.btn__grouped-first {
-    margin-left: 30px;
-  }
-}
-
-@media (max-width: 1045px) and (min-width: 850px) {
-
-  #claiming-social-security .content-l {
-    margin-left: 0;
-    margin-right: 0;
+  #claiming-social-security hr.before-step-two {
+    margin-bottom: 60px;
   }
 
-  #claiming-social-security .content-l_col {
-    border: none;
-    display: block;
-    width: 100%;
-  }
-  #claiming-social-security #claiming-hero-bg {
-    display: none;
-  }
-
-  #claiming-social-security .claiming-hero {
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: #FFCE8D;
-    background-image: none;
-    margin: 0 -20px 0px -20px;
-    padding: 30px 15px;
-    width: 100%;
-  }
-
-  /* Reduce font size, for spacing and readability. H1->H2, H2->H3, H3->H4. */
-  #claiming-social-security #maincontent h1 {
-    font-size: 1.625em;
-  }
-  #claiming-social-security #maincontent h2, #claiming-social-security .claiming-hero p {
-    font-size: 1.375em;
-  }
-  #claiming-social-security #maincontent .h3 {
-    font-size: 1.125em;
-  }
-
-  #claiming-social-security .claiming-hero h1,
-  #claiming-social-security .claiming-hero p {
-    width: 100%;
-  }
-
-  #claiming-social-security .claiming-hero p {
-    margin-bottom: 0px;
-  }
-
-  #claiming-social-security .step-one {
-    padding-top: 30px;
-  }
-
-  #claiming-social-security .step-one h2 {
-    border-left: none;
+  #claiming-social-security .content-l.step-two + hr {
+    margin-top: 60px;
+    margin-bottom: 60px;
   }
 }
 
@@ -683,7 +697,7 @@ form {
    Small screens
 ==================================================================== */
 
-@media (max-width: 850px) {
+@media (max-width: 849px) {
   #claiming-social-security .content-l {
     margin-left: 0;
     margin-right: 0;
@@ -692,7 +706,7 @@ form {
   #claiming-social-security .content-l_col {
     border: none;
     display: block;
-    width: 100%;
+    width: auto;
   }
   #claiming-social-security #claiming-hero-bg {
     display: none;
@@ -705,7 +719,7 @@ form {
     background-image: none;
     margin: 0 -20px 0px -20px;
     padding: 30px 15px;
-    width: 100%;
+    width: auto;
   }
 
   /* Reduce font size, for spacing and readability. H1->H2, H2->H3, H3->H4. */
@@ -740,8 +754,12 @@ form {
     max-width: 236px;
   }
 
-  #claiming-social-security .content-l_col.content-l_col-1-3 + .content-l_col.content-l_col-1-3 {
+  #claiming-social-security #step-one-form .content-l_col.content-l_col-1-3 + .content-l_col.content-l_col-1-3 {
     margin-top: 1.875em;
+  }
+
+  #claiming-social-security .content-l_col.content-l_col-1-3 + .content-l_col.content-l_col-1-3 {
+    margin-top: 0;
   }
 
   #claiming-social-security .birthdate-inputs p,
@@ -762,34 +780,6 @@ form {
     margin-top: 8px;
   }
 
-  #claim-canvas {
-    left: 0px;
-  }
-
-  #claiming-social-security #graph-container {
-    display: table;
-    height: auto !important;
-    margin-left: -20px;
-    width: 100%;
-  }
-
-  #claiming-social-security #graph-container > .content-l_col-1-6 {
-    caption-side: bottom;
-    display: table-caption;
-    width: 100%;
-  }
-
-  #claiming-social-security #claim-canvas {
-    overflow: hidden !important;
-    width: 100% !important;
-    margin-left: 40px;
-  }
-
-  #claiming-social-security #claim-canvas svg {
-    overflow: hidden !important;
-    width: 100% !important;
-  }
-
   #claiming-social-security #graph-container .content-l_col.benefits-comparison {
     margin-left: -20px;
     margin-right: -20px;
@@ -797,57 +787,89 @@ form {
     padding-right: 20px;
   }
 
-  #claiming-social-security #graph-container + hr {
-    display: none;
+  #claiming-social-security #graph-container .content-l_col {
+    padding-top: 15px;
+    padding-bottom: 30px;
   }
 
-  #claiming-social-security .step-two > .content-l_col-1-3:first-child {
-    border-top: 1px solid #ccc;
-    margin: 0 -20px;
-    padding: 20px 20px 0 20px;
+  #claiming-social-security .selected-retirement-age-container {
+    height: auto;
+    margin-top: 455px;
   }
 
-  #claiming-social-security .step-two + .step-two {
+  #claiming-social-security .canvas-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  #claiming-social-security .content-l.step-two {
     margin-top: 0;
   }
 
-  #claiming-social-security .step-two div.question {
-    border-top: 1px solid #ccc;
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
+  #claiming-social-security .step-two .content-l_col {
+    width: 100%;
   }
 
-  #claiming-social-security .question hr {
+  #claiming-social-security .content-l.step-two h2 {
+    margin-bottom: 0;
+  }
+
+  #claiming-social-security .content-l.step-two h3.lifestyle-question {
+    font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+    font-size: 22px;
+  }
+
+  #claiming-social-security .question {
+    border-bottom: 1px solid #ccc;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  #claiming-social-security .step-two .lifestyle-question_container {
+    margin-bottom: 0;
+  }
+
+  #claiming-social-security .lifestyle-question_container hr {
     display: none;
   }
 
   #claiming-social-security .step-two .lifestyle-img {
     display: inline-block;
-    margin: 20px 0;
+    margin-top: 0;
+    margin-bottom: 15px;
     max-width: 200px;
   }
 
-  #claiming-social-security [data-answered] h3 {
-    margin-top: 1em;
+  #claiming-social-security .content-l.step-two h2 + .question.h3 {
+    border-bottom: none;
+    margin-top: 15px;
+    margin-bottom: 0;
+    padding-top: 0;
   }
 
-  #claiming-social-security .question {
-    margin-top: 1.875em !important;
+  #claiming-social-security .question.question-married {
+    border-top: none;
+    padding-top: 0;
   }
 
   #claiming-social-security .question-longevity {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 1.875em;
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
-  #claiming-social-security .step-two + hr {
-    display: none;
+  #claiming-social-security .question-longevity .lifestyle-question_container {
+    margin-bottom: 0;
   }
 
-  #claiming-social-security .step-three {
-    margin-top: 1.875em;
+  #claiming-social-security .lifestyle-response {
+    margin-top: 30px;
+  }
+
+  #claiming-social-security hr.before-step-two,
+  #claiming-social-security .content-l.step-two + hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 }
 
