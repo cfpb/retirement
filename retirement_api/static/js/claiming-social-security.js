@@ -30,14 +30,15 @@
 
   // Graph settings
   var gset = {
-      'barGraphHeight' : 0,
+      'graphHeight' : 0,
       'gutterWidth' : 0,
       'barWidth' : 0,
       'indicatorWidth' : 0,
       'indicatorSide' : 0,
       'graphWidth' : 0,
       'barGut' : 0,
-      'indicatorLeftSet' : 0
+      'indicatorLeftSet' : 0,
+      'barOffset' : 94
     }
 
   // global vars
@@ -279,7 +280,7 @@
     var x = ages.indexOf( selectedAge ) * gset.barGut + gset.indicatorLeftSet,
         lifetimeBenefits = numToMoney( ( 85 - selectedAge ) * 12 * SSData[ 'age' + selectedAge ] ),
         fullAgeBenefitsValue = SSData[ 'age' + SSData.fullAge ],
-        benefitsValue = SSData['age' + selectedAge],
+        benefitsValue = SSData[ 'age' + selectedAge ],
         benefitsTop,
         benefitsLeft,
         fullAgeTop,
@@ -291,7 +292,7 @@
     }
     toggleMonthlyAnnual();
 
-    $('#claim-canvas .age-text').removeClass('selected-age');
+    $( '#claim-canvas .age-text' ).removeClass( 'selected-age' );
     // Set selected-age 
     $('#claim-canvas .age-text[data-age-value="' + selectedAge + '"]').addClass('selected-age'),
 
@@ -445,41 +446,41 @@
     */
   function setGraphDimensions() {
     // Graph width settings
+    var canvasLeft = Number( $( '#claim-canvas' ).css( 'left' ).replace( /\D/g, '' ) );
+    canvasLeft += Number( $( '#claim-canvas' ).css( 'padding-left' ).replace( /\D/g, '' ) );
+
+    gset.graphWidth = $( '.canvas-container' ).width() - canvasLeft;
+    if ( gset.graphWidth > ( ( $( window ).width() - canvasLeft ) ) * .95 )  {
+      gset.graphWidth = ( $(window).width() - canvasLeft ) * .95;
+    }
+    gset.graphHeight = 380;
+    gset.barWidth = Math.floor( gset.graphWidth / 17 );
+    gset.gutterWidth = Math.floor( gset.graphWidth / 17 );
+    gset.indicatorWidth = 30;
+    gset.indicatorSide = gset.graphHeight / 20;
+
     if ( $(window).width() < 768 ) {
-        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8;    
-        gset.barGraphHeight = 280;
-        gset.barWidth = gset.graphWidth / 15;
-        gset.gutterWidth = gset.graphWidth / 15;
-        gset.indicatorWidth = gset.graphWidth / 16.66666667;
-        gset.indicatorSide = gset.graphWidth / 20;
+
     }
 
     else if ( $(window).width() >= 768 && $(window).width() < 1051 ) {
-        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8;    
-        gset.barGraphHeight = 280;
-        gset.barWidth = gset.graphWidth / 15;
-        gset.gutterWidth = gset.graphWidth / 15;
-        gset.indicatorWidth = gset.graphWidth / 16.66666667;
-        gset.indicatorSide = gset.graphWidth / 20;
+
     }
 
     else {
-        gset.graphWidth = $( '.canvas-container' ).outerWidth() * .8;    
-        gset.barGraphHeight = 280;
-        gset.barWidth = gset.graphWidth / 15;
-        gset.gutterWidth = gset.graphWidth / 15;
-        gset.indicatorWidth = gset.graphWidth / 16.66666667;
-        gset.indicatorSide = gset.graphWidth / 20;
+
     }
     gset.barGut = gset.barWidth + gset.gutterWidth;
     gset.indicatorLeftSet = Math.ceil( ( gset.barWidth - gset.indicatorWidth ) / 2 );
-
+    barGraph.setSize( gset.graphWidth, gset.graphHeight );
+    $( '#claim-canvas, .x-axis-label' ).width( gset.graphWidth );
+    console.log( gset.graphWidth );
   }
 
   /***-- drawBars(): draws and redraws the indicator bars for each age --***/
   function drawBars() {
     var leftOffset =  0;
-    var heightRatio = gset.barGraphHeight / SSData['age70'];
+    var heightRatio = ( gset.graphHeight - gset.barOffset ) / SSData['age70'];
     $.each( ages, function(i, val) {
       var color = '#e3e4e5';
       var key = 'age' + val;
@@ -487,7 +488,7 @@
       if ( bars[key] !== undefined ) {
         bars[key].remove();
       }
-      bars[key] = barGraph.rect( leftOffset, 282 - height, gset.barWidth, height);
+      bars[key] = barGraph.rect( leftOffset, gset.graphHeight - gset.barOffset - height, gset.barWidth, height);
       leftOffset = leftOffset + gset.barGut;
       if ( val >= SSData.fullAge ) {
         color = '#aedb94';
@@ -506,9 +507,9 @@
 
   /***-- drawGraphBackground(): draws the background lines for the chart --***/
   function drawGraphBackground() {
-    var barInterval = gset.barGraphHeight / 4,
+    var barInterval = gset.graphHeight / 4,
         totalWidth = ( gset.barWidth * 9 ) + ( gset.gutterWidth * 8 ),
-        yCoord = gset.barGraphHeight + 1,
+        yCoord = gset.graphHeight + 1,
         path = '';
 
     // remove existing background
@@ -518,7 +519,7 @@
     // draw a new background
     for ( var i = 1; i <= 5; i++ ) {
       path = path + 'M 0 ' + yCoord + ' H' + totalWidth;
-      yCoord = gset.barGraphHeight - Math.round( barInterval * i ) + 1;
+      yCoord = gset.graphHeight - Math.round( barInterval * i ) + 1;
     }
     graphBackground = barGraph.path( path );
     graphBackground.attr('stroke', '#E3E4E5');
@@ -528,7 +529,7 @@
       blackLine.remove();
     }
     // draw a new black line
-    blackLine = barGraph.path( 'M0 ' + ( gset.barGraphHeight + 77 ) + ' H' + totalWidth );
+    blackLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 22 ) + ' H' + totalWidth );
     blackLine.attr('stroke', '#000')
   }
 
@@ -565,7 +566,6 @@
     drawBars();
     drawIndicator();
     drawAgeBoxes();
-    indicator.toFront();
     moveIndicatorToAge( selectedAge );
   }
 
@@ -584,7 +584,7 @@
 
   $(document).ready( function() {
     barGraph = new Raphael( $("#claim-canvas")[0] , 600, 400 );
-    $('#claim-canvas svg').css('overflow', 'visible')
+    // $('#claim-canvas svg').css('overflow', 'visible')
   
     // Event handlers
     $( 'input[name="benefits-display"]' ).click( function() {
