@@ -1,6 +1,6 @@
 {% extends base_template %}
 {% load i18n %}
-{% load static %}
+{% load staticfiles %}
 {% block content %}
 <script>
   if(document.getElementsByTagName("body")) {
@@ -201,7 +201,7 @@
       <p class="question h3">{% trans page.step2.instructions %}</p>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-married">
-      <img src="/retirement/static/images/lifestyle-married.png" class="lifestyle-img">
+      <img src="{% static "retirement/images/lifestyle-married.png" %}" class="lifestyle-img">
       <div class="lifestyle-question_container">
         <hr>
         <h3 class="lifestyle-question">{% trans questions.marriage.question %}</h3>
@@ -223,7 +223,7 @@
       </div>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-working age-split">
-      <img src="/retirement/static/images/lifestyle-working.png" class="lifestyle-img">
+      <img src="{% static "retirement/images/lifestyle-working.png" %}" class="lifestyle-img">
       <div class="lifestyle-question_container">
         <hr>
         <h3 class="lifestyle-question">{% trans questions.sixties.question %}</h3>
@@ -272,7 +272,7 @@
   </div>
   <div class="content-l step-two">
     <div class="content-l_col content-l_col-1-3 question question-expenses age-split">
-      <img src="/retirement/static/images/lifestyle-expenses.png" class="lifestyle-img">
+      <img src="{% static "retirement/images/lifestyle-expenses.png" %}" class="lifestyle-img">
       <div class="lifestyle-question_container">
         <hr>
         <h3 class="lifestyle-question">{% trans questions.expenses.question %}</h3>
@@ -306,7 +306,7 @@
       </div>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-income age-split">
-      <img src="/retirement/static/images/lifestyle-income.png" class="lifestyle-img">
+      <img src="{% static "retirement/images/lifestyle-income.png" %}" class="lifestyle-img">
       <div class="lifestyle-question_container">
         <hr>
         <h3 class="lifestyle-question">{% trans questions.income.question %}</h3>
@@ -361,7 +361,7 @@
       </div>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-longevity">
-      <img src="/retirement/static/images/lifestyle-longevity.png" class="lifestyle-img">
+      <img src="{% static "retirement/images/lifestyle-longevity.png" %}" class="lifestyle-img">
       <div class="lifestyle-question_container">
         <hr>
         <h3 class="lifestyle-question">{% trans questions.longlife.question %}</h3>
