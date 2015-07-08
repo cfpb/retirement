@@ -149,6 +149,20 @@
     }
   }
 
+  /**
+    * isElementInView(): returns Boolean of whether or not the element is in the viewport.
+    */
+  function isElementInView( selector ) {
+    var $ele = $( selector ),
+        target;
+    if ( $ele.offset().top > $(window).scrollTop() + $(window).height() + 20 ) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
   /***-- getData(): performs a get call (and performs a few cleanup activities), sets SSData with incoming data --***/
   function getData() {
     var day = $('#bd-day').val(),
@@ -474,7 +488,6 @@
     gset.indicatorLeftSet = Math.ceil( ( gset.barWidth - gset.indicatorWidth ) / 2 );
     barGraph.setSize( gset.graphWidth, gset.graphHeight );
     $( '#claim-canvas, .x-axis-label' ).width( gset.graphWidth );
-    console.log( gset.graphWidth );
   }
 
   /***-- drawBars(): draws and redraws the indicator bars for each age --***/
@@ -598,6 +611,12 @@
       $('#salary-input').blur();
       checkEstimateReady();
       getData();
+      // Scroll graph into view if it's not visible
+      if ( isElementInView( '#claim-canvas' ) === false ) {
+        $('html, body').animate({
+            scrollTop: $("#estimated-benefits-input").offset().top
+        }, 300);
+      }
     });
 
     $('#claim-canvas').on('click', '.age-text', function() {
@@ -652,6 +671,14 @@
       else {
         $('.next-step-two_equal').show();
       }
+
+      // Scroll response into view if it's not visible
+      if ( isElementInView( '#age-selector-response' ) === false ) {
+        $('html, body').animate({
+            scrollTop: $("#retirement-age-selector").offset().top
+        }, 300);
+      }
+
     });
 
     $('#age-selector-response .helpful-btn').click( function() {
