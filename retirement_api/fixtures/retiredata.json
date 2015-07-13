@@ -31,7 +31,7 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "Create a <a href=\"http://www.ssa.gov/myaccount/\" target=\"_blank\"><em>my</em> Social Security account</a> to review your expected benefits based on your actual Social Security record. You'll receive an annual reminder to review your benefits. You will also find additional information about your eligibility and other benefits including disability and survivor benefits.", 
+        "instructions": "Create a <a href=\"http://www.ssa.gov/myaccount/\" target=\"_blank\"><em>my</em> Social Security account</a> to review your expected benefits based on your actual Social Security record. You will also find additional information about your eligibility and other benefits including disability and survivor benefits.", 
         "title": "final_step_1"
     }
 },
@@ -40,7 +40,7 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "Your retirement income outside of Social Security is an important way to fill the gap between your Social Security benefit and the income that you will need to cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan.", 
+        "instructions": "Your retirement income outside of Social Security will help you cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan.", 
         "title": "final_step_2_under"
     }
 },
@@ -310,7 +310,7 @@
         "workflow_state": "SUBMITTED", 
         "question": "Are you married?", 
         "answer_unsure_b": "", 
-        "answer_unsure_a": "If your deceased spouse qualified for Social Security, you may qualify for a survivor benefit. You can claim a reduced survivor benefit as early as age 60 or wait until age 70 to get the maximum benefit possible. Your decision about when to start receiving your survivor benefit is independent from your decision of when to start receiving your own retirement benefit. If you expect your own retirement benefit to be higher than your survivor benefit, consider claiming your survivor benefit first. This could help you wait as long as you can to maximize your own retirement benefit. You will only receive one benefit at a time, though.", 
+        "answer_unsure_a": "You may qualify for a survivor benefit if your deceased spouse qualified for Social Security. You can wait until age 70 to claim your survivor benefit and get the maximum amount possible, or you can claim a reduced survivor benefit as early as age 60.  You may also qualify for a retirement benefit based on your own earnings record, but you will only receive one benefit at a time. If you expect your own retirement benefit to be higher than the survivor benefit, you may want to consider claiming the survivor benefit first. That way, you can start receiving some money from Social Security as your own retirement benefit continues to grow.", 
         "answer_unsure_b_subhed": "", 
         "answer_yes_a_subhed": "You can protect the financial security of your surviving spouse.", 
         "answer_no_b": "", 
@@ -332,7 +332,7 @@
         "workflow_state": "SUBMITTED", 
         "question": "Do you plan to continue working in your 60s?", 
         "answer_unsure_b": "Working in your 60s <span data-tooltip-target=\"working-longer\" class=\"cf-icon cf-icon-help-round\"></span> may add higher earnings to your record, getting you a higher monthly benefit. Remember, your monthly benefit will be significantly higher when you claim at your full Social Security benefit age or later. If you need to work fewer hours, you could use a portion of your retirement savings such as your 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span> or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> account to supplement your income until full retirement age. However, this may not be an option if it eliminates your savings completely. ", 
-        "answer_unsure_a": "Working in your 60s <span data-tooltip-target=\"working-longer\" class=\"cf-icon cf-icon-help-round\"></span> may increase your monthly benefit in a few ways. Because your benefits are based on your highest 35 years of earnings, each year of work can add higher earnings to your record by replacing years with low earnings, such as those when you were a student, were unemployed, or took time off. When you claim at your full retirement age, you can increase your monthly benefit by 25 percent or more. Working in your 60s also gives you more time to save on your own for retirement.", 
+        "answer_unsure_a": "Working in your 60s <span data-tooltip-target=\"working-longer\" class=\"cf-icon cf-icon-help-round\"></span> may increase your monthly benefit in a few ways. Because your benefits are based on your highest 35 years of earnings, each year of work can add higher earnings to your record by replacing years with low earnings, such as those when you were a student, were unemployed, or took time off. When you work and wait to claim until age 70, you can increase your monthly benefit by more than 75 percent! Working in your 60s also gives you more time to save on your own for retirement.", 
         "answer_unsure_b_subhed": "Consider working in your 60s for an extra boost to your income and savings.", 
         "answer_yes_a_subhed": "Working in your 60s will help you maximize your income and savings.", 
         "answer_no_b": "You may choose to work fewer hours or stop working in your 60s. If you decide to do so, you could use a portion of your retirement savings such as your 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> account to supplement your income in your early 60s until you reach your full Social Security benefit claiming age. If you can continue working in your 60s, you may add higher earnings to your record, getting you a higher monthly benefit. Remember, your monthly benefit will be significantly higher when you claim at your full benefit age or later. The age at which you decide to stop working doesn't have to be the same as your claiming age.", 
