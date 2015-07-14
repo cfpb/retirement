@@ -142,12 +142,12 @@
         </p>
       </div>
       <div class="total-benefits-container">
-        <p class="total-benefits-text h4"><strong>By 85, your estimated benefits</strong> <span  data-tooltip-target="lifetime" aria-describedby="lifetime" class="cf-icon cf-icon-help-round"></span> <strong>will total</strong> </p>
+        <p class="total-benefits-text h4"><strong>By 85, your estimated benefits will total</strong></p>
         <div class="tooltip-content" data-tooltip-name="lifetime" role="tooltip" aria-haspopup="true">
           <p>{% trans tips.lifetime %}</p>
         </div>
         <p>  
-          <span class="lifetime-benefits-value h3"></span>&nbsp;<span class="todays-dollars explainer">({% trans "in today's dollars" %})</span>
+          <span class="lifetime-benefits-value h3"></span>&nbsp;<span class="todays-dollars explainer">({% trans "in today's dollars" %})</span>  <span data-tooltip-target="lifetime" aria-describedby="lifetime" class="cf-icon cf-icon-help-round"></span>
         </p>
       </div>
       <div class="graph-content">
@@ -164,8 +164,8 @@
         <div class="content-container full-retirement">
           <h3 class="retirement-age">{% trans "About your full benefit claiming age:" %}</h3>
           <ul>
-            <li>{% trans "At this age, you will receive your full benefit with no reductions." %}</li>
             <li>{% trans "It is based on the year you were born." %}</li>
+            <li>{% trans "At this age, you will receive your full benefit with no reductions." %}</li>
           </ul>
         </div>
         <div class="content-container early-retirement">
@@ -404,7 +404,7 @@
         <div id="age-selector-response">
           <hr>
           <div class="next-step-description next-step-two_over">
-            <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, which is after your Social Security full retirement claiming age.</h3>
+            <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, which is later than your Social Security full retirement claiming age.</h3>
             <p>This means you will get an increase in your monthly benefits!  Here are steps to help you in the next few years.</p>
           </div>
           <div class="next-step-description next-step-two_equal">
@@ -412,7 +412,7 @@
             <p>That means you’ll receive your full benefit with no reductions! Here are steps to help you in the next few years.</p>
           </div>
           <div class="next-step-description next-step-two_under">
-            <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, which is before your Social Security full retirement claiming age.</h3>
+            <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, which is earlier than your Social Security full retirement claiming age.</h3>
             <p>At this age you will receive less than your full benefit amount. Here are steps to help you in the next few years.</p>
           </div>
           <ol class="next-steps content-l">
