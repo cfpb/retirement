@@ -69,5 +69,5 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/retirement/static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = '%s/retirement_api/static/' % BASE_DIR
