@@ -103,8 +103,11 @@ def past_fra_test(dob=None):
     tests whether a person is past his/her full retirement age
     """
     if not dob:
-        return 'invalid birth year entered'
-    DOB = parser.parse(dob).date()
+        return 'invalid birth date entered'
+    try:
+        DOB = parser.parse(dob).date()
+    except:
+        return 'invalid birth date entered'
     today = datetime.datetime.now().date()
     current_age = get_current_age(dob)
     if DOB >= today:

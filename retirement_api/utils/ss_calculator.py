@@ -30,11 +30,13 @@ from .check_api import TimeoutError, handler
 
 timeout_seconds = 10
 
-down_note = "\
-Sorry, the Social Security website is not responding, \
-so we can't estimate your benefits. \
-Please try again in a few minutes.\
-"
+down_note = """<span class="h4">Sorry, the Social Security website \
+is not responding, so we can't estimate your benefits.</span></p><p> \
+Please try again in a few minutes.</p>"""
+
+no_earnings_note = """<span class="h4">Sorry, we cannot provide an estimate \
+because your current annual income is less than \
+the minimum needed to make the estimate.</span>"""
 
 base_url = "http://www.ssa.gov"
 quick_url = "%s/OACT/quickcalc/" % base_url  # where users go; not needed here
@@ -290,7 +292,13 @@ def get_retire_data(params, timeout=True):
     if past_fra is True:
         results['data']['disability'] = "You have reached full retirement age \
                                 and are not eligible for disability benefits."
-        ret_amount = soup.find('span', {'id': 'ret_amount'}).text.split('.')[0]
+        ret_amount_raw = soup.find('span', {'id': 'ret_amount'})
+        if not ret_amount_raw:
+            results['error'] = "benefit is zero"
+            results['note'] = no_earnings_note
+            return json.dumps(results)
+        else:
+            ret_amount = ret_amount_raw.text.split('.')[0]
         base = int(ret_amount.replace(',', ''))
         increment = base * 0.08
         if current_age == 66:
@@ -349,6 +357,10 @@ def get_retire_data(params, timeout=True):
             for key in BENS:
                 if additions[key] and not BENS[key]:
                     BENS[key] = additions[key]
+        else:
+            results['error'] = "benefit is zero"
+            results['note'] = no_earnings_note
+            return json.dumps(results)
         if disability_table:
             results['data']['disability'] = disability_table.findAll('td')[1].text.split('.')[0]
     # SURVIVORS KEYS
