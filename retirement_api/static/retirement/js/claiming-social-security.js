@@ -484,12 +484,12 @@
       gset.graphWidth = ( $(window).width() - canvasLeft ) * .95;
     }
 
-    if ($(window).width() < 768) {
+    if ($(window).width() < 850) {
       gset.graphHeight = 210;
-    } else if ($(window).width() >= 768 && $(window).width() < 1051) {
+    } else if ($(window).width() >= 850 && $(window).width() < 1045) {
       gset.graphHeight = 380;
     } else {
-      gset.graphHeight = 380;  
+      gset.graphHeight = 380;
     }
     // $( '.selected-retirement-age-container' ).css( 'margin-top', gset.graphHeight + 75 + 'px');
     $( '.y-axis-label' ).css( 'top', gset.graphHeight - 130 + 'px' );
