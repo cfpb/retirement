@@ -360,7 +360,7 @@
     }
 
     if ( selectedAge === SSData.fullAge ) {
-      $('.benefit-modification-text').html( 'is your full retirement age.' )
+      $('.benefit-modification-text').html( 'is your full benefit claiming age.' )
       $('.compared-to-full').hide();
     }
     else if ( selectedAge < SSData.fullAge ) {
