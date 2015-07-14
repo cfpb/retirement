@@ -302,6 +302,21 @@ class UtilitiesTests(unittest.TestCase):
         self.sample_params['yob'] = today.year-70
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        self.sample_params['earnings'] = 1000
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue("zero" in data['error'])
+        self.sample_params['yob'] = today.year-45
+        data = json.loads(get_retire_data(self.sample_params))
+        self.assertTrue("zero" in data['error'])
+        self.sample_params['yob'] = 0
+        data = json.loads(get_retire_data(self.sample_params))
+        print "error is %s" % data['error']
+        self.assertTrue("too young" in data['error'])
+        self.sample_params['yob'] = 'xxxx'
+        data = json.loads(get_retire_data(self.sample_params))
+        print "error is %s" % data['error']
+        self.assertTrue(data['error'] != '')
+
 
     @mock.patch('retirement_api.utils.ss_calculator.requests.post')
     def test_bad_calculator_requests(self, mock_requests):
