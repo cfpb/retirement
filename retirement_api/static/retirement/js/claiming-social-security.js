@@ -280,14 +280,21 @@
     innerTip.css("left", Math.floor( tipOffset - ( innerTip.outerWidth() / 2 ) ) );
     outerTip.css("left", Math.floor( tipOffset - ( outerTip.outerWidth() / 2 ) ) );
 
-    $( 'html' ).on('click', 'body:not(#tooltip-container a)', function() {
+    if ( /iP/i.test(navigator.userAgent) ) { // if userAgent is an iPhone, iPad, iPod
+      $('body').css('cursor', 'pointer'); // make the body clickable
+    }
+
+    $( 'html' ).on('click', 'body', function() {
+        document.onclick = function () {
+          // iPhone Safari fix?
+        }
         ttc.hide();
         ttc.find( '.content' ).html('');
         $('[data-tooltip-current-target]').removeAttr('data-tooltip-current-target');
         $( 'html' ).off('click');
+        $('body').css('cursor', 'inherit');
     });
   }
-
 
   /***-- setTextByAge(): Changes text of benefits and age fields based on selectedAge --***/
   function setTextByAge() {
@@ -415,7 +422,8 @@
 
   /***-- drawIndicator(): draws the indicator --***/
   function drawIndicator() {
-    var greenPath,
+    var path,
+        greenPath,
         whiteLines, // vision dreams of passion
         posX;
 
@@ -426,12 +434,20 @@
     indicator = barGraph.set();
 
     // greenPath outlines and fills the indicator handle
-    greenPath = barGraph.path( 'M0 372 H34 V342 L17 337 L0 342 V372' )
+    path = 'M0 ' + ( gset.graphHeight - 8 ) +' H34 V' + ( gset.graphHeight - 38 );
+    path += ' L17 ' + ( gset.graphHeight - 43 ) + ' L0 ' + ( gset.graphHeight - 38 );
+    path += ' V' + ( gset.graphHeight - 8 );
+    // greenPath = barGraph.path( 'M0 372 H34 V342 L17 337 L0 342 V372' )
+    greenPath = barGraph.path( path );
     greenPath.attr( { 'fill': '#34b14f', 'stroke': '#34b14f' } ) ;
     greenPath.node.id = "indicator-handle";
 
     // whiteLines are the three lines on the indicator handle
-    whiteLines = barGraph.path( 'M12 362 V352 M17 364.5 V349.5 M22 362 V352');
+    path = 'M12 ' + ( gset.graphHeight - 18 ) + ' V' + ( gset.graphHeight - 28 );
+    path += ' M17 ' + ( gset.graphHeight - 15.5 ) + ' V' + ( gset.graphHeight - 30.5 );
+    path += ' M22 ' + ( gset.graphHeight - 18 ) + ' V' + ( gset.graphHeight - 28 );
+    // whiteLines = barGraph.path( 'M12 362 V352 M17 364.5 V349.5 M22 362 V352');
+    whiteLines = barGraph.path( path );
     whiteLines.attr( { 'fill': '#fff', 'stroke': '#fff' } );
 
     // greenPath and whiteLines are added to the indicator set
@@ -467,23 +483,22 @@
     if ( gset.graphWidth > ( ( $( window ).width() - canvasLeft ) ) * .95 )  {
       gset.graphWidth = ( $(window).width() - canvasLeft ) * .95;
     }
-    gset.graphHeight = 380;
+
+    if ($(window).width() < 768) {
+      gset.graphHeight = 210;
+    } else if ($(window).width() >= 768 && $(window).width() < 1051) {
+      gset.graphHeight = 380;
+    } else {
+      gset.graphHeight = 380;  
+    }
+    // $( '.selected-retirement-age-container' ).css( 'margin-top', gset.graphHeight + 75 + 'px');
+    $( '.y-axis-label' ).css( 'top', gset.graphHeight - 130 + 'px' );
+
     gset.barWidth = Math.floor( gset.graphWidth / 17 );
     gset.gutterWidth = Math.floor( gset.graphWidth / 17 );
     gset.indicatorWidth = 30;
-    gset.indicatorSide = gset.graphHeight / 20;
+    gset.indicatorSide = 19;
 
-    if ( $(window).width() < 768 ) {
-
-    }
-
-    else if ( $(window).width() >= 768 && $(window).width() < 1051 ) {
-
-    }
-
-    else {
-
-    }
     gset.barGut = gset.barWidth + gset.gutterWidth;
     gset.indicatorLeftSet = Math.ceil( ( gset.barWidth - gset.indicatorWidth ) / 2 );
     barGraph.setSize( gset.graphWidth, gset.graphHeight );
@@ -523,7 +538,7 @@
     var barInterval = gset.graphHeight / 4,
         totalWidth = ( gset.barWidth * 9 ) + ( gset.gutterWidth * 8 ),
         yCoord = gset.graphHeight + 1,
-        path = '';
+        path;
 
     // remove existing background
     if ( typeof graphBackground === "object" && typeof graphBackground.remove !== "undefined" ) {
@@ -562,7 +577,10 @@
 
       // set width to bar width (minus stroke width x2)
       ageDiv.width( gset.barWidth );
-      ageDiv.css('left', leftOffset );
+      ageDiv.css( {
+        'left': leftOffset,
+        'top': gset.graphHeight - 88 + 'px'
+        } );
       leftOffset = leftOffset + gset.barGut;
     });
 
