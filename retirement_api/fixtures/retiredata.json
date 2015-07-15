@@ -13,8 +13,8 @@
     "model": "retirement_api.step", 
     "fields": {
         "note": "", 
-        "instructions": "Tell us more about yourself for additional tips to make your decision.  ", 
-        "title": "Consider these five factors"
+        "instructions": "Picture your life in retirement to receive claiming tips.", 
+        "title": "Learn tips specific to your situation"
     }
 },
 {
@@ -23,7 +23,7 @@
     "fields": {
         "note": "(This will not affect your Social Security account or begin an application.)", 
         "instructions": "Select the age you plan to claim your Social Security retirement benefits.\r\n", 
-        "title": "Take your next steps"
+        "title": "Learn your next steps"
     }
 },
 {
@@ -159,7 +159,7 @@
         "title": "Claiming Social Security", 
         "h2": "", 
         "h3": "", 
-        "h1": "Claiming Social Security\u2014choices to fit your needs", 
+        "h1": "Claiming Social Security\u2014&#8203;choices to fit your needs", 
         "h4": "", 
         "intro": "The age you claim your benefits matters for your lifetime income. We'll help you think through this important decision.", 
         "step3": 3, 
