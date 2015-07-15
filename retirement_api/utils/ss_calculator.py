@@ -114,25 +114,21 @@ def parse_details(rows):
     return datad
 
 
-def interpolate_benefits(benefits, fra_tuple, current_age):
+def interpolate_benefits(benefits, fra_tuple, current_age, born_on_2nd=False):
     """
-    estimates missing benefit values, because SSA provides no more than 3
-    need to handle these cases:
-        FRA could be 66, or 67 (folks with FRA of 65 older than their FRA)
-        visitor could be between the ages of 55 and 65
-            their FRA is 66, which changes where we need to fill in the chart
-        visitor could be too young to use the tool (< 22)
-        visitor's age could be past FRA; only current benefit is returned
-            if current age is 67, 68, 69 or 70+
+    estimates benefits for years above and below the full-retirement age (FRA);
+    calculations are slightly different for people born on the 2nd of the month
     """
-    fra = fra_tuple[0]  # could be 66 or 67
-    # if not fra:
-    #     return benefits
+    fra = fra_tuple[0]  # could be 66 + x number of months, or 67
     # fill out the missing years, working backward and forward from the FRA
     if fra == 67:
         base = benefits['age 67']
-        benefits['age 62'] = int(round(base - base*(3*12*(0.00555555)) -
-                                       base*(2*11*0.004166666)))
+        if born_on_2nd:
+            benefits['age 62'] = int(round(base - base*(3*12*(0.00555555)) -
+                                           base*(2*12*0.004166666)))
+        else:
+            benefits['age 62'] = int(round(base - base*(3*12*(0.00555555)) -
+                                           base*(2*11*0.004166666)))
         benefits['age 63'] = int(round(base - base*(3*12*(0.00555555)) -
                                        base*(1*12*0.004166666)))
         benefits['age 64'] = int(round(base - base*(3*12*(0.00555555))))
@@ -171,9 +167,14 @@ def interpolate_benefits(benefits, fra_tuple, current_age):
                                      base*(diff_back*(0.00555555))))
         elif current_age in range(55, 64):
             # ages 55 to 63: FRA is 66; need to fill in 62, 63, 64 and 65
-            benefits['age 62'] = int(round(base -
-                                     base*((diff_back + 24)*(0.00555555)) -
-                                     base*(1*11*0.004166666)))
+            if born_on_2nd:
+                benefits['age 62'] = int(round(base -
+                                         base*((diff_back + 24)*(0.00555555)) -
+                                         base*(1*12*0.004166666)))
+            else:
+                benefits['age 62'] = int(round(base -
+                                         base*((diff_back + 24)*(0.00555555)) -
+                                         base*(1*11*0.004166666)))
             benefits['age 63'] = int(round(base -
                                      base*((diff_back + 24)*(0.00555555))))
             benefits['age 64'] = int(round(base -
@@ -198,6 +199,15 @@ params = {
 
 
 def get_retire_data(params, timeout=True):
+    born_on_2nd = False
+    if params['dobday']:
+        try:
+            born_on_test = int(params['dobday'])
+        except:
+            pass
+        else:
+            if born_on_test == 2:
+                born_on_2nd = True
     starter = datetime.datetime.now()
     collector = {}
     benefits = {}
@@ -353,7 +363,10 @@ def get_retire_data(params, timeout=True):
                 #     BENS['age %s' % benefit_age_year] = benefit
                 # if benefit_age_year == '70':
                 #     BENS['age %s' % benefit_age_year] = benefit
-            additions = interpolate_benefits(BENS, fra_tuple, current_age)
+            additions = interpolate_benefits(BENS,
+                                             fra_tuple,
+                                             current_age,
+                                             born_on_2nd=born_on_2nd)
             for key in BENS:
                 if additions[key] and not BENS[key]:
                     BENS[key] = additions[key]

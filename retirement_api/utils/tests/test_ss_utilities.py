@@ -83,18 +83,18 @@ class UtilitiesTests(unittest.TestCase):
             'age 69': 2623,
             'age 70': 2804,
             }
-        bens = interpolate_benefits(benefits, (67, 0), 44)
+        bens = interpolate_benefits(benefits, (67, 0), 44, born_on_2nd=False)
         for key in bens.keys():
             self.assertEqual(bens[key], results[key])
         benefits['age 66'] = benefits['age 67']
         benefits['age 67'] = 0
-        bens = interpolate_benefits(benefits, (66, 0), 55)
+        bens = interpolate_benefits(benefits, (66, 0), 55, born_on_2nd=False)
         for key in sorted(bens.keys()):
             self.assertTrue(bens[key] != 0)
-        bens = interpolate_benefits(benefits, (66, 0), 64)
+        bens = interpolate_benefits(benefits, (66, 0), 64, born_on_2nd=True)
         for key in sorted(bens.keys())[2:]:
             self.assertTrue(bens[key] != 0)
-        bens = interpolate_benefits(benefits, (66, 0), 65)
+        bens = interpolate_benefits(benefits, (66, 0), 65, born_on_2nd=False)
         for key in sorted(bens.keys())[3:]:
             self.assertTrue(bens[key] != 0)
 
@@ -159,14 +159,16 @@ class UtilitiesTests(unittest.TestCase):
         too_old = "%s" % (today-timedelta(days=68*365))
         ok = "%s" % (today-timedelta(days=57*365))
         too_young = "%s" % (today-timedelta(days=21*365))
-        invalid = "%s" % (today+timedelta(days=365))
+        future = "%s" % (today+timedelta(days=365))
         edge = "%s" % (today-timedelta(days=67*365))
+        invalid = "xx/xx/xxxx"
         self.assertTrue(past_fra_test(too_old) == True)
         self.assertTrue(past_fra_test(ok) == False)
         self.assertTrue("22" in past_fra_test(too_young))
-        self.assertTrue("invalid birth" in past_fra_test(invalid))
+        self.assertTrue("invalid birth" in past_fra_test(future))
         self.assertTrue("70" in past_fra_test(way_old))
         self.assertTrue(past_fra_test(edge) == True)
+        self.assertTrue("invalid" in past_fra_test(invalid))
 
     def test_age_map(self):
         self.assertTrue(isinstance(age_map, dict))
