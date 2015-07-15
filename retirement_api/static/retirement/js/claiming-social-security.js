@@ -723,9 +723,9 @@
     redrawGraph();
 
     // Tooltip handler
-    $('[data-tooltip-target]').click( function() {
-      event.preventDefault();
-      event.stopPropagation();
+    $('[data-tooltip-target]').click( function( ev ) {
+      ev.preventDefault();
+      ev.stopPropagation();
       toolTipper( $(this) );
     });
 
