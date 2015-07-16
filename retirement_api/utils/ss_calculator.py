@@ -240,7 +240,8 @@ def get_retire_data(params, timeout=True):
     if past_fra is False:
         pass
     elif past_fra is True:
-        results['note'] = "You are past Social Security's full retirement age."
+        results['note'] = "Age %s is past your full benefit claiming age." % current_age
+        # results['note'] = "You are past Social Security's full retirement age."
     else:  # if neither False nor True, there's an error and we need to bail
         if current_age > 70:
             results['note'] = past_fra

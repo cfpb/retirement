@@ -310,9 +310,14 @@ class UtilitiesTests(unittest.TestCase):
         self.sample_params['yob'] = today.year-45
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue("zero" in data['error'])
+        self.sample_params['earnings'] = 100000
+        print "error is %s" % data['error']
+        self.sample_params['yob'] = today.year-68
+        data = json.loads(get_retire_data(self.sample_params))
+        print "data note for age 68 is '%s'" % data['note']
+        self.assertTrue("past" in data['note'])
         self.sample_params['yob'] = 0
         data = json.loads(get_retire_data(self.sample_params))
-        print "error is %s" % data['error']
         self.assertTrue("too young" in data['error'])
         self.sample_params['yob'] = 'xxxx'
         data = json.loads(get_retire_data(self.sample_params))
