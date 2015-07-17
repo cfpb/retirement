@@ -176,8 +176,11 @@ form {
   margin-bottom: 8px;
 }
 
-#claiming-social-security .estimated-benefits-input + hr {
-  margin-bottom: 0;
+#claiming-social-security .estimated-benefits-input {
+  margin: 1em 0 0 0;
+  padding: 1em 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 #claiming-social-security #graph-container .content-l_col {
@@ -788,7 +791,7 @@ form {
   }
 
   #claiming-social-security #graph-container .content-l_col {
-    padding-top: 15px;
+    padding-top: 30px;
     padding-bottom: 30px;
   }
 
