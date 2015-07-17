@@ -663,7 +663,7 @@
     $('.step-two .question .lifestyle-btn').click(function() {
       var $container = $(this).closest( '.question' );
       var respTo = $(this).val();
-      $('.step-two .question .lifestyle-btn').removeClass('active');
+      $container.find('.lifestyle-btn').removeClass('active');
       $(this).addClass('active');
 
       $container.find('.lifestyle-img').slideUp();
