@@ -61,6 +61,8 @@ class ViewTests(TestCase):
         self.assertTrue(mock_tooltip.call_count == 1)
         self.assertTrue(mock_agechoice.call_count == 1)
         self.assertTrue(mock_page.call_count == 1)
+        claiming(mock_request, es=True)
+        self.assertTrue(mock_page.call_count == 2)
 
     def test_param_check(self):
         self.assertEqual(param_check(self.req_good, 'dob'), '1955-05-05')

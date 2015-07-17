@@ -13,7 +13,6 @@ urlpatterns = patterns('',
     url(r'^retirement-api/get-retirement-age/(?P<birth_year>\d+)/$', 'retirement_api.views.get_full_retirement_age', name='get_full_retirement_age'),
     url(r'^claiming-social-security/$', 'retirement_api.views.claiming', name='claiming'),
     url(r'^claiming-social-security/es/$', 'retirement_api.views.claiming', {'es': True}),
-    url(r'^retirement/static\/(?P<path>.*)/$', 'django.contrib.staticfiles.views.serve')
 )
 
 urlpatterns += staticfiles_urlpatterns()

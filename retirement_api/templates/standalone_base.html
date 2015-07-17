@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load i18n %}
+{% load staticfiles %}
 {% trans page.title as TITLE %}
 {% trans "Yes" as YES %}
 {% trans "No" as NO %}
@@ -71,12 +72,6 @@ And by the way, there’s another hidden message somewhere on the following page
     <link rel="stylesheet" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/c/eot.css">
     <![endif]-->
     <link rel="stylesheet" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/c/styles.css?ver=v4.2.10v4.2.24">
-
-    
-    
-
-    
-    <link rel="stylesheet" href="http://www.consumerfinance.gov/static/landing/css/landing.css">
     <link rel='stylesheet' id='cfpb_icon_font-css'  href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons.css?ver=all" type="text/css" media="all">
     <!--[if IE 7]>
     <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons-ie7.css?ver=all" type="text/css" media="all" />
@@ -87,10 +82,10 @@ And by the way, there’s another hidden message somewhere on the following page
     <link rel="alternate" type="application/rss+xml" title="Consumer Financial Protection Bureau &raquo; Feed" href="/feed/" />
     <link rel="alternate" type="application/rss+xml" title="Consumer Financial Protection Bureau &raquo; Comments Feed" href="/comments/feed/" />
     
-    <link rel="stylesheet" href="/retirement/static/css/main.css">
-    <link rel="stylesheet" href="/retirement/static/css/claiming.css">
-    <script src="/retirement/static/js/raphael-min.js"></script>
-    <script src="/retirement/static/js/claiming-social-security.js"></script>
+    <link rel="stylesheet" href="{% static "retirement/css/main.css" %}">
+    <link rel="stylesheet" href="{% static "retirement/css/claiming.css" %}">
+    <script src="{% static "retirement/js/raphael-min.js" %}"></script>
+    <script src="{% static "retirement/js/claiming-social-security.js" %}"></script>
     
     <script src="http://www.consumerfinance.gov/static/js/analytics.js?ver=v4.2.10v4.2.24"></script>
 
@@ -177,7 +172,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script type="text/javascript" src="http://www.consumerfinance.gov/static/agreements/js/chosen.jquery.js?ver=v4.2.10v4.2.24"></script>
 
     <!-- Responsive menu JS -->
-    <script src="/retirement/static/js/nemo.js"></script>
+    <script src="{% static "retirement/js/nemo.js" %}"></script>
 
 
         

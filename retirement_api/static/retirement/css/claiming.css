@@ -444,7 +444,7 @@ form {
 #claiming-social-security .step-three .selector-container {
   overflow: hidden;
   position: relative;
-  background: #ffffff url('/retirement/static/images/select.png') no-repeat right 0;
+  background: #ffffff url('/static/retirement/images/select.png') no-repeat right 0;
   border: solid 1px #d0d0ce;
   height: 32px;
   font-family: "AvenirNextLTW01-Medium", Arial, sans-serif;
@@ -794,7 +794,7 @@ form {
 
   #claiming-social-security .selected-retirement-age-container {
     height: auto;
-    margin-top: 455px;
+    margin-top: 285px;
   }
 
   #claiming-social-security .canvas-container {
