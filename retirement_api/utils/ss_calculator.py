@@ -231,7 +231,8 @@ def get_retire_data(params, timeout=True):
                     },
                'current_age': 0,
                'error': '',
-               'note': ''
+               'note': '',
+               'past_fra': False,
                }
     BENS = results['data']['benefits']
     current_age = get_current_age(dobstring)
@@ -240,10 +241,12 @@ def get_retire_data(params, timeout=True):
     if past_fra is False:
         pass
     elif past_fra is True:
+        results['past_fra'] = True
         results['note'] = "Age %s is past your full benefit claiming age." % current_age
         # results['note'] = "You are past Social Security's full retirement age."
     else:  # if neither False nor True, there's an error and we need to bail
         if current_age > 70:
+            results['past_fra'] = True
             results['note'] = past_fra
             results['error'] = "visitor too old for tool"
             return json.dumps(results)
