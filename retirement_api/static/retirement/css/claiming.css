@@ -956,7 +956,7 @@ form {
 #claiming-social-security .cf-notification {
   display: none;
   position: relative;
-  padding: 11px;
+  padding: 15px;
   padding-left: 40px;
   margin-bottom: 20px;
   margin-top: -40px;
@@ -981,7 +981,7 @@ form {
 
 #claiming-social-security .cf-notification_icon {
   position: absolute;
-  top: 13px;
+  top: 15px;
   left: 15px;
   color: #e3e4e5;
   font-size: 1.125em;
@@ -999,8 +999,10 @@ form {
   color: #ff931b;
 }
 
-#claiming-social-security .cf-notification_text {
+#claiming-social-security .cf-notification_text, 
+#claiming-social-security .cf-notification_text p {
   margin: 0;
+  padding: 0;
 }
 
 #claiming-social-security .cf-notification_text .short-desc {
