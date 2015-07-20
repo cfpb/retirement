@@ -310,7 +310,7 @@
         "workflow_state": "SUBMITTED", 
         "question": "Are you married?", 
         "answer_unsure_b": "", 
-        "answer_unsure_a": "If you are the widow(er) of a person who worked long enough to qualify for Social Security, you can receive full survivor benefits at your full retirement age or you can get reduced survivor benefits starting at age 60. If you claim your survivor benefit early, you can still wait to claim benefits on your own record up to age 70 to maximize your benefit.", 
+        "answer_unsure_a": "You may qualify for a survivor benefit if your deceased spouse qualified for Social Security. You can wait until age 70 to claim your survivor benefit and get the maximum amount possible, or you can claim a reduced survivor benefit as early as age 60. You may also qualify for a retirement benefit based on your own earnings record, but you will only receive one benefit at a time. If you expect your own retirement benefit to be higher than the survivor benefit, you may want to consider claiming the survivor benefit first. That way, you can start receiving some money from Social Security as your own retirement benefit continues to grow.", 
         "answer_unsure_b_subhed": "", 
         "answer_yes_a_subhed": "You can protect the financial security of your surviving spouse.", 
         "answer_no_b": "", 
