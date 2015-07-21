@@ -795,6 +795,10 @@ form {
     padding-bottom: 30px;
   }
 
+  #claiming-social-security p.y-axis-label {
+    left: -57px;
+  }
+
   #claiming-social-security .selected-retirement-age-container {
     height: auto;
     margin-top: 285px;
