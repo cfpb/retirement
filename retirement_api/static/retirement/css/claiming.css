@@ -321,6 +321,7 @@ form {
 
 #claiming-social-security .selected-retirement-age-container {
   height: 77px;
+  margin-top: -5px;
   margin-bottom: 30px;
 }
 
