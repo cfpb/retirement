@@ -13,9 +13,11 @@ def read_file(filename):
 
 setup(
     name='retirement',
-    version='0.1.0',
+    version='0.1.7',
     author='CFPB',
     author_email='tech@cfpb.gov',
+    maintainer='cfpb',
+    maintainer_email='tech@cfpb.gov',
     packages=['retirement_api'],
     include_package_data=True,
     description=u'Retirement app and api',
