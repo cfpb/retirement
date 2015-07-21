@@ -72,15 +72,12 @@ class TestApi(unittest.TestCase):
         mock_print_msg.return_value = ',%s,,,mock error,,,' % self.test_collector.date
         run('fakeplaceholder.com')
         self.assertTrue(mock_print_msg.call_count == 1)
-        mock_requests.side_effect = requests.ConnectionError
-        run('fakeplaceholder.com')
-        self.assertTrue(mock_print_msg.call_count == 2)
-        # self.assertEqual(mock_collector.error, 'Server connection error')
-        mock_requests.side_effect = TimeoutError
-        run('fakeplaceholder.com')
-        self.assertTrue(mock_print_msg.call_count == 3)
         mock_requests.return_value.status_code = 404
-        run('fakeplaceholder.com')
-        self.assertTrue(mock_print_msg.call_count == 4)
-
-        # self.assertTrue('SSA request exceeded' in mock_collector2.error)
+        collector = run('fakeplaceholder.com')
+        self.assertTrue(collector.api_fail == 'FAIL')
+        mock_requests.side_effect = requests.ConnectionError
+        collector = run('fakeplaceholder.com')
+        self.assertTrue(collector.status == 'ABORTED')
+        mock_requests.side_effect = TimeoutError
+        collector = run('fakeplaceholder.com')
+        self.assertTrue(collector.status == "TIMEDOUT")

@@ -301,7 +301,7 @@
     "model": "retirement_api.question", 
     "fields": {
         "answer_no_b_subhed": "", 
-        "answer_unsure_a_subhed": "Your survivor benefits may help you get a higher retirement benefit.", 
+        "answer_unsure_a_subhed": "Your claiming age matters for your own retirement benefits and your survivor's benefits.", 
         "answer_yes_b_subhed": "", 
         "title": "Marriage", 
         "answer_no_a_subhed": "Claiming at your full retirement age or later permanently increases your benefit.", 
@@ -310,7 +310,7 @@
         "workflow_state": "SUBMITTED", 
         "question": "Are you married?", 
         "answer_unsure_b": "", 
-        "answer_unsure_a": "You may qualify for a survivor benefit if your deceased spouse qualified for Social Security. You can wait until age 70 to claim your survivor benefit and get the maximum amount possible, or you can claim a reduced survivor benefit as early as age 60.  You may also qualify for a retirement benefit based on your own earnings record, but you will only receive one benefit at a time. If you expect your own retirement benefit to be higher than the survivor benefit, you may want to consider claiming the survivor benefit first. That way, you can start receiving some money from Social Security as your own retirement benefit continues to grow.", 
+        "answer_unsure_a": "You may qualify for a survivor benefit if your deceased spouse qualified for Social Security. You can wait until age 70 to claim your survivor benefit and get the maximum amount possible, or you can claim a reduced survivor benefit as early as age 60. You may also qualify for a retirement benefit based on your own earnings record, but you will only receive one benefit at a time. If you expect your own retirement benefit to be higher than the survivor benefit, you may want to consider claiming the survivor benefit first. That way, you can start receiving some money from Social Security as your own retirement benefit continues to grow.", 
         "answer_unsure_b_subhed": "", 
         "answer_yes_a_subhed": "You can protect the financial security of your surviving spouse.", 
         "answer_no_b": "", 
