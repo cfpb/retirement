@@ -1,6 +1,6 @@
  [![Build Status](https://travis-ci.org/cfpb/retirement.png)](https://travis-ci.org/cfpb/retirement) [![Coverage Status](https://coveralls.io/repos/cfpb/retirement/badge.svg)](https://coveralls.io/r/cfpb/retirement)
 
-# Retirement: Claiming Social Security
+# Retirement: Before You Claim
 
 This is a project aimed at helping Americans make choices about retirement, including when to claim Social Security benefits.   
   - **Status**: Beta
@@ -48,7 +48,6 @@ git clone https://github.com/cfpb/retirement.git
 cd retirement
 setvirtualenvproject
 pip install -r requirements.txt
-cp test_settings.py settings.py
 ```
 
 Load the app's database tables and content.  
@@ -62,7 +61,7 @@ Fire up a development server.
 python manage.py runserver
 ```
 
-The "Claiming Social Security" page should load at `localhost:8000/claiming-social-security/`.  
+The "Before You Claim" page should load at `localhost:8000/claiming-social-security/`.  
 
 ### Usage notes
 - The app is set up to run inside [consumerfinance.gov](http://www.consumerfinance.gov), so if you run it locally, some fonts may not load because of [Cross-Origin Resource Sharing](http://www.w3.org/TR/cors/) policies.
@@ -71,11 +70,13 @@ The "Claiming Social Security" page should load at `localhost:8000/claiming-soci
 ### How to run software tests
 - You can use nose to run the test suite and see code coverage information
 ```bash
+cp test_settings.py settings.py
 nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
 ```
 
 ## Getting involved
-If you find a bug or see a way to improve the project, we'd love to hear from you. Fork the project and send us a pull request with your changes.
+If you find a bug or see a way to improve the project, we'd love to hear from you.  
+Add an issue, or fork the project and send us a pull request with your suggested changes.
 
 ----
 
