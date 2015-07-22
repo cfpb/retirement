@@ -5,6 +5,8 @@
 This is a project aimed at helping Americans make choices about retirement, including when to claim Social Security benefits.   
   - **Status**: Beta
 
+![](retirement_screenshot.png)
+
 ### Setup dependencies
  * [pip](https://pypi.python.org/pypi/pip)
  * [virtualenv](https://virtualenv.pypa.io/en/latest/)
