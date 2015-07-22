@@ -10,18 +10,20 @@ TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 TOO_YOUNG = """\
 <span class="h4">Sorry, our tool cannot provide an estimate \
-if you are under 22 years of age.</span></p><p>Please visit the \
+if you are under 22 years of age.</span> Please visit the \
 Social Security Administration's \
 <a href="http://www.ssa.gov/people/youngpeople/" \
 target="blank">advice page</a> for students and younger workers.\
 """
 TOO_OLD = """\
-<span class="h4">Sorry, we cannot provide an estimate because your current age \
-falls outside the Social Security claiming ages of 62 to 70.</span></p><p>To check your benefits based on your actual earnings record, contact \
-the Social Security Administration or open a \
-<a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
-my Social Security</a> account.</p>\
+<span class="h4">Sorry, our tool cannot provide an estimate because \
+your birthdate, %s, means you are older than 70 and are already receiving \
+benefits.</span> To check your benefits based on your actual \
+earnings record, contact the Social Security Administration or \
+open a <a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
+my Social Security</a> account.
 """
+
 # this datafile specifies years that have unique retirement age values
 # since this may change, it is maintained in an external file
 datafile = "%s/retirement_api/data/unique_retirement_ages_%s.json" % (BASE_DIR,
@@ -130,7 +132,7 @@ def past_fra_test(dob=None):
     if age_tuple[0] < 22:
         return TOO_YOUNG
     if age_tuple[0] > 70:
-        return TOO_OLD
+        return TOO_OLD % DOB.strftime("%m/%d/%Y")
     if age_tuple[0] > fra_tuple[0]:
         return True
     elif age_tuple[0] < fra_tuple[0]:
