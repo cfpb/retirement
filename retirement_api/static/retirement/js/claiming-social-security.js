@@ -616,19 +616,18 @@
   }
 
   /***-- forceNumericKeyboard (jQuery object): Forces touch devices to bring up their numeric keyboard for <input type="text"> --***/
-  function forceNumericKeyboard ($input) {
+  function forceNumericKeyboard ($input, formattedValue) {
     // Need this guard to make touching the input not dismiss the keyboard on iOS
     if ($input.is(':focus')) {
       return;
     }
-    // Changing type from text to number removes non-numeric input values, so we'll store the start value to reinsert later
-    var startingValue = $input.val();
     $input
       .attr('type', 'number')
       .one('focus', function (event) {
         $input
           .attr('type', 'text')
-          .val(startingValue);
+          // Changing type from text to number removes the input's value, so we'll restore it after the type is done changing
+          .val(formattedValue);
       });
   }
 
@@ -733,7 +732,7 @@
         if ($(ev.relatedTarget).attr('id') !== 'salary-input') {
           return;
         }
-        forceNumericKeyboard ($('#salary-input'));
+        forceNumericKeyboard ($('#salary-input'), $('#salary-input').val());
       });
 
       // Handle any other time the salary input is selected; need to use .one() and then rebind on blur to make previously entered text selectable in the input
@@ -741,7 +740,7 @@
         if ($('#bd-year').is(':focus')) {
           return;
         }
-        forceNumericKeyboard ($('#salary-input'));
+        forceNumericKeyboard ($('#salary-input'), $('#salary-input').attr('data-formatted-value'));
       }
       $('#salary-input')
         .one('touchstart', function (ev) {
@@ -751,6 +750,7 @@
           $('#salary-input').one('touchstart', function (ev) {
             numericKeyboardTouchHandler();
           });
+          $('#salary-input').attr('data-formatted-value', $('#salary-input').val())
         });
     }
 
