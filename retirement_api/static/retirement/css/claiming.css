@@ -278,6 +278,26 @@ form {
   overflow: hidden;
 }
 
+/* Hide spinners in number inputs */
+#claiming-social-security #bd-month::-webkit-outer-spin-button,
+#claiming-social-security #bd-month::-webkit-inner-spin-button,
+#claiming-social-security #bd-day::-webkit-outer-spin-button,
+#claiming-social-security #bd-day::-webkit-inner-spin-button,
+#claiming-social-security #bd-year::-webkit-outer-spin-button,
+#claiming-social-security #bd-year::-webkit-inner-spin-button,
+#claiming-social-security #salary-input::-webkit-outer-spin-button,
+#claiming-social-security #salary-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#claiming-social-security #bd-month,
+#claiming-social-security #bd-day,
+#claiming-social-security #bd-year,
+#claiming-social-security #salary-input {
+  -moz-appearance:textfield;
+}
+
 #claiming-social-security .input-labels input {
   display: inline;
   width: 15%;
@@ -1004,7 +1024,7 @@ form {
   color: #ff931b;
 }
 
-#claiming-social-security .cf-notification_text, 
+#claiming-social-security .cf-notification_text,
 #claiming-social-security .cf-notification_text p {
   margin: 0;
   padding: 0;
