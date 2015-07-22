@@ -10,7 +10,7 @@ TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 TOO_YOUNG = """\
 <span class="h4">Sorry, our tool cannot provide an estimate \
-if you are under 22 years of age.</span></p><p>Please visit the \
+if you are under 22 years of age.</span> Please visit the \
 Social Security Administration's \
 <a href="http://www.ssa.gov/people/youngpeople/" \
 target="blank">advice page</a> for students and younger workers.\
@@ -18,10 +18,10 @@ target="blank">advice page</a> for students and younger workers.\
 TOO_OLD = """\
 <span class="h4">Sorry, our tool cannot provide an estimate because \
 your birthdate, %s, means you are older than 70 and are already receiving \
-benefits.</span></p><p>To check your benefits based on your actual \
+benefits.</span> To check your benefits based on your actual \
 earnings record, contact the Social Security Administration or \
 open a <a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
-my Social Security</a> account.</p>
+my Social Security</a> account.
 """
 
 # this datafile specifies years that have unique retirement age values
