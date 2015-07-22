@@ -35,7 +35,7 @@ is not responding, so we can't estimate your benefits.</span> \
 Please try again in a few minutes."""
 
 no_earnings_note = """<span class="h4">Sorry, we cannot provide an estimate \
-because your current annual income is less than \
+because your entered annual income is less than \
 the minimum needed to make the estimate.</span>"""
 
 base_url = "http://www.ssa.gov"
