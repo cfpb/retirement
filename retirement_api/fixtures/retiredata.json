@@ -3,7 +3,7 @@
     "pk": 1, 
     "model": "retirement_api.step", 
     "fields": {
-        "note": "We base your benefit estimate on current formulas from the Social Security Administration using your age and current income. <span data-tooltip-target=\"estimated-benefits\" aria-describedby=\"estimated-benefits\" class=\"cf-icon cf-icon-help-round\" data-tooltip-current-target=\"true\"></span> Your answers are anonymous. Because we do not access or use your Social Security earnings record, your actual benefits may vary from this estimate.\r\n", 
+        "note": "We base your benefit estimate on current formulas from the Social Security Administration, using your age and  \r\nincome. Your answers are anonymous. Because we do not access or use your Social Security earnings record, these are rough estimates, for use in comparing claiming ages.", 
         "instructions": "Enter your information below to see your estimated benefits.", 
         "title": "Explore how your claiming age affects your Social Security retirement benefits"
     }
@@ -156,12 +156,12 @@
     "pk": 1, 
     "model": "retirement_api.page", 
     "fields": {
-        "title": "Claiming Social Security", 
+        "title": "Before You Claim", 
         "h2": "", 
         "h3": "", 
-        "h1": "Claiming Social Security\u2014&#8203;choices to fit your needs", 
+        "h1": "Before you claim\u2014planning<br> for retirement", 
         "h4": "", 
-        "intro": "The age you claim your benefits matters for your lifetime income. We'll help you think through this important decision.", 
+        "intro": "The age you claim Social Security matters for your lifetime income. We\u2019ll help you think through this decision.", 
         "step3": 3, 
         "step2": 2, 
         "step1": 1, 
