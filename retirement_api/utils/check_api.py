@@ -11,6 +11,7 @@ import signal
 from urlparse import urlparse
 
 timestamp = datetime.datetime.now()
+default_base = 'build'
 
 # rolling dob to guarantee subject is 44 and full retirement age is 67
 dob = timestamp - datetime.timedelta(days=44*365+30)
@@ -73,7 +74,7 @@ api_string = 'retirement-api/estimator/%s-%s-%s/70000/' % (dob.month,
 BASES = {
     'unitybox': 'http://localhost:8080/retirement',
     'standalone': 'http://localhost:8000',
-    'build': '%sbuild%s' % (prefix, suffix),
+    default_base: '%s%s%s' % (prefix, default_base, suffix),
     'prod': '%swww%s' % (prefix, suffix),
     }
 
@@ -127,10 +128,15 @@ if __name__ == '__main__':
     defaults to build
     """
     helpmsg = "pass a base to test: unitybox, standalone, build, or prod"
-    if not sys.argv[1]:
-        run(build)
-    elif sys.argv[1] in BASES:
-        run(BASES[sys.argv[1]])
+    try:
+        BASE = sys.argv[1]
+    except:
+        collector.domain = default_base
+        run(BASES[default_base])
     else:
-        print helpmsg
-        sys.exit()
+        if BASE in BASES:
+            collector.domain = BASE
+            run(BASES[BASE])
+        else:
+            print helpmsg
+            sys.exit()
