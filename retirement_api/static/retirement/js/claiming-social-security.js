@@ -615,6 +615,22 @@
     $('.benefit-selections-area').empty();
   }
 
+  /***-- forceNumericKeyboard (jQuery object): Forces touch devices to bring up their numeric keyboard for <input type="text"> --***/
+  function forceNumericKeyboard ($input, formattedValue) {
+    // Need this guard to make touching the input not dismiss the keyboard on iOS
+    if ($input.is(':focus')) {
+      return;
+    }
+    $input
+      .attr('type', 'number')
+      .one('focus', function (event) {
+        $input
+          .attr('type', 'text')
+          // Changing type from text to number removes the input's value, so we'll restore it after the type is done changing
+          .val(formattedValue);
+      });
+  }
+
   $(document).ready( function() {
     barGraph = new Raphael( $("#claim-canvas")[0] , 600, 400 );
     // $('#claim-canvas svg').css('overflow', 'visible')
@@ -708,6 +724,40 @@
       var salary = numToMoney( $( '#salary-input' ).val().replace(/\D/g,'') )
       $('#salary-input').val( salary );
     });
+
+    // Force the numeric keyboard to appear for the salary field on touch devices
+    if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+      $('#salary-input').attr('data-formatted-value', $('#salary-input').val());
+
+      // Handle when the salary input is selected from the previous input using the next field button
+      $('#bd-year').on('blur', function (ev) {
+        if ($(ev.relatedTarget).attr('id') !== 'salary-input') {
+          return;
+        }
+        forceNumericKeyboard ($('#salary-input'), $('#salary-input').attr('data-formatted-value'));
+      });
+
+      // Handle any other time the salary input is selected; need to use .one() and then rebind on blur to make previously entered text selectable in the input
+      function numericKeyboardTouchHandler () {
+        if ($('#bd-year').is(':focus')) {
+          return;
+        }
+        forceNumericKeyboard ($('#salary-input'), $('#salary-input').attr('data-formatted-value'));
+      }
+      $('#salary-input')
+        .one('touchstart', function (ev) {
+          numericKeyboardTouchHandler();
+        })
+        .on('blur', function (ev) {
+          $('#salary-input').one('touchstart', function (ev) {
+            numericKeyboardTouchHandler();
+          });
+          $('#salary-input').attr('data-formatted-value', $('#salary-input').val())
+        });
+      $('label[for="salary-input"] p').on('click', function (ev) {
+        $('#salary-input').triggerHandler('touchstart');
+      })
+    }
 
     $('.birthdate-inputs').blur( function() {
       var month = $( '#bd-month' ).val().replace(/\D/g,''),

@@ -14,8 +14,8 @@
   }
 </script>
     <div id="page">
-        
-        
+
+
       <!-- top banner -->
       <div class="nemo">
         <div class="wrapper-banner">
@@ -42,12 +42,12 @@
                 <a class="toggle-menu" href="#"><i class="cf-icon cf-icon-menu"></i><span class="visuallyhidden">Menu</span></a>
                 <h1>
                   <a href="/" class="noStyles">
-                      <img id="logo" 
-                           class="logo__js" 
-                           src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.svg" 
-                           onerror="this.src='http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.png';" 
-                           alt="Consumer Financial Protection Bureau" 
-                           width="262" 
+                      <img id="logo"
+                           class="logo__js"
+                           src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.svg"
+                           onerror="this.src='http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.png';"
+                           alt="Consumer Financial Protection Bureau"
+                           width="262"
                            height="66">
                       <noscript>
                         <img id="logo" class="logo__no-js" src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.png" alt="Consumer Financial Protection Bureau" width="262" height="66">
@@ -78,13 +78,13 @@
         </header>
       </div>
 
-            
+
 <div id="claiming-social-security" class="claiming-social-security">
   <div id="claiming-hero-bg"></div>
         <div id="wrapper">
         <section id="maincontent">
             <ul class="bread meta">
-                
+
 
             </ul> <!-- /class=bread -->
   <div class="claiming-hero">
@@ -103,9 +103,9 @@
       <div class="content-l">
         <div class="content-l_col content-l_col-1-3 birthdate-inputs">
           <p>{% trans "Date of birth" %}</p>
-          <label for="bd-month" class="input-labels"><input id="bd-month" type="text" maxlength="2" placeholder="MM" value=""></label>
-          <label for="bd-day" class="input-labels"><input id="bd-day" type="text" maxlength="2" placeholder="DD" value=""></label>
-          <label for="bd-year" class="input-labels"><input id="bd-year" type="text" maxlength="4" placeholder="YYYY" value=""></label>
+          <label for="bd-month" class="input-labels"><input id="bd-month" type="number" max="12" maxlength="2" min="1" pattern="[0-9]*" placeholder="MM" value=""></label>
+          <label for="bd-day" class="input-labels"><input id="bd-day" type="number" max="31" maxlength="2" min="1" pattern="[0-9]*" placeholder="DD" value=""></label>
+          <label for="bd-year" class="input-labels"><input id="bd-year" type="number" maxlength="4" pattern="[0-9]*" placeholder="YYYY" value=""></label>
         </div>
         <div class="content-l_col content-l_col-1-3">
           <label for="salary-input" class="input-labels"><p>{% trans "Highest annual work income" %} <span data-tooltip-target="salary" aria-describedby="salary" class="cf-icon cf-icon-help-round"></span></p><input id="salary-input" type="text" maxlength="" placeholder="$" value=""></label>
@@ -128,12 +128,12 @@
   </div>
   <div class="tooltip-content" data-tooltip-name="estimated-benefits" role="tooltip" aria-haspopup="true">
     <p>{% trans tips.estimated_benefits %}</p>
-  </div>  
+  </div>
 
   <div id="graph-container" class="content-l">
     <div class="content-l_col content-l_col-1-3">
       <div class="selected-retirement-age-container">
-        <p class="h3 selected-retirement-age">{% trans "Age" %} 
+        <p class="h3 selected-retirement-age">{% trans "Age" %}
           <span class="selected-retirement-age-value">67</span> <span class="benefit-modification-text">
           {% trans "is after your full benefit claiming age." %}</span>
           <p class="compared-to-full explainer">{% trans "Compared to claiming at your full benefit claiming age." %}</p>
@@ -144,7 +144,7 @@
         <div class="tooltip-content" data-tooltip-name="lifetime" role="tooltip" aria-haspopup="true">
           <p>{% trans tips.lifetime %}</p>
         </div>
-        <p>  
+        <p>
           <span class="lifetime-benefits-value h3"></span>&nbsp;<span class="todays-dollars explainer">({% trans "in today's dollars" %})</span>  <span data-tooltip-target="lifetime" aria-describedby="lifetime" class="cf-icon cf-icon-help-round"></span>
         </p>
       </div>
@@ -175,7 +175,7 @@
         </div>
         <p>{% trans "Remember, claiming age here refers only to your Social Security retirement benefit, and not when you decide to stop working or apply for Medicare." %}</p>
       </div>
-      
+
       <p class="learn-how"><a href="http://www.ssa.gov/OACT/quickcalc/faqs.html#8" class="external-link" target="_blank">{% trans "Learn how estimates are calculated." %}</a></p>
 
     </div>
@@ -230,7 +230,7 @@
       <div class="lifestyle-response" data-responds-to="yes-under50">
         <h4>{% trans questions.sixties.answer_yes_a_subhed|safe %}</h4>
         <p>{% trans questions.sixties.answer_yes_a|safe %}</p>
-      </div> 
+      </div>
       <div class="lifestyle-response" data-responds-to="yes-over50">
         <h4>{% trans questions.sixties.answer_yes_b_subhed|safe %}</h4>
         <p>{% trans questions.sixties.answer_yes_b|safe %}</p>
@@ -238,12 +238,12 @@
       <div class="lifestyle-response" data-responds-to="no-under50">
         <h4>{% trans questions.sixties.answer_no_a_subhed|safe %}</h4>
         <p>{% trans questions.sixties.answer_no_a|safe %}</p>
-      </div> 
+      </div>
       <div class="lifestyle-response" data-responds-to="no-over50">
         <h4>{% trans questions.sixties.answer_no_b_subhed|safe %}</h4>
         <p>{% trans questions.sixties.answer_no_a|safe %}</p>
         <p><a href="http://www.socialsecurity.gov/planners/retire/stopwork.html" class="external-link" target="_blank"></a></p>
-      </div> 
+      </div>
       <div class="lifestyle-response" data-responds-to="notsure-under50">
         <h4>{% trans questions.sixties.answer_unsure_a_subhed|safe %}</h4>
         <p>{% trans questions.sixties.answer_unsure_a|safe %}</p>
@@ -379,7 +379,7 @@
       </div>
     </div>
   </div>
-  <hr> 
+  <hr>
   <div class="step-three">
     <h2><strong>{{STEP}} 3: </strong>{% trans page.step3.title %}</h2>
     <div class="hidden-content">
@@ -439,8 +439,8 @@
 </div>
 
 
-                
-      
+
+
 
       <div class="nemo">
         <section id="subnav">
@@ -558,7 +558,7 @@
 
 <script type="text/javascript">
     // If there are no breadcrumbs on this page, remove the ul tag so that screen
-    // readers don't read it (since the ul has nothing in it).  
+    // readers don't read it (since the ul has nothing in it).
     $(function(){
         var numBreadCrumbs = $("ul.bread").children("li").length;
         if(numBreadCrumbs == 0){
