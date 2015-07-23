@@ -525,9 +525,6 @@
       if ( val >= SSData.fullAge ) {
         color = '#aedb94';
       }
-      if ( val === selectedAge ) {
-        color = '#34b14f';
-      }
       bars[key].attr('stroke', color);
       bars[key].attr('fill', color);
       bars[key].data( 'age', val );
