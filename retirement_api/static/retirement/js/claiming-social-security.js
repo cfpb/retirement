@@ -155,7 +155,7 @@
   function isElementInView( selector ) {
     var $ele = $( selector ),
         target;
-    if ( $ele.offset().top > $(window).scrollTop() + $(window).height() + 20 ) {
+    if ( $ele.offset().top > $(window).scrollTop() + $(window).height() + 150 ) {
       return false;
     }
     else {
