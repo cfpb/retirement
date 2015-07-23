@@ -727,12 +727,14 @@
 
     // Force the numeric keyboard to appear for the salary field on touch devices
     if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+      $('#salary-input').attr('data-formatted-value', $('#salary-input').val());
+
       // Handle when the salary input is selected from the previous input using the next field button
       $('#bd-year').on('blur', function (ev) {
         if ($(ev.relatedTarget).attr('id') !== 'salary-input') {
           return;
         }
-        forceNumericKeyboard ($('#salary-input'), $('#salary-input').val());
+        forceNumericKeyboard ($('#salary-input'), $('#salary-input').attr('data-formatted-value'));
       });
 
       // Handle any other time the salary input is selected; need to use .one() and then rebind on blur to make previously entered text selectable in the input
@@ -752,6 +754,9 @@
           });
           $('#salary-input').attr('data-formatted-value', $('#salary-input').val())
         });
+      $('label[for="salary-input"] p').on('click', function (ev) {
+        $('#salary-input').triggerHandler('touchstart');
+      })
     }
 
     $('.birthdate-inputs').blur( function() {
