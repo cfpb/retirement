@@ -43,13 +43,8 @@ log_header = ['data',
               'domain',
               'status',
               'error',
-              'note',
               'api_fail',
               'timer']
-
-local_base = 'http://localhost:8080'
-api_base = 'retirement/retirement-api'
-api_string = '%s/%s/estimator/%s-%s-%s/70000/'
 
 
 def print_msg(collector):
@@ -70,12 +65,25 @@ def check_data(data):
     else:
         return "BAD DATA"
 
+prefix = 'http://'
+suffix = '.consumerfinance.gov/retirement'
+api_string = 'retirement-api/estimator/%s-%s-%s/70000/' % (dob.month,
+                                                           dob.day,
+                                                           dob.year)
+BASES = {
+    'unitybox': 'http://localhost:8080/retirement',
+    'standalone': 'http://localhost:8000',
+    'build': '%sbuild%s' % (prefix, suffix),
+    'prod': '%swww%s' % (prefix, suffix),
+    }
+
 
 def run(base):
-    url = api_string % (base, api_base, dob.month, dob.day, dob.year)
+    url = "%s/%s" % (base, api_string)
     signal.signal(signal.SIGALRM, handler)
     signal.alarm(timeout_seconds)
     start = time.time()
+    print "trying request at %s" % url
     try:
         test_request = requests.get(url)
     except requests.ConnectionError:
@@ -110,18 +118,19 @@ def run(base):
     msg = print_msg(collector)
     with open('%s/tests/logs/api_check.log' % API_ROOT, 'a') as f:
         f.write("%s\n" % msg)
-    # print url
     return collector
 
 if __name__ == '__main__':
-    """runs against a local url unless a domain is passed
     """
-    for arg in sys.argv:
-        parsed = urlparse(arg)
-        if parsed.netloc:
-            collector.domain = parsed.netloc
-            base = arg
-        else:
-            collector.domain = urlparse(local_base).netloc
-            base = local_base
-    run(base)
+    runs against one of these base urls:
+    unitybox, standalone, build, or prod;
+    defaults to build
+    """
+    helpmsg = "pass a base to test: unitybox, standalone, build, or prod"
+    if not sys.argv[1]:
+        run(build)
+    elif sys.argv[1] in BASES:
+        run(BASES[sys.argv[1]])
+    else:
+        print helpmsg
+        sys.exit()

@@ -58,7 +58,7 @@ class TestApi(unittest.TestCase):
         self.assertTrue(msg == 'OK')
 
     def test_print_msg(self):
-        target_text = ',%s,,,,,,' % self.test_collector.date
+        target_text = ',%s,,,,,' % self.test_collector.date
         test_text = print_msg(self.test_collector)
         print "test_text: %s" % test_text
         print "target_text: %s" % target_text
