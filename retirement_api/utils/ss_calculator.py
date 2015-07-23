@@ -26,7 +26,6 @@ import signal
 
 from bs4 import BeautifulSoup as bs
 from .ss_utilities import get_retirement_age, get_current_age, past_fra_test
-from .check_api import TimeoutError, handler
 
 timeout_seconds = 10
 
@@ -48,43 +47,6 @@ comment = re.compile(r"<!--[\s\S]*?-->")  # regex for parsing indexing data
 
 def clean_comment(comment):
     return comment.replace('<!--', '').replace('-->', '').strip()
-
-# unused; would need a test
-# def parse_comments(req, results):
-#     """
-#     this pulls indexing details out of the source comments
-#     on SSA's quick-calculator results page
-#     and adds it to the results payload;
-#     we are not yet using this data
-#     """
-#     raw_comments = comment.findall(req.text)
-    # comments = [clean_comment(com) for com in raw_comments if
-    #             clean_comment(com) and not
-    #             clean_comment(com).startswith('Indexed') and not
-    #             clean_comment(com).startswith('Nominal')]
-#     headings = [term.strip() for term in comments[0].split()]
-#     headings.pop(headings.index('max'))
-#     headings[headings.index('Tax')] = 'Tax_max'
-#     detail_rows = []
-#     details = []
-#     for row in comments[1:]:
-#         if num_test(row.split()[0]):
-#             detail_rows.append([cell.strip() for cell in row.split()])
-#         else:
-#             details.append(row)
-    # for row in detail_rows:
-    #     results['earnings_data'].append({tup[0]: tup[1] for tup
-    #                                      in zip(headings, row)})
-#     results['benefit_details']['family_max'] = details.pop(-1)
-#     results['benefit_details']['indexing']={}
-#     INDEXING = results['benefit_details']['indexing']
-#     sets = len(details) / 3
-#     i1, i2 = (-3, 0)
-#     for i in range(sets):
-#         i1 += 3
-#         i2 += 3
-#         INDEXING.update(parse_details(details[i1:i2]))
-#     return results
 
 
 def num_test(value=''):
@@ -198,7 +160,7 @@ params = {
 }
 
 
-def get_retire_data(params, timeout=True):
+def get_retire_data(params):
     born_on_2nd = False
     if params['dobday']:
         try:
@@ -258,29 +220,26 @@ def get_retire_data(params, timeout=True):
             results['note'] = "An invalid date was entered."
             results['error'] = past_fra
             return json.dumps(results)
-    if timeout:
-        signal.signal(signal.SIGALRM, handler)
-        signal.alarm(timeout_seconds)
     try:
-        req = requests.post(result_url, data=params)
-    except requests.ConnectionError:
-        if timeout:
-            signal.alarm(0)
-        results['error'] = "connection error at Social Security's website"
+        req = requests.post(result_url, data=params, timeout=timeout_seconds)
+    except requests.exceptions.ConnectionError as e:
+        results['error'] = "connection error at SSA's website: %s" % e
         results['note'] = down_note
         return json.dumps(results)
-    except TimeoutError:
-        signal.alarm(0)
-        results['error'] = "Social Security's website is not responding."
+    except requests.exceptions.Timeout:
+        results['error'] = "SSA's website timed out"
         results['note'] = down_note
         return json.dumps(results)
-    else:
-        if timeout:
-            signal.alarm(0)
-        else:
-            pass
+    except requests.exceptions.RequestException as e:
+        results['error'] = "request error at SSA's website: %s" % e
+        results['note'] = down_note
+        return json.dumps(results)
+    except:
+        results['error'] = "%s error at SSA's website" % req.reason
+        results['note'] = down_note
+        return json.dumps(results)
     if not req.ok:
-        results['error'] = "Social Security's website is not responding.\
+        results['error'] = "SSA's website is not responding.\
                             Status code: %s (%s)" % (req.status_code,
                                                      req.reason)
         results['note'] = down_note
@@ -375,9 +334,14 @@ def get_retire_data(params, timeout=True):
                 if additions[key] and not BENS[key]:
                     BENS[key] = additions[key]
         else:
-            results['error'] = "benefit is zero"
-            results['note'] = no_earnings_note
-            return json.dumps(results)
+            if soup.find('p') and 'insufficient' in soup.find('p').text:
+                results['error'] = "benefit is zero"
+                results['note'] = no_earnings_note
+                return json.dumps(results)
+            else:
+                results['error'] = "SSA is not returning good data"
+                results['note'] = down_note
+                return json.dumps(results)
         if disability_table:
             results['data']['disability'] = disability_table.findAll('td')[1].text.split('.')[0]
     # SURVIVORS KEYS
