@@ -157,6 +157,10 @@ form {
   padding-bottom: 14px;
 }
 
+#claiming-social-security .step-one-hidden {
+  display: none;
+}
+
 #claiming-social-security .step-one h2 {
   border-left: 15px solid rgba(0, 0, 0, 0);
   margin-bottom: 30px;
