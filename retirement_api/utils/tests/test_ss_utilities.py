@@ -280,50 +280,73 @@ class UtilitiesTests(unittest.TestCase):
         self.assertTrue("22" in data['note'])
         self.sample_params['yob'] = today.year-57
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue(data['data']['benefits']['age 62'] != 0)
-        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        if not data['error']:
+            self.assertTrue(data['data']['benefits']['age 62'] != 0)
+            self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        else:
+            self.assertTrue('SSA' in data['error'])
         self.sample_params['yob'] = today.year-64
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        if not data['error']:
+            self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        else:
+            self.assertTrue('SSA' in data['error'])
         self.sample_params['yob'] = today.year-65
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        if not data['error']:
+            self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        else:
+            self.assertTrue('SSA' in data['error'])
         self.sample_params['yob'] = today.year-66
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        self.assertTrue(data['data']['benefits']['age 66'] != 0)
+        if not data['error']:
+            self.assertTrue(data['data']['benefits']['age 70'] != 0)
+            self.assertTrue(data['data']['benefits']['age 66'] != 0)
+        else:
+            self.assertTrue('SSA' in data['error'])
         self.sample_params['yob'] = today.year-67
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        if not data['error']:
+            self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        else:
+            self.assertTrue('SSA' in data['error'])
         self.sample_params['yob'] = today.year-68
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        if not data['error']:
+            self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        else:
+            self.assertTrue('SSA' in data['error'])
         self.sample_params['yob'] = today.year-69
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        if not data['error']:
+            self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        else:
+            self.assertTrue('SSA' in data['error'])
         self.sample_params['yob'] = today.year-70
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        self.sample_params['earnings'] = 1000
+        if not data['error']:
+            self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        else:
+            self.assertTrue('SSA' in data['error'])
+        self.sample_params['earnings'] = 0
         data = json.loads(get_retire_data(self.sample_params))
+        # print "error is '%s' for low earnings" % data['error']
         self.assertTrue("zero" in data['error'])
         self.sample_params['yob'] = today.year-45
         data = json.loads(get_retire_data(self.sample_params))
-        self.assertTrue("zero" in data['error'])
+        self.assertTrue("zero" in data['error'] or "SSA" in data['error'])
         self.sample_params['earnings'] = 100000
-        print "error is %s" % data['error']
         self.sample_params['yob'] = today.year-68
         data = json.loads(get_retire_data(self.sample_params))
-        print "data note for age 68 is '%s'" % data['note']
+        # print "data note for age 68 is '%s'" % data['note']
         self.assertTrue("past" in data['note'])
         self.sample_params['yob'] = 0
         data = json.loads(get_retire_data(self.sample_params))
         self.assertTrue("too young" in data['error'])
         self.sample_params['yob'] = 'xxxx'
         data = json.loads(get_retire_data(self.sample_params))
-        print "error is %s" % data['error']
+        # print "error is %s" % data['error']
         self.assertTrue(data['error'] != '')
-
 
     @mock.patch('retirement_api.utils.ss_calculator.requests.post')
     def test_bad_calculator_requests(self, mock_requests):
@@ -331,15 +354,20 @@ class UtilitiesTests(unittest.TestCase):
         mock_json = get_retire_data(self.sample_params)
         mock_results = json.loads(mock_json)
         self.assertTrue('not responding' in mock_results['error'])
-        mock_requests.return_value.ok = True
-        mock_requests.side_effect = requests.ConnectionError
+        mock_requests.side_effect = requests.exceptions.RequestException
         mock_json = get_retire_data(self.sample_params)
         mock_results = json.loads(mock_json)
-        print "results error message is %s" % mock_results['error']
+        print "RequestException note is '%s'" % mock_results['error']
+        self.assertTrue('request error' in mock_results['error'])
+        mock_requests.side_effect = requests.exceptions.ConnectionError
+        mock_json = get_retire_data(self.sample_params)
+        mock_results = json.loads(mock_json)
+        print "ConnectionError note is '%s'" % mock_results['error']
         self.assertTrue('connection error' in mock_results['error'])
-        mock_requests.return_value.ok = True
-        mock_requests.side_effect = TimeoutError
+        mock_requests.side_effect = requests.exceptions.Timeout
         mock_json = get_retire_data(self.sample_params)
         mock_results = json.loads(mock_json)
-        print "results error message is %s" % mock_results['error']
-        self.assertTrue('not responding' in mock_results['error'])
+        self.assertTrue('timed out' in mock_results['error'])
+        mock_requests.side_effect = ValueError
+        mock_results = json.loads(mock_json)
+        self.assertTrue('SSA' in mock_results['error'])

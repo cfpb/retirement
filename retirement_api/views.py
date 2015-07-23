@@ -41,7 +41,7 @@ def claiming(request, es=False):
     ages = {}
     for age in AgeChoice.objects.all():
         ages[age.age] = _(age.aside)
-    page = Page.objects.get(title='Claiming Social Security')
+    page = Page.objects.get(title='Before You Claim')
     tips = {}
     for tooltip in Tooltip.objects.all():
         tips[tooltip.title] = tooltip.text
@@ -114,17 +114,14 @@ def estimator(request, dob=None, income=None):
     params['dobday'] = DOB.day
     params['yob'] = DOB.year
     params['earnings'] = income
-    if standalone:
-        data = get_retire_data(params, timeout=False)
-    else:
-        data = get_retire_data(params)
+    data = get_retire_data(params)
     return HttpResponse(data, content_type='application/json')
 
 
 def get_full_retirement_age(request, birth_year):
     data_tuple = get_retirement_age(birth_year)
     if not data_tuple:
-        return HttpResponseBadRequest("bad birth year provided: (%s)" % birth_year)
+        return HttpResponseBadRequest("bad birth year (%s)" % birth_year)
     else:
         data = json.dumps(data_tuple)
         return HttpResponse(data, content_type='application/json')
