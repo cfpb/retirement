@@ -22,7 +22,7 @@
 
   // Raphael elements
   var indicator = false,
-      blackLine,
+      sliderLine,
       graphBackground;
 
   // Objects to contain Raphael individual bars
@@ -388,7 +388,7 @@
     Note: while dy is not used, it is sent by Raphael's element.drag()
   --***/
   function moveIndicator(dx, dy) {
-    var newX = indicator[0].odx + dx;
+    var newX = indicator.odx + dx;
     if ( newX > gset.barGut * 8 ) {
       newX = gset.barGut * 8;
     }
@@ -414,44 +414,47 @@
   --***/
   function moveIndicatorToAge( age ) {
     age = Number( age );
-    var iPosX = indicator[0].transform()[0][1];
+    var iPosX = indicator.transform()[0][1];
     var newX = Math.round( ages.indexOf( age ) ) * ( gset.barGut ) + gset.indicatorLeftSet;
-    indicator[0].odx = iPosX;
+    indicator.odx = iPosX;
     moveIndicator( ( newX - iPosX ), 0 );
   }
 
   /***-- drawIndicator(): draws the indicator --***/
   function drawIndicator() {
     var path,
-        greenPath,
-        whiteLines, // vision dreams of passion
+        // greenPath,
+        // whiteLines, // vision dreams of passion
         posX;
 
     // Clear existing indicator, set up new one.
     if ( typeof indicator === "object" ) {
       indicator.remove();
     }
-    indicator = barGraph.set();
+    // indicator = barGraph.set();
 
     // greenPath outlines and fills the indicator handle
-    path = 'M0 ' + ( gset.graphHeight - 8 ) +' H34 V' + ( gset.graphHeight - 38 );
-    path += ' L17 ' + ( gset.graphHeight - 43 ) + ' L0 ' + ( gset.graphHeight - 38 );
-    path += ' V' + ( gset.graphHeight - 8 );
+    // path = 'M0 ' + ( gset.graphHeight - 8 ) +' H34 V' + ( gset.graphHeight - 38 );
+    // path += ' L17 ' + ( gset.graphHeight - 43 ) + ' L0 ' + ( gset.graphHeight - 38 );
+    // path += ' V' + ( gset.graphHeight - 8 );
     // greenPath = barGraph.path( 'M0 372 H34 V342 L17 337 L0 342 V372' )
-    greenPath = barGraph.path( path );
-    greenPath.attr( { 'fill': '#34b14f', 'stroke': '#34b14f' } ) ;
-    greenPath.node.id = "indicator-handle";
+    // greenPath = barGraph.path( path );
+    // greenPath.attr( { 'fill': '#34b14f', 'stroke': '#34b14f' } ) ;
+    // greenPath.node.id = "indicator-handle";
 
     // whiteLines are the three lines on the indicator handle
-    path = 'M12 ' + ( gset.graphHeight - 18 ) + ' V' + ( gset.graphHeight - 28 );
-    path += ' M17 ' + ( gset.graphHeight - 15.5 ) + ' V' + ( gset.graphHeight - 30.5 );
-    path += ' M22 ' + ( gset.graphHeight - 18 ) + ' V' + ( gset.graphHeight - 28 );
+    // path = 'M12 ' + ( gset.graphHeight - 18 ) + ' V' + ( gset.graphHeight - 28 );
+    // path += ' M17 ' + ( gset.graphHeight - 15.5 ) + ' V' + ( gset.graphHeight - 30.5 );
+    // path += ' M22 ' + ( gset.graphHeight - 18 ) + ' V' + ( gset.graphHeight - 28 );
     // whiteLines = barGraph.path( 'M12 362 V352 M17 364.5 V349.5 M22 362 V352');
-    whiteLines = barGraph.path( path );
-    whiteLines.attr( { 'fill': '#fff', 'stroke': '#fff' } );
+    // whiteLines = barGraph.path( path );
+    // whiteLines.attr( { 'fill': '#fff', 'stroke': '#fff' } );
 
     // greenPath and whiteLines are added to the indicator set
-    indicator.push( greenPath, whiteLines );
+    // indicator.push( greenPath, whiteLines );
+
+    indicator = barGraph.circle( 0, gset.graphHeight - 20 , 15);
+    indicator.attr( { 'fill': '#F8F8F8', 'stroke': '#919395'})
 
     // set up initial indicator text and position
     selectedAge = SSData.fullAge;
@@ -500,7 +503,7 @@
     gset.indicatorSide = 19;
 
     gset.barGut = gset.barWidth + gset.gutterWidth;
-    gset.indicatorLeftSet = Math.ceil( ( gset.barWidth - gset.indicatorWidth ) / 2 );
+    gset.indicatorLeftSet = Math.ceil( ( gset.barWidth - gset.indicatorWidth ) / 2 ) + ( gset.indicatorWidth / 2 ) + 1;
     barGraph.setSize( gset.graphWidth, gset.graphHeight );
     $( '#claim-canvas, .x-axis-label' ).width( gset.graphWidth );
   }
@@ -552,13 +555,13 @@
     graphBackground = barGraph.path( path );
     graphBackground.attr('stroke', '#E3E4E5');
 
-    // remove existing black line
-    if ( typeof blackLine === "object" && typeof blackLine.remove !== "undefined" ) {
-      blackLine.remove();
+    // remove existing slider line
+    if ( typeof sliderLine === "object" && typeof sliderLine.remove !== "undefined" ) {
+      sliderLine.remove();
     }
-    // draw a new black line
-    blackLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 22 ) + ' H' + totalWidth );
-    blackLine.attr('stroke', '#000')
+    // draw a new slider line 
+    sliderLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 20 ) + ' H' + totalWidth );
+    sliderLine.attr( { 'stroke': '#E3E4E5', 'stroke-width': 5 } )
   }
 
   /**
