@@ -278,6 +278,20 @@ form {
   overflow: hidden;
 }
 
+#claiming-social-security .input-labels input {
+  display: inline;
+  width: 15%;
+  padding: 2px;
+}
+
+#claiming-social-security #bd-year {
+  width: 30%;
+}
+
+#claiming-social-security #salary-input {
+  width: 90%;
+}
+
 /* Hide spinners in number inputs */
 #claiming-social-security #bd-month::-webkit-outer-spin-button,
 #claiming-social-security #bd-month::-webkit-inner-spin-button,
@@ -296,20 +310,6 @@ form {
 #claiming-social-security #bd-year,
 #claiming-social-security #salary-input {
   -moz-appearance:textfield;
-}
-
-#claiming-social-security .input-labels input {
-  display: inline;
-  width: 15%;
-  padding: 2px;
-}
-
-#claiming-social-security #bd-year {
-  width: 30%;
-}
-
-#claiming-social-security #salary-input {
-  width: 90%;
 }
 
 #claiming-social-security .benefits-comparison .annual-view {
@@ -525,6 +525,73 @@ form {
   width: 4em;
 }
 
+/* cf-notification */
+#claiming-social-security .cf-notification {
+  display: none;
+  position: relative;
+  padding: 15px;
+  padding-left: 40px;
+  margin-bottom: 20px;
+  margin-top: -40px;
+  background: #e3e4e5;
+  border: 1px solid #75787b;
+}
+
+#claiming-social-security .cf-notification__error {
+  background: #f6d9d3;
+  border-color: #d12124;
+}
+
+#claiming-social-security .cf-notification__success {
+  background: #dbedd4;
+  border-color: #2cb34a;
+}
+
+#claiming-social-security .cf-notification__warning {
+  background: #ffecd1;
+  border-color: #ff9e1b;
+}
+
+#claiming-social-security .cf-notification_icon {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: #e3e4e5;
+  font-size: 1.125em;
+}
+
+#claiming-social-security .cf-notification_icon__error {
+  color: #d14327;
+}
+
+#claiming-social-security .cf-notification_icon__success {
+  color: #2cb34a;
+}
+
+#claiming-social-security .cf-notification_icon__warning {
+  color: #ff931b;
+}
+
+#claiming-social-security .cf-notification_text {
+  margin: 0;
+  padding: 0;
+}
+
+#claiming-social-security .cf-notification_text span {
+  display: block;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+#claiming-social-security .cf-notification_text .short-desc {
+  display: block;
+  font-size: 16px;
+}
+
+#claiming-social-security .step-one .notification-input__warning {
+  border-color: #FF921B;
+}
+
 
 /* ====================================================================
    Medium and small screens
@@ -542,6 +609,10 @@ form {
 
   #claiming-social-security .step-one .step-one-instructions {
     margin-bottom: 30px;
+  }
+
+  #claiming-social-security .cf-notification {
+    margin-top: -10px;
   }
 
   #claiming-social-security .step-two .lifestyle-response > p:last-child {
@@ -977,67 +1048,6 @@ form {
   user-select: none;
 }
 
-/* cf-notification */
-#claiming-social-security .cf-notification {
-  display: none;
-  position: relative;
-  padding: 15px;
-  padding-left: 40px;
-  margin-bottom: 20px;
-  margin-top: -40px;
-  background: #e3e4e5;
-  border: 1px solid #75787b;
-}
-
-#claiming-social-security .cf-notification__error {
-  background: #f6d9d3;
-  border-color: #d12124;
-}
-
-#claiming-social-security .cf-notification__success {
-  background: #dbedd4;
-  border-color: #2cb34a;
-}
-
-#claiming-social-security .cf-notification__warning {
-  background: #ffecd1;
-  border-color: #ff9e1b;
-}
-
-#claiming-social-security .cf-notification_icon {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  color: #e3e4e5;
-  font-size: 1.125em;
-}
-
-#claiming-social-security .cf-notification_icon__error {
-  color: #d14327;
-}
-
-#claiming-social-security .cf-notification_icon__success {
-  color: #2cb34a;
-}
-
-#claiming-social-security .cf-notification_icon__warning {
-  color: #ff931b;
-}
-
-#claiming-social-security .cf-notification_text,
-#claiming-social-security .cf-notification_text p {
-  margin: 0;
-  padding: 0;
-}
-
-#claiming-social-security .cf-notification_text .short-desc {
-  display: block;
-  font-size: 16px;
-}
-
-#claiming-social-security .step-one .notification-input__warning {
-  border-color: #FF921B;
-}
 
 /* Responsive menu for medium and smaller screens!
    Woo-hoo! */
