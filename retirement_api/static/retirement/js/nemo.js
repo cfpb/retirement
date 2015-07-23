@@ -42,7 +42,7 @@ function dropMenu() {
 }
 
 function hideMenu() {
-    $(".active").removeClass("active");
+    $("#header .active").removeClass("active");
     $("#closeMenu").remove();
     $("#subnav nav").slideUp();
 }
