@@ -21,7 +21,7 @@ your birthdate, %s, means you are older than 70 and are already receiving \
 benefits.</span> To check your benefits based on your actual \
 earnings record, contact the Social Security Administration or \
 open a <a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
-my Social Security</a> account.
+<em>my</em>Social Security</a> account.
 """
 
 # this datafile specifies years that have unique retirement age values
