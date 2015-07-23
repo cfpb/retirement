@@ -48,6 +48,7 @@ git clone https://github.com/cfpb/retirement.git
 cd retirement
 setvirtualenvproject
 pip install -r requirements.txt
+cp test_settings.py settings.py
 ```
 
 Load the app's database tables and content.  
@@ -70,7 +71,6 @@ The "Before You Claim" page should load at `localhost:8000/claiming-social-secur
 ### How to run software tests
 - You can use nose to run the test suite and see code coverage information
 ```bash
-cp test_settings.py settings.py
 nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
 ```
 
