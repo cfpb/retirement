@@ -211,11 +211,12 @@
           if ( SSData.currentAge > SSData.fullAge ) {
             SSData.fullAge = SSData.currentAge;
           }
-          resetView();
           $('.step-two, #estimated-benefits-input, #graph-container').css('opacity', 1);
           $('.step-two .question').css('display', 'inline-block');
           $('.step-three').css('opacity', 1);
-          $('.step-three .hidden-content').show();
+          $('.step-one-hidden, .step-three .hidden-content').show();
+          redrawGraph();
+          resetView();
         }
         else {
           $( '.cf-notification' ).slideDown();
