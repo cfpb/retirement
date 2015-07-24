@@ -1852,6 +1852,7 @@ form {
   }
   .nemo #subnav nav {
     border: 0;
+    box-sizing: border-box;
     width: 100%;
   }
   .nemo #subnav nav ul {
