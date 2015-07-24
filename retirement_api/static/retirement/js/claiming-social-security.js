@@ -281,6 +281,12 @@
     innerTip.css("left", Math.floor( tipOffset - ( innerTip.outerWidth() / 2 ) ) );
     outerTip.css("left", Math.floor( tipOffset - ( outerTip.outerWidth() / 2 ) ) );
 
+    if (newLeft < 20) {
+      ttc.css('left', 20);
+      innerTip.css('left', $elem.offset().left + ( $elem.width() / 2 ) - ( innerTip.outerWidth() / 2 ) - 20 );
+      outerTip.css('left', $elem.offset().left + ( $elem.width() / 2 ) - ( outerTip.outerWidth() / 2 ) - 20 );
+    }
+
     if ( /iP/i.test(navigator.userAgent) ) { // if userAgent is an iPhone, iPad, iPod
       $('body').css('cursor', 'pointer'); // make the body clickable
     }
@@ -557,7 +563,7 @@
     if ( typeof sliderLine === "object" && typeof sliderLine.remove !== "undefined" ) {
       sliderLine.remove();
     }
-    // draw a new slider line 
+    // draw a new slider line
     sliderLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 20 ) + ' H' + totalWidth );
     sliderLine.attr( { 'stroke': '#E3E4E5', 'stroke-width': 5 } )
   }
