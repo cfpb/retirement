@@ -184,11 +184,20 @@ form {
   margin-bottom: 8px;
 }
 
-#claiming-social-security .estimated-benefits-input {
+#claiming-social-security .estimated-benefits-description {
   margin: 1em 0 0 0;
   padding: 1em 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+}
+
+#claiming-social-security .estimated-benefits-description p {
+  margin-bottom: 0px;
+}
+
+#claiming-social-security .estimated-benefits-input {
+  margin: 0;
+  padding: 0 0 30px 45px;
 }
 
 #claiming-social-security #graph-container .content-l_col {
@@ -329,7 +338,6 @@ form {
 
 #claiming-social-security .selected-retirement-age-container {
   height: 77px;
-  margin-top: -5px;
   margin-bottom: 30px;
 }
 

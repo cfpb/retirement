@@ -123,8 +123,9 @@
     </div>
   </div>
 
-  <div id="estimated-benefits-input" class="estimated-benefits-input step-one-hidden">
-    <span class="h3">{% trans "Show my estimated benefits as" %}<label><input type="radio" name="benefits-display" value="monthly" checked> {% trans "monthly income" %}</label> <label><input type="radio" name="benefits-display" value="annual"> {% trans "annual income" %}</label> </span>
+  <div id="estimated-benefits-description" class="estimated-benefits-description h3 step-one-hidden">
+    <p><strong>Your estimated benefits:</strong></p>
+    <p>Select claiming ages on the graph to see your benefit increase or decrease.</p>
   </div>
 
   <div id="graph-container" class="content-l step-one-hidden">
@@ -174,6 +175,9 @@
 
     </div>
     <div class="content-l_col content-l_col-2-3 canvas-container">
+      <div id="estimated-benefits-input" class="estimated-benefits-input h4 step-one-hidden">
+        <span>View estimated benefits as:<label><input type="radio" name="benefits-display" value="monthly" checked> {% trans "monthly income" %}</label> <label><input type="radio" name="benefits-display" value="annual"> {% trans "annual income" %}</label> </span>
+      </div>
       <div id="claim-canvas">
         <div id="benefits-text" class="h3">
         </div>
