@@ -659,6 +659,10 @@ form {
     padding-right: 575px;
     width: auto;
   }
+
+  #claiming-social-security p.y-axis-label {
+    top: 310px;
+  }
 }
 
 @media (max-width: 1044px) and (min-width: 850px) {
@@ -910,7 +914,7 @@ form {
   }
 
   #claiming-social-security p.y-axis-label {
-    top: 210px;
+    top: 240px;
     left: -57px;
   }
 

@@ -496,7 +496,6 @@
       gset.graphHeight = 380;
     }
     // $( '.selected-retirement-age-container' ).css( 'margin-top', gset.graphHeight + 75 + 'px');
-    // $( '.y-axis-label' ).css( 'top', gset.graphHeight - 130 + 'px' );
 
     gset.barWidth = Math.floor( gset.graphWidth / 17 );
     gset.gutterWidth = Math.floor( gset.graphWidth / 17 );
