@@ -611,6 +611,22 @@ form {
     margin-top: -10px;
   }
 
+  #claiming-social-security .estimated-benefits-input {
+    padding-left: 40px;
+  }
+
+  #claiming-social-security #estimated-benefits-input span {
+    display: block;
+  }
+
+  #claiming-social-security .estimated-benefits-input label {
+    margin-left: 15px;
+  }
+
+  #claiming-social-security #estimated-benefits-input label:first-of-type {
+    margin-left: 0px;
+  }
+
   #claiming-social-security .step-two .lifestyle-response > p:last-child {
     margin-bottom: 0;
   }
@@ -866,13 +882,19 @@ form {
     width: 65%;
   }
 
+  #claiming-social-security .estimated-benefits-input {
+    padding-left: 0px;
+  }
+
   #claiming-social-security #estimated-benefits-input label {
     display: block;
     margin-left: 0;
+    height: 30px;
   }
 
   #claiming-social-security #estimated-benefits-input label:first-of-type {
     margin-top: 8px;
+    margin-left: 0px;
   }
 
   #claiming-social-security #graph-container .content-l_col.benefits-comparison {
