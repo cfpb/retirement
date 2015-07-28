@@ -59,7 +59,7 @@ form {
 
 #claiming-social-security p.y-axis-label {
   position: absolute;
-  top: 250px;
+  top: 290px;
   left: -50px;
 
   /* Safari */
@@ -702,6 +702,10 @@ form {
     width: 60%;
   }
 
+  #claiming-social-security p.y-axis-label {
+    top: 310px;
+  }
+
   #claiming-social-security #maincontent .h3.selected-retirement-age {
     font-size: 1.375em;
   }
@@ -884,6 +888,7 @@ form {
   }
 
   #claiming-social-security p.y-axis-label {
+    top: 210px;
     left: -57px;
   }
 
