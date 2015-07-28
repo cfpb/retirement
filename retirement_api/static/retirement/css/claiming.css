@@ -665,10 +665,6 @@ form {
     width: 100%;
   }
 
-  #claiming-social-security .claiming-hero h1 span.header-line {
-    display: inline;
-  }
-
   #claiming-social-security .claiming-hero p {
     margin-bottom: 0px;
   }
@@ -831,10 +827,6 @@ form {
   #claiming-social-security .claiming-hero h1,
   #claiming-social-security .claiming-hero p {
     width: 100%;
-  }
-
-  #claiming-social-security .claiming-hero h1 span.header-line {
-    display: inline;
   }
 
   #claiming-social-security .claiming-hero p {
