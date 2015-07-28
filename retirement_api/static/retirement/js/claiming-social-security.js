@@ -557,7 +557,7 @@
     if ( typeof sliderLine === "object" && typeof sliderLine.remove !== "undefined" ) {
       sliderLine.remove();
     }
-    // draw a new slider line 
+    // draw a new slider line
     sliderLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 20 ) + ' H' + totalWidth );
     sliderLine.attr( { 'stroke': '#E3E4E5', 'stroke-width': 5 } )
   }
@@ -664,8 +664,8 @@
     $('.step-two .question .lifestyle-btn').click(function() {
       var $container = $(this).closest( '.question' );
       var respTo = $(this).val();
-      $container.find('.lifestyle-btn').removeClass('active');
-      $(this).addClass('active');
+      $container.find('.lifestyle-btn').removeClass('lifestyle-btn__active');
+      $(this).addClass('lifestyle-btn__active');
 
       $container.find('.lifestyle-img').slideUp();
       $container.find('.lifestyle-response').not('[data-responds-to="' + respTo + '"]').slideUp();
@@ -737,6 +737,12 @@
         toolTipper( $('[data-tooltip-current-target]') );
       }
       redrawGraph();
+    });
+
+    // Hamburger menu
+    $('.toggle-menu').on('click', function(ev){
+        ev.preventDefault();
+        $('nav.main ul').toggleClass('vis');
     });
   });
 // })(jQuery);
