@@ -155,7 +155,7 @@
   function isElementInView( selector ) {
     var $ele = $( selector ),
         target;
-    if ( $ele.offset().top > $(window).scrollTop() + $(window).height() + 150 ) {
+    if ( $ele.offset().top > $(window).scrollTop() + $(window).height() - 150 ) {
       return false;
     }
     else {
@@ -217,6 +217,12 @@
           $('.step-one-hidden, .step-three .hidden-content').show();
           redrawGraph();
           resetView();
+          // Scroll graph into view if it's not visible
+          if ( isElementInView( '#claim-canvas' ) === false ) {
+            $('html, body').animate({
+                scrollTop: $("#estimated-benefits-input").offset().top - 20
+            }, 300);
+          }
         }
         else {
           $( '.cf-notification' ).slideDown();
@@ -646,12 +652,6 @@
       $('#salary-input').blur();
       checkEstimateReady();
       getData();
-      // Scroll graph into view if it's not visible
-      if ( isElementInView( '#claim-canvas' ) === false ) {
-        $('html, body').animate({
-            scrollTop: $("#estimated-benefits-input").offset().top
-        }, 300);
-      }
     });
 
     $('#claim-canvas').on('click', '.age-text', function() {
@@ -710,7 +710,7 @@
       // Scroll response into view if it's not visible
       if ( isElementInView( '#age-selector-response' ) === false ) {
         $('html, body').animate({
-            scrollTop: $("#retirement-age-selector").offset().top
+            scrollTop: $("#retirement-age-selector").offset().top - 20
         }, 300);
       }
 
