@@ -59,7 +59,7 @@ form {
 
 #claiming-social-security p.y-axis-label {
   position: absolute;
-  top: 250px;
+  top: 290px;
   left: -50px;
 
   /* Safari */
@@ -184,16 +184,25 @@ form {
   margin-bottom: 8px;
 }
 
-#claiming-social-security .estimated-benefits-input {
+#claiming-social-security .estimated-benefits-description {
   margin: 1em 0 0 0;
   padding: 1em 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }
 
+#claiming-social-security .estimated-benefits-description p {
+  margin-bottom: 0px;
+}
+
+#claiming-social-security .estimated-benefits-input {
+  margin: 0;
+  padding: 0 0 30px 40px;
+}
+
 #claiming-social-security #graph-container .content-l_col {
   margin-top: 0px;
-  padding: 45px 0 60px 0;
+  padding: 30px 0 60px 0;
 }
 
 #claiming-social-security .step-one .content-l_col {
@@ -261,7 +270,7 @@ form {
 
 #claiming-social-security .estimated-benefits-input label {
   display: inline;
-  margin-left: 40px;
+  margin-left: 15px;
 }
 
 #claiming-social-security input[type="text"] {
@@ -329,7 +338,6 @@ form {
 
 #claiming-social-security .selected-retirement-age-container {
   height: 77px;
-  margin-top: -5px;
   margin-bottom: 30px;
 }
 
@@ -607,6 +615,22 @@ form {
     margin-top: -10px;
   }
 
+  #claiming-social-security .estimated-benefits-input {
+    padding-left: 40px;
+  }
+
+  #claiming-social-security #estimated-benefits-input span {
+    display: block;
+  }
+
+  #claiming-social-security .estimated-benefits-input label {
+    margin-left: 15px;
+  }
+
+  #claiming-social-security #estimated-benefits-input label:first-of-type {
+    margin-left: 0px;
+  }
+
   #claiming-social-security .step-two .lifestyle-response > p:last-child {
     margin-bottom: 0;
   }
@@ -639,6 +663,10 @@ form {
     padding-right: 575px;
     width: auto;
   }
+
+  #claiming-social-security p.y-axis-label {
+    top: 310px;
+  }
 }
 
 @media (max-width: 1044px) and (min-width: 850px) {
@@ -659,10 +687,6 @@ form {
   #claiming-social-security .claiming-hero h1,
   #claiming-social-security .claiming-hero p {
     width: 100%;
-  }
-
-  #claiming-social-security .claiming-hero h1 span.header-line {
-    display: inline;
   }
 
   #claiming-social-security .claiming-hero p {
@@ -700,6 +724,10 @@ form {
 
   #claiming-social-security #graph-container .content-l_col-2-3 {
     width: 60%;
+  }
+
+  #claiming-social-security p.y-axis-label {
+    top: 310px;
   }
 
   #claiming-social-security #maincontent .h3.selected-retirement-age {
@@ -829,10 +857,6 @@ form {
     width: 100%;
   }
 
-  #claiming-social-security .claiming-hero h1 span.header-line {
-    display: inline;
-  }
-
   #claiming-social-security .claiming-hero p {
     margin-bottom: 0px;
   }
@@ -866,13 +890,19 @@ form {
     width: 65%;
   }
 
+  #claiming-social-security .estimated-benefits-input {
+    padding-left: 0px;
+  }
+
   #claiming-social-security #estimated-benefits-input label {
     display: block;
     margin-left: 0;
+    height: 30px;
   }
 
   #claiming-social-security #estimated-benefits-input label:first-of-type {
     margin-top: 8px;
+    margin-left: 0px;
   }
 
   #claiming-social-security #graph-container .content-l_col.benefits-comparison {
@@ -888,12 +918,17 @@ form {
   }
 
   #claiming-social-security p.y-axis-label {
+    top: 240px;
     left: -57px;
+  }
+
+  #claiming-social-security .canvas-container .x-axis-label {
+    top: 20px;
   }
 
   #claiming-social-security .selected-retirement-age-container {
     height: auto;
-    margin-top: 285px;
+    margin-top: 425px;
   }
 
   #claiming-social-security .canvas-container {

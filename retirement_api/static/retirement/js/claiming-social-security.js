@@ -38,7 +38,7 @@
       'graphWidth' : 0,
       'barGut' : 0,
       'indicatorLeftSet' : 0,
-      'barOffset' : 94
+      'barOffset' : 0
     }
 
   // global vars
@@ -272,30 +272,14 @@
     newLeft = $elem.offset().left + ( $elem.outerWidth() / 2 ) - ( ttc.outerWidth(true) / 2 );
     ttc.css( { 'top': newTop, 'left': newLeft } );
 
+    if ( ttc.offset().left + ttc.outerWidth(true) >$(window).width()) {
+        newLeft = $(window).width() - ttc.outerWidth(true) - 20;
+        ttc.css( 'left', newLeft );
+    }
     // check offset again, properly set tips to point to the element clicked
     tipOffset = Math.floor( ttc.outerWidth() / 2 );
     innerTip.css("left", Math.floor( tipOffset - ( innerTip.outerWidth() / 2 ) ) );
     outerTip.css("left", Math.floor( tipOffset - ( outerTip.outerWidth() / 2 ) ) );
-
-    // Prevent tooltip from falling off the left side of screens
-    if (newLeft < 20) {
-      var elemCenter = $elem.offset().left + ( $elem.width() / 2 ),
-          pagePadding = 20;
-      ttc.css('left', pagePadding);
-      innerTip.css('left', elemCenter - ( innerTip.outerWidth() / 2 ) - pagePadding );
-      outerTip.css('left', elemCenter - ( outerTip.outerWidth() / 2 ) - pagePadding );
-    }
-
-    // Prevent tooltip from falling off the right side of screens
-    if ( ttc.offset().left + ttc.outerWidth(true) >$(window).width()) {
-      var elemCenter = $elem.offset().left + ( $elem.width() / 2 ),
-          elemRightOffset = $(window).width() - elemCenter,
-          pagePadding = 20;
-      newLeft = $(window).width() - ttc.outerWidth(true) - pagePadding;
-      ttc.css( 'left', newLeft );
-      innerTip.css('left', ttc.outerWidth() - ( innerTip.outerWidth() / 2 ) - elemRightOffset + pagePadding );
-      outerTip.css('left', ttc.outerWidth() - ( outerTip.outerWidth() / 2 ) - elemRightOffset + pagePadding );
-    }
 
     if ( /iP/i.test(navigator.userAgent) ) { // if userAgent is an iPhone, iPad, iPod
       $('body').css('cursor', 'pointer'); // make the body clickable
@@ -470,7 +454,12 @@
     // greenPath and whiteLines are added to the indicator set
     // indicator.push( greenPath, whiteLines );
 
-    indicator = barGraph.circle( 0, gset.graphHeight - 20 , 15);
+    // draw a new slider line 
+    if ($(window).width() < 850) {
+      indicator = barGraph.circle( 0, gset.graphHeight - 10 , 15);
+    } else {
+      indicator = barGraph.circle( 0, gset.graphHeight - 20 , 15);
+    }
     indicator.attr( { 'fill': '#F8F8F8', 'stroke': '#919395'})
 
     // set up initial indicator text and position
@@ -512,7 +501,6 @@
       gset.graphHeight = 380;
     }
     // $( '.selected-retirement-age-container' ).css( 'margin-top', gset.graphHeight + 75 + 'px');
-    $( '.y-axis-label' ).css( 'top', gset.graphHeight - 130 + 'px' );
 
     gset.barWidth = Math.floor( gset.graphWidth / 17 );
     gset.gutterWidth = Math.floor( gset.graphWidth / 17 );
@@ -527,6 +515,11 @@
 
   /***-- drawBars(): draws and redraws the indicator bars for each age --***/
   function drawBars() {
+    if ($(window).width() < 850) {
+      gset.barOffset = 52;
+    } else {
+      gset.barOffset = 94;
+    }
     var leftOffset =  0;
     var heightRatio = ( gset.graphHeight - gset.barOffset ) / SSData['age70'];
     $.each( ages, function(i, val) {
@@ -573,8 +566,12 @@
     if ( typeof sliderLine === "object" && typeof sliderLine.remove !== "undefined" ) {
       sliderLine.remove();
     }
-    // draw a new slider line
-    sliderLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 20 ) + ' H' + totalWidth );
+    // draw a new slider line 
+    if ($(window).width() < 850) {
+      sliderLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 10 ) + ' H' + totalWidth );
+    } else {
+      sliderLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 20 ) + ' H' + totalWidth );
+    }
     sliderLine.attr( { 'stroke': '#E3E4E5', 'stroke-width': 5 } )
   }
 
@@ -594,10 +591,17 @@
 
       // set width to bar width (minus stroke width x2)
       ageDiv.width( gset.barWidth );
-      ageDiv.css( {
+      if ($(window).width() < 850) {
+        ageDiv.css( {
+        'left': leftOffset,
+        'top': gset.graphHeight - 48 + 'px'
+        } );
+      } else {
+        ageDiv.css( {
         'left': leftOffset,
         'top': gset.graphHeight - 88 + 'px'
         } );
+      }
       leftOffset = leftOffset + gset.barGut;
     });
 
@@ -680,8 +684,8 @@
     $('.step-two .question .lifestyle-btn').click(function() {
       var $container = $(this).closest( '.question' );
       var respTo = $(this).val();
-      $container.find('.lifestyle-btn').removeClass('lifestyle-btn__active');
-      $(this).addClass('lifestyle-btn__active');
+      $container.find('.lifestyle-btn').removeClass('active');
+      $(this).addClass('active');
 
       $container.find('.lifestyle-img').slideUp();
       $container.find('.lifestyle-response').not('[data-responds-to="' + respTo + '"]').slideUp();
@@ -753,12 +757,6 @@
         toolTipper( $('[data-tooltip-current-target]') );
       }
       redrawGraph();
-    });
-
-    // Hamburger menu
-    $('.toggle-menu').on('click', function(ev){
-        ev.preventDefault();
-        $('nav.main ul').toggleClass('vis');
     });
   });
 // })(jQuery);
