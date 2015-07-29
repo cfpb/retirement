@@ -38,7 +38,7 @@
       'graphWidth' : 0,
       'barGut' : 0,
       'indicatorLeftSet' : 0,
-      'barOffset' : 94
+      'barOffset' : 0
     }
 
   // global vars
@@ -454,7 +454,12 @@
     // greenPath and whiteLines are added to the indicator set
     // indicator.push( greenPath, whiteLines );
 
-    indicator = barGraph.circle( 0, gset.graphHeight - 20 , 15);
+    // draw a new slider line 
+    if ($(window).width() < 850) {
+      indicator = barGraph.circle( 0, gset.graphHeight - 10 , 15);
+    } else {
+      indicator = barGraph.circle( 0, gset.graphHeight - 20 , 15);
+    }
     indicator.attr( { 'fill': '#F8F8F8', 'stroke': '#919395'})
 
     // set up initial indicator text and position
@@ -510,6 +515,11 @@
 
   /***-- drawBars(): draws and redraws the indicator bars for each age --***/
   function drawBars() {
+    if ($(window).width() < 850) {
+      gset.barOffset = 52;
+    } else {
+      gset.barOffset = 94;
+    }
     var leftOffset =  0;
     var heightRatio = ( gset.graphHeight - gset.barOffset ) / SSData['age70'];
     $.each( ages, function(i, val) {
@@ -557,7 +567,11 @@
       sliderLine.remove();
     }
     // draw a new slider line 
-    sliderLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 20 ) + ' H' + totalWidth );
+    if ($(window).width() < 850) {
+      sliderLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 10 ) + ' H' + totalWidth );
+    } else {
+      sliderLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 20 ) + ' H' + totalWidth );
+    }
     sliderLine.attr( { 'stroke': '#E3E4E5', 'stroke-width': 5 } )
   }
 
@@ -577,10 +591,17 @@
 
       // set width to bar width (minus stroke width x2)
       ageDiv.width( gset.barWidth );
-      ageDiv.css( {
+      if ($(window).width() < 850) {
+        ageDiv.css( {
+        'left': leftOffset,
+        'top': gset.graphHeight - 48 + 'px'
+        } );
+      } else {
+        ageDiv.css( {
         'left': leftOffset,
         'top': gset.graphHeight - 88 + 'px'
         } );
+      }
       leftOffset = leftOffset + gset.barGut;
     });
 

@@ -918,9 +918,13 @@ form {
     left: -57px;
   }
 
+  #claiming-social-security .canvas-container .x-axis-label {
+    top: 20px;
+  }
+
   #claiming-social-security .selected-retirement-age-container {
     height: auto;
-    margin-top: 285px;
+    margin-top: 425px;
   }
 
   #claiming-social-security .canvas-container {
