@@ -17,7 +17,7 @@ HOME = 'index.html'
 @given(u'I navigate to the Retirement landing page')
 @handle_error
 def step(context):
-    context.base.go('retirement/claiming-social-security')
+    context.base.go('retirement/before-you-claim')
 
 
 # @then(u'I should see "{link_name}" displayed in the page title')

@@ -1,4 +1,4 @@
- [![Build Status](https://travis-ci.org/cfpb/retirement.png)](https://travis-ci.org/cfpb/retirement) [![Coverage Status](https://coveralls.io/repos/cfpb/retirement/badge.svg)](https://coveralls.io/r/cfpb/retirement)
+[![Build Status](https://travis-ci.org/cfpb/retirement.png)](https://travis-ci.org/cfpb/retirement) [![Coverage Status](https://coveralls.io/repos/cfpb/retirement/badge.svg)](https://coveralls.io/r/cfpb/retirement)
 
 # Retirement: Before You Claim
 
@@ -62,7 +62,7 @@ Fire up a development server.
 python manage.py runserver
 ```
 
-The "Before You Claim" page should load at `localhost:8000/claiming-social-security/`.  
+The "Before You Claim" page should load at `localhost:8000/before-you-claim/`.  
 
 ### Usage notes
 - The app is set up to run inside [consumerfinance.gov](http://www.consumerfinance.gov), so if you run it locally, some fonts may not load because of [Cross-Origin Resource Sharing](http://www.w3.org/TR/cors/) policies.
