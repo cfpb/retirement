@@ -5,6 +5,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - changed title and `h1` to **Before you claim**
 - made content changes based on user testing
 - fixed mobile alignment of graph elements
+- changed final url field to reflect new title
 
 ## 0.1.7
 **2015-07-15**
