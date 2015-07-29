@@ -417,6 +417,10 @@ form {
   display: none;
 }
 
+#claiming-social-security .step-two .lifestyle-btn__active {
+  background-color: #33578e;
+}
+
 #claiming-social-security .step-two + hr {
   margin: 50px 0;
 }
@@ -1887,6 +1891,7 @@ form {
   }
   .nemo #subnav nav {
     border: 0;
+    box-sizing: border-box;
     width: 100%;
   }
   .nemo #subnav nav ul {
