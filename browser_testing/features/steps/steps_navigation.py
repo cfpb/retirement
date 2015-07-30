@@ -28,6 +28,16 @@ def step(context):
 #     assert_that(page_title, contains_string(link_name))
 
 
+@given(u'I enter birth and salary info')
+@handle_error
+def step(context):
+    context.base.enter_month('07')
+    context.base.enter_day('07')
+    context.base.enter_year('1970')
+    context.base.enter_income('70000')
+    context.base.get_estimate()
+    Utils().zzz(1)
+
 @when(u'I click on the "{link_name}" link')
 @handle_error
 def step(context, link_name):
