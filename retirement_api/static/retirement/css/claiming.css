@@ -214,7 +214,7 @@ form {
 }
 
 #claim-canvas .age-text {
-  color: #babbbd;
+  color: #919395;
   cursor: pointer;
   font-family: 'AvenirNextLTW01-Regular', Arial, sans-serif;
   position: absolute;
@@ -252,7 +252,8 @@ form {
   font-weight: 500;
 }
 #claim-canvas #full-age-benefits-text {
-  color: #e3e4e5;
+  color: #919395;
+  font-family: 'AvenirNextLTW01-Regular', 'Arial', sans-serif;
 }
 
 #claiming-social-security .estimated-longevity {
