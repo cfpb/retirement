@@ -204,6 +204,7 @@
             }
           });;
           SSData.currentAge = dump.current_age;
+          SSData.past_fra = dump.past_fra;
           SSData.fullRetirementAge = data['full retirement age'];
           SSData.earlyRetirementAge = data['early retirement age'];
           SSData.fullAge = Number( data['full retirement age'].substr(0,2) );
@@ -390,9 +391,18 @@
     }
 
     if ( selectedAge === SSData.fullAge ) {
+
+      if ( SSData.past_fra ) {
+      $('.benefit-modification-text').html( 'is past your full benefit claiming age.' )
+      $('.compared-to-full').hide();
+      }
+      else {
+
       $('.benefit-modification-text').html( 'is your full benefit claiming age.' )
       $('.compared-to-full').hide();
+      }
     }
+
     else if ( selectedAge < SSData.fullAge ) {
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
       percent = Math.abs( Math.round( percent * 100 ) );
