@@ -393,13 +393,12 @@
     if ( selectedAge === SSData.fullAge ) {
 
       if ( SSData.past_fra ) {
-      $('.benefit-modification-text').html( 'is past your full benefit claiming age.' )
-      $('.compared-to-full').hide();
+        $('.benefit-modification-text').html( 'is past your full benefit claiming age.' );
+        $('.compared-to-full').hide();
       }
       else {
-
-      $('.benefit-modification-text').html( 'is your full benefit claiming age.' )
-      $('.compared-to-full').hide();
+        $('.benefit-modification-text').html( 'is your full benefit claiming age.' );
+        $('.compared-to-full').hide();
       }
     }
 
@@ -407,12 +406,18 @@
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
       percent = Math.abs( Math.round( percent * 100 ) );
       $('.benefit-modification-text').html( '<strong>reduces</strong> your monthly benefit by&nbsp;<strong>' + percent + '</strong>%' );
+      if ( SSData.past_fra ) {
+        $('.compared-to-full').html('Compared to claiming at ' + SSData.fullAge + '.');
+      }
       $('.compared-to-full').show();
     }
     else if ( selectedAge > SSData.fullAge ) {
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
       percent = Math.abs( Math.round( percent * 100 ) );
       $('.benefit-modification-text').html( '<strong>increases</strong> your benefit by&nbsp;<strong>' + percent + '</strong>%' );
+      if ( SSData.past_fra ) {
+        $('.compared-to-full').html('Compared to claiming at ' + SSData.fullAge + '.');
+      }
       $('.compared-to-full').show();
     }
   }
