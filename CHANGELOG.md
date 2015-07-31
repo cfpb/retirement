@@ -2,6 +2,8 @@ Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
+
+## 0.2.0
 - changed title and `h1` to **Before you claim**
 - made content changes based on user testing, including hiding the graph initially
 - fixed mobile alignment of graph elements
