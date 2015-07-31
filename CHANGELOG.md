@@ -3,7 +3,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
 - changed title and `h1` to **Before you claim**
-- made content changes based on user testing
+- made content changes based on user testing, including hiding the graph initially
 - fixed mobile alignment of graph elements
 - changed final url field to reflect new title
 
