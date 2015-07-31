@@ -511,6 +511,7 @@
 
     if ($(window).width() < 850) {
       gset.graphHeight = 210;
+      $('#claim-canvas svg').css('overflow', 'visible');
     } else if ($(window).width() >= 850 && $(window).width() < 1045) {
       gset.graphHeight = 380;
     } else {
@@ -563,7 +564,7 @@
   function drawGraphBackground() {
     var barInterval = gset.graphHeight / 4,
         totalWidth = ( gset.barWidth * 9 ) + ( gset.gutterWidth * 8 ),
-        yCoord = gset.graphHeight + 1,
+        yCoord = gset.graphHeight - barInterval,
         path;
 
     // remove existing background
