@@ -406,9 +406,6 @@
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
       percent = Math.abs( Math.round( percent * 100 ) );
       $('.benefit-modification-text').html( '<strong>reduces</strong> your monthly benefit by&nbsp;<strong>' + percent + '</strong>%' );
-      if ( SSData.past_fra ) {
-        $('.compared-to-full').html('Compared to claiming at ' + SSData.fullAge + '.');
-      }
       $('.compared-to-full').show();
     }
     else if ( selectedAge > SSData.fullAge ) {
