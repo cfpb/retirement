@@ -220,7 +220,7 @@
           // Scroll graph into view if it's not visible
           if ( isElementInView( '#claim-canvas' ) === false ) {
             $('html, body').animate({
-                scrollTop: $("#estimated-benefits-input").offset().top - 20
+                scrollTop: $('#estimated-benefits-description').offset().top - 20
             }, 300);
           }
         }
@@ -476,7 +476,7 @@
     // greenPath and whiteLines are added to the indicator set
     // indicator.push( greenPath, whiteLines );
 
-    // draw a new slider line 
+    // draw a new slider line
     if ($(window).width() < 850) {
       indicator = barGraph.circle( 0, gset.graphHeight - 10 , 15);
     } else {
@@ -590,7 +590,7 @@
       sliderLine.remove();
     }
 
-    // draw a new slider line 
+    // draw a new slider line
     if ($(window).width() < 850) {
       sliderLine = barGraph.path( 'M0 ' + ( gset.graphHeight - 10 ) + ' H' + totalWidth );
     } else {
