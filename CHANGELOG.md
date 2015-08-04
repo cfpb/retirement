@@ -2,6 +2,7 @@ Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
+- added a tooltip for those who claim early but keep working, in the 'sixties' question
 
 ## 0.2.0
 - changed title and `h1` to **Before you claim**
