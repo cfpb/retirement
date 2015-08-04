@@ -485,10 +485,11 @@
     indicator.attr( { 'fill': '#F8F8F8', 'stroke': '#919395'})
 
     // set up initial indicator text and position
-    selectedAge = SSData.fullAge;
+    if (currentAge === 0) {
+      selectedAge = SSData.fullAge;
+    }
     posX = ages.indexOf( selectedAge ) * gset.barGut + gset.indicatorLeftSet
     indicator.transform( 't' + posX + ',0' );
-    selectedAge = SSData.fullAge;
 
     var start = function () {
       var t = this.transform();
