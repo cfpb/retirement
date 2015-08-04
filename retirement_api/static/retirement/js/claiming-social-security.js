@@ -1,5 +1,53 @@
+  /***-- delay(): Delay a function ---**/
+  var delay = (function(){
+    var t = 0;
+    return function(callback, delay) {
+      clearTimeout(t);
+      t = setTimeout(callback, delay);
+    };
+  })(); // end delay()
 
-// var CFPBClaimingSocialSecurity = ( function($) {
+  /***-- numToMoney(n): Convert from number to money string ---**/
+  function numToMoney(n) {
+    // When n is a string, we should, ironically, strip its numbers first.
+    if (typeof n === 'string') {
+        n =  Number(n.replace(/[^0-9\.]+/g,""));
+    }
+    var t = ",";
+    if (n < 0) {
+      var s = "-";
+    }
+    else {
+      var s = "";
+    }
+    var i = parseInt(n = Math.abs(+n || 0).toFixed(0)) + "";
+    var j = 0;
+    if (i.length > 3) {
+      j = ((i.length) % 3);
+    }
+    money = "$" + s;
+    if (j > 0) {
+      money += i.substr(0,j) + t;
+    }
+    money += i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t);
+    return money;
+  }
+
+  /***-- calculateAge(month, day, year): Calculates an age based on inputs
+    parameters: month is numeric month (1-12), day is numeric day (1-31), year is numeric year
+    ---**/
+  function calculateAge( month, day, year ) {
+    var now = new Date();
+    var birthdate = new Date(year, Number(month) - 1, day);
+    var age = now.getFullYear() - birthdate.getFullYear();
+    var m = now.getMonth() - birthdate.getMonth();
+    if ( m < 0 || ( m === 0 && now.getDate() < birthdate.getDate() ) ) {
+      age--;
+    }
+    return age;
+  }
+
+
   var SSData = {
     'fullAge': 67,
     'age62': 1515,
@@ -796,4 +844,4 @@
         $('nav.main ul').toggleClass('vis');
     });
   });
-// })(jQuery);
+
