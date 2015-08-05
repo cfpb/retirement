@@ -312,10 +312,15 @@ function setTextByAge() {
   }
 
   if ( selectedAge === SSData.fullAge ) {
-
     if ( SSData.past_fra ) {
-      $('.benefit-modification-text').html( 'is past your full benefit claiming age.' );
-      $('.compared-to-full').hide();
+      if ( SSData.currentAge === 70 ) {
+        $('.benefit-modification-text').html( 'is your maximum benefit claiming age.' );
+        $('.compared-to-full').hide();
+        }
+      else {
+        $('.benefit-modification-text').html( 'is past your full benefit claiming age.' );
+        $('.compared-to-full').hide();
+        }
     }
     else {
       $('.benefit-modification-text').html( 'is your full benefit claiming age.' );
