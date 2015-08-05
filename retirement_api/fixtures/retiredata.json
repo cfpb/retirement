@@ -297,6 +297,14 @@
     }
 },
 {
+    "pk": 17, 
+    "model": "retirement_api.tooltip", 
+    "fields": {
+        "text": "If you claim before full retirement age and continue to work, your benefits could be temporarily reduced if you earn over a certain amount. Any reductions you receive will be credited back to you once you reach full retirement age.", 
+        "title": "claim_early_and_work"
+    }
+},
+{
     "pk": 1, 
     "model": "retirement_api.question", 
     "fields": {
@@ -327,12 +335,12 @@
         "answer_yes_b_subhed": "Working in your 60s will help you maximize your income and savings.", 
         "title": "Sixties", 
         "answer_no_a_subhed": "You can maximize your benefits even if you work fewer hours or stop working.", 
-        "answer_yes_b": "Your benefits are based on your highest 35 years of earnings. Each year of work can add higher earnings to your record by replacing years with low earnings such as those when you were a student, were unemployed, or took time off to care for someone. When you work and wait to claim until age 70, you can increase your monthly benefit by more than 75 percent! Working in your 60s also gives you more time to save on your own for retirement.", 
-        "answer_yes_a": "Your benefits are based on your highest 35 years of earnings. Each year of work can add higher earnings to your record by replacing years with low earnings such as those when you were a student, were unemployed, or took time off to care for someone. When you work and wait to claim until age 70, you can increase your monthly benefit by more than 75 percent! Working in your 60s also gives you more time to save on your own for retirement. ", 
+        "answer_yes_b": "Your benefits are based on your highest 35 years of earnings. Each year of work can add higher earnings to your record by replacing years with low earnings such as those when you were a student, were unemployed, or took time off to care for someone. When you work and wait to claim until age 70, you can increase your monthly benefit by more than 75 percent!<span data-tooltip-target=\"claim_early_and_work\" class=\"cf-icon cf-icon-help-round\"></span> Working in your 60s also gives you more time to save on your own for retirement.", 
+        "answer_yes_a": "Your benefits are based on your highest 35 years of earnings. Each year of work can add higher earnings to your record by replacing years with low earnings such as those when you were a student, were unemployed, or took time off to care for someone. When you work and wait to claim until age 70, you can increase your monthly benefit by more than 75 percent!<span data-tooltip-target=\"claim_early_and_work\" class=\"cf-icon cf-icon-help-round\"></span> Working in your 60s also gives you more time to save on your own for retirement. ", 
         "workflow_state": "SUBMITTED", 
         "question": "Do you plan to continue working in your 60s?", 
         "answer_unsure_b": "Working in your 60s may add higher earnings to your record, getting you a higher monthly benefit. Remember, your monthly benefit will be significantly higher when you claim at your full Social Security benefit age or later. If you need to work fewer hours, you could use a portion of your retirement savings such as your 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span> or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> account to supplement your income until full retirement age. However, this may not be an option if it eliminates your savings completely. ", 
-        "answer_unsure_a": "Working in your 60s may increase your monthly benefit in a few ways. Because your benefits are based on your highest 35 years of earnings, each year of work can add higher earnings to your record by replacing years with low earnings, such as those when you were a student, were unemployed, or took time off. When you work and wait to claim until age 70, you can increase your monthly benefit by more than 75 percent! Working in your 60s also gives you more time to save on your own for retirement.", 
+        "answer_unsure_a": "Working in your 60s may increase your monthly benefit in a few ways. Because your benefits are based on your highest 35 years of earnings, each year of work can add higher earnings to your record by replacing years with low earnings, such as those when you were a student, were unemployed, or took time off. When you work and wait to claim until age 70, you can increase your monthly benefit by more than 75 percent!<span data-tooltip-target=\"claim_early_and_work\" class=\"cf-icon cf-icon-help-round\"></span> Working in your 60s also gives you more time to save on your own for retirement.", 
         "answer_unsure_b_subhed": "Consider working in your 60s for an extra boost to your income and savings.", 
         "answer_yes_a_subhed": "Working in your 60s will help you maximize your income and savings.", 
         "answer_no_b": "You may choose to work fewer hours or stop working in your 60s. If you decide to do so, you could use a portion of your retirement savings such as your 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> account to supplement your income in your early 60s until you reach your full Social Security benefit claiming age. If you can continue working in your 60s, you may add higher earnings to your record, getting you a higher monthly benefit. Remember, your monthly benefit will be significantly higher when you claim at your full benefit age or later. The age at which you decide to stop working doesn't have to be the same as your claiming age.", 
