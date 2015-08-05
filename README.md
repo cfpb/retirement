@@ -11,6 +11,8 @@ This is a project aimed at helping Americans make choices about retirement, incl
  * [pip](https://pypi.python.org/pypi/pip)
  * [virtualenv](https://virtualenv.pypa.io/en/latest/)
  * [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/)
+ * [Node](http://nodejs.org/)
+ * [Grunt](http://gruntjs.com/)
 
 ### Code dependencies 
  * [Django 1.6.11](https://docs.djangoproject.com/en/1.6/)
@@ -50,6 +52,15 @@ setvirtualenvproject
 pip install -r requirements.txt
 cp test_settings.py settings.py
 ```
+
+Build the front-end requirements and the JavaScript files.
+```bash
+npm install
+grunt Build
+```
+
+(You can also run `grunt watch` to have the build run automatically after edits to JavaScript
+source files.)
 
 Load the app's database tables and content.  
 ```bash
