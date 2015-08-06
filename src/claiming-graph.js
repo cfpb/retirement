@@ -114,7 +114,7 @@ function getData() {
       $(this).val( $(this).attr('data-base-value') + '-over50' );
     });
   }
-  $('#api-data-loading-indicator').css( 'display', 'inline' );
+  $('#api-data-loading-indicator').css( 'display', 'inline-block' );
   $.get( url )
     .done( function( dump ) {
       var data = dump.data;
