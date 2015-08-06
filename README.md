@@ -2,7 +2,7 @@
 
 # Retirement: Before You Claim
 
-This is a project aimed at helping Americans make choices about retirement, including when to claim Social Security benefits.   
+This is a project aimed at helping Americans make choices about retirement, including when to claim Social Security benefits.
   - **Status**: Beta
 
 ![](retirement_screenshot.png)
@@ -14,7 +14,7 @@ This is a project aimed at helping Americans make choices about retirement, incl
  * [Node](http://nodejs.org/)
  * [Grunt](http://gruntjs.com/)
 
-### Code dependencies 
+### Code dependencies
  * [Django 1.6.11](https://docs.djangoproject.com/en/1.6/)
  * [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)
  * [Python-dateutil](https://dateutil.readthedocs.org/en/latest/)
@@ -30,7 +30,7 @@ This is a project aimed at helping Americans make choices about retirement, incl
 * [selenium](http://selenium.googlecode.com/svn/trunk/docs/api/py/index.html)
 * [behave](http://pythonhosted.org/behave/)
 * [pyhamcrest](https://pyhamcrest.readthedocs.org/)
- 
+
 <!--
  * [Homebrew](http://brew.sh)
  * [Django localflavor](https://github.com/django/django-localflavor)
@@ -59,10 +59,9 @@ npm install
 grunt Build
 ```
 
-(You can also run `grunt watch` to have the build run automatically after edits to JavaScript
-source files.)
+(You can also run `grunt watch` to have the build run automatically after edits to JavaScript source files, HTML templates, and assets in `retirement_api/static/retirement`. `livereload` is turned on if you have a [LiveReload browser extension](http://livereload.com/extensions/).)
 
-Load the app's database tables and content.  
+Load the app's database tables and content.
 ```bash
 python manage.py syncdb
 python manage.py loaddata retiredata.json
@@ -73,11 +72,11 @@ Fire up a development server.
 python manage.py runserver
 ```
 
-The "Before You Claim" page should load at `localhost:8000/before-you-claim/`.  
+The "Before You Claim" page should load at `localhost:8000/before-you-claim/`.
 
 ### Usage notes
 - The app is set up to run inside [consumerfinance.gov](http://www.consumerfinance.gov), so if you run it locally, some fonts may not load because of [Cross-Origin Resource Sharing](http://www.w3.org/TR/cors/) policies.
-- The app sends http requests to the Social Security Administration's [Quick Calculator](http://www.ssa.gov/OACT/quickcalc/index.html) to get benefit estimates for the chart. 
+- The app sends http requests to the Social Security Administration's [Quick Calculator](http://www.ssa.gov/OACT/quickcalc/index.html) to get benefit estimates for the chart.
 
 ### How to run software tests
 - You can use nose to run the test suite and see code coverage information
@@ -86,7 +85,7 @@ nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
 ```
 
 ## Getting involved
-If you find a bug or see a way to improve the project, we'd love to hear from you.  
+If you find a bug or see a way to improve the project, we'd love to hear from you.
 Add an issue, or fork the project and send us a pull request with your suggested changes.
 
 ----
