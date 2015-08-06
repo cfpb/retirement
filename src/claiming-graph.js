@@ -114,6 +114,7 @@ function getData() {
       $(this).val( $(this).attr('data-base-value') + '-over50' );
     });
   }
+  $('#api-data-loading-indicator').css( 'display', 'inline' );
   $.get( url )
     .done( function( dump ) {
       var data = dump.data;
@@ -155,6 +156,7 @@ function getData() {
 
         response = "error";
       }
+      $('#api-data-loading-indicator').css( 'display', 'none' );
     })
     .error( function(xhr, status, error) {
       // alert("An error occured! " + "\nError detail: " + xhr.responseText);

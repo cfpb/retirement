@@ -209,6 +209,10 @@ form {
   vertical-align: bottom;
 }
 
+#claiming-social-security #api-data-loading-indicator {
+  display: none;
+}
+
 #claim-canvas #indicator-handle {
   cursor: pointer;
 }
@@ -1986,5 +1990,38 @@ form {
 }
 .lt-ie8 .cf-icon-menu-round {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e631');
+}
+
+/* Spinning icons for loading indicators */
+
+.cf-icon__spin {
+  -webkit-animation: cf-spin 2s infinite linear reverse;
+  animation: cf-spin 2s infinite linear reverse;
+}
+.cf-icon__pulse {
+  -webkit-animation: cf-spin 1s infinite steps(8) reverse;
+  animation: cf-spin 1s infinite steps(8) reverse;
+}
+@-webkit-keyframes cf-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes cf-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    -ms-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
 }
 
