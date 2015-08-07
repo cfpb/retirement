@@ -29,8 +29,9 @@ module.exports = function(grunt) {
       js: {
         options: {
           interrupt: true,
+          livereload: true
         },
-        files: ['Gruntfile.js', 'src/*.js'],
+        files: ['Gruntfile.js', 'src/*.js', 'retirement_api/templates/*', 'retirement_api/static/retirement/**', '!retirement_api/static/retirement/js/claiming-social-security.js'],
         tasks: ['build']
       },
     },
