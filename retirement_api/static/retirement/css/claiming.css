@@ -110,7 +110,7 @@ form {
   width: 100%;
   position: relative;
   background-color: #FFCE8D;
-  background-image: url('../images/retirement-hero.png');
+  background-image: url('../images/retirement-hero_2.png');
   background-origin: content-box;
   background-position: right top;
   background-repeat: no-repeat;
@@ -663,12 +663,6 @@ form {
   }
 
   #claiming-social-security .claiming-hero {
-    background-color: #FFCE8D;
-    background-image: url('../images/retirement-hero.png');
-    background-origin: content-box;
-    background-position: right center;
-    background-repeat: no-repeat;
-    background-size: 570px auto;
     margin: 0 -20px 0px -20px;
     padding: 60px 15px;
     width: auto;
@@ -676,7 +670,7 @@ form {
 
   #claiming-social-security .claiming-hero h1,
   #claiming-social-security .claiming-hero p {
-    padding-right: 575px;
+    padding-right: 375px;
     width: auto;
   }
 
