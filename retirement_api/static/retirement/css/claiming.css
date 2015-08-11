@@ -114,7 +114,7 @@ form {
   background-origin: content-box;
   background-position: right top;
   background-repeat: no-repeat;
-  background-size: 470px auto;
+  background-size: auto 180px;
 }
 
 #claiming-social-security .claiming-hero .content-l_col {
