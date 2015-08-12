@@ -1,3 +1,5 @@
+
+
 /***-- delay(): Delay a function ---**/
 var delay = (function(){
   var t = 0;
@@ -13,6 +15,9 @@ function numToMoney(n) {
   if (typeof n === 'string') {
       n =  Number(n.replace(/[^0-9\.]+/g,""));
   }
+  if ( typeof n === 'object' ) {
+    n = 0;
+  }
   var t = ",";
   if (n < 0) {
     var s = "-";
@@ -25,7 +30,7 @@ function numToMoney(n) {
   if (i.length > 3) {
     j = ((i.length) % 3);
   }
-  money = "$" + s;
+  money = s + "$";
   if (j > 0) {
     money += i.substr(0,j) + t;
   }
@@ -75,4 +80,15 @@ function validDates( month, day, year ) {
   }
   year = enforceRange( Number( year.toString().replace(/\D/g,'') ), 1900, new Date().getFullYear() );
   return { 'month': month, 'day': day, 'year': year, 'concat': month + '-' + day + '-' + year };
+}
+
+if ( typeof module === "object" ) {
+  var functions = {
+    numToMoney: numToMoney,
+    calculateAge: calculateAge,
+    enforceRange: enforceRange,
+    validDates: validDates
+  };
+  
+  module.exports = functions;  
 }
