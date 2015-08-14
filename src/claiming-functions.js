@@ -1,3 +1,5 @@
+
+
 /***-- delay(): Delay a function ---**/
 var delay = (function(){
   var t = 0;
@@ -13,6 +15,9 @@ function numToMoney(n) {
   if (typeof n === 'string') {
       n =  Number(n.replace(/[^0-9\.]+/g,""));
   }
+  if ( typeof n === 'object' ) {
+    n = 0;
+  }
   var t = ",";
   if (n < 0) {
     var s = "-";
@@ -25,7 +30,7 @@ function numToMoney(n) {
   if (i.length > 3) {
     j = ((i.length) % 3);
   }
-  money = "$" + s;
+  money = s + "$";
   if (j > 0) {
     money += i.substr(0,j) + t;
   }
@@ -34,15 +39,22 @@ function numToMoney(n) {
 }
 
 /***-- calculateAge(month, day, year): Calculates an age based on inputs
-  parameters: month is numeric month (1-12), day is numeric day (1-31), year is numeric year
+  parameters: month is numeric month (1-12), day is numeric day (1-31), year is numeric year,
+              currentDate is an optional Date
   ---**/
-function calculateAge( month, day, year ) {
-  var now = new Date();
+function calculateAge( month, day, year, currentDate ) {
+  var now = currentDate;
+  if ( currentDate instanceof Date !== true  ) {
+    now = new Date();
+  }
   var birthdate = new Date(year, Number(month) - 1, day);
   var age = now.getFullYear() - birthdate.getFullYear();
   var m = now.getMonth() - birthdate.getMonth();
   if ( m < 0 || ( m === 0 && now.getDate() < birthdate.getDate() ) ) {
     age--;
+  }
+  if ( isNaN( age ) ) {
+    return false;
   }
   return age;
 }
@@ -51,6 +63,9 @@ function calculateAge( month, day, year ) {
   NOTE: If min or max is 'false' then that min or max is not enforced
   ---**/
 function enforceRange(n, min, max) {
+  if ( max < min || typeof n !== typeof min ) {
+    return false;
+  }
   if ( n > max && max !== false ) {
     n = max;
   }
@@ -66,8 +81,11 @@ function enforceRange(n, min, max) {
   ---**/
 function validDates( month, day, year ) {
   // get parts of birthday and salary, strip non-numeric strings
-  var monthMaxes = { '1': 31, '2': 29, '3': 31, '4': 30, '5': 31, '6': 30,
+  var monthMaxes = { '1': 31, '2': 28, '3': 31, '4': 30, '5': 31, '6': 30,
       '7': 31, '8': 31, '9': 30, '10': 31, '11': 30, '12': 31 };
+  if ( new Date(year, 1, 29).getMonth() === 1 ) {
+    monthMaxes['2'] = 29;
+  }
   month = enforceRange( Number( month.toString().replace(/\D/g,'') ), 1, 12 );
   day = enforceRange( Number( day.toString().replace(/\D/g,'') ), 1, monthMaxes[ month.toString() ] );
   if ( Number(year) < 100 ) {
@@ -75,4 +93,15 @@ function validDates( month, day, year ) {
   }
   year = enforceRange( Number( year.toString().replace(/\D/g,'') ), 1900, new Date().getFullYear() );
   return { 'month': month, 'day': day, 'year': year, 'concat': month + '-' + day + '-' + year };
+}
+
+if ( typeof module === "object" ) {
+  var functions = {
+    numToMoney: numToMoney,
+    calculateAge: calculateAge,
+    enforceRange: enforceRange,
+    validDates: validDates
+  };
+  
+  module.exports = functions;  
 }
