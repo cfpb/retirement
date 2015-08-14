@@ -617,7 +617,7 @@ form {
   #claiming-social-security #maincontent {
     box-sizing: border-box;
     width: 100%;
-    padding: 0 15px 2em;
+    padding: 0 30px 2em;
   }
 
   #claiming-social-security #claiming-hero-bg {
@@ -625,8 +625,8 @@ form {
   }
 
   #claiming-social-security .claiming-hero {
-    margin: 0 -20px 0px -20px;
-    padding: 60px 20px;
+    margin: 0 -30px 0px -30px;
+    padding: 60px 30px;
     width: auto;
   }
 
@@ -667,7 +667,13 @@ form {
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1130px) {
+  #claiming-social-security .claiming-hero {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-size: auto 145px;
+  }
+
   /* Reduce font size for small and medium screens, for spacing and readability. H1->H2, H2->H3, H3->H4. */
   #claiming-social-security #maincontent h1 {
     font-size: 1.625em;
@@ -681,7 +687,7 @@ form {
 }
 
 
-@media (max-width: 915px) {
+@media (max-width: 940px) {
   #claiming-social-security .claiming-hero {
     background-image: none;
   }
@@ -710,12 +716,6 @@ form {
 }
 
 @media (max-width: 1100px) and (min-width: 850px) {
-
-  #claiming-social-security .claiming-hero {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    background-size: auto 145px;
-  }
 
   #claiming-social-security .step-one {
     padding-top: 30px;
@@ -838,16 +838,6 @@ form {
   #claiming-social-security .content-l_col {
     border: none;
     display: block;
-    width: auto;
-  }
-
-  #claiming-social-security .claiming-hero {
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: #FFCE8D;
-    margin: 0 -20px 0px -20px;
-    padding-top: 30px;
-    padding-bottom: 30px;
     width: auto;
   }
 
@@ -998,6 +988,19 @@ form {
   #claiming-social-security .content-l.step-two + hr {
     margin-top: 30px;
     margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  #claiming-social-security #maincontent {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 15px 2em;
+  }
+
+  #claiming-social-security .claiming-hero {
+    margin: 0 -30px 0px -30px;
+    width: auto;
   }
 }
 
