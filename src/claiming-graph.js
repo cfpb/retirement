@@ -48,15 +48,15 @@ var ages = [62,63,64,65,66,67,68,69,70],
 
 /***-- checkEstimateReady(): checks if the page is ready for the Estimate button to be hit. --***/
 function checkEstimateReady() {
-  var m = ( $('#bd-month').val() !== "" ),
-      d = ( $('#bd-day').val() !== "" ),
-      y = ( $('#bd-year').val() !== "" ),
-      s = ( $('#salary-input').val() !== "" );
+  var m = ( $( '#bd-month' ).val() !== '' ),
+      d = ( $( '#bd-day' ).val() !== '' ),
+      y = ( $( '#bd-year' ).val() !== '' ),
+      s = ( $( '#salary-input' ).val() !== '' );
   if ( m && d && y && s ) {
-    $('#get-your-estimates').attr('disabled', false).removeClass('btn__disabled');
+    $( '#get-your-estimates' ).attr( 'disabled', false).removeClass( 'btn__disabled' );
   }
   else {
-    $('#get-your-estimates').attr('disabled', true).addClass('btn__disabled');
+    $( '#get-your-estimates' ).attr( 'disabled', true).addClass( 'btn__disabled' );
   }
 }
 /**
@@ -64,9 +64,9 @@ function checkEstimateReady() {
   */
 function highlightAgeFields( bool ) {
   if ( bool ) {
-    $('#bd-day, #bd-month, #bd-year').addClass( 'notification-input__warning' );
+    $( '#bd-day, #bd-month, #bd-year' ).addClass( 'notification-input__warning' );
   } else {
-    $('#bd-day, #bd-month, #bd-year').removeClass( 'notification-input__warning' );
+    $( '#bd-day, #bd-month, #bd-year' ).removeClass( 'notification-input__warning' );
   }
 }
 
@@ -86,10 +86,10 @@ function isElementInView( selector ) {
 
 /***-- getData(): performs a get call (and performs a few cleanup activities), sets SSData with incoming data --***/
 function getData() {
-  var day = $('#bd-day').val(),
-      month = $('#bd-month').val(),
-      year = $('#bd-year').val(),
-      salary = $('#salary-input').val().replace(/\D/g,'');
+  var day = $( '#bd-day' ).val(),
+      month = $( '#bd-month' ).val(),
+      year = $( '#bd-year' ).val(),
+      salary = $( '#salary-input' ).val().replace(/\D/g,'' );
   var dates = validDates( month, day, year );
 
   // Hide warnings
@@ -97,31 +97,31 @@ function getData() {
   highlightAgeFields( false );
 
   // update the inputs with validated values
-  $('#bd-day').val( dates['day'] );
-  $('#bd-month').val( dates['month'] );
-  $('#bd-year').val( dates['year'] );
+  $( '#bd-day' ).val( dates['day'] );
+  $( '#bd-month' ).val( dates['month'] );
+  $( '#bd-year' ).val( dates['year'] );
 
   var url = '/retirement/retirement-api/estimator/' + dates.concat + '/' + Number(salary) + '/';
-  var response = "";
+  var response = '';
   currentAge = calculateAge( month, day, year );
   if ( currentAge < 50 ) {
-    $('.lifestyle-btn.age-split').each( function() {
-      $(this).val( $(this).attr('data-base-value') + '-under50' );
+    $( '.lifestyle-btn.age-split' ).each( function() {
+      $(this).val( $(this).attr( 'data-base-value' ) + '-under50' );
     });
   }
   else {
-    $('.lifestyle-btn.age-split').each( function() {
-      $(this).val( $(this).attr('data-base-value') + '-over50' );
+    $( '.lifestyle-btn.age-split' ).each( function() {
+      $(this).val( $(this).attr( 'data-base-value' ) + '-over50' );
     });
   }
-  $('#api-data-loading-indicator').css( 'display', 'inline-block' );
+  $( '#api-data-loading-indicator' ).css( 'display', 'inline-block' );
   $.get( url )
     .done( function( dump ) {
       var data = dump.data;
-      if ( dump.error === "" ) {
+      if ( dump.error === '' ) {
         $.each( data.benefits, function(i, val) {
-          if ( i.substr(0,3) === "age" ) {
-            var key = i.replace(' ', '');
+          if ( i.substr(0,3) === 'age' ) {
+            var key = i.replace( ' ', '' );
             SSData[key] = val;
           }
         });;
@@ -134,16 +134,16 @@ function getData() {
         if ( SSData.currentAge > SSData.fullAge ) {
           SSData.fullAge = SSData.currentAge;
         }
-        $('.step-two, #estimated-benefits-input, #graph-container').css('opacity', 1);
-        $('.step-two .question').css('display', 'inline-block');
-        $('.step-three').css('opacity', 1);
-        $('.step-one-hidden, .step-three .hidden-content').show();
+        $( '.step-two, #estimated-benefits-input, #graph-container' ).css( 'opacity', 1);
+        $( '.step-two .question' ).css( 'display', 'inline-block' );
+        $( '.step-three' ).css( 'opacity', 1);
+        $( '.step-one-hidden, .step-three .hidden-content' ).show();
         redrawGraph();
         resetView();
         // Scroll graph into view if it's not visible
         if ( isElementInView( '#claim-canvas' ) === false ) {
-          $('html, body').animate({
-              scrollTop: $('#estimated-benefits-description').offset().top - 20
+          $( 'html, body' ).animate({
+              scrollTop: $( '#estimated-benefits-description' ).offset().top - 20
           }, 300);
         }
       }
@@ -156,7 +156,7 @@ function getData() {
 
         response = "error";
       }
-      $('#api-data-loading-indicator').css( 'display', 'none' );
+      $( '#api-data-loading-indicator' ).css( 'display', 'none' );
     })
     .error( function(xhr, status, error) {
       // alert("An error occured! " + "\nError detail: " + xhr.responseText);
@@ -168,33 +168,33 @@ function getData() {
 /***-- toggleMonthlyAnnual(): toggles the graph text between monthly view and annual view --***/
 function toggleMonthlyAnnual() {
   var benefitsValue = SSData['age' + selectedAge];
-  if ( $('input[name="benefits-display"]:checked').val() === 'annual' ) {
+  if ( $( 'input[name="benefits-display"]:checked' ).val() === 'annual' ) {
     benefitsValue = benefitsValue * 12;
-    $('#graph-container .monthly-view').hide();
-    $('#graph-container .annual-view').show();
+    $( '#graph-container .monthly-view' ).hide();
+    $( '#graph-container .annual-view' ).show();
   }
   else {
-    $('#graph-container .monthly-view').show();
-    $('#graph-container .annual-view').hide();
+    $( '#graph-container .monthly-view' ).show();
+    $( '#graph-container .annual-view' ).hide();
   }
 }
 
 /***-- toolTipper( jQuery object ): Handles tooltips --***/
 function toolTipper( $elem ) {
   // position tooltip-container based on the element clicked
-  var ttc = $('#tooltip-container'),
-      name = $elem.attr('data-tooltip-target'),
-      content = $('[data-tooltip-name="' + name + '"]').html(),
+  var ttc = $( '#tooltip-container' ),
+      name = $elem.attr( 'data-tooltip-target' ),
+      content = $( '[data-tooltip-name="' + name + '"]' ).html(),
       innerTip = ttc.find( '.innertip' ),
       outerTip = ttc.find( '.outertip' ),
       newTop,
       newLeft,
       tipset;
 
-  ttc.width( $('#claiming-social-security').width() / 3 );
+  ttc.width( $( '#claiming-social-security' ).width() / 3 );
 
-  ttc.find('.content').html( content );
-  $('[data-tooltip-current-target]').removeAttr('data-tooltip-current-target');
+  ttc.find( '.content' ).html( content );
+  $( '[data-tooltip-current-target]' ).removeAttr( 'data-tooltip-current-target' );
   $elem.attr( 'data-tooltip-current-target', true );
 
   ttc.show();
@@ -204,16 +204,16 @@ function toolTipper( $elem ) {
 
   // check offset again, properly set tips to point to the element clicked
   tipOffset = Math.floor( ttc.outerWidth() / 2 );
-  innerTip.css("left", Math.floor( tipOffset - ( innerTip.outerWidth() / 2 ) ) );
-  outerTip.css("left", Math.floor( tipOffset - ( outerTip.outerWidth() / 2 ) ) );
+  innerTip.css('left', Math.floor( tipOffset - ( innerTip.outerWidth() / 2 ) ) );
+  outerTip.css('left', Math.floor( tipOffset - ( outerTip.outerWidth() / 2 ) ) );
 
   // Prevent tooltip from falling off the left side of screens
   if (newLeft < 20) {
     var elemCenter = $elem.offset().left + ( $elem.width() / 2 ),
         pagePadding = 20;
-    ttc.css('left', pagePadding);
-    innerTip.css('left', elemCenter - ( innerTip.outerWidth() / 2 ) - pagePadding );
-    outerTip.css('left', elemCenter - ( outerTip.outerWidth() / 2 ) - pagePadding );
+    ttc.css( 'left', pagePadding);
+    innerTip.css( 'left', elemCenter - ( innerTip.outerWidth() / 2 ) - pagePadding );
+    outerTip.css( 'left', elemCenter - ( outerTip.outerWidth() / 2 ) - pagePadding );
   }
 
   // Prevent tooltip from falling off the right side of screens
@@ -223,23 +223,23 @@ function toolTipper( $elem ) {
         pagePadding = 20;
     newLeft = $(window).width() - ttc.outerWidth(true) - pagePadding;
     ttc.css( 'left', newLeft );
-    innerTip.css('left', ttc.outerWidth() - ( innerTip.outerWidth() / 2 ) - elemRightOffset + pagePadding );
-    outerTip.css('left', ttc.outerWidth() - ( outerTip.outerWidth() / 2 ) - elemRightOffset + pagePadding );
+    innerTip.css( 'left', ttc.outerWidth() - ( innerTip.outerWidth() / 2 ) - elemRightOffset + pagePadding );
+    outerTip.css( 'left', ttc.outerWidth() - ( outerTip.outerWidth() / 2 ) - elemRightOffset + pagePadding );
   }
 
   if ( /iP/i.test(navigator.userAgent) ) { // if userAgent is an iPhone, iPad, iPod
-    $('body').css('cursor', 'pointer'); // make the body clickable
+    $( 'body' ).css( 'cursor', 'pointer' ); // make the body clickable
   }
 
-  $( 'html' ).on('click', 'body', function() {
+  $( 'html' ).on( 'click', 'body', function() {
       document.onclick = function () {
         // iPhone Safari fix?
       }
       ttc.hide();
-      ttc.find( '.content' ).html('');
-      $('[data-tooltip-current-target]').removeAttr('data-tooltip-current-target');
-      $( 'html' ).off('click');
-      $('body').css('cursor', 'inherit');
+      ttc.find( '.content' ).html( '' );
+      $( '[data-tooltip-current-target]' ).removeAttr( 'data-tooltip-current-target' );
+      $( 'html' ).off( 'click' );
+      $( 'body' ).css( 'cursor', 'inherit' );
   });
 }
 
@@ -254,7 +254,7 @@ function setTextByAge() {
       fullAgeTop,
       fullAgeLeft;
 
-  if ( $('#estimated-benefits-input [name="benefits-display"]:checked').val() === 'annual' ) {
+  if ( $( '#estimated-benefits-input [name="benefits-display"]:checked' ).val() === 'annual' ) {
     benefitsValue = benefitsValue * 12;
     fullAgeBenefitsValue = fullAgeBenefitsValue * 12;
   }
@@ -262,88 +262,88 @@ function setTextByAge() {
 
   $( '#claim-canvas .age-text' ).removeClass( 'selected-age' );
   // Set selected-age
-  $('#claim-canvas .age-text[data-age-value="' + selectedAge + '"]').addClass('selected-age'),
+  $( '#claim-canvas .age-text[data-age-value="' + selectedAge + '"]' ).addClass( 'selected-age' ),
 
   // set text and position for #benefits-text div
-  $('#benefits-text').text( numToMoney( benefitsValue ) );
-  benefitsTop = bars[ 'age' + selectedAge ].attr('y') - $('#benefits-text').height() - 10;
-  benefitsLeft = bars[ 'age' + selectedAge ].attr('x') - $('#benefits-text').width() / 2 + gset.barWidth / 2;
-  $('#benefits-text').css( 'top', benefitsTop );
-  $('#benefits-text').css( 'left', benefitsLeft );
+  $( '#benefits-text' ).text( numToMoney( benefitsValue ) );
+  benefitsTop = bars[ 'age' + selectedAge ].attr( 'y' ) - $( '#benefits-text' ).height() - 10;
+  benefitsLeft = bars[ 'age' + selectedAge ].attr( 'x' ) - $( '#benefits-text' ).width() / 2 + gset.barWidth / 2;
+  $( '#benefits-text' ).css( 'top', benefitsTop );
+  $( '#benefits-text' ).css( 'left', benefitsLeft );
 
   // set text, position and visibility of #full-age-benefits-text
-  $('#full-age-benefits-text').text( numToMoney( fullAgeBenefitsValue ) );
-  fullAgeTop = bars[ 'age' + SSData.fullAge ].attr('y') - $('#full-age-benefits-text').height() - 10;
-  fullAgeLeft = bars[ 'age' + SSData.fullAge ].attr('x') - $('#full-age-benefits-text').width() / 2 + gset.barWidth / 2;
-  $('#full-age-benefits-text').css( 'top', fullAgeTop );
-  $('#full-age-benefits-text').css( 'left', fullAgeLeft );
+  $( '#full-age-benefits-text' ).text( numToMoney( fullAgeBenefitsValue ) );
+  fullAgeTop = bars[ 'age' + SSData.fullAge ].attr( 'y' ) - $( '#full-age-benefits-text' ).height() - 10;
+  fullAgeLeft = bars[ 'age' + SSData.fullAge ].attr( 'x' ) - $( '#full-age-benefits-text' ).width() / 2 + gset.barWidth / 2;
+  $( '#full-age-benefits-text' ).css( 'top', fullAgeTop );
+  $( '#full-age-benefits-text' ).css( 'left', fullAgeLeft );
   if ( selectedAge === SSData.fullAge ) {
-    $('#full-age-benefits-text').hide();
+    $( '#full-age-benefits-text' ).hide();
   }
   else {
-    $('#full-age-benefits-text').show();
+    $( '#full-age-benefits-text' ).show();
   }
 
   // set lifetime benefits text
-  $('.lifetime-benefits-value').text( lifetimeBenefits );
+  $( '.lifetime-benefits-value' ).text( lifetimeBenefits );
 
   // Set extra text for early and full retirement ages
   if ( selectedAge === 70 ) {
-    $('.selected-retirement-age-value').text( 70 );
+    $( '.selected-retirement-age-value' ).text( 70 );
   }
   else if ( selectedAge === SSData.earlyAge ) {
-    $('.selected-retirement-age-value').text( SSData.earlyRetirementAge );
+    $( '.selected-retirement-age-value' ).text( SSData.earlyRetirementAge );
   }
   else if ( selectedAge === SSData.fullAge && SSData.currentAge < SSData.fullAge ) {
-    $('.selected-retirement-age-value').text( SSData.fullRetirementAge   );
+    $( '.selected-retirement-age-value' ).text( SSData.fullRetirementAge   );
   }
   else {
-    $('.selected-retirement-age-value').text( selectedAge );
+    $( '.selected-retirement-age-value' ).text( selectedAge );
   }
 
   // Graph content
-  $('.graph-content .content-container').hide();
+  $( '.graph-content .content-container' ).hide();
   if ( selectedAge === 70 ) {
-    $('.graph-content .content-container.max-retirement').show();
+    $( '.graph-content .content-container.max-retirement' ).show();
   }
   else if ( selectedAge < SSData.fullAge ) {
-    $('.graph-content .content-container.early-retirement').show();
+    $( '.graph-content .content-container.early-retirement' ).show();
   }
   else {
-    $('.graph-content .content-container.full-retirement').show();
+    $( '.graph-content .content-container.full-retirement' ).show();
   }
 
   if ( selectedAge === SSData.fullAge ) {
     if ( SSData.past_fra ) {
       if ( SSData.currentAge === 70 ) {
-        $('.benefit-modification-text').html( 'is your maximum benefit claiming age.' );
-        $('.compared-to-full').hide();
+        $( '.benefit-modification-text' ).html( 'is your maximum benefit claiming age.' );
+        $( '.compared-to-full' ).hide();
         }
       else {
-        $('.benefit-modification-text').html( 'is past your full benefit claiming age.' );
-        $('.compared-to-full').hide();
+        $( '.benefit-modification-text' ).html( 'is past your full benefit claiming age.' );
+        $( '.compared-to-full' ).hide();
         }
     }
     else {
-      $('.benefit-modification-text').html( 'is your full benefit claiming age.' );
-      $('.compared-to-full').hide();
+      $( '.benefit-modification-text' ).html( 'is your full benefit claiming age.' );
+      $( '.compared-to-full' ).hide();
     }
   }
 
   else if ( selectedAge < SSData.fullAge ) {
     var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
     percent = Math.abs( Math.round( percent * 100 ) );
-    $('.benefit-modification-text').html( '<strong>reduces</strong> your monthly benefit by&nbsp;<strong>' + percent + '</strong>%' );
-    $('.compared-to-full').show();
+    $( '.benefit-modification-text' ).html( '<strong>reduces</strong> your monthly benefit by&nbsp;<strong>' + percent + '</strong>%' );
+    $( '.compared-to-full' ).show();
   }
   else if ( selectedAge > SSData.fullAge ) {
     var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
     percent = Math.abs( Math.round( percent * 100 ) );
-    $('.benefit-modification-text').html( '<strong>increases</strong> your benefit by&nbsp;<strong>' + percent + '</strong>%' );
+    $( '.benefit-modification-text' ).html( '<strong>increases</strong> your benefit by&nbsp;<strong>' + percent + '</strong>%' );
     if ( SSData.past_fra ) {
-      $('.compared-to-full').html('Compared to claiming at ' + SSData.fullAge + '.');
+      $( '.compared-to-full' ).html( 'Compared to claiming at ' + SSData.fullAge + '.' );
     }
-    $('.compared-to-full').show();
+    $( '.compared-to-full' ).show();
   }
 }
 
@@ -359,7 +359,7 @@ function moveIndicator(dx, dy) {
     newX = 0;
   }
   newX = Math.round( newX / ( gset.barGut ) ) * ( gset.barGut ) + gset.indicatorLeftSet;
-  indicator.transform('t' + newX + ',0');
+  indicator.transform( 't' + newX + ',0' );
   if ( selectedAge !== Math.round( newX / gset.barGut ) ) {
     selectedAge = 62 + Math.round( newX / gset.barGut );
     // Don't let the user select an age younger than they are now
@@ -391,7 +391,7 @@ function drawIndicator() {
       posX;
 
   // Clear existing indicator, set up new one.
-  if ( typeof indicator === "object" ) {
+  if ( typeof indicator === 'object' ) {
     indicator.remove();
   }
   // draw a new slider line
@@ -436,13 +436,13 @@ function setGraphDimensions() {
 
   if ($(window).width() < 850) {
     gset.graphHeight = 210;
-    $('#claim-canvas svg').css('overflow', 'visible');
+    $( '#claim-canvas svg' ).css( 'overflow', 'visible' );
   } else if ($(window).width() >= 850 && $(window).width() < 1045) {
     gset.graphHeight = 380;
   } else {
     gset.graphHeight = 380;
   }
-  // $( '.selected-retirement-age-container' ).css( 'margin-top', gset.graphHeight + 75 + 'px');
+  // $( '.selected-retirement-age-container' ).css( 'margin-top', gset.graphHeight + 75 + 'px' );
 
   gset.barWidth = Math.floor( gset.graphWidth / 17 );
   gset.gutterWidth = Math.floor( gset.graphWidth / 17 );
@@ -471,13 +471,14 @@ function drawBars() {
     if ( bars[key] !== undefined ) {
       bars[key].remove();
     }
-    bars[key] = barGraph.rect( leftOffset, gset.graphHeight - gset.barOffset - height, gset.barWidth, height);
+    bars[key] = barGraph.rect( leftOffset, gset.graphHeight - gset.barOffset - height, gset.barWidth, height );
     leftOffset = leftOffset + gset.barGut;
     if ( val >= SSData.fullAge ) {
       color = '#aedb94';
     }
-    bars[key].attr('stroke', color);
-    bars[key].attr('fill', color);
+    bars[key].attr( 'stroke', color);
+    bars[key].attr( 'fill', color);
+    $( bars[key].node ).attr( 'data-age', val );
     bars[key].data( 'age', val );
     bars[key].click( function() {
       moveIndicatorToAge( bars[key].data( 'age' )  );
@@ -493,7 +494,7 @@ function drawGraphBackground() {
       path;
 
   // remove existing background
-  if ( typeof graphBackground === "object" && typeof graphBackground.remove !== "undefined" ) {
+  if ( typeof graphBackground === 'object' && typeof graphBackground.remove !== 'undefined' ) {
     graphBackground.remove();
   }
   // draw a new background
@@ -502,10 +503,10 @@ function drawGraphBackground() {
     yCoord = gset.graphHeight - Math.round( barInterval * i ) + 1;
   }
   graphBackground = barGraph.path( path );
-  graphBackground.attr('stroke', '#E3E4E5');
+  graphBackground.attr( 'stroke', '#E3E4E5' );
 
   // remove existing slider line
-  if ( typeof sliderLine === "object" && typeof sliderLine.remove !== "undefined" ) {
+  if ( typeof sliderLine === 'object' && typeof sliderLine.remove !== 'undefined' ) {
     sliderLine.remove();
   }
 
@@ -528,9 +529,9 @@ function drawAgeBoxes() {
   $.each( ages, function(i, val) {
     var left,
         ageDiv;
-    $('#claim-canvas').append('<div class="age-text"><p class="h3">' + val + '</p></div>');
-    ageDiv = $('#claim-canvas .age-text:last');
-    ageDiv.attr('data-age-value', val);
+    $( '#claim-canvas' ).append( '<div class="age-text"><p class="h3">' + val + '</p></div>' );
+    ageDiv = $( '#claim-canvas .age-text:last' );
+    ageDiv.attr( 'data-age-value', val);
 
     // set width to bar width (minus stroke width x2)
     ageDiv.width( gset.barWidth );
@@ -548,10 +549,10 @@ function drawAgeBoxes() {
     leftOffset = leftOffset + gset.barGut;
   });
 
-  var minAgeLeft = Math.ceil( gset.indicatorLeftSet + ( gset.indicatorWidth - $('#min-age-text').width() ) / 2 );
-  $('#min-age-text').css( 'left', minAgeLeft );
-  var minAgeRight = Math.ceil( ( ages.length - 1 ) * gset.barGut + gset.indicatorLeftSet + ( gset.indicatorWidth - $('#max-age-text').width() ) / 2 );
-  $('#max-age-text').css( 'left', minAgeRight );
+  var minAgeLeft = Math.ceil( gset.indicatorLeftSet + ( gset.indicatorWidth - $( '#min-age-text' ).width() ) / 2 );
+  $( '#min-age-text' ).css( 'left', minAgeLeft );
+  var minAgeRight = Math.ceil( ( ages.length - 1 ) * gset.barGut + gset.indicatorLeftSet + ( gset.indicatorWidth - $( '#max-age-text' ).width() ) / 2 );
+  $( '#max-age-text' ).css( 'left', minAgeRight );
 }
 
 /**
@@ -576,12 +577,12 @@ function resetView() {
   else {
     moveIndicatorToAge( SSData.currentAge );
   }
-  $('.benefit-selections-area').empty();
+  $( '.benefit-selections-area' ).empty();
 }
 
 $(document).ready( function() {
   barGraph = new Raphael( $("#claim-canvas")[0] , 600, 400 );
-  // $('#claim-canvas svg').css('overflow', 'visible')
+  // $( '#claim-canvas svg' ).css( 'overflow', 'visible' )
 
   // Event handlers
   $( 'input[name="benefits-display"]' ).click( function() {
@@ -590,13 +591,13 @@ $(document).ready( function() {
 
   $( '#step-one-form' ).submit( function(e) {
     e.preventDefault();
-    $('#salary-input').blur();
+    $( '#salary-input' ).blur();
     checkEstimateReady();
     getData();
   });
 
-  $('#claim-canvas').on('click', '.age-text', function() {
-    moveIndicatorToAge( $(this).attr('data-age-value') );
+  $( '#claim-canvas' ).on( 'click', '.age-text', function() {
+    moveIndicatorToAge( $(this).attr( 'data-age-value' ) );
   });
 
   $(document).keypress( function(ev) {
@@ -610,53 +611,54 @@ $(document).ready( function() {
       })
     }
     if ( ev.which === 55 && ev.ctrlKey === true ) {
-      $('#bd-day').val("7");
-      $('#bd-month').val("7");
-      $('#bd-year').val("1977");
-      $('#salary-input').val("70000");
-      $('#step-one-form').submit();
+      $( '#bd-day' ).val("7");
+      $( '#bd-month' ).val("7");
+      $( '#bd-year' ).val("1977");
+      $( '#salary-input' ).val("70000");
+      $( '#step-one-form' ).submit();
     }
   });
 
-  $('.step-two .question .lifestyle-btn').click(function() {
+  $( '.step-two .question .lifestyle-btn' ).click(function() {
     var $container = $(this).closest( '.question' );
     var respTo = $(this).val();
-    $container.find('.lifestyle-btn').removeClass('lifestyle-btn__active');
-    $(this).addClass('lifestyle-btn__active');
+    $container.find( '.lifestyle-btn' ).removeClass( 'lifestyle-btn__active' );
+    $(this).addClass( 'lifestyle-btn__active' );
 
-    $container.find('.lifestyle-img').slideUp();
-    $container.find('.lifestyle-response').not('[data-responds-to="' + respTo + '"]').slideUp();
-    $container.find('.lifestyle-response[data-responds-to="' + respTo + '"]').slideDown();
+    $container.find( '.lifestyle-img' ).slideUp();
+    $container.find( '.lifestyle-response' ).not( '[data-responds-to="' + respTo + '"]' ).slideUp();
+    $container.find( '.lifestyle-response[data-responds-to="' + respTo + '"]' ).slideDown();
 
-    $container.attr('data-answered', 'yes');
+    $container.attr( 'data-answered', 'yes' );
 
   })
 
   // Retirement age selector handler
-  $('#retirement-age-selector').change( function() {
-    $('.next-step-description').hide();
-    $('.next-step-two .step-two_option').hide();
-    $('#age-selector-response').show();
-    $('#age-selector-response .age-response-value').text( $(this).find('option:selected').val() );
-    if ( $(this).find('option:selected').val() < SSData.fullAge ) {
-      $('.next-step-two_under').show();
+  $( '#retirement-age-selector' ).change( function() {
+    $( '.next-step-description' ).hide();
+    $( '.next-step-two .step-two_option' ).hide();
+    $( '#age-selector-response' ).show();
+    $( '#age-selector-response .age-response-value' ).text( $(this).find( 'option:selected' ).val() );
+    if ( $(this).find( 'option:selected' ).val() < SSData.fullAge ) {
+      $( '.next-step-two_under' ).show();
     }
-    else if ( $(this).find('option:selected').val() > SSData.fullAge ) {
-      $('.next-step-two_over').show();
+    else if ( $(this).find( 'option:selected' ).val() > SSData.fullAge ) {
+      $( '.next-step-two_over' ).show();
     }
     else {
-      $('.next-step-two_equal').show();
+      $( '.next-step-two_equal' ).show();
     }
 
     // Scroll response into view if it's not visible
     if ( isElementInView( '#age-selector-response' ) === false ) {
-      $('html, body').animate({
+      $( 'html, body' ).animate({
           scrollTop: $("#retirement-age-selector").offset().top - 20
       }, 300);
     }
 
   });
 
+<<<<<<< HEAD
   $('#age-selector-response .helpful-btn').click( function() {
     /* Show a different feedback question depending on the answer given. */
     if ($(this).is('#helpful-yes')) {
@@ -673,20 +675,25 @@ $(document).ready( function() {
     $('#feedback-text').attr('disabled', true);
     $('#send-your-comments').attr('disabled', true).addClass('btn__disabled').hide();
     $('#age-selector-response .thank-you').show();
+=======
+  $( '#age-selector-response .helpful-btn' ).click( function() {
+    $( '#age-selector-response .thank-you' ).show();
+    $( '#age-selector-response .helpful-btn' ).attr( 'disabled', true).addClass( 'btn__disabled' ).hide();
+>>>>>>> master
   });
 
-  $('#salary-input').blur( function() {
-    var salary = numToMoney( $( '#salary-input' ).val().replace(/\D/g,'') )
-    $('#salary-input').val( salary );
+  $( '#salary-input' ).blur( function() {
+    var salary = numToMoney( $( '#salary-input' ).val().replace(/\D/g,'' ) )
+    $( '#salary-input' ).val( salary );
   });
 
-  $('.birthdate-inputs').blur( function() {
-    var month = $( '#bd-month' ).val().replace(/\D/g,''),
-        day = $( '#bd-day' ).val().replace(/\D/g,''),
-        year = $( '#bd-year' ).val().replace(/\D/g,'');
+  $( '.birthdate-inputs' ).blur( function() {
+    var month = $( '#bd-month' ).val().replace( /\D/g,'' ),
+        day = $( '#bd-day' ).val().replace( /\D/g,'' ),
+        year = $( '#bd-year' ).val().replace( /\D/g,'' );
   });
 
-  $('.birthdate-inputs, #salary-input').keyup( function() {
+  $( '.birthdate-inputs, #salary-input' ).keyup( function() {
     checkEstimateReady();
   });
 
@@ -694,25 +701,25 @@ $(document).ready( function() {
   redrawGraph();
 
   // Tooltip handler
-  $('[data-tooltip-target]').click( function( ev ) {
+  $( '[data-tooltip-target]' ).click( function( ev ) {
     ev.preventDefault();
     ev.stopPropagation();
     toolTipper( $(this) );
   });
 
   // Window resize handler
-  $(window).resize( function() {
-    if ( $('#tooltip-container').is(':visible') ) {
-      $('#tooltip-container').hide();
-      toolTipper( $('[data-tooltip-current-target]') );
+  $( window ).resize( function() {
+    if ( $( '#tooltip-container' ).is( ':visible' ) ) {
+      $( '#tooltip-container' ).hide();
+      toolTipper( $( '[data-tooltip-current-target]' ) );
     }
     redrawGraph();
   });
 
   // Hamburger menu
-  $('.toggle-menu').on('click', function(ev){
+  $( '.toggle-menu' ).on( 'click', function( ev ) {
       ev.preventDefault();
-      $('nav.main ul').toggleClass('vis');
+      $( 'nav.main ul' ).toggleClass( 'vis' );
   });
 });
 
