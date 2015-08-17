@@ -187,6 +187,7 @@ function toolTipper( $elem ) {
       content = $( '[data-tooltip-name="' + name + '"]' ).html(),
       innerTip = ttc.find( '.innertip' ),
       outerTip = ttc.find( '.outertip' ),
+      pagePadding = parseInt( $( '#maincontent' ).css( 'padding-left' ) ),
       newTop,
       newLeft,
       tipset;
@@ -208,9 +209,8 @@ function toolTipper( $elem ) {
   outerTip.css('left', Math.floor( tipOffset - ( outerTip.outerWidth() / 2 ) ) );
 
   // Prevent tooltip from falling off the left side of screens
-  if (newLeft < 20) {
-    var elemCenter = $elem.offset().left + ( $elem.width() / 2 ),
-        pagePadding = 20;
+  if (newLeft < pagePadding) {
+    var elemCenter = $elem.offset().left + ( $elem.width() / 2 );
     ttc.css( 'left', pagePadding);
     innerTip.css( 'left', elemCenter - ( innerTip.outerWidth() / 2 ) - pagePadding );
     outerTip.css( 'left', elemCenter - ( outerTip.outerWidth() / 2 ) - pagePadding );
@@ -219,8 +219,7 @@ function toolTipper( $elem ) {
   // Prevent tooltip from falling off the right side of screens
   if ( ttc.offset().left + ttc.outerWidth(true) >$(window).width()) {
     var elemCenter = $elem.offset().left + ( $elem.width() / 2 ),
-        elemRightOffset = $(window).width() - elemCenter,
-        pagePadding = 20;
+        elemRightOffset = $(window).width() - elemCenter;
     newLeft = $(window).width() - ttc.outerWidth(true) - pagePadding;
     ttc.css( 'left', newLeft );
     innerTip.css( 'left', ttc.outerWidth() - ( innerTip.outerWidth() / 2 ) - elemRightOffset + pagePadding );
