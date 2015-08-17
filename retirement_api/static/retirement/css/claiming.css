@@ -374,6 +374,8 @@ form {
 
 #claiming-social-security .benefit-selection p.selected-full-retirement,
 #claiming-social-security #age-selector-response,
+#claiming-social-security #age-selector-response #feedback-form, 
+#claiming-social-security #age-selector-response .feedback-question, 
 #claiming-social-security #age-selector-response .thank-you {
   display: none;
 }
@@ -531,6 +533,19 @@ form {
 
 #claiming-social-security .step-three .helpful-btn {
   width: 4em;
+}
+
+#claiming-social-security #feedback-form {
+  margin-top: 30px;
+}
+
+#claiming-social-security #feedback-text {
+  width: 66%;
+  min-height: 4em;
+}
+
+#claiming-social-security #send-your-comments, #claiming-social-security .thank-you {
+  margin-top: 15px;
 }
 
 /* cf-notification */

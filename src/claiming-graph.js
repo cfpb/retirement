@@ -658,8 +658,21 @@ $(document).ready( function() {
   });
 
   $('#age-selector-response .helpful-btn').click( function() {
+    /* Show a different feedback question depending on the answer given. */
+    if ($(this).is('#helpful-yes')) {
+      $('#helpful-yes').show();
+    } else {
+      $('#helpful-no').show();
+    }
+    $('#feedback-form').show();
+    $('#send-your-comments').css('display', 'block');
+    $('#age-selector-response .helpful-btn').attr('disabled', true).addClass('btn__disabled').hide();    
+  });
+
+  $('#send-your-comments').click( function() {
+    $('#feedback-text').attr('disabled', true);
+    $('#send-your-comments').attr('disabled', true).addClass('btn__disabled').hide();
     $('#age-selector-response .thank-you').show();
-    $('#age-selector-response .helpful-btn').attr('disabled', true).addClass('btn__disabled').hide();
   });
 
   $('#salary-input').blur( function() {

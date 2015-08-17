@@ -424,8 +424,14 @@
             <li class="content-l_col content-l_col-1-3 next-step-three">{% trans final_steps.final_step_3.instructions %}{% endautoescape %}</li>
           </ol>
           <p class="h3">{% trans final_steps.final_step_4.instructions %}</p>
-              <button class="helpful-btn btn btn__grouped-first" value="yes">{{YES}}</button>
-              <button class="helpful-btn btn btn__grouped-last" value="no">{{NO}}</button>
+          <button class="helpful-btn btn btn__grouped-first" value="yes">{{YES}}</button>
+          <button class="helpful-btn btn btn__grouped-last" value="no">{{NO}}</button>
+          <form id="feedback-form" name="feedback-form" action="#">
+            <p id="helpful-yes" class="feedback-question">{% trans "How was it helpful?" %}</p>
+            <p id="helpful-no" class="feedback-question">{% trans "How could it be improved?" %}</p>
+            <label for="feedback-text" class="input-labels"><textarea id="feedback-text" name="feedback-text" autocomplete="off" spellcheck="true"></textarea></label>
+            <button type="submit" id="send-your-comments" class="btn">{% trans "Send your comments" %}</button>
+          </form>
           <p class="thank-you">{% trans "Thank you for your feedback!" %}</p>
         </div>
     </div>
