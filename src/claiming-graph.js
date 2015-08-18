@@ -187,7 +187,7 @@ function toolTipper( $elem ) {
       content = $( '[data-tooltip-name="' + name + '"]' ).html(),
       innerTip = ttc.find( '.innertip' ),
       outerTip = ttc.find( '.outertip' ),
-      pagePadding = parseInt( $( '#maincontent' ).css( 'padding-left' ) ),
+      pagePadding = parseInt( $( '#maincontent' ).css( 'padding-left' ), 10 ),
       newTop,
       newLeft,
       tipset;
