@@ -1,11 +1,10 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
-## Unreleased
+## 0.3.0
 - added a tooltip for those who claim early but keep working, in the 'sixties' question
 - major overhaul to front-end code to integrate grunt tasks and npm
 - addition of mocha tests and 'npm test' command
-- changes the hero image
 
 ## 0.2.0
 - changed title and `h1` to **Before you claim**
