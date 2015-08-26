@@ -30,6 +30,19 @@ class build_frontend(Command):
         print __file__
         call(['./frontendbuild.sh'], 
                 cwd=os.path.dirname(os.path.abspath(__file__)))
+
+class build_ext(_build_ext):
+    """ A build_ext subclass that adds build_frontend """
+    def run(self):
+        self.run_command('build_frontend')
+        _build_ext.run(self)
+
+
+class bdist_egg(_bdist_egg):
+    """ A bdist_egg subclass that runs build_frontend """
+    def run(self):
+        self.run_command('build_frontend')
+        _bdist_egg.run(self)
         
 
 setup(
@@ -57,5 +70,7 @@ setup(
     packages = find_packages(),
     cmdclass={
         'build_frontend': build_frontend,
+        'build_ext': build_ext,
+        'bdist_egg': bdist_egg,
     },
 )
