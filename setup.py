@@ -67,7 +67,6 @@ setup(
     ],
     long_description=read_file('README.md'),
     zip_safe=False,
-    packages = find_packages(),
     cmdclass={
         'build_frontend': build_frontend,
         'build_ext': build_ext,
