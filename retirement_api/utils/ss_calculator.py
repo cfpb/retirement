@@ -1,19 +1,24 @@
 """
-users must be at least 22 to use the form
-users past their full retirement age will get only their current benefit amount
+A utility to get benefit data from SSA and handle errors.
 
-Well need to ask user for DOB and current annual earnings
-returns estimated benefit at 62, 67, and 70 based the value of the dollar today
+Users must be at least 22 to use the form.
+Users past their full retirement age will get results only
+for their current year and any other years up to 70.
+We'll need to ask users for DOB and current annual earnings
+benefit values for all years shown in today's dollars
 
-inputs needed:
-    Date of birth: 8/14/1956
-    Current earnings: 50000
+Inputs needed:
+- Date of birth: 8/14/1956
+- Current earnings: 50000
 
-optional inputs (not currently used):
-    Last year with earnings
-    Last earnings
-    Retirement month/year: 8/2026
-    Benefit in inflated dollars; we're using default of current-year dollars
+Optional inputs that SSA allows, but we're not using:
+- Last year with earnings
+- Last earnings
+- Retirement month/year: 8/2026
+- Benefit in inflated dollars; we're using default of current-year dollars
+
+Outputs:
+- a json file of benefit data and any error messages
 """
 import re
 import requests
@@ -27,7 +32,7 @@ import signal
 from bs4 import BeautifulSoup as bs
 from .ss_utilities import get_retirement_age, get_current_age, past_fra_test
 
-timeout_seconds = 10
+timeout_seconds = 20
 
 down_note = """<span class="h4">Sorry, the Social Security website \
 is not responding, so we can't estimate your benefits.</span> \
@@ -83,19 +88,21 @@ def interpolate_benefits(benefits, fra_tuple, current_age, born_on_2nd=False):
     """
     fra = fra_tuple[0]  # could be 66 + x number of months, or 67
     # fill out the missing years, working backward and forward from the FRA
+    EARLY_PENALTY = 0.00555555  # monthly penalty applied to months closest to full retirement age
+    EARLIER_PENALTY = 0.004166666  # monthly penalty applied to earliest claiming ages
     if fra == 67:
         base = benefits['age 67']
         if born_on_2nd:
-            benefits['age 62'] = int(round(base - base*(3*12*(0.00555555)) -
-                                           base*(2*12*0.004166666)))
+            benefits['age 62'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
+                                           base*(2*12*EARLIER_PENALTY)))
         else:
-            benefits['age 62'] = int(round(base - base*(3*12*(0.00555555)) -
-                                           base*(2*11*0.004166666)))
-        benefits['age 63'] = int(round(base - base*(3*12*(0.00555555)) -
-                                       base*(1*12*0.004166666)))
-        benefits['age 64'] = int(round(base - base*(3*12*(0.00555555))))
-        benefits['age 65'] = int(round(base - base*(2*12*(0.00555555))))
-        benefits['age 66'] = int(round(base - base*(1*12*(0.00555555))))
+            benefits['age 62'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
+                                           base*(2*11*EARLIER_PENALTY)))
+        benefits['age 63'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
+                                       base*(1*12*EARLIER_PENALTY)))
+        benefits['age 64'] = int(round(base - base*(3*12*(EARLY_PENALTY))))
+        benefits['age 65'] = int(round(base - base*(2*12*(EARLY_PENALTY))))
+        benefits['age 66'] = int(round(base - base*(1*12*(EARLY_PENALTY))))
         benefits['age 68'] = int(round(base + (base * 0.08)))
         benefits['age 69'] = int(round(base + (2 * (base * 0.08))))
         benefits['age 70'] = int(round(base + (3 * (base * 0.08))))
@@ -118,31 +125,31 @@ def interpolate_benefits(benefits, fra_tuple, current_age, born_on_2nd=False):
             benefits['age 63'] = 0
             benefits['age 64'] = 0
             benefits['age 65'] = int(round(base -
-                                     base*(diff_back*(0.00555555))))
+                                     base*(diff_back*(EARLY_PENALTY))))
         elif current_age == 64:
             # FRA is 66; need to fill in 64 and 65
             benefits['age 62'] = 0
             benefits['age 63'] = 0
             benefits['age 64'] = int(round(base -
-                                     base*((diff_back + 12)*(0.00555555))))
+                                     base*((diff_back + 12)*(EARLY_PENALTY))))
             benefits['age 65'] = int(round(base -
-                                     base*(diff_back*(0.00555555))))
+                                     base*(diff_back*(EARLY_PENALTY))))
         elif current_age in range(55, 64):
             # ages 55 to 63: FRA is 66; need to fill in 62, 63, 64 and 65
             if born_on_2nd:
                 benefits['age 62'] = int(round(base -
-                                         base*((diff_back + 24)*(0.00555555)) -
-                                         base*(1*12*0.004166666)))
+                                         base*((diff_back + 24)*(EARLY_PENALTY)) -
+                                         base*(1*12*EARLIER_PENALTY)))
             else:
                 benefits['age 62'] = int(round(base -
-                                         base*((diff_back + 24)*(0.00555555)) -
-                                         base*(1*11*0.004166666)))
+                                         base*((diff_back + 24)*(EARLY_PENALTY)) -
+                                         base*(1*11*EARLIER_PENALTY)))
             benefits['age 63'] = int(round(base -
-                                     base*((diff_back + 24)*(0.00555555))))
+                                     base*((diff_back + 24)*(EARLY_PENALTY))))
             benefits['age 64'] = int(round(base -
-                                     base*((diff_back + 12)*(0.00555555))))
+                                     base*((diff_back + 12)*(EARLY_PENALTY))))
             benefits['age 65'] = int(round(base -
-                                     base*(diff_back*(0.00555555))))
+                                     base*(diff_back*(EARLY_PENALTY))))
     return benefits
 
 # sample params
