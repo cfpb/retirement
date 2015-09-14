@@ -426,3 +426,11 @@ msgstr "¿Esperas tener fuentes adicionales de ingresos de jubilación más all�
 msgid "Sorry, we cannot provide an estimate because your entered annual income is less than the minimum needed to make the estimate."
 msgstr "Lo sentimos. No podemos generar un estimado de sus beneficios, ya que su ingreso anual es menor que la cantidad necesaria para poder generar un cálculo aproximado de sus beneficios."
 
+#: 
+msgid "Estimated benefits"
+msgstr "Beneficio mensual estimado"
+
+#: 
+msgid "Claiming age"
+msgstr "Edad de jubilación"
+
