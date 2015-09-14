@@ -33,15 +33,15 @@ msgstr "Su decisión alegando tiene un gran impacto. Estamos aquí para ayudarle
 
 #: templates/claiming.html
 msgid "Explore how your claiming age affects your Social Security retirement benefits"
-msgstr "Explorar cómo reclamar la edad afecta sus beneficios de jubilación del Seguro Social"
+msgstr "Vea cómo la edad en la que solicita afecta sus beneficios de Seguro Social por jubilación."
 
 #: templates/claiming.html
 msgid "Enter your information below to see your estimated benefits."
-msgstr "Introduzca sus datos para actualizar el ejemplo siguiente."
+msgstr "Ingrese sus datos para ver los cálculos aproximados de sus beneficios."
 
 #: templates/claiming.html
 msgid "We base your benefit estimate on current formulas from the Social Security Administration. Your answers are anonymous. Because we do not access or use your Social Security earnings record, these are rough estimates."
-msgstr "Basamos su estimación de beneficio en las fórmulas actuales de la administración de la Seguridad Social. Tus respuestas son anónimas. Porque no acceder o utilizar su registro de ganancias de Seguro Social, estas son estimaciones aproximadas."
+msgstr "Usamos las fórmulas de la Administración del Seguro Social para calcular sus beneficios. Sus respuestas son anónimas. Ya que no tenemos acceso a su registro de ingresos del Seguro Social, las cantidades que demostramos son un cálculo aproximado de sus beneficios."
 
 #: templates/claiming.html:224
 msgid "Date of birth"
@@ -49,15 +49,15 @@ msgstr "Fecha de nacimiento"
 
 #: templates/claiming.html:230
 msgid "Highest annual work income"
-msgstr "Más alto ingresos anuales de trabajo"
+msgstr "Ingreso anual de su trabajo"
 
 #: templates/claiming.html:233
 msgid "Get your estimates"
-msgstr "Consiga sus estimaciones"
+msgstr "Obtenga su estimado"
 
 #: templates/claiming.html:244
 msgid "View estimated benefits as:"
-msgstr "Ver beneficios estimados como:"
+msgstr "Vea su estimado como:"
 
 #: templates/claiming.html:244
 msgid "monthly income"
@@ -65,7 +65,7 @@ msgstr "ingreso mensual"
 
 #: templates/claiming.html:244
 msgid "annual income"
-msgstr "renta anual"
+msgstr "ingreso anual"
 
 #: templates/claiming.html:250
 msgid "is your full retirement age."
@@ -93,7 +93,7 @@ msgstr "Beneficios de jubilación del Seguro Social no están diseñados para se
 
 #: 
 msgid "Learn how estimates are calculated."
-msgstr "Conozca cómo se calculan las estimaciones."
+msgstr "Más sobre cómo calculamos sus estimados."
 
 #: 
 msgid "Learn tips to make your claiming decision"
@@ -380,7 +380,7 @@ msgstr "Reclamando Seguridad Social"
 
 #: 
 msgid "Enter your total work income before taxes and other deductions. If your work income is 0 (zero) because you are now retired or unemployed, enter the income for the last year in which you worked."
-msgstr "Entrar su ingreso de trabajo total antes de impuestos y otras deducciones. Si su ingreso del trabajo es 0 (cero) porque eres ahora jubilados o desempleados, entrar en la renta para el último año en el que trabajaste."
+msgstr "Entre el ingreso total de su trabajo antes de descontar los impuestos y otras deducciones. Si el ingreso de su trabajo es cero (0) porque ya está jubilado, o se encuentra desempleado, ingrese el total del ingreso que obtuvo el último año que trabajó."
 
 #: 
 msgid "Widowed"
@@ -396,19 +396,19 @@ msgstr "Tomar sus siguientes pasos"
 
 #: 
 msgid "<span class=\"header-line\">Before you claim—</span>planning for retirement"
-msgstr "<span class=\"header-line\">Antes de que usted reclama—</span>planificación para la jubilación"
+msgstr "<span class=\"header-line\">Antes de solicitar—</span>Planifique para su  jubilación"
 
 #: 
 msgid "The age you claim Social Security matters for your lifetime income. We’ll help you think through this decision."
-msgstr "La edad que usted reclama Seguridad Social importa para tu renta de por vida. Nosotros le ayudaremos a pensar a través de esta decisión."
+msgstr "La edad en la que usted solicita sus beneficios de Seguro Social afectará los beneficios que recibirá a lo largo de su vida. Le ayudaremos a tomar esta decisión."
 
 #: 
 msgid "Your estimated benefits:"
-msgstr "Sus beneficios estimados:"
+msgstr "Sus estimados:"
 
 #: 
 msgid "Select claiming ages on the graph to see your benefit increase or decrease."
-msgstr "Seleccione las edades que en el gráfico para ver su beneficio aumento o disminución."
+msgstr "Seleccione las edades en la gráfica para ver cómo aumentan o disminuyen sus beneficios. "
 
 #: 
 msgid "Learn tips specific to your situation"
@@ -421,4 +421,8 @@ msgstr "Imagen su vida en retiro para recibir consejos de reclamación."
 #: 
 msgid "Do you expect to have additional sources of retirement income beyond Social Security?"
 msgstr "¿Esperas tener fuentes adicionales de ingresos de jubilación más allá de la Seguridad Social?"
+
+#: 
+msgid "Sorry, we cannot provide an estimate because your entered annual income is less than the minimum needed to make the estimate."
+msgstr "Lo sentimos. No podemos generar un estimado de sus beneficios, ya que su ingreso anual es menor que la cantidad necesaria para poder generar un cálculo aproximado de sus beneficios."
 
