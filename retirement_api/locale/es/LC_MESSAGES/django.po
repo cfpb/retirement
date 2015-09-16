@@ -428,7 +428,7 @@ msgstr "Lo sentimos. No podemos generar un estimado de sus beneficios, ya que su
 
 #: 
 msgid "Estimated benefits"
-msgstr "Beneficio mensual estimado"
+msgstr "Beneficio estimado"
 
 #: 
 msgid "Claiming age"
