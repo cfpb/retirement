@@ -3,7 +3,9 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## unreleased
 - bumped app's timeout to avoid caching of occasional slow SSA responses
-- added front-end build script and setup.py code to invoke it
+- added front-end build script and setup.py code to invoke it (not used yet in deployments)
+- added Spanish language prep for user testing
+- added redirect to app's url config so it doesn't need to be handled in apache
 
 ## 0.3.0
 - added a tooltip for those who claim early but keep working, in the 'sixties' question
