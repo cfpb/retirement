@@ -91,6 +91,7 @@ function getData() {
       year = $( '#bd-year' ).val(),
       salary = $( '#salary-input' ).val().replace(/\D/g,'' );
   var dates = validDates( month, day, year );
+  var dataLang = $( "body" ).attr('data-lang');
 
   // Hide warnings
   $( '.cf-notification' ).slideUp();
@@ -100,8 +101,11 @@ function getData() {
   $( '#bd-day' ).val( dates['day'] );
   $( '#bd-month' ).val( dates['month'] );
   $( '#bd-year' ).val( dates['year'] );
-
-  var url = '/retirement/retirement-api/estimator/' + dates.concat + '/' + Number(salary) + '/';
+  if ( dataLang === 'es' ) {
+    var url = '/retirement/retirement-api/estimator/' + dates.concat + '/' + Number(salary) + '/es/';
+  } else {
+    var url = '/retirement/retirement-api/estimator/' + dates.concat + '/' + Number(salary) + '/';
+  }
   var response = '';
   currentAge = calculateAge( month, day, year );
   if ( currentAge < 50 ) {

@@ -133,7 +133,7 @@
       <div class="selected-retirement-age-container">
         <p class="h3 selected-retirement-age">{% trans "Age" %}
           <span class="selected-retirement-age-value">67</span> <span class="benefit-modification-text">
-          {% trans "is after your full benefit claiming age." %}</span>
+          {% trans "is your full benefit claiming age." %}</span>
           <p class="compared-to-full explainer">{% trans "Compared to claiming at your full benefit claiming age." %}</p>
         </p>
       </div>
@@ -320,11 +320,11 @@
         <p>{% trans questions.income.answer_yes_b|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-under50">
-        <h4>{% trans questions.income.answer_no_a_subhed|safe  %}</h4>
-        <p>{% trans questions.income.answer_no_a|safe  %}</p>
+        <h4>{% trans questions.income.answer_no_a_subhed %}</h4>
+        <p>{% trans questions.income.answer_no_a|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="no-over50">
-        <h4>{% trans questions.income.answer_no_b_subhed|safe  %}</h4>
+        <h4>{% trans questions.income.answer_no_b_subhed|safe %}</h4>
         <p>{% trans questions.income.answer_no_b|safe %}</p>
       </div>
       <div class="lifestyle-response" data-responds-to="notsure-under50">
