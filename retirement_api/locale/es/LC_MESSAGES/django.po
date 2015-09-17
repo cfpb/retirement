@@ -29,7 +29,7 @@ msgstr "Reclamando Seguridad Social– una opción para adaptarse a su estilo de
 
 #: templates/claiming.html
 msgid "The age you claim your benefits matters for your lifetime income. We'll help you think through this important decision."
-msgstr "Su decisión alegando tiene un gran impacto. Estamos aquí para ayudarle a maximizar sus ingresos de por vida."
+msgstr "La edad en la que solicita afectará los beneficios de Seguro Social que recibirá a lo largo de su vida. Le ayudaremos a decidir."
 
 #: templates/claiming.html
 msgid "Explore how your claiming age affects your Social Security retirement benefits"
@@ -400,7 +400,7 @@ msgstr "<span class=\"header-line\">Antes de solicitar—</span>Planifique para 
 
 #: 
 msgid "The age you claim Social Security matters for your lifetime income. We’ll help you think through this decision."
-msgstr "La edad en la que usted solicita sus beneficios de Seguro Social afectará los beneficios que recibirá a lo largo de su vida. Le ayudaremos a tomar esta decisión."
+msgstr "La edad en la que solicita afectará los beneficios de Seguro Social que recibirá a lo largo de su vida. Le ayudaremos a decidir."
 
 #: 
 msgid "Your estimated benefits:"
