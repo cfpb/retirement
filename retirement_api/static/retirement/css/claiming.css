@@ -695,7 +695,10 @@ form {
 
 
 @media (max-width: 940px) {
-  #claiming-social-security .claiming-hero {
+  [data-lang="en"] #claiming-social-security .claiming-hero {
+    background-image: none;
+  }
+  [data-lang="es"] #claiming-social-security .claiming-hero {
     background-image: none;
   }
 
