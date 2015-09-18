@@ -319,16 +319,16 @@ function setTextByAge() {
   if ( selectedAge === SSData.fullAge ) {
     if ( SSData.past_fra ) {
       if ( SSData.currentAge === 70 ) {
-        $( '.benefit-modification-text' ).html( 'is your maximum benefit claiming age.' );
+        $( '.benefit-modification-text' ).html( gettext('is your maximum benefit claiming age.') );
         $( '.compared-to-full' ).hide();
         }
       else {
-        $( '.benefit-modification-text' ).html( 'is past your full benefit claiming age.' );
+        $( '.benefit-modification-text' ).html( gettext('is past your full benefit claiming age.') );
         $( '.compared-to-full' ).hide();
         }
     }
     else {
-      $( '.benefit-modification-text' ).html( 'is your full benefit claiming age.' );
+      $( '.benefit-modification-text' ).html( gettext('is your full benefit claiming age.') );
       $( '.compared-to-full' ).hide();
     }
   }
@@ -336,13 +336,13 @@ function setTextByAge() {
   else if ( selectedAge < SSData.fullAge ) {
     var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
     percent = Math.abs( Math.round( percent * 100 ) );
-    $( '.benefit-modification-text' ).html( '<strong>reduces</strong> your monthly benefit by&nbsp;<strong>' + percent + '</strong>%' );
+    $( '.benefit-modification-text' ).html( gettext('<strong>reduces</strong> your monthly benefit by&nbsp;<strong>') + percent + '</strong>%' );
     $( '.compared-to-full' ).show();
   }
   else if ( selectedAge > SSData.fullAge ) {
     var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
     percent = Math.abs( Math.round( percent * 100 ) );
-    $( '.benefit-modification-text' ).html( '<strong>increases</strong> your benefit by&nbsp;<strong>' + percent + '</strong>%' );
+    $( '.benefit-modification-text' ).html( gettext('<strong>increases</strong> your benefit by&nbsp;<strong>') + percent + '</strong>%' );
     if ( SSData.past_fra ) {
       $( '.compared-to-full' ).html( 'Compared to claiming at ' + SSData.fullAge + '.' );
     }

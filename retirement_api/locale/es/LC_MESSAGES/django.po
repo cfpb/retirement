@@ -324,7 +324,7 @@ msgstr "Si usted y su cónyuge son plena edad de jubilación, usted puede solici
 
 #: 
 msgid "Age"
-msgstr "Edad"
+msgstr "A los "
 
 #: 
 msgid "Compared to your full retirement age."
@@ -480,7 +480,7 @@ msgstr "Visite el <a href=\"http://www.ssa.gov/espanol/jubilacion2/calculadora.h
 
 #: 
 msgid "Your retirement income outside of Social Security will help you cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan."
-msgstr "Sus ahorros le ayudarán a cubrir sus gastos durante su jubilación. Usted puede aumentar sus contribuciones a sus planes de jubilación, o abrir una <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">cuenta IRA</a> (en inglés) o un plan <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> (en inglés) y hacer contribuciones a estas cuentas. Visite nuestro <a target=\"_blank\" href=\"http://www.consumerfinance.gov/es/obtener-respuestas/\">sitio web para ver consejos sobre otras decisiones financieras."
+msgstr "Sus ahorros le ayudarán a cubrir sus gastos durante su jubilación. Usted puede aumentar sus contribuciones a sus planes de jubilación, o abrir una <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">cuenta IRA</a> (en inglés) o un plan <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> (en inglés) y hacer contribuciones a estas cuentas."
 
 #: 
 msgid "If your income, employment, or marital status changes, you may need to reconsider your claiming age. Visit us again!"
@@ -492,7 +492,7 @@ msgstr " años, que es su plena edad de jubilación."
 
 #: 
 msgid "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"http://www.irs.gov/Retirement-Plans/Plan-Participant,-Employee/Retirement-Topics-Catch-Up-Contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able to  open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan."
-msgstr "Puede seguir aumentando sus ahorros y hacer contribuciones adicionales a las cuentas que ya tiene mientras espera para solicitar sus beneficios. También podría abrir una <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a>cuenta IRA</a> (en inglés) o un plan <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a>myRA</a> (en inglés) y hacer contribuciones a estas cuentas."
+msgstr "Puede seguir aumentando sus ahorros y hacer contribuciones adicionales a las cuentas que ya tiene mientras espera para solicitar sus beneficios. También podría abrir una <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">cuenta IRA</a> (en inglés) o un plan <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> (en inglés) y hacer contribuciones a estas cuentas. •\tVisite nuestro <a href=\"http://www.consumerfinance.gov/es/obtener-respuestas/\" target=\"_blank\">sitio web</a> para ver consejos sobre otras decisiones financieras."
 
 #: 
 msgid ", which is later than your Social Security full retirement claiming age."
@@ -634,4 +634,56 @@ msgstr "Por lo tanto la cantidad de sus beneficios será reducida. Estos son pas
 #: 
 msgid "This means you will get an increase in your monthly benefits! Here are steps to help you in the next few years."
 msgstr "Por lo tanto la cantidad de sus beneficios será reducida. Estos son pasos que le ayudarán en los próximos años:"
+
+#: 
+msgid "Remember, claiming age here refers only to your Social Security retirement benefit, and not when you decide to stop working or apply for Medicare."
+msgstr "Recuerde que la plena edad de jubilación es un término que el Seguro Social usa para referirse a sus beneficios por jubilación, y no a la edad a la que usted decide dejar de trabajar o se inscribe en el programa Medicare."
+
+#: 
+msgid "in today's dollars"
+msgstr "sin ajustes por inflación"
+
+#: 
+msgid "Compared to claiming at your full benefit claiming age."
+msgstr "en comparación con su plena edad de jubilación."
+
+#: 
+msgid "By age 85, an average lifespan, your total benefits will be"
+msgstr "La expectativa de vida promedio es 85 años de edad, a esa edad el total de sus beneficios será"
+
+#: 
+msgid "About your maximum benefit claiming age:"
+msgstr "Más sobre la edad máxima:"
+
+#: 
+msgid "Always 70."
+msgstr "Siempre es 70 años."
+
+#: 
+msgid "At this age, you will get the maximum possible monthly benefit."
+msgstr "A esta edad usted obtendrá el beneficio mensual más alto."
+
+#: 
+msgid "About your full benefit claiming age:"
+msgstr "Más sobre la plena edad de jubilación:"
+
+#: 
+msgid "It is based on the year you were born."
+msgstr "Está basada en su año de nacimiento."
+
+#: 
+msgid "At this age, you will receive your full benefit with no reductions."
+msgstr "A esta edad recibirá su beneficio mensual sin reducciones."
+
+#: 
+msgid "About your early benefit claiming age:"
+msgstr "Más sobre la edad temprana:"
+
+#: 
+msgid "Earliest age you can claim your benefit is 62."
+msgstr "Lo más temprano que puede solicitar sus beneficios es a los 62 años de edad."
+
+#: 
+msgid "If you claim your benefit before your full claiming age, it will be reduced."
+msgstr "Si solicita sus beneficios antes de cumplir su plena edad de jubilación, sus beneficios se reducirán."
 
