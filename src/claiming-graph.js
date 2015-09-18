@@ -91,6 +91,7 @@ function getData() {
       year = $( '#bd-year' ).val(),
       salary = $( '#salary-input' ).val().replace(/\D/g,'' );
   var dates = validDates( month, day, year );
+  var dataLang = $( "body" ).attr('data-lang');
 
   // Hide warnings
   $( '.cf-notification' ).slideUp();
@@ -100,8 +101,11 @@ function getData() {
   $( '#bd-day' ).val( dates['day'] );
   $( '#bd-month' ).val( dates['month'] );
   $( '#bd-year' ).val( dates['year'] );
-
-  var url = '/retirement/retirement-api/estimator/' + dates.concat + '/' + Number(salary) + '/';
+  if ( dataLang === 'es' ) {
+    var url = '/retirement/retirement-api/estimator/' + dates.concat + '/' + Number(salary) + '/es/';
+  } else {
+    var url = '/retirement/retirement-api/estimator/' + dates.concat + '/' + Number(salary) + '/';
+  }
   var response = '';
   currentAge = calculateAge( month, day, year );
   if ( currentAge < 50 ) {
@@ -315,16 +319,16 @@ function setTextByAge() {
   if ( selectedAge === SSData.fullAge ) {
     if ( SSData.past_fra ) {
       if ( SSData.currentAge === 70 ) {
-        $( '.benefit-modification-text' ).html( 'is your maximum benefit claiming age.' );
+        $( '.benefit-modification-text' ).html( gettext('is your maximum benefit claiming age.') );
         $( '.compared-to-full' ).hide();
         }
       else {
-        $( '.benefit-modification-text' ).html( 'is past your full benefit claiming age.' );
+        $( '.benefit-modification-text' ).html( gettext('is past your full benefit claiming age.') );
         $( '.compared-to-full' ).hide();
         }
     }
     else {
-      $( '.benefit-modification-text' ).html( 'is your full benefit claiming age.' );
+      $( '.benefit-modification-text' ).html( gettext('is your full benefit claiming age.') );
       $( '.compared-to-full' ).hide();
     }
   }
@@ -332,13 +336,13 @@ function setTextByAge() {
   else if ( selectedAge < SSData.fullAge ) {
     var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
     percent = Math.abs( Math.round( percent * 100 ) );
-    $( '.benefit-modification-text' ).html( '<strong>reduces</strong> your monthly benefit by&nbsp;<strong>' + percent + '</strong>%' );
+    $( '.benefit-modification-text' ).html( gettext('<strong>reduces</strong> your monthly benefit by&nbsp;<strong>') + percent + '</strong>%' );
     $( '.compared-to-full' ).show();
   }
   else if ( selectedAge > SSData.fullAge ) {
     var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
     percent = Math.abs( Math.round( percent * 100 ) );
-    $( '.benefit-modification-text' ).html( '<strong>increases</strong> your benefit by&nbsp;<strong>' + percent + '</strong>%' );
+    $( '.benefit-modification-text' ).html( gettext('<strong>increases</strong> your benefit by&nbsp;<strong>') + percent + '</strong>%' );
     if ( SSData.past_fra ) {
       $( '.compared-to-full' ).html( 'Compared to claiming at ' + SSData.fullAge + '.' );
     }

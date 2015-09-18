@@ -104,7 +104,7 @@ And by the way, there’s another hidden message somewhere on the following page
 {% block head_js %}{% endblock %}
 </head>
 
-<body class="page">
+<body class="page" {% if es %}data-lang="es"{% else %}data-lang="en"{% endif %}>
 
 <!-- {{ available_languages }} -->
 <!-- {{ available_languages }} -->

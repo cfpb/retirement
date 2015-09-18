@@ -64,6 +64,7 @@ def claiming(request, es=False):
         'page': page,
         'base_template': base_template,
         'available_languages': ['en', 'es'],
+        'es': es,
         }
     return render_to_response('claiming.html', cdict)
 
@@ -85,7 +86,7 @@ def income_check(param):
         return clean_income
 
 
-def estimator(request, dob=None, income=None):
+def estimator(request, dob=None, income=None, language='en'):
     today = datetime.datetime.now().date()
     legal_year = today.year - 22  # calculator isn't for people under 22
     if dob is None:
@@ -114,7 +115,7 @@ def estimator(request, dob=None, income=None):
     params['dobday'] = DOB.day
     params['yob'] = DOB.year
     params['earnings'] = income
-    data = get_retire_data(params)
+    data = get_retire_data(params, language)
     return HttpResponse(data, content_type='application/json')
 
 

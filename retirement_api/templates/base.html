@@ -91,9 +91,12 @@ And by the way, there’s another hidden message somewhere on the following page
     <link rel="stylesheet" href="{% static "retirement/css/main.css" %}">
     <link rel="stylesheet" href="{% static "retirement/css/claiming.css" %}">
     <script src="{% static 'retirement/js/raphael-min.js' %}"></script>
-    <script src="{% static 'retirement/js/raphael-max.js' %}"></script>
     <script src="{% static "retirement/js/claiming-social-security.js" %}"></script>
-
+{% if es %}
+    <script src="{% static "retirement/jsi18n/es/djangojs.js" %}"></script>
+{% else %}
+    <script src="{% static "retirement/jsi18n/en/djangojs.js" %}"></script>
+{% endif %}
     <script src="/static/js/analytics.js?ver=v4.2.10v4.2.24"></script>
 
     <!-- this is where we put our custom analytics -->
@@ -107,10 +110,8 @@ And by the way, there’s another hidden message somewhere on the following page
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
 
-
 </head>
-
-<body class="page">
+<body class="page" {% if es %}data-lang="es"{% else %}data-lang="en"{% endif %}>
 
 <!-- {{ available_languages }} -->
 <!-- {{ available_languages }} -->
@@ -177,7 +178,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div> <!-- Avatar for Facebook, hidden by CSS -->
     <script src="/wp-content/themes/cfpb_nemo/_/js/functions.js?ver=v4.2.10v4.2.24"></script>
     <script type="text/javascript" src="/static/agreements/js/chosen.jquery.js?ver=v4.2.10v4.2.24"></script>
-
 {% block foot_js %}{% endblock %}
 
 </body>

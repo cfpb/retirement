@@ -104,13 +104,20 @@ form {
   background-size: 665px auto;*/
 }
 
+[data-lang="es"] #claiming-social-security .claiming-hero  {
+  background-image: url('../images/retirement-hero_spanish.png');
+}
+
+[data-lang="en"] #claiming-social-security .claiming-hero  {
+  background-image: url('../images/retirement-hero_2.png');
+}
+
 #claiming-social-security .claiming-hero {
   margin-bottom: 0px;
   padding: 60px 0px;
   width: 100%;
   position: relative;
   background-color: #FFCE8D;
-  background-image: url('../images/retirement-hero_2.png');
   background-origin: content-box;
   background-position: right top;
   background-repeat: no-repeat;

@@ -1,3 +1,4 @@
+# coding: utf-8
 """
 A utility to get benefit data from SSA and handle errors.
 
@@ -38,9 +39,31 @@ down_note = """<span class="h4">Sorry, the Social Security website \
 is not responding, so we can't estimate your benefits.</span> \
 Please try again in a few minutes."""
 
+down_note_es = """<span class="h4">Lo sentimos. En este momento no podemos \
+generar un estimado ya que la calculadora no está respondiendo.</span> \
+Vuelva en un par de minutos."""
+
 no_earnings_note = """<span class="h4">Sorry, we cannot provide an estimate \
 because your entered annual income is less than \
 the minimum needed to make the estimate.</span>"""
+
+no_earnings_note_es = """<span class="h4">Lo sentimos. \
+No podemos estimar sus beneficios, ya que su ingreso anual es menor \
+que la cantidad necesaria para poder generar un cálculo aproximado \
+de sus beneficios.</span>"""
+
+ERROR_NOTES = {
+    'down': {'en': down_note, 'es': down_note_es},
+    'earnings': {'en': no_earnings_note, 'es': no_earnings_note_es}
+}
+
+
+def get_note(note_type, language):
+    """return language_specific error"""
+    if language == 'es':
+        return ERROR_NOTES[note_type]['es']
+    else:
+        return ERROR_NOTES[note_type]['en']
 
 base_url = "http://www.ssa.gov"
 quick_url = "%s/OACT/quickcalc/" % base_url  # where users go; not needed here
@@ -167,7 +190,7 @@ params = {
 }
 
 
-def get_retire_data(params):
+def get_retire_data(params, language):
     born_on_2nd = False
     if params['dobday']:
         try:
@@ -206,7 +229,7 @@ def get_retire_data(params):
     BENS = results['data']['benefits']
     current_age = get_current_age(dobstring)
     results['current_age'] = current_age
-    past_fra = past_fra_test(dobstring)
+    past_fra = past_fra_test(dobstring, language=language)
     if past_fra is False:
         pass
     elif past_fra is True:
@@ -231,25 +254,29 @@ def get_retire_data(params):
         req = requests.post(result_url, data=params, timeout=timeout_seconds)
     except requests.exceptions.ConnectionError as e:
         results['error'] = "connection error at SSA's website: %s" % e
-        results['note'] = down_note
+        results['note'] = get_note('down', language)
         return json.dumps(results)
     except requests.exceptions.Timeout:
         results['error'] = "SSA's website timed out"
-        results['note'] = down_note
+        results['note'] = get_note('down', language)
+        return json.dumps(results)
         return json.dumps(results)
     except requests.exceptions.RequestException as e:
         results['error'] = "request error at SSA's website: %s" % e
-        results['note'] = down_note
+        results['note'] = get_note('down', language)
+        return json.dumps(results)
         return json.dumps(results)
     except:
         results['error'] = "%s error at SSA's website" % req.reason
-        results['note'] = down_note
+        results['note'] = get_note('down', language)
+        return json.dumps(results)
         return json.dumps(results)
     if not req.ok:
         results['error'] = "SSA's website is not responding.\
                             Status code: %s (%s)" % (req.status_code,
                                                      req.reason)
-        results['note'] = down_note
+        results['note'] = get_note('down', language)
+        return json.dumps(results)
         return json.dumps(results)
     if int(params['dobmon']) == 1 and int(params['dobday']) == 1:
         # SSA has a special rule for people born on Jan. 1:
@@ -275,7 +302,7 @@ def get_retire_data(params):
         ret_amount_raw = soup.find('span', {'id': 'ret_amount'})
         if not ret_amount_raw:
             results['error'] = "benefit is zero"
-            results['note'] = no_earnings_note
+            results['note'] = get_note('earnings', language)
             return json.dumps(results)
         else:
             ret_amount = ret_amount_raw.text.split('.')[0]
@@ -343,11 +370,11 @@ def get_retire_data(params):
         else:
             if soup.find('p') and 'insufficient' in soup.find('p').text:
                 results['error'] = "benefit is zero"
-                results['note'] = no_earnings_note
+                results['note'] = get_note('earnings', language)
                 return json.dumps(results)
             else:
                 results['error'] = "SSA is not returning good data"
-                results['note'] = down_note
+                results['note'] = get_note('down', language)
                 return json.dumps(results)
         if disability_table:
             results['data']['disability'] = disability_table.findAll('td')[1].text.split('.')[0]

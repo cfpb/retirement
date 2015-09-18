@@ -1,3 +1,4 @@
+# coding: utf-8
 import os
 import math
 # import sys
@@ -15,6 +16,13 @@ Social Security Administration's \
 <a href="http://www.ssa.gov/people/youngpeople/" \
 target="blank">advice page</a> for students and younger workers.\
 """
+TOO_YOUNG_ES = """\
+Lo sentimos. No podemos estimar sus beneficios si usted \
+es menor de 22 años de edad.</span> \
+Visite <a href="http://www.ssa.gov/people/youngpeople/" \
+target="_blank">la página</a> (en inglés) de la Administración \
+del Seguro Social para estudiantes y trabajadores jóvenes.\
+"""
 TOO_OLD = """\
 <span class="h4">Sorry, our tool cannot provide an estimate because \
 your birthdate, %s, means you are older than 70 and are already receiving \
@@ -23,6 +31,30 @@ earnings record, contact the Social Security Administration or \
 open a <a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
 <em>my</em>Social Security</a> account.
 """
+TOO_OLD_ES = """\
+<span class="h4">Lo sentimos. No podemos estimar sus beneficios ya que \
+la fecha de nacimiento que ingresó, %s, significa que usted \
+es mayor de 70 años de edad y posiblemente ya recibe beneficios. </span>\
+Verifique sus beneficios basados en su propio registro de ingresos \
+del Seguro Social \
+<a href="http://www.ssa.gov/espanol/jubilacion2/calculadora.html" \
+target="_blank">aquí</a> o \
+<a href="http://www.socialsecurity.gov/espanol/agencia/contacto/" \
+target="_blank">comuníquese</a> con la Administración del Seguro Social.\
+"""
+
+AGE_ERROR_NOTES = {
+    'too_old': {'en': TOO_OLD, 'es': TOO_OLD_ES},
+    'too_young': {'en': TOO_YOUNG, 'es': TOO_YOUNG_ES}
+}
+
+
+def get_note(note_type, language):
+    """return language_specific error"""
+    if language == 'es':
+        return AGE_ERROR_NOTES[note_type]['es']
+    else:
+        return AGE_ERROR_NOTES[note_type]['en']
 
 # this datafile specifies years that have unique retirement age values
 # since this may change, it is maintained in an external file
@@ -100,7 +132,7 @@ def get_retirement_age(birth_year):
         return None
 
 
-def past_fra_test(dob=None):
+def past_fra_test(dob=None, language='es'):
     """
     tests whether a person is past his/her full retirement age
     """
@@ -130,9 +162,9 @@ def past_fra_test(dob=None):
     age_tuple = (current_age, (delta % 12))
     print "age_tuple: %s; fra_tuple: %s" % (age_tuple, fra_tuple)
     if age_tuple[0] < 22:
-        return TOO_YOUNG
+        return get_note('too_young', language)
     if age_tuple[0] > 70:
-        return TOO_OLD % DOB.strftime("%m/%d/%Y")
+        return get_note('too_old', language) % DOB.strftime("%m/%d/%Y")
     if age_tuple[0] > fra_tuple[0]:
         return True
     elif age_tuple[0] < fra_tuple[0]:

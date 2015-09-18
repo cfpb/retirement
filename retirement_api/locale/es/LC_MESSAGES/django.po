@@ -17,7 +17,7 @@ msgstr "No"
 
 #: templates/claiming.html:6
 msgid "Not Sure"
-msgstr "No estoy seguro"
+msgstr "No sé"
 
 #: templates/claiming.html:28
 msgid "Consumer Financial Protection Bureau"
@@ -29,19 +29,19 @@ msgstr "Reclamando Seguridad Social– una opción para adaptarse a su estilo de
 
 #: templates/claiming.html
 msgid "The age you claim your benefits matters for your lifetime income. We'll help you think through this important decision."
-msgstr "Su decisión alegando tiene un gran impacto. Estamos aquí para ayudarle a maximizar sus ingresos de por vida."
+msgstr "La edad en la que solicita afectará los beneficios de Seguro Social que recibirá a lo largo de su vida. Le ayudaremos a decidir."
 
 #: templates/claiming.html
 msgid "Explore how your claiming age affects your Social Security retirement benefits"
-msgstr "Explorar cómo reclamar la edad afecta sus beneficios de jubilación del Seguro Social"
+msgstr "Vea cómo la edad en la que solicita afecta sus beneficios de Seguro Social por jubilación."
 
 #: templates/claiming.html
 msgid "Enter your information below to see your estimated benefits."
-msgstr "Introduzca sus datos para actualizar el ejemplo siguiente."
+msgstr "Ingrese sus datos para ver los cálculos aproximados de sus beneficios."
 
 #: templates/claiming.html
 msgid "We base your benefit estimate on current formulas from the Social Security Administration. Your answers are anonymous. Because we do not access or use your Social Security earnings record, these are rough estimates."
-msgstr "Basamos su estimación de beneficio en las fórmulas actuales de la administración de la Seguridad Social. Tus respuestas son anónimas. Porque no acceder o utilizar su registro de ganancias de Seguro Social, estas son estimaciones aproximadas."
+msgstr "Usamos las fórmulas de la Administración del Seguro Social para calcular sus beneficios. Sus respuestas son anónimas. Ya que no tenemos acceso a su registro de ingresos del Seguro Social, las cantidades que demostramos son un cálculo aproximado de sus beneficios."
 
 #: templates/claiming.html:224
 msgid "Date of birth"
@@ -49,15 +49,15 @@ msgstr "Fecha de nacimiento"
 
 #: templates/claiming.html:230
 msgid "Highest annual work income"
-msgstr "Más alto ingresos anuales de trabajo"
+msgstr "Ingreso anual de su trabajo"
 
 #: templates/claiming.html:233
 msgid "Get your estimates"
-msgstr "Consiga sus estimaciones"
+msgstr "Obtenga su estimado"
 
 #: templates/claiming.html:244
 msgid "View estimated benefits as:"
-msgstr "Ver beneficios estimados como:"
+msgstr "Vea su estimado como:"
 
 #: templates/claiming.html:244
 msgid "monthly income"
@@ -65,10 +65,10 @@ msgstr "ingreso mensual"
 
 #: templates/claiming.html:244
 msgid "annual income"
-msgstr "renta anual"
+msgstr "ingreso anual"
 
 #: templates/claiming.html:250
-msgid "is your full retirement age."
+msgid "is your full benefit claiming age."
 msgstr "es su plena edad de jubilación."
 
 #: templates/claiming.html:251
@@ -81,7 +81,7 @@ msgstr "Elija la edad"
 
 #: templates/claiming.html:440
 msgid "You’ve chosen age"
-msgstr "Has elegido la edad"
+msgstr "Usted seleccionó"
 
 #: templates/claiming.html:440
 msgid "Here are some steps to help you in the next few years."
@@ -93,7 +93,7 @@ msgstr "Beneficios de jubilación del Seguro Social no están diseñados para se
 
 #: 
 msgid "Learn how estimates are calculated."
-msgstr "Conozca cómo se calculan las estimaciones."
+msgstr "Más sobre cómo calculamos sus estimados."
 
 #: 
 msgid "Learn tips to make your claiming decision"
@@ -105,7 +105,7 @@ msgstr "Conozca sus próximos pasos"
 
 #: 
 msgid "Select the age you plan to claim your Social Security retirement benefits."
-msgstr "Seleccione la edad va a reclamar sus beneficios de jubilación del Seguro Social."
+msgstr "Seleccione la edad en la que planifica solicitar sus beneficios de Seguro Social"
 
 #: 
 msgid "Tell us about your lifestyle for personalized information."
@@ -113,27 +113,27 @@ msgstr "Háblenos de su estilo de vida para información personalizada."
 
 #: 
 msgid "Are you married?"
-msgstr "Estás casado?"
+msgstr "¿Está casado?"
 
 #: 
 msgid "Do you plan to continue working in your 60s?"
-msgstr "¿Tiene planes de continuar trabajando en sus años 60?"
+msgstr "¿Piensa seguir trabajando después de cumplir sus 60 años?"
 
 #: 
 msgid "Will your expenses decrease after you retire?"
-msgstr "¿Sus gastos de disminuir después de que se jubile?"
+msgstr "¿Espera que sus gastos se reduzcan después de que se jubile? "
 
 #: 
 msgid "Will you have sources of income in addition to Social Security benefits?"
 msgstr "¿Va a tener fuentes de ingresos, además de los beneficios del Seguro Social?"
 
 #: 
-msgid "Do you expect to live a long time?"
-msgstr "¿Espera que vivir mucho tiempo?"
+msgid "Do you expect to live a long life?"
+msgstr "¿Espera vivir una larga vida?"
 
 #: 
-msgid "This will not affect your Social Security account or begin an application."
-msgstr "Esto no afectará a su cuenta de la Seguridad Social o iniciar una aplicación."
+msgid "(This will not affect your Social Security account or begin an application.)"
+msgstr "(Su selección no afectará sus beneficios, ni tampoco iniciará una solicitud para beneficios)."
 
 #: 
 msgid "Create a <a href=\"http://www.ssa.gov/myaccount/\" target=\"_blank\">my Social Security account</a> to review your actual earnings history and expected benefits."
@@ -151,15 +151,15 @@ msgstr "Basado en el año elegido, hacer los cambios necesarios en sus planes de
 
 #: 
 msgid "Was this page helpful in thinking about your claiming age decision?"
-msgstr "Útil para pensar acerca de su decisión de edad alegando ¿Ha sido esta página"
+msgstr "¿Le resultó útil esta información?"
 
 #: 
 msgid "Visit us again if your income, employment, or marital status changes."
-msgstr "Visítenos de nuevo si los cambios de ingresos, empleo o estado civil."
+msgstr "Si sus ingresos, situación laboral o estado civil cambian, es posible que deba reconsiderar la edad en la que solicitará sus beneficios de Seguro Social. ¡Vuelva a visitarnos!"
 
 #: 
 msgid "Thank you for your feedback!"
-msgstr "Gracias por tus comentarios!"
+msgstr "¡Gracias por sus comentarios!"
 
 #: templates/claiming.html
 msgid "The age you claim will affect your benefits, as well as your spouse’s."
@@ -218,8 +218,8 @@ msgid "Waiting to claim increases your monthly benefits every year until age 70.
 msgstr "Esperando a reclamar aumenta sus beneficios mensuales cada año hasta la edad de 70. Trabajo a tiempo completo no es la única opción en sus 60s. Muchas personas planean un cambio de carrera o trabajan a tiempo parcial. Cuando usted trabaja y esperar a reclamar, se puede casi duplicar sus beneficios por 70 años! ¿Sabía usted que su beneficio de Seguro Social se basa en sus más altas de 35 años de ganancias? Trabajando ya puede agregar mayores ganancias a su registro mediante la sustitución de año con bajos y no hay ganancias."
 
 #: templates/claiming.html
-msgid "Some people find retirement is more expensive than expected."
-msgstr "Algunas personas encuentran que la jubilación es más caro de lo esperado."
+msgid "Many people find retirement is more expensive than expected."
+msgstr "Para muchos la jubilación tiene más gastos de los que habían previsto."
 
 #: templates/claiming.html
 msgid "You’re likely to spend 20 years in retirement and income needs are difficult to predict. During that time, you’ll need savings to pay for expenses like home repairs, medical bills, or even buying a car. Out-of-pocket health care costs will likely increase as you get older. You can make adjustments, like downsizing or paying off your mortgage before you retire. You can also wait to claim Social Security up to age 70, which increases your benefits, creating a buffer against future increases in expenses."
@@ -230,8 +230,8 @@ msgid "You’re likely to spend 20 years in retirement and income needs are diff
 msgstr "Es probable que pasar 20 años en la jubilación y las necesidades de ingresos son difíciles de predecir. Durante ese tiempo, tendrá ahorros para pagar gastos como reparaciones en el hogar, gastos médicos, o incluso la compra de un coche. Además, fuera de su propio bolsillo los costos de atención de salud es probable que aumenten a medida que envejece. Una solución es esperar para reclamar la Seguridad Social hasta los 70 años, lo que aumenta sus beneficios. Esto ayudará a otros ahorros para la jubilación, como 401 (k) s, duran más."
 
 #: templates/claiming.html
-msgid "It’s good to plan for increased expenses."
-msgstr "Es bueno hacer planes para el aumento de los gastos."
+msgid "It's good to plan ahead."
+msgstr "Planificar con tiempo es una buena idea."
 
 #: templates/claiming.html
 msgid "You’re likely to spend 20 years in retirement and income needs are difficult to predict. Creating a buffer against future increases in expenses will help. You can maximize your Social Security benefit by waiting to claim (up to age 70), and at the same time help maintain other retirement savings, like 401(k)s. Other things to consider are downsizing your home or paying off your mortgage before you retire."
@@ -263,7 +263,7 @@ msgstr "Usted podría ahorrar a través del plan de jubilación de su empleador,
 
 #: templates/claiming.html
 msgid "It’s never too late to start saving."
-msgstr "Nunca es demasiado tarde para comenzar a ahorrar."
+msgstr "¡Nunca es demasiado tarde para comenzar a ahorrar!"
 
 #: templates/claiming.html
 msgid "You could save through your employer’s retirement plan, IRA or myRA. After age 50, you have the opportunity to catch-up on saving for retirement through annual catch-up contributions. We understand you may not be able to save as much as you’d like, so your decision about when to claim Social Security benefits is even more important. Waiting to claim as long as possible (up to age 70) can nearly double your monthly benefit.You can also cut costs by downsizing to a smaller home or paying off your mortgage."
@@ -324,7 +324,7 @@ msgstr "Si usted y su cónyuge son plena edad de jubilación, usted puede solici
 
 #: 
 msgid "Age"
-msgstr "Edad"
+msgstr "A los "
 
 #: 
 msgid "Compared to your full retirement age."
@@ -380,11 +380,11 @@ msgstr "Reclamando Seguridad Social"
 
 #: 
 msgid "Enter your total work income before taxes and other deductions. If your work income is 0 (zero) because you are now retired or unemployed, enter the income for the last year in which you worked."
-msgstr "Entrar su ingreso de trabajo total antes de impuestos y otras deducciones. Si su ingreso del trabajo es 0 (cero) porque eres ahora jubilados o desempleados, entrar en la renta para el último año en el que trabajaste."
+msgstr "Entre el ingreso total de su trabajo antes de descontar los impuestos y otras deducciones. Si el ingreso de su trabajo es cero (0) porque ya está jubilado, o se encuentra desempleado, ingrese el total del ingreso que obtuvo el último año que trabajó."
 
 #: 
 msgid "Widowed"
-msgstr "Viuda"
+msgstr "Viudo(a)"
 
 #: 
 msgid "Consider these five factors"
@@ -396,29 +396,294 @@ msgstr "Tomar sus siguientes pasos"
 
 #: 
 msgid "<span class=\"header-line\">Before you claim—</span>planning for retirement"
-msgstr "<span class=\"header-line\">Antes de que usted reclama—</span>planificación para la jubilación"
+msgstr "<span class=\"header-line\">Antes de solicitar—</span>Planifique para su  jubilación"
 
 #: 
 msgid "The age you claim Social Security matters for your lifetime income. We’ll help you think through this decision."
-msgstr "La edad que usted reclama Seguridad Social importa para tu renta de por vida. Nosotros le ayudaremos a pensar a través de esta decisión."
+msgstr "La edad en la que solicita afectará los beneficios de Seguro Social que recibirá a lo largo de su vida. Le ayudaremos a decidir."
 
 #: 
 msgid "Your estimated benefits:"
-msgstr "Sus beneficios estimados:"
+msgstr "Sus estimados:"
 
 #: 
 msgid "Select claiming ages on the graph to see your benefit increase or decrease."
-msgstr "Seleccione las edades que en el gráfico para ver su beneficio aumento o disminución."
+msgstr "Seleccione las edades en la gráfica para ver cómo aumentan o disminuyen sus beneficios. "
 
 #: 
 msgid "Learn tips specific to your situation"
-msgstr "Aprender consejos específicos a su situación"
+msgstr "Lea estos consejos"
 
 #: 
 msgid "Picture your life in retirement to receive claiming tips."
-msgstr "Imagen su vida en retiro para recibir consejos de reclamación."
+msgstr "Imagine su situación durante su jubilación y lea estos consejos sobre cuándo solicitar sus beneficios."
 
 #: 
 msgid "Do you expect to have additional sources of retirement income beyond Social Security?"
-msgstr "¿Esperas tener fuentes adicionales de ingresos de jubilación más allá de la Seguridad Social?"
+msgstr "¿Espera tener otras fuentes de ingresos además de los beneficios del Seguro Social?"
+
+#: 
+msgid "Sorry, we cannot provide an estimate because your entered annual income is less than the minimum needed to make the estimate."
+msgstr "Lo sentimos. No podemos generar un estimado de sus beneficios, ya que su ingreso anual es menor que la cantidad necesaria para poder generar un cálculo aproximado de sus beneficios."
+
+#: 
+msgid "Estimated benefits"
+msgstr "Beneficio estimado"
+
+#: 
+msgid "Claiming age"
+msgstr "Edad de jubilación"
+
+#: 
+msgid "You can protect the financial security of your surviving spouse."
+msgstr "Usted puede proteger las finanzas de su cónyuge sobreviviente."
+
+#: 
+msgid "Your decision of when to claim your Social Security could affect the benefits  your spouse will receive after you die. Surviving spouses can keep either their own benefit or choose to keep their spouse's benefit, whichever is higher. If you are married, and are the higher earner in the household, claiming at your full benefit age will ensure your spouse will receive the higher benefit. Talk to your spouse about your claiming options so you can make this important decision together."
+msgstr "Su decisión sobre cuándo solicitar sus beneficios de Seguro Social podría afectar la cantidad de los beneficios que recibirá su esposo(a) cuando usted fallezca. Su cónyuge sobreviviente puede recibir los beneficios como sobreviviente basados en el registro de ganancias de su cónyuge o los beneficios basados en el registro de ganancias de usted, dependiendo de cuál de los dos beneficios sea el más alto. Si usted está casado, y tiene los ingresos más altos de la familia, al solicitar sus beneficios a su plena edad de jubilación, usted garantizará que su cónyuge reciba el beneficio más alto. Tenga una conversación con su esposo(a) sobre sus opciones para que juntos puedan tomar esta decisión."
+
+#: 
+msgid "Claiming at your full retirement age or later permanently increases your benefit."
+msgstr "Sus beneficios aumentarán permanentemente al solicitarlos a su plena edad de jubilación o después."
+
+#: 
+msgid "If you claim at your full Social Security benefit age or later, you will avoid a reduction in your monthly benefit. In addition, if you choose to wait to claim past your full benefit age until age 70, you can get an increase for every month that you wait. If you are divorced, your former spouse's claiming decision will not affect your benefit, so it should not affect your decision of when to claim."
+msgstr "Si solicita sus beneficios de Seguro Social cuando cumpla su plena edad de jubilación evitará una reducción en su beneficio mensual. Además, si elige solicitar sus beneficios a los 70 años, puede obtener un aumento por cada mes que haya esperado después de haber cumplido su plena edad de jubilación. Si está divorciado(a), la decisión que tome su ex cónyuge de cuándo solicitar los beneficios, no afectará la cantidad de los beneficios a los que usted tenga derecho bajo el registro de ganancias de su ex cónyuge. Por lo tanto, la decisión de su ex cónyuge no debería influir su decisión de cuándo solicitar sus beneficios."
+
+#: 
+msgid "Your claiming age matters for your own retirement benefits and your survivor's benefits."
+msgstr "Su decisión importa para sus propios beneficios de jubilación y como sobreviviente."
+
+#: 
+msgid "You may qualify for a survivor benefit if your deceased spouse qualified for Social Security. You can wait until age 70 to claim your survivor benefit and get the maximum amount possible, or you can claim a reduced survivor benefit as early as age 60. You may also qualify for a retirement benefit based on your own earnings record, but you will only receive one benefit at a time. If you expect your own retirement benefit to be higher than the survivor benefit, you may want to consider claiming the survivor benefit first. That way, you can start receiving some money from Social Security as your own retirement benefit continues to grow."
+msgstr "Es posible que tenga derecho a recibir los beneficios como cónyuge sobreviviente, si su cónyuge fallecido tenía derecho a recibir beneficios de Seguro Social. Usted tiene la opción de esperar hasta cumplir los 70 años para solicitar los beneficios como cónyuge sobreviviente y recibir la cantidad máxima posible de los beneficios, o puede solicitarlos tan temprano como a los 60 años de edad y recibir una cantidad reducida. Es posible que también tenga derecho a recibir los beneficios por jubilación bajo el registro de ganancias de usted. No obstante, sólo puede recibir uno de los dos tipos de beneficios a la vez. Si usted sabe que su beneficio por jubilación bajo su propio registro de ganancias será más alto que el beneficio como sobreviviente, puede solicitar primero el beneficio como sobreviviente. Así podrá comenzar a recibir algún beneficio mientras que los beneficios de jubilación bajo su propio registro de ganancias siguen aumentando."
+
+#: 
+msgid "Your benefits are based on your highest 35 years of earnings. Each year of work can add higher earnings to your record by replacing years with low earnings such as those when you were a student, were unemployed, or took time off to care for someone. When you work and wait to claim until age 70, you can increase your monthly benefit by more than 75 percent!<span data-tooltip-target=\"claim_early_and_work\" class=\"cf-icon cf-icon-help-round\"></span> Working in your 60s also gives you more time to save on your own for retirement."
+msgstr "Sus beneficios de Seguro Social se calculan usando los 35 años con los ingresos más altos. Por lo tanto, cada año que trabaje en sus sesentas podría añadirle a su registro de ganancias del Seguro Social un año más de ingresos altos. Estos años pueden compensar por los años en los que sus ingresos fueron bajos o no tuvo ingresos, tales como cuando era estudiante, estuvo desempleado o dejó de trabajar para cuidar a un ser querido. Si sigue trabajando y espera hasta los 70 años para solicitar sus beneficios, puede hacer que su beneficio mensual aumente más de un 75%. El trabajar en sus sesentas también le da más tiempo para ahorrar para su jubilación por su propia cuenta."
+
+#: 
+msgid "Working in your 60s will help you maximize your income and savings."
+msgstr "Trabajar en sus sesentas le ayudará a aumentar sus ingresos y sus ahorros."
+
+#: 
+msgid ", which is earlier than your Social Security full retirement claiming age."
+msgstr " años, que es antes de su edad de plena jubilación."
+
+#: 
+msgid "At this age you will receive less than your full benefit amount. Here are steps to help you in the next few years."
+msgstr "Por lo tanto la cantidad de sus beneficios será reducida. Estos son pasos que le ayudarán en los próximos años:"
+
+#: 
+msgid "Create a <a href=\"http://www.ssa.gov/myaccount/\" target=\"_blank\"><em>my</em> Social Security account</a> to review your expected benefits based on your actual Social Security record. You will also find additional information about your eligibility and other benefits including disability and survivor benefits."
+msgstr "Visite el <a href=\"http://www.ssa.gov/espanol/jubilacion2/calculadora.html\" target=\"_blank\">Calculador del Seguro Social</a> para ver la cantidad aproximada de sus beneficios basados en su propio registro de ganancias del Seguro Social. También encontrará información adicional sobre otros beneficios, incluyendo los beneficios por discapacidad y para sobrevivientes."
+
+#: 
+msgid "Your retirement income outside of Social Security will help you cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan."
+msgstr "Sus ahorros le ayudarán a cubrir sus gastos durante su jubilación. Usted puede aumentar sus contribuciones a sus planes de jubilación, o abrir una <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">cuenta IRA</a> (en inglés) o un plan <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> (en inglés) y hacer contribuciones a estas cuentas."
+
+#: 
+msgid "If your income, employment, or marital status changes, you may need to reconsider your claiming age. Visit us again!"
+msgstr "Si sus ingresos, situación laboral o estado civil cambian, es posible que deba reconsiderar la edad en la que solicitará sus beneficios de Seguro Social. ¡Vuelva a visitarnos!"
+
+#: 
+msgid ", which is your Social Security full retirement claiming age."
+msgstr " años, que es su plena edad de jubilación."
+
+#: 
+msgid "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"http://www.irs.gov/Retirement-Plans/Plan-Participant,-Employee/Retirement-Topics-Catch-Up-Contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able to  open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> or <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> plan."
+msgstr "Puede seguir aumentando sus ahorros y hacer contribuciones adicionales a las cuentas que ya tiene mientras espera para solicitar sus beneficios. También podría abrir una <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">cuenta IRA</a> (en inglés) o un plan <a href=\"https://myra.treasury.gov/about/\" target=\"_blank\">myRA</a> (en inglés) y hacer contribuciones a estas cuentas. •\tVisite nuestro <a href=\"http://www.consumerfinance.gov/es/obtener-respuestas/\" target=\"_blank\">sitio web</a> para ver consejos sobre otras decisiones financieras."
+
+#: 
+msgid ", which is later than your Social Security full retirement claiming age."
+msgstr ", que es la edad máxima para reclamar sus beneficios de Seguro Social."
+
+#: 
+msgid "While you let your benefits continue to grow, you can keep working if you want. You can also stop working and use a portion of your savings to cover your needs. <a href=\"http://www.irs.gov/Retirement-Plans/Retirement-Plans-FAQs-regarding-IRAs-Distributions-(Withdrawals)\" target=\"_blank\">Learn the rules about withdrawing money</a> from your retirement accounts."
+msgstr "Si lo desea, usted puede seguir trabajando mientras sus beneficios siguen aumentando. También puede dejar de trabajar y utilizar una parte de sus ahorros para cubrir sus necesidades económicas. Infórmese mejor sobre las normas para <a href=\"http://www.irs.gov/Retirement-Plans/Retirement-Plans-FAQs-regarding-IRAs-Distributions-(Withdrawals)\" target=\"_blank\">retirar dinero</a> (en inglés) de sus cuentas para la jubilación."
+
+#: 
+msgid "Working in your 60s may increase your monthly benefit in a few ways. Because your benefits are based on your highest 35 years of earnings, each year of work can add higher earnings to your record by replacing years with low earnings, such as those when you were a student, were unemployed, or took time off. When you work and wait to claim until age 70, you can increase your monthly benefit by more than 75 percent!<span data-tooltip-target=\"claim_early_and_work\" class=\"cf-icon cf-icon-help-round\"></span> Working in your 60s also gives you more time to save on your own for retirement."
+msgstr "Trabajar en sus sesentas puede ayudarle a aumentar su beneficio mensual de varias maneras.<span data-tooltip-target=\"claim_early_and_work\" class=\"cf-icon cf-icon-help-round\"></span> Ya que sus beneficios se calculan usando los 35 años con los ingresos más altos, cada año que trabaje en sus sesentas podría añadirle a su registro de ganancias del Seguro Social un año más de ingresos. Estos años pueden compensar por los años en los que sus ingresos fueron bajos o no tuvo ingresos, tales como cuando era estudiante, estuvo desempleado o dejó de trabajar para cuidar a un ser querido. Si solicita sus beneficios cuando cumpla su plena edad de jubilación, es posible que su beneficio mensual aumente un 25% o más. Trabajar en sus sesentas también le da más tiempo para ahorrar para su jubilación por su propia cuenta."
+
+#: 
+msgid "You can maximize your benefits even if you work fewer hours or stop working."
+msgstr "Es posible que pueda recibir un beneficio más alto, incluso si trabaja menos horas o deja de trabajar."
+
+#: 
+msgid "You may choose to work fewer hours or stop working in your 60s. If you decide to do so, you could use a portion of your retirement savings such as your 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> account to supplement your income in your early 60s until you reach your full Social Security benefit claiming age. If you can continue working in your 60s, you may add higher earnings to your record, getting you a higher monthly benefit. Remember, your monthly benefit will be significantly higher when you claim at your full benefit age or later. The age at which you decide to stop working doesn't have to be the same as your claiming age."
+msgstr "Si decide trabajar menos horas o dejar de trabajar por completo, podría usar una parte de sus ahorros, como por ejemplo su plan 401(k)<span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, su cuenta IRA<span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span> o su cuenta myRA<span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> para suplementar sus ingresos hasta que cumpla su plena edad de jubilación. Si puede seguir trabajando en sus sesentas, podrá añadir años adicionales de ingresos a su registro de ganancias del Seguro Social para así recibir un  beneficio mensual más alto. Recuerde que su beneficio mensual será mucho más alto si lo solicita a su plena edad de jubilación o después. La edad en la que decida dejar de trabajar no tiene por qué ser la misma edad en la que decida solicitar sus beneficios."
+
+#: 
+msgid "Consider working in your 60s for an extra boost to your income and savings."
+msgstr "Considere trabajar en sus sesentas para recibir un aumento adicional en sus ingresos y sus ahorros."
+
+#: 
+msgid "Consider working extra years in your 60s for an extra boost to your income and savings"
+msgstr "Considere trabajar en sus sesentas para recibir un aumento adicional en sus ingresos y sus ahorros."
+
+#: 
+msgid "Working in your 60s may add higher earnings to your record, getting you a higher monthly benefit. Remember, your monthly benefit will be significantly higher when you claim at your full Social Security benefit age or later. If you need to work fewer hours, you could use a portion of your retirement savings such as your 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span> or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> account to supplement your income until full retirement age. However, this may not be an option if it eliminates your savings completely."
+msgstr "Si trabaja en sus sesentas podrá añadir años adicionales de ingresos a su registro de ganancias del Seguro Social y recibir una cantidad mayor de beneficios mensuales. Recuerde que su beneficio mensual será mucho más alto si lo solicita cuando cumpla su plena edad de jubilación o después. Si decide trabajar menos horas, podría usar una parte de sus ahorros, como por ejemplo su plan 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, su cuenta IRA <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span> o su cuenta myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> para suplementar sus ingresos hasta que cumpla su plena edad de jubilación. Sin embargo, ésta no podría ser una opción si con ella usa todos sus ahorros."
+
+#: 
+msgid "If you're planning an active retirement or carry a mortgage or other debt, your first few years in retirement may be more expensive than you expect. Some regular expenses like your out-of-pocket health care costs will likely increase as you get older. You can protect your retirement lifestyle by reducing your largest expenses. You can also increase your regular income by claiming at your full Social Security benefit age or later. If you claim earlier, your monthly benefit could be reduced by as much as 30 percent."
+msgstr "Si está planificando estar activo después de jubilarse o si todavía debe su préstamo hipotecario u otra deuda, sus primeros años de jubilación podrían ser más costosos de lo que usted espera. Algunos gastos regulares, tales como los costos médicos, probablemente aumentarán a medida que usted envejece. Usted puede proteger su estilo de vida durante la jubilación reduciendo sus gastos más grandes, poco a poco o antes de jubilarse. También puede aumentar sus ingresos regulares al solicitar sus beneficios de Seguro Social una vez cumpla su plena edad de jubilación o después. Si solicita sus beneficios antes de cumplir su plena edad de jubilación, su beneficio mensual podría reducirse hasta un 30%."
+
+#: 
+msgid "You can protect your lifestyle by planning ahead."
+msgstr "Usted puede proteger su estilo de vida si planifica con tiempo."
+
+#: 
+msgid "Future expenses are difficult to predict. Some regular expenses like out-of-pocket health care costs will likely increase as you get older. You can protect your retirement lifestyle by reducing your largest expenses. Consider downsizing or paying off your mortgage before you retire. You can also increase your regular income by claiming at your full Social Security benefit age or later. If you claim earlier, your monthly benefit could be reduced by as much as 30 percent."
+msgstr "Es difícil predecir los gastos que tendrá en el futuro. Algunos gastos regulares, tales como los costos médicos, probablemente aumentan a medida que usted envejece. Usted puede proteger su estilo de vida durante la jubilación reduciendo sus gastos más grandes poco a poco o antes de jubilarse. Considere reducir su préstamo hipotecario o terminar de pagarlo antes de jubilarse. También puede aumentar sus ingresos regulares al solicitar sus beneficios de Seguro Social una vez cumpla su plena edad de jubilación. Si solicita sus beneficios antes de cumplir su plena edad de jubilación, su beneficio mensual podría reducirse hasta un 30%."
+
+#: 
+msgid "You have an opportunity to continue growing your money."
+msgstr "Siga ahorrando en los próximos años."
+
+#: 
+msgid "Continue saving in the coming years."
+msgstr "Siga ahorrando en los próximos años."
+
+#: 
+msgid "Social Security won't replace all of your pre-retirement income. On average, Social Security replaces 40 percent of a worker's income. That means your retirement savings, pension <span data-tooltip-target=\"pensions\" class=\"cf-icon cf-icon-help-round\"></span>,  401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span>\n"
+" will need to fill the gap. Claiming at your full Social Security benefit age or later (up to age 70) can minimize this gap and maximize your monthly benefit. If you claim before your full retirement age, your monthly benefit could be reduced by as much as 30 percent."
+msgstr "El Seguro Social no sustituirá todo sus ingresos cuando se jubile. Los beneficios de Seguro Social sustituyen un promedio de 40% de los ingresos de un trabajador. Eso significa que, para que pueda disfrutar de una jubilación libre de preocupaciones, el resto de sus ingresos tendrá que suplementarse con su pensión<span data-tooltip-target=\"pensions\" class=\"cf-icon cf-icon-help-round\"></span> y sus ahorros para la jubilación en su plan 401(k)<span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, su IRA <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span> o su cuenta myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span>. Usted puede reducir esa diferencia al solicitar sus beneficios de Seguro Social una vez cumpla su plena edad de jubilación ya que recibirá una cantidad mensual más alta de beneficios. Si solicita sus beneficios antes de cumpla su plena edad de jubilación, su beneficio de Seguro Social podría reducirse hasta un 30%."
+
+#: 
+msgid "If you can, get the highest monthly Social Security benefit possible by claiming at your full Social Security benefit age or later. If you claim before your full retirement age, your monthly benefit could be permanently reduced by as much as 30 percent. Also, take advantage of catch-up contributions <span data-tooltip-target=\"catchup-contributions\" class=\"cf-icon cf-icon-help-round\"></span> to your 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, Individual Retirement Account (IRA) <span data-tooltip-target=\"ira\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span>  after age 50. Lastly, avoid losing your retirement savings to unnecessary tax penalties. If you withdraw your 401(k), IRA, or myRA savings before age 59½, you will likely face an early withdrawal penalty."
+msgstr "Si puede, obtenga el un beneficio mensual posible más alto al solicitar su Seguro Social a la plena edad de jubilación o a una edad mayor. Si solicita sus beneficios antes de su plena edad de jubilación, su beneficio mensual podría reducirse hasta un 30%. Además, aproveche las contribuciones adicionales permitidas (conocidas en inglés como \"catch-up contributions\") <span data-tooltip-target=\"catchup-contributions\" class=\"cf-icon cf-icon-help-round\"></span> a su plan 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, su cuenta IRA <span data-tooltip-target=\"ira\" class=\"cf-icon cf-icon-help-round\"></span> o su cuenta myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> a partir de los 50 años de edad. Por último, evite pagar penalidades innecesarias. Por ejemplo, si usted retira sus ahorros de su plan 401(k), su cuenta IRA o su cuenta myRA antes de los cumplir 59 años y medio, es probable que deba pagar una penalidad por retiro anticipado."
+
+#: 
+msgid "It's a perfect time to start saving."
+msgstr "Es el momento perfecto para comenzar a ahorrar."
+
+#: 
+msgid "You could save through your employer's 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, an Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span> to fill the gap. Maximize an employer match if one is offered. Some employers match the money you put in your 401(k) plan which helps to grow your retirement savings.  Even if you're unable to save as much as you'd like, your small savings today will grow over time and can become extra income or emergency savings in the future. If you expect Social Security to be your only source of income, you can still make the most out of it by claiming at your full Social Security benefit age or later. If you claim before your full retirement age, your monthly benefit could be reduced by as much as 30 percent. On the other hand, you can get extra increases for every month that you wait to claim past your full benefit age until age 70."
+msgstr "Podría ahorrar a través del plan 401(k) de su empleador <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, una cuenta IRA <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span> o una cuenta myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span>. Si su empleador también aporta a su cuenta, sáquele el máximo provecho a esas contribuciones. Algunas compañías depositan en su plan 401(k) una cantidad basada en la contribución que usted haga y esto ayuda a que sus ahorros para la jubilación crezcan más rápido. Incluso en el caso de que usted no pudiera ahorrar tanto como quisiera, lo poco que ahorre hoy crecerá con el tiempo y en el futuro podría convertirse en un ingreso extra o en ahorros para emergencias. Si espera que el Seguro Social sea su única fuente de ingreso, de todas formas puede obtener el máximo provecho solicitando su Seguro Social a la plena edad de jubilación o a una edad mayor. Si solicita sus beneficios antes, su beneficio mensual podría reducirse hasta un 30%. Por otra parte, su beneficio mensual aumenta por cada mes que usted espere después de cumplir su plena edad de jubilación hasta los 70 años."
+
+#: 
+msgid "You could save through your employer's 401(k) <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, an Individual Retirement Account (IRA) <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span>, or myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span>. Make sure to maximize an employer match if one is offered. Some employers match some of the money you put in your 401(k) plan which helps to grow your retirement savings faster. You can also make additional contributions to these accounts called catch-up contributions <span data-tooltip-target=\"catchup-contributions\" class=\"cf-icon cf-icon-help-round\"></span>. If you expect Social Security to be your only source of income, you can still make the most out of it by waiting to claim at your full Social Security benefit age or later. When you claim before your full retirement age, your monthly benefit could be reduced by as much as 30 percent."
+msgstr "Podría ahorrar a través del plan 401(k) de su empleador <span data-tooltip-target=\"401k\" class=\"cf-icon cf-icon-help-round\"></span>, una cuenta IRA <span data-tooltip-target=\"iras\" class=\"cf-icon cf-icon-help-round\"></span> o una cuenta myRA <span data-tooltip-target=\"myra\" class=\"cf-icon cf-icon-help-round\"></span>. Si su empleador también aporta a su cuenta, sáquele el máximo provecho a esas contribuciones. Algunas compañías aportan a su plan 401(k) una cantidad basada en la contribución que usted haga y esto ayuda a que sus ahorros para la jubilación crezcan más rápido. Usted también puede hacer contribuciones adicionales a estas cuentas (conocidas en inglés como “catch-up contributions”) <span data-tooltip-target=\"catchup-contributions\" class=\"cf-icon cf-icon-help-round\"></span>. Aún si espera que el Seguro Social sea su única fuente de ingreso, puede obtener el máximo provecho solicitando sus beneficios del Seguro Social a la plena edad de jubilación o a una edad mayor. Si solicita sus beneficios antes, su beneficio mensual podría reducirse hasta un 30%. Por otra parte, su beneficio mensual aumenta por cada mes que usted espere después de cumplir su plena edad de jubilación hasta los 70 años."
+
+#: 
+msgid "Protect yourself from outliving your money."
+msgstr "Protéjase para que no sobreviva sus recursos."
+
+#: 
+msgid "Because Social Security provides guaranteed income for life, it's especially valuable to you when you reach age 80 and beyond. Claiming benefits at your full Social Security benefit age or later could be a good way to secure your monthly income during your later years. Your benefit increases the longer you wait to claim, up to age 70, and is adjusted annually with the cost of living. If you live into your 80s but claim at age 62 instead of your full retirement age or later, your total lifetime benefits will be lower by thousands of dollars."
+msgstr "El Seguro Social es especialmente valioso a partir de los 80 años de edad, ya que le garantiza un ingreso por vida. Solicitar los beneficios del Seguro Social a su plena edad de jubilación o después podría ser una buena manera de asegurar que su ingreso básico sea suficiente cuando llegue a una edad avanzada. Sus beneficios aumentan por cada mes que usted espere el solicitar sus beneficios, hasta que cumpla la edad de 70 años. Sus beneficios también se ajustan anualmente de acuerdo con el cambio en el costo de vida. Si usted vive sobre los 80 años de edad, pero solicita sus beneficios a los 62 años en vez de esperar hasta cumplir su plena edad de jubilación o una edad mayor, el monto total de los beneficios que recibirá a lo largo de su vida será miles de dólares menor."
+
+#: 
+msgid "Claiming at your full benefit age could still make sense for you."
+msgstr "Posiblemente tenga sentido el solicitar sus beneficios al cumplir su plena edad de jubilación."
+
+#: 
+msgid "We understand it's difficult to make predictions. You may want to plan for the possibility that you (or your spouse) may live a long life. On average, a woman reaching age 65 today will live to age 87, and a man will live to age 84. Waiting to claim as long as you can could still make sense for you if you are married, are the higher earner in the household, and want your surviving spouse to keep the highest monthly benefit after you die. Remember, you can claim at any point between age 62 and 70. Each additional month that you wait to claim gives you a permanent increase in your monthly benefit which becomes more valuable as you age."
+msgstr "Entendemos que es difícil hacer predicciones. Tal vez quiera planificar para la posibilidad de que usted (o su cónyuge) tenga una larga expectativa de vida. La expectativa promedio de una mujer que cumple sus 65 años de edad es 87 años, mientras que la de un hombre es 84 años. Si está casado, y sus ingresos son mayores que los de su cónyuge, y desea que su cónyuge sobreviviente reciba un beneficio mensual más alto después de que usted fallezca, entonces considere no solicitar sus beneficios hasta el último momento posible. Recuerde que puede solicitar sus beneficios por jubilación en cualquier momento a partir de los 62 años de edad hasta los 70 años de edad. Cada mes adicional que usted espere para solicitar los beneficios resultará en un aumento permanente en sus beneficios, lo cual será más valioso a medida que envejece."
+
+#: 
+msgid "There's a good chance that you'll live into your 80s and beyond."
+msgstr "Existe una gran posibilidad de que usted viva pasado sus 80 años de edad."
+
+#: 
+msgid "We understand it's difficult to make predictions. You may want to plan for the possibility that you (or your spouse) may live a long life. On average, a woman reaching age 65 today will live to age 87, and a man will live to age 84. Claiming benefits at your full Social Security benefit age or later could be a good way to secure your monthly income during your later years. Your monthly benefit increases the longer you wait to claim, up to age 70, and is adjusted annually with the cost of living. If you live into your 80s but claim at age 62 instead of your full retirement age or later, your total lifetime benefits will be lower by thousands of dollars."
+msgstr "Tal vez quiera planificar para la posibilidad de que usted (o su cónyuge) tenga una larga expectativa de vida. La expectativa promedio de una mujer que cumple sus 65 años de edad es 87 años, mientras que la de un hombre es 84 años. Solicitar los beneficios del Seguro Social a su plena edad de jubilación o después podría ser una buena manera de asegurar que su ingreso básico sea suficiente cuando llegue a una edad avanzada. Su beneficio mensual aumenta con cada mes que usted espera para solicitarlo, y también se ajusta anualmente de acuerdo con el cambio en el costo de vida. Si usted vive sobre los 80 años de edad, pero solicita sus beneficios a los 62 años de edad, en vez de esperar hasta cumplir su plena edad de jubilación o una edad mayor, el monto total de beneficios de Seguro Social que recibirá a lo largo de su vida será miles de dólares menor."
+
+#: 
+msgid "Once you reach your full retirement benefits claiming age, you can work and earn as much as you want and your benefits will not be reduced. If you claim before this age and continue to work, your benefits could be temporarily reduced if you earn over a certain limit, but any reductions you receive will be credited back to you once you reach full retirement age."
+msgstr "Cuando cumpla su plena edad de jubilación según el Seguro Social, podrá seguir trabajando y sus ingresos del trabajo no afectarán sus beneficios. Si solicita sus beneficios de jubilación antes de cumplir su plena edad y continúa trabajando a la misma vez, sus beneficios podrían reducirse temporalmente si su ingreso pasa de cierto límite. Cualquier reducción le será acreditada de nuevo una vez que usted alcance su plena edad de jubilación."
+
+#: 
+msgid "A type of retirement savings account offered by employers to help their employees save for retirement."
+msgstr "Es un tipo de cuenta de ahorros que ofrecen los empleadores para ayudar a sus empleados a ahorrar para su jubilación."
+
+#: 
+msgid "myRA (my Retirement Account) is a retirement savings program offered by the U.S. Department of Treasury with no minimum contributions, fees, or risky investments, for those without a retirement savings program from their employer."
+msgstr "myRA (my Retirement Account): Traducido como mi Cuenta de Jubilación, es un programa de ahorros que ofrece el Departamento del Tesoro de los EE.UU. para quienes no tienen una cuenta de ahorros para la jubilación. Las cuentas myRA no requieren una contribución mínima, y no tienen cargos por comisiones o inversiones riesgosas."
+
+#: 
+msgid "Your Social Security benefits could be reduced if you receive federal, state, or local government pensions that are based on work where you did not pay Social Security taxes."
+msgstr "La cantidad de sus beneficios de Seguro Social podría reducirse, si usted recibe una pensión del gobierno federal, estatal o local por un trabajo en el que usted no hizo contribuciones al Seguro Social."
+
+#: 
+msgid "IRAs are types of retirement savings plans with special tax incentives. In these plans, your savings equal the contributions that you make to the account plus the gains or losses of your investments."
+msgstr "Son planes de ahorros para la jubilación que gozan de incentivos especiales. En estos planes, el total de sus ahorros equivale a lo que usted contribuya, más las ganancias o las pérdidas de sus inversiones."
+
+#: 
+msgid "Catch-up contributions are additional contributions that individuals who are age 50 or older can make to their 401(k), IRA, or myRA accounts to help them boost their savings as they approach retirement."
+msgstr "Estas son contribuciones adicionales que las personas mayores de 50 años pueden hacer a su plan 401(k), su cuenta IRA o su cuenta myRA con el fin de aumentar sus ahorros a medida que se acercan a su jubilación."
+
+#: 
+msgid "If you claim before full retirement age and continue to work, your benefits could be temporarily reduced if you earn over a certain amount. Any reductions you receive will be credited back to you once you reach full retirement age."
+msgstr "Cuando cumpla su plena edad de jubilación según el Seguro Social, podrá seguir trabajando y sus ingresos del trabajo no afectarán sus beneficios. Si solicita sus beneficios de jubilación antes de cumplir su plena edad y continúa trabajando a la misma vez, sus beneficios podrían reducirse temporalmente si su ingreso pasa de cierto límite. Cualquier reducción le será acreditada de nuevo una vez que usted alcance su plena edad de jubilación."
+
+#: 
+msgid "There are many ways to plan for a secure retirement outside of Social Security."
+msgstr "Existen otras maneras de planificar para una jubilación libre de preocupaciones."
+
+#: 
+msgid "That means you’ll receive your full benefit with no reductions! Here are steps to help you in the next few years."
+msgstr "Eso significa que recibirá sus beneficios de Seguro Social completos, sin ninguna reducción. Estos son pasos que le ayudarán en los próximos años:"
+
+#: 
+msgid "This means you will get an increase in your monthly benefits!  Here are steps to help you in the next few years."
+msgstr "Por lo tanto la cantidad de sus beneficios será reducida. Estos son pasos que le ayudarán en los próximos años:"
+
+#: 
+msgid "This means you will get an increase in your monthly benefits! Here are steps to help you in the next few years."
+msgstr "Por lo tanto la cantidad de sus beneficios será reducida. Estos son pasos que le ayudarán en los próximos años:"
+
+#: 
+msgid "Remember, claiming age here refers only to your Social Security retirement benefit, and not when you decide to stop working or apply for Medicare."
+msgstr "Recuerde que la plena edad de jubilación es un término que el Seguro Social usa para referirse a sus beneficios por jubilación, y no a la edad a la que usted decide dejar de trabajar o se inscribe en el programa Medicare."
+
+#: 
+msgid "in today's dollars"
+msgstr "sin ajustes por inflación"
+
+#: 
+msgid "Compared to claiming at your full benefit claiming age."
+msgstr "en comparación con su plena edad de jubilación."
+
+#: 
+msgid "By age 85, an average lifespan, your total benefits will be"
+msgstr "La expectativa de vida promedio es 85 años de edad, a esa edad el total de sus beneficios será"
+
+#: 
+msgid "About your maximum benefit claiming age:"
+msgstr "Más sobre la edad máxima:"
+
+#: 
+msgid "Always 70."
+msgstr "Siempre es 70 años."
+
+#: 
+msgid "At this age, you will get the maximum possible monthly benefit."
+msgstr "A esta edad usted obtendrá el beneficio mensual más alto."
+
+#: 
+msgid "About your full benefit claiming age:"
+msgstr "Más sobre la plena edad de jubilación:"
+
+#: 
+msgid "It is based on the year you were born."
+msgstr "Está basada en su año de nacimiento."
+
+#: 
+msgid "At this age, you will receive your full benefit with no reductions."
+msgstr "A esta edad recibirá su beneficio mensual sin reducciones."
+
+#: 
+msgid "About your early benefit claiming age:"
+msgstr "Más sobre la edad temprana:"
+
+#: 
+msgid "Earliest age you can claim your benefit is 62."
+msgstr "Lo más temprano que puede solicitar sus beneficios es a los 62 años de edad."
+
+#: 
+msgid "If you claim your benefit before your full claiming age, it will be reduced."
+msgstr "Si solicita sus beneficios antes de cumplir su plena edad de jubilación, sus beneficios se reducirán."
 
