@@ -399,7 +399,7 @@ msgid "<span class=\"header-line\">Before you claim—</span>planning for retire
 msgstr "<span class=\"header-line\">Antes de solicitar—</span>Planifique para su  jubilación"
 
 #: 
-msgid "The age you claim Social Security matters for your lifetime income. We’ll help you think through this decision."
+msgid "The age you claim Social Security affects your lifetime income. We’ll help you think through this decision."
 msgstr "La edad en la que solicita afectará los beneficios de Seguro Social que recibirá a lo largo de su vida. Le ayudaremos a decidir."
 
 #: 
