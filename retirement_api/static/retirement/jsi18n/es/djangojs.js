@@ -10,6 +10,8 @@
 
   django.catalog = {
     "is your full benefit claiming age.": "años de edad es su plena edad de jubilación.",
+    "is past your full benefit claiming age.": "años de edad es después de haber cumplido su plena edad de jubilación.",
+    "is your maximum benefit claiming age.": "años es la edad máxima para solicitar.",
     "62": "62 años",
     "63": "63 años",
     "64": "64 años",
