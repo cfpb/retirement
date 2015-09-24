@@ -295,13 +295,13 @@ function setTextByAge() {
     $( '.selected-retirement-age-value' ).text( 70 );
   }
   else if ( selectedAge === SSData.earlyAge ) {
-    $( '.selected-retirement-age-value' ).text( SSData.earlyRetirementAge );
+    $( '.selected-retirement-age-value' ).text( gettext(SSData.earlyRetirementAge) );
   }
   else if ( selectedAge === SSData.fullAge && SSData.currentAge < SSData.fullAge ) {
-    $( '.selected-retirement-age-value' ).text( SSData.fullRetirementAge   );
+    $( '.selected-retirement-age-value' ).text( gettext(SSData.fullRetirementAge)   );
   }
   else {
-    $( '.selected-retirement-age-value' ).text( selectedAge );
+    $( '.selected-retirement-age-value' ).text( gettext(selectedAge) );
   }
 
   // Graph content

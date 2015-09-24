@@ -9,20 +9,25 @@
   
 
   django.catalog = {
-    "is your full benefit claiming age.": "años de edad es su plena edad de jubilación.",
-    "is past your full benefit claiming age.": "años de edad es después de haber cumplido su plena edad de jubilación.",
-    "is your maximum benefit claiming age.": "años es la edad máxima para solicitar.",
+    "is your full benefit claiming age.": "de edad es su plena edad de jubilación.",
+    "is past your full benefit claiming age.": "de edad es después de haber cumplido su plena edad de jubilación.",
+    "is your maximum benefit claiming age.": "es la edad máxima para solicitar.",
     "62": "62 años",
     "63": "63 años",
     "64": "64 años",
     "65": "65 años",
     "66": "66 años",
+    "66 and 2 months": "66 años y 2 meses ",
+    "66 and 4 months": "66 años y 4 meses ",
+    "66 and 6 months": "66 años y 6 meses ",
+    "66 and 8 months": "66 años y 8 meses ",
+    "66 and 10 months": "66 años y 10 meses ",
     "67": "67 años",
     "68": "68 años",
     "69": "69 años",
     "70": "70 años",
-    "<strong>increases</strong> your benefit by&nbsp;<strong>": "años de edad, su beneficio <strong>aumentará</strong> un&nbsp;",
-    "<strong>reduces</strong> your monthly benefit by&nbsp;<strong>": "años de edad, su beneficio se <strong>reducirá</strong> un&nbsp;"
+    "<strong>increases</strong> your benefit by&nbsp;<strong>": "de edad, su beneficio <strong>aumentará</strong> un&nbsp;",
+    "<strong>reduces</strong> your monthly benefit by&nbsp;<strong>": "de edad, su beneficio se <strong>reducirá</strong> un&nbsp;"
   }
 
   django.gettext = function (msgid) {
