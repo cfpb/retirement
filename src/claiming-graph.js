@@ -292,13 +292,13 @@ function setTextByAge() {
 
   // Set extra text for early and full retirement ages
   if ( selectedAge === 70 ) {
-    $( '.selected-retirement-age-value' ).text( 70 );
+    $( '.selected-retirement-age-value' ).text( gettext('70') );
   }
   else if ( selectedAge === SSData.earlyAge ) {
     $( '.selected-retirement-age-value' ).text( gettext(SSData.earlyRetirementAge) );
   }
   else if ( selectedAge === SSData.fullAge && SSData.currentAge < SSData.fullAge ) {
-    $( '.selected-retirement-age-value' ).text( gettext(SSData.fullRetirementAge)   );
+    $( '.selected-retirement-age-value' ).text( gettext(SSData.fullRetirementAge) );
   }
   else {
     $( '.selected-retirement-age-value' ).text( gettext(selectedAge) );
