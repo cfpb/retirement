@@ -1,10 +1,10 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
-## unreleased
+## 0.4.0
+- completed Spanish implementation for user testing, adding translations for error messaging and javascript content
 - bumped app's timeout to avoid caching of occasional slow SSA responses
 - added front-end build script and setup.py code to invoke it (not used yet in deployments)
-- added Spanish language prep for user testing
 - added redirect to app's url config so it doesn't need to be handled in apache
 
 ## 0.3.0
