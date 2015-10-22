@@ -1,6 +1,9 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 0.4.1
+- hotfix for SSA's change to https
+
 ## 0.4.0
 - completed Spanish implementation for user testing, adding translations for error messaging and javascript content
 - bumped app's timeout to avoid caching of occasional slow SSA responses
