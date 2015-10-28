@@ -15,6 +15,7 @@ def read_file(filename):
     except IOError:
         return ''
 
+
 class build_frontend(Command):
     """ A command class to run `frontendbuild.sh` """
     description = 'build front-end JavaScript and CSS'
@@ -31,6 +32,7 @@ class build_frontend(Command):
         call(['./frontendbuild.sh'], 
                 cwd=os.path.dirname(os.path.abspath(__file__)))
 
+
 class build_ext(_build_ext):
     """ A build_ext subclass that adds build_frontend """
     def run(self):
@@ -43,11 +45,11 @@ class bdist_egg(_bdist_egg):
     def run(self):
         self.run_command('build_frontend')
         _bdist_egg.run(self)
-        
+    
 
 setup(
     name='retirement',
-    version='0.4.2',
+    version='0.4.3',
     author='CFPB',
     author_email='tech@cfpb.gov',
     maintainer='cfpb',

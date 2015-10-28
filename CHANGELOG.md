@@ -1,8 +1,8 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
-## 0.4.2
-- hotfix to fix Spanish content for testing
+## 0.4.3
+- hotfixes to fix Spanish content for testing
 
 ## 0.4.1
 - hotfix for SSA's change to https
