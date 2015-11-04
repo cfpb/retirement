@@ -407,7 +407,7 @@ msgid "Your estimated benefits:"
 msgstr "Sus estimados:"
 
 #: 
-msgid "Select claiming ages on the graph to see your benefit increase or decrease."
+msgid "Select claiming ages on the graph to see how your estimated benefit changes."
 msgstr "Seleccione las edades en la gráfica para ver cómo aumentan o disminuyen sus beneficios. "
 
 #: 
