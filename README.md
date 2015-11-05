@@ -84,6 +84,15 @@ The "Before You Claim" page should load at `localhost:8000/before-you-claim/`.
 nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
 ```
 
+## Spanish edition
+
+![](retirement_screenshot.png)
+
+Puede ver este sitio en español mediante la adición de `es/` al final de la url.  
+(You can see this site in Spanish by adding `es/` to the end of the url.)
+
+
+
 ## Getting involved
 If you find a bug or see a way to improve the project, we'd love to hear from you.
 Add an issue, or fork the project and send us a pull request with your suggested changes.
