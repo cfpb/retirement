@@ -86,10 +86,10 @@ nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
 
 ## Spanish edition
 
-![](retirement_screenshot.png)
+![](spanish_screenshot.png)
 
 Puede ver este sitio en español mediante la adición de `es/` al final de la url.  
-(You can see this site in Spanish by adding `es/` to the end of the url.)
+(You can view this site in Spanish by adding `es/` to the end of the url.)
 
 
 
