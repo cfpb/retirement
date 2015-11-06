@@ -1,6 +1,12 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## Ureleased
+- New wording order for hero
+- Fix to graph explainer line ('Select claiming ages ...')
+- Redirect for `/jubilacion/` (not in this repo, but in this release)
+- Fix for api checker (randomizes parameters to avoid cache hits)
+
 ## 0.4.3
 - hotfixes to fix Spanish content for testing
 
