@@ -464,6 +464,26 @@ form {
   padding-bottom: 10em;
 }*/
 
+[data-lang="es"] #claiming-social-security .step-two .question-working img {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url("../images/sus60s.png") no-repeat;
+  width: 200px; 
+  height: 200px; 
+  padding-left: 200px; /* Move english image out of view */
+}
+
+[data-lang="es"] #claiming-social-security .step-two .question-expenses img {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url("../images/gastos.png") no-repeat;
+  width: 200px; 
+  height: 200px; 
+  padding-left: 200px; /* Move english image out of view */
+}
+
 #claiming-social-security .step-two .question,
 #claiming-social-security .step-three .hidden-content {
   display: none;
@@ -814,7 +834,7 @@ form {
   #claiming-social-security .step-two .lifestyle-img {
     display: block !important;
     float: left;
-    height: auto !important;
+    height: 200px !important;
     margin: 0;
     width: 200px !important;
   }
@@ -967,6 +987,14 @@ form {
     margin-top: 0;
     margin-bottom: 15px;
     max-width: 200px;
+  }
+
+  [data-lang="es"] #claiming-social-security .step-two .question-working img {
+    display: inline-block;
+  }
+
+  [data-lang="es"] #claiming-social-security .step-two .question-expenses img {
+    display: inline-block;
   }
 
   #claiming-social-security .content-l.step-two h2 + .question.h3 {
