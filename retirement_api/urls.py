@@ -7,6 +7,7 @@ from django.conf import settings
 urlpatterns = patterns('',
     # url(r'^retirement-api/admin/', include(admin.site.urls)),
     url(r'^$', 'retirement_api.views.claiming', name='landing_page'),
+    url(r'^es/$', 'retirement_api.views.claiming', name='landing_page_es'),
     url(r'^before-you-claim/$', 'retirement_api.views.claiming', name='claiming'),
     url(r'^before-you-claim/es/$', 'retirement_api.views.claiming', {'es': True}, name='claiming_es'),
     url(r'^retirement-api/estimator/(?P<dob>[^/]+)/(?P<income>\d+)/$', 'retirement_api.views.estimator', name='estimator'),
