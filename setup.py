@@ -49,7 +49,7 @@ class bdist_egg(_bdist_egg):
 
 setup(
     name='retirement',
-    version='0.4.3',
+    version='0.4.4',
     author='CFPB',
     author_email='tech@cfpb.gov',
     maintainer='cfpb',
