@@ -464,6 +464,14 @@ form {
   padding-bottom: 10em;
 }*/
 
+[data-lang="es"] #claiming-social-security .step-two .question-working img {
+  content: url("../images/sus60s.png");
+}
+
+[data-lang="es"] #claiming-social-security .step-two .question-expenses img {
+  content: url("../images/gastos.png");
+}
+
 #claiming-social-security .step-two .question,
 #claiming-social-security .step-three .hidden-content {
   display: none;
