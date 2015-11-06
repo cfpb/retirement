@@ -6,6 +6,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Fix to graph explainer line ('Select claiming ages ...')
 - Redirect for `/jubilacion/` (not in this repo, but in this release)
 - Fix for api checker (randomizes parameters to avoid cache hits)
+- Hero cactus shadow fixed
 
 ## 0.4.3
 - hotfixes to fix Spanish content for testing
