@@ -7,6 +7,7 @@ import requests
 import datetime
 import json
 import time
+import random
 import signal
 from urlparse import urlparse
 
@@ -14,7 +15,7 @@ timestamp = datetime.datetime.now()
 default_base = 'build'
 
 # rolling dob to guarantee subject is 44 and full retirement age is 67
-dob = timestamp - datetime.timedelta(days=44*365+30)
+dob = timestamp - datetime.timedelta(days=44*365+60)
 timeout_seconds = 20
 
 API_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -68,9 +69,10 @@ def check_data(data):
 
 prefix = 'http://'
 suffix = '.consumerfinance.gov/retirement'
-api_string = 'retirement-api/estimator/%s-%s-%s/70000/' % (dob.month,
-                                                           dob.day,
-                                                           dob.year)
+api_string = 'retirement-api/estimator/%s-%s-%s/%s/' % (dob.month,
+                                                           random.randrange(1, 28),
+                                                           dob.year,
+                                                           random.randrange(20000, 100000))
 BASES = {
     'unitybox': 'http://localhost:8080/retirement',
     'standalone': 'http://localhost:8000',
