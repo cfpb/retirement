@@ -1,8 +1,8 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
-## Unreleased
-- Added switch for graphics with English text on Spanish implementation
+## 0.4.5
+- Added switch for question graphics with English text on Spanish implementation
 
 ## 0.4.4
 - fix for production speed issue
