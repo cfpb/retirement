@@ -84,7 +84,7 @@ The "Before You Claim" page should load at `localhost:8000/before-you-claim/`.
 nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
 ```
 
-## Edición español
+## [Edición español](http://www.consumerfinance.gov/retirement/before-you-claim/es/)
 
 ![](spanish_screenshot.png)
 
