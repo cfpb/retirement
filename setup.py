@@ -45,11 +45,10 @@ class bdist_egg(_bdist_egg):
     def run(self):
         self.run_command('build_frontend')
         _bdist_egg.run(self)
-    
 
 setup(
     name='retirement',
-    version='0.4.5',
+    version='0.4.51',
     author='CFPB',
     author_email='tech@cfpb.gov',
     maintainer='cfpb',

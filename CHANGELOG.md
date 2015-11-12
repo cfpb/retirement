@@ -1,6 +1,9 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 0.4.51
+- fixed English and Spanish page titles to avoid using nonstandard pipe character
+
 ## 0.4.5
 - Added switch for question graphics with English text on Spanish implementation
 
