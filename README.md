@@ -7,6 +7,15 @@ This is a project aimed at helping Americans make choices about retirement, incl
 
 ![](retirement_screenshot.png)
 
+
+## [Edición español](http://www.consumerfinance.gov/retirement/before-you-claim/es/)
+
+![](spanish_screenshot.png)
+
+Tú puedes ver este app en español por poner `/es` al parte final del url.  
+(You can view this app in Spanish by adding `/es` to the end of the url.)
+
+
 ### Setup dependencies
  * [pip](https://pypi.python.org/pypi/pip)
  * [virtualenv](https://virtualenv.pypa.io/en/latest/)
@@ -83,14 +92,6 @@ The "Before You Claim" page should load at `localhost:8000/before-you-claim/`.
 ```bash
 nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
 ```
-
-## [Edición español](http://www.consumerfinance.gov/retirement/before-you-claim/es/)
-
-![](spanish_screenshot.png)
-
-Tú puedes ver este app en español por poner `/es` al parte final del url.  
-(You can view this app in Spanish by adding `/es` to the end of the url.)
-
 
 
 ## Getting involved

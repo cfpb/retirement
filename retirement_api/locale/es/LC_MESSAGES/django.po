@@ -699,3 +699,7 @@ msgstr "Podría ahorrar a través del plan 401(k) de su empleador <span data-too
 msgid "https://www.ssa.gov/OACT/quickcalc/faqs.html#8"
 msgstr "https://www.ssa.gov/OACT/quickcalc/faqs-esp.html"
 
+#: 
+msgid "Before You Claim"
+msgstr "Antes de solicitar"
+
