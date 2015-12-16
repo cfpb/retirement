@@ -157,8 +157,8 @@ def interpolate_benefits(benefits, fra_tuple, current_age, born_on_2nd=False):
                                      base*((diff_back + 12)*(EARLY_PENALTY))))
             benefits['age 65'] = int(round(base -
                                      base*(diff_back*(EARLY_PENALTY))))
-        elif current_age in range(55, 64):
-            # ages 55 to 63: FRA is 66; need to fill in 62, 63, 64 and 65
+        elif current_age in range(55, 63):
+            # ages 55 to 62: FRA is 66; need to fill in 62, 63, 64 and 65
             if born_on_2nd:
                 benefits['age 62'] = int(round(base -
                                          base*((diff_back + 24)*(EARLY_PENALTY)) -
@@ -167,6 +167,14 @@ def interpolate_benefits(benefits, fra_tuple, current_age, born_on_2nd=False):
                 benefits['age 62'] = int(round(base -
                                          base*((diff_back + 24)*(EARLY_PENALTY)) -
                                          base*(1*11*EARLIER_PENALTY)))
+            benefits['age 63'] = int(round(base -
+                                     base*((diff_back + 24)*(EARLY_PENALTY))))
+            benefits['age 64'] = int(round(base -
+                                     base*((diff_back + 12)*(EARLY_PENALTY))))
+            benefits['age 65'] = int(round(base -
+                                     base*(diff_back*(EARLY_PENALTY))))
+        elif current_age == 63:
+            # age 63: FRA is 66; need to fill in 63, 64 and 65
             benefits['age 63'] = int(round(base -
                                      base*((diff_back + 24)*(EARLY_PENALTY))))
             benefits['age 64'] = int(round(base -
