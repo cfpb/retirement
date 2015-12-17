@@ -86,7 +86,11 @@ And by the way, there’s another hidden message somewhere on the following page
     <link rel="stylesheet" href="{% static "retirement/css/claiming.css" %}">
     <script src="{% static 'retirement/js/raphael-min.js' %}"></script>
     <script src="{% static 'retirement/js/claiming-social-security.js' %}"></script>
-
+{% if es %}
+     <script src="{% static "retirement/jsi18n/es/djangojs.js" %}"></script>
+ {% else %}
+     <script src="{% static "retirement/jsi18n/en/djangojs.js" %}"></script>
+ {% endif %}
     <script src="http://www.consumerfinance.gov/static/js/analytics.js?ver=v4.2.10v4.2.24"></script>
 
     <!-- this is where we put our custom analytics -->
