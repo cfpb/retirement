@@ -355,9 +355,11 @@ function setTextByAge() {
 --***/
 function moveIndicator(dx, dy) {
   var newX = indicator.odx + dx;
+  // If new position is farther right than the right-most position, set it to the max value.
   if ( newX > gset.barGut * 8 ) {
     newX = gset.barGut * 8;
   }
+  // If new position is farther left than the left-most position, set it to the min value.
   if ( newX < 0 ) {
     newX = 0;
   }
@@ -366,9 +368,9 @@ function moveIndicator(dx, dy) {
   if ( selectedAge !== Math.round( newX / gset.barGut ) ) {
     selectedAge = 62 + Math.round( newX / gset.barGut );
     // Don't let the user select an age younger than they are now
-    if ( SSData.currentAge >= SSData.fullAge && selectedAge < SSData.currentAge ) {
+    if ( selectedAge < SSData.currentAge ) {
       selectedAge = SSData.currentAge;
-      moveIndicatorToAge( selectedAge );
+      moveIndicatorToAge( selectedAge, SSData.currentAge );
     }
     drawBars();
     setTextByAge();
@@ -378,12 +380,17 @@ function moveIndicator(dx, dy) {
 /***-- moveIndicatorToAge(age): Uses moveIndicator to move the indicator to age
   NOTE: This function is all that's require to change the chart to a different age
 --***/
-function moveIndicatorToAge( age ) {
+function moveIndicatorToAge( age, currentAge ) {
   age = Number( age );
-  var iPosX = indicator.transform()[0][1];
-  var newX = Math.round( ages.indexOf( age ) ) * ( gset.barGut ) + gset.indicatorLeftSet;
-  indicator.odx = iPosX;
-  moveIndicator( ( newX - iPosX ), 0 );
+  currentAge = Number( currentAge );
+  if (age >= currentAge) {
+    var iPosX = indicator.transform()[0][1];
+    var newX = Math.round( ages.indexOf( age ) ) * ( gset.barGut ) + gset.indicatorLeftSet;
+    indicator.odx = iPosX;
+    moveIndicator( ( newX - iPosX ), 0 );
+  } else {
+    return false;
+  }
 }
 
 /***-- drawIndicator(): draws the indicator --***/
@@ -484,7 +491,7 @@ function drawBars() {
     $( bars[key].node ).attr( 'data-age', val );
     bars[key].data( 'age', val );
     bars[key].click( function() {
-      moveIndicatorToAge( bars[key].data( 'age' )  );
+      moveIndicatorToAge( bars[key].data( 'age' ), SSData.currentAge );
     });
   });
 }
@@ -567,7 +574,7 @@ function redrawGraph() {
   drawBars();
   drawIndicator();
   drawAgeBoxes();
-  moveIndicatorToAge( selectedAge );
+  moveIndicatorToAge( selectedAge, SSData.currentAge );
 }
 
 /***-- resetView(): Draws new bars and updates text. For use after new data is received. --***/
@@ -575,10 +582,10 @@ function resetView() {
   drawBars();
   setTextByAge();
   if ( SSData.currentAge < SSData.fullAge ) {
-    moveIndicatorToAge( SSData.fullAge );
+    moveIndicatorToAge( SSData.fullAge, SSData.currentAge );
   }
   else {
-    moveIndicatorToAge( SSData.currentAge );
+    moveIndicatorToAge( SSData.currentAge, SSData.currentAge );
   }
   $( '.benefit-selections-area' ).empty();
 }
@@ -600,7 +607,7 @@ $(document).ready( function() {
   });
 
   $( '#claim-canvas' ).on( 'click', '.age-text', function() {
-    moveIndicatorToAge( $(this).attr( 'data-age-value' ) );
+    moveIndicatorToAge( $(this).attr( 'data-age-value' ), SSData.currentAge );
   });
 
   $(document).keypress( function(ev) {
@@ -707,3 +714,10 @@ $(document).ready( function() {
   });
 });
 
+if ( typeof module === "object" ) {
+  var graph = {
+    moveIndicatorToAge: moveIndicatorToAge
+  };
+
+  module.exports = graph;
+}
