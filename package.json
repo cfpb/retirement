@@ -13,12 +13,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chai": "^3.2.0",
     "grunt": "^0.4.5",
     "grunt-browserify": "^4.0.0",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-watch": "^0.6.1",
-    "gruntify-eslint": "^1.0.0",
+    "gruntify-eslint": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "chai-jq": "latest",
+    "jquery": "^1.11.0",
+    "jsdom": "latest",
+    "mocha-jsdom": "latest",
     "mocha": "^2.2.5"
   }
 }

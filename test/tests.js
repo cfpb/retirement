@@ -1,7 +1,23 @@
-var functions = require('../src/claiming-functions.js');
+if (typeof process === 'object') {
+  // Initialize node environment
+  global.chai = require('chai');
+  global.expect = require('chai').expect;
 
-var chai = require('chai');
-var expect = chai.expect;
+  var jsdom = require('jsdom');
+  var window = document = jsdom.jsdom().defaultView;
+  global.$ = global.jQuery = require('jquery');
+} else {
+  window.expect = window.chai.expect;
+  window.require = function () { /* noop */ };
+}
+
+var functions = require('../src/claiming-functions.js');
+var graph = require('../src/claiming-graph.js');
+
+
+/**
+ * Testing functions in claiming-functions.js
+ */
 
 describe( 'numToMoney...', function() {
   it( '...turn 5 into $5', function() {
@@ -103,5 +119,17 @@ describe( 'validDates...', function() {
   it( '...should understand leap years', function() {
     expect( functions.validDates( 2, 29, 2004 )['concat'] ).to.equal( '2-29-2004' );
     expect( functions.validDates( 2, 29, 2003 )['concat'] ).to.equal( '2-28-2003' );
+  });
+});
+
+
+/**
+ * Testing functions in claiming-graph.js
+ */
+
+describe( 'moveIndicatorToAge...', function() {
+  it( '...should prevent you from selecting an age less than your current age', function() {
+    expect( graph.moveIndicatorToAge( 63, 64 ) ).to.equal( false );
+    expect( graph.moveIndicatorToAge( 66, 69 ) ).to.equal( false );
   });
 });
