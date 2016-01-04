@@ -65,14 +65,14 @@ cp test_settings.py settings.py
 Build the front-end requirements and the JavaScript files.
 ```bash
 npm install
-grunt Build
+grunt build
 ```
 
 (You can also run `grunt watch` to have the build run automatically after edits to JavaScript source files, HTML templates, and assets in `retirement_api/static/retirement`. `livereload` is turned on if you have a [LiveReload browser extension](http://livereload.com/extensions/).)
 
 Load the app's database tables and content.
 ```bash
-python manage.py syncdb
+python manage.py syncdb --noinput
 python manage.py loaddata retiredata.json
 ```
 
