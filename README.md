@@ -88,10 +88,16 @@ The "Before You Claim" page should load at `localhost:8000/before-you-claim/`.
 - The app sends http requests to the Social Security Administration's [Quick Calculator](http://www.ssa.gov/OACT/quickcalc/index.html) to get benefit estimates for the chart.
 
 ### How to run software tests
-- You can use nose to run the test suite and see code coverage information
-```bash
-nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
-```
+- You can use nose to run the Python test suite and see code coverage information:
+
+  ```bash
+  nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
+  ```
+- You can run the JavaScript tests with:
+
+  ```bash
+  npm test
+  ```
 
 
 ## Getting involved
