@@ -58,8 +58,9 @@ def get_note(note_type, language):
 
 # this datafile specifies years that have unique retirement age values
 # since this may change, it is maintained in an external file
-datafile = "%s/retirement_api/data/unique_retirement_ages_%s.json" % (BASE_DIR,
-                                                                      TODAY.year)
+datafile = "{0}\
+/retirement_api/data/unique_retirement_ages.json".format(BASE_DIR)
+
 with open(datafile, 'r') as f:
     age_map = json.loads(f.read())
     for year in age_map:

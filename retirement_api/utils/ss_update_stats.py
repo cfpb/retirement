@@ -45,17 +45,23 @@ ss_table_urls = {
     'automatic_values': 'http://www.socialsecurity.gov/OACT/COLA/autoAdj.html',# out of scope: compendium of bend points, COlA and other adjustment values used in SS calculations
     }
 
+
 def output_csv(filepath, headings, bs_rows):
     with open(filepath, 'w') as f:
         writer = csv.writer(f)
         writer.writerow(headings)
         for row in bs_rows:
-            writer.writerow([cell.text.replace(',', '').strip() for cell in row.findAll('td') if row.findAll('td')])
+            writer.writerow([cell.text.replace(',', '').strip()
+                             for cell in row.findAll('td')
+                             if row.findAll('td')])
+
 
 def output_json(filepath, headings, bs_rows):
     json_out = {}
     for row in bs_rows:
-        cells = [cell.text.replace(',', '').strip() for cell in row.findAll('td') if row.findAll('td')]
+        cells = [cell.text.replace(',', '').strip()
+                 for cell in row.findAll('td')
+                 if row.findAll('td')]
         if len(cells) == 2:
             json_out[cells[0]] = cells[1]
         else:
@@ -67,14 +73,18 @@ def output_json(filepath, headings, bs_rows):
     with open(filepath, 'w') as f:
         f.write(json.dumps(json_out))
 
+
 def make_soup(url):
     req = requests.get(url)
     if req.reason != 'OK':
-        print "request to %s failed: %s %s" % (url, req.status_code, req.reason)
+        print "request to %s failed: %s %s" % (url,
+                                               req.status_code,
+                                               req.reason)
         return ''
     else:
         soup = bs(req.text, 'lxml')
         return soup
+
 
 def update_example_reduction():
     """
@@ -83,12 +93,12 @@ def update_example_reduction():
     """
     url = ss_table_urls['early_retirement_example']
     headings = [
-            'YOB', 
-            'FRA', 
-            'reduction_months', 
-            'primary_pia', 
-            'primary_pct_reduction', 
-            'spouse_pia', 
+            'YOB',
+            'FRA',
+            'reduction_months',
+            'primary_pia',
+            'primary_pct_reduction',
+            'spouse_pia',
             'spouse_pct_reduction'
             ]
     soup = make_soup(url)
@@ -99,6 +109,7 @@ def update_example_reduction():
         print "updated %s with %s rows" % (outcsv, len(rows))
         output_json(outjson, headings, rows)
         print "updated %s with %s entries" % (outjson, len(rows))
+
 
 def update_awi_series():
     url = ss_table_urls['awi_series']
@@ -111,11 +122,13 @@ def update_awi_series():
         rows = []
         print "found %s tables" % len(tables)
         for table in tables:
-            rows.extend([row for row in table.findAll('tr') if row.findAll('td')])
+            rows.extend([row for row in table.findAll('tr')
+                        if row.findAll('td')])
         output_csv(outcsv, headings, rows)
         print "updated %s with %s rows" % (outcsv, len(rows))
         output_json(outjson, headings, rows)
         print "updated %s with %s entries" % (outjson, len(rows))
+
 
 def update_cola():
     url = ss_table_urls['cola']
@@ -134,6 +147,7 @@ def update_cola():
     print "updated %s with %s rows" % (outcsv, len(rows))
     output_json(outjson, headings, rows)
     print "updated %s with %s entries" % (outjson, len(rows))
+
 
 def update_life():
     """update the actuarial life tables from SSA"""
@@ -161,11 +175,12 @@ def update_life():
                 output_csv(outcsv, headings, rows)
                 msg += "updated %s with %s rows" % (outcsv, len(rows))
                 output_json(outjson, headings, rows)
-                msg += "updated %s with %s entries" % (outjson, len(rows))
+                msg += "updated {0} with {1} entries".format((outjson, len(rows)))
             else:
-                msg +=  "didn't find more than 100 rows at %s" % url
+                msg += "didn't find more than 100 rows at {0}".format(url)
     print msg
     return msg
+
 
 def harvest_all():
     update_life()
@@ -176,8 +191,4 @@ def harvest_all():
 if __name__ == "__main__":
     starter = datetime.datetime.now()
     harvest_all()
-    print "update took %s to update four data stores" % (datetime.datetime.now()-starter)
-
-
-
-
+    print("update took {0} to update four data stores".format((datetime.datetime.now()-starter)))
