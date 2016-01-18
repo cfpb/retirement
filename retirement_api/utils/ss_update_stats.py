@@ -175,7 +175,7 @@ def update_life():
                 output_csv(outcsv, headings, rows)
                 msg += "updated %s with %s rows" % (outcsv, len(rows))
                 output_json(outjson, headings, rows)
-                msg += "updated {0} with {1} entries".format((outjson, len(rows)))
+                msg += "updated {0} with {1} entries".format(outjson, len(rows))
             else:
                 msg += "didn't find more than 100 rows at {0}".format(url)
     print msg
