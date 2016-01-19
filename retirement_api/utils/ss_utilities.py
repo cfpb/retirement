@@ -87,6 +87,28 @@ def get_current_age(dob):
             return None
 
 
+def get_age_plus_months(dob):
+    today = datetime.date.today()
+    DOB = parser.parse(dob)
+    months_at_birth = DOB.year*12 + DOB.month - 1
+    months_today = today.year*12 + today.month - 1
+    delta = months_today - months_at_birth
+    return delta % 12
+
+
+def get_months_until_next_birthday(dob):
+    today = datetime.date.today()
+    bday_this_year = datetime.date(today.year, dob.month, dob.day)
+    if today >= bday_this_year:
+        return (12 - today.month) + dob.month
+    elif today < bday_this_year:
+        months_until = dob.month - today.month
+        if months_until == 0:
+            return 1
+        else:
+            return months_until
+
+
 def yob_test(yob=None):
     """
     tests to make sure suppied birth year is valid;
@@ -133,7 +155,7 @@ def get_retirement_age(birth_year):
         return None
 
 
-def past_fra_test(dob=None, language='es'):
+def past_fra_test(dob=None, language='en'):
     """
     tests whether a person is past his/her full retirement age
     """
@@ -143,8 +165,9 @@ def past_fra_test(dob=None, language='es'):
         DOB = parser.parse(dob).date()
     except:
         return 'invalid birth date entered'
-    today = datetime.datetime.now().date()
+    today = datetime.date.today()
     current_age = get_current_age(dob)
+    months_plus = get_age_plus_months(dob)
     if DOB >= today:
         return 'invalid birth year entered'
     # SSA has a special rule for people born on Jan. 1

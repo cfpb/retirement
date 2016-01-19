@@ -30,8 +30,10 @@ import lxml
 import time
 import signal
 
+import dateutil
 from bs4 import BeautifulSoup as bs
 from .ss_utilities import get_retirement_age, get_current_age, past_fra_test
+from .ss_utilities import get_months_until_next_birthday
 
 timeout_seconds = 20
 
@@ -72,6 +74,12 @@ chart_ages = range(62, 71)
 
 comment = re.compile(r"<!--[\s\S]*?-->")  # regex for parsing indexing data
 
+# calculation constants
+EARLY_PENALTY = 0.00555555  # monthly penalty for months closest to FRA
+EARLIER_PENALTY = 0.004166666  # monthly penalty for earliest claiming ages
+MONTHLY_BONUS = 0.00667  # bonus value for each month's delay past FRA
+ANNUAL_BONUS = 0.08  # annual bonus value for each year's delay past FRA
+
 
 def clean_comment(comment):
     return comment.replace('<!--', '').replace('-->', '').strip()
@@ -104,118 +112,171 @@ def parse_details(rows):
     return datad
 
 
-def interpolate_benefits(benefits, fra_tuple, current_age, born_on_2nd=False):
+# def get_adjusted_base(SSA_base, dob):
+#     """
+#     Adjust base benefit to account for SSA's pushing of claiming date
+#     to January of the following year.
+#     """
+#     SSA_benefit = int(SSA_base)
+#     month_offset = 13 - dateutil.parser.parse(dob).month
+#     new_base = SSA_benefit / (1 + (MONTHLY_OFFSET * month_offset))
+#     print "old base: %s; new base: %s" % (SSA_base, new_base)
+#     return int(round(new_base))
+
+def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
     """
-    estimates benefits for years above and below the full-retirement age (FRA);
-    calculations are slightly different for people born on the 2nd of the month
+    Calculate benefits for years above and below the full-retirement age (FRA).
+    Calculations are different for people born on the 2nd of the month.
+    This function is only for people who are below full retirement age.
     """
+    BENS = results['data']['benefits']
+    today = datetime.date.today()
+    current_year_bd = datetime.date(today.year, DOB.month, DOB.day)
     fra = fra_tuple[0]  # could be 66 + x number of months, or 67
-    # fill out the missing years, working backward and forward from the FRA
-    EARLY_PENALTY = 0.00555555  # monthly penalty applied to months closest to full retirement age
-    EARLIER_PENALTY = 0.004166666  # monthly penalty applied to earliest claiming ages
-    if fra == 67:
-        base = benefits['age 67']
-        if born_on_2nd:
-            benefits['age 62'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
-                                           base*(2*12*EARLIER_PENALTY)))
-        else:
-            benefits['age 62'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
-                                           base*(2*11*EARLIER_PENALTY)))
-        benefits['age 63'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
-                                       base*(1*12*EARLIER_PENALTY)))
-        benefits['age 64'] = int(round(base - base*(3*12*(EARLY_PENALTY))))
-        benefits['age 65'] = int(round(base - base*(2*12*(EARLY_PENALTY))))
-        benefits['age 66'] = int(round(base - base*(1*12*(EARLY_PENALTY))))
-        benefits['age 68'] = int(round(base + (base * 0.08)))
-        benefits['age 69'] = int(round(base + (2 * (base * 0.08))))
-        benefits['age 70'] = int(round(base + (3 * (base * 0.08))))
-    elif fra == 66 and current_age < 66:
-        base = benefits['age 66']
-        month_increment = (base * 0.08)/12
-        diff_forward = 12 - fra_tuple[1]
+    diff_forward = 12 - fra_tuple[1]
+
+    if today > current_year_bd:
         diff_back = 12 + fra_tuple[1]
-        benefits['age 67'] = int(round(base +
-                                 (month_increment*diff_forward)))
-        benefits['age 68'] = int(round(base +
-                                 (month_increment*(12 + diff_forward))))
-        benefits['age 69'] = int(round(base +
-                                 (month_increment*(24 + diff_forward))))
-        benefits['age 70'] = int(round(base +
-                                 (month_increment*(36 + diff_forward))))
+    elif today < current_year_bd:
+        if current_age == fra_tuple[0] - 1:
+            diff_back = DOB.month + fra_tuple[1] - today.month
+        else:
+            diff_back = 12 + fra_tuple[1]
+    if diff_back < 1:
+        diff_back = 1
+
+    # fill out the missing years, working backward and forward from the FRA
+    if fra == 67:
+        base = BENS['age 67']
+        BENS['age 62'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
+                                       base*(2*11*EARLIER_PENALTY)))
+        BENS['age 63'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
+                                       base*(1*12*EARLIER_PENALTY)))
+        BENS['age 64'] = int(round(base - base*(3*12*(EARLY_PENALTY))))
+        BENS['age 65'] = int(round(base - base*(2*12*(EARLY_PENALTY))))
+        BENS['age 66'] = int(round(base - base*(1*12*(EARLY_PENALTY))))
+        BENS['age 68'] = int(round(base + (base * ANNUAL_BONUS)))
+        BENS['age 69'] = int(round(base + (2 * (base * ANNUAL_BONUS))))
+        BENS['age 70'] = int(round(base + (3 * (base * ANNUAL_BONUS))))
+    elif fra == 66 and current_age < 66:
+        base = BENS['age 66']
+        annual_bump = round(base * ANNUAL_BONUS)
+        monthly_bump = base * MONTHLY_BONUS
+        first_bump = round(monthly_bump * diff_forward)
+        monthly_penalty = base * EARLY_PENALTY
+        bigger_monthly_penalty = base * EARLIER_PENALTY
+        first_penalty = round(monthly_penalty * diff_back)
+        BENS['age 67'] = base + first_bump
+        BENS['age 68'] = base + first_bump + annual_bump
+        BENS['age 69'] = base + first_bump + (2 * annual_bump)
+        BENS['age 70'] = base + first_bump + (3 * annual_bump)
         if current_age == 65:
             # FRA is 66; need to fill in 65
-            benefits['age 62'] = 0
-            benefits['age 63'] = 0
-            benefits['age 64'] = 0
-            benefits['age 65'] = int(round(base -
-                                     base*(diff_back*(EARLY_PENALTY))))
+            BENS['age 62'] = 0
+            BENS['age 63'] = 0
+            BENS['age 64'] = 0
+            BENS['age 65'] = base - first_penalty
         elif current_age == 64:
             # FRA is 66; need to fill in 64 and 65
-            benefits['age 62'] = 0
-            benefits['age 63'] = 0
-            benefits['age 64'] = int(round(base -
-                                     base*((diff_back + 12)*(EARLY_PENALTY))))
-            benefits['age 65'] = int(round(base -
-                                     base*(diff_back*(EARLY_PENALTY))))
+            BENS['age 62'] = 0
+            BENS['age 63'] = 0
+            BENS['age 64'] = base - first_penalty - (12 * monthly_penalty)
+            BENS['age 65'] = base - first_penalty
+        elif current_age == 63:
+            # FRA is 66; need to fill in 63, 64 and 65
+            BENS['age 62'] = 0
+            BENS['age 63'] = base - first_penalty - (24 * monthly_penalty)
+            BENS['age 64'] = base - first_penalty - (12 * monthly_penalty)
+            BENS['age 65'] = base - first_penalty
         elif current_age in range(55, 63):
             # ages 55 to 62: FRA is 66; need to fill in 62, 63, 64 and 65
-            if born_on_2nd:
-                benefits['age 62'] = int(round(base -
-                                         base*((diff_back + 24)*(EARLY_PENALTY)) -
-                                         base*(1*12*EARLIER_PENALTY)))
-            else:
-                benefits['age 62'] = int(round(base -
-                                         base*((diff_back + 24)*(EARLY_PENALTY)) -
-                                         base*(1*11*EARLIER_PENALTY)))
-            benefits['age 63'] = int(round(base -
-                                     base*((diff_back + 24)*(EARLY_PENALTY))))
-            benefits['age 64'] = int(round(base -
-                                     base*((diff_back + 12)*(EARLY_PENALTY))))
-            benefits['age 65'] = int(round(base -
-                                     base*(diff_back*(EARLY_PENALTY))))
-        elif current_age == 63:
-            # age 63: FRA is 66; need to fill in 63, 64 and 65
-            benefits['age 63'] = int(round(base -
-                                     base*((diff_back + 24)*(EARLY_PENALTY))))
-            benefits['age 64'] = int(round(base -
-                                     base*((diff_back + 12)*(EARLY_PENALTY))))
-            benefits['age 65'] = int(round(base -
-                                     base*(diff_back*(EARLY_PENALTY))))
-    return benefits
+            BENS['age 62'] = base - first_penalty - (24 * monthly_penalty) - (12 * bigger_monthly_penalty)
+            BENS['age 63'] = base - first_penalty - (24 * monthly_penalty)
+            BENS['age 64'] = base - first_penalty - (12 * monthly_penalty)
+            BENS['age 65'] = base - first_penalty
+    return results
 
-# sample params
-params = {
-    'dobmon': 8,
-    'dobday': 14,
-    'yob': 1970,
-    'earnings': 70000,
-    'lastYearEarn': '',  # possible use for unemployed or already retired
-    'lastEarn': '',  # possible use for unemployed or already retired
-    'retiremonth': '',  # leve blank to get triple calculation -- 62, 67 and 70
-    'retireyear': '',  # leve blank to get triple calculation -- 62, 67 and 70
-    'dollars': 1,  # benefits to be calculated in current-year dollars
-    'prgf': 2
-}
+
+def interpolate_for_past_fra(results, base, current_age, dob):
+    """
+    Calculate benefits for years above and below the full-retirement age (FRA).
+    This function is only for people who have passed full retirement age.
+    """
+    BENS = results['data']['benefits']
+    annual_bump = round(base * ANNUAL_BONUS)
+    monthly_bump = base * MONTHLY_BONUS
+    months_until_next_year = get_months_until_next_birthday(dob)
+    first_bump = round(monthly_bump * months_until_next_year)
+    if current_age == 66:
+        BENS['age 66'] = base
+        BENS['age 67'] = base + first_bump
+        BENS['age 68'] = base + first_bump + annual_bump
+        BENS['age 69'] = base + first_bump + (2 * annual_bump)
+        BENS['age 70'] = base + first_bump + (3 * annual_bump)
+    elif current_age == 67:
+        BENS['age 67'] = base
+        BENS['age 68'] = base + first_bump
+        BENS['age 69'] = base + first_bump + annual_bump
+        BENS['age 70'] = base + first_bump + (2 * annual_bump)
+    elif current_age == 68:
+        BENS['age 68'] = base
+        BENS['age 69'] = base + first_bump
+        BENS['age 70'] = base + first_bump + annual_bump
+    elif current_age == 69:
+        BENS['age 69'] = base
+        BENS['age 70'] = base + first_bump
+    elif current_age == 70:
+        BENS['age 70'] = base
+    return results
+
+# # sample params
+# params = {
+#     'dobmon': 8,
+#     'dobday': 14,
+#     'yob': 1970,
+#     'earnings': 70000,
+#     'lastYearEarn': '',  # possible use for unemployed or already retired
+#     'lastEarn': '',  # possible use for unemployed or already retired
+#     'retiremonth': '',  # leve blank to get triple calculation -- 62, 67 and 70
+#     'retireyear': '',  # leve blank to get triple calculation -- 62, 67 and 70
+#     'dollars': 1,  # benefits to be calculated in current-year dollars
+#     'prgf': 2
+# }
 
 
 def get_retire_data(params, language):
-    born_on_2nd = False
-    if params['dobday']:
-        try:
-            born_on_test = int(params['dobday'])
-        except:
-            pass
-        else:
-            if born_on_test == 2:
-                born_on_2nd = True
+    """
+    Get a base full-retirement-age benefit from SSA's Quick Calculator
+    and interpolate benefits from other claiming ages, handling edge cases:
+        - those born on Jan. 1 (see http://www.socialsecurity.gov/OACT/ProgData/nra.html)
+        - those born on Jan. 2
+        - those past full retirement age
+        - ages outside the parameters of our tool (< 22 or > 70)
+        - users who enter earnings too low for benefits
+        - odd cases where those younger than FRA are treated by the Quick
+            Calculator as if they are past FRA.
+    """
+
     starter = datetime.datetime.now()
+    dob = dateutil.parser.parse("{0}-{1}-{2}".format(params['yob'], params['dobmon'], params['dobday'])).date()
+    # prepare for Jan. 1 and Jan. 2 edge cases
+    dobstring = "{0}-{1}-{2}".format(params['yob'],
+                                     params['dobmon'],
+                                     params['dobday'])
+    yobstring = params['yob']
+    born_on_jan2 = False
+    if dob.month == 1:
+        if dob.day == 2:
+            born_on_jan2 = True
+        if dob.day == 1:
+            yob = int(params['yob']) - 1
+            yobstring = "{0}".format(yob)
+    current_age = get_current_age(dobstring)
+    dob = dateutil.parser.parse(dobstring)
     collector = {}
     benefits = {}
     for age in chart_ages:
         benefits["age %s" % age] = 0
-    dobstring = "%s-%s-%s" % (params['yob'],
-                              params['dobmon'],
-                              params['dobday'])
     results = {'data': {
                     'early retirement age': '',
                     'full retirement age': '',
@@ -234,16 +295,23 @@ def get_retire_data(params, language):
                'note': '',
                'past_fra': False,
                }
-    BENS = results['data']['benefits']
-    current_age = get_current_age(dobstring)
     results['current_age'] = current_age
+    fra_tuple = get_retirement_age(yobstring)  # returns tuple: (year, momths)
+    if fra_tuple[1]:
+        FRA = "%s and %s months" % (fra_tuple[0], fra_tuple[1])
+    else:
+        FRA = "%s" % fra_tuple[0]
+    results['data']['full retirement age'] = FRA
     past_fra = past_fra_test(dobstring, language=language)
     if past_fra is False:
-        pass
+        params['retiremonth'] = dob.month + fra_tuple[1]
+        params['retireyear'] = dob.year + fra_tuple[0]
     elif past_fra is True:
+        params['retiremonth'] = starter.month
+        params['retireyear'] = starter.year
         results['past_fra'] = True
         results['note'] = "Age %s is past your full benefit claiming age." % current_age
-        # results['note'] = "You are past Social Security's full retirement age."
+        results['data']['disability'] = "You have reached full retirement age and are not eligible for disability benefits."
     else:  # if neither False nor True, there's an error and we need to bail
         if current_age > 70:
             results['past_fra'] = True
@@ -268,16 +336,13 @@ def get_retire_data(params, language):
         results['error'] = "SSA's website timed out"
         results['note'] = get_note('down', language)
         return json.dumps(results)
-        return json.dumps(results)
     except requests.exceptions.RequestException as e:
         results['error'] = "request error at SSA's website: %s" % e
         results['note'] = get_note('down', language)
         return json.dumps(results)
-        return json.dumps(results)
     except:
         results['error'] = "%s error at SSA's website" % req.reason
         results['note'] = get_note('down', language)
-        return json.dumps(results)
         return json.dumps(results)
     if not req.ok:
         results['error'] = "SSA's website is not responding.\
@@ -285,142 +350,25 @@ def get_retire_data(params, language):
                                                      req.reason)
         results['note'] = get_note('down', language)
         return json.dumps(results)
-        return json.dumps(results)
-    if int(params['dobmon']) == 1 and int(params['dobday']) == 1:
-        # SSA has a special rule for people born on Jan. 1:
-        # http://www.socialsecurity.gov/OACT/ProgData/nra.html
-        yob = int(params['yob']) - 1
-        yobstring = "%s" % yob
-    else:
-        yobstring = params['yob']
-    fra_tuple = get_retirement_age(yobstring)
     soup = bs(req.text, 'lxml')
-    tables = soup.findAll('table', {'bordercolor': '#6699ff'})
-    results_table, disability_table, survivors_table = (None, None, None)
-    for each in tables:
-        if each.find('th') and 'Retirement age' in each.find('th').text:
-            results_table = each
-        elif each.find('th') and 'Disability' in each.find('th').text:
-            disability_table = each
-        elif each.find('th') and "Survivors" in each.find('th').text:
-            survivors_table = each
+    if soup.find('p') and 'insufficient to receive' in soup.find('p').text:
+        results['error'] = "benefit is zero"
+        results['note'] = get_note('earnings', language)
+        return json.dumps(results)
+    ret_amount_raw = soup.find('span', {'id': 'ret_amount'})
+    if not ret_amount_raw:
+        results['error'] = "benefit is zero"
+        results['note'] = get_note('earnings', language)
+        return json.dumps(results)
+    ret_amount = ret_amount_raw.text.split('.')[0].replace(',', '')
+    base = int(ret_amount)
     if past_fra is True:
-        results['data']['disability'] = "You have reached full retirement age \
-                                and are not eligible for disability benefits."
-        ret_amount_raw = soup.find('span', {'id': 'ret_amount'})
-        if not ret_amount_raw:
-            results['error'] = "benefit is zero"
-            results['note'] = get_note('earnings', language)
-            return json.dumps(results)
-        else:
-            ret_amount = ret_amount_raw.text.split('.')[0]
-        base = int(ret_amount.replace(',', ''))
-        increment = base * 0.08
-        if current_age == 66:
-            BENS['age 66'] = round(base)
-            BENS['age 67'] = round(base + increment)
-            BENS['age 68'] = round(base + 2*increment)
-            BENS['age 69'] = round(base + 3*increment)
-            BENS['age 70'] = round(base + 4*increment)
-        elif current_age == 67:
-            BENS['age 67'] = round(base)
-            BENS['age 68'] = round(base + increment)
-            BENS['age 69'] = round(base + 2*increment)
-            BENS['age 70'] = round(base + 3*increment)
-        elif current_age == 68:
-            BENS['age 68'] = round(base)
-            BENS['age 69'] = round(base + increment)
-            BENS['age 70'] = round(base + 2*increment)
-        elif current_age == 69:
-            BENS['age 69'] = round(base)
-            BENS['age 70'] = round(base + increment)
-        elif current_age == 70:
-            BENS['age 70'] = round(base)
-        else:  # older than 70
-            BENS['age 70'] = round(base)
-            results['note'] = "Your monthly benefit \
-                               at %s is $%s" % (current_age, ret_amount)
+        final_results = interpolate_for_past_fra(results, base, current_age, dob)
     else:
-        if results_table:
-            result_rows = results_table.findAll('tr')
-            for row in result_rows:
-                cells = row.findAll('td')
-                if cells:
-                    collector[cells[0].text] = cells[1].text
-            """
-            collector:
-            70 in 2047: "$2,719.00",
-            67 in 2044: "$2,180.00",
-            62 and 1 month in 2039: "$1,515.00"
-            """
-            for key in collector:
-                bits = key.split(' in ')
-                benefit_age_raw = bits[0]
-                benefit_age_year = bits[0].split()[0]
-                # benefit_in_year = bits[1]# not using
-                benefit_raw = collector[key]
-                benefit = int(benefit_raw.split('.')[0].replace(',', '').replace('$', ''))
-                if benefit_age_year == str(fra_tuple[0]):
-                    results['data']['full retirement age'] = benefit_age_raw
-                    BENS['age %s' % benefit_age_year] = benefit
-                # if benefit_age_year == '62':
-                #     results['data']['early retirement age'] = benefit_age_raw
-                #     BENS['age %s' % benefit_age_year] = benefit
-                # if benefit_age_year == '70':
-                #     BENS['age %s' % benefit_age_year] = benefit
-            additions = interpolate_benefits(BENS,
-                                             fra_tuple,
-                                             current_age,
-                                             born_on_2nd=born_on_2nd)
-            for key in BENS:
-                if additions[key] and not BENS[key]:
-                    BENS[key] = additions[key]
-        else:
-            if soup.find('p') and 'insufficient' in soup.find('p').text:
-                results['error'] = "benefit is zero"
-                results['note'] = get_note('earnings', language)
-                return json.dumps(results)
-            else:
-                results['error'] = "SSA is not returning good data"
-                results['note'] = get_note('down', language)
-                return json.dumps(results)
-        if disability_table:
-            results['data']['disability'] = disability_table.findAll('td')[1].text.split('.')[0]
-    # SURVIVORS KEYS
-    # 'Your child'
-    # 'Family maximum'
-    # 'Your spouse at normal retirement age'
-    # 'Your spouse caring for your child'
-    #
-    # RESULTS['DATA']['SURVIVOR BENEFITS'] KEYS
-    # 'spouse at full retirement age'
-    # 'family maximum'
-    # 'spouse caring for child'
-    # 'child'
-    if survivors_table:
-        SURV = results['data']['survivor benefits']
-        survivors = {}
-        survivor_rows = survivors_table.findAll('tr')
-        for row in survivor_rows:
-            cells = row.findAll('td')
-            if cells:
-                survivors[cells[0].text] = cells[1].text.split('.')[0]
-        if 'Your child' in survivors:
-            SURV['child'] = survivors['Your child']
-        if 'Family maximum' in survivors:
-            SURV['family maximum'] = survivors['Family maximum']
-        if 'Your spouse at normal retirement age' in survivors:
-            SURV['spouse at full retirement age'] = survivors['Your spouse at normal retirement age']
-        if 'Your spouse caring for your child' in survivors:
-            SURV['spouse caring for child'] = survivors['Your spouse caring for your child']
-    if not results['data']['full retirement age']:
-        if fra_tuple[1]:
-            FRA = "%s and %s months" % (fra_tuple[0], fra_tuple[1])
-        else:
-            FRA = "%s" % fra_tuple[0]
-        results['data']['full retirement age'] = FRA
+        results['data']['benefits']['age {0}'.format(fra_tuple[0])] = base
+        final_results = interpolate_benefits(results, base, fra_tuple, current_age, dob)
     print "script took %s to run" % (datetime.datetime.now() - starter)
     # # to dump json for testing:
     # with open('/tmp/ssa.json', 'w') as f:
     #     f.write(json.dumps(results))
-    return json.dumps(results)
+    return json.dumps(final_results)

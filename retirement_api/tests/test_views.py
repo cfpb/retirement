@@ -20,9 +20,22 @@ sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 from retirement_api.views import param_check, income_check, estimator, get_full_retirement_age, claiming
-from retirement_api.utils.ss_calculator import get_retire_data, params
+from retirement_api.utils.ss_calculator import get_retire_data
 
 today = datetime.datetime.now().date()
+
+PARAMS = {
+    'dobmon': 8,
+    'dobday': 14,
+    'yob': 1970,
+    'earnings': 70000,
+    'lastYearEarn': '',  # possible use for unemployed or already retired
+    'lastEarn': '',  # possible use for unemployed or already retired
+    'retiremonth': '',  # leve blank to get triple calculation -- 62, 67 and 70
+    'retireyear': '',  # leve blank to get triple calculation -- 62, 67 and 70
+    'dollars': 1,  # benefits to be calculated in current-year dollars
+    'prgf': 2
+}
 
 
 class ViewTests(TestCase):
