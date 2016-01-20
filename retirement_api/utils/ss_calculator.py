@@ -4,18 +4,17 @@ A utility to get benefit data from SSA and handle errors.
 
 Users must be at least 22 to use the form.
 Users past their full retirement age will get results only
-for their current year and any other years up to 70.
-We'll need to ask users for DOB and current annual earnings
-benefit values for all years shown in today's dollars
+ for their current year and any other years up to 70.
+We ask users only for DOB and current annual earnings.
+Benefit values for all years are shown in today's dollars
 
-Inputs needed:
-- Date of birth: 8/14/1956
-- Current earnings: 50000
+Inputs:
+- date of birth
+- annual earnings
 
 Optional inputs that SSA allows, but we're not using:
 - Last year with earnings
 - Last earnings
-- Retirement month/year: 8/2026
 - Benefit in inflated dollars; we're using default of current-year dollars
 
 Outputs:
@@ -126,7 +125,7 @@ def parse_details(rows):
 def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
     """
     Calculate benefits for years above and below the full-retirement age (FRA).
-    Calculations are different for people born on the 2nd of the month.
+    Those born on 2nd day of a month have a bigger early-claiming penalty max.
     This function is only for people who are below full retirement age.
     """
     BENS = results['data']['benefits']
@@ -250,12 +249,11 @@ def get_retire_data(params, language):
     Get a base full-retirement-age benefit from SSA's Quick Calculator
     and interpolate benefits for other claiming ages, handling edge cases:
         - those born on Jan. 1 (see http://www.socialsecurity.gov/OACT/ProgData/nra.html)
-        - those born on 2nd day of any month (add a month to reductions)
+        - those born on 2nd day of any month (interpolator adds a month to reductions)
         - those past full retirement age
         - ages outside the parameters of our tool (< 22 or > 70)
         - users who enter earnings too low for benefits
-        - odd cases where those younger than FRA are treated by the Quick
-            Calculator as if they are past FRA.
+        - dobs in 1950 that the Quick Calculator improperly treats as past FRA.
     """
 
     starter = datetime.datetime.now()
