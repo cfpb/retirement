@@ -1,4 +1,4 @@
-# coding: utf-8
+# coding: utf-8 
 """
 A utility to get benefit data from SSA and handle errors.
 
@@ -67,8 +67,8 @@ def get_note(note_type, language):
         return ERROR_NOTES[note_type]['en']
 
 base_url = "https://www.socialsecurity.gov"
-quick_url = "%s/OACT/quickcalc/" % base_url  # where users go; not needed here
-result_url = "%s/cgi-bin/benefit6.cgi" % base_url
+quick_url = "{0}/OACT/quickcalc/".format(base_url)  # where users go; not needed here
+result_url = "{0}/cgi-bin/benefit6.cgi".format(base_url)
 chart_ages = range(62, 71)
 
 comment = re.compile(r"<!--[\s\S]*?-->")  # regex for parsing indexing data
@@ -274,7 +274,7 @@ def get_retire_data(params, language):
     collector = {}
     benefits = {}
     for age in chart_ages:
-        benefits["age %s" % age] = 0
+        benefits["age {0}".format(age)] = 0
     results = {'data': {
                     'early retirement age': '',
                     'full retirement age': '',
@@ -296,9 +296,9 @@ def get_retire_data(params, language):
     results['current_age'] = current_age
     fra_tuple = get_retirement_age(yobstring)  # returns tuple: (year, momths)
     if fra_tuple[1]:
-        FRA = "%s and %s months" % (fra_tuple[0], fra_tuple[1])
+        FRA = "{0} and {1} months".format(fra_tuple[0], fra_tuple[1])
     else:
-        FRA = "%s" % fra_tuple[0]
+        FRA = "{0}".format(fra_tuple[0])
     results['data']['full retirement age'] = FRA
     past_fra = past_fra_test(dobstring, language=language)
     if past_fra is False:
@@ -308,7 +308,7 @@ def get_retire_data(params, language):
         params['retiremonth'] = starter.month
         params['retireyear'] = starter.year
         results['past_fra'] = True
-        results['note'] = "Age %s is past your full benefit claiming age." % current_age
+        results['note'] = "Age {0} is past your full benefit claiming age.".format(current_age)
         results['data']['disability'] = "You have reached full retirement age and are not eligible for disability benefits."
     else:  # if neither False nor True, there's an error and we need to bail
         if current_age > 70:
@@ -327,7 +327,7 @@ def get_retire_data(params, language):
     try:
         req = requests.post(result_url, data=params, timeout=timeout_seconds)
     except requests.exceptions.ConnectionError as e:
-        results['error'] = "connection error at SSA's website: %s" % e
+        results['error'] = "connection error at SSA's website: {0}".format(e)
         results['note'] = get_note('down', language)
         return json.dumps(results)
     except requests.exceptions.Timeout:
@@ -335,17 +335,17 @@ def get_retire_data(params, language):
         results['note'] = get_note('down', language)
         return json.dumps(results)
     except requests.exceptions.RequestException as e:
-        results['error'] = "request error at SSA's website: %s" % e
+        results['error'] = "request error at SSA's website: {0}".format(e)
         results['note'] = get_note('down', language)
         return json.dumps(results)
     except:
-        results['error'] = "%s error at SSA's website" % req.reason
+        results['error'] = "{0} error at SSA's website".format(req.reason)
         results['note'] = get_note('down', language)
         return json.dumps(results)
     if not req.ok:
         results['error'] = "SSA's website is not responding.\
-                            Status code: %s (%s)" % (req.status_code,
-                                                     req.reason)
+                            Status code: {0} ({1})".format(req.status_code,
+                                                            req.reason)
         results['note'] = get_note('down', language)
         return json.dumps(results)
     soup = bs(req.text, 'lxml')
@@ -365,7 +365,7 @@ def get_retire_data(params, language):
     else:
         results['data']['benefits']['age {0}'.format(fra_tuple[0])] = base
         final_results = interpolate_benefits(results, base, fra_tuple, current_age, dob)
-    print "script took %s to run" % (datetime.datetime.now() - starter)
+    print "script took {0} to run".format((datetime.datetime.now() - starter))
     # # to dump json for testing:
     # with open('/tmp/ssa.json', 'w') as f:
     #     f.write(json.dumps(results))
