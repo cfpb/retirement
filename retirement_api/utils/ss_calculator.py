@@ -144,6 +144,8 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
             diff_back = 12 + fra_tuple[1]
     if diff_back < 1:
         diff_back = 1
+    if DOB.day == 2:
+        diff_back += 1  # born-on-2nd edge case: GHE issue 79
 
     # fill out the missing years, working backward and forward from the FRA
     if fra == 67:
@@ -246,9 +248,9 @@ def interpolate_for_past_fra(results, base, current_age, dob):
 def get_retire_data(params, language):
     """
     Get a base full-retirement-age benefit from SSA's Quick Calculator
-    and interpolate benefits from other claiming ages, handling edge cases:
+    and interpolate benefits for other claiming ages, handling edge cases:
         - those born on Jan. 1 (see http://www.socialsecurity.gov/OACT/ProgData/nra.html)
-        - those born on Jan. 2
+        - those born on 2nd day of any month (add a month to reductions)
         - those past full retirement age
         - ages outside the parameters of our tool (< 22 or > 70)
         - users who enter earnings too low for benefits
@@ -263,13 +265,9 @@ def get_retire_data(params, language):
                                      params['dobmon'],
                                      params['dobday'])
     yobstring = params['yob']
-    born_on_jan2 = False
-    if dob.month == 1:
-        if dob.day == 2:
-            born_on_jan2 = True
-        if dob.day == 1:
-            yob = int(params['yob']) - 1
-            yobstring = "{0}".format(yob)
+    if dob.month == 1 and dob.day == 1:
+        yob = int(params['yob']) - 1
+        yobstring = "{0}".format(yob)
     current_age = get_current_age(dobstring)
     dob = dateutil.parser.parse(dobstring)
     collector = {}
