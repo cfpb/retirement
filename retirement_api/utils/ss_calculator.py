@@ -199,8 +199,7 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
 
 def interpolate_for_past_fra(results, base, current_age, dob):
     """
-    Calculate benefits for years above and below the full-retirement age (FRA).
-    This function is only for people who have passed full retirement age.
+    Calculate future benefits people who have passed full retirement age.
     """
     BENS = results['data']['benefits']
     annual_bump = round(base * ANNUAL_BONUS)
