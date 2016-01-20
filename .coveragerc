@@ -2,6 +2,7 @@
 omit = 
     ../*admin*
     ../*urls*
+    retirement_api/migrations/*
 
 [report]
 

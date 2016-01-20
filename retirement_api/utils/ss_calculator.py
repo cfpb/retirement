@@ -261,17 +261,16 @@ def get_retire_data(params, language):
     """
 
     starter = datetime.datetime.now()
-    dob = dateutil.parser.parse("{0}-{1}-{2}".format(params['yob'], params['dobmon'], params['dobday'])).date()
-    # prepare for Jan. 1 and Jan. 2 edge cases
     dobstring = "{0}-{1}-{2}".format(params['yob'],
                                      params['dobmon'],
                                      params['dobday'])
+    dob = dateutil.parser.parse(dobstring).date()
+    # handle edge case for those born on Jan. 1
     yobstring = params['yob']
     if dob.month == 1 and dob.day == 1:
         yob = int(params['yob']) - 1
         yobstring = "{0}".format(yob)
     current_age = get_current_age(dobstring)
-    dob = dateutil.parser.parse(dobstring)
     collector = {}
     benefits = {}
     for age in chart_ages:

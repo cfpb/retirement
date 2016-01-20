@@ -47,13 +47,18 @@ class UtilitiesTests(unittest.TestCase):
         dob = datetime.date.today()-timedelta(days=(365*20)+320)
         self.assertTrue(get_age_plus_months("{0}".format(dob)) == 10)
 
-    @mock.patch('retirement_api.utils.ss_utilities.datetime.date')
-    def test_months_until_next_bday(self, mock_datetime):
-        dob = datetime.datetime(1988, 1, 15).date()
-        fake_today = datetime.datetime(2016, 8, 15).date()
-        mock_datetime.today.return_value = fake_today
-        months = get_months_until_next_birthday(dob)
-        self.assertTrue(months == 5)
+    def test_months_until_next_bday(self):
+        today = datetime.date.today()
+        dob1 = today - datetime.timedelta(days=40)
+        dob1.replace(year=(today.year - 40))
+        dob2 = today + datetime.timedelta(days=40)
+        dob2.replace(year=(today.year - 40))
+        months1 = get_months_until_next_birthday(dob1)
+        months2 = get_months_until_next_birthday(dob2)
+        self.assertTrue(months1 == 11)
+        self.assertTrue(months2 == 1)
+        print("months1 value is {0}".format(months1))
+        print("months2 value is {0}".format(months2))
 
     @mock.patch('datetime.date')
     def test_get_current_age(self, mock_datetime):
@@ -130,6 +135,10 @@ class UtilitiesTests(unittest.TestCase):
         dob = datetime.date.today() - datetime.timedelta(days=365*65)
         results = interpolate_benefits(mock_results, 2261, (66, 0), 65, dob)
         for key in sorted(results['data']['benefits'].keys())[3:]:
+            self.assertTrue(results['data']['benefits'][key] != 0)
+        dob = datetime.date.today() - datetime.timedelta(days=365*63)
+        results = interpolate_benefits(mock_results, 2261, (66, 0), 63, dob)
+        for key in sorted(results['data']['benefits'].keys())[1:]:
             self.assertTrue(results['data']['benefits'][key] != 0)
 
     def test_parse_details(self):
@@ -370,6 +379,9 @@ class UtilitiesTests(unittest.TestCase):
         self.sample_params['yob'] = today.year-68
         data = json.loads(get_retire_data(self.sample_params, language='en'))
         self.assertTrue("past" in data['note'])
+        self.sample_params['yob'] = today.year + 1
+        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        self.assertTrue("invalid" in data['note'])
 
     @mock.patch('retirement_api.utils.ss_calculator.requests.post')
     def test_bad_calculator_requests(self, mock_requests):

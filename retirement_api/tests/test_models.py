@@ -13,7 +13,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 class ViewModels(TestCase):
 
     testagechoice = AgeChoice(age=62, aside="Aside.")
-    testquestion = Question(title="Test Question")
+    testquestion = Question(title="Test Question", slug='')
     teststep = Step(title="Test Step")
     testpage = Page(title="Page title", intro="Intro")
     testtip = Tooltip(title="Test Tooltip")
@@ -22,12 +22,9 @@ class ViewModels(TestCase):
         tc = self.testagechoice
         self.assertTrue("You've chosen age 62" in tc.get_subhed())
 
-    @mock.patch('retirement_api.models.Question.save')
-    def test_question_slug(self, mock_save):
-        mock_save.return_value = "test_q"
-        question_slugger = Question(title='test q')
-        question_slugger.save()
-        self.assertTrue(mock_save.call_count == 1)
+    def test_question_slug(self):
+        self.testquestion.save()
+        self.assertTrue(self.testquestion.slug != '')
 
     def test_question_translist(self):
         tlist = self.testquestion.translist()
