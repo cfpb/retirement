@@ -57,8 +57,6 @@ class UtilitiesTests(unittest.TestCase):
         months2 = get_months_until_next_birthday(dob2)
         self.assertTrue(months1 == 11)
         self.assertTrue(months2 == 1)
-        print("months1 value is {0}".format(months1))
-        print("months2 value is {0}".format(months2))
 
     @mock.patch('datetime.date')
     def test_get_current_age(self, mock_datetime):
