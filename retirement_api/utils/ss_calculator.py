@@ -149,8 +149,12 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
     # fill out the missing years, working backward and forward from the FRA
     if fra == 67:
         base = BENS['age 67']
-        BENS['age 62'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
-                                       base*(2*11*EARLIER_PENALTY)))
+        if DOB.day == 2:
+            BENS['age 62'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
+                                       base*(2*12*EARLIER_PENALTY)))
+        else:
+            BENS['age 62'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
+                                           base*(2*11*EARLIER_PENALTY)))
         BENS['age 63'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
                                        base*(1*12*EARLIER_PENALTY)))
         BENS['age 64'] = int(round(base - base*(3*12*(EARLY_PENALTY))))
