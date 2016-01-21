@@ -49,14 +49,15 @@ class UtilitiesTests(unittest.TestCase):
 
     def test_months_until_next_bday(self):
         today = datetime.date.today()
-        dob1 = today - datetime.timedelta(days=40)
-        dob1.replace(year=(today.year - 40))
-        dob2 = today + datetime.timedelta(days=40)
-        dob2.replace(year=(today.year - 40))
-        months1 = get_months_until_next_birthday(dob1)
-        months2 = get_months_until_next_birthday(dob2)
-        self.assertTrue(months1 == 11)
-        self.assertTrue(months2 == 1)
+        age40 = today.replace(year=(today.year - 40))
+        bd_one_day_later = age40 + datetime.timedelta(days=1)
+        bd_month_later = age40 + datetime.timedelta(days=30)
+        diff1 = get_months_until_next_birthday(age40)
+        diff2 = get_months_until_next_birthday(bd_one_day_later)
+        diff3 = get_months_until_next_birthday(bd_month_later)
+        self.assertTrue(diff1 == 12)
+        self.assertTrue(diff2 in [0, 1])
+        self.assertTrue(diff3 in [1, 2])
 
     @mock.patch('datetime.date')
     def test_get_current_age(self, mock_datetime):
@@ -212,6 +213,7 @@ class UtilitiesTests(unittest.TestCase):
         self.assertTrue("70" in past_fra_test(way_old, language='en'))
         self.assertTrue(past_fra_test(edge, language='en') == True)
         self.assertTrue("invalid" in past_fra_test(invalid, language='en'))
+        self.assertTrue("invalid" in past_fra_test())
 
     def test_age_map(self):
         self.assertTrue(isinstance(age_map, dict))
@@ -244,7 +246,8 @@ class UtilitiesTests(unittest.TestCase):
             "1957": "1957",
             "1979": "1979",
             "abc": None,
-            1980: "1980"
+            1980: "1980",
+            None: None
         }
         for year in sample_inputs:
             self.assertEqual(yob_test(year), sample_inputs[year])
@@ -319,54 +322,30 @@ class UtilitiesTests(unittest.TestCase):
         self.assertTrue("22" in data['note'])
         self.sample_params['yob'] = today.year-57
         data = json.loads(get_retire_data(self.sample_params, language='en'))
-        if not data['error']:
-            self.assertTrue(data['data']['benefits']['age 62'] != 0)
-            self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        else:
-            self.assertTrue('SSA' in data['error'])
+        self.assertTrue(data['data']['benefits']['age 62'] != 0)
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-64
         data = json.loads(get_retire_data(self.sample_params, language='en'))
-        if not data['error']:
-            self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        else:
-            self.assertTrue('SSA' in data['error'])
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-65
         data = json.loads(get_retire_data(self.sample_params, language='en'))
-        if not data['error']:
-            self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        else:
-            self.assertTrue('SSA' in data['error'])
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-66
         data = json.loads(get_retire_data(self.sample_params, language='en'))
-        if not data['error']:
-            self.assertTrue(data['data']['benefits']['age 70'] != 0)
-            self.assertTrue(data['data']['benefits']['age 66'] != 0)
-        else:
-            self.assertTrue('SSA' in data['error'])
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
+        self.assertTrue(data['data']['benefits']['age 66'] != 0)
         self.sample_params['yob'] = today.year-67
         data = json.loads(get_retire_data(self.sample_params, language='en'))
-        if not data['error']:
-            self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        else:
-            self.assertTrue('SSA' in data['error'])
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-68
         data = json.loads(get_retire_data(self.sample_params, language='en'))
-        if not data['error']:
-            self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        else:
-            self.assertTrue('SSA' in data['error'])
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-69
         data = json.loads(get_retire_data(self.sample_params, language='en'))
-        if not data['error']:
-            self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        else:
-            self.assertTrue('SSA' in data['error'])
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-70
         data = json.loads(get_retire_data(self.sample_params, language='en'))
-        if not data['error']:
-            self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        else:
-            self.assertTrue('SSA' in data['error'])
+        self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['earnings'] = 0
         data = json.loads(get_retire_data(self.sample_params, language='en'))
         self.assertTrue("zero" in data['error'])

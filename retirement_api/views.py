@@ -87,7 +87,6 @@ def estimator(request, dob=None, income=None, language='en'):
         'dollars': 1,  # benefits to be calculated in current-year dollars
         'prgf': 2
     }
-    legal_year = today.year - 22  # calculator isn't for people under 22
     if dob is None:
         dob = param_check(request, 'dob')
         if not dob:

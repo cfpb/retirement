@@ -97,6 +97,7 @@ def get_age_plus_months(dob):
 
 
 def get_months_until_next_birthday(dob):
+    """return number of months until next birthday, with a minimum of 1 """
     today = datetime.date.today()
     bday_this_year = datetime.date(today.year, dob.month, dob.day)
     if today >= bday_this_year:
@@ -176,8 +177,6 @@ def past_fra_test(dob=None, language='en'):
         fra_tuple = get_retirement_age(DOB.year-1)
     else:
         fra_tuple = get_retirement_age(DOB.year)
-    if not fra_tuple:
-        return 'invalid birth year entered'
     fra_year = fra_tuple[0]
     fra_month = fra_tuple[1]
     months_at_birth = DOB.year*12 + DOB.month - 1
@@ -195,7 +194,7 @@ def past_fra_test(dob=None, language='en'):
         return False
     elif age_tuple[0] == fra_tuple[0] and age_tuple[1] >= fra_tuple[1]:
         return True
-    else:
+    else:  # pragma: no cover -- can't currently happen, but could in future
         return False
 
 

@@ -111,17 +111,6 @@ def parse_details(rows):
     return datad
 
 
-# def get_adjusted_base(SSA_base, dob):
-#     """
-#     Adjust base benefit to account for SSA's pushing of claiming date
-#     to January of the following year.
-#     """
-#     SSA_benefit = int(SSA_base)
-#     month_offset = 13 - dateutil.parser.parse(dob).month
-#     new_base = SSA_benefit / (1 + (MONTHLY_OFFSET * month_offset))
-#     print "old base: %s; new base: %s" % (SSA_base, new_base)
-#     return int(round(new_base))
-
 def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
     """
     Calculate benefits for years above and below the full-retirement age (FRA).
@@ -320,7 +309,7 @@ def get_retire_data(params, language):
             results['note'] = past_fra
             results['error'] = "visitor too young for tool"
             return json.dumps(results)
-        elif 'invalid' in past_fra:
+        elif 'invalid' in past_fra:  # pragma: no cover -- backstop, tested elsewhere
             results['note'] = "An invalid date was entered."
             results['error'] = past_fra
             return json.dumps(results)
