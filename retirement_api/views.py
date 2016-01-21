@@ -4,7 +4,7 @@ import json
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import Http404, HttpResponse, HttpResponseBadRequest
-from utils.ss_calculator import get_retire_data, params
+from utils.ss_calculator import get_retire_data
 from utils.ss_utilities import get_retirement_age
 from dateutil import parser
 import datetime
@@ -18,19 +18,6 @@ try:
     standalone = settings.STANDALONE
 except:  # pragma: no cover
     standalone = False
-
-# params = {
-#     'dobmon': mob,
-#     'dobday': dayob,
-#     'yob': yob,
-#     'earnings': earnings,
-#     'lastYearEarn': '',# possible use for unemployed or already retired
-#     'lastEarn': '',# possible use for unemployed or already retired
-#     'retiremonth': '',# leve blank to get triple calculation -- 62, 67 and 70
-#     'retireyear': '',# leve blank to get triple calculation -- 62, 67 and 70
-#     'dollars': 1,# benefits to be calculated in current-year dollars
-#     'prgf': 2
-# }
 
 
 def claiming(request, es=False):
@@ -88,7 +75,18 @@ def income_check(param):
 
 def estimator(request, dob=None, income=None, language='en'):
     today = datetime.datetime.now().date()
-    legal_year = today.year - 22  # calculator isn't for people under 22
+    ssa_params = {
+        'dobmon': 0,
+        'dobday': 0,
+        'yob': 0,
+        'earnings': 0,
+        'lastYearEarn': '',  # not using
+        'lastEarn': '',  # not using
+        'retiremonth': '',  # only using for past-FRA users
+        'retireyear': '',  # only using for past-FRA users
+        'dollars': 1,  # benefits to be calculated in current-year dollars
+        'prgf': 2
+    }
     if dob is None:
         dob = param_check(request, 'dob')
         if not dob:
@@ -111,11 +109,11 @@ def estimator(request, dob=None, income=None, language='en'):
         return HttpResponseBadRequest("invalid date of birth")
     else:
         DOB = dob_parsed.date()
-    params['dobmon'] = DOB.month
-    params['dobday'] = DOB.day
-    params['yob'] = DOB.year
-    params['earnings'] = income
-    data = get_retire_data(params, language)
+    ssa_params['dobmon'] = DOB.month
+    ssa_params['dobday'] = DOB.day
+    ssa_params['yob'] = DOB.year
+    ssa_params['earnings'] = income
+    data = get_retire_data(ssa_params, language)
     return HttpResponse(data, content_type='application/json')
 
 
