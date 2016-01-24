@@ -321,8 +321,10 @@ def get_retire_data(params, language):
     (dob, dobstring, current_age, fra_tuple, results) = set_up_runvars(params)
     past_fra = past_fra_test(dobstring, language=language)
     if past_fra is False:
-        params['retiremonth'] = dob.month + fra_tuple[1]
-        params['retireyear'] = dob.year + fra_tuple[0]
+        retire_year_bd = dob.replace(year=dob.year + fra_tuple[0])
+        retire_date = retire_year_bd + datetime.timedelta(days=30*fra_tuple[1])
+        params['retiremonth'] = retire_date.month
+        params['retireyear'] = retire_date.year
     elif past_fra is True:
         params['retiremonth'] = starter.month
         params['retireyear'] = starter.year
