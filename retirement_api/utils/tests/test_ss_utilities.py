@@ -59,7 +59,7 @@ class UtilitiesTests(unittest.TestCase):
 
     def test_get_current_age(self):
         age_pairs = [(self.today.replace(year=self.today.year - 1), 1),
-                     ('{}'.format(self.today.replace(year=self.today.year - 1)), 1),
+                     ('{0}'.format(self.today.replace(year=self.today.year - 1)), 1),
                      (self.today.replace(year=self.today.year - 20), 20),
                      (self.today.replace(year=self.today.year - 60), 60),
                      (self.today, None),
