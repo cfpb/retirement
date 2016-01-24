@@ -1,4 +1,4 @@
-# coding: utf-8 
+# coding: utf-8
 """
 A utility to get benefit data from SSA and handle errors.
 
@@ -34,7 +34,7 @@ from bs4 import BeautifulSoup as bs
 from .ss_utilities import get_retirement_age, get_current_age, past_fra_test
 from .ss_utilities import get_months_until_next_birthday
 
-timeout_seconds = 20
+TIMEOUT_SECONDS = 20
 
 down_note = """<span class="h4">Sorry, the Social Security website \
 is not responding, so we can't estimate your benefits.</span> \
@@ -237,19 +237,8 @@ def interpolate_for_past_fra(results, base, current_age, dob):
 # }
 
 
-def get_retire_data(params, language):
-    """
-    Get a base full-retirement-age benefit from SSA's Quick Calculator
-    and interpolate benefits for other claiming ages, handling edge cases:
-        - those born on Jan. 1 (see http://www.socialsecurity.gov/OACT/ProgData/nra.html)
-        - those born on 2nd day of any month (interpolator adds a month to reductions)
-        - those past full retirement age
-        - ages outside the parameters of our tool (< 22 or > 70)
-        - users who enter earnings too low for benefits
-        - dobs in 1950 that the Quick Calculator improperly treats as past FRA.
-    """
-
-    starter = datetime.datetime.now()
+def set_up_runvars(params):
+    """set up the results container and variables"""
     dobstring = "{0}-{1}-{2}".format(params['yob'],
                                      params['dobmon'],
                                      params['dobday'])
@@ -260,7 +249,6 @@ def get_retire_data(params, language):
         yob = int(params['yob']) - 1
         yobstring = "{0}".format(yob)
     current_age = get_current_age(dobstring)
-    collector = {}
     benefits = {}
     for age in chart_ages:
         benefits["age {0}".format(age)] = 0
@@ -277,18 +265,34 @@ def get_retire_data(params, language):
                                     'family maximum': ''
                                     }
                     },
-               'current_age': 0,
+               'current_age': current_age,
                'error': '',
                'note': '',
                'past_fra': False,
                }
-    results['current_age'] = current_age
     fra_tuple = get_retirement_age(yobstring)  # returns tuple: (year, momths)
     if fra_tuple[1]:
         FRA = "{0} and {1} months".format(fra_tuple[0], fra_tuple[1])
     else:
         FRA = "{0}".format(fra_tuple[0])
     results['data']['full retirement age'] = FRA
+    return dob, dobstring, current_age, fra_tuple, results
+
+
+def get_retire_data(params, language):
+    """
+    Get a base full-retirement-age benefit from SSA's Quick Calculator
+    and interpolate benefits for other claiming ages, handling edge cases:
+        - those born on Jan. 1 (see http://www.socialsecurity.gov/OACT/ProgData/nra.html)
+        - those born on 2nd day of any month (interpolator adds a month to reductions)
+        - those past full retirement age
+        - ages outside the parameters of our tool (< 22 or > 70)
+        - users who enter earnings too low for benefits
+        - dobs in 1950 that the Quick Calculator improperly treats as past FRA.
+    """
+
+    starter = datetime.datetime.now()
+    (dob, dobstring, current_age, fra_tuple, results) = set_up_runvars(params)
     past_fra = past_fra_test(dobstring, language=language)
     if past_fra is False:
         params['retiremonth'] = dob.month + fra_tuple[1]
@@ -304,49 +308,49 @@ def get_retire_data(params, language):
             results['past_fra'] = True
             results['note'] = past_fra
             results['error'] = "visitor too old for tool"
-            return json.dumps(results)
+            return results
         elif current_age < 22:
             results['note'] = past_fra
             results['error'] = "visitor too young for tool"
-            return json.dumps(results)
+            return results
         elif 'invalid' in past_fra:  # pragma: no cover -- backstop, tested elsewhere
             results['note'] = "An invalid date was entered."
             results['error'] = past_fra
-            return json.dumps(results)
+            return results
     try:
-        req = requests.post(result_url, data=params, timeout=timeout_seconds)
+        req = requests.post(result_url, data=params, timeout=TIMEOUT_SECONDS)
     except requests.exceptions.ConnectionError as e:
         results['error'] = "connection error at SSA's website: {0}".format(e)
         results['note'] = get_note('down', language)
-        return json.dumps(results)
+        return results
     except requests.exceptions.Timeout:
         results['error'] = "SSA's website timed out"
         results['note'] = get_note('down', language)
-        return json.dumps(results)
+        return results
     except requests.exceptions.RequestException as e:
         results['error'] = "request error at SSA's website: {0}".format(e)
         results['note'] = get_note('down', language)
-        return json.dumps(results)
+        return results
     except:
-        results['error'] = "{0} error at SSA's website".format(req.reason)
+        results['error'] = "Unknown error at SSA's website"
         results['note'] = get_note('down', language)
-        return json.dumps(results)
+        return results
     if not req.ok:
         results['error'] = "SSA's website is not responding.\
                             Status code: {0} ({1})".format(req.status_code,
                                                             req.reason)
         results['note'] = get_note('down', language)
-        return json.dumps(results)
+        return results
     soup = bs(req.text, 'lxml')
     if soup.find('p') and 'insufficient to receive' in soup.find('p').text:
         results['error'] = "benefit is zero"
         results['note'] = get_note('earnings', language)
-        return json.dumps(results)
+        return results
     ret_amount_raw = soup.find('span', {'id': 'ret_amount'})
     if not ret_amount_raw:
-        results['error'] = "benefit is zero"
-        results['note'] = get_note('earnings', language)
-        return json.dumps(results)
+        results['error'] = "bad response from SSA"
+        results['note'] = get_note('down', language)
+        return results
     ret_amount = ret_amount_raw.text.split('.')[0].replace(',', '')
     base = int(ret_amount)
     if past_fra is True:
@@ -358,4 +362,4 @@ def get_retire_data(params, language):
     # # to dump json for testing:
     # with open('/tmp/ssa.json', 'w') as f:
     #     f.write(json.dumps(results))
-    return json.dumps(final_results)
+    return final_results

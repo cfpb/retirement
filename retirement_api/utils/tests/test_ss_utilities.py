@@ -8,8 +8,8 @@ import requests
 import mock
 import unittest
 
-from ..ss_utilities import get_retirement_age, get_delay_bonus, yob_test
-from ..ss_utilities import get_months_until_next_birthday, get_age_plus_months
+from ..ss_utilities import get_delay_bonus, get_months_past_birthday, yob_test
+from ..ss_utilities import get_retirement_age, get_months_until_next_birthday
 from ..ss_utilities import past_fra_test, get_current_age, age_map
 from ..ss_calculator import num_test, parse_details
 from ..ss_calculator import interpolate_benefits, get_retire_data
@@ -39,13 +39,13 @@ class UtilitiesTests(unittest.TestCase):
         'prgf': 2
     }
 
-    def test_age_plus_months(self):
+    def test_months_past_birthday(self):
         dob = datetime.date.today()-timedelta(days=365*20)
-        self.assertTrue(get_age_plus_months("{0}".format(dob)) == 0)
+        self.assertTrue(get_months_past_birthday(dob) == 0)
         dob = datetime.date.today()-timedelta(days=(365*20)+70)
-        self.assertTrue(get_age_plus_months("{0}".format(dob)) == 2)
+        self.assertTrue(get_months_past_birthday(dob) == 2)
         dob = datetime.date.today()-timedelta(days=(365*20)+320)
-        self.assertTrue(get_age_plus_months("{0}".format(dob)) == 10)
+        self.assertTrue(get_months_past_birthday(dob) == 10)
 
     def test_months_until_next_bday(self):
         today = datetime.date.today()
@@ -305,7 +305,7 @@ class UtilitiesTests(unittest.TestCase):
                         'age 68',
                         'age 69',
                         'age 70']
-        data = json.loads(get_retire_data(self.sample_params, language='en'))['data']
+        data = get_retire_data(self.sample_params, language='en')['data']
         self.assertTrue(isinstance(data, dict))
         self.assertEqual(data['params']['yob'], 1970)
         for each in data.keys():
@@ -313,74 +313,69 @@ class UtilitiesTests(unittest.TestCase):
         for each in data['benefits'].keys():
             self.assertTrue(each in benefit_keys)
         self.sample_params['yob'] = 1937
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue(isinstance(data, dict))
         self.assertEqual(data['data']['params']['yob'], 1937)
         self.assertTrue('70' in data['note'])
         self.sample_params['yob'] = today.year-21
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue("22" in data['note'])
         self.sample_params['yob'] = today.year-57
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue(data['data']['benefits']['age 62'] != 0)
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-64
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-65
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-66
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.assertTrue(data['data']['benefits']['age 66'] != 0)
         self.sample_params['yob'] = today.year-67
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-68
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-69
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['yob'] = today.year-70
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.sample_params['earnings'] = 0
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue("zero" in data['error'])
         self.sample_params['yob'] = today.year-45
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue("zero" in data['error'] or "SSA" in data['error'])
         self.sample_params['earnings'] = 100000
         self.sample_params['yob'] = today.year-68
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue("past" in data['note'])
         self.sample_params['yob'] = today.year + 1
-        data = json.loads(get_retire_data(self.sample_params, language='en'))
+        data = get_retire_data(self.sample_params, language='en')
         self.assertTrue("invalid" in data['note'])
 
     @mock.patch('retirement_api.utils.ss_calculator.requests.post')
     def test_bad_calculator_requests(self, mock_requests):
         mock_requests.return_value.ok = False
-        mock_json = get_retire_data(self.sample_params, language='en')
-        mock_results = json.loads(mock_json)
+        mock_results = get_retire_data(self.sample_params, language='en')
         self.assertTrue('not responding' in mock_results['error'])
         mock_requests.side_effect = requests.exceptions.RequestException
-        mock_json = get_retire_data(self.sample_params, language='en')
-        mock_results = json.loads(mock_json)
+        mock_results = get_retire_data(self.sample_params, language='en')
         self.assertTrue('request error' in mock_results['error'])
-        mock_json = get_retire_data(self.sample_params, language='es')
-        mock_results = json.loads(mock_json)
+        mock_results = get_retire_data(self.sample_params, language='es')
         self.assertTrue('request error' in mock_results['error'])
         mock_requests.side_effect = requests.exceptions.ConnectionError
-        mock_json = get_retire_data(self.sample_params, language='en')
-        mock_results = json.loads(mock_json)
+        mock_results = get_retire_data(self.sample_params, language='en')
         self.assertTrue('connection error' in mock_results['error'])
         mock_requests.side_effect = requests.exceptions.Timeout
-        mock_json = get_retire_data(self.sample_params, language='en')
-        mock_results = json.loads(mock_json)
+        mock_results = get_retire_data(self.sample_params, language='en')
         self.assertTrue('timed out' in mock_results['error'])
         mock_requests.side_effect = ValueError
-        mock_results = json.loads(mock_json)
+        mock_results = get_retire_data(self.sample_params, language='en')
         self.assertTrue('SSA' in mock_results['error'])

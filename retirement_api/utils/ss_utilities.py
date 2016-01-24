@@ -25,7 +25,7 @@ del Seguro Social para estudiantes y trabajadores jóvenes.\
 """
 TOO_OLD = """\
 <span class="h4">Sorry, our tool cannot provide an estimate because \
-your birthdate, %s, means you are older than 70 and are already receiving \
+your birthdate, {0}, means you are older than 70 and are already receiving \
 benefits.</span> To check your benefits based on your actual \
 earnings record, contact the Social Security Administration or \
 open a <a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
@@ -33,7 +33,7 @@ open a <a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
 """
 TOO_OLD_ES = """\
 <span class="h4">Lo sentimos. No podemos estimar sus beneficios ya que \
-la fecha de nacimiento que ingresó, %s, significa que usted \
+la fecha de nacimiento que ingresó, {0}, significa que usted \
 es mayor de 70 años de edad y posiblemente ya recibe beneficios. </span>\
 Verifique sus beneficios basados en su propio registro de ingresos \
 del Seguro Social \
@@ -87,10 +87,10 @@ def get_current_age(dob):
             return None
 
 
-def get_age_plus_months(dob):
+def get_months_past_birthday(dob):
+    """return the number of months a person is past their last birthday"""
     today = datetime.date.today()
-    DOB = parser.parse(dob)
-    months_at_birth = DOB.year*12 + DOB.month - 1
+    months_at_birth = dob.year*12 + dob.month - 1
     months_today = today.year*12 + today.month - 1
     delta = months_today - months_at_birth
     return delta % 12
@@ -168,7 +168,7 @@ def past_fra_test(dob=None, language='en'):
         return 'invalid birth date entered'
     today = datetime.date.today()
     current_age = get_current_age(dob)
-    months_plus = get_age_plus_months(dob)
+    months_plus = get_months_past_birthday(DOB)
     if DOB >= today:
         return 'invalid birth year entered'
     # SSA has a special rule for people born on Jan. 1
@@ -179,15 +179,12 @@ def past_fra_test(dob=None, language='en'):
         fra_tuple = get_retirement_age(DOB.year)
     fra_year = fra_tuple[0]
     fra_month = fra_tuple[1]
-    months_at_birth = DOB.year*12 + DOB.month - 1
-    months_today = today.year*12 + today.month - 1
-    delta = months_today - months_at_birth
-    age_tuple = (current_age, (delta % 12))
-    print "age_tuple: %s; fra_tuple: %s" % (age_tuple, fra_tuple)
+    age_tuple = (current_age, get_months_past_birthday(DOB))
+    # print "age_tuple: %s; fra_tuple: %s" % (age_tuple, fra_tuple)
     if age_tuple[0] < 22:
         return get_note('too_young', language)
     if age_tuple[0] > 70:
-        return get_note('too_old', language) % DOB.strftime("%m/%d/%Y")
+        return get_note('too_old', language).format(DOB.strftime("%m/%d/%Y"))
     if age_tuple[0] > fra_tuple[0]:
         return True
     elif age_tuple[0] < fra_tuple[0]:
