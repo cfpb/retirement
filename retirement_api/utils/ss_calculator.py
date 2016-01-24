@@ -33,6 +33,7 @@ import dateutil
 from bs4 import BeautifulSoup as bs
 from .ss_utilities import get_retirement_age, get_current_age, past_fra_test
 from .ss_utilities import get_months_until_next_birthday
+from .ss_utilities import get_months_past_birthday
 
 TIMEOUT_SECONDS = 20
 
@@ -120,25 +121,18 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
     BENS = results['data']['benefits']
     today = datetime.date.today()
     current_year_bd = datetime.date(today.year, DOB.month, DOB.day)
-    fra = fra_tuple[0]  # could be 66 + x number of months, or 67
-    diff_forward = 12 - fra_tuple[1]
-
-    if today > current_year_bd:
-        diff_back = 12 + fra_tuple[1]
-    elif today < current_year_bd:
-        if current_age == fra_tuple[0] - 1:
-            diff_back = DOB.month + fra_tuple[1] - today.month
-        else:
-            diff_back = 12 + fra_tuple[1]
-    if diff_back < 1:
-        diff_back = 1
-    if DOB.day == 2:
-        diff_back += 1  # born-on-2nd edge case: GHE issue 79
-
+    months_past_birthday = get_months_past_birthday(DOB)
+    (fra, fra_months) = fra_tuple
+    # the first step can be affected by the full-retirement-age months value
+    initial_step_forward = 12 - fra_months
+    initial_step_back = 12 + fra_months
+    # for people whose current age is withing the graph,
+    # the final reduction depends on the subject's current age
+    final_step_back = 12 - months_past_birthday
     # fill out the missing years, working backward and forward from the FRA
-    if fra == 67:
+    if fra == 67:  # subject is 56 or younger, so age is not within the graph
         base = BENS['age 67']
-        if DOB.day == 2:
+        if DOB.day == 2:  # the born-on-the-2nd edge case
             BENS['age 62'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
                                        base*(2*12*EARLIER_PENALTY)))
         else:
@@ -152,42 +146,58 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
         BENS['age 68'] = int(round(base + (base * ANNUAL_BONUS)))
         BENS['age 69'] = int(round(base + (2 * (base * ANNUAL_BONUS))))
         BENS['age 70'] = int(round(base + (3 * (base * ANNUAL_BONUS))))
-    elif fra == 66 and current_age < 66:
+    elif fra == 66:  # DOB is 1/1/1960 or before
         base = BENS['age 66']
         annual_bump = round(base * ANNUAL_BONUS)
         monthly_bump = base * MONTHLY_BONUS
-        first_bump = round(monthly_bump * diff_forward)
+        first_bump = round(monthly_bump * initial_step_forward)
         monthly_penalty = base * EARLY_PENALTY
-        bigger_monthly_penalty = base * EARLIER_PENALTY
-        first_penalty = round(monthly_penalty * diff_back)
-        BENS['age 67'] = base + first_bump
-        BENS['age 68'] = base + first_bump + annual_bump
-        BENS['age 69'] = base + first_bump + (2 * annual_bump)
-        BENS['age 70'] = base + first_bump + (3 * annual_bump)
+        earlier_monthly_penalty = base * EARLIER_PENALTY
+        dob_month_delta = 12 - get_months_past_birthday(DOB)
+        BENS['age 67'] = int(base + first_bump)
+        BENS['age 68'] = int(base + first_bump + annual_bump)
+        BENS['age 69'] = int(base + first_bump + (2 * annual_bump))
+        BENS['age 70'] = int(base + first_bump + (3 * annual_bump))
         if current_age == 65:
-            # FRA is 66; need to fill in 65
             BENS['age 62'] = 0
             BENS['age 63'] = 0
             BENS['age 64'] = 0
-            BENS['age 65'] = base - first_penalty
+            BENS['age 65'] = int(round(base - (monthly_penalty *
+                                               dob_month_delta)))
         elif current_age == 64:
-            # FRA is 66; need to fill in 64 and 65
             BENS['age 62'] = 0
             BENS['age 63'] = 0
-            BENS['age 64'] = base - first_penalty - (12 * monthly_penalty)
-            BENS['age 65'] = base - first_penalty
+            BENS['age 64'] = int(round(base -
+                                       (12 * monthly_penalty) -
+                                       (dob_month_delta * monthly_penalty)))
+            BENS['age 65'] = int(round(base - (12 * monthly_penalty)))
         elif current_age == 63:
-            # FRA is 66; need to fill in 63, 64 and 65
             BENS['age 62'] = 0
-            BENS['age 63'] = base - first_penalty - (24 * monthly_penalty)
-            BENS['age 64'] = base - first_penalty - (12 * monthly_penalty)
-            BENS['age 65'] = base - first_penalty
-        elif current_age in range(55, 63):
-            # ages 55 to 62: FRA is 66; need to fill in 62, 63, 64 and 65
-            BENS['age 62'] = base - first_penalty - (24 * monthly_penalty) - (12 * bigger_monthly_penalty)
-            BENS['age 63'] = base - first_penalty - (24 * monthly_penalty)
-            BENS['age 64'] = base - first_penalty - (12 * monthly_penalty)
-            BENS['age 65'] = base - first_penalty
+            BENS['age 63'] = int(round(base -
+                                       (2 * 12 * monthly_penalty) -
+                                       (dob_month_delta * monthly_penalty)))
+            BENS['age 64'] = int(round(base - (2 * 12 * monthly_penalty)))
+            BENS['age 65'] = int(round(base - (1 * 12 * monthly_penalty)))
+        elif current_age == 62:
+            BENS['age 62'] = int(round(base -
+                                       (3 * 12 * monthly_penalty) -
+                                       (dob_month_delta *
+                                        earlier_monthly_penalty)))
+            BENS['age 63'] = int(round(base - (3 * 12 * monthly_penalty)))
+            BENS['age 64'] = int(round(base - (2 * 12 * monthly_penalty)))
+            BENS['age 65'] = int(round(base - (1 * 12 * monthly_penalty)))
+        elif current_age in range(55, 62):
+            if DOB.day == 2:
+                BENS['age 62'] = int(round(base -
+                                           (3 * 12 * monthly_penalty) -
+                                           (12 * earlier_monthly_penalty)))
+            else:
+                BENS['age 62'] = int(round(base -
+                                           (3 * 12 * monthly_penalty) -
+                                           (11 * earlier_monthly_penalty)))
+            BENS['age 63'] = int(round(base - (3 * 12 * monthly_penalty)))
+            BENS['age 64'] = int(round(base - (2 * 12 * monthly_penalty)))
+            BENS['age 65'] = int(round(base - (1 * 12 * monthly_penalty)))
     return results
 
 
@@ -279,6 +289,22 @@ def set_up_runvars(params):
     return dob, dobstring, current_age, fra_tuple, results
 
 
+def parse_response(results, html, language):
+    soup = bs(html, 'lxml')
+    if soup.find('p') and 'insufficient to receive' in soup.find('p').text:
+        results['error'] = "benefit is zero"
+        results['note'] = get_note('earnings', language)
+        return (results, 0)
+    ret_amount_raw = soup.find('span', {'id': 'ret_amount'})
+    if not ret_amount_raw:
+        results['error'] = "bad response from SSA"
+        results['note'] = get_note('down', language)
+        return (results, 0)
+    ret_amount = ret_amount_raw.text.split('.')[0].replace(',', '')
+    base = int(ret_amount)
+    return (results, base)
+
+
 def get_retire_data(params, language):
     """
     Get a base full-retirement-age benefit from SSA's Quick Calculator
@@ -338,26 +364,24 @@ def get_retire_data(params, language):
     if not req.ok:
         results['error'] = "SSA's website is not responding.\
                             Status code: {0} ({1})".format(req.status_code,
-                                                            req.reason)
+                                                           req.reason)
         results['note'] = get_note('down', language)
         return results
-    soup = bs(req.text, 'lxml')
-    if soup.find('p') and 'insufficient to receive' in soup.find('p').text:
-        results['error'] = "benefit is zero"
-        results['note'] = get_note('earnings', language)
+    (results, base) = parse_response(results, req.text, language)
+    if results['error']:
         return results
-    ret_amount_raw = soup.find('span', {'id': 'ret_amount'})
-    if not ret_amount_raw:
-        results['error'] = "bad response from SSA"
-        results['note'] = get_note('down', language)
-        return results
-    ret_amount = ret_amount_raw.text.split('.')[0].replace(',', '')
-    base = int(ret_amount)
     if past_fra is True:
-        final_results = interpolate_for_past_fra(results, base, current_age, dob)
+        final_results = interpolate_for_past_fra(results,
+                                                 base,
+                                                 current_age,
+                                                 dob)
     else:
         results['data']['benefits']['age {0}'.format(fra_tuple[0])] = base
-        final_results = interpolate_benefits(results, base, fra_tuple, current_age, dob)
+        final_results = interpolate_benefits(results,
+                                             base,
+                                             fra_tuple,
+                                             current_age,
+                                             dob)
     print "script took {0} to run".format((datetime.datetime.now() - starter))
     # # to dump json for testing:
     # with open('/tmp/ssa.json', 'w') as f:

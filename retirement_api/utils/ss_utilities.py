@@ -69,22 +69,24 @@ with open(datafile, 'r') as f:
 
 def get_current_age(dob):
     today = datetime.date.today()
-    try:
-        DOB = parser.parse(dob).date()
-    except:
-        return None
+    if type(dob) == datetime.date:
+        DOB = dob
     else:
-        if DOB and DOB < today:
-            try:  # when dob is 2/29 and the current year is not a leap year
-                birthday = DOB.replace(year=today.year)
-            except ValueError:
-                birthday = DOB.replace(year=today.year, day=DOB.day-1)
-            if birthday > today:
-                return today.year - DOB.year - 1
-            else:
-                return today.year - DOB.year
-        else:
+        try:
+            DOB = parser.parse(dob).date()
+        except:
             return None
+    if DOB < today:
+        try:  # when dob is 2/29 and the current year is not a leap year
+            birthday = DOB.replace(year=today.year)
+        except ValueError:
+            birthday = DOB.replace(year=today.year, day=DOB.day-1)
+        if birthday > today:
+            return today.year - DOB.year - 1
+        else:
+            return today.year - DOB.year
+    else:
+        return None
 
 
 def get_months_past_birthday(dob):
