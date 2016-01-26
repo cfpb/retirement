@@ -114,7 +114,7 @@ def estimator(request, dob=None, income=None, language='en'):
     ssa_params['yob'] = DOB.year
     ssa_params['earnings'] = income
     data = get_retire_data(ssa_params, language)
-    return HttpResponse(data, content_type='application/json')
+    return HttpResponse(json.dumps(data), content_type='application/json')
 
 
 def get_full_retirement_age(request, birth_year):
