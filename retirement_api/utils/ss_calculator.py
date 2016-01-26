@@ -18,11 +18,10 @@ Optional inputs that SSA allows, but we're not using:
 - Benefit in inflated dollars; we're using default of current-year dollars
 
 Outputs:
-- a json file of benefit data and any error messages
+- a python dictionary of benefit data and error messages
 """
 import re
 import requests
-import json
 import datetime
 import math
 import lxml
@@ -385,7 +384,4 @@ def get_retire_data(params, language):
                                              current_age,
                                              dob)
     print "script took {0} to run".format((datetime.datetime.now() - starter))
-    # # to dump json for testing:
-    # with open('/tmp/ssa.json', 'w') as f:
-    #     f.write(json.dumps(results))
     return final_results
