@@ -39,11 +39,11 @@ class UtilitiesTests(unittest.TestCase):
     }
 
     def test_months_past_birthday(self):
-        dob = self.today-timedelta(days=365*20)
+        dob = self.today-timedelta(days=(365 * 20) + 6)
         self.assertTrue(get_months_past_birthday(dob) == 0)
-        dob = self.today-timedelta(days=(365*20)+70)
+        dob = self.today-timedelta(days=(365 * 20) + 70)
         self.assertTrue(get_months_past_birthday(dob) == 2)
-        dob = self.today-timedelta(days=(365*20)+320)
+        dob = self.today-timedelta(days=(365 * 20) + 320)
         self.assertTrue(get_months_past_birthday(dob) == 10)
 
     def test_months_until_next_bday(self):
@@ -83,6 +83,7 @@ class UtilitiesTests(unittest.TestCase):
                                               },
                                  'params': self.sample_params,
                                  'disability': '',
+                                 'months_past_birthday': 0,
                                  'survivor benefits': {
                                         'child': '',
                                         'spouse caring for child': '',
@@ -96,7 +97,7 @@ class UtilitiesTests(unittest.TestCase):
                         'past_fra': False,
                         }
         benefits = {
-            'age 62': 1602,
+            'age 62': 1592,
             'age 63': 1696,
             'age 64': 1809,
             'age 65': 1960,
@@ -104,7 +105,7 @@ class UtilitiesTests(unittest.TestCase):
             'age 67': 2261,
             'age 68': 2442,
             'age 69': 2623,
-            'age 70': 2804,
+            'age 70': 2804
             }
         dob = self.today - datetime.timedelta(days=365*44)
         # results, base, fra_tuple, current_age, DOB
@@ -199,7 +200,7 @@ class UtilitiesTests(unittest.TestCase):
         self.assertTrue(past_fra_test(ok, language='en') == False)
         self.assertTrue("22" in past_fra_test(too_young, language='en'))
         self.assertTrue("sentimos" in past_fra_test(too_young, language='es'))
-        self.assertTrue("invalid birth" in past_fra_test(future, language='en'))
+        self.assertTrue("22" in past_fra_test(future, language='en'))
         self.assertTrue("70" in past_fra_test(way_old, language='en'))
         self.assertTrue(past_fra_test(edge, language='en') == True)
         self.assertTrue("invalid" in past_fra_test(invalid, language='en'))
@@ -285,6 +286,7 @@ class UtilitiesTests(unittest.TestCase):
                      u'benefits',
                      u'params',
                      u'disability',
+                     u'months_past_birthday',
                      u'survivor benefits']
         benefit_keys = ['age 62',
                         'age 63',
@@ -348,7 +350,7 @@ class UtilitiesTests(unittest.TestCase):
         self.assertTrue("past" in data['note'])
         self.sample_params['yob'] = self.today.year + 1
         data = get_retire_data(self.sample_params, language='en')
-        self.assertTrue("invalid" in data['note'])
+        self.assertTrue("22" in data['note'])
 
     @mock.patch('retirement_api.utils.ss_calculator.requests.post')
     def test_bad_calculator_requests(self, mock_requests):
