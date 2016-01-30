@@ -11,7 +11,7 @@ import unittest
 from ..ss_utilities import get_delay_bonus, get_months_past_birthday, yob_test
 from ..ss_utilities import get_retirement_age, get_months_until_next_birthday
 from ..ss_utilities import past_fra_test, get_current_age, age_map
-from ..ss_calculator import num_test, parse_details
+from ..ss_calculator import num_test, parse_details, clean_comment
 from ..ss_calculator import interpolate_benefits, get_retire_data
 from ..check_api import TimeoutError
 
@@ -37,6 +37,11 @@ class UtilitiesTests(unittest.TestCase):
         'dollars': 1,
         'prgf': 2
     }
+
+    def test_clean_comment(self):
+        test_comment = '<!-- This is a test comment    -->'
+        expected_comment = 'This is a test comment'
+        self.assertTrue(clean_comment(test_comment) == expected_comment)
 
     def test_months_past_birthday(self):
         dob = self.today-timedelta(days=(365 * 20) + 6)
