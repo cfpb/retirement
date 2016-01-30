@@ -171,56 +171,51 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
         elif current_age == 64:
             BENS['age 62'] = 0
             BENS['age 63'] = 0
-            BENS['age 64'] = int(round(base - first_penalty -
+            BENS['age 64'] = int(round(base -
+                                       first_penalty -
                                        (dob_month_delta * monthly_penalty)))
-            BENS['age 65'] = int(round(base -
-                                       (initial_step_back * monthly_penalty)))
+            BENS['age 65'] = int(round(base - first_penalty))
         elif current_age == 63:
             BENS['age 62'] = 0
             BENS['age 63'] = int(round(base -
-                                       (initial_step_back * monthly_penalty) -
+                                       first_penalty -
                                        (12 * monthly_penalty) -
                                        (dob_month_delta * monthly_penalty)))
             BENS['age 64'] = int(round(base -
-                                       (initial_step_back * monthly_penalty) -
+                                       first_penalty -
                                        (12 * monthly_penalty)))
-            BENS['age 65'] = int(round(base -
-                                       (initial_step_back * monthly_penalty)))
+            BENS['age 65'] = int(round(base - first_penalty))
         elif current_age == 62:
             BENS['age 62'] = int(round(base -
-                                       (initial_step_back * monthly_penalty) -
+                                       first_penalty -
                                        (2 * 12 * monthly_penalty) -
                                        (dob_month_delta *
                                         earlier_monthly_penalty)))
             BENS['age 63'] = int(round(base -
-                                       (initial_step_back * monthly_penalty) -
+                                       first_penalty -
                                        (2 * 12 * monthly_penalty)))
             BENS['age 64'] = int(round(base -
-                                       (initial_step_back * monthly_penalty) -
+                                       first_penalty -
                                        (12 * monthly_penalty)))
-            BENS['age 65'] = int(round(base -
-                                       (initial_step_back * monthly_penalty)))
+            BENS['age 65'] = int(round(base - first_penalty))
         elif current_age in range(55, 62):
             if DOB.day == 2:
                 BENS['age 62'] = int(round(base -
-                                           (initial_step_back *
-                                            monthly_penalty) -
+                                           first_penalty -
                                            (2 * 12 * monthly_penalty) -
                                            (12 * earlier_monthly_penalty)))
             else:
                 BENS['age 62'] = int(round(base -
-                                           (initial_step_back *
-                                            monthly_penalty) -
+                                           first_penalty -
                                            (2 * 12 * monthly_penalty) -
                                            (11 * earlier_monthly_penalty)))
             BENS['age 63'] = int(round(base -
-                                       (initial_step_back * monthly_penalty) -
+                                       first_penalty -
                                        (2 * 12 * monthly_penalty)))
             BENS['age 64'] = int(round(base -
-                                       (initial_step_back * monthly_penalty) -
+                                       first_penalty -
                                        (12 * monthly_penalty)))
-            BENS['age 65'] = int(round(base -
-                                       (initial_step_back * monthly_penalty)))
+            BENS['age 65'] = int(round(base - first_penalty))
     return results
 
 
