@@ -47,7 +47,6 @@ class UtilitiesTests(unittest.TestCase):
         dob = self.today-timedelta(days=(365 * 20) + 6)
         self.assertTrue(get_months_past_birthday(dob) in [0, 1])
         dob = self.today-timedelta(days=(365 * 20) + 70)
-        print "months past birthday is {}".format(get_months_past_birthday(dob))
         self.assertTrue(get_months_past_birthday(dob) in [2, 3])
         dob = self.today-timedelta(days=(365 * 20) + 320)
         self.assertTrue(get_months_past_birthday(dob) in [10, 11])
