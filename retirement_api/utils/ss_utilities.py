@@ -172,7 +172,7 @@ def past_fra_test(dob=None, language='en'):
     current_age = get_current_age(dob)
     months_plus = get_months_past_birthday(DOB)
     if DOB >= today:
-        return 'invalid birth year entered'
+        return get_note('too_young', language)
     # SSA has a special rule for people born on Jan. 1
     # http://www.socialsecurity.gov/OACT/ProgData/nra.html
     if DOB.month == 1 and DOB.day == 1:

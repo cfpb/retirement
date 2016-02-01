@@ -132,16 +132,20 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
     if fra == 67:  # subject is 56 or younger, so age is not within the graph
         base = BENS['age 67']
         if DOB.day == 2:  # the born-on-the-2nd edge case
-            BENS['age 62'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
-                                       base*(2*12*EARLIER_PENALTY)))
+            BENS['age 62'] = int(round(base -
+                                       base * (3 * 12 * EARLY_PENALTY) -
+                                       base * (2 * 12 * EARLIER_PENALTY)))
         else:
-            BENS['age 62'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
-                                           base*(2*11*EARLIER_PENALTY)))
-        BENS['age 63'] = int(round(base - base*(3*12*(EARLY_PENALTY)) -
-                                       base*(1*12*EARLIER_PENALTY)))
-        BENS['age 64'] = int(round(base - base*(3*12*(EARLY_PENALTY))))
-        BENS['age 65'] = int(round(base - base*(2*12*(EARLY_PENALTY))))
-        BENS['age 66'] = int(round(base - base*(1*12*(EARLY_PENALTY))))
+            BENS['age 62'] = int(round(base -
+                                       base * (3 * 12 * EARLY_PENALTY) -
+                                       base * (12 * EARLIER_PENALTY) -
+                                       base * (11 * EARLIER_PENALTY)))
+        BENS['age 63'] = int(round(base -
+                                   base * (3 * 12 * EARLY_PENALTY) -
+                                   base * (12 * EARLIER_PENALTY)))
+        BENS['age 64'] = int(round(base - base * (3 * 12 * EARLY_PENALTY)))
+        BENS['age 65'] = int(round(base - base * (2 * 12 * EARLY_PENALTY)))
+        BENS['age 66'] = int(round(base - base * (1 * 12 * EARLY_PENALTY)))
         BENS['age 68'] = int(round(base + (base * ANNUAL_BONUS)))
         BENS['age 69'] = int(round(base + (2 * (base * ANNUAL_BONUS))))
         BENS['age 70'] = int(round(base + (3 * (base * ANNUAL_BONUS))))
@@ -153,6 +157,7 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
         monthly_penalty = base * EARLY_PENALTY
         earlier_monthly_penalty = base * EARLIER_PENALTY
         dob_month_delta = 12 - get_months_past_birthday(DOB)
+        first_penalty = initial_step_back * monthly_penalty
         BENS['age 67'] = int(base + first_bump)
         BENS['age 68'] = int(base + first_bump + annual_bump)
         BENS['age 69'] = int(base + first_bump + (2 * annual_bump))
@@ -161,42 +166,56 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
             BENS['age 62'] = 0
             BENS['age 63'] = 0
             BENS['age 64'] = 0
-            BENS['age 65'] = int(round(base - (monthly_penalty *
-                                               dob_month_delta)))
+            BENS['age 65'] = int(round(base -
+                                       (dob_month_delta * monthly_penalty)))
         elif current_age == 64:
             BENS['age 62'] = 0
             BENS['age 63'] = 0
             BENS['age 64'] = int(round(base -
-                                       (12 * monthly_penalty) -
+                                       first_penalty -
                                        (dob_month_delta * monthly_penalty)))
-            BENS['age 65'] = int(round(base - (12 * monthly_penalty)))
+            BENS['age 65'] = int(round(base - first_penalty))
         elif current_age == 63:
             BENS['age 62'] = 0
             BENS['age 63'] = int(round(base -
-                                       (2 * 12 * monthly_penalty) -
+                                       first_penalty -
+                                       (12 * monthly_penalty) -
                                        (dob_month_delta * monthly_penalty)))
-            BENS['age 64'] = int(round(base - (2 * 12 * monthly_penalty)))
-            BENS['age 65'] = int(round(base - (1 * 12 * monthly_penalty)))
+            BENS['age 64'] = int(round(base -
+                                       first_penalty -
+                                       (12 * monthly_penalty)))
+            BENS['age 65'] = int(round(base - first_penalty))
         elif current_age == 62:
             BENS['age 62'] = int(round(base -
-                                       (3 * 12 * monthly_penalty) -
+                                       first_penalty -
+                                       (2 * 12 * monthly_penalty) -
                                        (dob_month_delta *
                                         earlier_monthly_penalty)))
-            BENS['age 63'] = int(round(base - (3 * 12 * monthly_penalty)))
-            BENS['age 64'] = int(round(base - (2 * 12 * monthly_penalty)))
-            BENS['age 65'] = int(round(base - (1 * 12 * monthly_penalty)))
+            BENS['age 63'] = int(round(base -
+                                       first_penalty -
+                                       (2 * 12 * monthly_penalty)))
+            BENS['age 64'] = int(round(base -
+                                       first_penalty -
+                                       (12 * monthly_penalty)))
+            BENS['age 65'] = int(round(base - first_penalty))
         elif current_age in range(55, 62):
             if DOB.day == 2:
                 BENS['age 62'] = int(round(base -
-                                           (3 * 12 * monthly_penalty) -
+                                           first_penalty -
+                                           (2 * 12 * monthly_penalty) -
                                            (12 * earlier_monthly_penalty)))
             else:
                 BENS['age 62'] = int(round(base -
-                                           (3 * 12 * monthly_penalty) -
+                                           first_penalty -
+                                           (2 * 12 * monthly_penalty) -
                                            (11 * earlier_monthly_penalty)))
-            BENS['age 63'] = int(round(base - (3 * 12 * monthly_penalty)))
-            BENS['age 64'] = int(round(base - (2 * 12 * monthly_penalty)))
-            BENS['age 65'] = int(round(base - (1 * 12 * monthly_penalty)))
+            BENS['age 63'] = int(round(base -
+                                       first_penalty -
+                                       (2 * 12 * monthly_penalty)))
+            BENS['age 64'] = int(round(base -
+                                       first_penalty -
+                                       (12 * monthly_penalty)))
+            BENS['age 65'] = int(round(base - first_penalty))
     return results
 
 
@@ -262,6 +281,7 @@ def set_up_runvars(params):
     for age in chart_ages:
         benefits["age {0}".format(age)] = 0
     results = {'data': {
+                    'months_past_birthday': get_months_past_birthday(dob),
                     'early retirement age': '',
                     'full retirement age': '',
                     'benefits': benefits,
@@ -308,10 +328,11 @@ def get_retire_data(params, language):
     """
     Get a base full-retirement-age benefit from SSA's Quick Calculator
     and interpolate benefits for other claiming ages, handling edge cases:
-        - those born on Jan. 1 (see http://www.socialsecurity.gov/OACT/ProgData/nra.html)
-        - those born on 2nd day of any month (interpolator adds a month to reductions)
+        - those born on Jan. 1 -- see http://www.socialsecurity.gov/OACT/ProgData/nra.html
+        - those born on 1st day of amy month -- considered to be born the previous month
+        - those born on 2nd day of any month -- interpolator adds a month to reductions
         - those past full retirement age
-        - ages outside the parameters of our tool (< 22 or > 70)
+        - ages outside the parameters of our tool -- < 22 or > 70
         - users who enter earnings too low for benefits
         - dobs in 1950 that the Quick Calculator improperly treats as past FRA.
     """
