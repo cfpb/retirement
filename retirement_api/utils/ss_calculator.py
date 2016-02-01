@@ -73,15 +73,15 @@ chart_ages = range(62, 71)
 
 comment = re.compile(r"<!--[\s\S]*?-->")  # regex for parsing indexing data
 
+
+def clean_comment(comment):
+    return comment.replace('<!--', '').replace('-->', '').strip()
+
 # calculation constants
 EARLY_PENALTY = 0.00555555  # monthly penalty for months closest to FRA
 EARLIER_PENALTY = 0.004166666  # monthly penalty for earliest claiming ages
 MONTHLY_BONUS = 0.00667  # bonus value for each month's delay past FRA
 ANNUAL_BONUS = 0.08  # annual bonus value for each year's delay past FRA
-
-
-def clean_comment(comment):
-    return comment.replace('<!--', '').replace('-->', '').strip()
 
 
 def num_test(value=''):
@@ -123,11 +123,11 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
     months_past_birthday = get_months_past_birthday(DOB)
     (fra, fra_months) = fra_tuple
     # the first step can be affected by the full-retirement-age months value
-    initial_step_forward = 12 - fra_months
-    initial_step_back = 12 + fra_months
+    initial_months_forward = 12 - fra_months
+    initial_months_back = 12 + fra_months  # months to apply the bigger penalty
     # for people whose current age is withing the graph,
     # the final reduction depends on the subject's current age
-    final_step_back = 12 - months_past_birthday
+    final_months_back = 12 - months_past_birthday
     # fill out the missing years, working backward and forward from the FRA
     if fra == 67:  # subject is 56 or younger, so age is not within the graph
         base = BENS['age 67']
@@ -153,11 +153,11 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
         base = BENS['age 66']
         annual_bump = round(base * ANNUAL_BONUS)
         monthly_bump = base * MONTHLY_BONUS
-        first_bump = round(monthly_bump * initial_step_forward)
+        first_bump = round(monthly_bump * initial_months_forward)
         monthly_penalty = base * EARLY_PENALTY
         earlier_monthly_penalty = base * EARLIER_PENALTY
         dob_month_delta = 12 - get_months_past_birthday(DOB)
-        first_penalty = initial_step_back * monthly_penalty
+        first_penalty = initial_months_back * monthly_penalty
         BENS['age 67'] = int(base + first_bump)
         BENS['age 68'] = int(base + first_bump + annual_bump)
         BENS['age 69'] = int(base + first_bump + (2 * annual_bump))
@@ -202,16 +202,23 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
             if DOB.day == 2:
                 BENS['age 62'] = int(round(base -
                                            first_penalty -
-                                           (2 * 12 * monthly_penalty) -
+                                           (12 * monthly_penalty) -
+                                           ((12 - fra_months) * monthly_penalty) -
+                                           (fra_months * earlier_monthly_penalty) -
                                            (12 * earlier_monthly_penalty)))
             else:
                 BENS['age 62'] = int(round(base -
                                            first_penalty -
-                                           (2 * 12 * monthly_penalty) -
+                                           (12 * monthly_penalty) -
+                                           ((12 - fra_months) * monthly_penalty) -
+                                           (fra_months * earlier_monthly_penalty) -
                                            (11 * earlier_monthly_penalty)))
             BENS['age 63'] = int(round(base -
                                        first_penalty -
-                                       (2 * 12 * monthly_penalty)))
+                                       (12 * monthly_penalty) -
+                                       ((12 - fra_months) * monthly_penalty) -
+                                       (fra_months * earlier_monthly_penalty)
+                                       ))
             BENS['age 64'] = int(round(base -
                                        first_penalty -
                                        (12 * monthly_penalty)))
