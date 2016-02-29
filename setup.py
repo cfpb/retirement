@@ -48,7 +48,7 @@ class bdist_egg(_bdist_egg):
 
 setup(
     name='retirement',
-    version='0.4.53',
+    version='0.4.56',
     author='CFPB',
     author_email='tech@cfpb.gov',
     maintainer='cfpb',

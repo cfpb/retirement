@@ -1,6 +1,9 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 0.4.56
+- fix prorating in edge cases
+
 ## 0.4.53
 - fixed handling of edge case: display of age-62 graph bar when birth date = 1/2/1952
 
