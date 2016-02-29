@@ -1,6 +1,9 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 0.4.57
+- fix tests should they happen to run on leap day (Edgehog Day)
+
 ## 0.4.56
 - fix prorating in edge cases
 

@@ -25,6 +25,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 class UtilitiesTests(unittest.TestCase):
     today = datetime.date.today()
+    if today.day == 29:
+        today = today.replace(day=today.day - 1)
     sample_params = {
         'dobmon': 1,
         'dobday': 1,
@@ -53,23 +55,25 @@ class UtilitiesTests(unittest.TestCase):
 
     def test_months_until_next_bday(self):
         age40 = self.today.replace(year=(self.today.year - 40))
-        bd_one_day_later = age40 + datetime.timedelta(days=1)
+        bd_two_days_later = age40 + datetime.timedelta(days=2)
         bd_month_later = age40 + datetime.timedelta(days=30)
         diff1 = get_months_until_next_birthday(age40)
-        diff2 = get_months_until_next_birthday(bd_one_day_later)
+        diff2 = get_months_until_next_birthday(bd_two_days_later)
         diff3 = get_months_until_next_birthday(bd_month_later)
         self.assertTrue(diff1 == 12)
         self.assertTrue(diff2 in [0, 1])
         self.assertTrue(diff3 in [1, 2])
 
     def test_get_current_age(self):
+        if self.today.day == 29:
+            self.today.day = self.today.day -1
         age_pairs = [(self.today.replace(year=self.today.year - 1), 1),
                      ('{0}'.format(self.today.replace(year=self.today.year - 1)), 1),
                      (self.today.replace(year=self.today.year - 20), 20),
                      (self.today.replace(year=self.today.year - 60), 60),
-                     (self.today, None),
+                     (self.today, 0),
                      ('xx', None),
-                     (self.today + datetime.timedelta(days=1), None)]
+                     (self.today + datetime.timedelta(days=2), None)]
         for pair in age_pairs:
             self.assertEqual(get_current_age(pair[0]), pair[1])
 
