@@ -71,7 +71,7 @@ class UtilitiesTests(unittest.TestCase):
                      ('{0}'.format(self.today.replace(year=self.today.year - 1)), 1),
                      (self.today.replace(year=self.today.year - 20), 20),
                      (self.today.replace(year=self.today.year - 60), 60),
-                     (self.today, 0),
+                     (self.today, None),
                      ('xx', None),
                      (self.today + datetime.timedelta(days=2), None)]
         for pair in age_pairs:

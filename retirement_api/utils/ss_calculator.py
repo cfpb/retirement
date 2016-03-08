@@ -66,7 +66,8 @@ def get_note(note_type, language):
     else:
         return ERROR_NOTES[note_type]['en']
 
-base_url = "https://www.socialsecurity.gov"
+# base_url = "https://www.socialsecurity.gov"
+base_url = "https://www.ssa.gov"
 quick_url = "{0}/OACT/quickcalc/".format(base_url)  # where users go; not needed here
 result_url = "{0}/cgi-bin/benefit6.cgi".format(base_url)
 chart_ages = range(62, 71)
