@@ -1,6 +1,9 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 0.4.58
+- switch back to ssa.gov for our requests, after SSA started redirecting calls to socialsecurity.gov
+
 ## 0.4.57
 - fix tests should they happen to run on leap day (Edgehog Day)
 
