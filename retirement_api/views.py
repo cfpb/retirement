@@ -4,8 +4,8 @@ import json
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import Http404, HttpResponse, HttpResponseBadRequest
-from utils.ss_calculator import get_retire_data
-from utils.ss_utilities import get_retirement_age
+from .utils.ss_calculator import get_retire_data
+from .utils.ss_utilities import get_retirement_age
 from dateutil import parser
 import datetime
 from retirement_api.models import Step, AgeChoice, Page, Tooltip, Question
