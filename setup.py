@@ -53,7 +53,7 @@ setup(
     author_email='tech@cfpb.gov',
     maintainer='cfpb',
     maintainer_email='tech@cfpb.gov',
-    packages=['retirement_api'],
+    packages=['retirement_api','retirement_api.utils'],
     include_package_data=True,
     description=u'Retirement app and api',
     classifiers=[
