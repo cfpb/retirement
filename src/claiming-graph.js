@@ -337,6 +337,7 @@ function setTextByAge() {
     var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + selectedAge] ) / SSData['age' + SSData.fullAge];
     percent = Math.abs( Math.round( percent * 100 ) );
     $( '.benefit-modification-text' ).html( gettext('<strong>reduces</strong> your monthly benefit by&nbsp;<strong>') + percent + '</strong>%' );
+    $( '.compared-to-full' ).html( 'Compared to claiming at your full benefit claiming age.' );
     $( '.compared-to-full' ).show();
   }
   else if ( selectedAge > SSData.fullAge ) {
@@ -345,6 +346,8 @@ function setTextByAge() {
     $( '.benefit-modification-text' ).html( gettext('<strong>increases</strong> your benefit by&nbsp;<strong>') + percent + '</strong>%' );
     if ( SSData.past_fra ) {
       $( '.compared-to-full' ).html( 'Compared to claiming at ' + SSData.fullAge + '.' );
+    } else {
+      $( '.compared-to-full' ).html( 'Compared to claiming at your full benefit claiming age.' );
     }
     $( '.compared-to-full' ).show();
   }
