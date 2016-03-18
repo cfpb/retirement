@@ -27,7 +27,9 @@
     "69": "69 años",
     "70": "70 años",
     "<strong>increases</strong> your benefit by&nbsp;<strong>": "de edad, su beneficio <strong>aumentará</strong> un&nbsp;",
-    "<strong>reduces</strong> your monthly benefit by&nbsp;<strong>": "de edad, su beneficio se <strong>reducirá</strong> un&nbsp;"
+    "<strong>reduces</strong> your monthly benefit by&nbsp;<strong>": "de edad, su beneficio se <strong>reducirá</strong> un&nbsp;",
+    "Compared to claiming at your full benefit claiming age.": "en comparación con su plena edad de jubilación.",
+    "Compared to claiming at": "en comparación con"
   }
 
   django.gettext = function (msgid) {

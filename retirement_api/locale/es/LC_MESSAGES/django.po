@@ -703,3 +703,15 @@ msgstr "https://www.ssa.gov/OACT/quickcalc/faqs-esp.html"
 msgid "Before You Claim"
 msgstr "Antes de solicitar"
 
+#: 
+msgid "YYYY"
+msgstr "AAAA"
+
+#: 
+msgid "DD"
+msgstr "DD"
+
+#: 
+msgid "MM"
+msgstr "MM"
+
