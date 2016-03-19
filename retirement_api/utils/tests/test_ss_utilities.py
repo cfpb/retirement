@@ -2,17 +2,28 @@ import os
 import sys
 import json
 import datetime
+from copy import copy
 from datetime import timedelta
 
 import requests
 import mock
 import unittest
 
-from ..ss_utilities import get_delay_bonus, get_months_past_birthday, yob_test
-from ..ss_utilities import get_retirement_age, get_months_until_next_birthday
-from ..ss_utilities import past_fra_test, get_current_age, age_map
-from ..ss_calculator import num_test, parse_details, clean_comment
-from ..ss_calculator import interpolate_benefits, get_retire_data
+from ..ss_utilities import (get_retirement_age,
+                            get_months_until_next_birthday,
+                            past_fra_test,
+                            get_current_age,
+                            get_delay_bonus,
+                            age_map,
+                            get_months_past_birthday,
+                            yob_test)
+from ..ss_calculator import (num_test,
+                             parse_details,
+                             parse_response,
+                             clean_comment,
+                             interpolate_benefits,
+                             interpolate_for_past_fra,
+                             get_retire_data)
 from ..check_api import TimeoutError
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
@@ -78,6 +89,7 @@ class UtilitiesTests(unittest.TestCase):
             self.assertEqual(get_current_age(pair[0]), pair[1])
 
     def test_interpolate_benefits(self):
+        params = copy(self.sample_params)
         mock_results = {'data': {'early retirement age': '',
                                  'full retirement age': '',
                                  'benefits': {'age 62': 0,
@@ -127,6 +139,12 @@ class UtilitiesTests(unittest.TestCase):
         results = interpolate_benefits(mock_results, 2261, (66, 0), 55, dob)
         for key in sorted(results['data']['benefits'].keys()):
             self.assertTrue(results['data']['benefits'][key] != 0)
+        dob = dob.replace(day=2)
+        results = interpolate_benefits(mock_results, 2261, (66, 0), 55, dob)
+        self.assertTrue(results['data']['benefits']['age 62'] != 0)
+        dob = dob.replace(year=self.today.year - 45)
+        results = interpolate_benefits(mock_results, 2261, (67, 0), 45, dob)
+        self.assertTrue(results['data']['benefits']['age 62'] != 0)
         dob = self.today - datetime.timedelta(days=365*64)
         results = interpolate_benefits(mock_results, 2261, (66, 0), 64, dob)
         for key in sorted(results['data']['benefits'].keys())[2:]:
@@ -151,6 +169,48 @@ class UtilitiesTests(unittest.TestCase):
                    'Bend points': 'Base year for indexing is 2013. Bend points are 826 & 4980',
                    'COLA': 'PIA in 2018 after COLAs is $1,416.60.'}}
         self.assertEqual(parse_details(sample_rows), output)
+
+    def test_parse_response(self):
+        result = parse_response({}, '', 'en')
+        self.assertTrue(result[1] == 0)
+        self.assertTrue('error' in result[0])
+        self.assertTrue('responding' in result[0]['note'])
+        result = parse_response({}, '', 'es')
+        self.assertTrue('error' in result[0])
+        self.assertTrue('respondiendo' in result[0]['note'])
+        self.assertTrue(result[1] == 0)
+
+    def test_interpolate_for_past_fra(self):
+        mock_results = {'data': {'early retirement age': '',
+                                 'full retirement age': '',
+                                 'benefits': {'age 62': 0,
+                                              'age 63': 0,
+                                              'age 64': 0,
+                                              'age 65': 0,
+                                              'age 66': 0,
+                                              'age 67': 0,
+                                              'age 68': 0,
+                                              'age 69': 1431,
+                                              'age 70': 1545,
+                                              },
+                                 'params': self.sample_params,
+                                 'disability': '',
+                                 'months_past_birthday': 0,
+                                 'survivor benefits': {
+                                        'child': '',
+                                        'spouse caring for child': '',
+                                        'spouse at full retirement age': '',
+                                        'family maximum': ''
+                                        }
+                                 },
+                        'current_age': 68,
+                        'error': '',
+                        'note': '',
+                        'past_fra': True,
+                        }
+        eleven_month_edge = self.today.replace(day=1).replace(year=self.today.year-69).replace(month=self.today.month + 1)
+        results = interpolate_for_past_fra(mock_results, 1431, 68, eleven_month_edge)
+        self.assertTrue(results['data']['benefits']['age 70'] == 1545)
 
     def test_num_test(self):
         inputs = [
@@ -197,12 +257,12 @@ class UtilitiesTests(unittest.TestCase):
             self.assertEqual(get_retirement_age(year), sample_inputs[year])
 
     def test_past_fra_test(self):
-        way_old = "%s" % (self.today-timedelta(days=80*365))
-        too_old = "%s" % (self.today-timedelta(days=68*365))
-        ok = "%s" % (self.today-timedelta(days=57*365))
-        too_young = "%s" % (self.today-timedelta(days=21*365))
-        future = "%s" % (self.today+timedelta(days=365))
-        edge = "%s" % (self.today-timedelta(days=67*365))
+        way_old = "{0}".format(self.today-timedelta(days=80*365))
+        too_old = "{0}".format(self.today-timedelta(days=68*365))
+        ok = "{0}".format(self.today-timedelta(days=57*365))
+        too_young = "{0}".format(self.today-timedelta(days=21*365))
+        future = "{0}".format(self.today+timedelta(days=365))
+        edge = "{0}".format(self.today-timedelta(days=67*365))
         invalid = "xx/xx/xxxx"
         self.assertTrue(past_fra_test(too_old, language='en') == True)
         self.assertTrue(past_fra_test(too_old, language='es') == True)
@@ -290,6 +350,7 @@ class UtilitiesTests(unittest.TestCase):
         """ given a birth date and annual pay value,
         return a dictionary of social security values
         """
+        params = copy(self.sample_params)
         data_keys = [u'early retirement age',
                      u'full retirement age',
                      u'benefits',
@@ -306,77 +367,85 @@ class UtilitiesTests(unittest.TestCase):
                         'age 68',
                         'age 69',
                         'age 70']
-        data = get_retire_data(self.sample_params, language='en')['data']
-        self.assertTrue(isinstance(data, dict))
+        data = get_retire_data(params, language='en')['data']
         self.assertEqual(data['params']['yob'], 1970)
         for each in data.keys():
             self.assertTrue(each in data_keys)
         for each in data['benefits'].keys():
             self.assertTrue(each in benefit_keys)
-        self.sample_params['yob'] = 1937
-        data = get_retire_data(self.sample_params, language='en')
-        self.assertTrue(isinstance(data, dict))
+        params['dobday'] = 1
+        params['dobmon'] = 6
+        data = get_retire_data(params, language='en')['data']
+        self.assertEqual(data['params']['yob'], 1970)
+        params['yob'] = self.today.year-62
+        params['dobmon'] = self.today.month
+        params['dobday'] = self.today.day
+        data = get_retire_data(params, language='en')
+        self.assertTrue(data['data']['benefits']['age 62'] != 0)
+        params['yob'] = 1937
+        data = get_retire_data(params, language='en')
         self.assertEqual(data['data']['params']['yob'], 1937)
         self.assertTrue('70' in data['note'])
-        self.sample_params['yob'] = self.today.year-21
-        data = get_retire_data(self.sample_params, language='en')
+        params['yob'] = self.today.year-21
+        data = get_retire_data(params, language='en')
         self.assertTrue("22" in data['note'])
-        self.sample_params['yob'] = self.today.year-57
-        data = get_retire_data(self.sample_params, language='en')
+        params['yob'] = self.today.year-57
+        data = get_retire_data(params, language='en')
         self.assertTrue(data['data']['benefits']['age 62'] != 0)
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        self.sample_params['yob'] = self.today.year-64
-        data = get_retire_data(self.sample_params, language='en')
+        params['yob'] = self.today.year-64
+        data = get_retire_data(params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        self.sample_params['yob'] = self.today.year-65
-        data = get_retire_data(self.sample_params, language='en')
+        params['yob'] = self.today.year-65
+        data = get_retire_data(params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        self.sample_params['yob'] = self.today.year-66
-        data = get_retire_data(self.sample_params, language='en')
+        params['yob'] = self.today.year-66
+        data = get_retire_data(params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
         self.assertTrue(data['data']['benefits']['age 66'] != 0)
-        self.sample_params['yob'] = self.today.year-67
-        data = get_retire_data(self.sample_params, language='en')
+        params['yob'] = self.today.year-67
+        data = get_retire_data(params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        self.sample_params['yob'] = self.today.year-68
-        data = get_retire_data(self.sample_params, language='en')
+        params['yob'] = self.today.year-68
+        data = get_retire_data(params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        self.sample_params['yob'] = self.today.year-69
-        data = get_retire_data(self.sample_params, language='en')
+        params['yob'] = self.today.year-69
+        data = get_retire_data(params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        self.sample_params['yob'] = self.today.year-70
-        data = get_retire_data(self.sample_params, language='en')
+        params['yob'] = self.today.year-70
+        data = get_retire_data(params, language='en')
         self.assertTrue(data['data']['benefits']['age 70'] != 0)
-        self.sample_params['earnings'] = 0
-        data = get_retire_data(self.sample_params, language='en')
+        params['earnings'] = 0
+        data = get_retire_data(params, language='en')
         self.assertTrue("zero" in data['error'])
-        self.sample_params['yob'] = self.today.year-45
-        data = get_retire_data(self.sample_params, language='en')
+        params['yob'] = self.today.year-45
+        data = get_retire_data(params, language='en')
         self.assertTrue("zero" in data['error'] or "SSA" in data['error'])
-        self.sample_params['earnings'] = 100000
-        self.sample_params['yob'] = self.today.year-68
-        data = get_retire_data(self.sample_params, language='en')
+        params['earnings'] = 100000
+        params['yob'] = self.today.year-68
+        data = get_retire_data(params, language='en')
         self.assertTrue("past" in data['note'])
-        self.sample_params['yob'] = self.today.year + 1
-        data = get_retire_data(self.sample_params, language='en')
+        params['yob'] = self.today.year + 1
+        data = get_retire_data(params, language='en')
         self.assertTrue("22" in data['note'])
 
     @mock.patch('retirement_api.utils.ss_calculator.requests.post')
     def test_bad_calculator_requests(self, mock_requests):
+        params = copy(self.sample_params)
         mock_requests.return_value.ok = False
-        mock_results = get_retire_data(self.sample_params, language='en')
+        mock_results = get_retire_data(params, language='en')
         self.assertTrue('not responding' in mock_results['error'])
         mock_requests.side_effect = requests.exceptions.RequestException
-        mock_results = get_retire_data(self.sample_params, language='en')
+        mock_results = get_retire_data(params, language='en')
         self.assertTrue('request error' in mock_results['error'])
-        mock_results = get_retire_data(self.sample_params, language='es')
+        mock_results = get_retire_data(params, language='es')
         self.assertTrue('request error' in mock_results['error'])
         mock_requests.side_effect = requests.exceptions.ConnectionError
-        mock_results = get_retire_data(self.sample_params, language='en')
+        mock_results = get_retire_data(params, language='en')
         self.assertTrue('connection error' in mock_results['error'])
         mock_requests.side_effect = requests.exceptions.Timeout
-        mock_results = get_retire_data(self.sample_params, language='en')
+        mock_results = get_retire_data(params, language='en')
         self.assertTrue('timed out' in mock_results['error'])
         mock_requests.side_effect = ValueError
-        mock_results = get_retire_data(self.sample_params, language='en')
+        mock_results = get_retire_data(params, language='en')
         self.assertTrue('SSA' in mock_results['error'])
