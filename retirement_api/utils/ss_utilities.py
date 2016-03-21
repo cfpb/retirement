@@ -25,11 +25,11 @@ del Seguro Social para estudiantes y trabajadores jóvenes.\
 """
 TOO_OLD = """\
 <span class="h4">Sorry, our tool cannot provide an estimate because \
-your birthdate, {0}, means you are older than 70 and are already receiving \
+your birthdate, {0}, means you are older than 70 and may already be receiving \
 benefits.</span> To check your benefits based on your actual \
 earnings record, contact the Social Security Administration or \
 open a <a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
-<em>my</em>Social Security</a> account.
+<em>my</em> Social Security</a> account.
 """
 TOO_OLD_ES = """\
 <span class="h4">Lo sentimos. No podemos estimar sus beneficios ya que \
