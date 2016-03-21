@@ -348,12 +348,13 @@ def get_retire_data(params, language):
     """
     Get a base full-retirement-age benefit from SSA's Quick Calculator
     and interpolate benefits for other claiming ages, handling edge cases:
-        - those born on Jan. 1 -- see http://www.socialsecurity.gov/OACT/ProgData/nra.html
-        - those born on 1st day of amy month -- considered to be born the previous month
-        - those born on 2nd day of any month -- interpolator adds a month to reductions
         - those past full retirement age
         - ages outside the parameters of our tool -- < 22 or > 70
         - users who enter earnings too low for benefits
+        - those born on Jan. 1 -- see http://www.socialsecurity.gov/OACT/ProgData/nra.html
+        - those born on 1st day of any month -- considered to be born the previous month
+        - those born on 1st day of any month and who are within one month of their next birthday
+        - those born on 2nd day of any month -- interpolator adds a month to reductions
         - dobs in 1950 that the Quick Calculator improperly treats as past FRA.
     """
 
