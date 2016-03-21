@@ -4,6 +4,8 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 ## Unreleased
 - Switched to `merge=union` for CHANGELOG.md in .gitattributes
 - fix 'claiming at 68' phrasing error
+- Fix handling of birth dates on the first of a month
+- Fixes error message for ages over 70
 - translate date placeholders and explanatory text for folks past FRA
 
 ## 0.4.58

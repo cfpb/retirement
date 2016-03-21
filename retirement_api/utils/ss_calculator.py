@@ -30,9 +30,9 @@ import signal
 
 import dateutil
 from bs4 import BeautifulSoup as bs
-from .ss_utilities import get_retirement_age, get_current_age, past_fra_test
-from .ss_utilities import get_months_until_next_birthday
-from .ss_utilities import get_months_past_birthday
+from .ss_utilities import (get_retirement_age, get_current_age, past_fra_test,
+                           get_months_until_next_birthday,
+                           get_months_past_birthday)
 
 TIMEOUT_SECONDS = 20
 
@@ -66,11 +66,11 @@ def get_note(note_type, language):
     else:
         return ERROR_NOTES[note_type]['en']
 
-# base_url = "https://www.socialsecurity.gov"
-base_url = "https://www.ssa.gov"
-quick_url = "{0}/OACT/quickcalc/".format(base_url)  # where users go; not needed here
-result_url = "{0}/cgi-bin/benefit6.cgi".format(base_url)
-chart_ages = range(62, 71)
+# ORIGINAL_BASE_URL = "https://www.socialsecurity.gov  # NOW REDIRECTED"
+# QUICK_URL = "{0}/OACT/quickcalc/".format(BASE_URL)  # where users go
+BASE_URL = "https://www.ssa.gov"
+RESULT_URL = "{0}/cgi-bin/benefit6.cgi".format(BASE_URL)
+CHART_AGES = range(62, 71)
 
 comment = re.compile(r"<!--[\s\S]*?-->")  # regex for parsing indexing data
 
@@ -230,12 +230,18 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
 def interpolate_for_past_fra(results, base, current_age, dob):
     """
     Calculate future benefits people who have passed full retirement age.
+    Handles edge case when subject is born on 1st and birthday is in the same month.
     """
     BENS = results['data']['benefits']
     annual_bump = round(base * ANNUAL_BONUS)
     monthly_bump = base * MONTHLY_BONUS
-    months_until_next_year = get_months_until_next_birthday(dob)
-    first_bump = round(monthly_bump * months_until_next_year)
+    first_bump = round(monthly_bump * get_months_until_next_birthday(dob))
+    if get_months_past_birthday(dob) == 11 and dob.day == 1:
+        current_age = current_age + 1
+        results['current_age'] = current_age
+        results['note'] = "Age {0} is past your full benefit claiming age.".format(current_age)
+        results['data']['months_past_birthday'] = 0
+        first_bump = annual_bump
     if current_age == 66:
         BENS['age 66'] = base
         BENS['age 67'] = base + first_bump
@@ -274,19 +280,24 @@ def interpolate_for_past_fra(results, base, current_age, dob):
 
 
 def set_up_runvars(params):
-    """set up the results container and variables"""
+    """set up the results container and variables and handle the MM/01/YYYY edge case"""
     dobstring = "{0}-{1}-{2}".format(params['yob'],
                                      params['dobmon'],
                                      params['dobday'])
-    dob = dateutil.parser.parse(dobstring).date()
-    # handle edge case for those born on Jan. 1
-    yobstring = params['yob']
-    if dob.month == 1 and dob.day == 1:
-        yob = int(params['yob']) - 1
-        yobstring = "{0}".format(yob)
+    yobstring = "{0}".format(params['yob'])
     current_age = get_current_age(dobstring)
+    dob = dateutil.parser.parse(dobstring).date()
+    # handle edge case for those born on first of the month
+    if dob.day == 1:
+        params['dobday'] = 2
+        if dob.month == 1:
+            yob = params['yob'] - 1
+            yobstring = "{0}".format(yob)
+            params['dobmon'] = 12
+        else:
+            params['dobmon'] = params['dobmon'] - 1
     benefits = {}
-    for age in chart_ages:
+    for age in CHART_AGES:
         benefits["age {0}".format(age)] = 0
     results = {'data': {
                     'months_past_birthday': get_months_past_birthday(dob),
@@ -308,11 +319,12 @@ def set_up_runvars(params):
                'past_fra': False,
                }
     fra_tuple = get_retirement_age(yobstring)  # returns tuple: (year, momths)
-    if fra_tuple[1]:
-        FRA = "{0} and {1} months".format(fra_tuple[0], fra_tuple[1])
-    else:
-        FRA = "{0}".format(fra_tuple[0])
-    results['data']['full retirement age'] = FRA
+    if isinstance(fra_tuple, tuple):
+        if fra_tuple[1]:
+            FRA = "{0} and {1} months".format(fra_tuple[0], fra_tuple[1])
+        else:
+            FRA = "{0}".format(fra_tuple[0])
+        results['data']['full retirement age'] = FRA
     return dob, dobstring, current_age, fra_tuple, results
 
 
@@ -328,34 +340,36 @@ def parse_response(results, html, language):
         results['note'] = get_note('down', language)
         return (results, 0)
     ret_amount = ret_amount_raw.text.split('.')[0].replace(',', '')
-    base = int(ret_amount)
-    return (results, base)
+    base_benefit = int(ret_amount)
+    return (results, base_benefit)
 
 
 def get_retire_data(params, language):
     """
     Get a base full-retirement-age benefit from SSA's Quick Calculator
     and interpolate benefits for other claiming ages, handling edge cases:
-        - those born on Jan. 1 -- see http://www.socialsecurity.gov/OACT/ProgData/nra.html
-        - those born on 1st day of amy month -- considered to be born the previous month
-        - those born on 2nd day of any month -- interpolator adds a month to reductions
         - those past full retirement age
         - ages outside the parameters of our tool -- < 22 or > 70
         - users who enter earnings too low for benefits
+        - those born on Jan. 1 -- see http://www.socialsecurity.gov/OACT/ProgData/nra.html
+        - those born on 1st day of any month -- considered to be born the previous month
+        - those born on 1st day of any month and who are within one month of their next birthday
+        - those born on 2nd day of any month -- interpolator adds a month to reductions
         - dobs in 1950 that the Quick Calculator improperly treats as past FRA.
     """
 
     starter = datetime.datetime.now()
     (dob, dobstring, current_age, fra_tuple, results) = set_up_runvars(params)
+    ssa_params = results['data']['params']  # params adjusted for edge cases
     past_fra = past_fra_test(dobstring, language=language)
     if past_fra is False:
         retire_year_bd = dob.replace(year=dob.year + fra_tuple[0])
         retire_date = retire_year_bd + datetime.timedelta(days=30*fra_tuple[1])
-        params['retiremonth'] = retire_date.month
-        params['retireyear'] = retire_date.year
+        ssa_params['retiremonth'] = ssa_params['dobmon']
+        ssa_params['retireyear'] = retire_date.year
     elif past_fra is True:
-        params['retiremonth'] = starter.month
-        params['retireyear'] = starter.year
+        ssa_params['retiremonth'] = starter.month
+        ssa_params['retireyear'] = starter.year
         results['past_fra'] = True
         results['note'] = "Age {0} is past your full benefit claiming age.".format(current_age)
         results['data']['disability'] = "You have reached full retirement age and are not eligible for disability benefits."
@@ -374,7 +388,7 @@ def get_retire_data(params, language):
             results['error'] = past_fra
             return results
     try:
-        req = requests.post(result_url, data=params, timeout=TIMEOUT_SECONDS)
+        req = requests.post(RESULT_URL, data=ssa_params, timeout=TIMEOUT_SECONDS)
     except requests.exceptions.ConnectionError as e:
         results['error'] = "connection error at SSA's website: {0}".format(e)
         results['note'] = get_note('down', language)
@@ -397,18 +411,18 @@ def get_retire_data(params, language):
                                                            req.reason)
         results['note'] = get_note('down', language)
         return results
-    (results, base) = parse_response(results, req.text, language)
+    (results, base_benefit) = parse_response(results, req.text, language)
     if results['error']:
         return results
     if past_fra is True:
         final_results = interpolate_for_past_fra(results,
-                                                 base,
+                                                 base_benefit,
                                                  current_age,
                                                  dob)
     else:
-        results['data']['benefits']['age {0}'.format(fra_tuple[0])] = base
+        results['data']['benefits']['age {0}'.format(fra_tuple[0])] = base_benefit
         final_results = interpolate_benefits(results,
-                                             base,
+                                             base_benefit,
                                              fra_tuple,
                                              current_age,
                                              dob)
