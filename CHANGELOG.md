@@ -4,6 +4,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 ## Unreleased
 - Switched to `merge=union` for CHANGELOG.md in .gitattributes
 - fix 'claiming at 68' phrasing error
+- translate date placeholders and explanatory text for folks past FRA
 
 ## 0.4.58
 - switch back to ssa.gov for our requests, after SSA started redirecting calls to socialsecurity.gov
