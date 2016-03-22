@@ -1,0 +1,2059 @@
+body {
+  background-image: none;
+  font-size: 16px;
+}
+
+html,body {
+  height: 100%;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+#claiming-social-security button {
+  letter-spacing: 0;
+}
+
+#claiming-social-security .cf-icon.cf-icon-help-round {
+  color: #0072CD;
+  font-size: .8em;
+}
+
+#claiming-social-security input[type='text'],
+#claiming-social-security select {
+  font-family: 'AvenirNextLTW01-Regular', Arial, sans-serif;
+}
+
+#claiming-social-security .btn {
+  font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+  font-weight: normal;
+}
+
+#maincontent {
+  width: 1168px;
+  padding-top: 0px;
+}
+
+#claiming-social-security h2,
+#claiming-social-security h4,
+#claiming-social-security h6 {
+  text-transform: none;
+  letter-spacing: 0em;
+}
+
+#claiming-social-security hr {
+
+}
+
+#claiming-social-security .canvas-container {
+  position: relative;
+}
+
+#claiming-social-security .canvas-container .x-axis-label {
+  position: relative;
+  top: 0px;
+  left: 40px;
+}
+
+#claiming-social-security p.y-axis-label {
+  position: absolute;
+  top: 290px;
+  left: -50px;
+
+  /* Safari */
+  -webkit-transform: rotate(-90deg);
+
+  /* Firefox */
+  -moz-transform: rotate(-90deg);
+
+  /* IE */
+  -ms-transform: rotate(-90deg);
+
+  /* Opera */
+  -o-transform: rotate(-90deg);
+
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+#claim-canvas {
+  position: relative;
+  left: 40px;
+}
+#claim-canvas text {
+  font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+}
+
+#claiming-social-security {
+  font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+#claiming-social-security #claiming-hero-bg {
+  background-color: #FFCE8D;
+  height: 300px;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  /*background-image: url('../images/retirement-hero.png');
+  background-position: 700px 65px;
+  background-repeat: no-repeat;
+  background-size: 665px auto;*/
+}
+
+[data-lang="es"] #claiming-social-security .claiming-hero  {
+  background-image: url('../images/retirement-hero_spanish.png');
+}
+
+[data-lang="en"] #claiming-social-security .claiming-hero  {
+  background-image: url('../images/retirement-hero.png');
+}
+
+#claiming-social-security .claiming-hero {
+  margin-bottom: 0px;
+  padding: 60px 0px;
+  width: 100%;
+  position: relative;
+  background-color: #FFCE8D;
+  background-origin: content-box;
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: auto 180px;
+}
+
+#claiming-social-security .claiming-hero .content-l_col {
+  border: none;
+  border-width: 0;
+  margin: 0;
+}
+
+#claiming-social-security .claiming-hero .content-l_col + .content-l_col {
+  margin-top: 0.55em;
+}
+
+#claiming-social-security .claiming-hero h1 {
+  font-size: 2.125em;
+}
+
+#claiming-social-security .claiming-hero h1 span.header-line {
+  display: block;
+}
+
+#claiming-social-security .claiming-hero p {
+  font-size: 1.625em;
+}
+
+#claiming-social-security .claiming-hero h1,
+#claiming-social-security .claiming-hero p {
+  font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+}
+
+#claiming-social-security .claiming-hero-b h1 {
+  font-size: 1.8em;
+}
+
+#claiming-social-security .claiming-hero-b h1,
+#claiming-social-security .claiming-hero-b p {
+  width: 600px;
+}
+#claiming-social-security .claiming-hero-b p {
+  font-size: 1.2em;
+}
+
+#claiming-social-security .version-b {
+  display:none;
+}
+
+#claiming-social-security .step-one {
+  padding-top: 60px;
+  padding-bottom: 14px;
+}
+
+#claiming-social-security .step-one-hidden {
+  display: none;
+}
+
+#claiming-social-security .step-one h2 {
+  border-left: 15px solid rgba(0, 0, 0, 0);
+  margin-bottom: 30px;
+}
+
+#claiming-social-security .step-one .birthdate-inputs label.input-labels  {
+  margin-right: 5px;
+}
+
+#claiming-social-security .step-one .birthdate-inputs label.input-labels:last-child {
+  margin-right: 0px;
+}
+
+#claiming-social-security .step-one .input-labels input {
+  height: 32px;
+  padding-left: 10px;
+}
+
+#claiming-social-security .birthdate-inputs p,
+#claiming-social-security label[for="salary-input"] p {
+  margin-bottom: 8px;
+}
+
+#claiming-social-security .estimated-benefits-description {
+  margin: 1em 0 0 0;
+  padding: 1em 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+#claiming-social-security .estimated-benefits-description p {
+  margin-bottom: 0px;
+}
+
+#claiming-social-security .estimated-benefits-input {
+  margin: 0;
+  padding: 0 0 30px 40px;
+}
+
+#claiming-social-security #graph-container .content-l_col {
+  margin-top: 0px;
+  padding: 30px 0 60px 0;
+}
+
+#claiming-social-security .step-one .content-l_col {
+  vertical-align: bottom;
+}
+
+#claiming-social-security #api-data-loading-indicator {
+  display: none;
+  margin: 5px 0 0 5px;
+  font-size: 14px;
+  line-height: 6px;
+}
+
+#claim-canvas #indicator-handle {
+  cursor: pointer;
+}
+
+#claim-canvas .age-text {
+  color: #919395;
+  cursor: pointer;
+  font-family: 'AvenirNextLTW01-Regular', Arial, sans-serif;
+  position: absolute;
+  top: 292px;
+  height: 75px;
+  text-align: center;
+}
+
+#claim-canvas .age-text.selected-age {
+  height: 25px;
+}
+
+#claim-canvas .age-text.selected-age p {
+  color: #000;
+  font-family: 'AvenirNextLTW01-Demi', Arial, sans-serif;
+  font-weight: bold;
+}
+
+#claim-canvas #min-age-text {
+  left: 5px;
+}
+
+#claim-canvas #selected-age-text {
+  color: black;
+}
+
+#claim-canvas #max-age-text {
+  left: 443px;
+}
+
+#claim-canvas #benefits-text,
+#claim-canvas #full-age-benefits-text {
+  position: absolute;
+  font-family: 'AvenirNextLTW01-Demi', 'Arial', sans-serif;
+  font-weight: 500;
+}
+#claim-canvas #full-age-benefits-text {
+  color: #919395;
+  font-family: 'AvenirNextLTW01-Regular', 'Arial', sans-serif;
+}
+
+#claiming-social-security .estimated-longevity {
+  display: block;
+
+}
+#claiming-social-security .lifetime-benefits-value {
+  font-family: 'AvenirNextLTW01-Demi', 'Arial', sans-serif;
+  font-weight: bold;
+}
+
+#claiming-social-security .explainer {
+  font-size: .875em;
+}
+
+#claiming-social-security .estimated-benefits-input label {
+  display: inline;
+  margin-left: 15px;
+}
+
+#claiming-social-security input[type="text"] {
+  border-color: #BABBBD;
+}
+
+#claiming-social-security #graph-container .content-l_col.benefits-comparison {
+  background-color: #f8f8f8;
+  border-left: 1px solid #e3e3e1;
+  min-height: 100%;
+  padding-left: 10px;
+}
+
+#claiming-social-security .input-labels {
+  display: inline;
+}
+
+#claiming-social-security .input-labels .label-text {
+  display: block;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#claiming-social-security .input-labels input {
+  display: inline;
+  width: 15%;
+  padding: 2px;
+}
+
+#claiming-social-security #bd-year {
+  width: 30%;
+}
+
+#claiming-social-security #salary-input {
+  width: 90%;
+}
+
+#claiming-social-security .benefits-comparison .annual-view {
+  display: none;
+}
+
+#claiming-social-security .step-one .estimate-info {
+  vertical-align: bottom;
+  font-size: 0.875em;
+  margin-top: 0px;
+}
+
+#claiming-social-security .step-one .estimate-info p {
+  margin-bottom: -5px;
+}
+
+#claiming-social-security .step-one .step-one-instructions {
+  margin-bottom: 60px;
+}
+
+#claiming-social-security #step-one-form {
+  margin-top: 0;
+  padding: 0;
+}
+
+#claiming-social-security .compared-to-full {
+  display: none;
+}
+
+#claiming-social-security .selected-retirement-age-container {
+  height: 77px;
+  margin-bottom: 30px;
+}
+
+#claiming-social-security .selected-retirement-age-container p {
+  margin-bottom: 0px;
+}
+
+
+#claiming-social-security .selected-retirement-age {
+  margin-bottom: 2px;
+}
+
+#claiming-social-security .total-benefits-text {
+  font-family: 'AvenirNextLTW01-Regular', 'Arial', sans-serif;
+  font-weight: normal;
+  line-height: 24px;
+}
+
+#claiming-social-security .total-benefits-container {
+  margin-bottom: 30px;
+}
+
+#claiming-social-security .total-benefits-container p {
+  margin: 0px;
+}
+
+#claiming-social-security .benefit-selection p.selected-full-retirement,
+#claiming-social-security #age-selector-response,
+#claiming-social-security #age-selector-response .thank-you {
+  display: none;
+}
+
+#claiming-social-security .benefit-selection button.selected-remove {
+  background: none;
+  border: none;
+  float: right;
+}
+
+#claiming-social-security #graph-container + hr {
+  margin-top: 0px;
+}
+
+#claiming-social-security .graph-content .content-container {
+  display: none;
+}
+
+#claiming-social-security .graph-content .content-container ul {
+  padding-left: 20px;
+  list-style-position: outside;
+}
+
+#claiming-social-security .graph-content h3.retirement-age {
+  font-size: 1em;
+  font-family: 'AvenirNextLTW01-Demi', 'Arial', sans-serif;
+  font-weight: 500;
+  margin: 0px;
+}
+
+#claiming-social-security #graph-container p.learn-how {
+  margin-bottom: 0;
+}
+
+#claiming-social-security hr.before-step-two {
+  margin-bottom: 45px;
+}
+
+#claiming-social-security .content-l.step-two {
+  margin-top: 60px;
+}
+
+#claiming-social-security .step-two .lifestyle-img {
+  display: block;
+  margin: 60px auto 60px;
+}
+
+#claiming-social-security .step-two .lifestyle-response {
+  display: none;
+}
+
+#claiming-social-security .step-two .lifestyle-btn__active {
+  background-color: #33578e;
+}
+
+#claiming-social-security .step-two + hr {
+  margin: 50px 0;
+}
+
+#claiming-social-security .step-two .content-l_col.content-l_col-1-3 {
+  height: 100%;
+}
+
+#claiming-social-security .step-two .lifestyle-question_container {
+  margin-bottom: 30px;
+}
+
+.step-two .lifestyle-question_container hr {
+    margin-top: 0;
+}
+
+/*#claiming-social-security .step-two .question {
+  padding-bottom: 10em;
+}*/
+
+[data-lang="es"] #claiming-social-security .step-two .question-working img {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url("../images/sus60s.png") no-repeat;
+  width: 200px; 
+  height: 200px; 
+  padding-left: 200px; /* Move english image out of view */
+}
+
+[data-lang="es"] #claiming-social-security .step-two .question-expenses img {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url("../images/gastos.png") no-repeat;
+  width: 200px; 
+  height: 200px; 
+  padding-left: 200px; /* Move english image out of view */
+}
+
+#claiming-social-security .step-two .question,
+#claiming-social-security .step-three .hidden-content {
+  display: none;
+}
+
+#claiming-social-security #estimated-benefits-input,
+#claiming-social-security #graph-container,
+#claiming-social-security .step-two,
+#claiming-social-security .step-three {
+  opacity: .35;
+}
+
+#claiming-social-security .step-three h2 {
+  margin-bottom: 30px;
+}
+
+#claiming-social-security .step-three h3 {
+  margin-bottom: 5px;
+}
+
+#claiming-social-security .step-three .step-three-note {
+  margin-bottom: 30px;
+}
+
+#claiming-social-security .step-three .selector-container {
+  overflow: hidden;
+  position: relative;
+  background: #ffffff url('/static/retirement/images/select.png') no-repeat right 0;
+  border: solid 1px #d0d0ce;
+  height: 32px;
+  font-family: "AvenirNextLTW01-Medium", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  min-width: 195px;
+  width: 16.6666666%;
+}
+
+#claiming-social-security .step-three #retirement-age-selector {
+  width: 100%;
+  background-color: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 0 4px 0 10px;
+  font-size: 1em;
+  color: #101820;
+  height: 100%;
+}
+
+#age-selector-response hr {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+#claiming-social-security #age-selector-response .next-steps {
+  padding-left: 0px;
+  padding-top: 20px;
+  margin-bottom: 60px;
+}
+
+#claiming-social-security #age-selector-response .next-steps li {
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  padding-left: 34px;
+}
+
+#claiming-social-security #age-selector-response .next-steps li.next-step-one {
+  background-image: url('../images/step_1.png');
+}
+
+#claiming-social-security #age-selector-response .next-steps li.next-step-two {
+  background-image: url('../images/step_2.png');
+}
+
+#claiming-social-security #age-selector-response .next-steps li.next-step-three {
+  background-image: url('../images/step_3.png');
+}
+
+#claiming-social-security .step-three .helpful-btn {
+  width: 4em;
+}
+
+/* cf-notification */
+#claiming-social-security .cf-notification {
+  display: none;
+  position: relative;
+  padding: 15px;
+  padding-left: 40px;
+  margin-bottom: 20px;
+  margin-top: -40px;
+  background: #e3e4e5;
+  border: 1px solid #75787b;
+}
+
+#claiming-social-security .cf-notification__error {
+  background: #f6d9d3;
+  border-color: #d12124;
+}
+
+#claiming-social-security .cf-notification__success {
+  background: #dbedd4;
+  border-color: #2cb34a;
+}
+
+#claiming-social-security .cf-notification__warning {
+  background: #ffecd1;
+  border-color: #ff9e1b;
+}
+
+#claiming-social-security .cf-notification_icon {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: #e3e4e5;
+  font-size: 1.125em;
+}
+
+#claiming-social-security .cf-notification_icon__error {
+  color: #d14327;
+}
+
+#claiming-social-security .cf-notification_icon__success {
+  color: #2cb34a;
+}
+
+#claiming-social-security .cf-notification_icon__warning {
+  color: #ff931b;
+}
+
+#claiming-social-security .cf-notification_text {
+  margin: 0;
+  padding: 0;
+}
+
+#claiming-social-security .cf-notification_text span {
+  display: block;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+#claiming-social-security .cf-notification_text .short-desc {
+  display: block;
+  font-size: 16px;
+}
+
+#claiming-social-security .step-one .notification-input__warning {
+  border-color: #FF921B;
+}
+
+
+/* ====================================================================
+   Medium and small screens
+==================================================================== */
+
+@media (max-width: 1190px) {
+  #claiming-social-security #maincontent {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 30px 2em;
+  }
+
+  #claiming-social-security #claiming-hero-bg {
+    display: none;
+  }
+
+  #claiming-social-security .claiming-hero {
+    margin: 0 -30px 0px -30px;
+    padding: 60px 30px;
+    width: auto;
+  }
+
+  #claiming-social-security .birthdate-inputs {
+    border-width: 0 15px;
+  }
+
+  #claiming-social-security #step-one-form {
+    margin-bottom: 30px;
+  }
+
+  #claiming-social-security .step-one .step-one-instructions {
+    margin-bottom: 30px;
+  }
+
+  #claiming-social-security .cf-notification {
+    margin-top: -10px;
+  }
+
+  #claiming-social-security .estimated-benefits-input {
+    padding-left: 40px;
+  }
+
+  #claiming-social-security #estimated-benefits-input span {
+    display: block;
+  }
+
+  #claiming-social-security .estimated-benefits-input label {
+    margin-left: 15px;
+  }
+
+  #claiming-social-security #estimated-benefits-input label:first-of-type {
+    margin-left: 0px;
+  }
+
+  #claiming-social-security .step-two .lifestyle-response > p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 1130px) {
+  #claiming-social-security .claiming-hero {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-size: auto 145px;
+  }
+
+  /* Reduce font size for small and medium screens, for spacing and readability. H1->H2, H2->H3, H3->H4. */
+  #claiming-social-security #maincontent h1 {
+    font-size: 1.625em;
+  }
+  #claiming-social-security #maincontent h2, #claiming-social-security .claiming-hero p {
+    font-size: 1.375em;
+  }
+  #claiming-social-security #maincontent .h3 {
+    font-size: 1.125em;
+  }
+}
+
+
+@media (max-width: 940px) {
+  [data-lang="en"] #claiming-social-security .claiming-hero {
+    background-image: none;
+  }
+  [data-lang="es"] #claiming-social-security .claiming-hero {
+    background-image: none;
+  }
+
+  claiming-social-security .claiming-hero h1,
+  #claiming-social-security .claiming-hero p {
+    width: 100%;
+  }
+}
+
+
+/* ====================================================================
+   Medium screens
+==================================================================== */
+
+@media (max-width: 1190px) and (min-width: 1100px) {
+  #claiming-social-security .claiming-hero h1,
+  #claiming-social-security .claiming-hero p {
+    padding-right: 375px;
+    width: auto;
+  }
+
+  #claiming-social-security p.y-axis-label {
+    top: 310px;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 850px) {
+
+  #claiming-social-security .step-one {
+    padding-top: 30px;
+  }
+
+  #claiming-social-security .step-one .content-l_col-2-3,
+  #claiming-social-security .estimate-info {
+    width: 100%;
+  }
+
+  #claiming-social-security .step-one h2 {
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+  }
+
+  #claiming-social-security #graph-container .content-l_col-1-3 {
+    width: 40%;
+  }
+
+  #claiming-social-security #graph-container .content-l_col-2-3 {
+    width: 60%;
+  }
+
+  #claiming-social-security p.y-axis-label {
+    top: 310px;
+  }
+
+  #claiming-social-security #maincontent .h3.selected-retirement-age {
+    font-size: 1.375em;
+  }
+
+  #claiming-social-security .content-l.step-two {
+    margin-top: 0;
+    margin-right: 15px;
+    margin-left: 0;
+  }
+
+  #claiming-social-security .step-two .content-l_col {
+    border-right: none;
+    border-left: none;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  #claiming-social-security .content-l.step-two h2 {
+    margin-bottom: 0;
+  }
+
+  #claiming-social-security .content-l.step-two h2 + .question.h3 {
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+
+  #claiming-social-security div.question {
+    border-top: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+    margin-right: 25px;
+    margin-left: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  #claiming-social-security div.question.question-married {
+    border-top: none;
+  }
+
+  #claiming-social-security div.question.question-longevity {
+    padding-bottom: 10px;
+  }
+
+  #claiming-social-security .question:before,
+  #claiming-social-security .question:after {
+    display: table;
+    content: "";
+  }
+
+  #claiming-social-security .question:after {
+    clear: both;
+  }
+
+  #claiming-social-security .question hr {
+    display: none;
+  }
+
+  #claiming-social-security .step-two .lifestyle-img {
+    display: block !important;
+    float: left;
+    height: 200px !important;
+    margin: 0;
+    width: 200px !important;
+  }
+
+  #claiming-social-security .step-two .lifestyle-question_container,
+  #claiming-social-security .step-two .lifestyle-response {
+    margin-left: 230px;
+  }
+
+  #claiming-social-security hr.before-step-two {
+    margin-bottom: 60px;
+  }
+
+  #claiming-social-security .content-l.step-two + hr {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+}
+
+
+/* ====================================================================
+   Small screens
+==================================================================== */
+
+@media (max-width: 849px) {
+  #claiming-social-security .content-l {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #claiming-social-security .content-l_col {
+    border: none;
+    display: block;
+    width: auto;
+  }
+
+  #claiming-social-security .claiming-hero p {
+    margin-bottom: 0px;
+  }
+
+  #claiming-social-security .step-one {
+    padding-top: 30px;
+  }
+
+  #claiming-social-security .step-one h2 {
+    border-left: none;
+  }
+
+  #claiming-social-security #step-one-form .content-l_col-1-3 {
+    max-width: 236px;
+  }
+
+  #claiming-social-security #step-one-form .content-l_col.content-l_col-1-3 + .content-l_col.content-l_col-1-3 {
+    margin-top: 1.875em;
+  }
+
+  #claiming-social-security .content-l_col.content-l_col-1-3 + .content-l_col.content-l_col-1-3 {
+    margin-top: 0;
+  }
+
+  #claiming-social-security .birthdate-inputs p,
+  #claiming-social-security label[for="salary-input"] p {
+    margin-bottom: 0;
+  }
+
+  #claiming-social-security #salary-input {
+    width: 65%;
+  }
+
+  #claiming-social-security .estimated-benefits-input {
+    padding-left: 0px;
+  }
+
+  #claiming-social-security #estimated-benefits-input label {
+    display: block;
+    margin-left: 0;
+    height: 30px;
+  }
+
+  #claiming-social-security #estimated-benefits-input label:first-of-type {
+    margin-top: 8px;
+    margin-left: 0px;
+  }
+
+  #claiming-social-security #graph-container .content-l_col.benefits-comparison {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  #claiming-social-security #graph-container .content-l_col {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  #claiming-social-security p.y-axis-label {
+    top: 240px;
+    left: -57px;
+  }
+
+  #claiming-social-security .canvas-container .x-axis-label {
+    top: 20px;
+  }
+
+  #claiming-social-security .selected-retirement-age-container {
+    height: auto;
+    margin-top: 425px;
+  }
+
+  #claiming-social-security .canvas-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  #claiming-social-security .content-l.step-two {
+    margin-top: 0;
+  }
+
+  #claiming-social-security .step-two .content-l_col {
+    width: 100%;
+  }
+
+  #claiming-social-security .content-l.step-two h2 {
+    margin-bottom: 0;
+  }
+
+  #claiming-social-security .content-l.step-two h3.lifestyle-question {
+    font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
+    font-size: 22px;
+  }
+
+  #claiming-social-security .question {
+    border-bottom: 1px solid #ccc;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  #claiming-social-security .step-two .lifestyle-question_container {
+    margin-bottom: 0;
+  }
+
+  #claiming-social-security .lifestyle-question_container hr {
+    display: none;
+  }
+
+  #claiming-social-security .step-two .lifestyle-img {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 15px;
+    max-width: 200px;
+  }
+
+  [data-lang="es"] #claiming-social-security .step-two .question-working img {
+    display: inline-block;
+  }
+
+  [data-lang="es"] #claiming-social-security .step-two .question-expenses img {
+    display: inline-block;
+  }
+
+  #claiming-social-security .content-l.step-two h2 + .question.h3 {
+    border-bottom: none;
+    margin-top: 15px;
+    margin-bottom: 0;
+    padding-top: 0;
+  }
+
+  #claiming-social-security .question.question-married {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  #claiming-social-security .question-longevity {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  #claiming-social-security .question-longevity .lifestyle-question_container {
+    margin-bottom: 0;
+  }
+
+  #claiming-social-security .lifestyle-response {
+    margin-top: 30px;
+  }
+
+  #claiming-social-security hr.before-step-two,
+  #claiming-social-security .content-l.step-two + hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  #claiming-social-security #maincontent {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 15px 2em;
+  }
+
+  #claiming-social-security .claiming-hero {
+    margin: 0 -15px 0px -30px;
+    width: auto;
+  }
+}
+
+/* TOOLTIPS */
+#claiming-social-security div[data-tooltip-name] {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#claiming-social-security *[data-tooltip-target] {
+    cursor: auto;
+    border-bottom: none;
+}
+
+#claiming-social-security #tooltip-container {
+    background-color: #E4E2E0;
+    border: 0px solid #000;
+    display: none;
+    font-style: normal;
+    font-size: .8em;
+    padding: 15px;
+    position: absolute;
+    width: 20em;
+    z-index: 3000;
+}
+
+#claiming-social-security #tooltip-container .content {
+    padding: 0;
+    margin: 0;
+}
+
+#claiming-social-security #tooltip-container .content p:last-child {
+    margin-bottom: 0;
+}
+
+/* These elements, .outertip and .innertip, make the little speech-balloon styled
+   tip appear along the top of the tooltip. */
+#claiming-social-security  #tooltip-container .outertip {
+    border: 0px solid transparent;
+    border-bottom-color: #000;
+    content: ' ';
+    height: 0;
+    position: absolute;
+    left: -5px;
+    top: -20px;
+    width: 0;
+}
+
+#claiming-social-security #tooltip-container .innertip {
+    border: 7px solid transparent;
+    border-bottom-color: #E4E2E0;
+    content: ' ';
+    height: 0;
+    position: absolute;
+    left: 8px;
+    top: -14px;
+    width: 0;
+}
+
+#claiming-social-security .tooltip-target {
+  border-width: 0;
+  border-style: dotted;
+  border-color: #0072ce;
+  color: #0072ce;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#claiming-social-security .selection-disabled {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+/* Responsive menu for medium and smaller screens!
+   Woo-hoo! */
+
+.nemo article,
+.nemo aside,
+.nemo figure,
+.nemo footer,
+.nemo header,
+.nemo hgroup,
+.nemo nav,
+.nemo section {
+  display: block;
+}
+.nemo img,
+.nemo object,
+.nemo embed {
+  max-width: 100%;
+}
+.nemo html {
+  overflow-y: scroll;
+}
+.nemo blockquote,
+.nemo q {
+  quotes: none;
+}
+.nemo blockquote:before,
+.nemo blockquote:after,
+.nemo q:before,
+.nemo q:after {
+  content: '';
+  content: none;
+}
+.nemo a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+.nemo del {
+  text-decoration: line-through;
+}
+.nemo abbr[title],
+.nemo dfn[title] {
+  border-bottom: 1px dotted #000;
+  cursor: help;
+}
+.nemo table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.nemo th {
+  font-weight: bold;
+  vertical-align: bottom;
+}
+.nemo td {
+  font-weight: normal;
+  vertical-align: top;
+}
+.nemo hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+.nemo input,
+.nemo select {
+  vertical-align: middle;
+}
+.nemo pre {
+  white-space: pre;
+  /* CSS2 */
+  white-space: pre-wrap;
+  /* CSS 2.1 */
+  white-space: pre-line;
+  /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word;
+  /* IE */
+}
+.nemo input[type="radio"] {
+  vertical-align: text-bottom;
+}
+.nemo input[type="checkbox"] {
+  vertical-align: bottom;
+  *vertical-align: baseline;
+}
+.nemo .ie6 input {
+  vertical-align: text-bottom;
+}
+.nemo select,
+.nemo input,
+.nemo textarea {
+  font: 99% sans-serif;
+}
+.nemo table {
+  font-size: inherit;
+  font: 100%;
+}
+.nemo a:hover,
+.nemo a:active {
+  outline: none;
+}
+.nemo small {
+  font-size: 85%;
+}
+.nemo strong,
+.nemo th {
+  font-weight: bold;
+}
+.nemo td,
+.nemo td img {
+  vertical-align: top;
+}
+.nemo sub,
+.nemo sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+.nemo sup {
+  top: -0.5em;
+}
+.nemo sub {
+  bottom: -0.25em;
+}
+.nemo pre,
+.nemo code,
+.nemo kbd,
+.nemo samp {
+  font-family: monospace, sans-serif;
+}
+.nemo .clickable,
+.nemo label,
+.nemo input[type=button],
+.nemo input[type=submit],
+.nemo button {
+  cursor: pointer;
+}
+.nemo button,
+.nemo input,
+.nemo select,
+.nemo textarea {
+  margin: 0;
+}
+.nemo button {
+  width: auto;
+  overflow: visible;
+}
+.nemo p {
+  margin: 1em 0;
+}
+.nemo h1,
+.nemo h2,
+.nemo h3,
+.nemo h4,
+.nemo h5,
+.nemo h6 {
+  font-family: "Avenir Next", Verdana, sans-serif;
+}
+.nemo .lt-ie9 h1,
+.nemo .lt-ie9 h2,
+.nemo .lt-ie9 h3,
+.nemo .lt-ie9 h4,
+.nemo .lt-ie9 h5,
+.nemo .lt-ie9 h6 {
+  font-family: "Avenir Next Demi", Verdana, sans-serif;
+}
+.nemo .lt-ie9 h1 em,
+.nemo .lt-ie9 h1 i,
+.nemo .lt-ie9 h2 em,
+.nemo .lt-ie9 h2 i,
+.nemo .lt-ie9 h3 em,
+.nemo .lt-ie9 h3 i,
+.nemo .lt-ie9 h4 em,
+.nemo .lt-ie9 h4 i,
+.nemo .lt-ie9 h5 em,
+.nemo .lt-ie9 h5 i,
+.nemo .lt-ie9 h6 em,
+.nemo .lt-ie9 h6 i {
+  font-family: "Avenir Next Demi Italic", Verdana, sans-serif;
+}
+.nemo h1 {
+  font-size: 2em;
+  font-weight: 600;
+  line-height: 1.375;
+}
+.nemo h2 {
+  font-size: 1.25em;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.nemo h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+  line-height: 1.2em;
+}
+.nemo h4 {
+  font-size: 1.0em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.nemo h5 {
+  font-size: 1em;
+  font-weight: 600;
+}
+.nemo h6 {
+  font-size: 1em;
+  font-weight: 600;
+}
+.nemo a {
+  text-decoration: none;
+  color: #4d819a;
+  padding-bottom: 0.1em;
+  border-bottom: 1px dotted #4d819a;
+}
+.nemo blockquote {
+  background-color: #e5dfd6;
+  padding: 1em 3.0em 0.5em;
+  font-family: "Avenir Next", Verdana, sans-serif;
+  margin-bottom: 1em;
+  border-left: 5px solid #beb099;
+}
+.nemo input {
+  font-size: 1em;
+  border: 1px inset #afafb3;
+  border-radius: 0.25em;
+  -webkit-box-shadow: inset 2px 1px 2px -3px #aaaaaa;
+  box-shadow: inset 2px 1px 2px -3px #aaaaaa;
+  padding: .25em .5em;
+  background-color: #fff;
+}
+.nemo input[type='radio'],
+.nemo input[type='checkbox'] {
+  border: none;
+  padding: none;
+}
+.nemo textarea {
+  font-size: 1em;
+  border: 1px inset #afafb3;
+  -webkit-box-shadow: inset 2px 1px 2px -3px #aaaaaa;
+  box-shadow: inset 2px 1px 2px -3px #aaaaaa;
+  padding: .25em .5em;
+}
+.nemo button {
+  color: #fff;
+  background-color: #50a748;
+  font-family: "Avenir Next", Verdana, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 0.35em;
+  font-size: .875em;
+  border: 1px outset #afafb3;
+  position: relative;
+  top: -1px;
+  padding: .45em .75em;
+  -webkit-transition: all 700ms ease;
+  transition: all 700ms ease;
+}
+.nemo button:disabled {
+  background-color: #a9dc93;
+}
+.nemo select {
+  font-size: 1em;
+}
+.nemo fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.nemo legend {
+  padding: 0;
+  max-width: 100%;
+}
+.nemo #header {
+  background-color: #fff;
+  padding: 1em 0 0;
+  border-bottom: 1px solid #333;
+}
+.nemo #header a {
+  padding: 0;
+  border: none;
+  color: #333;
+  background-color: #fff;
+}
+.nemo #header #logo {
+  margin-top: 0.5em;
+}
+.nemo #header > div {
+  width: auto;
+  max-width: 976px;
+  height: auto;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+.nemo #header h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+}
+.nemo #header nav {
+  border-top: 1px solid #333;
+  margin: 1em 0 0;
+}
+.nemo #header nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  width: auto;
+  max-width: 1060px;
+  display: table;
+}
+.nemo #header nav ul li {
+  font-family: "Avenir Next", Verdana, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 1em;
+  display: table-cell;
+  width: auto;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+.nemo .lt-ie8 #header nav ul li {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+.nemo .lt-ie9 #header nav ul li {
+  font-family: "Avenir Next Demi", Verdana, sans-serif;
+}
+.nemo #header nav ul li a {
+  -webkit-transition: background-color ease 1000ms;
+  transition: background-color ease 1000ms;
+  display: block;
+  width: auto;
+  height: auto;
+  padding: 0.5em 0.85em 0.25em 0.85em;
+  color: #333;
+  text-align: center;
+  background-color: #fff;
+}
+.nemo #header nav ul li a:visited {
+  color: #333;
+}
+.nemo #header nav ul li a:hover {
+  background-color: #dbe6eb;
+  color: #333;
+}
+.nemo #header nav ul li a:focus {
+  background-color: #fff;
+}
+.nemo #header nav ul li a.active {
+  background-color: #dbe6eb;
+}
+.nemo #header nav ul li a.complaint {
+  color: #50a748;
+}
+.nemo #subnav {
+  max-width: 976px;
+  margin: 0 auto;
+  padding: 1em 20px;
+  background-color: #fff;
+}
+.nemo .js #subnav {
+  width: auto;
+  padding: 0;
+  background-color: transparent;
+}
+.nemo #subnav nav {
+  display: inline-block;
+  /* IE7 hack to mimic inline-block on block elements */
+  *display: inline;
+  *zoom: 1;
+  vertical-align: top;
+  border: 1px solid #333;
+  padding: 0 1em;
+  background-color: #dbe6eb;
+  z-index: 100;
+}
+.nemo #subnav nav a {
+  color: #333;
+  border: none;
+}
+.nemo #subnav nav h4 {
+  display: none;
+}
+.nemo #subnav nav ul {
+  margin: 1em 0;
+  width: 13em;
+  padding: 0;
+  list-style-type: none;
+}
+.nemo #subnav nav {
+  position: absolute;
+  top: 10.25em;
+  display: none;
+  border-top: none;
+}
+.nemo #subnav nav ul li {
+  border-bottom: 1px solid #afafb3;
+  padding: 0.5em;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  column-break-inside: avoid;
+}
+.nemo #subnav nav ul li:last-child {
+  border-bottom: none;
+}
+.nemo #subnav nav ul li h5 {
+  margin: 0;
+}
+.nemo #subnav nav ul li p {
+  margin: 0;
+  font-size: 0.8333em;
+  color: #626263;
+}
+.nemo #subnav nav ul li ul li {
+  border-bottom: none;
+  padding: 0;
+  margin-top: 0.5em;
+  font-family: "Avenir Next", Verdana, sans-serif;
+  word-wrap: normal;
+}
+.nemo #subnav .close {
+  font-size: 0.625em;
+  font-family: "Avenir Next", Verdana, sans-serif;
+  display: block;
+  text-align: right;
+  padding-bottom: 1em;
+}
+.nemo #subnav a:hover,
+.nemo #subnav a:focus {
+  background-color: inherit;
+}
+.nemo #footer {
+  width: auto;
+  font-size: 0.833333333em;
+  padding: 2em 0;
+  background-color: #fff;
+  border-top: 1px solid #333;
+}
+.nemo #footer > div > a {
+  display: inline-block;
+  /* IE7 hack to mimic inline-block on block elements */
+  *display: inline;
+  *zoom: 1;
+  margin: 1em 1.9685% 0 1.9685%;
+  width: 22.53937%;
+}
+.nemo #footer > div > nav {
+  border-left: 1px solid #afafb3;
+  display: inline-block;
+  /* IE7 hack to mimic inline-block on block elements */
+  *display: inline;
+  *zoom: 1;
+  width: 18.50393%;
+  padding: 0 1.5%;
+  margin-left: 1.9685%;
+  vertical-align: top;
+  min-height: 12.5em;
+}
+.nemo #footer > div, #footer > div {
+  width: auto;
+  max-width: 1060px;
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
+}
+.nemo #footer > div > a:link {
+  padding: 0;
+  border: none;
+}
+.nemo #footer > div > nav > ul {
+  width: auto;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.nemo #footer > div > nav > ul li {
+  margin: 0.75em 0 0;
+}
+.nemo #search_form {
+  position: absolute;
+  top: 2.35em;
+  right: 0;
+  text-align: right;
+  width: 40%;
+}
+.nemo #search_form button {
+  background: #50b948 url(http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/search_bg.png) no-repeat center left;
+  text-indent: -9999px;
+  width: 3em;
+}
+.nemo .single .inf {
+  display: inline-block;
+  /* IE7 hack to mimic inline-block on block elements */
+  *display: inline;
+  *zoom: 1;
+}
+.nemo .single input {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  font-size: 1em;
+}
+.nemo .single button {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  display: inline-block;
+  /* IE7 hack to mimic inline-block on block elements */
+  *display: inline;
+  *zoom: 1;
+  line-height: 1.95;
+  padding: 0 0.5em;
+  position: relative;
+  top: 1px;
+  left: -3px;
+}
+.nemo .lt-ie8 .single button {
+  line-height: 1.6;
+  top: 4px;
+}
+.nemo .inf {
+  position: relative;
+}
+.nemo .inf > label {
+  position: absolute;
+  padding: 0 0.5em;
+  top: 0.25em;
+  z-index: 10;
+  background-color: #fff;
+  color: #444;
+  font-family: "Avenir Next", Verdana, sans-serif;
+}
+.nemo .inf > input {
+  position: relative;
+  z-index: 20;
+  background: transparent;
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-transition: background 700ms ease;
+  transition: background 700ms ease;
+  width: 210px;
+}
+.nemo .inf .filled {
+  background: #fff;
+}
+.nemo .lang {
+  color: #626263;
+  font-family: "Avenir Next", Verdana, sans-serif;
+  font-size: 13px;
+  position: absolute;
+  top: 16px;
+  right: 0;
+  margin: 0;
+}
+.nemo .govt {
+  color: #626263;
+  font-family: "Avenir Next", Verdana, sans-serif;
+  font-size: 0.83333333em;
+  position: absolute;
+  top: 0px;
+  right: 2em;
+  margin: 0;
+  background: transparent url("../img/us_flag_small.png") right center no-repeat;
+  padding-right: 24px;
+}
+.nemo #footer aside {
+  display: inline-block;
+}
+.nemo #footer button a {
+  color: white;
+  border-bottom: none;
+}
+.nemo #footer button a:hover {
+  background: transparent;
+}
+.nemo #footer > div > nav > div > p {
+  padding-top: 1em;
+}
+.nemo .check ul {
+  list-style-type: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.nemo .bottom {
+  display: block;
+  width: auto;
+  max-width: 976px;
+  border: none;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+.nemo .bottom > ul {
+  width: auto;
+  list-style-type: none;
+  margin: 1em 0;
+  padding: 1em 1.9685%;
+  border-top: 1px solid #afafb3;
+}
+.nemo .bottom > ul > li {
+  display: inline-block;
+  /* IE7 hack to mimic inline-block on block elements */
+  *display: inline;
+  *zoom: 1;
+  margin-right: 1em;
+}
+.nemo .bottom > ul > li + li {
+  border-left: 1px solid #afafb3;
+  padding-left: 1em;
+}
+.nemo .bottom img {
+  position: absolute;
+  right: 1.9685%;
+  top: 0.75em;
+}
+.nemo .lt-ie9 .bottom img {
+  top: 2.75em;
+}
+.nemo a:hover,
+.nemo a:focus {
+  background-color: #dbe6eb;
+  border-bottom-style: solid;
+}
+.nemo footer > div > a:hover,
+.nemo header > div > a:hover {
+  background-color: transparent;
+}
+.nemo .share a:hover,
+.nemo .share a:focus {
+  background-color: transparent;
+  border: none;
+}
+.nemo .share a:hover img,
+.nemo .share a:focus img {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.nemo input:focus {
+  border: 1px solid #50a748;
+}
+.nemo .inf input:focus {
+  background: #fff;
+  background: rgba(255, 255, 255, 0.85);
+}
+.nemo button:hover,
+.nemo button:focus {
+  cursor: pointer;
+  outline: 2px;
+}
+.nemo button:disabled:hover,
+.nemo button:disabled:focus {
+  cursor: default;
+}
+.nemo .wrapper-banner,
+.nemo .wrapper-header {
+  color: #101820;
+  font-family: "Avenir Next", Arial, sans-serif;
+  font-size: 75%;
+  font-weight: 400;
+}
+.nemo .wrapper-banner {
+  background-color: #f7f5f4;
+  padding: 4px 0;
+  text-align: center;
+  width: 100%;
+}
+.nemo .wrapper-banner a {
+  background: none;
+  border-bottom: none;
+  margin: 0 6px;
+  padding-bottom: none;
+}
+.nemo .wrapper-container {
+  font-size: 93%;
+  line-height: 1.25em;
+  margin: 0 auto;
+  text-align: left;
+  width: 1016px;
+}
+.nemo .small {
+  font-size: 0.625em;
+}
+.nemo .split {
+  display: block;
+  line-height: 1.25;
+  overflow: hidden;
+  width: 1016px;
+}
+.nemo .split-right {
+  float: right;
+  margin-right: 1.9685%;
+  text-align: right;
+}
+.nemo .official-website {
+  background: transparent url("http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/us_flag_small.png") left center no-repeat;
+  float: left;
+  margin-left: 1.9685%;
+  padding-left: 24px;
+}
+.nemo .noStyles,
+.nemo a.noStyles:hover {
+  color: #333;
+  border: none;
+  padding: 0;
+  background: none;
+}
+.nemo .toggle-menu {
+  display: none;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 18px;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.nemo #subnav {
+  padding: 0;
+}
+.nemo #subnav nav h5 {
+  text-transform: none;
+}
+.nemo #header nav a {
+  font-family: "AvenirNextLTW01-Medium", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+.lt-ie9 .nemo #header nav a {
+  font-weight: normal !important;
+}
+.lt-ie9 .nemo #header nav a {
+  font-weight: normal !important;
+}
+.nemo #subnav nav h5,
+.nemo strong {
+  font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 .nemo #subnav nav h5,
+.lt-ie9 .nemo strong {
+  font-weight: normal !important;
+}
+.lt-ie9 .nemo #subnav nav h5,
+.lt-ie9 .nemo strong {
+  font-weight: normal !important;
+}
+.nemo #header {
+  border-bottom: 5px solid #333;
+}
+.nemo #header nav {
+  margin: 10px 0 0;
+}
+@media screen and (max-width: 1060px) {
+  .nemo #header > div {
+    margin-left: 15px;
+  }
+  .nemo #header nav {
+    font-size: 80%;
+  }
+  .nemo .wrapper-container,
+  .nemo .split {
+    width: 100%;
+    max-width: 100%;
+  }
+  .nemo .wrapper-container .language-banner {
+    display: none;
+  }
+}
+@media screen and (max-width: 865px) {
+  .nemo .horizontal-list-item {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .nemo #header nav ul li a {
+    text-align: left;
+  }
+}
+@media screen and (max-width: 720px) {
+  .nemo #header h1 {
+    margin-left: 60px;
+  }
+  .nemo .toggle-menu {
+    display: block;
+  }
+  .nemo #header .toggle-menu,
+  .nemo #header .toggle-menu:link,
+  .nemo #header .toggle-menu:visited {
+    color: #75787B;
+  }
+  .nemo #header .toggle-menu:hover,
+  .nemo #header .toggle-menu:active,
+  .nemo #header .toggle-menu:focus {
+    color: #75787B;
+    background: #E3E4E4;
+  }
+  .nemo #header nav {
+    font-size: 100%;
+  }
+  .nemo #subnav nav {
+    border: 0;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .nemo #subnav nav ul {
+    margin: 0;
+    width: auto;
+  }
+  .nemo #header nav ul {
+    display: none;
+  }
+  .nemo #header nav ul.vis {
+    display: block;
+  }
+  .nemo #header nav ul li {
+    display: block;
+  }
+  .nemo p.lang,
+  .nemo #search_form {
+    display: none;
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+  .nemo .official-website {
+    padding-right: 0;
+    background: none;
+  }
+  .nemo #footer > div > a,
+  .nemo #footer > div > nav {
+    width: auto;
+    display: block;
+    min-height: 0;
+  }
+  .nemo .split-right {
+    position: static;
+    margin-right: 0;
+    margin-left: 10px;
+    text-align: right;
+  }
+}
+.cf-icon {
+  font-family: 'CFPB Minicons';
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  font-size: 18px;
+}
+.reset {
+  margin: 0;
+  padding: 0;
+}
+/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.hidden {
+  display: none !important;
+}
+/* typography mixins */
+.allcaps-demi {
+  font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.75em;
+  text-transform: uppercase;
+}
+.lt-ie9 .allcaps-demi {
+  font-weight: normal !important;
+}
+.lt-ie9 .allcaps-demi {
+  font-weight: normal !important;
+}
+.cf-icon-menu:before {
+  content: "\e630";
+}
+/*
+.lt-ie8 .cf-icon-menu {
+  *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e630');
+}
+.cf-icon-menu-round:before {
+  content: "\e631";
+}
+.lt-ie8 .cf-icon-menu-round {
+  *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e631');
+}
+*/
+
+/* Spinning icons for loading indicators */
+
+.cf-icon__spin {
+  -webkit-animation: cf-spin 2s infinite linear reverse;
+  animation: cf-spin 2s infinite linear reverse;
+}
+.cf-icon__pulse {
+  -webkit-animation: cf-spin 1s infinite steps(8) reverse;
+  animation: cf-spin 1s infinite steps(8) reverse;
+}
+@-webkit-keyframes cf-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes cf-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    -ms-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+

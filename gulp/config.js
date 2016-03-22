@@ -31,7 +31,7 @@ module.exports = {
     ]
   },
   test: {
-    src:   loc.src + '/static/js/**/*.js',
+    src:   loc.src + '/js/**/*.js',
     tests: loc.test
   },
   clean: {
@@ -40,7 +40,7 @@ module.exports = {
   styles: {
     cwd:      loc.src + '/css',
     src:      '/main.less',
-    dest:     loc.dist + '/static/css',
+    dest:     loc.dist + '/css',
     settings: {
       paths: [
         loc.lib,
@@ -57,18 +57,18 @@ module.exports = {
       loc.lib + '/cf-*/src/js/*.js',
       loc.src + '/js/**/*.js'
     ],
-    dest: loc.dist + '/static/js/',
+    dest: loc.dist + '/js/',
     name: 'main.js'
   },
   browserify: {
     paths: {
-      scripts: 'retirement_api/static/retirement/js/index.js',
+      scripts: 'retirement_api/static/retirement/js/claiming-social-security.js',
       dest: 'dist/scripts/'
     }
   },
   images: {
     src:  loc.src + '/img/**',
-    dest: loc.dist + '/static/img'
+    dest: loc.dist + '/images'
   },
   templates: {
     src: './retirement_api/templates/**'
@@ -87,14 +87,14 @@ module.exports = {
     },
     icons: {
       src:  loc.lib + '/cf-icons/src/fonts/*',
-      dest: loc.dist + '/static/fonts/'
+      dest: loc.dist + '/fonts/'
     },
     vendorjs: {
       src: [
         loc.lib + '/box-sizing-polyfill/boxsizing.htc',
         loc.lib + '/html5shiv/dist/html5shiv-printshiv.min.js'
       ],
-      dest: loc.dist + '/static/js/'
+      dest: loc.dist + '/js/'
     }
   }
 };

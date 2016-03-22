@@ -46,4 +46,4 @@ coverage.xml
 node_modules/
 bower_components/
 .grunt/
-retirement_api/static/retirement/js/claiming-social-security.js
+retirement_api/static/retirement/
