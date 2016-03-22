@@ -115,9 +115,25 @@ def parse_details(rows):
 def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
     """
     Calculate benefits for years above and below the full-retirement age (FRA).
-    Those born on 2nd day of a month have a bigger early-claiming penalty max.
+
     This function is only for people who are below full retirement age.
+    Those born on 2nd of month have a bigger early-claiming penalty max.
+    Those born on 1st of month and have have an FRA with a month value
+    need special handling.
     """
+
+
+# ========================================
+# ========================================
+    retire_year_bd = DOB.replace(year=DOB.year + fra_tuple[0])
+    retire_date = retire_year_bd + datetime.timedelta(days=30*fra_tuple[1])
+    results['retiremonth'] = ssa_params['dobmon']
+    results['retireyear'] = retire_date.year
+# ========================================
+# ========================================
+
+
+
     BENS = results['data']['benefits']
     today = datetime.date.today()
     current_year_bd = datetime.date(today.year, DOB.month, DOB.day)
@@ -232,6 +248,21 @@ def interpolate_for_past_fra(results, base, current_age, dob):
     Calculate future benefits people who have passed full retirement age.
     Handles edge case when subject is born on 1st and birthday is in the same month.
     """
+
+# ========================================
+# ========================================
+    ssa_params['retiremonth'] = starter.month
+    ssa_params['retireyear'] = starter.year
+    results['past_fra'] = True
+    results['note'] = "Age {0} is past your full benefit claiming age.".format(current_age)
+    results['data']['disability'] = "You have reached full retirement age and are not eligible for disability benefits."
+# ========================================
+# ========================================
+
+
+
+
+
     BENS = results['data']['benefits']
     annual_bump = round(base * ANNUAL_BONUS)
     monthly_bump = base * MONTHLY_BONUS
@@ -354,26 +385,16 @@ def get_retire_data(params, language):
         - those born on Jan. 1 -- see http://www.socialsecurity.gov/OACT/ProgData/nra.html
         - those born on 1st day of any month -- considered to be born the previous month
         - those born on 1st day of any month and who are within one month of their next birthday
+        - those born on 1st day of any month and whose full retirement age is 66 plus a month value, such as 66 and 6 months
         - those born on 2nd day of any month -- interpolator adds a month to reductions
         - dobs in 1950 that the Quick Calculator improperly treats as past FRA.
     """
 
     starter = datetime.datetime.now()
     (dob, dobstring, current_age, fra_tuple, results) = set_up_runvars(params)
-    ssa_params = results['data']['params']  # params adjusted for edge cases
     past_fra = past_fra_test(dobstring, language=language)
-    if past_fra is False:
-        retire_year_bd = dob.replace(year=dob.year + fra_tuple[0])
-        retire_date = retire_year_bd + datetime.timedelta(days=30*fra_tuple[1])
-        ssa_params['retiremonth'] = ssa_params['dobmon']
-        ssa_params['retireyear'] = retire_date.year
-    elif past_fra is True:
-        ssa_params['retiremonth'] = starter.month
-        ssa_params['retireyear'] = starter.year
-        results['past_fra'] = True
-        results['note'] = "Age {0} is past your full benefit claiming age.".format(current_age)
-        results['data']['disability'] = "You have reached full retirement age and are not eligible for disability benefits."
-    else:  # if neither False nor True, there's an error and we need to bail
+    if isinstance(past_fra, bool) is False:
+        # if past_fra is neither False nor True, there's an error and we bail
         if current_age > 70:
             results['past_fra'] = True
             results['note'] = past_fra
@@ -383,12 +404,12 @@ def get_retire_data(params, language):
             results['note'] = past_fra
             results['error'] = "visitor too young for tool"
             return results
-        elif 'invalid' in past_fra:  # pragma: no cover -- backstop, tested elsewhere
+        elif 'invalid' in past_fra:  # pragma: no cover -- tested elsewhere
             results['note'] = "An invalid date was entered."
             results['error'] = past_fra
             return results
     try:
-        req = requests.post(RESULT_URL, data=ssa_params, timeout=TIMEOUT_SECONDS)
+        req = requests.post(RESULT_URL, data=results['data']['params'], timeout=TIMEOUT_SECONDS)
     except requests.exceptions.ConnectionError as e:
         results['error'] = "connection error at SSA's website: {0}".format(e)
         results['note'] = get_note('down', language)
