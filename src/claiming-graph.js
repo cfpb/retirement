@@ -135,6 +135,7 @@ function getData() {
         SSData.earlyRetirementAge = data['early retirement age'];
         SSData.fullAge = Number( data['full retirement age'].substr(0,2) );
         SSData.earlyAge = Number( data['early retirement age'].substr(0,2) );
+        SSData.monthsPastBirthday = Number( data['months_past_birthday'] );
         if ( SSData.currentAge > SSData.fullAge ) {
           SSData.fullAge = SSData.currentAge;
         }
@@ -256,6 +257,11 @@ function setTextByAge() {
       benefitsLeft,
       fullAgeTop,
       fullAgeLeft;
+
+  if ( SSData.currentAge > 62 ) {
+    lifetimeBenefits = numToMoney( ( ( 85 - selectedAge ) * 12 - SSData.monthsPastBirthday ) *
+      SSData[ 'age' + selectedAge ] );
+  }
 
   if ( $( '#estimated-benefits-input [name="benefits-display"]:checked' ).val() === 'annual' ) {
     benefitsValue = benefitsValue * 12;
