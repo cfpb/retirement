@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+  <!-- <![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>cf-forms demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+<!--[if lt IE 9]>
+    <script>
+      var cfHead = document.getElementsByTagName('head')[0],
+        cfStyle = document.createElement('style');
+      cfStyle.type = 'text/css';
+      cfStyle.styleSheet.cssText = ':before,:after{content:none !important}';
+      cfHead.appendChild(cfStyle);
+      setTimeout(function(){
+        cfHead.removeChild(cfStyle);
+      }, 300);
+      
+    </script><![endif]-->
+  </head>
+  <body style="padding:4px;">
+    <div id="theme-variables">
+      <div>
+        <div></div><br>
+      </div>
+      <div>
+        <div></div><br>
+      </div>
+    </div>
+    <div id="form-labels">
+      <div>
+        <div>
+<label class="form-label-header">
+    Form label header
+</label>
+</div><br>
+      </div>
+    </div>
+    <div id="super-input">
+      <div>
+        <div>
+<input class="input__super" type="text" value="Super input" title="Test input"></input>
+<button class="btn btn__super">Super</button>
+</div><br>
+      </div>
+    </div>
+    <div id="input-states">
+      <div>
+        <div>
+<input class="error" type="text" value="Invalid input" title="Test input">
+</div><br>
+      </div>
+      <div>
+        <div>
+<input class="warning" type="text" value="Invalid input" title="Test input">
+</div><br>
+      </div>
+      <div>
+        <div>
+<input class="success" type="text" value="Validated input" title="Test input">
+</div><br>
+      </div>
+      <div>
+        <div>
+<input class="disabled" disabled="true" autocomplete="off" type="text" value="Validated input" title="Test input">
+</div><br>
+      </div>
+    </div>
+    <div id="form-icons">
+      <div>
+        <div>
+<input type="text" value="" title="Test input">
+<span class="cf-form_input-icon cf-icon cf-icon-email"></span>
+</div><br>
+      </div>
+      <div>
+        <div>
+<input class="error" type="text" value="Invalid input" title="Test input">
+<span class="cf-form_input-icon cf-icon cf-icon-delete-round" role="alert"></span>
+</div><br>
+      </div>
+      <div>
+        <div>
+<input class="warning" type="text" value="Invalid input" title="Test input">
+<span class="cf-form_input-icon cf-icon cf-icon-error-round" role="alert"></span>
+</div><br>
+      </div>
+      <div>
+        <div>
+<input class="success" type="text" value="Validated input" title="Test input">
+<span class="cf-form_input-icon cf-icon cf-icon-approved-round"></span>
+</div><br>
+      </div>
+    </div>
+    <div id="form-group">
+      <div>
+        <div>
+<div class="form-group">
+    <div class="form-group_item">
+        <input type="text" title="Test input">
+    </div>
+    <div class="form-group_item">
+        <input type="text" title="Test input">
+    </div>
+</div>
+<div class="form-group">
+    <div class="form-group_item">
+        <input type="text" title="Test input">
+    </div>
+    <div class="form-group_item">
+        <input type="text" title="Test input">
+    </div>
+</div>
+<div class="form-group">
+    <div class="form-group_item">
+        <input type="text" title="Test input">
+    </div>
+    <div class="form-group_item">
+        <input type="text" title="Test input">
+    </div>
+</div>
+</div><br>
+      </div>
+      <div>
+        <div>
+<div class="form-group_item">
+    <input type="text" title="Test input">
+</div>
+<div class="form-group_item">
+    <input type="text" title="Test input">
+</div>
+<div class="form-group_item">
+    <input type="text" title="Test input">
+</div>
+</div><br>
+      </div>
+      <div>
+        <div>
+<div class="form-group">
+    <label class="form-label-header">Form group</label>
+    <div class="form-group_item">
+        <input type="text" value="Form group item" title="Test input">
+    </div>
+    <div class="form-group_item">
+        <input type="text" value="Form group item" title="Test input">
+    </div>
+</div>
+<div class="form-group">
+    <label class="form-label-header">Form group</label>
+    <div class="form-group_item">
+        <input type="text" value="Form group item" title="Test input">
+    </div>
+    <div class="form-group_item">
+        <input type="text" value="Form group item" title="Test input">
+    </div>
+</div>
+</div><br>
+      </div>
+    </div>
+    <div id="input-with-button">
+      <div>
+        <div>
+<div class="input-with-btn">
+    <div class="input-with-btn_input">
+        <input type="text" title="Test input">
+    </div>
+    <div class="input-with-btn_btn">
+        <button class="btn">Search</button>
+    </div>
+</div>
+</div><br>
+      </div>
+      <div>
+        <div>
+<div class="input-with-btn">
+    <div class="input-with-btn_input">
+        <input class="input__super" type="text" title="Test input">
+    </div>
+    <div class="input-with-btn_btn">
+        <button class="btn btn__super">Search</button>
+    </div>
+</div>
+</div><br>
+      </div>
+    </div>
+    <div id="button-inside-input">
+      <div>
+        <div>
+<div class="btn-inside-input">
+    <input type="text"
+           value="This is some really long text to make sure that the button doesn't overlap the content in such a way that this input becomes unusable." title="Test input">
+    <button class="btn btn__link btn__secondary">
+        Clear
+        <span class="cf-icon cf-icon-delete"></span>
+    </button>
+</div>
+</div><br>
+      </div>
+      <div>
+        <div>
+<div class="btn-inside-input">
+    <input class="input__super"
+           type="text"
+           value="This is some really long text to make sure that the button doesn't overlap the content in such a way that this input becomes unusable." title="Test input">
+    <button class="btn btn__super btn__link btn__secondary">
+        Clear
+        <span class="cf-icon cf-icon-delete"></span>
+    </button>
+</div>
+</div><br>
+      </div>
+    </div>
+    <div id="custom-demo">
+<!--
+Add custom demo HTML here
+-->
+</div>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - 0.10
+  - 0.12
+before_script:
+  - npm install -g http-server
+script: 
+  - nohup http-server -p 8080 >/dev/null 2>&1 &
+  - npm test

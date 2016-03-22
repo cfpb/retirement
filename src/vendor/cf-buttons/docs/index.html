@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+  <!-- <![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>cf-buttons docs</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic">
+    <link rel="stylesheet" type="text/css" href="static/docs/brackets.css">
+    <link rel="stylesheet" type="text/css" href="static/docs/docs.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+  </head>
+  <body>
+    <div class="docs-sidebar-wrapper">
+      <div class="docs-sidebar-wrapper_body">
+        <div class="docs-masthead">
+          <h1 class="docs-title"><span class="docs-icon">&lt;/&gt;</span> cf-buttons docs
+          </h1><a href="https://github.com/cfpb/cf-buttons" class="docs-repo">view the repository</a>
+        </div>
+        <div id="theme-variables" class="docs-component">
+          <h2 class="docs-component_header"><span>Theme variables</span></h2>
+          <div class="docs-component_intro">
+            <ul class="docs-notes">
+              <li>The following color and sizing variables are exposed, allowing you to easily override them before compiling.</li>
+            </ul>
+          </div>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Colors</h3>
+              <footer class="docs-pattern_footer">
+                <ul class="docs-codenotes">
+                  <li>
+                    <pre class="docs-code"><code>@btn-text
+@btn-bg
+@btn-bg-hover
+@btn-bg-active
+@btn__secondary-text
+@btn__secondary-bg
+@btn__secondary-bg-hover
+@btn__secondary-bg-active
+@btn__warning-text
+@btn__warning-bg
+@btn__warning-bg-hover
+@btn__warning-bg-active
+@btn__disabled-text
+@btn__disabled-bg
+@btn__disabled-outline</code></pre>
+                  </li>
+                </ul>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Sizing</h3>
+              <footer class="docs-pattern_footer">
+                <ul class="docs-codenotes">
+                  <li>
+                    <pre class="docs-code"><code>@btn-font-size
+@btn-v-padding
+@btn-v-padding-modifier-ie
+@super-btn-font-size</code></pre>
+                  </li>
+                </ul>
+                <ul class="docs-notes">
+                  <li>@btn-v-padding-modifier-ie is used to fix the vertical padding bug in IE for &lt;button&gt;'s and &lt;inputs&gt;'s across various .btn styles. We should revisit this after adding normalize.css to see if this is still needed.</li>
+                </ul>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div id="default-button" class="docs-component">
+          <h2 class="docs-component_header"><span>Default button</span></h2>
+          <div class="docs-component_intro">
+            <ul class="docs-notes">
+              <li>Note that the .visited, .hover, .focus, .active classes are for demonstration purposes only and should not be used in production.</li>
+            </ul>
+          </div>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Default state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn" title="Test button">Anchor Tag</a>
+<button class="btn" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn&quot; title=&quot;Test button&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Hovered state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn hover" title="Test button">Anchor Tag</a>
+<button class="btn hover" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn hover">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn hover&quot; title=&quot;Test button&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn hover&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn hover&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn hover\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn hover\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn hover\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Focused state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn focus" title="Test button">Anchor Tag</a>
+<button class="btn focus" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn focus">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn focus&quot; title=&quot;Test button&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn focus&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn focus&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn focus\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn focus\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn focus\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Active state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn active" title="Test button">Anchor Tag</a>
+<button class="btn active" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn active">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn active&quot; title=&quot;Test button&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn active&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn active&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn active\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn active\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn active\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div id="secondary-button" class="docs-component">
+          <h2 class="docs-component_header"><span>Secondary button</span></h2>
+          <div class="docs-component_intro">
+            <ul class="docs-notes">
+              <li>Note that the .visited, .hover, .focus, .active classes are for demonstration purposes only and should not be used in production.</li>
+            </ul>
+          </div>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Default state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__secondary">Anchor Tag</a>
+<button class="btn btn__secondary" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__secondary">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__secondary&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__secondary&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__secondary&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__secondary\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__secondary\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__secondary\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Hovered state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__secondary hover">Anchor Tag</a>
+<button class="btn btn__secondary hover" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__secondary hover">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__secondary hover&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__secondary hover&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__secondary hover&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__secondary hover\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__secondary hover\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__secondary hover\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Focused state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__secondary focus">Anchor Tag</a>
+<button class="btn btn__secondary focus" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__secondary focus">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__secondary focus&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__secondary focus&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__secondary focus&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__secondary focus\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__secondary focus\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__secondary focus\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Active state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__secondary active">Anchor Tag</a>
+<button class="btn btn__secondary active" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__secondary active">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__secondary active&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__secondary active&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__secondary active&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__secondary active\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__secondary active\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__secondary active\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div id="destructive-action-button" class="docs-component">
+          <h2 class="docs-component_header"><span>Destructive action button</span></h2>
+          <div class="docs-component_intro">
+            <ul class="docs-notes">
+              <li>Note that the .visited, .hover, .focus, .active classes are for demonstration purposes only and should not be used in production.</li>
+            </ul>
+          </div>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Default state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__warning">Anchor Tag</a>
+<button class="btn btn__warning" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__warning">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__warning&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__warning&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__warning&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__warning\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__warning\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__warning\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Hovered state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__warning hover">Anchor Tag</a>
+<button class="btn btn__warning hover" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__warning hover">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__warning hover&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__warning hover&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__warning hover&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__warning hover\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__warning hover\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__warning hover\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Focused state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__warning focus">Anchor Tag</a>
+<button class="btn btn__warning focus" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__warning focus">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__warning focus&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__warning focus&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__warning focus&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__warning focus\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__warning focus\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__warning focus\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Active state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__warning active">Anchor Tag</a>
+<button class="btn btn__warning active" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__warning active">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__warning active&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__warning active&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__warning active&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__warning active\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__warning active\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__warning active\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div id="disabled-button" class="docs-component">
+          <h2 class="docs-component_header"><span>Disabled button</span></h2>
+          <div class="docs-component_intro">
+            <ul class="docs-notes">
+              <li>Disabled buttons do not contain separate hover and active states since they should not be interacted with.</li>
+              <li>Note that the .focus class is for demonstration purposes only and should not be used in production.</li>
+            </ul>
+          </div>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Default/hovered/active state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__disabled">Anchor Tag</a>
+<button class="btn btn__disabled" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__disabled">
+<button class="btn" disabled title="Test button">Button Tag w/ disabled attr</button>
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__disabled&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__disabled&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__disabled&quot;&gt;
+&lt;button class=&quot;btn&quot; disabled title=&quot;Test button&quot;&gt;Button Tag w/ disabled attr&lt;/button&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__disabled\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__disabled\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__disabled\&amp;quot;&gt;\n&lt;button class=\&amp;quot;btn\&amp;quot; disabled title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag w/ disabled attr&lt;/button&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Focused state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__disabled focus">Anchor Tag</a>
+<button class="btn btn__disabled focus" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__disabled focus">
+<button class="btn focus" disabled title="Test button">Button Tag w/ disabled attr</button>
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__disabled focus&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__disabled focus&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__disabled focus&quot;&gt;
+&lt;button class=&quot;btn focus&quot; disabled title=&quot;Test button&quot;&gt;Button Tag w/ disabled attr&lt;/button&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__disabled focus\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__disabled focus\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__disabled focus\&amp;quot;&gt;\n&lt;button class=\&amp;quot;btn focus\&amp;quot; disabled title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag w/ disabled attr&lt;/button&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div id="super-button" class="docs-component">
+          <h2 class="docs-component_header"><span>Super button</span></h2>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Default state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__super">Anchor Tag</a>
+<button class="btn btn__super" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__super">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__super&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__super&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__super&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__super\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__super\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__super\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Hovered state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__super hover">Anchor Tag</a>
+<button class="btn btn__super hover" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__super hover">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__super hover&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__super hover&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__super hover&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__super hover\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__super hover\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__super hover\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Focused state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__super focus">Anchor Tag</a>
+<button class="btn btn__super focus" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__super focus">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__super focus&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__super focus&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__super focus&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__super focus\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__super focus\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__super focus\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Active state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__super active">Anchor Tag</a>
+<button class="btn btn__super active" title="Test button">Button Tag</button>
+<input type="submit" value="Input Tag" class="btn btn__super active">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__super active&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__super active&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__super active&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__super active\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__super active\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;submit\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__super active\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div id="button-with-icons" class="docs-component">
+          <h2 class="docs-component_header"><span>Button with icons</span></h2>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Button icon left</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn">
+    <span class="btn_icon__left cf-icon cf-icon-left"></span>
+    Anchor Tag
+</a>
+<button class="btn" title="Test button">
+    <span class="btn_icon__left cf-icon cf-icon-left"></span>
+    Button Tag
+</button>
+<br>
+<br>
+<a href="#" class="btn btn__secondary">
+    <span class="btn_icon__left cf-icon cf-icon-left"></span>
+    Anchor Tag
+</a>
+<button class="btn btn__secondary" title="Test button">
+    <span class="btn_icon__left cf-icon cf-icon-left"></span>
+    Button Tag
+</button>
+<br>
+<br>
+<a href="#" class="btn btn__warning">
+    <span class="btn_icon__left cf-icon cf-icon-left"></span>
+    Anchor Tag
+</a>
+<button class="btn btn__warning" title="Test button">
+    <span class="btn_icon__left cf-icon cf-icon-left"></span>
+    Button Tag
+</button>
+<br>
+<br>
+<a href="#" class="btn btn__disabled">
+    <span class="btn_icon__left cf-icon cf-icon-left"></span>
+    Anchor Tag
+</a>
+<button class="btn btn__disabled" title="Test button">
+    <span class="btn_icon__left cf-icon cf-icon-left"></span>
+    Button Tag
+</button>
+<button class="btn" disabled title="Test button">
+    <span class="btn_icon__left cf-icon cf-icon-left"></span>
+    Button Tag w/ disabled attr
+</button>
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn&quot;&gt;
+    &lt;span class=&quot;btn_icon__left cf-icon cf-icon-left&quot;&gt;&lt;/span&gt;
+    Anchor Tag
+&lt;/a&gt;
+&lt;button class=&quot;btn&quot; title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;btn_icon__left cf-icon cf-icon-left&quot;&gt;&lt;/span&gt;
+    Button Tag
+&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__secondary&quot;&gt;
+    &lt;span class=&quot;btn_icon__left cf-icon cf-icon-left&quot;&gt;&lt;/span&gt;
+    Anchor Tag
+&lt;/a&gt;
+&lt;button class=&quot;btn btn__secondary&quot; title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;btn_icon__left cf-icon cf-icon-left&quot;&gt;&lt;/span&gt;
+    Button Tag
+&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__warning&quot;&gt;
+    &lt;span class=&quot;btn_icon__left cf-icon cf-icon-left&quot;&gt;&lt;/span&gt;
+    Anchor Tag
+&lt;/a&gt;
+&lt;button class=&quot;btn btn__warning&quot; title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;btn_icon__left cf-icon cf-icon-left&quot;&gt;&lt;/span&gt;
+    Button Tag
+&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__disabled&quot;&gt;
+    &lt;span class=&quot;btn_icon__left cf-icon cf-icon-left&quot;&gt;&lt;/span&gt;
+    Anchor Tag
+&lt;/a&gt;
+&lt;button class=&quot;btn btn__disabled&quot; title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;btn_icon__left cf-icon cf-icon-left&quot;&gt;&lt;/span&gt;
+    Button Tag
+&lt;/button&gt;
+&lt;button class=&quot;btn&quot; disabled title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;btn_icon__left cf-icon cf-icon-left&quot;&gt;&lt;/span&gt;
+    Button Tag w/ disabled attr
+&lt;/button&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;btn_icon__left cf-icon cf-icon-left\&amp;quot;&gt;&lt;/span&gt;\n    Anchor Tag\n&lt;/a&gt;\n&lt;button class=\&amp;quot;btn\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;btn_icon__left cf-icon cf-icon-left\&amp;quot;&gt;&lt;/span&gt;\n    Button Tag\n&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__secondary\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;btn_icon__left cf-icon cf-icon-left\&amp;quot;&gt;&lt;/span&gt;\n    Anchor Tag\n&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__secondary\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;btn_icon__left cf-icon cf-icon-left\&amp;quot;&gt;&lt;/span&gt;\n    Button Tag\n&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__warning\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;btn_icon__left cf-icon cf-icon-left\&amp;quot;&gt;&lt;/span&gt;\n    Anchor Tag\n&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__warning\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;btn_icon__left cf-icon cf-icon-left\&amp;quot;&gt;&lt;/span&gt;\n    Button Tag\n&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__disabled\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;btn_icon__left cf-icon cf-icon-left\&amp;quot;&gt;&lt;/span&gt;\n    Anchor Tag\n&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__disabled\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;btn_icon__left cf-icon cf-icon-left\&amp;quot;&gt;&lt;/span&gt;\n    Button Tag\n&lt;/button&gt;\n&lt;button class=\&amp;quot;btn\&amp;quot; disabled title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;btn_icon__left cf-icon cf-icon-left\&amp;quot;&gt;&lt;/span&gt;\n    Button Tag w/ disabled attr\n&lt;/button&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Button icon right</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn">
+    Anchor Tag
+    <span class="btn_icon__right cf-icon cf-icon-right"></span>
+</a>
+<button class="btn" title="Test button">
+    Button Tag
+    <span class="btn_icon__right cf-icon cf-icon-right"></span>
+</button>
+<br>
+<br>
+<a href="#" class="btn btn__secondary">
+    Anchor Tag
+    <span class="btn_icon__right cf-icon cf-icon-right"></span>
+</a>
+<button class="btn btn__secondary" title="Test button">
+    Button Tag
+    <span class="btn_icon__right cf-icon cf-icon-right"></span>
+</button>
+<br>
+<br>
+<a href="#" class="btn btn__warning">
+    Anchor Tag
+    <span class="btn_icon__right cf-icon cf-icon-right"></span>
+</a>
+<button class="btn btn__warning" title="Test button">
+    Button Tag
+    <span class="btn_icon__right cf-icon cf-icon-right"></span>
+</button>
+<br>
+<br>
+<a href="#" class="btn btn__disabled">
+    Anchor Tag
+    <span class="btn_icon__right cf-icon cf-icon-right"></span>
+</a>
+<button class="btn btn__disabled" title="Test button">
+    Button Tag
+    <span class="btn_icon__right cf-icon cf-icon-right"></span>
+</button>
+<button class="btn" disabled title="Test button">
+    Button Tag w/ disabled attr
+    <span class="btn_icon__right cf-icon cf-icon-right"></span>
+</button>
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn&quot;&gt;
+    Anchor Tag
+    &lt;span class=&quot;btn_icon__right cf-icon cf-icon-right&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;button class=&quot;btn&quot; title=&quot;Test button&quot;&gt;
+    Button Tag
+    &lt;span class=&quot;btn_icon__right cf-icon cf-icon-right&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__secondary&quot;&gt;
+    Anchor Tag
+    &lt;span class=&quot;btn_icon__right cf-icon cf-icon-right&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;button class=&quot;btn btn__secondary&quot; title=&quot;Test button&quot;&gt;
+    Button Tag
+    &lt;span class=&quot;btn_icon__right cf-icon cf-icon-right&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__warning&quot;&gt;
+    Anchor Tag
+    &lt;span class=&quot;btn_icon__right cf-icon cf-icon-right&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;button class=&quot;btn btn__warning&quot; title=&quot;Test button&quot;&gt;
+    Button Tag
+    &lt;span class=&quot;btn_icon__right cf-icon cf-icon-right&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__disabled&quot;&gt;
+    Anchor Tag
+    &lt;span class=&quot;btn_icon__right cf-icon cf-icon-right&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;button class=&quot;btn btn__disabled&quot; title=&quot;Test button&quot;&gt;
+    Button Tag
+    &lt;span class=&quot;btn_icon__right cf-icon cf-icon-right&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;
+&lt;button class=&quot;btn&quot; disabled title=&quot;Test button&quot;&gt;
+    Button Tag w/ disabled attr
+    &lt;span class=&quot;btn_icon__right cf-icon cf-icon-right&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn\&amp;quot;&gt;\n    Anchor Tag\n    &lt;span class=\&amp;quot;btn_icon__right cf-icon cf-icon-right\&amp;quot;&gt;&lt;/span&gt;\n&lt;/a&gt;\n&lt;button class=\&amp;quot;btn\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    Button Tag\n    &lt;span class=\&amp;quot;btn_icon__right cf-icon cf-icon-right\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__secondary\&amp;quot;&gt;\n    Anchor Tag\n    &lt;span class=\&amp;quot;btn_icon__right cf-icon cf-icon-right\&amp;quot;&gt;&lt;/span&gt;\n&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__secondary\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    Button Tag\n    &lt;span class=\&amp;quot;btn_icon__right cf-icon cf-icon-right\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__warning\&amp;quot;&gt;\n    Anchor Tag\n    &lt;span class=\&amp;quot;btn_icon__right cf-icon cf-icon-right\&amp;quot;&gt;&lt;/span&gt;\n&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__warning\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    Button Tag\n    &lt;span class=\&amp;quot;btn_icon__right cf-icon cf-icon-right\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__disabled\&amp;quot;&gt;\n    Anchor Tag\n    &lt;span class=\&amp;quot;btn_icon__right cf-icon cf-icon-right\&amp;quot;&gt;&lt;/span&gt;\n&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__disabled\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    Button Tag\n    &lt;span class=\&amp;quot;btn_icon__right cf-icon cf-icon-right\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&lt;button class=\&amp;quot;btn\&amp;quot; disabled title=\&amp;quot;Test button\&amp;quot;&gt;\n    Button Tag w/ disabled attr\n    &lt;span class=\&amp;quot;btn_icon__right cf-icon cf-icon-right\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Just an icon</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn">
+    <span class="u-visually-hidden">Search</span>
+    <span class="cf-icon cf-icon-search"></span>
+</a>
+<button class="btn" title="Test button">
+    <span class="u-visually-hidden">Search</span>
+    <span class="cf-icon cf-icon-search"></span>
+</button>
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn&quot;&gt;
+    &lt;span class=&quot;u-visually-hidden&quot;&gt;Search&lt;/span&gt;
+    &lt;span class=&quot;cf-icon cf-icon-search&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;button class=&quot;btn&quot; title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;u-visually-hidden&quot;&gt;Search&lt;/span&gt;
+    &lt;span class=&quot;cf-icon cf-icon-search&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;u-visually-hidden\&amp;quot;&gt;Search&lt;/span&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-search\&amp;quot;&gt;&lt;/span&gt;\n&lt;/a&gt;\n&lt;button class=\&amp;quot;btn\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;u-visually-hidden\&amp;quot;&gt;Search&lt;/span&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-search\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+                <ul class="docs-notes">
+                  <li>For accessibility please use the .u-visually-hidden utility class to add hidden text for screen readers.</li>
+                </ul>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div id="button-group-modifiers" class="docs-component">
+          <h2 class="docs-component_header"><span>Button group modifiers</span></h2>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Default buttons in a button group</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__grouped-first">Anchor 1</a>
+<a href="#" class="btn btn__grouped">Anchor 2</a>
+<a href="#" class="btn btn__grouped-last">Anchor 3</a>
+<br>
+<br>
+<button class="btn btn__grouped-first" title="Test button">Button 1</button>
+<button class="btn btn__grouped" title="Test button">Button 2</button>
+<button class="btn btn__grouped-last" title="Test button">Button 3</button>
+<br>
+<br>
+<input type="button" value="Input 1" class="btn btn__grouped-first">
+<input type="button" value="Input 2" class="btn btn__grouped">
+<input type="button" value="Input 3" class="btn btn__grouped-last">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-first&quot;&gt;Anchor 1&lt;/a&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped&quot;&gt;Anchor 2&lt;/a&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-last&quot;&gt;Anchor 3&lt;/a&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;button class=&quot;btn btn__grouped-first&quot; title=&quot;Test button&quot;&gt;Button 1&lt;/button&gt;
+&lt;button class=&quot;btn btn__grouped&quot; title=&quot;Test button&quot;&gt;Button 2&lt;/button&gt;
+&lt;button class=&quot;btn btn__grouped-last&quot; title=&quot;Test button&quot;&gt;Button 3&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input 1&quot; class=&quot;btn btn__grouped-first&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input 2&quot; class=&quot;btn btn__grouped&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input 3&quot; class=&quot;btn btn__grouped-last&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-first\&amp;quot;&gt;Anchor 1&lt;/a&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped\&amp;quot;&gt;Anchor 2&lt;/a&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-last\&amp;quot;&gt;Anchor 3&lt;/a&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-first\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button 1&lt;/button&gt;\n&lt;button class=\&amp;quot;btn btn__grouped\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button 2&lt;/button&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-last\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button 3&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input 1\&amp;quot; class=\&amp;quot;btn btn__grouped-first\&amp;quot;&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input 2\&amp;quot; class=\&amp;quot;btn btn__grouped\&amp;quot;&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input 3\&amp;quot; class=\&amp;quot;btn btn__grouped-last\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Super buttons in a button group</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__grouped-first btn__super">Anchor 1</a>
+<a href="#" class="btn btn__grouped btn__super">Anchor 2</a>
+<a href="#" class="btn btn__grouped-last btn__super">Anchor 3</a>
+<br>
+<br>
+<button class="btn btn__grouped-first btn__super" title="Test button">Button 1</button>
+<button class="btn btn__grouped btn__super" title="Test button">Button 2</button>
+<button class="btn btn__grouped-last btn__super" title="Test button">Button 3</button>
+<br>
+<br>
+<input type="button" value="Input 1" class="btn btn__grouped-first btn__super">
+<input type="button" value="Input 2" class="btn btn__grouped btn__super">
+<input type="button" value="Input 3" class="btn btn__grouped-last btn__super">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-first btn__super&quot;&gt;Anchor 1&lt;/a&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped btn__super&quot;&gt;Anchor 2&lt;/a&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-last btn__super&quot;&gt;Anchor 3&lt;/a&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;button class=&quot;btn btn__grouped-first btn__super&quot; title=&quot;Test button&quot;&gt;Button 1&lt;/button&gt;
+&lt;button class=&quot;btn btn__grouped btn__super&quot; title=&quot;Test button&quot;&gt;Button 2&lt;/button&gt;
+&lt;button class=&quot;btn btn__grouped-last btn__super&quot; title=&quot;Test button&quot;&gt;Button 3&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input 1&quot; class=&quot;btn btn__grouped-first btn__super&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input 2&quot; class=&quot;btn btn__grouped btn__super&quot;&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input 3&quot; class=&quot;btn btn__grouped-last btn__super&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-first btn__super\&amp;quot;&gt;Anchor 1&lt;/a&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped btn__super\&amp;quot;&gt;Anchor 2&lt;/a&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-last btn__super\&amp;quot;&gt;Anchor 3&lt;/a&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-first btn__super\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button 1&lt;/button&gt;\n&lt;button class=\&amp;quot;btn btn__grouped btn__super\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button 2&lt;/button&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-last btn__super\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button 3&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input 1\&amp;quot; class=\&amp;quot;btn btn__grouped-first btn__super\&amp;quot;&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input 2\&amp;quot; class=\&amp;quot;btn btn__grouped btn__super\&amp;quot;&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input 3\&amp;quot; class=\&amp;quot;btn btn__grouped-last btn__super\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div id="compound-button" class="docs-component">
+          <h2 class="docs-component_header"><span>Compound button</span></h2>
+          <div class="docs-component_intro">
+            <ul class="docs-notes">
+              <li>This pattern requires combining .btn__grouped modifiers with the .btn__compound-action modifier.</li>
+              <li>Note that the .visited, .hover, .focus, .active classes are for demonstration purposes only and should not be used in production.</li>
+            </ul>
+          </div>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">All button styles</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__grouped-first">Anchor</a>
+<a href="#" class="btn btn__grouped-last btn__compound-action">
+    <span class="cf-icon cf-icon-down btn__grouped-last"></span>
+</a>
+<br>
+<br>
+<button class="btn btn__grouped-first" title="Test button">Button</button>
+<button class="btn btn__grouped-last btn__compound-action" title="Test button">
+    <span class="cf-icon cf-icon-down btn__grouped-last"></span>
+</button>
+<br>
+<br>
+<a href="#" class="btn btn__grouped-first btn__secondary">Anchor</a>
+<a href="#" class="btn btn__grouped-last btn__secondary btn__compound-action">
+    <span class="cf-icon cf-icon-down btn__grouped-last"></span>
+</a>
+<br>
+<br>
+<button class="btn btn__grouped-first btn__secondary" title="Test button">Button</button>
+<button class="btn btn__grouped-last btn__secondary btn__compound-action" title="Test button">
+    <span class="cf-icon cf-icon-down btn__grouped-last"></span>
+</button>
+<br>
+<br>
+<a href="#" class="btn btn__grouped-first btn__warning">Anchor</a>
+<a href="#" class="btn btn__grouped-last btn__warning btn__compound-action">
+    <span class="cf-icon cf-icon-down btn__grouped-last"></span>
+</a>
+<br>
+<br>
+<button class="btn btn__grouped-first btn__warning" title="Test button">Button</button>
+<button class="btn btn__grouped-last btn__warning btn__compound-action" title="Test button">
+    <span class="cf-icon cf-icon-down btn__grouped-last"></span>
+</button>
+<br>
+<br>
+<a href="#" class="btn btn__grouped-first btn__disabled">Anchor</a>
+<a href="#" class="btn btn__grouped-last btn__disabled btn__compound-action">
+    <span class="cf-icon cf-icon-down btn__grouped-last"></span>
+</a>
+<br>
+<br>
+<button class="btn btn__grouped-first btn__disabled" title="Test button">Button</button>
+<button class="btn btn__grouped-last btn__disabled btn__compound-action" title="Test button">
+    <span class="cf-icon cf-icon-down btn__grouped-last"></span>
+</button>
+<br>
+<br>
+<button class="btn btn__grouped-first" disabled title="Test button">Button w/ disabled attr</button>
+<button class="btn btn__grouped-last btn__compound-action" disabled title="Test button">
+    <span class="cf-icon cf-icon-down btn__grouped-last"></span>
+</button>
+<br>
+<br>
+<a href="#" class="btn btn__grouped-first btn__super">Anchor</a>
+<a href="#" class="btn btn__grouped-last btn__super btn__compound-action">
+    <span class="cf-icon cf-icon-down btn__grouped-last"></span>
+</a>
+<br>
+<br>
+<button class="btn btn__grouped-first btn__super" title="Test button">Button</button>
+<button class="btn btn__grouped-last btn__super btn__compound-action" title="Test button">
+    <span class="cf-icon cf-icon-down btn__grouped-last"></span>
+</button>
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-first&quot;&gt;Anchor&lt;/a&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-last btn__compound-action&quot;&gt;
+    &lt;span class=&quot;cf-icon cf-icon-down btn__grouped-last&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;button class=&quot;btn btn__grouped-first&quot; title=&quot;Test button&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;btn btn__grouped-last btn__compound-action&quot; title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;cf-icon cf-icon-down btn__grouped-last&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-first btn__secondary&quot;&gt;Anchor&lt;/a&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-last btn__secondary btn__compound-action&quot;&gt;
+    &lt;span class=&quot;cf-icon cf-icon-down btn__grouped-last&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;button class=&quot;btn btn__grouped-first btn__secondary&quot; title=&quot;Test button&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;btn btn__grouped-last btn__secondary btn__compound-action&quot; title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;cf-icon cf-icon-down btn__grouped-last&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-first btn__warning&quot;&gt;Anchor&lt;/a&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-last btn__warning btn__compound-action&quot;&gt;
+    &lt;span class=&quot;cf-icon cf-icon-down btn__grouped-last&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;button class=&quot;btn btn__grouped-first btn__warning&quot; title=&quot;Test button&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;btn btn__grouped-last btn__warning btn__compound-action&quot; title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;cf-icon cf-icon-down btn__grouped-last&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-first btn__disabled&quot;&gt;Anchor&lt;/a&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-last btn__disabled btn__compound-action&quot;&gt;
+    &lt;span class=&quot;cf-icon cf-icon-down btn__grouped-last&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;button class=&quot;btn btn__grouped-first btn__disabled&quot; title=&quot;Test button&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;btn btn__grouped-last btn__disabled btn__compound-action&quot; title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;cf-icon cf-icon-down btn__grouped-last&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;button class=&quot;btn btn__grouped-first&quot; disabled title=&quot;Test button&quot;&gt;Button w/ disabled attr&lt;/button&gt;
+&lt;button class=&quot;btn btn__grouped-last btn__compound-action&quot; disabled title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;cf-icon cf-icon-down btn__grouped-last&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-first btn__super&quot;&gt;Anchor&lt;/a&gt;
+&lt;a href=&quot;#&quot; class=&quot;btn btn__grouped-last btn__super btn__compound-action&quot;&gt;
+    &lt;span class=&quot;cf-icon cf-icon-down btn__grouped-last&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;button class=&quot;btn btn__grouped-first btn__super&quot; title=&quot;Test button&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;btn btn__grouped-last btn__super btn__compound-action&quot; title=&quot;Test button&quot;&gt;
+    &lt;span class=&quot;cf-icon cf-icon-down btn__grouped-last&quot;&gt;&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-first\&amp;quot;&gt;Anchor&lt;/a&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-last btn__compound-action\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-down btn__grouped-last\&amp;quot;&gt;&lt;/span&gt;\n&lt;/a&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-first\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button&lt;/button&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-last btn__compound-action\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-down btn__grouped-last\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-first btn__secondary\&amp;quot;&gt;Anchor&lt;/a&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-last btn__secondary btn__compound-action\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-down btn__grouped-last\&amp;quot;&gt;&lt;/span&gt;\n&lt;/a&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-first btn__secondary\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button&lt;/button&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-last btn__secondary btn__compound-action\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-down btn__grouped-last\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-first btn__warning\&amp;quot;&gt;Anchor&lt;/a&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-last btn__warning btn__compound-action\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-down btn__grouped-last\&amp;quot;&gt;&lt;/span&gt;\n&lt;/a&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-first btn__warning\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button&lt;/button&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-last btn__warning btn__compound-action\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-down btn__grouped-last\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-first btn__disabled\&amp;quot;&gt;Anchor&lt;/a&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-last btn__disabled btn__compound-action\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-down btn__grouped-last\&amp;quot;&gt;&lt;/span&gt;\n&lt;/a&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-first btn__disabled\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button&lt;/button&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-last btn__disabled btn__compound-action\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-down btn__grouped-last\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-first\&amp;quot; disabled title=\&amp;quot;Test button\&amp;quot;&gt;Button w/ disabled attr&lt;/button&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-last btn__compound-action\&amp;quot; disabled title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-down btn__grouped-last\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-first btn__super\&amp;quot;&gt;Anchor&lt;/a&gt;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__grouped-last btn__super btn__compound-action\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-down btn__grouped-last\&amp;quot;&gt;&lt;/span&gt;\n&lt;/a&gt;\n&lt;br&gt;\n&lt;br&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-first btn__super\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button&lt;/button&gt;\n&lt;button class=\&amp;quot;btn btn__grouped-last btn__super btn__compound-action\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;\n    &lt;span class=\&amp;quot;cf-icon cf-icon-down btn__grouped-last\&amp;quot;&gt;&lt;/span&gt;\n&lt;/button&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div id="button-link" class="docs-component">
+          <h2 class="docs-component_header"><span>Button link</span></h2>
+          <div class="docs-component_intro">
+            <ul class="docs-notes">
+              <li>Note that the .visited, .hover, .focus, .active classes are for demonstration purposes only and should not be used in production.</li>
+            </ul>
+          </div>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Default state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link">Anchor Tag</a>
+<button class="btn btn__link" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Hovered state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link hover">Anchor Tag</a>
+<button class="btn btn__link hover" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link hover">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link hover&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link hover&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link hover&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link hover\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link hover\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link hover\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Focused state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link focus">Anchor Tag</a>
+<button class="btn btn__link focus" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link focus">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link focus&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link focus&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link focus&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link focus\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link focus\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link focus\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Active state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link active">Anchor Tag</a>
+<button class="btn btn__link active" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link active">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link active&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link active&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link active&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link active\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link active\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link active\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div id="secondary-button-link" class="docs-component">
+          <h2 class="docs-component_header"><span>Secondary button link</span></h2>
+          <div class="docs-component_intro">
+            <ul class="docs-notes">
+              <li>Note that the .visited, .hover, .focus, .active classes are for demonstration purposes only and should not be used in production.</li>
+            </ul>
+          </div>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Default state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link btn__secondary">Anchor Tag</a>
+<button class="btn btn__link btn__secondary" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link btn__secondary">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link btn__secondary&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link btn__secondary&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link btn__secondary&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link btn__secondary\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link btn__secondary\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link btn__secondary\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Hovered state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link btn__secondary hover">Anchor Tag</a>
+<button class="btn btn__link btn__secondary hover" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link btn__secondary hover">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link btn__secondary hover&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link btn__secondary hover&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link btn__secondary hover&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link btn__secondary hover\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link btn__secondary hover\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link btn__secondary hover\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Focused state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link btn__secondary focus">Anchor Tag</a>
+<button class="btn btn__link btn__secondary focus" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link btn__secondary focus">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link btn__secondary focus&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link btn__secondary focus&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link btn__secondary focus&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link btn__secondary focus\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link btn__secondary focus\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link btn__secondary focus\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Active state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link btn__secondary active">Anchor Tag</a>
+<button class="btn btn__link btn__secondary active" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link btn__secondary active">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link btn__secondary active&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link btn__secondary active&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link btn__secondary active&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link btn__secondary active\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link btn__secondary active\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link btn__secondary active\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div id="destructive-action-button-link" class="docs-component">
+          <h2 class="docs-component_header"><span>Destructive action button link</span></h2>
+          <div class="docs-component_intro">
+            <ul class="docs-notes">
+              <li>Note that the .visited, .hover, .focus, .active classes are for demonstration purposes only and should not be used in production.</li>
+            </ul>
+          </div>
+          <div class="docs-patterns">
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Default state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link btn__warning">Anchor Tag</a>
+<button class="btn btn__link btn__warning" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link btn__warning">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link btn__warning&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link btn__warning&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link btn__warning&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link btn__warning\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link btn__warning\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link btn__warning\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Hovered state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link btn__warning hover">Anchor Tag</a>
+<button class="btn btn__link btn__warning hover" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link btn__warning hover">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link btn__warning hover&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link btn__warning hover&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link btn__warning hover&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link btn__warning hover\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link btn__warning hover\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link btn__warning hover\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Focused state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link btn__warning focus">Anchor Tag</a>
+<button class="btn btn__link btn__warning focus" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link btn__warning focus">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link btn__warning focus&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link btn__warning focus&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link btn__warning focus&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link btn__warning focus\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link btn__warning focus\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link btn__warning focus\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+            <div class="docs-pattern">
+              <h3 class="docs-pattern_header">Active state</h3>
+              <section class="docs-pattern_pattern">
+<a href="#" class="btn btn__link btn__warning active">Anchor Tag</a>
+<button class="btn btn__link btn__warning active" title="Test button">Button Tag</button>
+<input type="button" value="Input Tag" class="btn btn__link btn__warning active">
+
+              </section>
+              <footer class="docs-pattern_footer">
+                <pre class="docs-code docs-pattern_markup"><code data-language="html">&lt;a href=&quot;#&quot; class=&quot;btn btn__link btn__warning active&quot;&gt;Anchor Tag&lt;/a&gt;
+&lt;button class=&quot;btn btn__link btn__warning active&quot; title=&quot;Test button&quot;&gt;Button Tag&lt;/button&gt;
+&lt;input type=&quot;button&quot; value=&quot;Input Tag&quot; class=&quot;btn btn__link btn__warning active&quot;&gt;</code></pre>
+                <form action="http://codepen.io/pen/define" method="POST" target="_blank" class="docs-pattern_footer-edit">
+                  <input type="hidden" name="data" value="{&amp;quot;css&amp;quot;:&amp;quot;body { padding: 1em; }&amp;quot;,&amp;quot;css_external&amp;quot;:&amp;quot;http://cfpb.github.io/cf-buttons/docs/static/css/main.css&amp;quot;,&amp;quot;html&amp;quot;:&amp;quot;\n&lt;a href=\&amp;quot;#\&amp;quot; class=\&amp;quot;btn btn__link btn__warning active\&amp;quot;&gt;Anchor Tag&lt;/a&gt;\n&lt;button class=\&amp;quot;btn btn__link btn__warning active\&amp;quot; title=\&amp;quot;Test button\&amp;quot;&gt;Button Tag&lt;/button&gt;\n&lt;input type=\&amp;quot;button\&amp;quot; value=\&amp;quot;Input Tag\&amp;quot; class=\&amp;quot;btn btn__link btn__warning active\&amp;quot;&gt;\n&amp;quot;}">
+                  <input type="submit" value="edit on codepen.io" class="docs-pattern_footer-edit-btn">
+                </form>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="docs-sidebar-wrapper_sidebar">
+        <ul class="docs-nav">
+          <li class="docs-nav_item"><a href="https://cfpb.github.io/cf-core/docs/" class="docs-nav_link">cf-core</a></li>
+          <li class="docs-nav_item"><a href="https://cfpb.github.io/cf-buttons/docs/" class="docs-nav_link">cf-buttons</a></li>
+          <li class="docs-nav_item"><a href="https://cfpb.github.io/cf-expandables/docs/" class="docs-nav_link">cf-expandables</a></li>
+          <li class="docs-nav_item"><a href="https://cfpb.github.io/cf-forms/docs/" class="docs-nav_link">cf-forms</a></li>
+          <li class="docs-nav_item"><a href="https://cfpb.github.io/cf-grid/docs/" class="docs-nav_link">cf-grid</a></li>
+          <li class="docs-nav_item"><a href="https://cfpb.github.io/cf-icons/docs/" class="docs-nav_link">cf-icons</a></li>
+          <li class="docs-nav_item"><a href="https://cfpb.github.io/cf-layout/docs/" class="docs-nav_link">cf-layout</a></li>
+          <li class="docs-nav_item"><a href="https://cfpb.github.io/cf-pagination/docs/" class="docs-nav_link">cf-pagination</a></li>
+          <li class="docs-nav_item"><a href="https://cfpb.github.io/cf-typography/docs/" class="docs-nav_link">cf-typography</a></li>
+        </ul>
+      </div>
+    </div>
+    <script src="static/docs/main.min.js"></script>
+  </body>
+</html>

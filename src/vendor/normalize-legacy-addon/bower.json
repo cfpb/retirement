@@ -1,0 +1,19 @@
+{
+  "name": "normalize-legacy-addon",
+  "version": "0.1.0",
+  "description": "An add-on to normalize.css that backfills v1 legacy browser support. It is built to be combined with newer versions of normalize.css.",
+  "keywords": ["css", "normalize", "legacy", "ie7", "ie6"],
+  "authors": [
+    {
+      "name": "Consumer Financial Protection Bureau",
+      "url": "http://cfpb.github.io/"
+    }
+  ],
+  "homepage": "https://github.com/cfpb/normalize-legacy-addon",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cfpb/normalize-legacy-addon.git"
+  },
+  "license": "https://github.com/cfpb/normalize-legacy-addon/blob/master/TERMS.md",
+  "main": "normalize-legacy-addon.css"
+}

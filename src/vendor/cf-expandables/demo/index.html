@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+  <!-- <![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>cf-expandables demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+<!--[if lt IE 9]>
+    <script src="static/demo/html5shiv-printshiv.js"></script><![endif]-->
+  </head>
+  <body style="padding:4px;">
+    <div id="theme-variables">
+      <div>
+        <div></div><br>
+      </div>
+      <div>
+        <div></div><br>
+      </div>
+    </div>
+    <div id="recommended-expandable-pattern">
+      <div>
+        <div>
+<div class="expandable expandable__padded">
+    <button class="expandable_header expandable_target" title="Expand content">
+        <span class="expandable_header-left expandable_label">
+            Expandable Header
+        </span>
+        <span class="expandable_header-right expandable_link">
+            <span class="expandable_cue-open">
+                Show
+                <span class="cf-icon cf-icon-plus-round"></span>
+            </span>
+            <span class="expandable_cue-close">
+                Hide
+                <span class="cf-icon cf-icon-minus-round"></span>
+            </span>
+        </span>
+    </button>
+    <div class="expandable_content">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+            temporibus magnam debitis quidem. Ducimus ratione
+            corporis nesciunt earum vel est quaerat blanditiis
+            dolore ipsa?
+        </p>
+    </div>
+</div>
+</div><br>
+      </div>
+    </div>
+    <div id="js-functions">
+      <div>
+        <div></div><br>
+      </div>
+      <div>
+        <div></div><br>
+      </div>
+      <div>
+        <div></div><br>
+      </div>
+      <div>
+        <div></div><br>
+      </div>
+    </div>
+    <div id="barebones-expandable">
+      <div>
+        <div>
+<div class="expandable">
+    <button class="expandable_target" title="Expand content">
+        <span class="expandable_cue-open">
+            Show
+        </span>
+        <span class="expandable_cue-close">
+            Hide
+        </span>
+    </button>
+    <div class="expandable_content">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+            temporibus magnam debitis quidem. Ducimus ratione
+            corporis nesciunt earum vel est quaerat blanditiis
+            dolore ipsa?
+        </p>
+    </div>
+</div>
+</div><br>
+      </div>
+      <div>
+        <div></div><br>
+      </div>
+    </div>
+    <div id="expandable-text-elements">
+      <div>
+        <div>
+<span class="expandable_label">
+    Lorem ipsum
+</span>
+</div><br>
+      </div>
+      <div>
+        <div>
+<span class="expandable_link">
+    Lorem ipsum
+</span>
+</div><br>
+      </div>
+    </div>
+    <div id="animated-cues">
+      <div>
+        <div>
+<div class="expandable">
+    <button class="expandable_target" title="Expand content">
+        <span class="expandable_cue-open expandable_cue-open__animated">
+            <span class="cf-icon cf-icon-down"></span>
+        </span>
+        <span class="expandable_cue-close expandable_cue-close__animated">
+            <span class="cf-icon cf-icon-up"></span>
+        </span>
+    </button>
+    <div class="expandable_content">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+            temporibus magnam debitis quidem. Ducimus ratione
+            corporis nesciunt earum vel est quaerat blanditiis
+            dolore ipsa?
+        </p>
+    </div>
+</div>
+<div class="expandable expandable__expanded">
+    <button class="expandable_target" title="Expand content">
+        <span class="expandable_cue-open expandable_cue-open__animated">
+            <span class="cf-icon cf-icon-down"></span>
+        </span>
+        <span class="expandable_cue-close expandable_cue-close__animated">
+            <span class="cf-icon cf-icon-up"></span>
+        </span>
+    </button>
+    <div class="expandable_content">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+            temporibus magnam debitis quidem. Ducimus ratione
+            corporis nesciunt earum vel est quaerat blanditiis
+            dolore ipsa?
+        </p>
+    </div>
+</div>
+</div><br>
+      </div>
+    </div>
+    <div id="expandable-header-elements">
+      <div>
+        <div></div><br>
+      </div>
+      <div>
+        <div></div><br>
+      </div>
+      <div>
+        <div></div><br>
+      </div>
+    </div>
+    <div id="padded-expandable-modifier">
+      <div>
+        <div></div><br>
+      </div>
+    </div>
+    <div id="expandable-groups">
+      <div>
+        <div>
+<div class="expandable-group">
+    <div class="expandable-group_header">Expandable group header</div>
+    <div class="expandable expandable__padded">
+        <button class="expandable_header expandable_target" title="Expand content">
+            <span class="expandable_header-left expandable_label">
+                Expandable Header 1
+            </span>
+            <span class="expandable_header-right expandable_link">
+                <span class="expandable_cue-open">
+                    Show
+                    <span class="cf-icon cf-icon-plus-round"></span>
+                </span>
+                <span class="expandable_cue-close">
+                    Hide
+                    <span class="cf-icon cf-icon-minus-round"></span>
+                </span>
+            </span>
+        </button>
+        <div class="expandable_content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+                temporibus magnam debitis quidem. Ducimus ratione
+                corporis nesciunt earum vel est quaerat blanditiis
+                dolore ipsa?
+            </p>
+        </div>
+    </div>
+    <div class="expandable expandable__padded">
+        <button class="expandable_header expandable_target" title="Expand content">
+            <span class="expandable_header-left expandable_label">
+                Expandable Header 2
+            </span>
+            <span class="expandable_header-right expandable_link">
+                <span class="expandable_cue-open">
+                    Show
+                    <span class="cf-icon cf-icon-plus-round"></span>
+                </span>
+                <span class="expandable_cue-close">
+                    Hide
+                    <span class="cf-icon cf-icon-minus-round"></span>
+                </span>
+            </span>
+        </button>
+        <div class="expandable_content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+                temporibus magnam debitis quidem. Ducimus ratione
+                corporis nesciunt earum vel est quaerat blanditiis
+                dolore ipsa?
+            </p>
+        </div>
+    </div>
+    <div class="expandable expandable__padded">
+        <button class="expandable_header expandable_target" title="Expand content">
+            <span class="expandable_header-left expandable_label">
+                Expandable Header 3
+            </span>
+            <span class="expandable_header-right expandable_link">
+                <span class="expandable_cue-open">
+                    Show
+                    <span class="cf-icon cf-icon-plus-round"></span>
+                </span>
+                <span class="expandable_cue-close">
+                    Hide
+                    <span class="cf-icon cf-icon-minus-round"></span>
+                </span>
+            </span>
+        </button>
+        <div class="expandable_content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+                temporibus magnam debitis quidem. Ducimus ratione
+                corporis nesciunt earum vel est quaerat blanditiis
+                dolore ipsa?
+            </p>
+        </div>
+    </div>
+</div>
+</div><br>
+      </div>
+      <div>
+        <div>
+<div class="expandable-group" data-accordion="true">
+    <div class="expandable-group_header">Expandable group header</div>
+    <div class="expandable expandable__padded">
+        <button class="expandable_header expandable_target" title="Expand content">
+            <span class="expandable_header-left expandable_label">
+                Expandable Header 1
+            </span>
+            <span class="expandable_header-right expandable_link">
+                <span class="expandable_cue-open">
+                    Show
+                    <span class="cf-icon cf-icon-plus-round"></span>
+                </span>
+                <span class="expandable_cue-close">
+                    Hide
+                    <span class="cf-icon cf-icon-minus-round"></span>
+                </span>
+            </span>
+        </button>
+        <div class="expandable_content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+                temporibus magnam debitis quidem. Ducimus ratione
+                corporis nesciunt earum vel est quaerat blanditiis
+                dolore ipsa?
+            </p>
+        </div>
+    </div>
+    <div class="expandable expandable__padded">
+        <button class="expandable_header expandable_target" title="Expand content">
+            <span class="expandable_header-left expandable_label">
+                Expandable Header 2
+            </span>
+            <span class="expandable_header-right expandable_link">
+                <span class="expandable_cue-open">
+                    Show
+                    <span class="cf-icon cf-icon-plus-round"></span>
+                </span>
+                <span class="expandable_cue-close">
+                    Hide
+                    <span class="cf-icon cf-icon-minus-round"></span>
+                </span>
+            </span>
+        </button>
+        <div class="expandable_content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+                temporibus magnam debitis quidem. Ducimus ratione
+                corporis nesciunt earum vel est quaerat blanditiis
+                dolore ipsa?
+            </p>
+        </div>
+    </div>
+    <div class="expandable expandable__padded">
+        <button class="expandable_header expandable_target" title="Expand content">
+            <span class="expandable_header-left expandable_label">
+                Expandable Header 3
+            </span>
+            <span class="expandable_header-right expandable_link">
+                <span class="expandable_cue-open">
+                    Show
+                    <span class="cf-icon cf-icon-plus-round"></span>
+                </span>
+                <span class="expandable_cue-close">
+                    Hide
+                    <span class="cf-icon cf-icon-minus-round"></span>
+                </span>
+            </span>
+        </button>
+        <div class="expandable_content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+                temporibus magnam debitis quidem. Ducimus ratione
+                corporis nesciunt earum vel est quaerat blanditiis
+                dolore ipsa?
+            </p>
+        </div>
+    </div>
+</div>
+</div><br>
+      </div>
+    </div>
+    <div id="custom-demo">
+<hr><br>
+<div class="expandable">
+    <button class="expandable_target">
+        <span class="expandable_label">
+            Expandable without <code>.expandable_header</code>.
+        </span>
+        <span class="expandable_link">
+            <span class="expandable_cue-open">
+                Show
+                <span class="cf-icon cf-icon-plus-round"></span>
+            </span>
+            <span class="expandable_cue-close">
+                Hide
+                <span class="cf-icon cf-icon-minus-round"></span>
+            </span>
+        </span>
+    </button>
+    <div class="expandable_content">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+            temporibus magnam debitis quidem. Ducimus ratione
+            corporis nesciunt earum vel est quaerat blanditiis
+            dolore ipsa?
+        </p>
+    </div>
+</div>
+
+<hr><br>
+<div class="expandable expandable__padded">
+    <button class="expandable_header expandable_target">
+        <span class="expandable_header-left expandable_label">
+            Nested expandable (outer)
+        </span>
+        <span class="expandable_header-right expandable_link">
+            <span class="expandable_cue-open">
+                Show
+                <span class="cf-icon cf-icon-plus-round"></span>
+            </span>
+            <span class="expandable_cue-close">
+                Hide
+                <span class="cf-icon cf-icon-minus-round"></span>
+            </span>
+        </span>
+    </button>
+    <div class="expandable_content">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+            temporibus magnam debitis quidem. Ducimus ratione
+            corporis nesciunt earum vel est quaerat blanditiis
+            dolore ipsa?
+        </p>
+        <div class="expandable expandable__padded">
+            <button class="expandable_header expandable_target">
+                <span class="expandable_header-left expandable_label">
+                    Nested expandable (inner)
+                </span>
+                <span class="expandable_header-right expandable_link">
+                    <span class="expandable_cue-open">
+                        Show
+                        <span class="cf-icon cf-icon-plus-round"></span>
+                    </span>
+                    <span class="expandable_cue-close">
+                        Hide
+                        <span class="cf-icon cf-icon-minus-round"></span>
+                    </span>
+                </span>
+            </button>
+            <div class="expandable_content">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing
+                    elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+                    temporibus magnam debitis quidem. Ducimus ratione
+                    corporis nesciunt earum vel est quaerat blanditiis
+                    dolore ipsa?
+                </p>
+                <div class="expandable expandable__padded">
+                    <button class="expandable_header expandable_target">
+                        <span class="expandable_header-left expandable_label">
+                            Nested-nested expandable (infinite nesting, woah!)
+                        </span>
+                        <span class="expandable_header-right expandable_link">
+                            <span class="expandable_cue-open">
+                                Show
+                                <span class="cf-icon cf-icon-plus-round"></span>
+                            </span>
+                            <span class="expandable_cue-close">
+                                Hide
+                                <span class="cf-icon cf-icon-minus-round"></span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="expandable_content">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+                            temporibus magnam debitis quidem. Ducimus ratione
+                            corporis nesciunt earum vel est quaerat blanditiis
+                            dolore ipsa?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    <script src="static/js/component.min.js"></script>
+  </body>
+</html>

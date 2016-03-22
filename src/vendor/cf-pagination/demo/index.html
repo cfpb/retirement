@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+  <!-- <![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>cf-pagination demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!--[if lt IE 9]>
+    <link rel="stylesheet" type="text/css" href="static/css/main.lt-ie9.min.css"><![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <!--<![endif]-->
+<!--[if lt IE 8]>
+    <link rel="stylesheet" type="text/css" href="static/css/main.lt-ie8.min.css"><![endif]-->
+<!--[if lt IE 9]>
+    <script src="static/demo/html5shiv-printshiv.js"></script>
+    <script>
+      var cfHead = document.getElementsByTagName('head')[0],
+        cfStyle = document.createElement('style');
+      cfStyle.type = 'text/css';
+      cfStyle.styleSheet.cssText = ':before,:after{content:none !important}';
+      cfHead.appendChild(cfStyle);
+      setTimeout(function(){
+        cfHead.removeChild(cfStyle);
+      }, 300);
+      
+    </script><![endif]-->
+  </head>
+  <body style="padding:4px;">
+    <div id="theme-variables">
+      <div>
+        <div></div><br>
+      </div>
+      <div>
+        <div></div><br>
+      </div>
+    </div>
+    <div id="pagination">
+      <div>
+        <div>
+<div id="pagination_content"></div>
+
+<!-- Paginated content here -->
+
+<nav class="pagination">
+    <a class="btn btn__super pagination_prev" href="#pagination_content">
+        <span class="btn_icon__left cf-icon cf-icon-left"></span>
+        Previous
+    </a>
+    <a class="btn btn__super pagination_next" href="#pagination_content">
+        Next
+        <span class="btn_icon__right cf-icon cf-icon-right"></span>
+    </a>
+    <form class="pagination_form" action="index.html#pagination_content">
+        <label class="pagination_label"
+               for="pagination_current-page">
+            Page
+            <span class="u-visually-hidden">
+                number out of 149 total pages
+            </span>
+        </label>
+        <input
+            class="pagination_current-page"
+            id="pagination_current-page"
+            name="pagination_current-page"
+            type="number" min="1" max="149"
+            value="149">
+        <span class="pagination_label">
+            <span aria-hidden="true">
+                of 149
+            </span>
+        </span>
+        <button class="btn btn__link pagination_submit"
+                id="pagination_submit"
+                type="submit">
+            Go
+        </button>
+    </form>
+</nav>
+</div><br>
+      </div>
+    </div>
+    <div id="custom-demo">
+<hr><br>
+
+<!-- TEST: Disabled Previous -->
+<nav class="pagination">
+    <a class="btn btn__super btn__disabled pagination_prev" href="#pagination_content">
+        <span class="btn_icon__left cf-icon cf-icon-left"></span>
+        Previous
+    </a>
+    <a class="btn btn__super pagination_next" href="#pagination_content">
+        Next
+        <span class="btn_icon__right cf-icon cf-icon-right"></span>
+    </a>
+    <form class="pagination_form" action="index.html#pagination_content">
+        <label class="pagination_label"
+               for="pagination_current-page">
+            Page
+            <span class="u-visually-hidden">
+                number out of 149 total pages
+            </span>
+        </label>
+        <input
+            class="pagination_current-page"
+            name="pagination_current-page"
+            type="number" min="1" max="149"
+            value="149">
+        <span class="pagination_label">
+            <span aria-hidden="true">
+                of 149
+            </span>
+        </span>
+        <button class="btn btn__link pagination_submit"
+                type="submit">
+            Go
+        </button>
+    </form>
+</nav><br>
+
+<!-- TEST: Disabled Next -->
+<nav class="pagination">
+    <a class="btn btn__super pagination_prev" href="#pagination_content">
+        <span class="btn_icon__left cf-icon cf-icon-left"></span>
+        Previous
+    </a>
+    <a class="btn btn__super btn__disabled pagination_next" href="#pagination_content">
+        Next
+        <span class="btn_icon__right cf-icon cf-icon-right"></span>
+    </a>
+    <form class="pagination_form" action="index.html#pagination_content">
+        <label class="pagination_label"
+               for="pagination_current-page">
+            Page
+            <span class="u-visually-hidden">
+                number out of 149 total pages
+            </span>
+        </label>
+        <input
+            class="pagination_current-page"
+            name="pagination_current-page"
+            type="number" min="1" max="149"
+            value="149">
+        <span class="pagination_label">
+            <span aria-hidden="true">
+                of 149
+            </span>
+        </span>
+        <button class="btn btn__link pagination_submit"
+                type="submit">
+            Go
+        </button>
+    </form>
+</nav><br>
+
+<!-- TEST: Disabled Submit -->
+<nav class="pagination">
+    <a class="btn btn__super pagination_prev" href="#pagination_content">
+        <span class="btn_icon__left cf-icon cf-icon-left"></span>
+        Previous
+    </a>
+    <a class="btn btn__super pagination_next" href="#pagination_content">
+        Next
+        <span class="btn_icon__right cf-icon cf-icon-right"></span>
+    </a>
+    <form class="pagination_form" action="index.html#pagination_content">
+        <label class="pagination_label"
+               for="pagination_current-page">
+            Page
+            <span class="u-visually-hidden">
+                number out of 149 total pages
+            </span>
+        </label>
+        <input
+            class="pagination_current-page"
+            name="pagination_current-page"
+            type="number" min="1" max="149"
+            value="149">
+        <span class="pagination_label">
+            <span aria-hidden="true">
+                of 149
+            </span>
+        </span>
+        <button class="btn btn__link btn__disabled pagination_submit"
+                type="submit">
+            Go
+        </button>
+    </form>
+</nav>
+</div>
+  </body>
+</html>

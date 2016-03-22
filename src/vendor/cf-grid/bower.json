@@ -1,0 +1,29 @@
+{
+  "name": "cf-grid",
+  "version": "1.0.2",
+  "description": "A Less-based grid system using parametric mixins. Part of Capital Framework.",
+  "keywords": [
+    "capital-framework",
+    "capital",
+    "grid",
+    "less"
+  ],
+  "authors": [
+    {
+      "name": "Consumer Financial Protection Bureau",
+      "url": "https://cfpb.github.io/"
+    }
+  ],
+  "homepage": "https://github.com/cfpb/cf-grid",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cfpb/cf-grid.git"
+  },
+  "license": "https://github.com/cfpb/cf-grid/blob/gh-pages/TERMS.md",
+  "main": "src/cf-grid.less",
+  "dependencies": {
+    "box-sizing-polyfill": "git://github.com/Schepp/box-sizing-polyfill.git#a483a1e49c54707979ae6ed49ce58fb81eca4ae3",
+    "normalize-css": "~3.0.0",
+    "normalize-legacy-addon": "git://github.com/cfpb/normalize-legacy-addon.git#0.1.0"
+  }
+}

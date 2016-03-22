@@ -1,0 +1,2557 @@
+/* ==========================================================================
+   Capital Framework
+   cf-component-demo styling
+   ========================================================================== */
+/* ==========================================================================
+   Capital Framework
+   Core Less file
+   ========================================================================== */
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS and IE text size adjust after device orientation change,
+ *    without disabling user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+}
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none;
+}
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+/**
+ * Improve readability of focused elements when they are also in an
+ * active/hover state.
+ */
+a:active,
+a:hover {
+  outline: 0;
+}
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold;
+}
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+dfn {
+  font-style: italic;
+}
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000;
+}
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+img {
+  border: 0;
+}
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+figure {
+  margin: 1em 40px;
+}
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+/**
+ * Contain overflow in all browsers.
+ */
+pre {
+  overflow: auto;
+}
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+button {
+  overflow: visible;
+}
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button,
+select {
+  text-transform: none;
+}
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+  line-height: normal;
+}
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  box-sizing: content-box;
+  /* 2 */
+}
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+textarea {
+  overflow: auto;
+}
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+optgroup {
+  font-weight: bold;
+}
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+/*! normalize-legacy-addon | MIT License | https://github.com/cfpb/normalize-legacy-addon */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/*
+ * Corrects `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+audio,
+canvas,
+video {
+  *display: inline;
+  *zoom: 1;
+}
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/* 
+ * Corrects text resizing oddly in IE 6/7 when body `font-size` is set using
+ * `em` units.
+*/
+html {
+  font-size: 100%;
+}
+/*
+ * Addresses `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+html,
+button,
+input,
+select,
+textarea {
+  font-family: sans-serif;
+}
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/*
+ * Addresses font sizes and margins set differently in IE 6/7.
+ * Addresses font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+h1 {
+  margin: 0.67em 0;
+}
+h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+h3 {
+  font-size: 1.17em;
+  margin: 1em 0;
+}
+h4 {
+  font-size: 1em;
+  margin: 1.33em 0;
+}
+h5 {
+  font-size: 0.83em;
+  margin: 1.67em 0;
+}
+h6 {
+  font-size: 0.75em;
+  margin: 2.33em 0;
+}
+blockquote {
+  margin: 1em 40px;
+}
+/*
+ * Addresses margins set differently in IE 6/7.
+ */
+p,
+pre {
+  margin: 1em 0;
+}
+/*
+ * Corrects font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+code,
+kbd,
+pre,
+samp {
+  _font-family: 'courier new', monospace;
+}
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+pre {
+  white-space: pre;
+  word-wrap: break-word;
+}
+/*
+ * Addresses CSS quotes not supported in IE 6/7.
+ */
+q {
+  quotes: none;
+}
+/*
+ * Addresses `quotes` property not supported in Safari 4.
+ */
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+/*
+ * Addresses margins set differently in IE 6/7.
+ */
+dl,
+menu,
+ol,
+ul {
+  margin: 1em 0;
+}
+dd {
+  margin: 0 0 0 40px;
+}
+/*
+ * Addresses paddings set differently in IE 6/7.
+ */
+menu,
+ol,
+ul {
+  padding: 0 0 0 40px;
+}
+/*
+ * Corrects list images handled incorrectly in IE 7.
+ */
+nav ul,
+nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+/*
+ * Improves image quality when scaled in IE 7.
+ */
+img {
+  -ms-interpolation-mode: bicubic;
+}
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/*
+ * Corrects margin displayed oddly in IE 6/7.
+ */
+form {
+  margin: 0;
+}
+/*
+ * 1. Corrects color not being inherited in IE 6/7/8/9.
+ * 2. Corrects text not wrapping in Firefox 3.
+ * 3. Corrects alignment displayed oddly in IE 6/7.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  white-space: normal;
+  /* 2 */
+  *margin-left: -7px;
+  /* 3 */
+}
+/*
+ * Improves appearance and consistency in all browsers.
+ */
+button,
+input,
+select,
+textarea {
+  vertical-align: baseline;
+  *vertical-align: middle;
+}
+/*
+ * Removes inner spacing in IE 7 without affecting normal text inputs.
+ * Known issue: inner spacing remains in IE 6.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  *overflow: visible;
+}
+/*
+ * Removes excess padding in IE 7.
+ * Known issue: excess padding remains in IE 6.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  *height: 13px;
+  *width: 13px;
+}
+/* ==========================================================================
+   Capital Framework
+   Less variables
+   ========================================================================== */
+/* topdoc
+  name: Theme variables
+  family: cf-core
+  notes:
+    - "The following color and sizing variables are exposed, allowing you to
+       easily override them before compiling."
+  patterns:
+    - name: Sizing
+      codenotes:
+        - |
+          @base-font-size-px
+          @base-line-height-px
+          @base-line-height
+          @mobile-max
+          @tablet-min
+    - name: Colors
+      codenotes:
+        - |
+          @text
+          @link-text
+          @link-underline
+          @link-text-visited
+          @link-underline-visited
+          @link-text-hover
+          @link-underline-hover
+          @link-text-active
+          @link-underline-active
+          @thead-text
+          @thead-bg
+          @td-bg
+          @td-bg-alt
+          @input-bg
+          @input-border
+          @input-border-focus
+          @input-placeholder
+          @figure__bordered
+  tags:
+    - cf-core
+*/
+/* topdoc
+  name: EOF
+  eof: true
+*/
+/* ==========================================================================
+   Capital Framework
+   Media queries
+   ========================================================================== */
+/* topdoc
+  name: Media query mixins
+  family: cf-core
+  notes:
+    - "These mixins allow us to write consistent media queries using pixel
+      values, which are easier to remember. The mixins handle converting the
+      pixels into em's."
+  patterns:
+    - name: "min-width/max-width media queries"
+      codenotes:
+        - ".respond-to-min(@bp, @rules)"
+        - ".respond-to-max(@bp, @rules)"
+      notes:
+        - "@bp: the breakpoint size in pixels. It will get converted into em's."
+        - "@rules: a CSS or Less ruleset. Note that it can contain the full set
+          of Less features."
+    - name: "min-width/max-width media query usage"
+      codenotes:
+        - |
+            .respond-to-min(768px, {
+                .title {
+                    font-size: 2em;
+                }
+            });
+
+            Compiles to:
+
+            @media only all and (min-width: 48em) {
+                .title {
+                    font-size: 2em;
+                }
+            }
+    - name: "min-width/max-width media query range"
+      codenotes:
+        - ".respond-to-range(@bp1, @bp2, @rules)"
+      notes:
+        - "@bp1: the min-width breakpoint size in pixels.
+          It will get converted into em's."
+        - "@bp2: the max-width breakpoint size in pixels.
+          It will get converted into em's."
+        - "@rules: a CSS or Less ruleset. Note that it can contain the full set
+          of Less features."
+    - name: "min-width/max-width media query range usage"
+      codenotes:
+        - |
+            .respond-to-range(320px, 768px, {
+                .title {
+                    font-size: 2em;
+                }
+            });
+
+            Compiles to:
+
+            @media only all and (min-width: 20em) and (max-width: 48em) {
+                .title {
+                    font-size: 2em;
+                }
+            }
+  tags:
+    - cf-core
+*/
+/* topdoc
+  name: EOF
+  eof: true
+*/
+/* ==========================================================================
+   Capital Framework
+   Utilities
+   ========================================================================== */
+/* topdoc
+  name: JS-only
+  family: cf-core
+  patterns:
+    - name: Setup
+      codenotes:
+        - <html class="no-js">
+        - |
+            <script>
+                // Confirm availability of JS and remove no-js class from html
+                var docElement = document.documentElement;
+                docElement.className = docElement.className.replace(/(^|\s)no-js(\s|$)/, '$1$2');
+            </script>
+      notes:
+        - "First add the .no-js class to the HTML element."
+        - "Then add the script to your HEAD which removes the .no-js class when
+           JS is available."
+    - name: Utility class
+      codenotes:
+        - .u-js-only;
+      notes:
+        - "Hide stuff when JavaScript isn't available. Depends on having a small
+           script in the HEAD of your HTML document that removes a .no-js class."
+  tags:
+    - cf-core
+*/
+.no-js .u-js-only {
+  display: none !important;
+}
+/* topdoc
+  name: Clearfix
+  family: cf-core
+  patterns:
+    - name: Utility class
+      markup: |
+        <div class="u-clearfix">
+            <div style="float:left; width:100%; height:60px; background:black;"></div>
+        </div>
+      codenotes:
+        - .u-clearfix;
+      notes:
+        - "Use this class to clear floats. For example, without .u-clearfix the
+           black box would spill into the markup section."
+        - "More information: http://css-tricks.com/snippets/css/clear-fix/"
+  tags:
+    - cf-core
+*/
+.u-clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.lt-ie8 .u-clearfix {
+  zoom: 1;
+}
+/* topdoc
+  name: Visually hidden
+  family: cf-core
+  patterns:
+    - name: Utility class
+      markup: |
+        <h1>
+            <a href="#">
+                <span class="cf-icon cf-icon-twitter-square"></span>
+                <span class="u-visually-hidden">Share on Twitter</span>
+            </a>
+        </h1>
+      codenotes:
+        - .u-visually-hidden;
+      notes:
+        - "Use this class to hide something from view while keeping it
+          accessible to screen readers."
+  tags:
+    - cf-core
+*/
+.u-visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+/* topdoc
+  name: Inline block
+  family: cf-core
+  patterns:
+    - name: Utility class
+      codenotes:
+        - .u-inline-block;
+      notes:
+        - "Also adds a .lt-ie8 class to hack inline-block for IE 7 and below."
+  tags:
+    - cf-core
+*/
+.u-inline-block {
+  display: inline-block;
+}
+.lt-ie8 .u-inline-block {
+  display: inline;
+}
+/* topdoc
+  name: Floating right
+  family: cf-core
+  patterns:
+    - name: Utility class
+      codenotes:
+        - .u-right;
+      notes:
+        - "IE7 float: right drop bug fixes:"
+        - "1. If the float: right follows an element in the html structure that
+          should be to its left (and not above it), then that preceding
+          element(s) must be float: left.
+          http://stackoverflow.com/questions/10981767/clean-css-fix-of-ie7s-float-right-drop-bug#answer-11437688"
+        - "2. Simply change the markup order so that the element floating right
+          comes before the element to its left."
+  tags:
+    - cf-core
+*/
+.u-right {
+  float: right;
+}
+/* topdoc
+  name: Break word
+  family: cf-core
+  patterns:
+    - name: Utility class
+      markup: |
+        <div style="width: 100px;">
+            This link should break:
+            <br>
+            <a class="u-break-word" href="#">
+                something@something.com
+            </a>
+            <br>
+            <br>
+            This link should not:
+            <br>
+            <a href="#">
+                something@something.com
+            </a>
+        </div>
+      codenotes:
+        - .u-break-word
+      notes:
+        - "Use this on elements where you need the words to break when confined
+           to small containers."
+        - "This only works in IE8 when the element with the .u-break-word class
+           has layout. See <http://stackoverflow.com/questions/3997223/word-wrapbreak-word-not-working-in-ie8>
+           for more information."
+  tags:
+    - cf-core
+*/
+.u-break-word {
+  word-break: break-all;
+}
+/* topdoc
+  name: Align with button
+  family: cf-core
+  patterns:
+    - name: Utility class
+      codenotes:
+        - ".u-align-with-btn(@font-size: @base-font-size-px);"
+      notes:
+        - "Adds top padding (among other things) to help alignment with buttons."
+        - "If you pass no arguments then the padding will be calculated using
+          @base-font-size-px."
+        - "Pass one argument to use a custom font size to calculate the top
+          padding."
+  tags:
+    - cf-core
+*/
+/* topdoc
+  name: Flexible proportional containers
+  family: cf-core
+  notes:
+    - "Utilizes intrinsic ratios to create a flexible container that retains its
+      aspect ratio. When image tags scale they retain their aspect ratio, but if
+      you need a flexible video you will need to use this mixin."
+    - "You can read more about intrinsic rations here:
+      http://alistapart.com/article/creating-intrinsic-ratios-for-video"
+  patterns:
+    - name: Default example
+      markup: |
+        <div class="u-flexible-container">
+            <video
+              class="u-flexible-container_inner"
+              style="background:#75787B;"
+              controls>
+            </video>
+        </div>
+      notes:
+        - "Defaults to a 16:19 ratio."
+        - "Original mixin credit: https://gist.github.com/craigmdennis/6655047"
+        - "Note that inline style usage is being used for demo purposes only.
+          Please do not use inline styles."
+      codenotes:
+        - |
+          Structural sheat sheet:
+          -----------------------
+          .u-flexible-container
+            .u-flexible-container_inner
+    - name: Background image examples
+      markup: |
+        <div class="u-flexible-container"
+             style="
+               background-image:url(http://placekitten.com/700/394);
+               background-position: center center;
+             ">
+        </div>
+        <div class="u-flexible-container"
+             style="
+               background-image:url(http://placekitten.com/700/394);
+               background-position: center center;
+               background-size: cover;
+             ">
+        </div>
+      codenotes:
+        - |
+          Structural sheat sheet:
+          -----------------------
+          .u-flexible-container
+      notes:
+        - "If you're not using the video or object elements and all you need is
+          a proportionally cropped or scaling background image with a fluid
+          container then you can leave out u-flexible-container_inner."
+        - "Note that inline style usage is being used for demo purposes only.
+          Please do not use inline styles."
+    - name: 4-3 modifier
+      markup: |
+        <div class="u-flexible-container u-flexible-container__4-3">
+            <video
+              class="u-flexible-container_inner"
+              style="background:#75787B;"
+              controls>
+            </video>
+        </div>
+      codenotes:
+        - |
+          Structural sheat sheet:
+          -----------------------
+          .u-flexible-container.u-flexible-container__4-3
+            .u-flexible-container_inner
+      notes:
+        - "Create your own aspect ratios by using this modifier as an example."
+        - "Note that inline style usage is being used for demo purposes only.
+          Please do not use inline styles."
+  tags:
+    - cf-core
+*/
+.u-flexible-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+.u-flexible-container_inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.u-flexible-container__4-3 {
+  position: relative;
+  padding-bottom: 75%;
+  height: 0;
+}
+/* topdoc
+  name: Link mixins
+  family: cf-core
+  patterns:
+    - codenotes:
+        - .u-link__colors();
+      notes:
+        - "Pass this mixin no arguments to color your link states with the
+          following defaults: :link (default state) pacific, :hover pacific-50,
+          :focus: pacific, :visited teal, :active navy."
+    - codenotes:
+        - .u-link__colors(@c);
+      notes:
+        - "Pass this mixin one color to be used on all of the following
+          states of your link; :link (default state), :visited, :hover, :focus,
+          :active."
+    - codenotes:
+        - .u-link__colors(@c, @h);
+      notes:
+        - "Pass this mixin two colors to use the first color for the :link,
+          :visited, and :active states, and the second color for the :hover and
+          :focus states."
+    - codenotes:
+        - .u-link__colors(@c, @v, @h, @f, @a);
+      notes:
+        - "Pass this mixin five colors in 'love/hate' mnemonic order to color
+          :link, :visited, :hover, :focus, and :active states respectively."
+        - "Even though this mixin is basically the same as
+          .u-link__colors-base(@c, @v, @h, @f, @a); we encourage you to use
+          .u-link__colors(@c, @v, @h, @f, @a) to promote consistency."
+    - codenotes:
+        - .u-link__colors(@c, @v, @h, @f, @a, @bc, @bv, @bh, @bf, @ba);
+      notes:
+        - "Allows you to color text and the borders separately."
+        - "The first five colors in 'love/hate' mnemonic order will color text
+          for the :link, :visited, :hover, :focus, and :active states
+          respectively. The last five colors in 'love/hate' mnemonic order will
+          color the borders for the :link, :visited, :hover, :focus, and :active
+          states respectively."
+        - "Even though this mixin is basically the same as
+          .u-link__colors-base(@c, @v, @h, @f, @a, @bc, @bv, @bh, @bf, @ba); we
+          encourage you to use .u-link__colors(@c, @v, @h, @f, @a, @bc, @bv, @bh, @bf, @ba)
+          to promote consistency."
+    - codenotes:
+        - .u-link__colors-base(@c, @v, @h, @f, @a);
+      notes:
+        - "This is the base mixin that all .u-link__colors() mixins use. Please
+          refrain from using this mixin directly in order to promote a
+          consistent use of mixin names for coloring links throughout this
+          project. Remember that if you need to set colors for all states of a
+          link you should use .u-link__colors(@c, @v, @h, @f, @a)."
+    - codenotes:
+        - .u-link__border();
+      notes:
+        - "Forces the default bottom border on the :link and :hover states."
+    - codenotes:
+        - .u-link__no-border();
+      notes:
+        - "Turn off the default bottom border on the :link and :hover states."
+    - codenotes:
+        - .u-link__hover-border();
+      notes:
+        - "Turn off the default bottom border on the :link state and force a
+          bottom border on the :hover state."
+    - codenotes:
+        - .u-link-child__hover();
+      notes:
+        - "When a link has child elements you may want only certain children to
+          change color when the parent link is hovered.
+          Pass no arguments to this mixin to color the child element pacific
+          when the parent link is hovered."
+    - codenotes:
+        - .u-link-child__hover(@c);
+      notes:
+        - "Pass this mixin one color to color the child element when the parent
+          link is hovered."
+  tags:
+    - cf-core
+*/
+/* topdoc
+  name: Margin utilities
+  family: cf-core
+  patterns:
+    - name: Utility classes
+      codenotes:
+        - .u-m<p><#>;
+      notes:
+        - "Replace <p> with the first letter of the position ('t' for top or 'b'
+           for bottom) and <#> with the pixel value of the margin you want."
+        - "Available values: 0, 5, 10, 15, 20, 30, 45, 60."
+  tags:
+    - cf-core
+*/
+.u-mt0 {
+  margin-top: 0 !important;
+}
+.u-mb0 {
+  margin-bottom: 0 !important;
+}
+.u-mt5 {
+  margin-top: 5px !important;
+}
+.u-mb5 {
+  margin-bottom: 5px !important;
+}
+.u-mt10 {
+  margin-top: 10px !important;
+}
+.u-mb10 {
+  margin-bottom: 10px !important;
+}
+.u-mt15 {
+  margin-top: 15px !important;
+}
+.u-mb15 {
+  margin-bottom: 15px !important;
+}
+.u-mt20 {
+  margin-top: 20px !important;
+}
+.u-mb20 {
+  margin-bottom: 20px !important;
+}
+.u-mt30 {
+  margin-top: 30px !important;
+}
+.u-mb30 {
+  margin-bottom: 30px !important;
+}
+.u-mt45 {
+  margin-top: 45px !important;
+}
+.u-mb45 {
+  margin-bottom: 45px !important;
+}
+.u-mt60 {
+  margin-top: 60px !important;
+}
+.u-mb60 {
+  margin-bottom: 60px !important;
+}
+/* topdoc
+  name: Width utilities
+  family: cf-core
+  patterns:
+    - name: Percent-based
+      markup: |
+        <div class="u-w100pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w100pct</code>
+        </div>
+        <div class="u-w90pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w90pct</code>
+        </div>
+        <div class="u-w80pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w80pct</code>
+        </div>
+        <div class="u-w70pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w70pct</code>
+        </div>
+        <div class="u-w60pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w60pct</code>
+        </div>
+        <div class="u-w50pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w50pct</code>
+        </div>
+        <div class="u-w40pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w40pct</code>
+        </div>
+        <div class="u-w30pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w30pct</code>
+        </div>
+        <div class="u-w20pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w20pct</code>
+        </div>
+        <div class="u-w10pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w10pct</code>
+        </div>
+        <div class="u-w75pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w75pct</code>
+        </div>
+        <div class="u-w25pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w25pct</code>
+        </div>
+        <div class="u-w66pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w66pct</code>
+        </div>
+        <div class="u-w33pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w33pct</code>
+        </div>
+      notes:
+        - "Inline styles are for demonstration purposes only, please don't use
+           them."
+  tags:
+    - cf-core
+*/
+.u-w100pct {
+  width: 100%;
+}
+.u-w90pct {
+  width: 90%;
+}
+.u-w80pct {
+  width: 80%;
+}
+.u-w70pct {
+  width: 70%;
+}
+.u-w60pct {
+  width: 60%;
+}
+.u-w50pct {
+  width: 50%;
+}
+.u-w40pct {
+  width: 40%;
+}
+.u-w30pct {
+  width: 30%;
+}
+.u-w20pct {
+  width: 20%;
+}
+.u-w10pct {
+  width: 10%;
+}
+.u-w75pct {
+  width: 75%;
+}
+.u-w25pct {
+  width: 25%;
+}
+.u-w66pct {
+  width: 66.66666667%;
+}
+.u-w33pct {
+  width: 33.33333333%;
+}
+/* topdoc
+  name: Width-specific display
+  family: cf-core
+  patterns:
+    - name: Show on mobile
+      markup: |
+        <section>
+            <p>The the text in the box below is visible only at widths less than 600px</p>
+            <div style="border: 1px solid black; height: 22px; padding: 5px;">
+                <p class="u-show-on-mobile">Visible on mobile</p>
+            </div>
+        </section>
+      codenotes:
+        - ".u-show-on-mobile"
+        - "Uses 'display:block' to toggle display. Would need to be extended
+          for inline use cases."
+      notes:
+        - "Displays an element only at mobile widths."
+    - name: Hide on mobile
+      markup: |
+        <section>
+            <p>The text in the box below is hidden at widths less than 600px</p>
+            <div style="border: 1px solid black; height: 22px; padding: 5px;">
+                <p class="u-hide-on-mobile">Hidden on mobile</p>
+            </div>
+        </section>
+      codenotes:
+        - ".u-hide-on-mobile"
+      notes:
+        - "Hides an element at mobile widths"
+  tags:
+    - cf-core
+*/
+@media only all and (max-width: 37.4375em) {
+  .u-hide-on-mobile {
+    display: none;
+  }
+}
+.u-show-on-mobile {
+  display: none;
+}
+@media only all and (max-width: 37.4375em) {
+  .u-show-on-mobile {
+    display: block;
+  }
+}
+/* topdoc
+  name: Small text utility
+  family: cf-core
+  patterns:
+    - name: .u-small-text (utility class)
+      markup: |
+        Lorem ipsum<br>
+        <span class="u-small-text">dolor sit amet</span>
+      codenotes:
+        - ".u-small-text"
+      notes:
+        - "14px text."
+        - "The utility class should only be used when the default text size is
+           16px. For example you wouldn't want to use the class inside of an
+           `h1` because the `font-size` in the `h1` will make `.u-small-text`
+           bigger than it should be. See the docs for the `.u-small-text()`
+           mixin."
+    - name: .u-small-text() (Less mixin)
+      codenotes:
+        - ".u-small-text(@context)"
+        - |
+          // Mixin usage:
+          .example {
+            font-size: unit(20px / @base-font-size-px, em);
+            small {
+              .u-small-text(20px);
+            }
+          }
+          // Compiles to:
+          .example {
+            font-size: 1.25em;
+          }
+          .example small {
+            font-size: 0.7em;
+          }
+      notes:
+        - "This mixin enables you to easily create consistent small text by
+           passing the context `font-size`."
+  tags:
+    - cf-core
+*/
+.u-small-text {
+  font-size: 0.875em;
+}
+small {
+  font-size: 0.875em;
+}
+/* topdoc
+    name: EOF
+    eof: true
+*/
+/* ==========================================================================
+   Capital Framework
+   Base styles
+   ========================================================================== */
+/* topdoc
+  name: Webfonts
+  family: cf-core
+  patterns:
+    - name: Webfont mixins and variables
+      codenotes:
+        - ".webfont-regular()"
+        - ".webfont-italic()"
+        - ".webfont-medium()"
+        - ".webfont-demi()"
+      notes:
+        - "Use these mixins to easily add the your preferred font family to your
+          elements."
+        - "To use your own fonts in the webfont mixins, set your own font with the
+          @webfont-regular/italic/medium/demi variables."
+        - "To avoid faux bold and italics,
+          you must use the font family name for that particular style.
+          For example, when defining an italic in Helvetica
+          you need to use the Helvetica Italic font family.
+          Use the mixins when setting bold or italic text as they also
+          set the appropriate font-weight and font-style."
+        - "These mixins also add the appropriate .lt-ie9 overrides.
+          .lt-ie9 overrides are necessary to override font-style and font-weight
+          each time the webfont is used. These overrides are built into the webfont
+          mixins so you get them automatically. Note that this requires you to
+          use conditional classes on the <html> element:
+          https://github.com/h5bp/html5-boilerplate/blob/v4.3.0/doc/html.md#conditional-html-classes."
+  tags:
+    - cf-core
+*/
+/* topdoc
+  name: Type hierarchy
+  family: cf-core
+  patterns:
+    - name: Default body type
+      markup: |
+        <p>Lorem ipsum dolor sit amet, <em>consectetur adipisicing elit</em>, sed do eiusmod <strong>tempor incididunt</strong> ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    - name: Heading level 1
+      markup: |
+        <h1>Example heading element</h1>
+        <p class="h1">A non-heading element</p>
+      notes:
+        - Responsive header. At mobile sizes, displays as h2.
+    - name: Heading level 2
+      markup: |
+        <h2>Example heading element</h2>
+        <p class="h2">A non-heading element</p>
+      notes:
+        - Responsive header. At mobile sizes, displays as h3.
+    - name: Heading level 3
+      markup: |
+        <h3>Example heading element</h3>
+        <p class="h3">A non-heading element</p>
+      notes:
+        - Responsive header. At mobile sizes, displays as h4.
+    - name: Heading level 4
+      markup: |
+        <h4>Example heading element</h4>
+        <p class="h4">A non-heading element</p>
+    - name: Heading level 5
+      markup: |
+        <h5>Example heading element</h5>
+        <p class="h5">A non-heading element</p>
+    - name: Heading level 6
+      markup: |
+        <h6>Example heading element</h6>
+        <p class="h6">A non-heading element</p>
+    - name: Subheader
+      markup: |
+        <h1 class="subheader">Example subheader that's kinda long</h1>
+        <p class="subheader">Example subheader that's kinda long</p>
+    - name: Super header
+      markup: |
+        <h1 class="superheader">Example super header</h1>
+        <p class="superheader">Example super header</p>
+  tags:
+    - cf-core
+*/
+body {
+  color: #5b3b57;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 100%;
+  line-height: 1.375;
+}
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+h1 em,
+.h1 em,
+h2 em,
+.h2 em,
+h3 em,
+.h3 em,
+h1 i,
+.h1 i,
+h2 i,
+.h2 i,
+h3 i,
+.h3 i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 h1 em,
+.lt-ie9 .h1 em,
+.lt-ie9 h2 em,
+.lt-ie9 .h2 em,
+.lt-ie9 h3 em,
+.lt-ie9 .h3 em,
+.lt-ie9 h1 i,
+.lt-ie9 .h1 i,
+.lt-ie9 h2 i,
+.lt-ie9 .h2 i,
+.lt-ie9 h3 i,
+.lt-ie9 .h3 i {
+  font-style: normal !important;
+}
+h1 strong,
+.h1 strong,
+h2 strong,
+.h2 strong,
+h3 strong,
+.h3 strong,
+h1 b,
+.h1 b,
+h2 b,
+.h2 b,
+h3 b,
+.h3 b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 h1 strong,
+.lt-ie9 .h1 strong,
+.lt-ie9 h2 strong,
+.lt-ie9 .h2 strong,
+.lt-ie9 h3 strong,
+.lt-ie9 .h3 strong,
+.lt-ie9 h1 b,
+.lt-ie9 .h1 b,
+.lt-ie9 h2 b,
+.lt-ie9 .h2 b,
+.lt-ie9 h3 b,
+.lt-ie9 .h3 b {
+  font-weight: normal !important;
+}
+h1,
+.h1 {
+  margin-top: 0;
+  margin-bottom: 0.47058824em;
+  font-size: 2.125em;
+  line-height: 1.29411765;
+}
+@media only all and (max-width: 37.4375em) {
+  h1,
+  .h1 {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0.73076923em;
+    font-size: 1.625em;
+    line-height: 1.26923077;
+  }
+  h1 em,
+  .h1 em,
+  h1 i,
+  .h1 i {
+    font-family: Arial, Arial, sans-serif;
+    font-style: italic;
+    font-weight: normal;
+  }
+  .lt-ie9 h1 em,
+  .lt-ie9 .h1 em,
+  .lt-ie9 h1 i,
+  .lt-ie9 .h1 i {
+    font-style: normal !important;
+  }
+  h1 strong,
+  .h1 strong,
+  h1 b,
+  .h1 b {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+  }
+  .lt-ie9 h1 strong,
+  .lt-ie9 .h1 strong,
+  .lt-ie9 h1 b,
+  .lt-ie9 .h1 b {
+    font-weight: normal !important;
+  }
+}
+@media only all and (max-width: 37.4375em) and only all and (max-width: 37.4375em) {
+  h1,
+  .h1 {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0.95454545em;
+    font-size: 1.375em;
+    line-height: 1.27272727;
+  }
+  h1 em,
+  .h1 em,
+  h1 i,
+  .h1 i {
+    font-family: Arial, Arial, sans-serif;
+    font-style: italic;
+    font-weight: normal;
+  }
+  .lt-ie9 h1 em,
+  .lt-ie9 .h1 em,
+  .lt-ie9 h1 i,
+  .lt-ie9 .h1 i {
+    font-style: normal !important;
+  }
+  h1 strong,
+  .h1 strong,
+  h1 b,
+  .h1 b {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+  }
+  .lt-ie9 h1 strong,
+  .lt-ie9 .h1 strong,
+  .lt-ie9 h1 b,
+  .lt-ie9 .h1 b {
+    font-weight: normal !important;
+  }
+}
+@media only all and (max-width: 37.4375em) and only all and (max-width: 37.4375em) and only all and (max-width: 37.4375em) {
+  h1,
+  .h1 {
+    margin-top: 0;
+    margin-bottom: 1.16666667em;
+    font-size: 1.125em;
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.22222222;
+  }
+  .lt-ie9 h1,
+  .lt-ie9 .h1 {
+    font-weight: normal !important;
+  }
+}
+h2,
+.h2 {
+  margin-top: 0;
+  margin-bottom: 0.73076923em;
+  font-size: 1.625em;
+  line-height: 1.26923077;
+}
+@media only all and (max-width: 37.4375em) {
+  h2,
+  .h2 {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 0.95454545em;
+    font-size: 1.375em;
+    line-height: 1.27272727;
+  }
+  h2 em,
+  .h2 em,
+  h2 i,
+  .h2 i {
+    font-family: Arial, Arial, sans-serif;
+    font-style: italic;
+    font-weight: normal;
+  }
+  .lt-ie9 h2 em,
+  .lt-ie9 .h2 em,
+  .lt-ie9 h2 i,
+  .lt-ie9 .h2 i {
+    font-style: normal !important;
+  }
+  h2 strong,
+  .h2 strong,
+  h2 b,
+  .h2 b {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+  }
+  .lt-ie9 h2 strong,
+  .lt-ie9 .h2 strong,
+  .lt-ie9 h2 b,
+  .lt-ie9 .h2 b {
+    font-weight: normal !important;
+  }
+}
+@media only all and (max-width: 37.4375em) and only all and (max-width: 37.4375em) {
+  h2,
+  .h2 {
+    margin-top: 0;
+    margin-bottom: 1.16666667em;
+    font-size: 1.125em;
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.22222222;
+  }
+  .lt-ie9 h2,
+  .lt-ie9 .h2 {
+    font-weight: normal !important;
+  }
+}
+h3,
+.h3 {
+  margin-top: 0;
+  margin-bottom: 0.95454545em;
+  font-size: 1.375em;
+  line-height: 1.27272727;
+}
+@media only all and (max-width: 37.4375em) {
+  h3,
+  .h3 {
+    margin-top: 0;
+    margin-bottom: 1.16666667em;
+    font-size: 1.125em;
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.22222222;
+  }
+  .lt-ie9 h3,
+  .lt-ie9 .h3 {
+    font-weight: normal !important;
+  }
+}
+h4,
+.h4 {
+  margin-top: 0;
+  margin-bottom: 1.16666667em;
+  font-size: 1.125em;
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.22222222;
+}
+.lt-ie9 h4,
+.lt-ie9 .h4 {
+  font-weight: normal !important;
+}
+h5,
+h6,
+.h5,
+.h6 {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.lt-ie9 h5,
+.lt-ie9 h6,
+.lt-ie9 .h5,
+.lt-ie9 .h6 {
+  font-weight: normal !important;
+}
+h5,
+.h5 {
+  margin-top: 0;
+  margin-bottom: 0.35714286em;
+  font-size: 0.875em;
+  line-height: 1.57142857;
+}
+h6,
+.h6 {
+  margin-top: 0;
+  margin-bottom: 0.41666667em;
+  font-size: 0.75em;
+  line-height: 1.83333333;
+}
+.subheader {
+  margin-top: 0;
+  margin-bottom: 1.16666667em;
+  font-size: 1.125em;
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.22222222;
+}
+.subheader em,
+.subheader i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 .subheader em,
+.lt-ie9 .subheader i {
+  font-style: normal !important;
+}
+.subheader strong,
+.subheader b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 .subheader strong,
+.lt-ie9 .subheader b {
+  font-weight: normal !important;
+}
+.superheader {
+  margin-bottom: 0.1875em;
+  font-size: 3em;
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1.25;
+}
+.lt-ie9 .superheader {
+  font-weight: normal !important;
+}
+/* topdoc
+  name: Margins
+  family: cf-core
+  patterns:
+    - name: Consistent vertical margins
+      notes:
+        - "Assumes that the font size of each of these items remains the default."
+      markup: |
+        <p>Paragraph margin example</p>
+        <p>Paragraph margin example</p>
+  tags:
+    - cf-core
+*/
+p,
+ul,
+ol,
+dl,
+table,
+figure {
+  margin-top: 0;
+  margin-bottom: 1.25em;
+}
+/* topdoc
+  name: Default link
+  notes:
+    - "Note that the .visited, .hover, .focus, .active classes are for demonstration purposes only and should not
+      be used in production."
+  family: cf-core
+  patterns:
+    - name: Default state
+      markup: |
+        <a href="#">Default link style</a>
+    - name: Visited state
+      markup: |
+        <a href="#" class="visited">Visited link style</a>
+    - name: Hovered state
+      markup: |
+        <a href="#" class="hover">Hovered link style</a>
+    - name: Focused state
+      markup: |
+        <a href="#" class="focus">Focused link style</a>
+    - name: Active state
+      markup: |
+        <a href="#" class="active">Active link style</a>
+  tags:
+    - cf-core
+*/
+a {
+  border-width: 0;
+  border-style: dotted;
+  border-color: #c7336e;
+  color: #c7336e;
+  text-decoration: none;
+}
+a:visited,
+a.visited {
+  border-color: #cf447c;
+  color: #cf447c;
+}
+a:hover,
+a.hover {
+  border-style: solid;
+  border-color: #9e2958;
+  color: #9e2958;
+}
+a:focus,
+a.focus {
+  border-style: solid;
+  outline: thin dotted;
+}
+a:active,
+a.active {
+  border-style: solid;
+  border-color: #8a234c;
+  color: #8a234c;
+}
+/* topdoc
+  name: Underlined links
+  family: cf-core
+  patterns:
+    - name: States
+      notes:
+        - "Note that the .visited, .hover, .focus, .active classes are for demonstration purposes only and should not
+          be used in production."
+        - "The underline style properties are mostly set above in the a tag.
+          To enable the underline simply set a bottom-border-width as done here."
+      markup: |
+        <p>
+            <a href="#">Default</a>,
+            <a href="#" class="visited">Visited</a>,
+            <a href="#" class="hover">Hovered</a>,
+            <a href="#" class="focus">Focused</a>,
+            <a href="#" class="active">Active</a>
+        </p>
+    - name: Underline conditions
+      notes:
+        - "We're restricting link borders to links within p, li, and dd so that
+          we don't have to override them every time we want a plain link."
+      markup: |
+        <p>
+            <a href="#">A child of a paragraph</a>
+        </p>
+        <ul>
+            <li>
+                <a href="#">A child of a list item</a>
+            </li>
+        </ul>
+        <dl>
+            <dt>
+                Definition list term
+            </dt>
+            <dd>
+                <a href="#">A child of a definition list description</a>
+            </dd>
+        </dl>
+    - name: Exceptions for underlined links
+      notes:
+        - "Inline text links inside of a nav element are not underlined."
+      markup: |
+        <nav>
+            <p>
+                <a href="#">A child of a paragraph</a>
+            </p>
+            <ul>
+                <li>
+                    <a href="#">A child of a list item</a>
+                </li>
+            </ul>
+            <dl>
+                <dt>
+                    Definition list term
+                </dt>
+                <dd>
+                    <a href="#">A child of a definition list description</a>
+                </dd>
+            </dl>
+        </nav>
+  tags:
+    - cf-core
+*/
+p a,
+li a,
+dd a {
+  border-bottom-width: 1px;
+}
+nav a {
+  border-bottom-width: 0;
+}
+/* topdoc
+  name: Lists
+  family: cf-core
+  patterns:
+    - name: Unordered list
+      markup: |
+        <ul>
+            <li>List item</li>
+            <li>List item</li>
+            <li>List item</li>
+        </ul>
+  tags:
+    - cf-core
+*/
+ul {
+  list-style: square;
+}
+/* topdoc
+  name: Tables
+  family: cf-core
+  patterns:
+    - name: Standard table
+      markup: |
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1 header</th>
+                    <th>Column 2 header</th>
+                    <th>Column 3 header</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Row 1 header</th>
+                    <td>Row 1, column 2</td>
+                    <td>Row 1, column 3</td>
+                </tr>
+                <tr>
+                    <th>Row 2 header</th>
+                    <td>Row 2, column 2</td>
+                    <td>Row 2, column 3</td>
+                </tr>
+                <tr>
+                    <th>Row 3 header</th>
+                    <td>Row 3, column 2</td>
+                    <td>Row 3, column 3</td>
+                </tr>
+            </tbody>
+        </table>
+    - name: Compact table
+      markup: |
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>Column 1 header</th>
+                    <th>Column 2 header</th>
+                    <th>Column 3 header</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Row 1 header</th>
+                    <td>Row 1, column 2</td>
+                    <td>Row 1, column 3</td>
+                </tr>
+                <tr>
+                    <th>Row 2 header</th>
+                    <td>Row 2, column 2</td>
+                    <td>Row 2, column 3</td>
+                </tr>
+                <tr>
+                    <th>Row 3 header</th>
+                    <td>Row 3, column 2</td>
+                    <td>Row 3, column 3</td>
+                </tr>
+            </tbody>
+        </table>
+      notes:
+        - Reduces cell padding to 10px.
+  tags:
+    - cf-core
+*/
+table {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+table em,
+table i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 table em,
+.lt-ie9 table i {
+  font-style: normal !important;
+}
+table strong,
+table b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 table strong,
+.lt-ie9 table b {
+  font-weight: normal !important;
+}
+th,
+td {
+  padding: 0.75em 0.9375em;
+  background: #eee4ed;
+}
+thead th,
+thead td {
+  color: #ffffff;
+  background: #5b3b57;
+}
+tbody > tr:nth-child(odd) > th,
+tbody > tr:nth-child(odd) > td {
+  background: #f4edf3;
+}
+.compact-table th,
+.compact-table td {
+  padding: 0.4375em 0.625em;
+}
+th {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  text-align: left;
+}
+.lt-ie9 th {
+  font-weight: normal !important;
+}
+/* topdoc
+  name: Block quote
+  family: cf-core
+  patterns:
+    - name: Default block quote
+      markup: |
+        <blockquote cite="link-to-source">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa
+            similique fugit hic eligendi praesentium officiis illum optio iusto
+            commodi eum tempore nisi ad in perferendis enim quo dolores.
+            Reprehenderit similique earum quibusdam possimus vitae esse
+            nesciunt mollitia sed beatae aliquid dolores iure a impedit quam
+            minus eum modi illum ducimus eligendi eveniet labore non sequi
+            voluptate et totam praesentium animi itaque asperiores dolorum
+            sunt laudantium repellat nam commodi. Perspiciatis natus aliquam
+            veniam officiis ducimus voluptatum ut necessitatibus non!
+        </blockquote>
+      notes:
+        - "Use a block quote to quote from an external work. See .pull-quote if
+          you need to highlight an excerpt from the current work."
+        - "It is best practice to document the URL of a quoted work using the
+          cite attribute."
+  tags:
+    - cf-core
+*/
+blockquote {
+  margin: 1.25em;
+}
+@media only all and (min-width: 37.5em) {
+  blockquote {
+    margin: 1.75em 2.5em;
+  }
+}
+/* topdoc
+    name: Form labels
+    family: cf-core
+    notes:
+      - "Visit https://github.com/cfpb/cf-forms for advanced form label patterns."
+    patterns:
+    - name: Default label
+      markup: |
+        <label>Form label</label>
+    - name: Label wrapping a radio or checkbox
+      markup: |
+        <label>
+            <input type="radio">
+            Radio label
+        </label>
+        <label>
+            <input type="checkbox">
+            Checkbox label
+        </label>
+    tags:
+    - cf-core
+*/
+label {
+  display: block;
+  margin-bottom: 0.3125em;
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+label em,
+label i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 label em,
+.lt-ie9 label i {
+  font-style: normal !important;
+}
+label strong,
+label b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 label strong,
+.lt-ie9 label b {
+  font-weight: normal !important;
+}
+label input[type="radio"],
+label input[type="checkbox"] {
+  margin-right: 0.375em;
+}
+/* topdoc
+    name: Form elements
+    family: cf-core
+    notes:
+      - "The .focus class is only included for documentation demos and should
+         not be used in production."
+      - "Visit https://github.com/cfpb/cf-forms for advanced form field patterns."
+    patterns:
+    - name: type="text"
+      markup: |
+        <input type="text" value="Lorem ipsum">
+        <input class="focus" type="text" value="Lorem ipsum">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="text" value="">
+    - name: type="search"
+      markup: |
+        <input type="search" value="Lorem ipsum">
+        <input class="focus" type="search" value="Lorem ipsum">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="search" value="">
+    - name: type="email"
+      markup: |
+        <input type="email" value="Lorem ipsum">
+        <input class="focus" type="email" value="Lorem ipsum">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="email" value="">
+    - name: type="url"
+      markup: |
+        <input type="url" value="Lorem ipsum">
+        <input class="focus" type="url" value="Lorem ipsum">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="url" value="">
+    - name: type="tel"
+      markup: |
+        <input type="tel" value="Lorem ipsum">
+        <input class="focus" type="tel" value="Lorem ipsum">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="tel" value="">
+    - name: type="number"
+      markup: |
+        <input type="number" value="1000">
+        <input class="focus" type="number" value="1000">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="number" value="">
+    - name: textarea
+      markup: |
+        <textarea>Lorem ipsum</textarea>
+        <textarea class="focus">Lorem ipsum</textarea>
+    - name: multi-select
+      markup: |
+        <select multiple>
+            <option value="option1">Lorem</option>
+            <option value="option2">Ipsum</option>
+            <option value="option3">Dolor</option>
+            <option value="option4">Sit</option>
+        </select>
+        <select class="focus" multiple>
+            <option value="option1">Lorem</option>
+            <option value="option2">Ipsum</option>
+            <option value="option3">Dolor</option>
+            <option value="option4">Sit</option>
+        </select>
+    tags:
+    - cf-core
+*/
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select[multiple] {
+  display: inline-block;
+  margin: 0;
+  padding: 0.375em;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  background: #ffffff;
+  border: 1px solid #5b3b57;
+  border-radius: 0;
+  vertical-align: top;
+  -webkit-appearance: none;
+  -webkit-user-modify: read-write-plaintext-only;
+}
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+input[type="text"]:focus,
+input[type="text"].focus,
+input[type="search"]:focus,
+input[type="search"].focus,
+input[type="email"]:focus,
+input[type="email"].focus,
+input[type="url"]:focus,
+input[type="url"].focus,
+input[type="tel"]:focus,
+input[type="tel"].focus,
+input[type="number"]:focus,
+input[type="number"].focus,
+textarea:focus,
+textarea.focus,
+select[multiple]:focus,
+select[multiple].focus {
+  border: 1px solid #c7336e;
+  outline: 1px solid #c7336e;
+  outline-offset: 0;
+  box-shadow: none;
+}
+::-webkit-input-placeholder {
+  color: grayscale(#c7336e);
+}
+::-moz-placeholder {
+  color: grayscale(#c7336e);
+}
+:-ms-input-placeholder {
+  color: grayscale(#c7336e);
+}
+/* topdoc
+  name: Images
+  family: cf-core
+  patterns:
+    - name: max-width
+      markup: |
+            <img src="http://placekitten.com/800/40" alt="">
+      notes:
+        - "Gives all images a default max-width of 100% of their container."
+  tags:
+    - cf-core
+*/
+img {
+  max-width: 100%;
+}
+/* topdoc
+  name: Figure
+  family: cf-core
+  patterns:
+    - name: figure
+      markup: |
+        <figure>
+            <img src="http://placekitten.com/340/320">
+        </figure>
+    - name: figure.figure__bordered
+      markup: |
+        <figure class="figure__bordered">
+            <img src="http://placekitten.com/340/320">
+        </figure>
+  tags:
+    - cf-core
+*/
+figure {
+  margin-left: 0;
+  margin-right: 0;
+}
+figure img {
+  vertical-align: middle;
+}
+.figure__bordered img {
+  border: 1px solid #5b3b57;
+}
+/* topdoc
+  name: EOF
+  eof: true
+*/
+/* ==========================================================================
+   Capital Framework
+   Color variables
+   ========================================================================== */
+/* Variables
+   ========================================================================== */
+/* Mixins
+   ========================================================================== */
+/* Base styles
+   ========================================================================== */
+body {
+  margin: 0;
+  padding: 0;
+  background: #33578e;
+  color: #ffffff;
+}
+pre {
+  padding: 1.69230769em;
+}
+/* Masthead
+   ========================================================================== */
+.docs-masthead {
+  margin: 0 0 22px;
+}
+.docs-title {
+  display: inline-block;
+  margin: 0;
+  color: #ffffff;
+  font-family: Consolas, Menlo, Monaco, Courier, monospace !important;
+  font-size: 1.25em;
+  font-weight: normal;
+}
+.docs-icon {
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 3px;
+  background: #ffffff;
+  color: #002d72;
+  font-weight: bold;
+  font-size: 0.8em;
+  line-height: 1;
+}
+.docs-repo {
+  float: right;
+  display: inline-block;
+  padding-bottom: 2px;
+  font-family: Consolas, Menlo, Monaco, Courier, monospace !important;
+  font-size: 0.875em;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: #ffffff;
+  border-color: #ccd5e3;
+  border-bottom-width: 1px;
+  border-bottom-style: dotted;
+}
+.docs-repo:visited,
+.docs-repo.visited {
+  border-color: #ccd5e3;
+  color: #ffffff;
+}
+.docs-repo:hover,
+.docs-repo.hover {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.docs-repo:focus,
+.docs-repo.focus {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.docs-repo:active,
+.docs-repo.active {
+  border-color: #ccd5e3;
+  color: #ffffff;
+}
+.docs-repo:hover,
+.docs-repo.hover {
+  border-bottom-width: 1px;
+}
+/* Sidebar
+   ========================================================================== */
+.docs-sidebar-wrapper_sidebar {
+  padding: 22px;
+  background: #002d72;
+}
+.docs-sidebar-wrapper_body {
+  padding: 22px;
+}
+@media only all and (min-width: 48em) {
+  .docs-sidebar-wrapper {
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    width: 100%;
+    border-left: 204px solid #002d72;
+  }
+  .docs-sidebar-wrapper_sidebar {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -204px;
+    width: 160px;
+    margin: 0;
+  }
+}
+/* Nav
+   ========================================================================== */
+.docs-nav {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.docs-nav_item {
+  margin: 0;
+  padding: 0;
+}
+.docs-nav_item + .docs-nav_item {
+  border-top: 1px dotted #33578e;
+}
+.docs-nav_link {
+  display: block;
+  padding: 10px 0;
+  color: #ffffff;
+  border-color: #ffffff;
+  font-family: Consolas, Menlo, Monaco, Courier, monospace !important;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 1;
+  text-decoration: none;
+  transition: 0.2s padding-left;
+  border-bottom-width: 0 !important;
+}
+.docs-nav_link:visited,
+.docs-nav_link.visited {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.docs-nav_link:hover,
+.docs-nav_link.hover {
+  border-color: #e3e4e5;
+  color: #e3e4e5;
+}
+.docs-nav_link:focus,
+.docs-nav_link.focus {
+  border-color: #e3e4e5;
+  color: #e3e4e5;
+}
+.docs-nav_link:active,
+.docs-nav_link.active {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.docs-nav_link:hover,
+.docs-nav_link:focus {
+  padding-left: 10px;
+  outline: 1px dotted #e3e4e5;
+}
+/* Component
+   ========================================================================== */
+.docs-component {
+  padding: 1.375em;
+  border-radius: 3px;
+  background: #ffffff;
+  color: #101820;
+}
+.docs-component:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.docs-component_header {
+  margin: 0.34375em 0 1em;
+  color: #796e65;
+  font-family: 'Lora', serif;
+  font-size: 2em;
+  font-weight: bold;
+}
+.docs-component_header span {
+  display: inline-block;
+  padding-bottom: 1px;
+  border-bottom: 3px solid #796e65;
+}
+.docs-component_intro {
+  padding: 1.375em;
+  margin: 0 -1.375em;
+  margin-bottom: 2em;
+  background: #f8f8f8;
+  border: 1px solid #e3e4e5;
+  border-left: 0;
+  border-right: 0;
+}
+.docs-component + .docs-component {
+  margin-top: 1.375em;
+}
+/* Patterns
+   ========================================================================== */
+.docs-pattern + .docs-pattern {
+  margin-top: 2em;
+}
+.docs-pattern_header {
+  display: inline-block;
+  padding: 1.22222222em;
+  margin: 0;
+  border: 1px solid #e3e4e5;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background: #ffffff;
+  color: #796e65;
+  font-family: 'Lora', serif;
+  font-size: 1.125em;
+  font-weight: bold;
+  line-height: 1;
+}
+.docs-pattern_pattern {
+  padding: 1.375em;
+  margin: -1px 0 0;
+  border: 1px solid #e3e4e5;
+  border-top-right-radius: 3px;
+}
+.docs-pattern_footer {
+  padding: 1.375em;
+  margin: -1px 0 0;
+  background: #f8f8f8;
+  border: 1px solid #e3e4e5;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.docs-pattern_footer .docs-pattern_markup {
+  margin: -1.69230769em -1.69230769em 0;
+  border: 1px solid #e3e4e5;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+  background: transparent;
+}
+.docs-pattern_footer-edit {
+  position: relative;
+}
+.docs-pattern_footer-edit + .docs-notes,
+.docs-pattern_footer-edit + .docs-codenotes {
+  margin-top: 1.57142857em;
+}
+.docs-pattern_footer-edit-btn {
+  position: absolute;
+  right: -1.91666667em;
+  bottom: 0;
+  padding: 0.25em 0.5em;
+  border: 1px solid #e3e4e5;
+  border-top-left-radius: 3px;
+  background: #f1f2f2;
+  color: #75787b;
+  font-family: Consolas, Menlo, Monaco, Courier, monospace !important;
+  font-size: 12px;
+}
+.docs-pattern_footer-edit-btn:focus {
+  outline: 1px dotted #101820;
+  outline-offset: 1px;
+}
+/* Notes and code
+   ========================================================================== */
+.docs-code {
+  margin: 0;
+  background: #f8f8f8;
+  border: 1px solid #e3e4e5;
+  border-radius: 3px;
+  font-family: Consolas, Menlo, Monaco, Courier, monospace !important;
+  font-size: 13px;
+}
+.docs-notes {
+  padding-left: 1.375em;
+  margin: 0;
+  color: #43484e;
+  font-family: 'Lora', serif;
+  font-size: 0.875em;
+  font-style: italic;
+  line-height: 1.6;
+}
+.docs-notes li {
+  max-width: 38.21428571em;
+}
+.docs-notes li + li {
+  margin-top: 1em;
+}
+.docs-codenotes + .docs-notes {
+  padding: 1.57142857em 1.57142857em 0 3.14285714em;
+  margin: 1.57142857em -1.57142857em 0;
+  border: 1px solid #e3e4e5;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+}
+.docs-codenotes {
+  padding-left: 0;
+  margin: 0;
+  font-family: Consolas, Menlo, Monaco, Courier, monospace !important;
+  list-style-type: none;
+}
+.docs-codenotes li + li {
+  margin-top: 1em;
+}
+.docs-codenotes .docs-code {
+  display: inline-block;
+  padding: 0.46153846em 0.76923077em;
+  background: #ffffff;
+  border: 1px solid #babbbd;
+}
+.docs-pattern_markup + .docs-codenotes,
+.docs-pattern_markup + .docs-notes {
+  margin-top: 1.57142857em;
+}

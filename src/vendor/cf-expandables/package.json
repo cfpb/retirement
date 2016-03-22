@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "postinstall": "bower install",
+    "pretest": "forever stopall -s && forever start -s ./node_modules/.bin/http-server",
+    "test": "grunt test && pa11y localhost:8080/demo -r ci -s WCAG2AA",
+    "posttest": "forever stopall -s"
+  },
+  "devDependencies": {
+    "cf-component-demo": "^1.0.0",
+    "cf-grunt-config": "^1.0.0",
+    "forever": "^0.14.1",
+    "glob": "~4.3.2",
+    "grunt": "~0.4.4",
+    "http-server": "^0.8.0",
+    "jit-grunt": "~0.9.0",
+    "load-grunt-tasks": "~2.0.0",
+    "node.extend": "~1.0.10",
+    "pa11y": "^1.7.0",
+    "pa11y-reporter-ci": "0.0.1",
+    "phantomjs": "^1.9.16",
+    "time-grunt": "~1.0.0"
+  }
+}

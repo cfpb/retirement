@@ -1,0 +1,4767 @@
+/* ==========================================================================
+   Capital Framework
+   Core Less file
+   ========================================================================== */
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+}
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none;
+}
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+a:active,
+a:hover {
+  outline: 0;
+}
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold;
+}
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+dfn {
+  font-style: italic;
+}
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000;
+}
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+img {
+  border: 0;
+}
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+figure {
+  margin: 1em 40px;
+}
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+/**
+ * Contain overflow in all browsers.
+ */
+pre {
+  overflow: auto;
+}
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+button {
+  overflow: visible;
+}
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button,
+select {
+  text-transform: none;
+}
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+  line-height: normal;
+}
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+textarea {
+  overflow: auto;
+}
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+optgroup {
+  font-weight: bold;
+}
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+/*! normalize-legacy-addon | MIT License | https://github.com/cfpb/normalize-legacy-addon */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/*
+ * Corrects `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+audio,
+canvas,
+video {
+  *display: inline;
+  *zoom: 1;
+}
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/* 
+ * Corrects text resizing oddly in IE 6/7 when body `font-size` is set using
+ * `em` units.
+*/
+html {
+  font-size: 100%;
+}
+/*
+ * Addresses `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+html,
+button,
+input,
+select,
+textarea {
+  font-family: sans-serif;
+}
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/*
+ * Addresses font sizes and margins set differently in IE 6/7.
+ * Addresses font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+h1 {
+  margin: 0.67em 0;
+}
+h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+h3 {
+  font-size: 1.17em;
+  margin: 1em 0;
+}
+h4 {
+  font-size: 1em;
+  margin: 1.33em 0;
+}
+h5 {
+  font-size: 0.83em;
+  margin: 1.67em 0;
+}
+h6 {
+  font-size: 0.75em;
+  margin: 2.33em 0;
+}
+blockquote {
+  margin: 1em 40px;
+}
+/*
+ * Addresses margins set differently in IE 6/7.
+ */
+p,
+pre {
+  margin: 1em 0;
+}
+/*
+ * Corrects font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+code,
+kbd,
+pre,
+samp {
+  _font-family: 'courier new', monospace;
+}
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+pre {
+  white-space: pre;
+  word-wrap: break-word;
+}
+/*
+ * Addresses CSS quotes not supported in IE 6/7.
+ */
+q {
+  quotes: none;
+}
+/*
+ * Addresses `quotes` property not supported in Safari 4.
+ */
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+/*
+ * Addresses margins set differently in IE 6/7.
+ */
+dl,
+menu,
+ol,
+ul {
+  margin: 1em 0;
+}
+dd {
+  margin: 0 0 0 40px;
+}
+/*
+ * Addresses paddings set differently in IE 6/7.
+ */
+menu,
+ol,
+ul {
+  padding: 0 0 0 40px;
+}
+/*
+ * Corrects list images handled incorrectly in IE 7.
+ */
+nav ul,
+nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+/*
+ * Improves image quality when scaled in IE 7.
+ */
+img {
+  -ms-interpolation-mode: bicubic;
+}
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/*
+ * Corrects margin displayed oddly in IE 6/7.
+ */
+form {
+  margin: 0;
+}
+/*
+ * 1. Corrects color not being inherited in IE 6/7/8/9.
+ * 2. Corrects text not wrapping in Firefox 3.
+ * 3. Corrects alignment displayed oddly in IE 6/7.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  white-space: normal;
+  /* 2 */
+  *margin-left: -7px;
+  /* 3 */
+}
+/*
+ * Improves appearance and consistency in all browsers.
+ */
+button,
+input,
+select,
+textarea {
+  vertical-align: baseline;
+  *vertical-align: middle;
+}
+/*
+ * Removes inner spacing in IE 7 without affecting normal text inputs.
+ * Known issue: inner spacing remains in IE 6.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  *overflow: visible;
+}
+/*
+ * Removes excess padding in IE 7.
+ * Known issue: excess padding remains in IE 6.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  *height: 13px;
+  *width: 13px;
+}
+/* ==========================================================================
+   Capital Framework
+   Less variables
+   ========================================================================== */
+/* topdoc
+  name: Theme variables
+  family: cf-core
+  notes:
+    - "The following color and sizing variables are exposed, allowing you to
+       easily override them before compiling."
+  patterns:
+    - name: Sizing
+      codenotes:
+        - |
+          @base-font-size-px
+          @base-line-height-px
+          @base-line-height
+          @mobile-max
+          @tablet-min
+    - name: Colors
+      codenotes:
+        - |
+          @text
+          @link-text
+          @link-underline
+          @link-text-visited
+          @link-underline-visited
+          @link-text-hover
+          @link-underline-hover
+          @link-text-active
+          @link-underline-active
+          @table-border
+          @thead-text
+          @thead-bg
+          @td-bg
+          @td-bg-alt
+          @input-bg
+          @input-border
+          @input-border-focus
+          @input-placeholder
+          @figure__bordered
+  tags:
+    - cf-core
+*/
+/* topdoc
+  name: EOF
+  eof: true
+*/
+/* ==========================================================================
+   Capital Framework
+   Media queries
+   ========================================================================== */
+/* topdoc
+  name: Media query mixins
+  family: cf-core
+  notes:
+    - "These mixins allow us to write consistent media queries using pixel
+      values, which are easier to remember. The mixins handle converting the
+      pixels into em's."
+  patterns:
+    - name: "min-width/max-width media queries"
+      codenotes:
+        - ".respond-to-min(@bp, @rules)"
+        - ".respond-to-max(@bp, @rules)"
+      notes:
+        - "@bp: the breakpoint size in pixels. It will get converted into em's."
+        - "@rules: a CSS or Less ruleset. Note that it can contain the full set
+          of Less features."
+    - name: "min-width/max-width media query usage"
+      codenotes:
+        - |
+            .respond-to-min(768px, {
+                .title {
+                    font-size: 2em;
+                }
+            });
+
+            Compiles to:
+
+            @media only all and (min-width: 48em) {
+                .title {
+                    font-size: 2em;
+                }
+            }
+    - name: "min-width/max-width media query range"
+      codenotes:
+        - ".respond-to-range(@bp1, @bp2, @rules)"
+      notes:
+        - "@bp1: the min-width breakpoint size in pixels.
+          It will get converted into em's."
+        - "@bp2: the max-width breakpoint size in pixels.
+          It will get converted into em's."
+        - "@rules: a CSS or Less ruleset. Note that it can contain the full set
+          of Less features."
+    - name: "min-width/max-width media query range usage"
+      codenotes:
+        - |
+            .respond-to-range(320px, 768px, {
+                .title {
+                    font-size: 2em;
+                }
+            });
+
+            Compiles to:
+
+            @media only all and (min-width: 20em) and (max-width: 48em) {
+                .title {
+                    font-size: 2em;
+                }
+            }
+  tags:
+    - cf-core
+*/
+/* topdoc
+  name: EOF
+  eof: true
+*/
+/* ==========================================================================
+   Capital Framework
+   Utilities
+   ========================================================================== */
+/* topdoc
+  name: JS-only
+  family: cf-core
+  patterns:
+    - name: Setup
+      codenotes:
+        - <html class="no-js">
+        - |
+            <script>
+                // Confirm availability of JS and remove no-js class from html
+                var docElement = document.documentElement;
+                docElement.className = docElement.className.replace(/(^|\s)no-js(\s|$)/, '$1$2');
+            </script>
+      notes:
+        - "First add the .no-js class to the HTML element."
+        - "Then add the script to your HEAD which removes the .no-js class when
+           JS is available."
+    - name: Utility class
+      codenotes:
+        - .u-js-only;
+      notes:
+        - "Hide stuff when JavaScript isn't available. Depends on having a small
+           script in the HEAD of your HTML document that removes a .no-js class."
+  tags:
+    - cf-core
+*/
+.no-js .u-js-only {
+  display: none !important;
+}
+/* topdoc
+  name: Clearfix
+  family: cf-core
+  patterns:
+    - name: Utility class
+      markup: |
+        <div class="u-clearfix">
+            <div style="float:left; width:100%; height:60px; background:black;"></div>
+        </div>
+      codenotes:
+        - .u-clearfix;
+      notes:
+        - "Use this class to clear floats. For example, without .u-clearfix the
+           black box would spill into the markup section."
+        - "More information: http://css-tricks.com/snippets/css/clear-fix/"
+  tags:
+    - cf-core
+*/
+.u-clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.lt-ie8 .u-clearfix {
+  zoom: 1;
+}
+/* topdoc
+  name: Visually hidden
+  family: cf-core
+  patterns:
+    - name: Utility class
+      markup: |
+        <h1>
+            <a href="#">
+                <span class="cf-icon cf-icon-twitter-square"></span>
+                <span class="u-visually-hidden">Share on Twitter</span>
+            </a>
+        </h1>
+      codenotes:
+        - .u-visually-hidden;
+      notes:
+        - "Use this class to hide something from view while keeping it
+          accessible to screen readers."
+  tags:
+    - cf-core
+*/
+.u-visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+/* topdoc
+  name: Inline block
+  family: cf-core
+  patterns:
+    - name: Utility class
+      codenotes:
+        - .u-inline-block;
+      notes:
+        - "Also adds a .lt-ie8 class to hack inline-block for IE 7 and below."
+  tags:
+    - cf-core
+*/
+.u-inline-block {
+  display: inline-block;
+}
+.lt-ie8 .u-inline-block {
+  display: inline;
+}
+/* topdoc
+  name: Floating right
+  family: cf-core
+  patterns:
+    - name: Utility class
+      codenotes:
+        - .u-right;
+      notes:
+        - "IE7 float: right drop bug fixes:"
+        - "1. If the float: right follows an element in the html structure that
+          should be to its left (and not above it), then that preceding
+          element(s) must be float: left.
+          http://stackoverflow.com/questions/10981767/clean-css-fix-of-ie7s-float-right-drop-bug#answer-11437688"
+        - "2. Simply change the markup order so that the element floating right
+          comes before the element to its left."
+  tags:
+    - cf-core
+*/
+.u-right {
+  float: right;
+}
+/* topdoc
+  name: Break word
+  family: cf-core
+  patterns:
+    - name: Utility class
+      markup: |
+        <div style="width: 100px;">
+            This link should break:
+            <br>
+            <a class="u-break-word" href="#">
+                something@something.com
+            </a>
+            <br>
+            <br>
+            This link should not:
+            <br>
+            <a href="#">
+                something@something.com
+            </a>
+        </div>
+      codenotes:
+        - .u-break-word
+      notes:
+        - "Use this on elements where you need the words to break when confined
+           to small containers."
+        - "This only works in IE8 when the element with the .u-break-word class
+           has layout. See <http://stackoverflow.com/questions/3997223/word-wrapbreak-word-not-working-in-ie8>
+           for more information."
+  tags:
+    - cf-core
+*/
+.u-break-word {
+  word-break: break-all;
+}
+/* topdoc
+  name: Align with button
+  family: cf-core
+  patterns:
+    - name: Utility class
+      codenotes:
+        - ".u-align-with-btn(@font-size: @base-font-size-px);"
+      notes:
+        - "Adds top padding (among other things) to help alignment with buttons."
+        - "If you pass no arguments then the padding will be calculated using
+          @base-font-size-px."
+        - "Pass one argument to use a custom font size to calculate the top
+          padding."
+  tags:
+    - cf-core
+*/
+/* topdoc
+  name: Flexible proportional containers
+  family: cf-core
+  notes:
+    - "Utilizes intrinsic ratios to create a flexible container that retains its
+      aspect ratio. When image tags scale they retain their aspect ratio, but if
+      you need a flexible video you will need to use this mixin."
+    - "You can read more about intrinsic rations here:
+      http://alistapart.com/article/creating-intrinsic-ratios-for-video"
+  patterns:
+    - name: Default example
+      markup: |
+        <div class="u-flexible-container">
+            <video
+              class="u-flexible-container_inner"
+              style="background:#75787B;"
+              controls>
+            </video>
+        </div>
+      notes:
+        - "Defaults to a 16:19 ratio."
+        - "Original mixin credit: https://gist.github.com/craigmdennis/6655047"
+        - "Note that inline style usage is being used for demo purposes only.
+          Please do not use inline styles."
+      codenotes:
+        - |
+          Structural sheat sheet:
+          -----------------------
+          .u-flexible-container
+            .u-flexible-container_inner
+    - name: Background image examples
+      markup: |
+        <div class="u-flexible-container"
+             style="
+               background-image:url(http://placekitten.com/700/394);
+               background-position: center center;
+             ">
+        </div>
+        <div class="u-flexible-container"
+             style="
+               background-image:url(http://placekitten.com/700/394);
+               background-position: center center;
+               background-size: cover;
+             ">
+        </div>
+      codenotes:
+        - |
+          Structural sheat sheet:
+          -----------------------
+          .u-flexible-container
+      notes:
+        - "If you're not using the video or object elements and all you need is
+          a proportionally cropped or scaling background image with a fluid
+          container then you can leave out u-flexible-container_inner."
+        - "Note that inline style usage is being used for demo purposes only.
+          Please do not use inline styles."
+    - name: 4-3 modifier
+      markup: |
+        <div class="u-flexible-container u-flexible-container__4-3">
+            <video
+              class="u-flexible-container_inner"
+              style="background:#75787B;"
+              controls>
+            </video>
+        </div>
+      codenotes:
+        - |
+          Structural sheat sheet:
+          -----------------------
+          .u-flexible-container.u-flexible-container__4-3
+            .u-flexible-container_inner
+      notes:
+        - "Create your own aspect ratios by using this modifier as an example."
+        - "Note that inline style usage is being used for demo purposes only.
+          Please do not use inline styles."
+  tags:
+    - cf-core
+*/
+.u-flexible-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+.u-flexible-container_inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.u-flexible-container__4-3 {
+  position: relative;
+  padding-bottom: 75%;
+  height: 0;
+}
+/* topdoc
+  name: Link mixins
+  family: cf-core
+  patterns:
+    - codenotes:
+        - .u-link__colors();
+      notes:
+        - "Pass this mixin no arguments to color your link states with the
+          following defaults: :link (default state) pacific, :hover pacific-50,
+          :focus: pacific, :visited teal, :active navy."
+    - codenotes:
+        - .u-link__colors(@c);
+      notes:
+        - "Pass this mixin one color to be used on all of the following
+          states of your link; :link (default state), :visited, :hover, :focus,
+          :active."
+    - codenotes:
+        - .u-link__colors(@c, @h);
+      notes:
+        - "Pass this mixin two colors to use the first color for the :link,
+          :visited, and :active states, and the second color for the :hover and
+          :focus states."
+    - codenotes:
+        - .u-link__colors(@c, @v, @h, @f, @a);
+      notes:
+        - "Pass this mixin five colors in 'love/hate' mnemonic order to color
+          :link, :visited, :hover, :focus, and :active states respectively."
+        - "Even though this mixin is basically the same as
+          .u-link__colors-base(@c, @v, @h, @f, @a); we encourage you to use
+          .u-link__colors(@c, @v, @h, @f, @a) to promote consistency."
+    - codenotes:
+        - .u-link__colors(@c, @v, @h, @f, @a, @bc, @bv, @bh, @bf, @ba);
+      notes:
+        - "Allows you to color text and the borders separately."
+        - "The first five colors in 'love/hate' mnemonic order will color text
+          for the :link, :visited, :hover, :focus, and :active states
+          respectively. The last five colors in 'love/hate' mnemonic order will
+          color the borders for the :link, :visited, :hover, :focus, and :active
+          states respectively."
+        - "Even though this mixin is basically the same as
+          .u-link__colors-base(@c, @v, @h, @f, @a, @bc, @bv, @bh, @bf, @ba); we
+          encourage you to use .u-link__colors(@c, @v, @h, @f, @a, @bc, @bv, @bh, @bf, @ba)
+          to promote consistency."
+    - codenotes:
+        - .u-link__colors-base(@c, @v, @h, @f, @a);
+      notes:
+        - "This is the base mixin that all .u-link__colors() mixins use. Please
+          refrain from using this mixin directly in order to promote a
+          consistent use of mixin names for coloring links throughout this
+          project. Remember that if you need to set colors for all states of a
+          link you should use .u-link__colors(@c, @v, @h, @f, @a)."
+    - codenotes:
+        - .u-link__border();
+      notes:
+        - "Forces the default bottom border on the :link and :hover states."
+    - codenotes:
+        - .u-link__no-border();
+      notes:
+        - "Turn off the default bottom border on the :link and :hover states."
+    - codenotes:
+        - .u-link__hover-border();
+      notes:
+        - "Turn off the default bottom border on the :link state and force a
+          bottom border on the :hover state."
+    - codenotes:
+        - .u-link-child__hover();
+      notes:
+        - "When a link has child elements you may want only certain children to
+          change color when the parent link is hovered.
+          Pass no arguments to this mixin to color the child element pacific
+          when the parent link is hovered."
+    - codenotes:
+        - .u-link-child__hover(@c);
+      notes:
+        - "Pass this mixin one color to color the child element when the parent
+          link is hovered."
+  tags:
+    - cf-core
+*/
+/* topdoc
+  name: Margin utilities
+  family: cf-core
+  patterns:
+    - name: Utility classes
+      codenotes:
+        - .u-m<p><#>;
+      notes:
+        - "Replace <p> with the first letter of the position ('t' for top or 'b'
+           for bottom) and <#> with the pixel value of the margin you want."
+        - "Available values: 0, 5, 10, 15, 20, 30, 45, 60."
+  tags:
+    - cf-core
+*/
+.u-mt0 {
+  margin-top: 0 !important;
+}
+.u-mb0 {
+  margin-bottom: 0 !important;
+}
+.u-mt5 {
+  margin-top: 5px !important;
+}
+.u-mb5 {
+  margin-bottom: 5px !important;
+}
+.u-mt10 {
+  margin-top: 10px !important;
+}
+.u-mb10 {
+  margin-bottom: 10px !important;
+}
+.u-mt15 {
+  margin-top: 15px !important;
+}
+.u-mb15 {
+  margin-bottom: 15px !important;
+}
+.u-mt20 {
+  margin-top: 20px !important;
+}
+.u-mb20 {
+  margin-bottom: 20px !important;
+}
+.u-mt30 {
+  margin-top: 30px !important;
+}
+.u-mb30 {
+  margin-bottom: 30px !important;
+}
+.u-mt45 {
+  margin-top: 45px !important;
+}
+.u-mb45 {
+  margin-bottom: 45px !important;
+}
+.u-mt60 {
+  margin-top: 60px !important;
+}
+.u-mb60 {
+  margin-bottom: 60px !important;
+}
+/* topdoc
+  name: Width utilities
+  family: cf-core
+  patterns:
+    - name: Percent-based
+      markup: |
+        <div class="u-w100pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w100pct</code>
+        </div>
+        <div class="u-w90pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w90pct</code>
+        </div>
+        <div class="u-w80pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w80pct</code>
+        </div>
+        <div class="u-w70pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w70pct</code>
+        </div>
+        <div class="u-w60pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w60pct</code>
+        </div>
+        <div class="u-w50pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w50pct</code>
+        </div>
+        <div class="u-w40pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w40pct</code>
+        </div>
+        <div class="u-w30pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w30pct</code>
+        </div>
+        <div class="u-w20pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w20pct</code>
+        </div>
+        <div class="u-w10pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w10pct</code>
+        </div>
+        <div class="u-w75pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w75pct</code>
+        </div>
+        <div class="u-w25pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w25pct</code>
+        </div>
+        <div class="u-w66pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w66pct</code>
+        </div>
+        <div class="u-w33pct" style="background: #f4edf3; margin-bottom: 1px;">
+            <code>.u-w33pct</code>
+        </div>
+      notes:
+        - "Inline styles are for demonstration purposes only, please don't use
+           them."
+  tags:
+    - cf-core
+*/
+.u-w100pct {
+  width: 100%;
+}
+.u-w90pct {
+  width: 90%;
+}
+.u-w80pct {
+  width: 80%;
+}
+.u-w70pct {
+  width: 70%;
+}
+.u-w60pct {
+  width: 60%;
+}
+.u-w50pct {
+  width: 50%;
+}
+.u-w40pct {
+  width: 40%;
+}
+.u-w30pct {
+  width: 30%;
+}
+.u-w20pct {
+  width: 20%;
+}
+.u-w10pct {
+  width: 10%;
+}
+.u-w75pct {
+  width: 75%;
+}
+.u-w25pct {
+  width: 25%;
+}
+.u-w66pct {
+  width: 66.66666667%;
+}
+.u-w33pct {
+  width: 33.33333333%;
+}
+/* topdoc
+  name: Width-specific display
+  family: cf-core
+  patterns:
+    - name: Show on mobile
+      markup: |
+        <section>
+            <p>The the text in the box below is visible only at widths less than 600px</p>
+            <div style="border: 1px solid black; height: 22px; padding: 5px;">
+                <p class="u-show-on-mobile">Visible on mobile</p>
+            </div>
+        </section>
+      codenotes:
+        - ".u-show-on-mobile"
+        - "Uses 'display:block' to toggle display. Would need to be extended
+          for inline use cases."
+      notes:
+        - "Displays an element only at mobile widths."
+    - name: Hide on mobile
+      markup: |
+        <section>
+            <p>The text in the box below is hidden at widths less than 600px</p>
+            <div style="border: 1px solid black; height: 22px; padding: 5px;">
+                <p class="u-hide-on-mobile">Hidden on mobile</p>
+            </div>
+        </section>
+      codenotes:
+        - ".u-hide-on-mobile"
+      notes:
+        - "Hides an element at mobile widths"
+  tags:
+    - cf-core
+*/
+@media only all and (max-width: 37.4375em) {
+  .u-hide-on-mobile {
+    display: none;
+  }
+}
+.u-show-on-mobile {
+  display: none;
+}
+@media only all and (max-width: 37.4375em) {
+  .u-show-on-mobile {
+    display: block;
+  }
+}
+/* topdoc
+  name: Small text utility
+  family: cf-core
+  patterns:
+    - name: .u-small-text (utility class)
+      markup: |
+        Lorem ipsum<br>
+        <span class="u-small-text">dolor sit amet</span>
+      codenotes:
+        - ".u-small-text"
+      notes:
+        - "14px text."
+        - "The utility class should only be used when the default text size is
+           16px. For example you wouldn't want to use the class inside of an
+           `h1` because the `font-size` in the `h1` will make `.u-small-text`
+           bigger than it should be. See the docs for the `.u-small-text()`
+           mixin."
+    - name: .u-small-text() (Less mixin)
+      codenotes:
+        - ".u-small-text(@context)"
+        - |
+          // Mixin usage:
+          .example {
+            font-size: unit(20px / @base-font-size-px, em);
+            small {
+              .u-small-text(20px);
+            }
+          }
+          // Compiles to:
+          .example {
+            font-size: 1.25em;
+          }
+          .example small {
+            font-size: 0.7em;
+          }
+      notes:
+        - "This mixin enables you to easily create consistent small text by
+           passing the context `font-size`."
+  tags:
+    - cf-core
+*/
+.u-small-text {
+  font-size: 0.875em;
+}
+small {
+  font-size: 0.875em;
+}
+/* topdoc
+    name: EOF
+    eof: true
+*/
+/* ==========================================================================
+   Capital Framework
+   Base styles
+   ========================================================================== */
+/* topdoc
+  name: Webfonts
+  family: cf-core
+  patterns:
+    - name: Webfont mixins and variables
+      codenotes:
+        - ".webfont-regular()"
+        - ".webfont-italic()"
+        - ".webfont-medium()"
+        - ".webfont-demi()"
+      notes:
+        - "Use these mixins to easily add the your preferred font family to your
+          elements."
+        - "To use your own fonts in the webfont mixins, set your own font with the
+          @webfont-regular/italic/medium/demi variables."
+        - "To avoid faux bold and italics,
+          you must use the font family name for that particular style.
+          For example, when defining an italic in Helvetica
+          you need to use the Helvetica Italic font family.
+          Use the mixins when setting bold or italic text as they also
+          set the appropriate font-weight and font-style."
+        - "These mixins also add the appropriate .lt-ie9 overrides.
+          .lt-ie9 overrides are necessary to override font-style and font-weight
+          each time the webfont is used. These overrides are built into the webfont
+          mixins so you get them automatically. Note that this requires you to
+          use conditional classes on the <html> element:
+          https://github.com/h5bp/html5-boilerplate/blob/v4.3.0/doc/html.md#conditional-html-classes."
+  tags:
+    - cf-core
+*/
+/* topdoc
+  name: Type hierarchy
+  family: cf-core
+  patterns:
+    - name: Default body type
+      markup: |
+        <p>Lorem ipsum dolor sit amet, <em>consectetur adipisicing elit</em>, sed do eiusmod <strong>tempor incididunt</strong> ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    - name: Heading level 1
+      markup: |
+        <h1>Example heading element</h1>
+        <p class="h1">A non-heading element</p>
+      notes:
+        - Responsive header. At mobile sizes, displays as h2.
+    - name: Heading level 2
+      markup: |
+        <h2>Example heading element</h2>
+        <p class="h2">A non-heading element</p>
+      notes:
+        - Responsive header. At mobile sizes, displays as h3.
+    - name: Heading level 3
+      markup: |
+        <h3>Example heading element</h3>
+        <p class="h3">A non-heading element</p>
+      notes:
+        - Responsive header. At mobile sizes, displays as h4.
+    - name: Heading level 4
+      markup: |
+        <h4>Example heading element</h4>
+        <p class="h4">A non-heading element</p>
+    - name: Heading level 5
+      markup: |
+        <h5>Example heading element</h5>
+        <p class="h5">A non-heading element</p>
+    - name: Heading level 6
+      markup: |
+        <h6>Example heading element</h6>
+        <p class="h6">A non-heading element</p>
+    - name: Subheader
+      markup: |
+        <h1 class="subheader">Example subheader that's kinda long</h1>
+        <p class="subheader">Example subheader that's kinda long</p>
+    - name: Super header
+      markup: |
+        <h1 class="superheader">Example super header</h1>
+        <p class="superheader">Example super header</p>
+  tags:
+    - cf-core
+*/
+body {
+  color: #5b3b57;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 100%;
+  line-height: 1.375;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+h1,
+.h1 {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  margin-bottom: 0.47058824em;
+  font-size: 2.125em;
+  line-height: 1.29411765;
+}
+h1 em,
+.h1 em,
+h1 i,
+.h1 i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 h1 em,
+.lt-ie9 .h1 em,
+.lt-ie9 h1 i,
+.lt-ie9 .h1 i {
+  font-style: normal !important;
+}
+h1 strong,
+.h1 strong,
+h1 b,
+.h1 b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 h1 strong,
+.lt-ie9 .h1 strong,
+.lt-ie9 h1 b,
+.lt-ie9 .h1 b {
+  font-weight: normal !important;
+}
+@media only all and (max-width: 37.4375em) {
+  h1,
+  .h1 {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin-bottom: 0.73076923em;
+    font-size: 1.625em;
+    line-height: 1.26923077;
+  }
+  h1 em,
+  .h1 em,
+  h1 i,
+  .h1 i {
+    font-family: Arial, Arial, sans-serif;
+    font-style: italic;
+    font-weight: normal;
+  }
+  .lt-ie9 h1 em,
+  .lt-ie9 .h1 em,
+  .lt-ie9 h1 i,
+  .lt-ie9 .h1 i {
+    font-style: normal !important;
+  }
+  h1 strong,
+  .h1 strong,
+  h1 b,
+  .h1 b {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+  }
+  .lt-ie9 h1 strong,
+  .lt-ie9 .h1 strong,
+  .lt-ie9 h1 b,
+  .lt-ie9 .h1 b {
+    font-weight: normal !important;
+  }
+}
+h2,
+.h2 {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  margin-bottom: 0.73076923em;
+  font-size: 1.625em;
+  line-height: 1.26923077;
+}
+h2 em,
+.h2 em,
+h2 i,
+.h2 i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 h2 em,
+.lt-ie9 .h2 em,
+.lt-ie9 h2 i,
+.lt-ie9 .h2 i {
+  font-style: normal !important;
+}
+h2 strong,
+.h2 strong,
+h2 b,
+.h2 b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 h2 strong,
+.lt-ie9 .h2 strong,
+.lt-ie9 h2 b,
+.lt-ie9 .h2 b {
+  font-weight: normal !important;
+}
+@media only all and (max-width: 37.4375em) {
+  h2,
+  .h2 {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin-bottom: 0.95454545em;
+    font-size: 1.375em;
+    line-height: 1.27272727;
+  }
+  h2 em,
+  .h2 em,
+  h2 i,
+  .h2 i {
+    font-family: Arial, Arial, sans-serif;
+    font-style: italic;
+    font-weight: normal;
+  }
+  .lt-ie9 h2 em,
+  .lt-ie9 .h2 em,
+  .lt-ie9 h2 i,
+  .lt-ie9 .h2 i {
+    font-style: normal !important;
+  }
+  h2 strong,
+  .h2 strong,
+  h2 b,
+  .h2 b {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+  }
+  .lt-ie9 h2 strong,
+  .lt-ie9 .h2 strong,
+  .lt-ie9 h2 b,
+  .lt-ie9 .h2 b {
+    font-weight: normal !important;
+  }
+}
+h3,
+.h3 {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  margin-bottom: 0.95454545em;
+  font-size: 1.375em;
+  line-height: 1.27272727;
+}
+h3 em,
+.h3 em,
+h3 i,
+.h3 i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 h3 em,
+.lt-ie9 .h3 em,
+.lt-ie9 h3 i,
+.lt-ie9 .h3 i {
+  font-style: normal !important;
+}
+h3 strong,
+.h3 strong,
+h3 b,
+.h3 b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 h3 strong,
+.lt-ie9 .h3 strong,
+.lt-ie9 h3 b,
+.lt-ie9 .h3 b {
+  font-weight: normal !important;
+}
+@media only all and (max-width: 37.4375em) {
+  h3,
+  .h3 {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    margin-bottom: 1.16666667em;
+    font-size: 1.125em;
+    line-height: 1.22222222;
+  }
+  .lt-ie9 h3,
+  .lt-ie9 .h3 {
+    font-weight: normal !important;
+  }
+}
+h4,
+.h4 {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  margin-bottom: 1.16666667em;
+  font-size: 1.125em;
+  line-height: 1.22222222;
+}
+.lt-ie9 h4,
+.lt-ie9 .h4 {
+  font-weight: normal !important;
+}
+h5,
+.h5 {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.35714286em;
+  font-size: 0.875em;
+  line-height: 1.57142857;
+}
+.lt-ie9 h5,
+.lt-ie9 .h5 {
+  font-weight: normal !important;
+}
+h6,
+.h6 {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.41666667em;
+  font-size: 0.75em;
+  line-height: 1.83333333;
+}
+.lt-ie9 h6,
+.lt-ie9 .h6 {
+  font-weight: normal !important;
+}
+.subheader {
+  font-weight: 500;
+  margin-bottom: 1.16666667em;
+  font-size: 1.125em;
+  line-height: 1.22222222;
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+.lt-ie9 .subheader {
+  font-weight: normal !important;
+}
+.subheader em,
+.subheader i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 .subheader em,
+.lt-ie9 .subheader i {
+  font-style: normal !important;
+}
+.subheader strong,
+.subheader b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 .subheader strong,
+.lt-ie9 .subheader b {
+  font-weight: normal !important;
+}
+.superheader {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  margin-bottom: 0.1875em;
+  font-size: 3em;
+  line-height: 1.25;
+}
+.lt-ie9 .superheader {
+  font-weight: normal !important;
+}
+/* topdoc
+  name: Margins
+  family: cf-core
+  patterns:
+    - name: Consistent vertical margins
+      notes:
+        - "Assumes that the font size of each of these items remains the default."
+      markup: |
+        <p>Paragraph margin example</p>
+        <p>Paragraph margin example</p>
+  tags:
+    - cf-core
+*/
+p,
+ul,
+ol,
+dl,
+table,
+figure {
+  margin-top: 0;
+  margin-bottom: 1.25em;
+}
+/* topdoc
+  name: Default link
+  notes:
+    - "Note that the .visited, .hover, .focus, .active classes are for demonstration purposes only and should not
+      be used in production."
+  family: cf-core
+  patterns:
+    - name: Default state
+      markup: |
+        <a href="#">Default link style</a>
+    - name: Visited state
+      markup: |
+        <a href="#" class="visited">Visited link style</a>
+    - name: Hovered state
+      markup: |
+        <a href="#" class="hover">Hovered link style</a>
+    - name: Focused state
+      markup: |
+        <a href="#" class="focus">Focused link style</a>
+    - name: Active state
+      markup: |
+        <a href="#" class="active">Active link style</a>
+  tags:
+    - cf-core
+*/
+a {
+  border-width: 0;
+  border-style: dotted;
+  border-color: #c7336e;
+  color: #c7336e;
+  text-decoration: none;
+}
+a:visited,
+a.visited {
+  border-color: #cf447c;
+  color: #cf447c;
+}
+a:hover,
+a.hover {
+  border-style: solid;
+  border-color: #9e2958;
+  color: #9e2958;
+}
+a:focus,
+a.focus {
+  border-style: solid;
+  outline: thin dotted;
+}
+a:active,
+a.active {
+  border-style: solid;
+  border-color: #8a234c;
+  color: #8a234c;
+}
+/* topdoc
+  name: Underlined links
+  family: cf-core
+  patterns:
+    - name: States
+      notes:
+        - "Note that the .visited, .hover, .focus, .active classes are for demonstration purposes only and should not
+          be used in production."
+        - "The underline style properties are mostly set above in the a tag.
+          To enable the underline simply set a bottom-border-width as done here."
+      markup: |
+        <p>
+            <a href="#">Default</a>,
+            <a href="#" class="visited">Visited</a>,
+            <a href="#" class="hover">Hovered</a>,
+            <a href="#" class="focus">Focused</a>,
+            <a href="#" class="active">Active</a>
+        </p>
+    - name: Underline conditions
+      notes:
+        - "We're restricting link borders to links within p, li, and dd so that
+          we don't have to override them every time we want a plain link."
+      markup: |
+        <p>
+            <a href="#">A child of a paragraph</a>
+        </p>
+        <ul>
+            <li>
+                <a href="#">A child of a list item</a>
+            </li>
+        </ul>
+        <dl>
+            <dt>
+                Definition list term
+            </dt>
+            <dd>
+                <a href="#">A child of a definition list description</a>
+            </dd>
+        </dl>
+    - name: Exceptions for underlined links
+      notes:
+        - "Inline text links inside of a nav element are not underlined."
+      markup: |
+        <nav>
+            <p>
+                <a href="#">A child of a paragraph</a>
+            </p>
+            <ul>
+                <li>
+                    <a href="#">A child of a list item</a>
+                </li>
+            </ul>
+            <dl>
+                <dt>
+                    Definition list term
+                </dt>
+                <dd>
+                    <a href="#">A child of a definition list description</a>
+                </dd>
+            </dl>
+        </nav>
+  tags:
+    - cf-core
+*/
+p a,
+li a,
+dd a {
+  border-bottom-width: 1px;
+}
+nav a {
+  border-bottom-width: 0;
+}
+/* topdoc
+  name: Lists
+  family: cf-core
+  patterns:
+    - name: Unordered list
+      markup: |
+        <ul>
+            <li>List item</li>
+            <li>List item</li>
+            <li>List item</li>
+        </ul>
+  tags:
+    - cf-core
+*/
+ul {
+  list-style: square;
+}
+/* topdoc
+  name: Tables
+  family: cf-core
+  patterns:
+    - name: Standard table
+      markup: |
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1 header</th>
+                    <th>Column 2 header</th>
+                    <th>Column 3 header</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Row 1, column 1</td>
+                    <td>Row 1, column 2</td>
+                    <td>Row 1, column 3</td>
+                </tr>
+                <tr>
+                    <td>Row 2, column 1</td>
+                    <td>Row 2, column 2</td>
+                    <td>Row 2, column 3</td>
+                </tr>
+                <tr>
+                    <td>Row 3, column 1</td>
+                    <td>Row 3, column 2</td>
+                    <td>Row 3, column 3</td>
+                </tr>
+            </tbody>
+        </table>
+  tags:
+    - cf-core
+*/
+table {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+table em,
+table i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 table em,
+.lt-ie9 table i {
+  font-style: normal !important;
+}
+table strong,
+table b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 table strong,
+.lt-ie9 table b {
+  font-weight: normal !important;
+}
+th,
+td {
+  padding: 0.625em;
+}
+thead th,
+thead td {
+  color: #000000;
+  background: #f8f8f8;
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.35714286em;
+  font-size: 0.875em;
+  line-height: 1.57142857;
+}
+.lt-ie9 thead th,
+.lt-ie9 thead td {
+  font-weight: normal !important;
+}
+thead,
+tbody tr {
+  border-bottom: 1px solid #babbbd;
+}
+/* topdoc
+  name: Block quote
+  family: cf-core
+  patterns:
+    - name: Default block quote
+      markup: |
+        <blockquote cite="link-to-source">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa
+            similique fugit hic eligendi praesentium officiis illum optio iusto
+            commodi eum tempore nisi ad in perferendis enim quo dolores.
+            Reprehenderit similique earum quibusdam possimus vitae esse
+            nesciunt mollitia sed beatae aliquid dolores iure a impedit quam
+            minus eum modi illum ducimus eligendi eveniet labore non sequi
+            voluptate et totam praesentium animi itaque asperiores dolorum
+            sunt laudantium repellat nam commodi. Perspiciatis natus aliquam
+            veniam officiis ducimus voluptatum ut necessitatibus non!
+        </blockquote>
+      notes:
+        - "Use a block quote to quote from an external work. See .pull-quote if
+          you need to highlight an excerpt from the current work."
+        - "It is best practice to document the URL of a quoted work using the
+          cite attribute."
+  tags:
+    - cf-core
+*/
+blockquote {
+  margin: 1.25em;
+}
+@media only all and (min-width: 37.5em) {
+  blockquote {
+    margin: 1.75em 2.5em;
+  }
+}
+/* topdoc
+    name: Form labels
+    family: cf-core
+    notes:
+      - "Visit https://github.com/cfpb/cf-forms for advanced form label patterns."
+    patterns:
+    - name: Default label
+      markup: |
+        <label>Form label</label>
+    - name: Label wrapping a radio or checkbox
+      markup: |
+        <label>
+            <input type="radio">
+            Radio label
+        </label>
+        <label>
+            <input type="checkbox">
+            Checkbox label
+        </label>
+    tags:
+    - cf-core
+*/
+label {
+  display: block;
+  margin-bottom: 0.3125em;
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+label em,
+label i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 label em,
+.lt-ie9 label i {
+  font-style: normal !important;
+}
+label strong,
+label b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 label strong,
+.lt-ie9 label b {
+  font-weight: normal !important;
+}
+label input[type="radio"],
+label input[type="checkbox"] {
+  margin-right: 0.375em;
+}
+/* topdoc
+    name: Form elements
+    family: cf-core
+    notes:
+      - "The .focus class is only included for documentation demos and should
+         not be used in production."
+      - "Visit https://github.com/cfpb/cf-forms for advanced form field patterns."
+    patterns:
+    - name: type="text"
+      markup: |
+        <input type="text" value="Lorem ipsum">
+        <input class="focus" type="text" value="Lorem ipsum">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="text" value="">
+    - name: type="search"
+      markup: |
+        <input type="search" value="Lorem ipsum">
+        <input class="focus" type="search" value="Lorem ipsum">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="search" value="">
+    - name: type="email"
+      markup: |
+        <input type="email" value="Lorem ipsum">
+        <input class="focus" type="email" value="Lorem ipsum">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="email" value="">
+    - name: type="url"
+      markup: |
+        <input type="url" value="Lorem ipsum">
+        <input class="focus" type="url" value="Lorem ipsum">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="url" value="">
+    - name: type="tel"
+      markup: |
+        <input type="tel" value="Lorem ipsum">
+        <input class="focus" type="tel" value="Lorem ipsum">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="tel" value="">
+    - name: type="number"
+      markup: |
+        <input type="number" value="1000">
+        <input class="focus" type="number" value="1000">
+        <br><br>
+        <input placeholder="Lorem ipsum" type="number" value="">
+    - name: textarea
+      markup: |
+        <textarea>Lorem ipsum</textarea>
+        <textarea class="focus">Lorem ipsum</textarea>
+    - name: multi-select
+      markup: |
+        <select multiple>
+            <option value="option1">Lorem</option>
+            <option value="option2">Ipsum</option>
+            <option value="option3">Dolor</option>
+            <option value="option4">Sit</option>
+        </select>
+        <select class="focus" multiple>
+            <option value="option1">Lorem</option>
+            <option value="option2">Ipsum</option>
+            <option value="option3">Dolor</option>
+            <option value="option4">Sit</option>
+        </select>
+    tags:
+    - cf-core
+*/
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select[multiple] {
+  display: inline-block;
+  margin: 0;
+  padding: 0.375em;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  background: #ffffff;
+  border: 1px solid #5b3b57;
+  border-radius: 0;
+  vertical-align: top;
+  -webkit-appearance: none;
+  -webkit-user-modify: read-write-plaintext-only;
+}
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+input[type="text"]:focus,
+input[type="text"].focus,
+input[type="search"]:focus,
+input[type="search"].focus,
+input[type="email"]:focus,
+input[type="email"].focus,
+input[type="url"]:focus,
+input[type="url"].focus,
+input[type="tel"]:focus,
+input[type="tel"].focus,
+input[type="number"]:focus,
+input[type="number"].focus,
+textarea:focus,
+textarea.focus,
+select[multiple]:focus,
+select[multiple].focus {
+  border: 1px solid #c7336e;
+  outline: 1px solid #c7336e;
+  outline-offset: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+::-webkit-input-placeholder {
+  color: grayscale(#c7336e);
+}
+::-moz-placeholder {
+  color: grayscale(#c7336e);
+}
+:-ms-input-placeholder {
+  color: grayscale(#c7336e);
+}
+/* topdoc
+  name: Images
+  family: cf-core
+  patterns:
+    - name: max-width
+      markup: |
+            <img src="http://placekitten.com/800/40" alt="">
+      notes:
+        - "Gives all images a default max-width of 100% of their container."
+  tags:
+    - cf-core
+*/
+img {
+  max-width: 100%;
+}
+/* topdoc
+  name: Figure
+  family: cf-core
+  patterns:
+    - name: figure
+      markup: |
+        <figure>
+            <img src="http://placekitten.com/340/320">
+        </figure>
+    - name: figure.figure__bordered
+      markup: |
+        <figure class="figure__bordered">
+            <img src="http://placekitten.com/340/320">
+        </figure>
+  tags:
+    - cf-core
+*/
+figure {
+  margin-left: 0;
+  margin-right: 0;
+}
+figure img {
+  vertical-align: middle;
+}
+.figure__bordered img {
+  border: 1px solid #5b3b57;
+}
+/* topdoc
+  name: EOF
+  eof: true
+*/
+/* ==========================================================================
+   Capital Framework
+   Grid mixins
+   ========================================================================== */
+/* topdoc
+  name: Less variables
+  notes:
+    - "The following variables are exposed,
+       allowing you to easily override them before compiling.
+       Most mixins allows you to further override these values by passing them
+       arguments."
+  family: cf-grid
+  patterns:
+    - codenotes:
+        - "@grid_box-sizing-polyfill-path: '../../box-sizing-polyfill;"
+      notes:
+        - "The path where boxsizing.htc is located."
+        - "This path MUST be overridden in your project and set to a root relative url."
+    - codenotes:
+        - "@grid_wrapper-width: 1200px;"
+      notes:
+        - "The grid's maximum width in px."
+    - codenotes:
+        - "@grid_gutter-width: 30px;"
+      notes:
+        - "The fixed width between columns."
+    - codenotes:
+        - "@grid_total-columns: 12;"
+      notes:
+        - "The total number of columns used in calculating column widths."
+    - codenotes:
+        - "@grid_debug"
+      notes:
+        - "Gives column blocks a background color if set to true."
+  tags:
+    - cf-grid
+*/
+/* topdoc
+  name: Wrapper
+  notes:
+    - "Wrappers are centered containers with a max-width and fixed gutters
+       that match the gutter widths of columns."
+    - "To support IE 6/7, ensure that the path to boxsizing.htc is set using
+       the @grid_box-sizing-polyfill-path Less variable.
+       Read more: https://github.com/Schepp/box-sizing-polyfill."
+  family: cf-grid
+  patterns:
+    - name: Less mixin
+      codenotes:
+        - ".grid_wrapper( @grid_wrapper-width: @grid_wrapper-width )"
+      notes:
+        - "You can create wrappers with different max-widths by passing a pixel
+           value into the mixin."
+    - name: Usage
+      codenotes:
+        - |
+          .main-wrapper {
+            .grid_wrapper();
+          }
+          .wide-wrapper {
+            .grid_wrapper( 1900px );
+          }
+        - |
+          <div class="main-wrapper">
+              This container now has left and right padding and a centered max width.
+          </div>
+          <div class="wide-wrapper">
+              This container is the same except it has a wider max-width.
+          </div>
+  tags:
+    - cf-grid
+*/
+/* topdoc
+  name: Columns
+  family: cf-grid
+  patterns:
+    - name: Less mixin
+      codenotes:
+        - ".grid_column( @columns: 1; @total: @grid_total-columns; @prefix: 0; @suffix: 0 )"
+      notes:
+        - "Computes column widths and prefix/suffix padding."
+        - "CSS borders are used for fixed gutters."
+    - name: Usage
+      codenotes:
+        - |
+          .main-wrapper {
+            .grid_wrapper();
+          }
+          .half {
+            .grid_column(1, 2);
+          }
+        - |
+          <div class="main-wrapper">
+              <div class="half">I am half of my parent.</div>
+              <div class="half">I am half of my parent.</div>
+          </div>
+    - name: This is a placeholder for documenting prefix and suffix
+      codenotes:
+        - "..."
+  tags:
+    - cf-grid
+*/
+/* topdoc
+  name: Push and Pull mixins for source ordering
+  family: cf-grid
+  patterns:
+    - codenotes:
+        - ".push( @offset: 1, @grid_total-columns: @grid_total-columns )"
+        - ".pull( @offset: 1, @grid_total-columns: @grid_total-columns )"
+    - name: Usage
+      codenotes:
+        - |
+          .first {
+            .grid_column(1, 2);
+            .grid_pull(1);
+          }
+          .second {
+            .grid_column(1, 2);
+            .grid_push(1);
+          }
+        - |
+          <div>
+              <div class="second">I am first in the markup but appear after .first.</div>
+              <div class="first">I am second in the markup but appear before .second.</div>
+          </div>
+  tags:
+    - cf-grid
+*/
+/* topdoc
+  name: Nested columns
+  notes:
+    - "Since all cf-grid columns have left and right gutters you will notice
+      undesireable offsetting when nesting columns.
+      Normally this is removed with complex selectors or by adding classes
+      to the first and last column per 'row'.
+      In cf-grid the way to get around this is by wrapping your columns in a
+      container that utilizes the .grid_nested-col-group() mixin.
+      This mixin uses negative left and right margins to pull the columns back
+      into alignment with parent columns."
+    - "NOTE: Working this way allows you to easily create responsive grids.
+      You are free to control the number of columns per 'row' without having
+      to deal with the first and last columns of each row."
+    - "NOTE: cf-grids does not use 'rows' and there is no row container.
+      To clarify, if you have a 12 column grid and place 24 columns inside
+      of a wrapper cf-grid columns will automaitcally stack into 2 'rows'
+      of 12."
+  family: cf-grid
+  patterns:
+    - name: Less mixin
+      codenotes:
+        - ".grid_nested-col-group()"
+    - name: Usage
+      codenotes:
+        - |
+          .main-wrapper {
+            .grid_wrapper();
+          }
+          .cols {
+            .grid_nested-col-group();
+          }
+          .half {
+            .grid_column(1, 2);
+          }
+        - |
+          <div class="main-wrapper">
+              <div class="half">
+                  <div class="cols">
+                      <div class="half"></div>
+                      <div class="half"></div>
+                  </div>
+              </div>
+              <div class="half">
+                  <div class="cols">
+                      <div class="half"></div>
+                      <div class="half"></div>
+                  </div>
+              </div>
+          </div>
+  tags:
+    - cf-grid
+*/
+/* topdoc
+  name: EOF
+  eof: true
+*/
+/* ==========================================================================
+   Capital Framework
+   Layout Helpers
+   ========================================================================== */
+/* topdoc
+  name: Theme variables
+  family: cf-layout
+  notes:
+    - "The following color and sizing variables are exposed, allowing you to
+       easily override them before compiling."
+  patterns:
+  - name: Colors
+    codenotes:
+      - |
+        @block__border-top
+        @block__border-right
+        @block__border-bottom
+        @block__border-left
+        @block__border
+        @block__bg
+        @content_main-border
+        @content_sidebar-bg
+        @content_sidebar-border
+        @content_bar
+        @content_line
+        @grid_column__top-divider
+        @grid_column__left-divider
+  tags:
+  - cf-layout
+  - less
+*/
+/* topdoc
+  name: Content layouts
+  family: cf-layout
+  patterns:
+    - name: Standard content columns
+      markup: |
+        <div class="content-l">
+            <div class="content-l_col content-l_col-1">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Full-width column (spans 12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Half-width column (spans 6/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Half-width column (spans 6/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-2-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Two thirds-width column (spans 8/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-4">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;">
+                    Quarter width column (spans 3/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-3-4">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;">
+                    Three-quarter width column (spans 9/12 columns)
+                </div>
+            </div>
+        </div>
+      codenotes:
+        - |
+          Structural cheat sheet:
+          -----------------------
+          .content-l
+            .content-l_col
+      notes:
+        - "Simplifies use of grid structure inside content containers (like .content-main)."
+        - "Since .content-l_col's are nested within .content_main extra margins will occur.
+           The .content-l container uses the grid_nested-col-group mixin to counter this."
+        - ".content-l_col-RATIO classes default to stacking on mobile and displaying as columns
+           above mobile-max width (600px). This may not be the desired breakpoint for
+           all use cases, so mixins are provided to simplify changing column display to
+           stacked."
+        - "Three .content-l modifiers handle the stacking overrides for use cases of
+           .content_main, .content_full, and .content_sidebar containers."
+        - "Note that the divs with inline styles are for demonstration purposes
+           only and should not be used in production."
+    - name: .content-l__full modifier
+      markup: |
+        <div class="content-l content-l__full">
+            <div class="content-l_col content-l_col-1">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Full-width column (spans 12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Half-width column (spans 6/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Half-width column (spans 6/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-2-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Two thirds-width column (spans 8/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-4">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;">
+                    Quarter width column (spans 3/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-3-4">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;">
+                    Three-quarter width column (spans 9/12 columns)
+                </div>
+            </div>
+        </div>
+      codenotes:
+        - .content-l.content-l__full
+      notes:
+        - "Designed for use within .content_full containers."
+        - "Displays .content-l_col-1-2 as columns at tablet sizes & above (600px+)"
+        - "Displays other common .content-l_col modifiers (.content-l_col-1-3,
+           .content-l_col-2-3, .content-l_col-3-8, .content-l_col-5-8)
+           as columns above 767px."
+    - name: .content-l__main modifier
+      markup: |
+        <div class="content-l content-l__main">
+            <div class="content-l_col content-l_col-1">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Full-width column (spans 12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Half-width column (spans 6/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Half-width column (spans 6/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-2-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Two thirds-width column (spans 8/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-4">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;">
+                    Quarter width column (spans 3/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-3-4">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;">
+                    Three-quarter width column (spans 9/12 columns)
+                </div>
+            </div>
+        </div>
+      codenotes:
+        - .content-l.content-l__main
+      notes:
+        - "Designed for use in .content_main containers, which have reduced (75%) width
+           above tablet sizes to accommodate adjacent sidebar column."
+        - "Displays .content-l_col-1-2 as columns in the tablet range, 600-800px;
+           stacked from 800-899, the start of sidebar range; and as columns again at 900px+"
+        - "Displays other common .content-l_col modifiers (.content-l_col-1-3, .content-l_col-2-3,
+           .content-l_col-3-8, .content-l_col-5-8) as columns above 900px."
+    - name: .content-l__sidebar modifier
+      markup: |
+        <div class="content-l content-l__sidebar">
+            <div class="content-l_col content-l_col-1">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Full-width column (spans 12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Half-width column (spans 6/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Half-width column (spans 6/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-2-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Two thirds-width column (spans 8/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-3">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Third-width column (spans 4/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-4">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;">
+                    Quarter width column (spans 3/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-3-4">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;">
+                    Three-quarter width column (spans 9/12 columns)
+                </div>
+            </div>
+        </div>
+      codenotes:
+        - .content-l.content-l__sidebar
+      notes:
+        - "For use in sidebar containers, which are full width only
+           on tablet widths (600-800px)."
+        - "Displays .content-l_col-1-2 as columns in the tablet range,
+           600-800px, and stacked at all other widths."
+    - name: Large gutters modifier
+      markup: |
+        <div class="content-l content-l__main  content-l__large-gutters">
+            <div class="content-l_col content-l_col-1">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Full-width column (spans 12 columns)
+                </div>
+            </div>
+        </div>
+        <div class="content-l content-l__main  content-l__large-gutters">
+            <div class="content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Half-width column (spans 6/12 columns)
+                </div>
+            </div>
+            <div class="content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2;
+                            text-align: center;
+                            padding: 8px;
+                            margin-bottom: 4px;">
+                    Half-width column (spans 6/12 columns)
+                </div>
+            </div>
+        </div>
+      codenotes:
+        - .content-l.content-l__large-gutters
+      notes:
+        - "Adds 30px gutters to all columns by simply adding the
+           .content-l__large-gutters modifier."
+  tags:
+    - cf-layout
+*/
+.content-l {
+  position: relative;
+}
+@media only all and (min-width: 37.5em) {
+  .content-l {
+    display: block;
+    position: relative;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+}
+@media only all and (min-width: 37.5em) and (max-width: 47.9375em) {
+  .content-l__full .content-l_col.content-l_col-1-3 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__full .content-l_col.content-l_col-1-3.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__full .content-l_col.content-l_col-1-3.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__full.content-l__large-gutters .content-l_col.content-l_col-1-3.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__full .content-l_col + .content-l_col-1-3 {
+    margin-top: 1.875em;
+  }
+  .content-l__full .content-l_col.content-l_col-2-3 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__full .content-l_col.content-l_col-2-3.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__full .content-l_col.content-l_col-2-3.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__full.content-l__large-gutters .content-l_col.content-l_col-2-3.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__full .content-l_col + .content-l_col-2-3 {
+    margin-top: 1.875em;
+  }
+  .content-l__full .content-l_col.content-l_col-3-8 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__full .content-l_col.content-l_col-3-8.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__full .content-l_col.content-l_col-3-8.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__full.content-l__large-gutters .content-l_col.content-l_col-3-8.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__full .content-l_col + .content-l_col-3-8 {
+    margin-top: 1.875em;
+  }
+  .content-l__full .content-l_col.content-l_col-5-8 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__full .content-l_col.content-l_col-5-8.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__full .content-l_col.content-l_col-5-8.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__full.content-l__large-gutters .content-l_col.content-l_col-5-8.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__full .content-l_col + .content-l_col-5-8 {
+    margin-top: 1.875em;
+  }
+  .content-l__full .content-l_col.content-l_col-1-4 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__full .content-l_col.content-l_col-1-4.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__full .content-l_col.content-l_col-1-4.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__full.content-l__large-gutters .content-l_col.content-l_col-1-4.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__full .content-l_col + .content-l_col-1-4 {
+    margin-top: 1.875em;
+  }
+  .content-l__full .content-l_col.content-l_col-3-4 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__full .content-l_col.content-l_col-3-4.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__full .content-l_col.content-l_col-3-4.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__full.content-l__large-gutters .content-l_col.content-l_col-3-4.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__full .content-l_col + .content-l_col-3-4 {
+    margin-top: 1.875em;
+  }
+}
+@media only all and (min-width: 50.0625em) and (max-width: 56.1875em) {
+  .content-l__main .content-l_col.content-l_col-1-2 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__main .content-l_col.content-l_col-1-2.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__main .content-l_col.content-l_col-1-2.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__main.content-l__large-gutters .content-l_col.content-l_col-1-2.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__main .content-l_col + .content-l_col-1-2 {
+    margin-top: 1.875em;
+  }
+}
+@media only all and (min-width: 37.5em) and (max-width: 56.1875em) {
+  .content-l__main .content-l_col.content-l_col-1-3 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__main .content-l_col.content-l_col-1-3.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__main .content-l_col.content-l_col-1-3.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__main.content-l__large-gutters .content-l_col.content-l_col-1-3.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__main .content-l_col + .content-l_col-1-3 {
+    margin-top: 1.875em;
+  }
+  .content-l__main .content-l_col.content-l_col-2-3 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__main .content-l_col.content-l_col-2-3.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__main .content-l_col.content-l_col-2-3.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__main.content-l__large-gutters .content-l_col.content-l_col-2-3.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__main .content-l_col + .content-l_col-2-3 {
+    margin-top: 1.875em;
+  }
+  .content-l__main .content-l_col.content-l_col-3-8 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__main .content-l_col.content-l_col-3-8.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__main .content-l_col.content-l_col-3-8.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__main.content-l__large-gutters .content-l_col.content-l_col-3-8.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__main .content-l_col + .content-l_col-3-8 {
+    margin-top: 1.875em;
+  }
+  .content-l__main .content-l_col.content-l_col-5-8 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__main .content-l_col.content-l_col-5-8.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__main .content-l_col.content-l_col-5-8.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__main.content-l__large-gutters .content-l_col.content-l_col-5-8.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__main .content-l_col + .content-l_col-5-8 {
+    margin-top: 1.875em;
+  }
+  .content-l__main .content-l_col.content-l_col-1-4 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__main .content-l_col.content-l_col-1-4.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__main .content-l_col.content-l_col-1-4.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__main.content-l__large-gutters .content-l_col.content-l_col-1-4.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__main .content-l_col + .content-l_col-1-4 {
+    margin-top: 1.875em;
+  }
+  .content-l__main .content-l_col.content-l_col-3-4 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__main .content-l_col.content-l_col-3-4.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__main .content-l_col.content-l_col-3-4.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__main.content-l__large-gutters .content-l_col.content-l_col-3-4.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__main .content-l_col + .content-l_col-3-4 {
+    margin-top: 1.875em;
+  }
+}
+.content-l__sidebar .content-l_col.content-l_col-1-3 {
+  display: block;
+  width: 100%;
+}
+.content-l__sidebar .content-l_col.content-l_col-1-3.content-l_col__before-divider {
+  margin-top: 3.75em;
+  border-left-width: 15px;
+}
+.content-l__sidebar .content-l_col.content-l_col-1-3.content-l_col__before-divider:before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 1.875em;
+  background-color: #3a8899;
+  position: static;
+  width: 100%;
+  margin-left: auto !important;
+}
+.content-l__sidebar.content-l__large-gutters .content-l_col.content-l_col-1-3.content-l_col__before-divider {
+  border-left-width: 30px;
+}
+.content-l__sidebar .content-l_col + .content-l_col-1-3 {
+  margin-top: 1.875em;
+}
+.content-l__sidebar .content-l_col.content-l_col-2-3 {
+  display: block;
+  width: 100%;
+}
+.content-l__sidebar .content-l_col.content-l_col-2-3.content-l_col__before-divider {
+  margin-top: 3.75em;
+  border-left-width: 15px;
+}
+.content-l__sidebar .content-l_col.content-l_col-2-3.content-l_col__before-divider:before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 1.875em;
+  background-color: #3a8899;
+  position: static;
+  width: 100%;
+  margin-left: auto !important;
+}
+.content-l__sidebar.content-l__large-gutters .content-l_col.content-l_col-2-3.content-l_col__before-divider {
+  border-left-width: 30px;
+}
+.content-l__sidebar .content-l_col + .content-l_col-2-3 {
+  margin-top: 1.875em;
+}
+.content-l__sidebar .content-l_col.content-l_col-3-8 {
+  display: block;
+  width: 100%;
+}
+.content-l__sidebar .content-l_col.content-l_col-3-8.content-l_col__before-divider {
+  margin-top: 3.75em;
+  border-left-width: 15px;
+}
+.content-l__sidebar .content-l_col.content-l_col-3-8.content-l_col__before-divider:before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 1.875em;
+  background-color: #3a8899;
+  position: static;
+  width: 100%;
+  margin-left: auto !important;
+}
+.content-l__sidebar.content-l__large-gutters .content-l_col.content-l_col-3-8.content-l_col__before-divider {
+  border-left-width: 30px;
+}
+.content-l__sidebar .content-l_col + .content-l_col-3-8 {
+  margin-top: 1.875em;
+}
+.content-l__sidebar .content-l_col.content-l_col-5-8 {
+  display: block;
+  width: 100%;
+}
+.content-l__sidebar .content-l_col.content-l_col-5-8.content-l_col__before-divider {
+  margin-top: 3.75em;
+  border-left-width: 15px;
+}
+.content-l__sidebar .content-l_col.content-l_col-5-8.content-l_col__before-divider:before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 1.875em;
+  background-color: #3a8899;
+  position: static;
+  width: 100%;
+  margin-left: auto !important;
+}
+.content-l__sidebar.content-l__large-gutters .content-l_col.content-l_col-5-8.content-l_col__before-divider {
+  border-left-width: 30px;
+}
+.content-l__sidebar .content-l_col + .content-l_col-5-8 {
+  margin-top: 1.875em;
+}
+.content-l__sidebar .content-l_col.content-l_col-1-4 {
+  display: block;
+  width: 100%;
+}
+.content-l__sidebar .content-l_col.content-l_col-1-4.content-l_col__before-divider {
+  margin-top: 3.75em;
+  border-left-width: 15px;
+}
+.content-l__sidebar .content-l_col.content-l_col-1-4.content-l_col__before-divider:before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 1.875em;
+  background-color: #3a8899;
+  position: static;
+  width: 100%;
+  margin-left: auto !important;
+}
+.content-l__sidebar.content-l__large-gutters .content-l_col.content-l_col-1-4.content-l_col__before-divider {
+  border-left-width: 30px;
+}
+.content-l__sidebar .content-l_col + .content-l_col-1-4 {
+  margin-top: 1.875em;
+}
+.content-l__sidebar .content-l_col.content-l_col-3-4 {
+  display: block;
+  width: 100%;
+}
+.content-l__sidebar .content-l_col.content-l_col-3-4.content-l_col__before-divider {
+  margin-top: 3.75em;
+  border-left-width: 15px;
+}
+.content-l__sidebar .content-l_col.content-l_col-3-4.content-l_col__before-divider:before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 1.875em;
+  background-color: #3a8899;
+  position: static;
+  width: 100%;
+  margin-left: auto !important;
+}
+.content-l__sidebar.content-l__large-gutters .content-l_col.content-l_col-3-4.content-l_col__before-divider {
+  border-left-width: 30px;
+}
+.content-l__sidebar .content-l_col + .content-l_col-3-4 {
+  margin-top: 1.875em;
+}
+@media only all and (min-width: 50.0625em) {
+  .content-l__sidebar .content-l_col.content-l_col-1-2 {
+    display: block;
+    width: 100%;
+  }
+  .content-l__sidebar .content-l_col.content-l_col-1-2.content-l_col__before-divider {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l__sidebar .content-l_col.content-l_col-1-2.content-l_col__before-divider:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+  .content-l__sidebar.content-l__large-gutters .content-l_col.content-l_col-1-2.content-l_col__before-divider {
+    border-left-width: 30px;
+  }
+  .content-l__sidebar .content-l_col + .content-l_col-1-2 {
+    margin-top: 1.875em;
+  }
+}
+@media only all and (min-width: 37.5em) {
+  .content-l__large-gutters {
+    margin-left: -30px;
+    margin-right: -30px;
+  }
+  .content-l__large-gutters .content-l_col {
+    border-left-width: 30px;
+    border-right-width: 30px;
+  }
+}
+@media only all and (max-width: 37.4375em) {
+  .content-l_col + .content-l_col {
+    margin-top: 1.875em;
+  }
+}
+@media only all and (min-width: 37.5em) {
+  .content-l_col-1 {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 100%;
+  }
+  .lt-ie8 .content-l_col-1 {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+  .content-l_col-1-2 {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 50%;
+  }
+  .lt-ie8 .content-l_col-1-2 {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+  .content-l_col-1-3 {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 33.33333333%;
+  }
+  .lt-ie8 .content-l_col-1-3 {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+  .content-l_col-2-3 {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 66.66666667%;
+  }
+  .lt-ie8 .content-l_col-2-3 {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+  .content-l_col-3-8 {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 37.5%;
+  }
+  .lt-ie8 .content-l_col-3-8 {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+  .content-l_col-5-8 {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 62.5%;
+  }
+  .lt-ie8 .content-l_col-5-8 {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+  .content-l_col-1-4 {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 25%;
+  }
+  .lt-ie8 .content-l_col-1-4 {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+  .content-l_col-3-4 {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 75%;
+  }
+  .lt-ie8 .content-l_col-3-4 {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+}
+/* topdoc
+  name: Content layout column dividers
+  family: cf-layout
+  notes:
+    - "Adds dividers between specified .content-l_col-X-X classes."
+    - "Layout dividers work in conjunction with .content-l_col-X-X elements and
+       have specific needs depending on which column element variant they are
+       attached to. For example .content-l_col-1-2 has different divider needs
+       than .content-l_col-1-3 because they may break to single columns at different
+       breakpoints."
+    - "Dividers use absolute positioning relative to the .content-l element and
+       depends on .content-l using `position: relative;`. This allows vertical
+       dividers to span the height of the tallest column. Just be aware that if
+       you have more than one row of columns, and each row has columns of
+       different widths, the borders will cause unwanted overlapping since they
+       will span the height of the entire .content-l element."
+  patterns:
+    - name: .content-l_col__before-divider (modifier)
+      markup: |
+        <div class="content-l content-l__large-gutters">
+            <div class="content-l_col content-l_col-1-2">
+                <img src="http://placekitten.com/600/320" alt="Placeholder image">
+                <br>
+                Half-width column (spans 6/12 columns)
+            </div>
+            <div class="content-l_col content-l_col-1-2 content-l_col__before-divider">
+                <img src="http://placekitten.com/600/320" alt="Placeholder image">
+                <br>
+                Half-width column (spans 6/12 columns)
+            </div>
+        </div>
+        <br>
+        <!-- Starting a new .content-l so that the dividers from
+             .content-l_col.content-l_col-1-2.content-l_col__before-divider
+             won't overlap the .content-l_col-1-3 columns. -->
+        <div class="content-l content-l__large-gutters">
+            <div class="content-l_col content-l_col-1-3">
+                Third-width column (spans 4/12 columns)
+            </div>
+            <div class="content-l_col content-l_col-1-3 content-l_col__before-divider">
+                Third-width column (spans 4/12 columns)
+            </div>
+            <div class="content-l_col content-l_col-1-3 content-l_col__before-divider">
+                Third-width column (spans 4/12 columns)
+            </div>
+        </div>
+      codenotes:
+        - .content-l_col__before-divider
+  tags:
+    - cf-layout
+*/
+@media only all and (max-width: 37.4375em) {
+  .content-l_col__before-divider.content-l_col-1-2 {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l_col__before-divider.content-l_col-1-2:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+}
+@media only all and (min-width: 37.5em) {
+  .content-l_col__before-divider.content-l_col-1-2 {
+    border-left-width: 30px;
+  }
+  .content-l_col__before-divider.content-l_col-1-2:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    display: block;
+    background-color: #3a8899;
+    margin-left: -30px;
+  }
+}
+@media only all and (max-width: 37.4375em) {
+  .content-l_col__before-divider.content-l_col-1-3 {
+    margin-top: 3.75em;
+    border-left-width: 15px;
+  }
+  .content-l_col__before-divider.content-l_col-1-3:before {
+    content: "";
+    display: block;
+    height: 1px;
+    margin-bottom: 1.875em;
+    background-color: #3a8899;
+    position: static;
+    width: 100%;
+    margin-left: auto !important;
+  }
+}
+@media only all and (min-width: 37.5em) {
+  .content-l_col__before-divider.content-l_col-1-3 {
+    border-left-width: 30px;
+  }
+  .content-l_col__before-divider.content-l_col-1-3:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    display: block;
+    background-color: #3a8899;
+    margin-left: -30px;
+  }
+}
+/* topdoc
+  name: Content bar
+  family: cf-layout
+  patterns:
+    - name: A 10 pixel bar that divides the header or hero from the main content
+      markup: |
+        <div class="content_bar"></div>
+      notes:
+        - "This is necessary because we don't have a predictable place to put a
+           full-width border. It needs to be under the hero on pages with
+           heroes, but under the header if there is no hero."
+        - ".content_bar must come after .content_hero but before .content_wrapper"
+  tags:
+    - cf-layout
+*/
+.content_bar {
+  height: 10px;
+  background: #3a8899;
+}
+/* topdoc
+  name: Content line
+  family: cf-layout
+  patterns:
+    - name: "A 1 pixel edge to edge bar that can divide content."
+      markup: |
+        <div class="content_line"></div>
+  tags:
+    - cf-layout
+*/
+.content_line {
+  height: 1px;
+  background: #3a8899;
+}
+/* topdoc
+  name: Main content and sidebar
+  family: cf-layout
+  patterns:
+    - name: Standard layout for the main content area and sidebar
+      markup: |
+        <main class="content" role="main">
+            <section class="content_hero" style="background: #E3E4E5">
+                Content hero
+            </section>
+            <div class="content_bar"></div>
+            <div class="content_wrapper">
+                <section class="content_main">
+                    Main content area
+                </section>
+                <aside class="content_sidebar" style="background: #F1F2F2">
+                    Sidebar
+                </aside>
+            </div>
+        </main>
+      codenotes:
+        - |
+          Structural cheat sheet:
+          -----------------------
+          main.content
+            .content_hero
+            .content_bar
+            .content_wrapper
+              .content_sidebar
+              .content_main
+      notes:
+        - "By default .content_main and .content_sidebar stack vertically. When
+           using the modifiers described below to create columns, the columns
+           will remain stacked for smaller screens and then convert to to
+           columns at 801px."
+        - ".content_bar must come after .content_hero (if it exists) but before
+           .content_wrapper."
+        - "Inline styling is for demonstration purposes only; do not include it
+           in your markup."
+    - name: Left-hand navigation layout
+      markup: |
+        <main class="content content__1-3" role="main">
+            <div class="content_bar"></div>
+            <div class="content_wrapper">
+                <aside class="content_sidebar">
+                    Section navigation
+                </aside>
+                <section class="content_main">
+                    <h2>Main content area</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Cum corrupti tempora nam nihil qui mollitia consectetur
+                        corporis nemo culpa dolorum! Laborum at eos deleniti
+                        consequatur itaque officiis debitis quisquam! Provident!
+                    </p>
+                </section>
+            </div>
+        </main>
+        <footer class="footer" role="contentinfo">
+            <div class="wrapper">
+                Footer
+            </div>
+        </footer>
+      codenotes:
+        - .content__1-3
+      notes:
+        - "Add a class of .content__L-R to main.content to determine the width
+           ratio of .content_main and .content_sidebar, where 'L' is the
+           left-hand item and 'R' is the right-hand item. The two common
+           configurations are 1-3 (sidebar on the left, content on the right, in
+           a ratio of 1:3) and 2-1 (content on the left, sidebar on the right,
+           in a ratio of 2:1). It is assumed that the content is wider than the
+           sidebar."
+    - name: Right-hand sidebar layout
+      markup: |
+        <main class="content content__2-1" role="main">
+            <div class="content_bar"></div>
+            <div class="content_wrapper">
+                <section class="content_main">
+                    <h2>Main content area</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Cum corrupti tempora nam nihil qui mollitia consectetur
+                        corporis nemo culpa dolorum! Laborum at eos deleniti
+                        consequatur itaque officiis debitis quisquam! Provident!
+                    </p>
+                </section>
+                <aside class="content_sidebar" style="background: #F1F2F2">
+                    Sidebar
+                </aside>
+            </div>
+        </main>
+        <footer class="footer" role="contentinfo">
+            <div class="wrapper">
+                Footer
+            </div>
+        </footer>
+      codenotes:
+        - .content__2-1
+      notes:
+        - "Add a class of .content__L-R to main.content to determine the width
+           ratio of .content_main and .content_sidebar, where 'L' is the
+           left-hand item and 'R' is the right-hand item. The two common
+           configurations are 1-3 (sidebar on the left, content on the right, in
+           a ratio of 1:3) and 2-1 (content on the left, sidebar on the right,
+           in a ratio of 2:1). It is assumed that the content is wider than the
+           sidebar."
+        - "Inline styling is for demonstration purposes only; do not include it
+           in your markup."
+    - name: Narrow content column option
+      markup: |
+        <main class="content content__2-1" role="main">
+            <div class="content_bar"></div>
+            <div class="content_wrapper">
+                <section class="content_main content_main__narrow">
+                    <h2>Main content area</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Cum corrupti tempora nam nihil qui mollitia consectetur
+                        corporis nemo culpa dolorum! Laborum at eos deleniti
+                        consequatur itaque officiis debitis quisquam! Provident!
+                    </p>
+                </section>
+                <aside class="content_sidebar" style="background: #F1F2F2">
+                    Sidebar
+                </aside>
+            </div>
+        </main>
+        <footer class="footer" role="contentinfo">
+            <div class="wrapper">
+                Footer
+            </div>
+        </footer>
+      codenotes:
+        - .content_main__narrow
+      notes:
+        - "Add a class of .content_main__narrow to .content_main to get a
+           one-column (in a 12-column grid) gutter on the right side."
+        - "Inline styling is for demonstration purposes only; do not include it
+           in your markup."
+    - name: Flush bottom modifier
+      markup: |
+        <main class="content content__1-3" role="main">
+            <div class="content_bar"></div>
+            <div class="content_wrapper">
+                <aside class="content_sidebar content__flush-bottom">
+                    Side with no bottom padding...
+                </aside>
+                <section class="content_main content__flush-bottom">
+                    Main content with no bottom padding...
+                    <div class="block
+                                block__flush-bottom
+                                block__flush-sides
+                                block__bg">
+                        .content__flush-bottom is very useful when you have a
+                        content block inside of .content_main with a background
+                        and flush sides.
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer class="footer" role="contentinfo">
+            <div class="wrapper">
+                Footer
+            </div>
+        </footer>
+      codenotes:
+        - .content__flush-bottom
+      notes:
+        - "Add a class of .content__flush-bottom to .content_main or
+           content_sidebar to remove bottom padding."
+    - name: Flush top modifier (only on small screens)
+      markup: |
+        <main class="content content__1-3" role="main">
+            <div class="content_bar"></div>
+            <div class="content_wrapper">
+                <aside class="content_sidebar content__flush-top-on-small">
+                    Side with no top padding on small screens...
+                </aside>
+                <section class="content_main">
+                    Main content
+                </section>
+            </div>
+        </main>
+        <footer class="footer" role="contentinfo">
+            <div class="wrapper">
+                Footer
+            </div>
+        </footer>
+      codenotes:
+        - .content__flush-top-on-small
+      notes:
+        - "Add a class of .content__flush-top-on-small to .content_main or
+           .content_sidebar to remove top padding on small screens only.
+           'Small' screens in this case refers to the breakpoint where
+           .content_main and .content_sidebar single column layout."
+    - name: Flush all modifier (only on small screens)
+      markup: |
+        <main class="content content__1-3" role="main">
+            <div class="content_bar"></div>
+            <div class="content_wrapper">
+                <aside class="content_sidebar content__flush-all-on-small">
+                    Side with no padding or border-based gutters on small screens...
+                </aside>
+                <section class="content_main">
+                    Main content
+                </section>
+            </div>
+        </main>
+        <footer class="footer" role="contentinfo">
+            <div class="wrapper">
+                Footer
+            </div>
+        </footer>
+      codenotes:
+        - .content__flush-all-on-small
+      notes:
+        - "Add a class of .content__flush-all-on-small to .content_main or
+           .content_sidebar to remove all padding and border-based gutters on
+           small screens only. 'Small' screens in this case refers to the
+           breakpoint where .content_main and .content_sidebar single column layout."
+  tags:
+    - cf-layout
+*/
+.content_intro,
+.content_main,
+.content_sidebar {
+  padding: 1.875em 0.9375em;
+}
+@media only all and (min-width: 37.5em) {
+  .content_intro,
+  .content_main,
+  .content_sidebar {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 100%;
+    padding: 3.75em 0.9375em;
+  }
+  .lt-ie8 .content_intro,
+  .lt-ie8 .content_main,
+  .lt-ie8 .content_sidebar {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+}
+@media only all and (min-width: 50.0625em) {
+  .content_intro,
+  .content_main,
+  .content_sidebar {
+    padding: 3.75em 0;
+  }
+}
+@media only all and (min-width: 50.0625em) {
+  .content_intro {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 100%;
+  }
+  .lt-ie8 .content_intro {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+}
+@media only all and (min-width: 50.0625em) {
+  .content__1-3 .content_sidebar {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 25%;
+    padding-right: 1.875em;
+  }
+  .lt-ie8 .content__1-3 .content_sidebar {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+  .content__1-3 .content_main {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 75%;
+    position: relative;
+  }
+  .lt-ie8 .content__1-3 .content_main {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+  .content__1-3 .content_main:after {
+    content: '';
+    border-left: 1px solid #3a8899;
+    position: absolute;
+    top: 3.75em;
+    bottom: 0;
+    left: -1.875em;
+  }
+  .content__2-1 .content_main {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 66.66666667%;
+  }
+  .lt-ie8 .content__2-1 .content_main {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+  .content__2-1 .content_main:after {
+    right: -1.875em;
+  }
+  .content__2-1 .content_sidebar {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 33.33333333%;
+    padding-left: 1.875em;
+  }
+  .lt-ie8 .content__2-1 .content_sidebar {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+}
+@media only all and (min-width: 64em) {
+  .content__2-1 .content_main__narrow {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 66.66666667%;
+    padding-right: 8.33333333%;
+  }
+  .lt-ie8 .content__2-1 .content_main__narrow {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+  .lt-ie8 .content__2-1 .content_main__narrow {
+    padding-right: 0;
+  }
+}
+.content__flush-bottom {
+  padding-bottom: 0;
+}
+@media only all and (max-width: 50em) {
+  .content__flush-top-on-small {
+    padding-top: 0;
+  }
+}
+@media only all and (max-width: 50em) {
+  .content__flush-all-on-small {
+    padding: 0;
+    border-width: 0;
+  }
+}
+/* topdoc
+  name: Block
+  family: cf-layout
+  notes:
+    - ".block is a base class with several modifiers that help you separate
+       chunks of content via margins, padding, borders, and backgrounds."
+  patterns:
+    - name: Standard block example
+      markup: |
+        Main content...
+        <div class="block">
+            Content block
+        </div>
+        <div class="block">
+            Content block
+        </div>
+        <div class="block">
+            Content block
+        </div>
+      codenotes:
+        - .block
+      notes:
+        - "The standard .block class by itself simply adds a margin of twice the
+           gutter width to the top and bottom."
+    - name: Border-top modifier
+      markup: |
+        Main content...
+        <div class="block block__border-top">
+            Content block with top border.
+        </div>
+      codenotes:
+        - .block.block__border-top
+      notes:
+        - "Adds top border to .block."
+    - name: Border-right modifier
+      markup: |
+        Main content...
+        <div class="block block__border-right">
+            Content block with right border.
+        </div>
+      codenotes:
+        - .block.block__border-right
+      notes:
+        - "Adds right border to .block."
+    - name: Border-bottom modifier
+      markup: |
+        Main content...
+        <div class="block block__border-bottom">
+            Content block with bottom border.
+        </div>
+      codenotes:
+        - .block.block__border-bottom
+      notes:
+        - "Adds bottom border to .block."
+    - name: Border-left modifier
+      markup: |
+        Main content...
+        <div class="block block__border-left">
+            Content block with left border.
+        </div>
+      codenotes:
+        - .block.block__border-left
+      notes:
+        - "Adds left border to .block."
+    - name: Border modifier
+      markup: |
+        Main content...
+        <div class="block block__border">
+            Content block with borders on all sides.
+        </div>
+      codenotes:
+        - .block.block__border
+      notes:
+        - "Adds border on all sides to .block."
+    - name: Flush-top modifier
+      markup: |
+        Main content...
+        <div class="block block__flush-top">
+            Content block with no top margin.
+        </div>
+        <div class="block">
+            Content block
+        </div>
+      codenotes:
+        - .block.block__flush-top
+      notes:
+        - "Removes the top margin from .block."
+    - name: Flush-bottom modifier
+      markup: |
+        Main content...
+        <div class="block block__flush-bottom">
+            Content block with no bottom margin.
+        </div>
+        <div class="block block__flush-top">
+            Content block with no top margin.
+        </div>
+      codenotes:
+        - .block.block__flush-bottom
+      notes:
+        - "Removes the bottom margin from .block."
+    - name: Flush-sides modifier
+      markup: |
+        <main class="content content__1-3" role="main">
+            <div class="content_wrapper">
+                <aside class="content_sidebar">
+                    Section navigation
+                </aside>
+                <section class="content_main">
+                    Main content...
+                    <aside class="block block__flush-sides">
+                        Content block with no side margins.
+                    </aside>
+                </section>
+            </div>
+        </main>
+      codenotes:
+        - .block.block__flush-sides
+      notes:
+        - "Removes the side margin from .block."
+        - "Typically used in conjuction with .block__bg to create a 'well' whose
+           background extends into the left and right gutters. (See below.)"
+    - name: Flush modifier
+      markup: |
+        <main class="content content__1-3" role="main">
+            <div class="content_wrapper">
+                <aside class="content_sidebar">
+                    Section navigation
+                </aside>
+                <section class="content_main">
+                    Main content...
+                    <aside class="block block__flush">
+                        Content block with no margins.
+                    </aside>
+                </section>
+            </div>
+        </main>
+      codenotes:
+        - .block.block__flush
+      notes:
+        - "Removes the side, top, and bottom margin from .block."
+    - name: Background modifier
+      markup: |
+        Main content...
+        <div class="block block__bg">
+            Content block with a background
+        </div>
+      codenotes:
+        - .block.block__bg
+      notes:
+        - "Adds a background color and padding to .block."
+        - "Setup for (ems-equivalent) 30px padding on top and 60px on bottom."
+    - name: Background and flush-sides modifier combo example
+      markup: |
+        <main class="content content__1-3" role="main">
+            <div class="content_wrapper">
+                <aside class="content_sidebar">
+                    Section navigation
+                </aside>
+                <section class="content_main content__flush-bottom">
+                    Main content...
+                    <div class="block block__flush-sides block__bg">
+                        Content block with a background and flush sides
+                    </div>
+                </section>
+            </div>
+        </main>
+      codenotes:
+        - .block.block__flush-sides.block__bg
+      notes:
+        - "This is an example of combining modifiers to get a flush padded bg
+           with a .block."
+    - name: Padded-top modifier
+      markup: |
+        Main content...
+        <div class="block block__padded-top block__border-top">
+            Content block with reduced top margin & added top padding
+            and border.
+        </div>
+      codenotes:
+        - .block.block__padded-top
+      notes:
+        - "Breaks top margin into margin & padding. Useful in combination with
+           block__border-top to add padding between block contents & border."
+    - name: Padded-bottom modifier
+      markup: |
+        <div class="block block__padded-bottom block__border-bottom">
+            Content block with reduced bottom margin & added bottom padding
+            and border.
+        </div>
+        Content...
+      codenotes:
+        - .block.block__padded-bottom
+      notes:
+        - "Breaks bottom margin into margin & padding. Useful in combination with
+           block__border-bottom to add padding between block contents & border."
+    - name: Sub blocks
+      markup: |
+        <div class="block block__sub">
+            <div style="background: #F1F2F2; padding: 8px;">
+                Sub content block
+            </div>
+        </div>
+        <div class="block block__sub">
+            <div style="background: #F1F2F2; padding: 8px;">
+                Sub content block
+            </div>
+        </div>
+        <div class="block block__sub">
+            <div style="background: #F1F2F2; padding: 8px;">
+                Sub content block
+            </div>
+        </div>
+      codenotes:
+        - .block.block__sub
+      notes:
+        - "Useful for when you need some consistent margins between
+           blocks that are nested within other blocks."
+        - "Note that the divs with inline styles are for demonstration purposes
+           only and should not be used in production."
+    - name: Mixing content blocks with content layouts
+      markup: |
+        <div class="content-l">
+            <div class="block content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2; padding: 8px;">
+                    Content block that is also a content column.
+                    Notice how my top margins only exist on smaller screens when
+                    I need to stack vertically.
+                </div>
+            </div>
+            <div class="block content-l_col content-l_col-1-2">
+                <div style="background: #F1F2F2; padding: 8px;">
+                    Content block that is also a content column.
+                    Notice how my top margins only exist on smaller screens when
+                    I need to stack vertically.
+                </div>
+            </div>
+        </div>
+      codenotes:
+        - .block.content-l_col
+      notes:
+        - "You can safely combine .block with .content-l_col to
+           achieve a column-based layout at larger screens with no top margins
+           and a vertical layout at smaller screens that do have margins."
+        - "Note that the divs with inline styles are for demonstration purposes
+           only and should not be used in production."
+  tags:
+    - cf-layout
+*/
+.block {
+  margin-top: 3.75em;
+  margin-bottom: 3.75em;
+}
+.block__border-top {
+  border-top: 1px solid #3a8899;
+}
+.block__border-right {
+  border-right: 1px solid #3a8899;
+}
+.block__border-bottom {
+  border-bottom: 1px solid #3a8899;
+}
+.block__border-left {
+  border-left: 1px solid #3a8899;
+}
+.block__border {
+  border: 1px solid #3a8899;
+}
+.block__flush-top {
+  margin-top: 0 !important;
+}
+.block__flush-bottom {
+  margin-bottom: 0 !important;
+}
+.block__flush-sides {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media only all and (min-width: 37.5em) {
+  .block__flush-sides {
+    margin-right: -30px;
+    margin-left: -30px;
+  }
+}
+.block__flush {
+  margin-top: 0 !important;
+  margin-right: -15px;
+  margin-bottom: 0 !important;
+  margin-left: -15px;
+}
+@media only all and (min-width: 37.5em) {
+  .block__flush {
+    margin-right: -30px;
+    margin-left: -30px;
+  }
+}
+.block__bg {
+  padding: 1.875em 0.9375em;
+  padding-bottom: 3.75em;
+  background: #f2f8fa;
+}
+@media only all and (min-width: 37.5em) {
+  .block__bg {
+    padding: 2.8125em 1.875em;
+  }
+}
+.block__padded-top {
+  padding-top: 1.875em;
+  margin-top: 1.875em;
+}
+.block__padded-bottom {
+  padding-bottom: 1.875em;
+  margin-bottom: 1.875em;
+}
+.block__sub {
+  margin-top: 1.875em;
+  margin-bottom: 1.875em;
+}
+@media only all and (min-width: 37.5em) {
+  .content-l_col.block,
+  .content-l_col.block__sub {
+    margin-top: 0;
+  }
+}
+/* topdoc
+  name: Bleedbar sidebar styling
+  family: cf-layout
+  patterns:
+    - name: Give the sidebar a background color that bleeds off the edge of the screen
+      markup: |
+        <main class="content content__2-1 content__bleedbar" role="main">
+            <section class="content_hero" style="background: #E3E4E5">
+                Content hero
+            </section>
+            <div class="content_bar"></div>
+            <div class="content_wrapper">
+                <section class="content_main">
+                    Main content area
+                </section>
+                <aside class="content_sidebar">
+                    Bleeding sidebar
+                </aside>
+            </div>
+        </main>
+      codenotes:
+        - ".content__bleedbar"
+      notes:
+        - "Simply add class .content__bleedbar to main.content."
+        - "Only supports sidebars on the right, for now."
+        - "Inline styling is for demonstration purposes only; do not include it
+           in your markup."
+  tags:
+    - cf-layout
+*/
+.content__bleedbar .content_main:after {
+  content: none;
+}
+.content__bleedbar .content_sidebar {
+  padding: 1.875em 0.9375em;
+  background: #f2f8fa;
+}
+@media only all and (min-width: 50.0625em) {
+  .content__bleedbar {
+    overflow: hidden;
+  }
+  .content__bleedbar .content_sidebar {
+    padding: 3.75em 0 0.9375em 1.875em;
+    margin-left: 0;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+  }
+  .lt-ie8 .content__bleedbar .content_sidebar {
+    padding-right: 30px;
+    background: #f2f8fa;
+  }
+  .content__bleedbar .content_wrapper {
+    position: relative;
+  }
+  .content__bleedbar .content_wrapper:after {
+    content: '';
+    display: block;
+    width: 9999px;
+    border-left: 1px solid #3a8899;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+    margin-left: 10px;
+    background: #f2f8fa;
+  }
+  .content__bleedbar.content__2-1 .content_wrapper:after {
+    left: 66.666666667%;
+  }
+  .content__bleedbar.content__3-1 .content_wrapper:after {
+    left: 75%;
+  }
+}
+/* topdoc
+  name: cf-grid helpers
+  family: cf-layout
+  patterns:
+    - name: .wrapper (base)
+      markup: |
+        <div class="wrapper">
+            Wrapper
+        </div>
+      notes:
+        - "Turns an element into a cf-grid wrapper at 801px and above."
+        - "Includes some explicit declarations for IE8 due to the fact that it
+           doesn't support media queries."
+    - name: .wrapper__match-content (modifier)
+      markup: |
+        <div class="wrapper wrapper__match-content">
+            <code>.wrapper.wrapper__match-content</code>
+            <img src="http://placekitten.com/800/40" alt="Placeholder image">
+        </div>
+        <br>
+        <main class="content" role="main">
+            <div class="content_wrapper">
+                <section class="content_main">
+                    <code>.content_wrapper .content_main</code>
+                    <img src="http://placekitten.com/800/40" alt="Placeholder image">
+                </section>
+            </div>
+        </main>
+      notes:
+        - "The .content area has a visual gutter twice the size of a normal
+           wrapper because the gutters from the sidebar and main content divs
+           add to the gutters of the wrapper. This modifier gives you a wrapper
+           with wider gutters to match the visual gutters of the .content area."
+    - name: Column divider modifiers
+      notes:
+        - "cf-grid columns use left and right borders for fixed margins which
+           means it's not possible to set visual left and right borders directly
+           on them. Instead we can use the :before pseudo element and position
+           it absolutely. The added benefit of doing it this way is that the
+           border spans the entire height of the next parent using `position:
+           relative;`. This means that the border will always match the height
+           of the tallest column in the row."
+      codenotes:
+        - .grid_column__top-divider
+        - .grid_column__left-divider
+        - |
+          .my-column-1-2 {
+
+              // Creates a column that spans 6 out of 12 columns.
+              .grid_column(6, 12);
+
+              // Add a top divider only at screen 599px and smaller.
+              .respond-to-max(599px {
+                  .grid_column__top-divider();
+              });
+
+              // Add a left divider only at screen 600px and larger.
+              .respond-to-min(600px, {
+                  .grid_column__left-divider();
+              });
+
+          }
+  tags:
+    - cf-layout
+*/
+@media only all and (min-width: 50.0625em) {
+  .wrapper,
+  .content_wrapper {
+    max-width: 1170px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 0 auto;
+    clear: both;
+  }
+}
+.wrapper__match-content,
+.content_wrapper__match-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media only all and (min-width: 37.5em) {
+  .wrapper__match-content,
+  .content_wrapper__match-content {
+    padding-left: 30px;
+    padding-right: 30px;
+    max-width: 1140px;
+  }
+}
+.lt-ie9 .wrapper,
+.lt-ie9 .content_wrapper {
+  max-width: 960px;
+}
+.lt-ie9 body {
+  min-width: 800px;
+}
+.grid_column__top-divider {
+  margin-top: 3.75em;
+  border-left-width: 15px;
+}
+.grid_column__top-divider:before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 1.875em;
+  background-color: #3a8899;
+  position: static;
+  width: 100%;
+  margin-left: auto !important;
+}
+.grid_column__left-divider {
+  border-left-width: 30px;
+}
+.grid_column__left-divider:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  display: block;
+  background-color: #3a8899;
+  margin-left: -30px;
+}
+/* topdoc
+  name: Hero
+  family: cf-layout
+  patterns:
+    - name: .hero
+      markup: |
+        <section class="content_hero hero">
+            <div class="hero_wrapper">
+                <div class="hero_text">
+                    <h1 class="hero_heading">Hero title</h1>
+                    <p class="hero_subhead">
+                        Hero text goes here
+                    </p>
+                    <p class="hero_cta">
+                        <a>Call to action</a>
+                    </p>
+                </div>
+                <div class="hero_image" style="background-image: url('http://placekitten.com/g/400/195')"></div>
+            </div>
+        </section>
+      notes:
+        - "Hero consists of a headline, a small amount of additional text, an optional call to
+           action, and an illustration. Its background color is flush with
+           the sides of the screen, and the content is centered with wrapper classes."
+        - "The illustration can be customized by setting the background-image property
+           on the .hero_wrapper_image element."
+        - "On small screens (or where media queries are not supported), the text spans the
+           full width of the .hero_wrapper and the illustration is displayed underneath."
+        - "For larger screen sizes, media queries are used to position the illustration
+           to the right of the text."
+        - "On desktop, the hero should not exceed 285px in height. The image should be 195px in
+           height to conform to this standard."
+      codenotes:
+        - .hero
+  tags:
+    - cf-layout
+*/
+.hero {
+  background-color: #f2f8fa;
+}
+.hero_wrapper {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1.875em 0.9375em;
+  width: 100%;
+}
+@media only all and (min-width: 37.5em) {
+  .hero_wrapper {
+    display: table;
+  }
+}
+@media only all and (min-width: 50.0625em) {
+  .hero_wrapper {
+    padding: 2.8125em;
+    min-height: 17.8125em;
+  }
+}
+.lt-ie9 .hero_wrapper {
+  min-height: initial;
+}
+@media only all and (min-width: 37.5em) {
+  .hero_text {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 58.33333333%;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .lt-ie8 .hero_text {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+}
+.hero_heading {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  margin-bottom: 0.47058824em;
+  font-size: 2.125em;
+  line-height: 1.29411765;
+}
+.hero_heading em,
+.hero_heading i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 .hero_heading em,
+.lt-ie9 .hero_heading i {
+  font-style: normal !important;
+}
+.hero_heading strong,
+.hero_heading b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 .hero_heading strong,
+.lt-ie9 .hero_heading b {
+  font-weight: normal !important;
+}
+@media only all and (max-width: 50em) {
+  .hero_heading {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin-bottom: 0.73076923em;
+    font-size: 1.625em;
+    line-height: 1.26923077;
+  }
+  .hero_heading em,
+  .hero_heading i {
+    font-family: Arial, Arial, sans-serif;
+    font-style: italic;
+    font-weight: normal;
+  }
+  .lt-ie9 .hero_heading em,
+  .lt-ie9 .hero_heading i {
+    font-style: normal !important;
+  }
+  .hero_heading strong,
+  .hero_heading b {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+  }
+  .lt-ie9 .hero_heading strong,
+  .lt-ie9 .hero_heading b {
+    font-weight: normal !important;
+  }
+}
+.hero_subhead {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  margin-bottom: 0.95454545em;
+  font-size: 1.375em;
+  line-height: 1.27272727;
+  margin-bottom: 1.36363636em;
+}
+.hero_subhead em,
+.hero_subhead i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 .hero_subhead em,
+.lt-ie9 .hero_subhead i {
+  font-style: normal !important;
+}
+.hero_subhead strong,
+.hero_subhead b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 .hero_subhead strong,
+.lt-ie9 .hero_subhead b {
+  font-weight: normal !important;
+}
+@media only all and (max-width: 50em) {
+  .hero_subhead {
+    font-family: Arial, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    margin-bottom: 1.16666667em;
+    font-size: 1.125em;
+    line-height: 1.22222222;
+  }
+  .lt-ie9 .hero_subhead {
+    font-weight: normal !important;
+  }
+}
+.hero_subhead:last-child {
+  margin-bottom: initial;
+}
+.hero_cta {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  margin-bottom: initial;
+}
+.hero_cta em,
+.hero_cta i {
+  font-family: Arial, Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+.lt-ie9 .hero_cta em,
+.lt-ie9 .hero_cta i {
+  font-style: normal !important;
+}
+.hero_cta strong,
+.hero_cta b {
+  font-family: Arial, Arial, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+.lt-ie9 .hero_cta strong,
+.lt-ie9 .hero_cta b {
+  font-weight: normal !important;
+}
+.hero_image {
+  position: relative;
+  min-height: 12.1875em;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: contain;
+  background-size: contain;
+}
+@media only all and (min-width: 37.5em) {
+  .hero_image {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid transparent;
+    border-width: 0 15px;
+    margin-right: -0.25em;
+    vertical-align: top;
+    width: 41.66666667%;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .lt-ie8 .hero_image {
+    display: inline;
+    margin-right: 0;
+    zoom: 1;
+    behavior: url('../../box-sizing-polyfill/boxsizing.htc');
+  }
+}
+@media only all and (max-width: 37.4375em) {
+  .hero_image {
+    margin-top: 1.875em;
+  }
+}
+/* topdoc
+  name: EOF
+  eof: true
+*/
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9zcmMvdmVuZG9yL25vcm1hbGl6ZS1jc3Mvbm9ybWFsaXplLmNzcyIsIi9zcmMvdmVuZG9yL25vcm1hbGl6ZS1sZWdhY3ktYWRkb24vbm9ybWFsaXplLWxlZ2FjeS1hZGRvbi5jc3MiLCIvLi4vY2YtY29yZS9zcmMvY2YtdXRpbGl0aWVzLmxlc3MiLCIvLi4vY2YtY29yZS9zcmMvY2YtbWVkaWEtcXVlcmllcy5sZXNzIiwiLy4uL2NmLWNvcmUvc3JjL2NmLWJhc2UubGVzcyIsIi8uLi9jZi1jb3JlL3NyYy9jZi12YXJzLmxlc3MiLCIvc3JjL2NmLWxheW91dC5sZXNzIiwiLy4uL2NmLWdyaWQvc3JjL2NmLWdyaWQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7O0FBUUE7RUFDRSx1QkFBQTs7RUFDQSwwQkFBQTs7RUFDQSw4QkFBQTs7Ozs7O0FBT0Y7RUFDRSxTQUFBOzs7Ozs7Ozs7O0FBYUY7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7RUFDRSxjQUFBOzs7Ozs7QUFRRjtBQUNBO0FBQ0E7QUFDQTtFQUNFLHFCQUFBOztFQUNBLHdCQUFBOzs7Ozs7O0FBUUYsS0FBSyxJQUFJO0VBQ1AsYUFBQTtFQUNBLFNBQUE7Ozs7OztBQVFGO0FBQ0E7RUFDRSxhQUFBOzs7Ozs7O0FBVUY7RUFDRSw2QkFBQTs7Ozs7QUFPRixDQUFDO0FBQ0QsQ0FBQztFQUNDLFVBQUE7Ozs7Ozs7QUFVRixJQUFJO0VBQ0YseUJBQUE7Ozs7O0FBT0Y7QUFDQTtFQUNFLGlCQUFBOzs7OztBQU9GO0VBQ0Usa0JBQUE7Ozs7OztBQVFGO0VBQ0UsY0FBQTtFQUNBLGdCQUFBOzs7OztBQU9GO0VBQ0UsZ0JBQUE7RUFDQSxXQUFBOzs7OztBQU9GO0VBQ0UsY0FBQTs7Ozs7QUFPRjtBQUNBO0VBQ0UsY0FBQTtFQUNBLGNBQUE7RUFDQSxrQkFBQTtFQUNBLHdCQUFBOztBQUdGO0VBQ0UsV0FBQTs7QUFHRjtF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 */

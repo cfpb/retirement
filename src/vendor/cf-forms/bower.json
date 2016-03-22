@@ -1,0 +1,37 @@
+{
+  "name": "cf-forms",
+  "version": "1.5.0",
+  "description": "Enhanced form styles for Capital Framework.",
+  "keywords": ["capital-framework", "capital", "forms", "less"],
+  "authors": [
+    {
+      "name": "Consumer Financial Protection Bureau",
+      "url": "http://cfpb.github.io/"
+    }
+  ],
+  "homepage": "https://github.com/cfpb/cf-forms",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cfpb/cf-forms.git"
+  },
+  "license": "https://github.com/cfpb/cf-forms/blob/gh-pages/TERMS.md",
+  "main": "src/cf-forms.less",
+  "dependencies": {
+    "cf-core": "^1.0.0",
+    "cf-buttons": "^1.6.1",
+    "cf-grid": "^1.0.0",
+    "cf-icons": "^1.0.0"
+  },
+  "exportsOverride": {
+    "cf-*": {
+      "css": "src/**/*.css",
+      "less": "src/**/*.less",
+      "fonts": "src/fonts/*.*",
+      "js": "src/**/*.js"
+    },
+    "font-awesome": {
+      "css": "css/*.css",
+      "fonts": "font/*.*"
+    }
+  }
+}

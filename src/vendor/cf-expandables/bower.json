@@ -1,0 +1,39 @@
+{
+  "name": "cf-expandables",
+  "version": "1.1.0",
+  "description": "Standard expandable (show/hide) component for Capital Framework.",
+  "keywords": ["capital-framework", "capital", "expandables", "jquery", "js", "less"],
+  "authors": [
+    {
+      "name": "Consumer Financial Protection Bureau",
+      "url": "https://cfpb.github.io/"
+    }
+  ],
+  "homepage": "https://github.com/cfpb/cf-expandables",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cfpb/cf-expandables.git"
+  },
+  "license": "https://github.com/cfpb/cf-expandables/blob/master/TERMS.md",
+  "main": "src/js/cf-expandables.js",
+  "dependencies": {
+    "cf-core": "^1.0.0",
+    "cf-icons": "^1.0.0",
+    "jquery": "~1.11.0",
+    "jquery.easing": "~1.3.0"
+  },
+  "devDependencies": {
+    "qunit": "~1.14.0"
+  },
+  "exportsOverride": {
+    "cf-*": {
+      "css": "src/**/*.css",
+      "less": "src/**/*.less",
+      "fonts": "src/fonts/*.*",
+      "js": "src/**/*.js"
+    },
+    "jquery.easing": {
+      "js": "js/jquery.easing.js"
+    }
+  }
+}

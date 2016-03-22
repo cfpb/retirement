@@ -1,0 +1,36 @@
+{
+  "name": "cf-core",
+  "version": "1.4.0",
+  "description": "Base styling, including heading hierarchy, links, and some handy webfont mixins for Capital Framework.",
+  "keywords": [
+    "capital-framework",
+    "capital",
+    "base",
+    "less"
+  ],
+  "authors": [
+    {
+      "name": "Consumer Financial Protection Bureau",
+      "url": "https://cfpb.github.io/"
+    }
+  ],
+  "homepage": "https://github.com/cfpb/cf-core",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cfpb/cf-core.git"
+  },
+  "license": "https://github.com/cfpb/cf-core/blob/gh-pages/TERMS.md",
+  "main": "src/cf-core.less",
+  "dependencies": {
+    "normalize-css": "~3.0.0",
+    "normalize-legacy-addon": "git://github.com/cfpb/normalize-legacy-addon.git#0.1.0"
+  },
+  "exportsOverride": {
+    "cf-*": {
+      "css": "src/**/*.css",
+      "less": "src/**/*.less",
+      "fonts": "src/fonts/*.*",
+      "js": "src/**/*.js"
+    }
+  }
+}

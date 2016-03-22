@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Setting up cf-grids
+   ========================================================================== */
+
+// Increase contrast to improve accessibility.
+.col {
+  background-color: #ccc !important;
+}
+
+// cf-grids provides cf-grid-generated.less which will generate class names like
+// `.col-1` and `.col-1.prefix-1` that you can use in your markup if you don't
+// want to set the columns yourself in Less.
+@import "../src-generated/cf-grid-generated.less";
+
+// You can override the default number of columns and the default width to
+// whatever you need.
+@grid_total-columns: 12;
+@grid_wrapper-width: 1200px;
+
+// Adds a background color to columns and their gutters.
+// Also adds bars to the top and bottom of each column.
+@grid_debug: true;
+
+
+/* ==========================================================================
+   Making custom wrappers and adding custom properties to the columns
+   ========================================================================== */
+
+.cols-12 {
+
+  // Make .cols-12 a cf-grids .wrapper.
+  .grid_wrapper();
+
+  // Make .cols-12.w-960 an alternate .wrapper that has a max-width of 960px.
+  &.w-960 {
+    .grid_wrapper( 960px );
+  }
+
+  // Space .wrappers apart from each other.
+  margin-top: 20px;
+  margin-bottom: 40px;
+
+  // Make section elements inside of .cols-12 a .nested-col-group.
+  // Each cf-grids column has both left and right gutters. since we're wrapping
+  // each set of columns in a section tag we can negate the left gutter on the
+  // first column and the right gutter on the last column by simply using
+  // negative margins on its container.
+  section {
+    .grid_nested-col-group();
+  }
+
+}
+
+.col {
+  // Space each column apart vertically.
+  margin-bottom: 10px;
+}
+
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  margin: 0;
+}
+
+h1 {
+  .grid_wrapper();
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+
+h2, h3 {
+  clear: both;
+}
+
+p {
+  text-align: center;
+}
+

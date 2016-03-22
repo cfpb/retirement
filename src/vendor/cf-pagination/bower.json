@@ -1,0 +1,32 @@
+{
+  "name": "cf-pagination",
+  "version": "1.0.1",
+  "description": "Basic pagination styling for Capital Framework.",
+  "keywords": ["capital-framework", "capital", "pagination", "less"],
+  "authors": [
+    {
+      "name": "Consumer Financial Protection Bureau",
+      "url": "https://cfpb.github.io/"
+    }
+  ],
+  "homepage": "https://github.com/cfpb/cf-pagination",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cfpb/cf-pagination.git"
+  },
+  "license": "https://github.com/cfpb/cf-pagination/blob/gh-pages/TERMS.md",
+  "main": "src/cf-pagination.less",
+  "dependencies": {
+    "cf-core": "^1.0.0",
+    "cf-buttons": "^1.6.1",
+    "cf-icons": "^1.0.0"
+  },
+  "exportsOverride": {
+    "cf-*": {
+      "css": "src/**/*.css",
+      "less": "src/**/*.less",
+      "fonts": "src/fonts/*.*",
+      "js": "src/**/*.js"
+    }
+  }
+}
