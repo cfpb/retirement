@@ -46,4 +46,5 @@ coverage.xml
 node_modules/
 bower_components/
 .grunt/
-retirement_api/static/retirement/
+retirement_api/static/retirement/js/
+retirement_api/static/retirement/css/
