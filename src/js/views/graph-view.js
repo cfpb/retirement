@@ -30,7 +30,6 @@ var graphView = {
 
   init: function() {
     var SSData = getModelValues.benefits();
-    this.selectedAge = SSData.fullAge;
     this.barGraph = new Raphael( $("#claim-canvas")[0] , 600, 400 );
 
     $( 'input[name="benefits-display"]' ).click( function() {
@@ -48,6 +47,11 @@ var graphView = {
       var SSData = getModelValues.benefits();
       graphView.moveIndicatorToAge( $(this).attr( 'data-age-value' ), SSData.currentAge );
     });
+
+    $( '[data-bar_age]' ).click( function() {
+      var age = $( this ).attr( 'data-bar_age' );
+      graphView.moveIndicatorToAge( age, SSData.currentAge );
+    } );
 
     $(document).keypress( function(ev) {
       if ( ev.which === 58 ) {
@@ -210,6 +214,7 @@ var graphView = {
               scrollTop: $( '#estimated-benefits-description' ).offset().top - 20
           }, 300);
         }
+        graphView.selectedAge = SSData.fullAge;
       } else {
         $( '.cf-notification' ).slideDown();
         $( '.cf-notification .cf-notification_text' ).html( resp.note );
@@ -217,7 +222,6 @@ var graphView = {
           graphView.highlightAgeFields( true );
         }
       }
-
       $( '#api-data-loading-indicator' ).css( 'display', 'none' );
     } );
   },
@@ -263,22 +267,26 @@ var graphView = {
 
     $( '#claim-canvas .age-text' ).removeClass( 'selected-age' );
     // Set selected-age
-    $( '#claim-canvas .age-text[data-age-value="' + this.selectedAge + '"]' ).addClass( 'selected-age' ),
+    $( '#claim-canvas .age-text[data-age-value="' + graphView.selectedAge + '"]' ).addClass( 'selected-age' ),
 
     // set text and position for #benefits-text div
     $( '#benefits-text' ).text( numToMoney( benefitsValue ) );
-    benefitsTop = this.bars[ 'age' + this.selectedAge ].attr( 'y' ) - $( '#benefits-text' ).height() - 10;
-    benefitsLeft = this.bars[ 'age' + this.selectedAge ].attr( 'x' ) - $( '#benefits-text' ).width() / 2 + gset.barWidth / 2;
+    benefitsTop = parseInt( $( '[data-bar_age="' + graphView.selectedAge + '"]' ).css( 'top' ) ) -
+      $( '#benefits-text' ).height() - 10;
+    benefitsLeft = parseInt( $( '[data-bar_age="' + graphView.selectedAge + '"]' ).css( 'left' ) ) -
+      $( '#benefits-text' ).width() / 2 + gset.barWidth / 2;
     $( '#benefits-text' ).css( 'top', benefitsTop );
     $( '#benefits-text' ).css( 'left', benefitsLeft );
 
     // set text, position and visibility of #full-age-benefits-text
     $( '#full-age-benefits-text' ).text( numToMoney( fullAgeBenefitsValue ) );
-    fullAgeTop = this.bars[ 'age' + SSData.fullAge ].attr( 'y' ) - $( '#full-age-benefits-text' ).height() - 10;
-    fullAgeLeft = this.bars[ 'age' + SSData.fullAge ].attr( 'x' ) - $( '#full-age-benefits-text' ).width() / 2 + gset.barWidth / 2;
+    fullAgeTop = parseInt( $( '[data-bar_age="' + SSData.fullAge + '"]' ).css( 'top' ) ) -
+      $( '#full-age-benefits-text' ).height() - 10;
+    fullAgeLeft = parseInt( $( '[data-bar_age="' + SSData.fullAge + '"]' ).css( 'left' ) ) -
+      $( '#full-age-benefits-text' ).width() / 2 + gset.barWidth / 2;
     $( '#full-age-benefits-text' ).css( 'top', fullAgeTop );
     $( '#full-age-benefits-text' ).css( 'left', fullAgeLeft );
-    if ( this.selectedAge === SSData.fullAge ) {
+    if ( graphView.selectedAge === SSData.fullAge ) {
       $( '#full-age-benefits-text' ).hide();
     }
     else {
@@ -487,28 +495,21 @@ var graphView = {
       var color = '#e3e4e5',
           key = 'age' + val,
           height = heightRatio * SSData[key],
-          gset = graphView.gset;
-      if ( graphView.bars[key] !== undefined ) {
-        graphView.bars[key].remove();
-      }
-      graphView.bars[key] = graphView.barGraph.rect(
-        leftOffset,
-        gset.graphHeight - gset.barOffset - height,
-        gset.barWidth,
-        height
-      );
+          gset = graphView.gset,
+          $bar = $( '[data-bar_age="' + val + '"]' );
+      $bar.css( {
+        'left': leftOffset,
+        'top': gset.graphHeight - gset.barOffset - height,
+        'height': height,
+        'width': gset.barWidth,
+        'background': color
+      } );
+
       leftOffset = leftOffset + gset.barGut;
       if ( val >= SSData.fullAge ) {
-        color = '#aedb94';
+        $bar.css( 'background', '#aedb94' );
       }
-      graphView.bars[key].attr( 'stroke', color);
-      graphView.bars[key].attr( 'fill', color);
-      $( graphView.bars[key].node ).attr( 'data-age', val );
-      graphView.bars[key].data( 'age', val );
-      graphView.bars[key].click( function() {
-        graphView.moveIndicatorToAge( graphView.bars[key].data( 'age' ), SSData.currentAge );
-      });
-    });
+    } );
   },
 
   /***-- drawGraphBackground(): draws the background lines for the chart --***/
