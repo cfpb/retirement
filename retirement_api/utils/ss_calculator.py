@@ -22,11 +22,12 @@ Outputs:
 """
 import re
 import requests
-import datetime
 import math
 import lxml
 import time
 import signal
+import datetime
+from datetime import date
 
 import dateutil
 from bs4 import BeautifulSoup as bs
@@ -121,19 +122,6 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
     Those born on 1st of month and have have an FRA with a month value
     need special handling.
     """
-
-
-# ========================================
-# ========================================
-    retire_year_bd = DOB.replace(year=DOB.year + fra_tuple[0])
-    retire_date = retire_year_bd + datetime.timedelta(days=30*fra_tuple[1])
-    results['retiremonth'] = ssa_params['dobmon']
-    results['retireyear'] = retire_date.year
-# ========================================
-# ========================================
-
-
-
     BENS = results['data']['benefits']
     today = datetime.date.today()
     current_year_bd = datetime.date(today.year, DOB.month, DOB.day)
@@ -248,26 +236,13 @@ def interpolate_for_past_fra(results, base, current_age, dob):
     Calculate future benefits people who have passed full retirement age.
     Handles edge case when subject is born on 1st and birthday is in the same month.
     """
-
-# ========================================
-# ========================================
-    ssa_params['retiremonth'] = starter.month
-    ssa_params['retireyear'] = starter.year
-    results['past_fra'] = True
-    results['note'] = "Age {0} is past your full benefit claiming age.".format(current_age)
-    results['data']['disability'] = "You have reached full retirement age and are not eligible for disability benefits."
-# ========================================
-# ========================================
-
-
-
-
-
+    today = datetime.date.today()
     BENS = results['data']['benefits']
     annual_bump = round(base * ANNUAL_BONUS)
     monthly_bump = base * MONTHLY_BONUS
     first_bump = round(monthly_bump * get_months_until_next_birthday(dob))
     if get_months_past_birthday(dob) == 11 and dob.day == 1:
+        results['params_adjusted'] = True
         current_age = current_age + 1
         results['current_age'] = current_age
         results['note'] = "Age {0} is past your full benefit claiming age.".format(current_age)
@@ -310,23 +285,22 @@ def interpolate_for_past_fra(results, base, current_age, dob):
 # }
 
 
-def set_up_runvars(params):
-    """set up the results container and variables and handle the MM/01/YYYY edge case"""
+def set_up_runvars(params, language='en'):
+    """
+    Set up the results container and variables
+
+    This function also sets up handling of the MM/01/YYYY edge case
+    The returned vars 'dob' and 'dobstring' are original values;
+    Other vars, such as current_age, and SSA params may be altered
+      to match SSA's handling of edge cases
+    """
+    today = date.today()
     dobstring = "{0}-{1}-{2}".format(params['yob'],
                                      params['dobmon'],
                                      params['dobday'])
     yobstring = "{0}".format(params['yob'])
     current_age = get_current_age(dobstring)
     dob = dateutil.parser.parse(dobstring).date()
-    # handle edge case for those born on first of the month
-    if dob.day == 1:
-        params['dobday'] = 2
-        if dob.month == 1:
-            yob = params['yob'] - 1
-            yobstring = "{0}".format(yob)
-            params['dobmon'] = 12
-        else:
-            params['dobmon'] = params['dobmon'] - 1
     benefits = {}
     for age in CHART_AGES:
         benefits["age {0}".format(age)] = 0
@@ -347,16 +321,47 @@ def set_up_runvars(params):
                'current_age': current_age,
                'error': '',
                'note': '',
-               'past_fra': False,
+               'past_fra': '',
+               'params_adjusted': False,
                }
-    fra_tuple = get_retirement_age(yobstring)  # returns tuple: (year, momths)
+    past_fra = past_fra_test(dobstring, language=language)
+    if isinstance(past_fra, bool) is False:
+        return (dob, dobstring, current_age, (0, 0), past_fra, results)
+    else:
+        results['past_fra'] = past_fra
+    ssa_params = results['data']['params']
+    if dob.day == 1:
+        results['params_adjusted'] = True
+        ssa_params['dobday'] = 2
+        if dob.month == 1:
+            yob = ssa_params['yob'] - 1
+            yobstring = "{0}".format(yob)
+            ssa_params['dobmon'] = 12
+            ssa_params['yob'] = yob
+        else:
+            ssa_params['dobmon'] = params['dobmon'] - 1
+    fra_tuple = get_retirement_age(yobstring)  # returns tuple: (year, months)
+    if past_fra is True:
+        ssa_params['retireyear'] = today.year
+        ssa_params['retiremonth'] = today.month
+        results['note'] = "Age {0} is past your full benefit claiming age.".format(current_age)
+        results['data']['disability'] = "You have reached full retirement age and are not eligible for disability benefits."
+    else:
+        retire_year = ssa_params['yob'] + fra_tuple[0]
+        retire_month = ssa_params['dobmon'] + fra_tuple[1]
+        if retire_month > 12:
+            retire_month = retire_month - 12
+            retire_year += 1
+        ssa_params['retireyear'] = retire_year
+        ssa_params['retiremonth'] = retire_month
+    fra_tuple = get_retirement_age(yobstring)  # returns tuple: (year, months)
     if isinstance(fra_tuple, tuple):
         if fra_tuple[1]:
             FRA = "{0} and {1} months".format(fra_tuple[0], fra_tuple[1])
         else:
             FRA = "{0}".format(fra_tuple[0])
         results['data']['full retirement age'] = FRA
-    return dob, dobstring, current_age, fra_tuple, results
+    return (dob, dobstring, current_age, fra_tuple, past_fra, results)
 
 
 def parse_response(results, html, language):
@@ -391,8 +396,8 @@ def get_retire_data(params, language):
     """
 
     starter = datetime.datetime.now()
-    (dob, dobstring, current_age, fra_tuple, results) = set_up_runvars(params)
-    past_fra = past_fra_test(dobstring, language=language)
+    (dob, dobstring, current_age,
+     fra_tuple, past_fra, results) = set_up_runvars(params, language=language)
     if isinstance(past_fra, bool) is False:
         # if past_fra is neither False nor True, there's an error and we bail
         if current_age > 70:
@@ -409,7 +414,9 @@ def get_retire_data(params, language):
             results['error'] = past_fra
             return results
     try:
-        req = requests.post(RESULT_URL, data=results['data']['params'], timeout=TIMEOUT_SECONDS)
+        req = requests.post(RESULT_URL,
+                            data=results['data']['params'],
+                            timeout=TIMEOUT_SECONDS)
     except requests.exceptions.ConnectionError as e:
         results['error'] = "connection error at SSA's website: {0}".format(e)
         results['note'] = get_note('down', language)
