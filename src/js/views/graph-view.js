@@ -484,14 +484,14 @@ var graphView = {
   /***-- drawBars(): draws and redraws the indicator bars for each age --***/
   drawBars: function() {
     var SSData = getModelValues.benefits();
-    if ($(window).width() < 850) {
+    if ( $( window ).width() < 850 ) {
       this.gset.barOffset = 52;
     } else {
       this.gset.barOffset = 94;
     }
     var leftOffset =  0;
     var heightRatio = ( this.gset.graphHeight - this.gset.barOffset ) / SSData['age70'];
-    $.each( this.ages, function(i, val) {
+    $.each( this.ages, function( i, val ) {
       var color = '#e3e4e5',
           key = 'age' + val,
           height = heightRatio * SSData[key],
@@ -518,19 +518,19 @@ var graphView = {
         barInterval = gset.graphHeight / 4,
         totalWidth = ( gset.barWidth * 9 ) + ( gset.gutterWidth * 8 ),
         yCoord = gset.graphHeight - barInterval,
-        path;
+        $backgroundBars = $( '[data-bg-bar-number]' );
 
-    // remove existing background
-    if ( typeof this.graphBackground === 'object' && typeof this.graphBackground.remove !== 'undefined' ) {
-      this.graphBackground.remove();
-    }
-    // draw a new background
-    for ( var i = 1; i <= 5; i++ ) {
-      path = path + 'M 0 ' + yCoord + ' H' + totalWidth;
-      yCoord = gset.graphHeight - Math.round( barInterval * i ) + 1;
-    }
-    this.graphBackground = this.barGraph.path( path );
-    this.graphBackground.attr( 'stroke', '#E3E4E5' );
+    $backgroundBars.css( 'width', totalWidth );
+    $backgroundBars.each( function() {
+      var $ele = $( this ),
+          count = $ele.attr( 'data-bg-bar-number' );
+      $ele.css( {
+        'width': totalWidth,
+        'top': yCoord
+      } );
+
+      yCoord = gset.graphHeight - Math.round( barInterval * count ) + 1;
+    } );
 
     // remove existing slider line
     if ( typeof this.sliderLine === 'object' && typeof this.sliderLine.remove !== 'undefined' ) {

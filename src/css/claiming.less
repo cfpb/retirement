@@ -273,13 +273,22 @@ form {
   font-family: 'AvenirNextLTW01-Demi', 'Arial', sans-serif;
   font-weight: 500;
 }
-#claim-canvas #full-age-benefits-text {
-  color: #919395;
-  font-family: 'AvenirNextLTW01-Regular', 'Arial', sans-serif;
-}
 
-#claim-canvas .graph_bar {
-  position: absolute;
+#claim-canvas {
+  #full-age-benefits-text {
+    color: #919395;
+    font-family: 'AvenirNextLTW01-Regular', 'Arial', sans-serif;
+  }
+
+  .graph__element {
+    position: absolute;
+  }
+
+  .graph__background {
+    background: #E3E4E5;
+    height: 1px;
+    left: 0px;
+  }
 }
 
 #claiming-social-security .estimated-longevity {
