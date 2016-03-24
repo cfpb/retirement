@@ -9,6 +9,7 @@ var questionsView = require( './questions-view' );
 var fetch = require( '../wizards/fetch-api-data' );
 
 var graphView = {
+  mouseCoords: {},
   barGraph: {},
   indicator: false,
   sliderLine: {},
@@ -45,12 +46,12 @@ var graphView = {
 
     $( '#claim-canvas' ).on( 'click', '.age-text', function() {
       var SSData = getModelValues.benefits();
-      graphView.moveIndicatorToAge( $(this).attr( 'data-age-value' ), SSData.currentAge );
+      graphView.moveIndicatorToAge( $(this).attr( 'data-age-value' ) );
     });
 
     $( '[data-bar_age]' ).click( function() {
       var age = $( this ).attr( 'data-bar_age' );
-      graphView.moveIndicatorToAge( age, SSData.currentAge );
+      graphView.moveIndicatorToAge( age );
     } );
 
     $(document).keypress( function(ev) {
@@ -138,6 +139,10 @@ var graphView = {
         ev.preventDefault();
         $( 'nav.main ul' ).toggleClass( 'vis' );
     });
+
+    // Indicator moving
+
+    $( '#claim-canvas' ).on( 'mousedown', '.graph__indicator', graphView.indicatorDrag );
   },
 
   /*
@@ -160,6 +165,20 @@ var graphView = {
     else {
       $button.attr( 'disabled', true).addClass( 'btn__disabled' );
     }
+  },
+
+  indicatorDrag: function() {
+    $( 'html' ).on( 'mousemove', function( ev ) {
+      var $indicator = $( '.graph__indicator' ),
+          indOffset = $indicator.offset();
+      ev.preventDefault();
+      $( 'html' ).css( 'cursor', 'move' );
+      graphView.moveIndicator( ev.pageX )
+    } );
+    $( document ).on( 'mouseup', function( ev ) {
+      $( 'html' ).css( 'cursor', 'auto' );
+      $( 'html' ).off( 'mousemove' );
+    } );
   },
 
   highlightAgeFields: function( bool ) {
@@ -368,14 +387,14 @@ var graphView = {
     }
   },
 
-  /***-- moveIndicator(dx, dy): Move the pointed indicator based on mouse delta.
-    Note: while dy is not used, it is sent by Raphael's element.drag()
+  /***-- moveIndicator( x ): Move the pointed indicator based on mouse x position.
   --***/
-  moveIndicator: function (dx, dy) {
+  moveIndicator: function ( x ) {
     var SSData = getModelValues.benefits(),
-        newX = 0,
-        // newX = graphView.indicator.odx + dx,
-        gset = graphView.graphSettings;
+        gset = graphView.graphSettings,
+        $indicator = $( '.graph__indicator' ),
+        canvasOffset = $( '#claim-canvas' ).offset().left,
+        newX = x - canvasOffset;
         
     // If new position is farther right than the right-most position, set it to the max value.
     if ( newX > gset.barGut * 8 ) {
@@ -385,43 +404,35 @@ var graphView = {
     if ( newX < 0 ) {
       newX = 0;
     }
-    newX = Math.round( newX / ( gset.barGut ) ) * ( gset.barGut ) + gset.indicatorLeftSet;
+    newX = Math.round( newX / gset.barGut ) * ( gset.barGut ) + gset.indicatorLeftSet;
     // graphView.indicator.transform( 't' + newX + ',0' );
     if ( graphView.selectedAge !== Math.round( newX / gset.barGut ) ) {
       graphView.selectedAge = 62 + Math.round( newX / gset.barGut );
       // Don't let the user select an age younger than they are now
       if ( graphView.selectedAge < SSData.currentAge ) {
         graphView.selectedAge = SSData.currentAge;
-        graphView.moveIndicatorToAge( graphView.selectedAge, SSData.currentAge );
+        graphView.moveIndicatorToAge( graphView.selectedAge );
       }
       graphView.drawBars();
       graphView.setTextByAge();
     }
+    $indicator.css( 'left', newX );
   },
 
   /***-- moveIndicatorToAge(age): Uses moveIndicator to move the indicator to age
     NOTE: This function is all that's require to change the chart to a different age
   --***/
-  moveIndicatorToAge: function( age, currentAge ) {
-    var gset = this.graphSettings;
-    age = Number( age );
-    currentAge = Number( currentAge );
-    if (age >= currentAge) {
-      var iPosX = 0;
-      // var iPosX = graphView.indicator.transform()[0][1];
-      var newX = Math.round( this.ages.indexOf( age ) ) * ( gset.barGut ) + gset.indicatorLeftSet;
-      // graphView.indicator.odx = iPosX;
-      this.moveIndicator( ( newX - iPosX ), 0 );
-    } else {
-      return false;
+  moveIndicatorToAge: function( age ) {
+    var gset = this.graphSettings,
+        SSData = getModelValues.benefits(),
+        newX;
+    if ( age < SSData.currentAge ) {
+      age = SSData.currentAge;
     }
-  },
-
-  /*
-   *
-   */
-  cursormove: function() {
-
+    age = Number( age );
+    newX = $( '#claim-canvas' ).offset().left,
+    newX += graphView.ages.indexOf( age ) * gset.barGut + gset.indicatorLeftSet;
+    this.moveIndicator( newX  );
   },
 
  /***-- drawIndicator(): draws the indicator --***/
@@ -448,12 +459,10 @@ var graphView = {
       this.selectedAge = SSData.fullAge;
     }
     posX = this.ages.indexOf( this.selectedAge ) * gset.barGut + gset.indicatorLeftSet
-    // graphView.indicator.transform( 't' + posX + ',0' );
-
-    var up = function() {
-
-    };
-    // graphView.indicator.drag( this.moveIndicator, start, up );
+    $indicator.css( {
+      'left': posX,
+      'top': top
+    } );
     this.setTextByAge();
   },
 
@@ -618,7 +627,6 @@ var graphView = {
     this.drawBars();
     this.drawIndicator();
     this.drawAgeBoxes();
-    this.moveIndicatorToAge( this.selectedAge, SSData.currentAge );
   },
 
   /***-- resetView(): Draws new bars and updates text. For use after new data is received. --***/
@@ -626,12 +634,7 @@ var graphView = {
     var SSData = getModelValues.benefits();
     this.drawBars();
     this.setTextByAge();
-    if ( SSData.currentAge < SSData.fullAge ) {
-      this.moveIndicatorToAge( SSData.fullAge, SSData.currentAge );
-    }
-    else {
-      this.moveIndicatorToAge( SSData.currentAge, SSData.currentAge );
-    }
+    this.moveIndicatorToAge( SSData.fullAge );
     $( '.benefit-selections-area' ).empty();
   }
 
