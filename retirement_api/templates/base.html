@@ -88,10 +88,15 @@ And by the way, there’s another hidden message somewhere on the following page
     <link rel="alternate" type="application/rss+xml" title="Consumer Financial Protection Bureau &raquo; Feed" href="/feed/" />
     <link rel="alternate" type="application/rss+xml" title="Consumer Financial Protection Bureau &raquo; Comments Feed" href="/comments/feed/" />
 
-    <link rel="stylesheet" href="{% static "retirement/css/main.css" %}">
-    <link rel="stylesheet" href="{% static "retirement/css/claiming.css" %}">
+  <!--[if lt IE 9]>
+      <link rel="stylesheet" href="{% static "retirement/css/main.ie.css" %}">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+      <link rel="stylesheet" href="{% static "retirement/css/main.min.css" %}">
+  <!--<![endif]-->
+
     <script src="{% static 'retirement/js/raphael-min.js' %}"></script>
-    <script src="{% static "retirement/js/claiming-social-security.js" %}"></script>
+    <script src="{% static "retirement/js/main.js" %}"></script>
 {% if es %}
     <script src="{% static "retirement/jsi18n/es/djangojs.js" %}"></script>
 {% else %}

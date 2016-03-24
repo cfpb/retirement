@@ -3,4 +3,5 @@
 set -ev
 
 npm install
-grunt build
+bower install
+gulp
