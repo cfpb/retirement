@@ -130,7 +130,7 @@ var graphView = {
         $( '#tooltip-container' ).hide();
         toolTipper( $( '[data-tooltip-current-target]' ) );
       }
-      this.redrawGraph();
+      graphView.redrawGraph();
     });
 
     // Hamburger menu
