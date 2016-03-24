@@ -7,6 +7,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Fix handling of birth dates on the first of a month
 - Fixes error message for ages over 70
 - translate date placeholders and explanatory text for folks past FRA
+- added urls, view and empty templates for 'about' pages in English and Spanish
 
 ## 0.4.58
 - switch back to ssa.gov for our requests, after SSA started redirecting calls to socialsecurity.gov
