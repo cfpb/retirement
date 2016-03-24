@@ -14,7 +14,7 @@ var graphView = {
   sliderLine: {},
   graphBackground: {},
   bars: {},
-  gset: {
+  graphSettings: {
     'graphHeight' : 0,
     'gutterWidth' : 0,
     'barWidth' : 0,
@@ -140,6 +140,13 @@ var graphView = {
     });
   },
 
+  /*
+   * The preferred method of changing graph settings
+   */
+  changeGraphSetting: function( setting, value ) {
+    this.graphSettings[ setting ] = value;
+  },
+
   checkEstimateReady: function() {
     /***-- checkEstimateReady(): checks if the page is ready for the Estimate button to be hit. --***/
     var $button = $( '#get-your-estimates' ),
@@ -243,7 +250,7 @@ var graphView = {
 
   /***-- setTextByAge(): Changes text of benefits and age fields based on this.selectedAge --***/
   setTextByAge: function() {
-    var gset = this.gset,
+    var gset = this.graphSettings,
         SSData = getModelValues.benefits(),
         x = this.ages.indexOf( this.selectedAge ) * gset.barGut + gset.indicatorLeftSet,
         lifetimeBenefits = numToMoney( ( 85 - this.selectedAge ) * 12 * SSData[ 'age' + this.selectedAge ] ),
@@ -365,9 +372,11 @@ var graphView = {
     Note: while dy is not used, it is sent by Raphael's element.drag()
   --***/
   moveIndicator: function (dx, dy) {
-    var newX = graphView.indicator.odx + dx,
-        gset = graphView.gset,
-        SSData = getModelValues.benefits();
+    var SSData = getModelValues.benefits(),
+        newX = 0,
+        // newX = graphView.indicator.odx + dx,
+        gset = graphView.graphSettings;
+        
     // If new position is farther right than the right-most position, set it to the max value.
     if ( newX > gset.barGut * 8 ) {
       newX = gset.barGut * 8;
@@ -377,7 +386,7 @@ var graphView = {
       newX = 0;
     }
     newX = Math.round( newX / ( gset.barGut ) ) * ( gset.barGut ) + gset.indicatorLeftSet;
-    graphView.indicator.transform( 't' + newX + ',0' );
+    // graphView.indicator.transform( 't' + newX + ',0' );
     if ( graphView.selectedAge !== Math.round( newX / gset.barGut ) ) {
       graphView.selectedAge = 62 + Math.round( newX / gset.barGut );
       // Don't let the user select an age younger than they are now
@@ -394,108 +403,124 @@ var graphView = {
     NOTE: This function is all that's require to change the chart to a different age
   --***/
   moveIndicatorToAge: function( age, currentAge ) {
-    var gset = this.gset;
+    var gset = this.graphSettings;
     age = Number( age );
     currentAge = Number( currentAge );
     if (age >= currentAge) {
-      var iPosX = graphView.indicator.transform()[0][1];
+      var iPosX = 0;
+      // var iPosX = graphView.indicator.transform()[0][1];
       var newX = Math.round( this.ages.indexOf( age ) ) * ( gset.barGut ) + gset.indicatorLeftSet;
-      graphView.indicator.odx = iPosX;
+      // graphView.indicator.odx = iPosX;
       this.moveIndicator( ( newX - iPosX ), 0 );
     } else {
       return false;
     }
   },
 
+  /*
+   *
+   */
+  cursormove: function() {
+
+  },
+
  /***-- drawIndicator(): draws the indicator --***/
   drawIndicator: function() {
-    var path,
-        gset = this.gset,
+    var $indicator = $( '.graph__indicator' ),
+        gset = this.graphSettings,
         SSData = getModelValues.benefits(),
-        // greenPath,
-        // whiteLines, // vision dreams of passion
+        top = gset.graphHeight - 25,
         posX;
 
     // Clear existing indicator, set up new one.
-    if ( typeof graphView.indicator === 'object' ) {
-      graphView.indicator.remove();
-    }
+    // if ( typeof graphView.indicator === 'object' ) {
+    //   graphView.indicator.remove();
+    // }
     // draw a new slider line
-    if ($(window).width() < 850) {
-      graphView.indicator = this.barGraph.circle( 0, gset.graphHeight - 10 , 15);
-    } else {
-      graphView.indicator = this.barGraph.circle( 0, gset.graphHeight - 20 , 15);
+    if ( $(window).width() >= 850 ) {
+      top -= 10;
+      // graphView.indicator = this.barGraph.circle( 0, gset.graphHeight - 20 , 15);
     }
-    graphView.indicator.attr( { 'fill': '#F8F8F8', 'stroke': '#919395'})
+    // graphView.indicator.attr( { 'fill': '#F8F8F8', 'stroke': '#919395'})
 
     // set up initial indicator text and position
     if ( SSData.currentAge === 0 ) {
       this.selectedAge = SSData.fullAge;
     }
     posX = this.ages.indexOf( this.selectedAge ) * gset.barGut + gset.indicatorLeftSet
-    graphView.indicator.transform( 't' + posX + ',0' );
-
-    var start = function () {
-      var t = this.transform();
-      this.odx = t[0][1];
-    };
+    // graphView.indicator.transform( 't' + posX + ',0' );
 
     var up = function() {
 
     };
-    graphView.indicator.drag( this.moveIndicator, start, up );
+    // graphView.indicator.drag( this.moveIndicator, start, up );
     this.setTextByAge();
   },
 
   /**
-    *
+    * update graph settings
     */
   setGraphDimensions: function() {
-    // Graph width settings
-    var canvasLeft = Number( $( '#claim-canvas' ).css( 'left' ).replace( /\D/g, '' ) );
+    var canvasLeft,
+        graphWidth,
+        graphHeight,
+        barWidth,
+        gutterWidth,
+        indicatorWidth,
+        indicatorLeftSet;
+
+    // Update width settings
+    canvasLeft = Number( $( '#claim-canvas' ).css( 'left' ).replace( /\D/g, '' ) )
     canvasLeft += Number( $( '#claim-canvas' ).css( 'padding-left' ).replace( /\D/g, '' ) );
 
-    this.gset.graphWidth = $( '.canvas-container' ).width() - canvasLeft;
-    if ( this.gset.graphWidth > ( ( $( window ).width() - canvasLeft ) ) * .95 )  {
-      this.gset.graphWidth = ( $(window).width() - canvasLeft ) * .95;
+    graphWidth = $( '.canvas-container' ).width() - canvasLeft;
+    if ( graphWidth > ( ( $( window ).width() - canvasLeft ) ) * .95 )  {
+      graphWidth = ( $(window).width() - canvasLeft ) * .95;
     }
+    this.changeGraphSetting( 'graphWidth', graphWidth );
 
+    graphHeight = 380;
     if ($(window).width() < 850) {
-      this.gset.graphHeight = 210;
+      graphHeight = 210;
       $( '#claim-canvas svg' ).css( 'overflow', 'visible' );
-    } else if ($(window).width() >= 850 && $(window).width() < 1045) {
-      this.gset.graphHeight = 380;
-    } else {
-      this.gset.graphHeight = 380;
     }
-    // $( '.selected-retirement-age-container' ).css( 'margin-top', this.gset.graphHeight + 75 + 'px' );
+    this.changeGraphSetting( 'graphHeight', graphHeight );
 
-    this.gset.barWidth = Math.floor( this.gset.graphWidth / 17 );
-    this.gset.gutterWidth = Math.floor( this.gset.graphWidth / 17 );
-    this.gset.indicatorWidth = 30;
-    this.gset.indicatorSide = 19;
+    barWidth = Math.floor( graphWidth / 17 );
+    this.changeGraphSetting( 'barWidth',  barWidth );
 
-    this.gset.barGut = this.gset.barWidth + this.gset.gutterWidth;
-    this.gset.indicatorLeftSet = Math.ceil( ( this.gset.barWidth - this.gset.indicatorWidth ) / 2 ) + ( this.gset.indicatorWidth / 2 ) + 1;
-    this.barGraph.setSize( this.gset.graphWidth, this.gset.graphHeight );
-    $( '#claim-canvas, .x-axis-label' ).width( this.gset.graphWidth );
+    gutterWidth = Math.floor( graphWidth / 17 );
+    this.changeGraphSetting( 'gutterWidth', gutterWidth );
+
+    indicatorWidth = 30;
+    this.changeGraphSetting( 'indicatorWidth', indicatorWidth );
+
+    this.changeGraphSetting ( 'barGut', barWidth + gutterWidth );
+
+    indicatorLeftSet = Math.ceil( ( barWidth - indicatorWidth ) / 2 );
+    this.changeGraphSetting ( 'indicatorLeftSet', indicatorLeftSet );
+
+    this.barGraph.setSize( graphWidth, graphHeight );
+
+    $( '#claim-canvas, .x-axis-label' ).width( graphWidth );
   },
 
   /***-- drawBars(): draws and redraws the indicator bars for each age --***/
   drawBars: function() {
-    var SSData = getModelValues.benefits();
+    var SSData = getModelValues.benefits(),
+        gset = this.graphSettings;
     if ( $( window ).width() < 850 ) {
-      this.gset.barOffset = 52;
+      gset.barOffset = 52;
     } else {
-      this.gset.barOffset = 94;
+      gset.barOffset = 94;
     }
     var leftOffset =  0;
-    var heightRatio = ( this.gset.graphHeight - this.gset.barOffset ) / SSData['age70'];
+    var heightRatio = ( gset.graphHeight - gset.barOffset ) / SSData['age70'];
     $.each( this.ages, function( i, val ) {
       var color = '#e3e4e5',
           key = 'age' + val,
           height = heightRatio * SSData[key],
-          gset = graphView.gset,
+          gset = graphView.graphSettings,
           $bar = $( '[data-bar_age="' + val + '"]' );
       $bar.css( {
         'left': leftOffset,
@@ -514,7 +539,7 @@ var graphView = {
 
   /***-- drawGraphBackground(): draws the background lines for the chart --***/
   drawGraphBackground: function() {
-    var gset = this.gset,
+    var gset = this.graphSettings,
         barInterval = gset.graphHeight / 4,
         totalWidth = ( gset.barWidth * 9 ) + ( gset.gutterWidth * 8 ),
         yCoord = gset.graphHeight - barInterval,
@@ -551,7 +576,7 @@ var graphView = {
     */
   drawAgeBoxes: function() {
     var leftOffset = 0,
-        gset = this.gset;
+        gset = this.graphSettings;
     // remove existing boxes
     $( '#claim-canvas .age-text' ).remove();
     $.each( this.ages, function(i, val) {
