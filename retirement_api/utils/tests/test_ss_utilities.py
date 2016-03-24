@@ -118,7 +118,7 @@ class UtilitiesTests(unittest.TestCase):
                         'past_fra': False,
                         }
         benefits = {
-            'age 62': 1583,
+            'age 62': 1592,
             'age 63': 1696,
             'age 64': 1809,
             'age 65': 1960,
