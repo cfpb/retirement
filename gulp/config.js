@@ -56,6 +56,7 @@ module.exports = {
       loc.lib + '/jquery.easing/js/jquery.easing.js',
       loc.lib + '/cf-*/src/js/*.js',
       loc.src + '/js/**/*.js',
+      loc.src + '/js/*/*.js',
       loc.src + '/js/*.js',
     ],
     dest: loc.dist + '/js/',
