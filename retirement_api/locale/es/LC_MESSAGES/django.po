@@ -395,8 +395,8 @@ msgid "Take your next steps"
 msgstr "Tomar sus siguientes pasos"
 
 #: 
-msgid "<span class=\"header-line\">Planning for retirement—</span>before you claim"
-msgstr "<span class=\"header-line\">Planifique para su  jubilación—</span>Antes de solicitar"
+msgid "<span class=\"header-line\">Planning for Retirement:</span>Before you claim"
+msgstr "<span class=\"header-line\">Planifique para su Jubilación:</span>Antes de solicitar"
 
 #: 
 msgid "The age you claim Social Security affects your lifetime income. We’ll help you think through this decision."
