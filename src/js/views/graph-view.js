@@ -323,8 +323,6 @@ var graphView = {
     else {
       $( '.graph-content .content-container.full-retirement' ).show();
     }
-
-    console.log( this.selectedAge, SSData.fullAge, SSData );
     if ( this.selectedAge === SSData.fullAge || this.selectedAge === SSData.currentAge ) {
       if ( SSData.past_fra ) {
         if ( SSData.currentAge === 70 ) {
