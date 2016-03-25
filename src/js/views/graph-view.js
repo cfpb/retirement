@@ -410,7 +410,7 @@ var graphView = {
       // Don't let the user select an age younger than they are now
       if ( graphView.selectedAge < SSData.currentAge ) {
         graphView.selectedAge = SSData.currentAge;
-        graphView.moveIndicatorToAge( graphView.selectedAge );
+        newX = graphView.ages.indexOf( SSData.currentAge ) * gset.barGut + gset.indicatorLeftSet;
       }
       graphView.drawBars();
       graphView.setTextByAge();
