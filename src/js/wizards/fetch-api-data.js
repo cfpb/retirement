@@ -1,14 +1,14 @@
 'use strict';
 
-var validDates = require( '../utils/valid-dates' );
 var update = require( './update-model' );
 
 var fetch = {
   apiData: function( birthdate, salary, dataLang ) {
+    var url;
     if ( dataLang === 'es' ) {
-      var url = '/retirement/retirement-api/estimator/' + birthdate + '/' + Number(salary) + '/es/';
+      url = '/retirement/retirement-api/estimator/' + birthdate + '/' + Number(salary) + '/es/';
     } else {
-      var url = '/retirement/retirement-api/estimator/' + birthdate + '/' + Number(salary) + '/';
+      url = '/retirement/retirement-api/estimator/' + birthdate + '/' + Number(salary) + '/';
     }
 
     var apiDataRequest = $.ajax( {

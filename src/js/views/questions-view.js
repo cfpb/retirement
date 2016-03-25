@@ -4,7 +4,7 @@ var questionsView = {
 
   init: function() {
     var $buttons = $( '.step-two .question .lifestyle-btn' );
-    
+
     $buttons.click(function() {
       var $container = $(this).closest( '.question' );
       var respTo = $(this).val();
@@ -17,7 +17,7 @@ var questionsView = {
 
       $container.attr( 'data-answered', 'yes' );
 
-    })
+    } );
   },
 
   update: function( currentAge ) {
@@ -26,8 +26,7 @@ var questionsView = {
       $ageSplits.each( function() {
         $(this).val( $(this).attr( 'data-base-value' ) + '-under50' );
       });
-    }
-    else {
+    } else {
       $ageSplits.each( function() {
         $(this).val( $(this).attr( 'data-base-value' ) + '-over50' );
       });
