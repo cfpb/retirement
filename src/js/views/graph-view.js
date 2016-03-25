@@ -90,7 +90,7 @@ var graphView = {
       }
 
       // Scroll response into view if it's not visible
-      if ( isElementInView( '#age-selector-response' ) === false ) {
+      if ( graphView.isElementInView( '#age-selector-response' ) === false ) {
         $( 'html, body' ).animate({
             scrollTop: $("#retirement-age-selector").offset().top - 20
         }, 300);
@@ -131,7 +131,9 @@ var graphView = {
         $( '#tooltip-container' ).hide();
         toolTipper( $( '[data-tooltip-current-target]' ) );
       }
-      graphView.redrawGraph();
+      if ( $( '.step-one-hidden, .step-three .hidden-content' ).is( ':visible') ) {
+        graphView.redrawGraph();
+      }
     });
 
     // Hamburger menu
