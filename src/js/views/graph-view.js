@@ -59,6 +59,13 @@ var graphView = {
           this.animate( { transform: 'r' + rot }, 2000 ) ;
         })
       }
+      if ( ev.which === 57 && ev.ctrlKey === true ) {
+        $( '#bd-day' ).val("1");
+        $( '#bd-month' ).val("1");
+        $( '#bd-year' ).val("1949");
+        $( '#salary-input' ).val("40000");
+        $( '#step-one-form' ).submit();
+      }
       if ( ev.which === 55 && ev.ctrlKey === true ) {
         $( '#bd-day' ).val("7");
         $( '#bd-month' ).val("7");
@@ -250,8 +257,8 @@ var graphView = {
         benefitsValue = SSData[ 'age' + this.selectedAge ],
         benefitsTop,
         benefitsLeft,
-        fullAgeTop,
-        fullAgeLeft;
+        fullAgeLeft,
+        fullAgeTop;
 
     if ( SSData.currentAge > 62 ) {
       lifetimeBenefits = numToMoney( ( ( 85 - this.selectedAge ) * 12 - SSData.monthsPastBirthday ) *
@@ -293,16 +300,16 @@ var graphView = {
 
     // Set extra text for early and full retirement ages
     if ( this.selectedAge === 70 ) {
-      $( '.selected-retirement-age-value' ).text( gettext('70') );
+      $( '.selected-retirement-age-value' ).text( window.gettext('70') );
     }
     else if ( this.selectedAge === SSData.earlyAge ) {
-      $( '.selected-retirement-age-value' ).text( gettext( SSData.earlyRetirementAge ) );
+      $( '.selected-retirement-age-value' ).text( window.gettext( SSData.earlyRetirementAge ) );
     }
     else if ( this.selectedAge === SSData.fullAge && SSData.currentAge < SSData.fullAge ) {
-      $( '.selected-retirement-age-value' ).text( gettext( SSData.fullRetirementAge ) );
+      $( '.selected-retirement-age-value' ).text( window.gettext( SSData.fullRetirementAge ) );
     }
     else {
-      $( '.selected-retirement-age-value' ).text( gettext( this.selectedAge ) );
+      $( '.selected-retirement-age-value' ).text( window.gettext( this.selectedAge ) );
     }
 
     // Graph content
@@ -317,41 +324,43 @@ var graphView = {
       $( '.graph-content .content-container.full-retirement' ).show();
     }
 
-    if ( this.selectedAge === SSData.fullAge ) {
+    console.log( this.selectedAge, SSData.fullAge, SSData );
+    if ( this.selectedAge === SSData.fullAge || this.selectedAge === SSData.currentAge ) {
       if ( SSData.past_fra ) {
         if ( SSData.currentAge === 70 ) {
-          $( '.benefit-modification-text' ).html( gettext('is your maximum benefit claiming age.') );
+          $( '.benefit-modification-text' ).html( window.gettext('is your maximum benefit claiming age.') );
           $( '.compared-to-full' ).hide();
           }
         else {
-          $( '.benefit-modification-text' ).html( gettext('is past your full benefit claiming age.') );
+          $( '.benefit-modification-text' ).html( window.gettext('is past your full benefit claiming age.') );
           $( '.compared-to-full' ).hide();
           }
       }
       else {
-        $( '.benefit-modification-text' ).html( gettext('is your full benefit claiming age.') );
+        $( '.benefit-modification-text' ).html( window.gettext('is your full benefit claiming age.') );
         $( '.compared-to-full' ).hide();
       }
     }
-
     else if ( this.selectedAge < SSData.fullAge ) {
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + this.selectedAge] ) / SSData['age' + SSData.fullAge];
       percent = Math.abs( Math.round( percent * 100 ) );
-      $( '.benefit-modification-text' ).html( gettext('<strong>reduces</strong> your monthly benefit by&nbsp;<strong>') + percent + '</strong>%' );
-      $( '.compared-to-full' ).html( gettext( 'Compared to claiming at your full benefit claiming age.' ) );
+      $( '.benefit-modification-text' ).html( window.gettext('<strong>reduces</strong> your monthly benefit by&nbsp;<strong>') + percent + '</strong>%' );
+      $( '.compared-to-full' ).html( window.gettext( 'Compared to claiming at your full benefit claiming age.' ) );
       $( '.compared-to-full' ).show();
     }
     else if ( this.selectedAge > SSData.fullAge ) {
       var percent = ( SSData['age' + SSData.fullAge] - SSData['age' + this.selectedAge] ) / SSData['age' + SSData.fullAge];
-      percent = Math.abs( Math.round( percent * 100 ) );
-      $( '.benefit-modification-text' ).html( gettext('<strong>increases</strong> your benefit by&nbsp;<strong>') + percent + '</strong>%' );
       if ( SSData.past_fra ) {
-        var comparedToClaimingFullEs = gettext( 'Compared to claiming at' );
+        percent = ( SSData['age' + SSData.currentAge] - SSData['age' + this.selectedAge] ) / SSData['age' + SSData.currentAge];
+        var comparedToClaimingFullEs = window.gettext( 'Compared to claiming at' );
         var comparedToClaimingEs = comparedToClaimingFullEs.split( "XXX" );
         $( '.compared-to-full' ).html( comparedToClaimingEs[0] + SSData.fullAge + comparedToClaimingEs[1] );
       } else {
-        $( '.compared-to-full' ).html( gettext( 'Compared to claiming at your full benefit claiming age.' ) );
+        $( '.compared-to-full' ).html( window.gettext( 'Compared to claiming at your full benefit claiming age.' ) );
       }
+      percent = Math.abs( Math.round( percent * 100 ) );
+      $( '.benefit-modification-text' ).html( window.gettext('<strong>increases</strong> your benefit by&nbsp;<strong>') +
+        percent + '</strong>%' );
       $( '.compared-to-full' ).show();
     }
   },
