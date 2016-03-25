@@ -445,16 +445,10 @@ var graphView = {
         top = gset.graphHeight - 25,
         posX;
 
-    // Clear existing indicator, set up new one.
-    // if ( typeof graphView.indicator === 'object' ) {
-    //   graphView.indicator.remove();
-    // }
     // draw a new slider line
     if ( $(window).width() >= 850 ) {
       top -= 10;
-      // graphView.indicator = this.barGraph.circle( 0, gset.graphHeight - 20 , 15);
     }
-    // graphView.indicator.attr( { 'fill': '#F8F8F8', 'stroke': '#919395'})
 
     // set up initial indicator text and position
     if ( SSData.currentAge === 0 ) {
@@ -554,7 +548,9 @@ var graphView = {
         barInterval = gset.graphHeight / 4,
         totalWidth = ( gset.barWidth * 9 ) + ( gset.gutterWidth * 8 ),
         yCoord = gset.graphHeight - barInterval,
-        $backgroundBars = $( '[data-bg-bar-number]' );
+        $backgroundBars = $( '[data-bg-bar-number]' ),
+        $sliderLine = $( '.graph__slider-line' ),
+        sliderLineTop;
 
     $backgroundBars.css( 'width', totalWidth );
     $backgroundBars.each( function() {
@@ -574,12 +570,14 @@ var graphView = {
     }
 
     // draw a new slider line
+    sliderLineTop = gset.graphHeight - 21;
     if ($(window).width() < 850) {
-      this.sliderLine = this.barGraph.path( 'M0 ' + ( gset.graphHeight - 10 ) + ' H' + totalWidth );
-    } else {
-      this.sliderLine = this.barGraph.path( 'M0 ' + ( gset.graphHeight - 20 ) + ' H' + totalWidth );
+      sliderLineTop = gset.graphHeight - 11;
     }
-    this.sliderLine.attr( { 'stroke': '#E3E4E5', 'stroke-width': 5 } )
+    $sliderLine.css( {
+      'top': sliderLineTop,
+      'width': totalWidth
+    } );
   },
 
   /**
