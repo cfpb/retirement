@@ -23,6 +23,8 @@ module.exports = {
   lint: {
     src: [
       loc.src + '/js/**/*.js',
+      loc.src + '/js/*.js',
+      loc.src + '/js/*/*.js',
       '!' + loc.src + '/js/utils/nemo.js'
     ],
     gulp: [
