@@ -97,10 +97,6 @@ module.exports = {
         loc.lib + '/html5shiv/dist/html5shiv-printshiv.min.js'
       ],
       dest: loc.dist + '/js/'
-    },
-    raphael: {
-      src: loc.src + 'js/raphael-lib/*',
-      dest: loc.dist + '/js/'
     }
   }
 };

@@ -10,7 +10,6 @@ var fetch = require( '../wizards/fetch-api-data' );
 
 var graphView = {
   mouseCoords: {},
-  barGraph: {},
   indicator: false,
   sliderLine: {},
   graphBackground: {},
@@ -31,7 +30,6 @@ var graphView = {
 
   init: function() {
     var SSData = getModelValues.benefits();
-    this.barGraph = new Raphael( $("#claim-canvas")[0] , 600, 400 );
 
     $( 'input[name="benefits-display"]' ).click( function() {
       graphView.setTextByAge();
@@ -55,15 +53,6 @@ var graphView = {
     } );
 
     $(document).keypress( function(ev) {
-      if ( ev.which === 58 ) {
-        $.each( this.bars, function(i ,val ) {
-          var rot = 360;
-          if ( this.transform().length !== 0 ) {
-            rot = this.transform()[0][1] + 360;
-          }
-          this.animate( { transform: 'r' + rot }, 2000 ) ;
-        })
-      }
       if ( ev.which === 55 && ev.ctrlKey === true ) {
         $( '#bd-day' ).val("7");
         $( '#bd-month' ).val("7");
@@ -505,8 +494,6 @@ var graphView = {
 
     indicatorLeftSet = Math.ceil( ( barWidth - indicatorWidth ) / 2 );
     this.changeGraphSetting ( 'indicatorLeftSet', indicatorLeftSet );
-
-    this.barGraph.setSize( graphWidth, graphHeight );
 
     $( '#claim-canvas, .x-axis-label' ).width( graphWidth );
   },

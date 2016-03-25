@@ -26,18 +26,10 @@ gulp.task( 'copy:vendorjs', function() {
     .pipe( gulp.dest( config.vendorjs.dest ) );
 } );
 
-gulp.task( 'copy:raphael', function() {
-  return gulp.src( config.raphael.src )
-    .pipe( $.changed( config.raphael.dest ) )
-    .on( 'error', handleErrors )
-    .pipe( gulp.dest( config.raphael.dest ) );
-} );
-
 gulp.task( 'copy',
   [
     'copy:files',
     'copy:icons',
-    'copy:vendorjs',
-    'copy:raphael'
+    'copy:vendorjs'
   ]
 );
