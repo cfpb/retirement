@@ -18,8 +18,8 @@ var benefitsModel = {
     'age70': 2719,
     'earlyAge': 62,
     'currentAge': 37,
-    'earlyRetirementAge': "62 and 1 month",
-    'fullRetirementAge': "67"
+    'earlyRetirementAge': '62 and 1 month',
+    'fullRetirementAge': '67'
   }
 };
 
