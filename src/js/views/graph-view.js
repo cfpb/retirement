@@ -126,7 +126,9 @@ var graphView = {
         $( '#tooltip-container' ).hide();
         toolTipper( $( '[data-tooltip-current-target]' ) );
       }
-      graphView.redrawGraph();
+      if ( $( '.step-one-hidden, .step-three .hidden-content' ).is( ':visible') ) {
+        graphView.redrawGraph();
+      }
     });
 
     // Hamburger menu
