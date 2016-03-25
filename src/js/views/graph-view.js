@@ -144,7 +144,7 @@ var graphView = {
 
     // Indicator moving
 
-    $( '#claim-canvas' ).on( 'mousedown', '.graph__indicator', graphView.indicatorDrag );
+    $( '#claim-canvas' ).on( 'mousedown', '#graph__indicator', graphView.indicatorDrag );
   },
 
   /*
@@ -171,7 +171,7 @@ var graphView = {
 
   indicatorDrag: function() {
     $( 'html' ).on( 'mousemove', function( ev ) {
-      var $indicator = $( '.graph__indicator' ),
+      var $indicator = $( '#graph__indicator' ),
           indOffset = $indicator.offset();
       ev.preventDefault();
       $( 'html' ).css( 'cursor', 'move' );
@@ -323,20 +323,20 @@ var graphView = {
     }
 
     // set lifetime benefits text
-    $( '.lifetime-benefits-value' ).text( lifetimeBenefits );
+    $( '#lifetime-benefits-value' ).text( lifetimeBenefits );
 
     // Set extra text for early and full retirement ages
     if ( this.selectedAge === 70 ) {
-      $( '.selected-retirement-age-value' ).text( gettext('70') );
+      $( '#selected-retirement-age-value' ).text( gettext('70') );
     }
     else if ( this.selectedAge === SSData.earlyAge ) {
-      $( '.selected-retirement-age-value' ).text( gettext( SSData.earlyRetirementAge ) );
+      $( '#selected-retirement-age-value' ).text( gettext( SSData.earlyRetirementAge ) );
     }
     else if ( this.selectedAge === SSData.fullAge && SSData.currentAge < SSData.fullAge ) {
-      $( '.selected-retirement-age-value' ).text( gettext( SSData.fullRetirementAge ) );
+      $( '#selected-retirement-age-value' ).text( gettext( SSData.fullRetirementAge ) );
     }
     else {
-      $( '.selected-retirement-age-value' ).text( gettext( this.selectedAge ) );
+      $( '#selected-retirement-age-value' ).text( gettext( this.selectedAge ) );
     }
 
     // Graph content
@@ -395,7 +395,7 @@ var graphView = {
   moveIndicator: function ( x ) {
     var SSData = getModelValues.benefits(),
         gset = graphView.graphSettings,
-        $indicator = $( '.graph__indicator' ),
+        $indicator = $( '#graph__indicator' ),
         canvasOffset = $( '#claim-canvas' ).offset().left,
         newX = x - canvasOffset;
         
@@ -440,7 +440,7 @@ var graphView = {
 
  /***-- drawIndicator(): draws the indicator --***/
   drawIndicator: function() {
-    var $indicator = $( '.graph__indicator' ),
+    var $indicator = $( '#graph__indicator' ),
         gset = this.graphSettings,
         SSData = getModelValues.benefits(),
         top = gset.graphHeight - 25,
@@ -550,7 +550,7 @@ var graphView = {
         totalWidth = ( gset.barWidth * 9 ) + ( gset.gutterWidth * 8 ),
         yCoord = gset.graphHeight - barInterval,
         $backgroundBars = $( '[data-bg-bar-number]' ),
-        $sliderLine = $( '.graph__slider-line' ),
+        $sliderLine = $( '#graph__slider-line' ),
         sliderLineTop;
 
     $backgroundBars.css( 'width', totalWidth );
