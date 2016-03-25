@@ -206,6 +206,7 @@ var graphView = {
         questionsView.update( SSData.currentAge );
         graphView.redrawGraph();
         graphView.resetView();
+
         // Scroll graph into view if it's not visible
         if ( graphView.isElementInView( '#claim-canvas' ) === false ) {
           $( 'html, body' ).animate({
@@ -280,7 +281,7 @@ var graphView = {
     fullAgeLeft = this.bars[ 'age' + SSData.fullAge ].attr( 'x' ) - $( '#full-age-benefits-text' ).width() / 2 + gset.barWidth / 2;
     $( '#full-age-benefits-text' ).css( 'top', fullAgeTop );
     $( '#full-age-benefits-text' ).css( 'left', fullAgeLeft );
-    if ( this.selectedAge === SSData.fullAge ) {
+    if ( this.selectedAge === SSData.fullAge || SSData.currentAge > SSData.fullAge ) {
       $( '#full-age-benefits-text' ).hide();
     }
     else {
