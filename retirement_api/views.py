@@ -19,6 +19,11 @@ try:
 except:  # pragma: no cover
     standalone = False
 
+if standalone:
+    base_template = "standalone_base.html"
+else:
+    base_template = "%s/templates/base.html" % BASEDIR
+
 
 def claiming(request, es=False):
     if es is True:
@@ -38,10 +43,6 @@ def claiming(request, es=False):
     final_steps = {}
     for step in Step.objects.filter(title__contains='final_'):
         final_steps[step.title] = step
-    if standalone:
-        base_template = "standalone_base.html"
-    else:
-        base_template = "%s/templates/base.html" % BASEDIR
     cdict = {
         'tstamp': datetime.datetime.now(),
         'final_steps': final_steps,
@@ -124,3 +125,14 @@ def get_full_retirement_age(request, birth_year):
     else:
         data = json.dumps(data_tuple)
         return HttpResponse(data, content_type='application/json')
+
+
+def about(request, language='en'):
+    """Return our 'about' calculation-explainer page in Engish or Spanish"""
+    cdict = {
+        'base_template': base_template,
+        }
+    if language == 'en':
+        return render_to_response('about.html', cdict)
+    else:
+        return render_to_response('about-es.html', cdict)
