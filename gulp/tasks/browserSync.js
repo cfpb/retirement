@@ -7,6 +7,7 @@ var browserSync = require( 'browser-sync' );
 gulp.task( 'browserSync', function() {
   var port = util.env.port || '8000';
   browserSync.init( {
-    proxy: 'localhost:' + port
+    proxy: 'localhost:' + port,
+    startPath: './before-you-claim/'
   } );
 } );
