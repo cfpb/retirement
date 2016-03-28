@@ -363,7 +363,11 @@ var graphView = {
         percent = ( SSData['age' + SSData.currentAge] - SSData['age' + this.selectedAge] ) / SSData['age' + SSData.currentAge];
         var comparedToClaimingFullEs = window.gettext( 'Compared to claiming at' );
         var comparedToClaimingEs = comparedToClaimingFullEs.split( 'XXX' );
-        $( '.compared-to-full' ).html( comparedToClaimingEs[0] + SSData.fullAge + comparedToClaimingEs[1] );
+        if ( $.isArray( comparedToClaimingFullEs ) && ( comparedToClaimingFullEs.length == 2 ) ) {
+          $( '.compared-to-full' ).html( comparedToClaimingEs[0] + ' ' + SSData.fullAge + ' ' + comparedToClaimingEs[1] + '.' );
+        } else {
+          $( '.compared-to-full' ).html( comparedToClaimingEs[0] + ' ' + SSData.fullAge + '.' );
+        }
       } else {
         $( '.compared-to-full' ).html( window.gettext( 'Compared to claiming at your full benefit claiming age.' ) );
       }
