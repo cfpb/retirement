@@ -365,9 +365,9 @@ var graphView = {
         var comparedToClaimingEsSplit = comparedToClaimingFullEs.split( 'XXX' );
         if ( typeof comparedToClaimingEsSplit !== 'undefined' ) {
           if ( comparedToClaimingEsSplit.length == 2 ) {
-            $( '.compared-to-full' ).html( comparedToClaimingEsSplit[0] + ' ' + SSData.fullAge + ' ' + comparedToClaimingEsSplit[1] );
+            $( '.compared-to-full' ).html( comparedToClaimingEsSplit[0] + ' ' + SSData.currentAge + ' ' + comparedToClaimingEsSplit[1] );
           } else {
-            $( '.compared-to-full' ).html( comparedToClaimingEsSplit[0] + ' ' + SSData.fullAge + '.' );
+            $( '.compared-to-full' ).html( comparedToClaimingEsSplit[0] + ' ' + SSData.currentAge + '.' );
           }
         }
       } else {
