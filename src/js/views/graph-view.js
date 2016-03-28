@@ -364,7 +364,7 @@ var graphView = {
         var comparedToClaimingFullEs = window.gettext( 'Compared to claiming at' );
         var comparedToClaimingEsSplit = comparedToClaimingFullEs.split( 'XXX' );
         if ( typeof comparedToClaimingEsSplit !== 'undefined' ) {
-          if ( comparedToClaimingEsSplit.length == 2 ) {
+          if ( comparedToClaimingEsSplit.length === 2 ) {
             $( '.compared-to-full' ).html( comparedToClaimingEsSplit[0] + ' ' + SSData.currentAge + ' ' + comparedToClaimingEsSplit[1] );
           } else {
             $( '.compared-to-full' ).html( comparedToClaimingEsSplit[0] + ' ' + SSData.currentAge + '.' );
