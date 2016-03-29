@@ -20,9 +20,15 @@ except:  # pragma: no cover
     standalone = False
 
 if standalone:
-    base_template = "standalone_base.html"
-else:
-    base_template = "%s/templates/base.html" % BASEDIR
+    base_template = "standalone/base_update.html"
+else:  # pragma: no cover
+    base_template = "front/base_update.html"
+
+
+# if standalone:
+#     base_template = "standalone_base.html"
+# else:
+#     base_template = "%s/templates/base.html" % BASEDIR
 
 
 def claiming(request, es=False):

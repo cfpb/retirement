@@ -1,84 +1,34 @@
 {% extends base_template %}
-{% load i18n %}
 {% load staticfiles %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block page_viewport %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block nemo_styles %}
+    <!--[if gt IE 8]>
+    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/woff.css{{ STATIC_VERSION }}">
+    <!<![endif]-->
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/eot.css">
+    <![endif]-->
+    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/styles.css{{ STATIC_VERSION }}">
+{% endblock %}
+
+{% block app_css %}
+<!--[if lt IE 9]>
+      <link rel="stylesheet" href="{% static "retirement/css/main.ie.css" %}"">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+      <link rel="stylesheet" href="{% static "retirement/css/main.min.css" %}">
+  <!--<![endif]-->
+{% endblock %}
+{% block app_js %}
+  <script src="{% static "retirement/js/main.js" %}"></script>
+  <script src="{% static "retirement/jsi18n/en/djangojs.js" %}"></script>
+{% endblock %}
 {% block content %}
-<script>
-  if(document.getElementsByTagName("body")) {
-    var bodyTag = document.getElementsByTagName("body")[0];
-    bodyTag.className += " js";
-  }
-  if (document.getElementsByTagName("html")) {
-    var htmlTag = document.getElementsByTagName("html")[0];
-    var classes = htmlTag.className;
-    htmlTag.className = classes.replace("no-js", "");
-  }
-</script>
-    <div id="page">
-
-
-      <!-- top banner -->
-      <div class="nemo">
-        <div class="wrapper-banner">
-            <div class="wrapper-container">
-                <span class="split">
-                    <span class="official-website">An official website of the United States Government</span>
-                    <div class="split-right language-banner">
-                      <a href="/es/" hreflang="es" class="espanol-link">Español</a>
-                      <a href="/lang/#zh" hreflang="zh">中文</a>
-                      <a href="/lang/#vi" hreflang="vi">Tiếng Việt</a>
-                      <a href="/lang/#ko" hreflang="ko">한국어</a>
-                      <a href="/lang/#tl" hreflang="tl">Tagalog</a>
-                      <a href="/lang/#ru" hreflang="ru">Pусский</a>
-                      <a href="/lang/#ar" hreflang="ar">العربية</a>
-                      <a href="/lang/#ht" hreflang="ht">Kreyòl Ayisyen</a>
-                  </div>
-                </span>
-            </div>
-        </div><!-- .wrapper-banner -->
-
-        <!-- header and nav -->
-        <header id="header">
-            <div role="banner">
-                <a class="toggle-menu" href="#"><i class="cf-icon cf-icon-menu"></i><span class="visuallyhidden">Menu</span></a>
-                <h1>
-                  <a href="/" class="noStyles">
-                      <img id="logo"
-                           class="logo__js"
-                           src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.svg"
-                           onerror="this.src='http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.png';"
-                           alt="Consumer Financial Protection Bureau"
-                           width="262"
-                           height="66">
-                      <noscript>
-                        <img id="logo" class="logo__no-js" src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/logo.png" alt="Consumer Financial Protection Bureau" width="262" height="66">
-                      </noscript>
-                  </a>
-              </h1>
-              <p class="lang"><span class="tel"><a href="tel:+18554112372">Contact us&nbsp;&nbsp;<strong>(855) 411-2372</strong></a></span></p>
-              <form accept-charset="UTF-8" action="http://search.consumerfinance.gov/search" class="single" id="search_form" method="get">
-                <input name="utf8" type="hidden" value="✓">
-                <input id="affiliate" name="affiliate" type="hidden" value="cfpb">
-                <div class="inf">
-                  <label for="query" id="search-placeholder">Search</label>
-                  <input id="query" name="query" type="text">
-                </div>
-                <button>Go</button>
-              </form>
-            </div>
-            <nav class="main" role="navigation">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="#inside">Inside the CFPB</a></li>
-                    <li><a href="#assistance">Get assistance</a></li>
-                    <li><a href="#participate">Participate</a></li>
-                    <li><a href="#regulation">Law &amp; Regulation</a></li>
-                    <li><a href="#alert" class="complaint">Submit a complaint</a></li>
-                </ul>
-            </nav>
-        </header>
-      </div>
-
-
 <div id="claiming-social-security" class="claiming-social-security">
   <div id="claiming-hero-bg"></div>
         <div id="wrapper">
@@ -561,27 +511,4 @@
           </section>
         </div>
 
-    </div><!-- /#page -->
-
-<!-- for search.usa.gov indexing -->
-<script type="text/javascript">
-  //<![CDATA[
-    var aid = "cfpb";
-    var script = document.createElement('script');
-    script.type = "text/javascript";
-    script.src = "http://search.usa.gov/javascripts/stats.js";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  //]]>
-</script>
-
-<script type="text/javascript">
-    // If there are no breadcrumbs on this page, remove the ul tag so that screen
-    // readers don't read it (since the ul has nothing in it).
-    $(function(){
-        var numBreadCrumbs = $("ul.bread").children("li").length;
-        if(numBreadCrumbs == 0){
-            $("ul.bread").remove();
-        }
-    });
-</script>
 {% endblock %}
