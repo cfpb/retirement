@@ -9,6 +9,8 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - translate date placeholders and explanatory text for folks past FRA
 - added urls, view and empty templates for 'about' pages in English and Spanish
 - Add 'about' page content
+- Fixed additional claiming phrasing errors
+- Removed final references to raphael-min.js and fixed spinner direction
 
 ## 0.4.58
 - switch back to ssa.gov for our requests, after SSA started redirecting calls to socialsecurity.gov

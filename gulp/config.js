@@ -23,6 +23,8 @@ module.exports = {
   lint: {
     src: [
       loc.src + '/js/**/*.js',
+      loc.src + '/js/*.js',
+      loc.src + '/js/*/*.js',
       '!' + loc.src + '/js/utils/nemo.js'
     ],
     gulp: [
@@ -56,6 +58,7 @@ module.exports = {
       loc.lib + '/jquery.easing/js/jquery.easing.js',
       loc.lib + '/cf-*/src/js/*.js',
       loc.src + '/js/**/*.js',
+      loc.src + '/js/*/*.js',
       loc.src + '/js/*.js',
     ],
     dest: loc.dist + '/js/',
@@ -95,10 +98,6 @@ module.exports = {
         loc.lib + '/box-sizing-polyfill/boxsizing.htc',
         loc.lib + '/html5shiv/dist/html5shiv-printshiv.min.js'
       ],
-      dest: loc.dist + '/js/'
-    },
-    raphael: {
-      src: loc.src + 'js/raphael-lib/*',
       dest: loc.dist + '/js/'
     }
   }

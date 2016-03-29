@@ -1,4 +1,5 @@
 var linkElement, hidemenu, dropdown, dropping;
+var $ = require( '../../vendor/jquery/dist/jquery.min.js' );
 
 function escHandler(e) {
     if(e.keyCode == 27) {

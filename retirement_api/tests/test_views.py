@@ -19,7 +19,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
-from retirement_api.views import param_check, income_check, estimator, get_full_retirement_age, claiming
+from retirement_api.views import (param_check,
+                                  income_check,
+                                  estimator,
+                                  get_full_retirement_age,
+                                  claiming,
+                                  about)
 from retirement_api.utils.ss_calculator import get_retire_data
 
 today = datetime.datetime.now().date()
@@ -157,3 +162,10 @@ class ViewTests(TestCase):
         request = self.req_invalid
         response = estimator(request, dob='1955-05-05')
         self.assertTrue(response.status_code == 400)
+
+    def test_about_pages(self):
+        request = self.req_good
+        response = about(request, language='en')
+        self.assertTrue(response.status_code == 200)
+        response_es = about(request, language='es')
+        self.assertTrue(response_es.status_code == 200)

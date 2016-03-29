@@ -2,12 +2,15 @@
 
 require( './utils/nemo' );
 require( './utils/nemo-shim' );
-var claimingPage = require( './claiming-graph');
+var graphView = require( './views/graph-view' );
+var questionsView = require( './views/questions-view' );
+var tooltipsView = require( './views/tooltips-view' );
 
 var app = {
   init: function() {
-    claimingPage.init();
-
+    graphView.init();
+    questionsView.init();
+    tooltipsView.init();
   }
 };
 

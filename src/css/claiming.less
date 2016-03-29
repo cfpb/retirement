@@ -274,9 +274,36 @@ form {
   font-family: 'AvenirNextLTW01-Demi', 'Arial', sans-serif;
   font-weight: 500;
 }
-#claim-canvas #full-age-benefits-text {
-  color: #919395;
-  font-family: 'AvenirNextLTW01-Regular', 'Arial', sans-serif;
+
+#claim-canvas {
+  #full-age-benefits-text {
+    color: #919395;
+    font-family: 'AvenirNextLTW01-Regular', 'Arial', sans-serif;
+  }
+
+  .graph__element {
+    position: absolute;
+  }
+
+  .graph__background {
+    background: #E3E4E5;
+    height: 1px;
+    left: 0px;
+  }
+
+  .graph__indicator {
+    background: #F8F8F8;
+    border: 1px solid #919395;
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    z-index: 10;
+  }
+
+  .graph__slider-line {
+    background: #E3E4E5;
+    height: 5px;
+  }
 }
 
 #claiming-social-security .estimated-longevity {
@@ -2028,12 +2055,12 @@ form {
 /* Spinning icons for loading indicators */
 
 .cf-icon__spin {
-  -webkit-animation: cf-spin 2s infinite linear reverse;
-  animation: cf-spin 2s infinite linear reverse;
+  -webkit-animation: cf-spin 2s infinite linear;
+  animation: cf-spin 2s infinite linear;
 }
 .cf-icon__pulse {
-  -webkit-animation: cf-spin 1s infinite steps(8) reverse;
-  animation: cf-spin 1s infinite steps(8) reverse;
+  -webkit-animation: cf-spin 1s infinite steps(8);
+  animation: cf-spin 1s infinite steps(8);
 }
 @-webkit-keyframes cf-spin {
   0% {
@@ -2057,4 +2084,3 @@ form {
     transform: rotate(359deg);
   }
 }
-
