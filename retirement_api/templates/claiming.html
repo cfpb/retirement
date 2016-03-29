@@ -108,8 +108,8 @@
           <label for="bd-year" class="input-labels"><input id="bd-year" type="text" maxlength="4" placeholder={% trans "YYYY" %} value="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"></label>
         </div>
         <div class="content-l_col content-l_col-1-3">
-          <label for="salary-input" class="input-labels"><p>{% trans "Highest annual work income" %} <span data-tooltip-target="salary" aria-describedby="salary" class="cf-icon cf-icon-help-round"></span></p><input id="salary-input" type="text" maxlength="" placeholder="$" value="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"></label>
-          <div class="tooltip-content" data-tooltip-name="salary" role="tooltip" aria-haspopup="true">
+          <label for="salary-input" class="input-labels"><span class="input-labels_block">{% trans "Highest annual work income" %} <span data-tooltip-target="salary" aria-describedby="salary-tooltip" class="cf-icon cf-icon-help-round"></span></span><input id="salary-input" type="text" placeholder="$" value="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"></label>
+          <div class="tooltip-content" id="salary-tooltip" data-tooltip-name="salary" role="tooltip" aria-haspopup="true">
             <p>{% trans tips.salary %}</p>
           </div>
         </div>
@@ -134,8 +134,8 @@
         <p class="h3 selected-retirement-age">{% trans "Age" %}
           <span id="selected-retirement-age-value" class="selected-retirement-age-value">67</span> <span class="benefit-modification-text">
           {% trans "is your full benefit claiming age." %}</span>
-          <p class="compared-to-full explainer">{% trans "Compared to claiming at your full benefit claiming age." %}</p>
         </p>
+        <p class="compared-to-full explainer">{% trans "Compared to claiming at your full benefit claiming age." %}</p>
       </div>
       <div class="total-benefits-container">
         <p class="total-benefits-text h4"><strong>{% trans "By age 85, an average lifespan, your total benefits will be" %}</strong></p>
@@ -211,7 +211,7 @@
       <p class="question h3">{% trans page.step2.instructions %}</p>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-married">
-      <img src="{% static "retirement/images/lifestyle-married.png" %}" class="lifestyle-img">
+      <img src="{% static "retirement/images/lifestyle-married.png" %}" class="lifestyle-img" alt="">
       <div class="lifestyle-question_container">
         <hr>
         <h3 class="lifestyle-question">{% trans questions.marriage.question %}</h3>
@@ -233,7 +233,7 @@
       </div>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-working age-split">
-      <img src="{% static "retirement/images/lifestyle-working.png" %}" class="lifestyle-img">
+      <img src="{% static "retirement/images/lifestyle-working.png" %}" class="lifestyle-img" alt="">
       <div class="lifestyle-question_container">
         <hr>
         <h3 class="lifestyle-question">{% trans questions.sixties.question %}</h3>
@@ -285,7 +285,7 @@
   </div>
   <div class="content-l step-two">
     <div class="content-l_col content-l_col-1-3 question question-expenses age-split">
-      <img src="{% static "retirement/images/lifestyle-expenses.png" %}" class="lifestyle-img">
+      <img src="{% static "retirement/images/lifestyle-expenses.png" %}" class="lifestyle-img" alt="">
       <div class="lifestyle-question_container">
         <hr>
         <h3 class="lifestyle-question">{% trans questions.expenses.question %}</h3>
@@ -319,7 +319,7 @@
       </div>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-income age-split">
-      <img src="{% static "retirement/images/lifestyle-income.png" %}" class="lifestyle-img">
+      <img src="{% static "retirement/images/lifestyle-income.png" %}" class="lifestyle-img" alt="">
       <div class="lifestyle-question_container">
         <hr>
         <h3 class="lifestyle-question">{% trans questions.income.question %}</h3>
@@ -374,7 +374,7 @@
       </div>
     </div>
     <div class="content-l_col content-l_col-1-3 question question-longevity">
-      <img src="{% static "retirement/images/lifestyle-longevity.png" %}" class="lifestyle-img">
+      <img src="{% static "retirement/images/lifestyle-longevity.png" %}" class="lifestyle-img" alt="">
       <div class="lifestyle-question_container">
         <hr>
         <h3 class="lifestyle-question">{% trans questions.longlife.question %}</h3>

@@ -100,7 +100,6 @@ class UtilitiesTests(unittest.TestCase):
                      ('{0}'.format(self.today.replace(year=self.today.year - 1)), 1),
                      (self.today.replace(year=self.today.year - 20), 20),
                      (self.today.replace(year=self.today.year - 60), 60),
-                     (self.today, None),
                      ('xx', None),
                      (self.today + datetime.timedelta(days=2), None)]
         for pair in age_pairs:
@@ -158,7 +157,7 @@ class UtilitiesTests(unittest.TestCase):
         results = interpolate_benefits(mock_results, 2176, (67, 0), 44, dob)
         for key in results['data']['benefits'].keys():
             self.assertEqual(results['data']['benefits'][key], benefits[key])
-        mock_results['data']['benefits']['age 66'] = mock_results['data']['benefits']['age 67'] 
+        mock_results['data']['benefits']['age 66'] = mock_results['data']['benefits']['age 67']
         mock_results['data']['benefits']['age 67'] = 0
         dob = self.today - datetime.timedelta(days=365*55)
         results = interpolate_benefits(mock_results, 2176, (66, 0), 55, dob)
