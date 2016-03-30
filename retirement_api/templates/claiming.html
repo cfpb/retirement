@@ -1,42 +1,39 @@
 {% extends base_template %}
+<!--HOWDY from CLAIMING.html-->
+<!--Spanish context is {{es}} -->
 {% load staticfiles %}
 {% load static from staticfiles %}
 {% load i18n %}
+{% trans "Yes" as YES %}
+{% trans "No" as NO %}
+{% trans "Not Sure" as NOTSURE %}
+{% trans "Step" as STEP %}
+{% block title %} {% trans page.title %} {% endblock %}
+{% if es %}
+{% block languge %}es{% endblock %}
+{% endif %}
+
+{% block app_css %}
+  <!--[if lt IE 9]>
+      <link rel="stylesheet" href="{% static "retirement/css/main.ie.css" %}">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="{% static "retirement/css/main.min.css" %}">
+  <!--<![endif]-->
+{% if es %}
+  <script src="{% static "retirement/jsi18n/es/djangojs.js" %}"></script>
+{% else %}
+  <script src="{% static "retirement/jsi18n/en/djangojs.js" %}"></script>
+{% endif %}
+{% endblock %}
+
 {% block page_viewport %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% endblock %}
 
-{% block nemo_styles %}
-    <!--[if gt IE 8]>
-    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/woff.css{{ STATIC_VERSION }}">
-    <!<![endif]-->
-    <!--[if lt IE 9]>
-    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/eot.css">
-    <![endif]-->
-    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/styles.css{{ STATIC_VERSION }}">
-{% endblock %}
-
-{% block app_css %}
-<!--[if lt IE 9]>
-      <link rel="stylesheet" href="{% static "retirement/css/main.ie.css" %}"">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-      <link rel="stylesheet" href="{% static "retirement/css/main.min.css" %}">
-  <!--<![endif]-->
-{% endblock %}
-{% block app_js %}
-  <script src="{% static "retirement/js/main.js" %}"></script>
-  <script src="{% static "retirement/jsi18n/en/djangojs.js" %}"></script>
-{% endblock %}
 {% block content %}
 <div id="claiming-social-security" class="claiming-social-security">
   <div id="claiming-hero-bg"></div>
-        <div id="wrapper">
-        <section id="maincontent">
-            <ul class="bread meta">
-
-
-            </ul> <!-- /class=bread -->
   <div class="claiming-hero">
     <h1 class="content-l_col content-l_col-2-3">{% trans page.h1|safe %}</h1>
     <p class="content-l_col content-l_col-2-3">{% trans page.intro %}</p>
@@ -121,7 +118,7 @@
         <p>{% trans "Remember, claiming age here refers only to your Social Security retirement benefit, and not when you decide to stop working or apply for Medicare." %}</p>
       </div>
 
-      <p class="learn-how"><a href="{% trans "https://www.ssa.gov/OACT/quickcalc/faqs.html#8" %}" class="external-link" target="_blank">{% trans "Learn how estimates are calculated." %}</a></p>
+      <p class="learn-how"><a href="about/" target="_blank">{% trans "Learn how estimates are calculated." %}</a></p>
 
     </div>
     <div class="content-l_col content-l_col-2-3 canvas-container">
@@ -396,8 +393,6 @@
         </div>
     </div>
   </div>
-  </section><!--/main_content-->
-  </div><!-- /wrapper -->
   <div id="tooltip-container">
     <div class="outertip"> </div>
     <div class="innertip"> </div>
@@ -510,5 +505,7 @@
             </nav>
           </section>
         </div>
-
+{% endblock %}
+{% block app_js %}
+  <script src="{% static "retirement/js/main.js" %}"></script>
 {% endblock %}
