@@ -8,6 +8,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Fixes error message for ages over 70
 - translate date placeholders and explanatory text for folks past FRA
 - added urls, view and empty templates for 'about' pages in English and Spanish
+- Add 'about' page content
 - Fixed additional claiming phrasing errors
 - Removed final references to raphael-min.js and fixed spinner direction
 
