@@ -5,12 +5,16 @@ import json
 
 import mock
 
+from django.test import Client
+from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.test import TestCase
 # import unittest
 from django.http import HttpRequest
+from django.conf import settings
 
+client = Client()
 # if __name__ == '__main__':
 #     BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
 # else:
@@ -44,6 +48,8 @@ PARAMS = {
 
 
 class ViewTests(TestCase):
+    fixtures = ['retiredata.json']
+
     req_good = HttpRequest()
     req_good.GET['dob'] = '1955-05-05'
     req_good.GET['income'] = '40000'
@@ -55,32 +61,13 @@ class ViewTests(TestCase):
     req_invalid.GET['income'] = 'x'
     return_keys = ['data', 'error']
 
-    @mock.patch('retirement_api.models.Page.objects.get')
-    @mock.patch('retirement_api.models.AgeChoice.objects.all')
-    @mock.patch('retirement_api.models.Tooltip.objects.all')
-    @mock.patch('retirement_api.models.Question.objects.all')
-    @mock.patch('retirement_api.models.Step.objects.filter')
-    def test_base_view(self,
-                       mock_step,
-                       mock_question,
-                       mock_tooltip,
-                       mock_agechoice,
-                       mock_page):
-        mock_step.return_value = []
-        mock_question.return_value = []
-        mock_tooltip.return_value = []
-        mock_agechoice.return_value = []
-        mock_page.return_value = []
-        mock_render_to_response = mock.MagicMock()
-        mock_request = mock.Mock()
-        claiming(mock_request)
-        self.assertTrue(mock_step.call_count == 1)
-        self.assertTrue(mock_question.call_count == 1)
-        self.assertTrue(mock_tooltip.call_count == 1)
-        self.assertTrue(mock_agechoice.call_count == 1)
-        self.assertTrue(mock_page.call_count == 1)
-        claiming(mock_request, es=True)
-        self.assertTrue(mock_page.call_count == 2)
+    def test_base_view(self):
+        url = reverse('claiming')
+        response = client.get(url)
+        self.assertTrue(response.status_code == 200)
+        url = reverse('claiming_es')
+        response = client.get(url)
+        self.assertTrue(response.status_code == 200)
 
     def test_param_check(self):
         self.assertEqual(param_check(self.req_good, 'dob'), '1955-05-05')
@@ -148,24 +135,15 @@ class ViewTests(TestCase):
         response = estimator(request, dob='1955-05-05')
         self.assertTrue(response.status_code == 400)
 
-    # def test_estimator_query_data_bad_dob(self):
-    #     request = self.req_invalid
-    #     response = estimator(request, income='40000')
-    #     self.assertTrue(response.status_code == 400)
-
-    # def test_estimator_query_data_bad_dob_of_today(self):
-    #     request = self.req_blank
-    #     response = estimator(request, income='40000', dob="%s" % today)
-    #     self.assertTrue(response.status_code == 400)
-
     def test_estimator_query_data_bad_income(self):
         request = self.req_invalid
         response = estimator(request, dob='1955-05-05')
         self.assertTrue(response.status_code == 400)
 
     def test_about_pages(self):
-        request = self.req_good
-        response = about(request, language='en')
+        url = reverse('about')
+        response = client.get(url)
         self.assertTrue(response.status_code == 200)
-        response_es = about(request, language='es')
-        self.assertTrue(response_es.status_code == 200)
+        url = reverse('about_es', kwargs={'language': 'es'})
+        response = client.get(url)
+        self.assertTrue(response.status_code == 200)
