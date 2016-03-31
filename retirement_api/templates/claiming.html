@@ -179,8 +179,6 @@
         <span>{% trans "View estimated benefits as:" %}</span><span><label><input type="radio" name="benefits-display" value="monthly" checked> {% trans "monthly income" %}</label> <label><input type="radio" name="benefits-display" value="annual"> {% trans "annual income" %}</label> </span>
       </div>
       <div id="claim-canvas" class="claim-canvas">
-        <div id="graph__indicator" class="graph__element graph__indicator"></div>
-        <div id="graph__slider-line" class="graph__element graph__slider-line"></div>
         <div class="graph__element graph__background" data-bg-bar-number="1"></div>
         <div class="graph__element graph__background" data-bg-bar-number="2"></div>
         <div class="graph__element graph__background" data-bg-bar-number="3"></div>
@@ -198,6 +196,9 @@
         <div id="benefits-text" class="h3">
         </div>
         <div id="full-age-benefits-text" class="h3">
+        </div>
+        <div class="graph_slider">
+          <input id="graph_slider-input" type="range" min="62" max="70" step="1">
         </div>
       </div>
       <p class="y-axis-label">{% trans "Estimated benefits" %}</p>

@@ -16,11 +16,11 @@ var graphView = {
     graphHeight : 0,
     gutterWidth : 0,
     barWidth : 0,
-    indicatorWidth : 0,
+    // indicatorWidth : 0,
     indicatorSide : 0,
     graphWidth : 0,
     barGut : 0,
-    indicatorLeftSet : 0,
+    // indicatorLeftSet : 0,
     barOffset : 0
   },
   ages: [ 62, 63, 64, 65, 66, 67, 68, 69, 70 ],
@@ -115,6 +115,7 @@ var graphView = {
 
     // Initialize the app
     this.redrawGraph();
+    this.initIndicator();
 
     // Window resize handler
     $( window ).resize( function() {
@@ -128,10 +129,6 @@ var graphView = {
       ev.preventDefault();
       $( 'nav.main ul' ).toggleClass( 'vis' );
     } );
-
-    // Indicator moving
-
-    $( '#claim-canvas' ).on( 'mousedown', '#graph__indicator', graphView.indicatorDrag );
   },
 
   /*
@@ -157,18 +154,17 @@ var graphView = {
     }
   },
 
-  indicatorDrag: function() {
-    $( 'html' ).on( 'mousemove', function( ev ) {
-      var $indicator = $( '#graph__indicator' ),
-          indOffset = $indicator.offset();
-      ev.preventDefault();
-      $( 'html' ).css( 'cursor', 'move' );
-      graphView.moveIndicator( ev.pageX );
-    } );
-    $( document ).on( 'mouseup', function( ev ) {
-      $( 'html' ).css( 'cursor', 'auto' );
-      $( 'html' ).off( 'mousemove' );
-    } );
+  /*
+   * Initializes the listener on the slider indicator
+   */
+  initIndicator: function() {
+    var $indicator = $( '#graph_slider-input' );
+    // Need both onchange and oninput to work in all browsers
+    // http://www.impressivewebs.com/onchange-vs-oninput-for-range-sliders/
+    $indicator.on( 'change input', function() {
+      var indicatorValue = Number( $( this ).val() );
+      graphView.setAgeWithIndicator( indicatorValue );
+    });
   },
 
   highlightAgeFields: function( bool ) {
@@ -263,7 +259,7 @@ var graphView = {
   setTextByAge: function() {
     var gset = this.graphSettings,
         SSData = getModelValues.benefits(),
-        x = this.ages.indexOf( this.selectedAge ) * gset.barGut + gset.indicatorLeftSet,
+        // x = this.ages.indexOf( this.selectedAge ) * gset.barGut + gset.indicatorLeftSet,
         lifetimeBenefits = numToMoney( ( 85 - this.selectedAge ) * 12 * SSData['age' + this.selectedAge] ),
         fullAgeBenefitsValue = SSData['age' + SSData.fullAge],
         benefitsValue = SSData['age' + this.selectedAge],
@@ -381,80 +377,62 @@ var graphView = {
   },
 
   /*
-   * moveIndicator( x ): Move the pointed indicator based on mouse x position.
+   * Sets an age on the graph when the indicator is moved
+   * @param {number} indicatorValue Value of the range slider
    */
-  moveIndicator: function ( x ) {
+  setAgeWithIndicator: function ( indicatorValue ) {
     var SSData = getModelValues.benefits(),
-        gset = graphView.graphSettings,
-        $indicator = $( '#graph__indicator' ),
-        canvasOffset = $( '#claim-canvas' ).offset().left,
-        newX = x - canvasOffset;
+        $indicator = $( '#graph_slider-input' );
+        // gset = graphView.graphSettings,
+        // $indicator = $( '#graph__indicator' ),
+        // canvasOffset = $( '#claim-canvas' ).offset().left,
+        // newX = x - canvasOffset;
+    graphView.selectedAge = indicatorValue;
+    // Don't let the user select an age younger than they are now
+    if ( graphView.selectedAge < SSData.currentAge ) {
+      graphView.selectedAge = SSData.currentAge;
+      $indicator.val( graphView.selectedAge );
+    }
+    graphView.drawBars();
+    graphView.setTextByAge();
 
-    // If new position is farther right than the right-most position, set it to the max value.
-    if ( newX > gset.barGut * 8 ) {
-      newX = gset.barGut * 8;
-    }
-    // If new position is farther left than the left-most position, set it to the min value.
-    if ( newX < 0 ) {
-      newX = 0;
-    }
-    newX = Math.round( newX / gset.barGut ) * ( gset.barGut ) + gset.indicatorLeftSet;
-    // graphView.indicator.transform( 't' + newX + ',0' );
-    if ( graphView.selectedAge !== Math.round( newX / gset.barGut ) ) {
-      graphView.selectedAge = 62 + Math.round( newX / gset.barGut );
-      // Don't let the user select an age younger than they are now
-      if ( graphView.selectedAge < SSData.currentAge ) {
-        graphView.selectedAge = SSData.currentAge;
-        newX = graphView.ages.indexOf( SSData.currentAge ) * gset.barGut + gset.indicatorLeftSet;
-      }
-      graphView.drawBars();
-      graphView.setTextByAge();
-    }
-    $indicator.css( 'left', newX );
+    // // If new position is farther right than the right-most position, set it to the max value.
+    // if ( newX > gset.barGut * 8 ) {
+    //   newX = gset.barGut * 8;
+    // }
+    // // If new position is farther left than the left-most position, set it to the min value.
+    // if ( newX < 0 ) {
+    //   newX = 0;
+    // }
+    // newX = Math.round( newX / gset.barGut ) * ( gset.barGut ) + gset.indicatorLeftSet;
+    // // graphView.indicator.transform( 't' + newX + ',0' );
+    // if ( graphView.selectedAge !== Math.round( newX / gset.barGut ) ) {
+    //   graphView.selectedAge = 62 + Math.round( newX / gset.barGut );
+    //   // Don't let the user select an age younger than they are now
+    //   if ( graphView.selectedAge < SSData.currentAge ) {
+    //     graphView.selectedAge = SSData.currentAge;
+    //     newX = graphView.ages.indexOf( SSData.currentAge ) * gset.barGut + gset.indicatorLeftSet;
+    //   }
+    //   graphView.drawBars();
+    //   graphView.setTextByAge();
+    // }
+    // $indicator.css( 'left', newX );
   },
 
   /*
-   * moveIndicatorToAge(age): Uses moveIndicator to move the indicator to age
+   * Uses setAgeWithIndicator to move the indicator to age
    * NOTE: This function is all that's require to change the chart to a different age
    */
   moveIndicatorToAge: function( age ) {
     var gset = this.graphSettings,
         SSData = getModelValues.benefits(),
-        newX;
+        $indicator = $( '#graph_slider-input' );
     if ( age < SSData.currentAge ) {
       age = SSData.currentAge;
     }
     age = Number( age );
-    newX = $( '#claim-canvas' ).offset().left;
-    newX += graphView.ages.indexOf( age ) * gset.barGut + gset.indicatorLeftSet;
-    this.moveIndicator( newX );
-  },
-
-  /*
-   * drawIndicator(): draws the indicator
-   */
-  drawIndicator: function() {
-    var $indicator = $( '#graph__indicator' ),
-        gset = this.graphSettings,
-        SSData = getModelValues.benefits(),
-        top = gset.graphHeight - 25,
-        posX;
-
-    // draw a new slider line
-    if ( $(window).width() >= 850 ) {
-      top -= 10;
-    }
-
-    // set up initial indicator text and position
-    if ( SSData.currentAge === 0 ) {
-      this.selectedAge = SSData.fullAge;
-    }
-    posX = this.ages.indexOf( this.selectedAge ) * gset.barGut + gset.indicatorLeftSet;
-    $indicator.css( {
-      'left': posX,
-      'top': top
-    } );
-    this.setTextByAge();
+    $indicator.val( age );
+    this.setAgeWithIndicator( age );
   },
 
   /**
@@ -467,8 +445,8 @@ var graphView = {
         barWidth,
         barOffset,
         gutterWidth,
-        indicatorWidth,
-        indicatorLeftSet,
+        // indicatorWidth,
+        // indicatorLeftSet,
         heightRatio,
         SSData = getModelValues.benefits();
 
@@ -498,19 +476,20 @@ var graphView = {
     gutterWidth = Math.floor( graphWidth / 17 );
     this.changeGraphSetting( 'gutterWidth', gutterWidth );
 
-    indicatorWidth = 30;
-    this.changeGraphSetting( 'indicatorWidth', indicatorWidth );
+    // indicatorWidth = 30;
+    // this.changeGraphSetting( 'indicatorWidth', indicatorWidth );
 
     this.changeGraphSetting( 'barGut', barWidth + gutterWidth );
 
-    indicatorLeftSet = Math.ceil( ( barWidth - indicatorWidth ) / 2 );
-    this.changeGraphSetting( 'indicatorLeftSet', indicatorLeftSet );
+    // indicatorLeftSet = Math.ceil( ( barWidth - indicatorWidth ) / 2 );
+    // this.changeGraphSetting( 'indicatorLeftSet', indicatorLeftSet );
 
     heightRatio = ( graphHeight - barOffset ) / SSData.age70;
     this.changeGraphSetting( 'heightRatio', heightRatio );
 
     $( '#claim-canvas, .x-axis-label' ).width( graphWidth );
     $( '#claim-canvas').height( graphHeight );
+    $( '#graph_slider-input' ).width( ( barWidth * 9 ) + ( gutterWidth * 8 ) + 5 );
   },
 
   /*
@@ -613,10 +592,10 @@ var graphView = {
       leftOffset += gset.barGut;
     } );
 
-    var minAgeLeft = Math.ceil( gset.indicatorLeftSet + ( gset.indicatorWidth - $( '#min-age-text' ).width() ) / 2 );
-    $( '#min-age-text' ).css( 'left', minAgeLeft );
-    var minAgeRight = Math.ceil( ( this.ages.length - 1 ) * gset.barGut + gset.indicatorLeftSet + ( gset.indicatorWidth - $( '#max-age-text' ).width() ) / 2 );
-    $( '#max-age-text' ).css( 'left', minAgeRight );
+    // var minAgeLeft = Math.ceil( gset.indicatorLeftSet + ( gset.indicatorWidth - $( '#min-age-text' ).width() ) / 2 );
+    // $( '#min-age-text' ).css( 'left', minAgeLeft );
+    // var minAgeRight = Math.ceil( ( this.ages.length - 1 ) * gset.barGut + gset.indicatorLeftSet + ( gset.indicatorWidth - $( '#max-age-text' ).width() ) / 2 );
+    // $( '#max-age-text' ).css( 'left', minAgeRight );
   },
 
   /**
@@ -627,7 +606,6 @@ var graphView = {
     this.setGraphDimensions();
     this.drawGraphBackground();
     this.drawBars();
-    this.drawIndicator();
     this.drawAgeBoxes();
   },
 
