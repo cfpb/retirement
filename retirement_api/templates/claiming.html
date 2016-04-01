@@ -1,16 +1,10 @@
 {% extends base_template %}
-<!--HOWDY from CLAIMING.html-->
-<!--Spanish context is {{es}} -->
 {% load staticfiles %}
 {% load static from staticfiles %}
 {% load i18n %}
-{% trans "Yes" as YES %}
-{% trans "No" as NO %}
-{% trans "Not Sure" as NOTSURE %}
-{% trans "Step" as STEP %}
 {% block title %} {% trans page.title %} {% endblock %}
 {% if es %}
-{% block languge %}es{% endblock %}
+  {% block languge %}es{% endblock %}
 {% endif %}
 
 {% block app_css %}
@@ -32,6 +26,12 @@
 {% endblock %}
 
 {% block content %}
+<!--HOWDY from CLAIMING.html-->
+<!--Spanish context is {{es}} -->
+{% trans "Yes" as YES %}
+{% trans "No" as NO %}
+{% trans "Not Sure" as NOTSURE %}
+{% trans "Step" as STEP %}
 <div id="claiming-social-security" class="claiming-social-security">
   <div id="claiming-hero-bg"></div>
   <div class="claiming-hero">
