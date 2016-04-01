@@ -4,10 +4,6 @@
 {% load staticfiles %}
 {% load static from staticfiles %}
 {% load i18n %}
-{% trans "Yes" as YES %}
-{% trans "No" as NO %}
-{% trans "Not Sure" as NOTSURE %}
-{% trans "Step" as STEP %}
 {% block title %} {% trans page.title %} {% endblock %}
 {% if es %}
 {% block languge %}es{% endblock %}
@@ -31,13 +27,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% endblock %}
 
+{% block responsive_nav %}
+<a class="toggle-menu" href="#"><i class="cf-icon cf-icon-menu"></i>
+    <span class="u-visually-hidden">Menu</span></a>
+{% endblock %}
+
 {% block content %}
+{% trans "Yes" as YES %}
+{% trans "No" as NO %}
+{% trans "Not Sure" as NOTSURE %}
+{% trans "Step" as STEP %}
+<main class="content" role="main">
 <div id="claiming-social-security" class="claiming-social-security">
-  <div id="claiming-hero-bg"></div>
-  <div class="claiming-hero">
-    <h1 class="content-l_col content-l_col-2-3">{% trans page.h1|safe %}</h1>
-    <p class="content-l_col content-l_col-2-3">{% trans page.intro %}</p>
-  </div>
+  <section class="content_hero hero claiming-hero" style="background: #FFCE8D">
+      <div class="hero_wrapper wrapper">
+          <div class="hero_text">
+              <h1 class="hero_heading content-l_col content-l_col-2-3">
+                  {% trans page.h1|safe %}
+              </h1>
+              <p class="hero_subhead content-l_col content-l_col-2-3">
+                  {% trans page.intro %}
+              </p>
+          </div>
+          <div class="hero_image"></div>
+      </div>
+  </section>
 
   <div class="content-l step-one">
     <h2 class="content-l_col content-l_col-2-3"><strong>{{STEP}} 1: </strong>{% trans page.step1.title %}</h2>
