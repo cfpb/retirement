@@ -69,24 +69,24 @@ def check_data(data):
 
 prefix = 'http://'
 suffix = '.consumerfinance.gov/retirement'
-api_string = 'retirement-api/estimator/%s-%s-%s/%s/' % (dob.month,
+api_string = 'retirement-api/estimator/{0}-{1}-{2}/{3}/'.format(dob.month,
                                                            random.randrange(1, 28),
                                                            dob.year,
                                                            random.randrange(20000, 100000))
 BASES = {
     'unitybox': 'http://localhost:8080/retirement',
     'standalone': 'http://localhost:8000',
-    default_base: '%s%s%s' % (prefix, default_base, suffix),
-    'prod': '%swww%s' % (prefix, suffix),
+    default_base: '{0}{1}{2}'.format(prefix, default_base, suffix),
+    'prod': '{0}www{1}}'.format(prefix, suffix),
     }
 
 
 def run(base):
-    url = "%s/%s" % (base, api_string)
+    url = "{0}/{1}".format(base, api_string)
     signal.signal(signal.SIGALRM, handler)
     signal.alarm(timeout_seconds)
     start = time.time()
-    print "trying request at %s" % url
+    print "trying request at {0}".format(url)
     try:
         test_request = requests.get(url)
     except requests.ConnectionError:
@@ -99,7 +99,7 @@ def run(base):
         end = time.time()
         signal.alarm(0)
         collector.status = "TIMEDOUT"
-        collector.error = 'SSA request exceeded %s sec' % timeout_seconds
+        collector.error = 'SSA request exceeded {0} sec'.format(timeout_seconds)
     else:
         if test_request.status_code != 200:
             signal.alarm(0)
