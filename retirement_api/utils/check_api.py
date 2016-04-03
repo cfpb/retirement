@@ -1,6 +1,6 @@
 # script to check the retirement api to make sure
 # the SSA Quick Calculator is operational
-# and to log the result to a csv (currently via cron)
+# and to log the result to a csv
 import os
 import sys
 import requests
@@ -15,7 +15,7 @@ timestamp = datetime.datetime.now()
 default_base = 'build'
 
 # rolling dob to guarantee subject is 44 and full retirement age is 67
-dob = timestamp - datetime.timedelta(days=44*365+60)
+dob = timestamp.replace(year=timestamp.year-44).date()
 timeout_seconds = 20
 
 API_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -31,7 +31,7 @@ def handler(signum, frame):
 
 class Collector(object):
     data = ''
-    date = ("%s" % timestamp)[:16]
+    date = ("{0}".format(timestamp))[:16]
     domain = ''
     status = ''
     error = ''
@@ -70,14 +70,14 @@ def check_data(data):
 prefix = 'http://'
 suffix = '.consumerfinance.gov/retirement'
 api_string = 'retirement-api/estimator/{0}-{1}-{2}/{3}/'.format(dob.month,
-                                                           random.randrange(1, 28),
+                                                           dob.day,
                                                            dob.year,
                                                            random.randrange(20000, 100000))
 BASES = {
     'unitybox': 'http://localhost:8080/retirement',
     'standalone': 'http://localhost:8000',
     default_base: '{0}{1}{2}'.format(prefix, default_base, suffix),
-    'prod': '{0}www{1}}'.format(prefix, suffix),
+    'prod': '{0}www{1}'.format(prefix, suffix),
     }
 
 

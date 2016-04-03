@@ -38,7 +38,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 class UtilitiesTests(unittest.TestCase):
     today = datetime.date.today()
-    if today.day == 29:
+    if today.day == 29:  # in case this test runs in Feb. in a leap year
         today = today.replace(day=today.day - 1)
     sample_params = {
         'dobmon': 1,
