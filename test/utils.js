@@ -6,6 +6,7 @@ var numToMoney = require( '../src/js/utils/num-to-money' );
 var calculateAge = require( '../src/js/utils/calculate-age' );
 var enforceRange = require( '../src/js/utils/enforce-range' );
 var validDates = require( '../src/js/utils/valid-dates' );
+var handleStringInput = require( '../src/js/utils/handle-string-input' );
 
 
 describe( 'numToMoney...', function() {
@@ -112,13 +113,21 @@ describe( 'validDates...', function() {
 });
 
 
-/**
- * Testing functions in claiming-graph.js
- */
+describe( 'handleStringInput...', function() {
 
-// describe( 'moveIndicatorToAge...', function() {
-//   it( '...should prevent you from selecting an age less than your current age', function() {
-//     expect( graph.moveIndicatorToAge( 63, 64 ) ).to.equal( false );
-//     expect( graph.moveIndicatorToAge( 66, 69 ) ).to.equal( false );
-//   });
-// });
+  it( '...will parse number strings with non-numeric characters', function() {
+    expect( handleStringInput( '9a99' ) ).to.equal( 999 );
+    expect( handleStringInput( 'u123456' ) ).to.equal( 123456 );
+    expect( handleStringInput( '01234' ) ).to.equal( 1234 );
+    expect( handleStringInput( '$1,234,567' ) ).to.equal( 1234567 );
+    expect( handleStringInput( 'Ilikethenumber5' ) ).to.equal( 5 );
+    expect( handleStringInput( 'function somefunction() { do badstuff; }' ) ).to.equal( 0 );
+  });
+
+  it( '...will parse the first period as a decimal point', function() {
+    expect( handleStringInput( '4.22' ) ).to.equal( 4.22 );
+    expect( handleStringInput( 'I.like.the.number.5' ) ).to.equal( 0.5 );
+    expect( handleStringInput( '1.2.3.4.5.6.7' ) ).to.equal( 1.234567 );
+  });
+
+});
