@@ -16,11 +16,9 @@ var graphView = {
     graphHeight : 0,
     gutterWidth : 0,
     barWidth : 0,
-    // indicatorWidth : 0,
     indicatorSide : 0,
     graphWidth : 0,
     barGut : 0,
-    // indicatorLeftSet : 0,
     barOffset : 0
   },
   ages: [ 62, 63, 64, 65, 66, 67, 68, 69, 70 ],
@@ -383,10 +381,6 @@ var graphView = {
   setAgeWithIndicator: function ( indicatorValue ) {
     var SSData = getModelValues.benefits(),
         $indicator = $( '#graph_slider-input' );
-        // gset = graphView.graphSettings,
-        // $indicator = $( '#graph__indicator' ),
-        // canvasOffset = $( '#claim-canvas' ).offset().left,
-        // newX = x - canvasOffset;
     graphView.selectedAge = indicatorValue;
     // Don't let the user select an age younger than they are now
     if ( graphView.selectedAge < SSData.currentAge ) {
@@ -395,28 +389,6 @@ var graphView = {
     }
     graphView.drawBars();
     graphView.setTextByAge();
-
-    // // If new position is farther right than the right-most position, set it to the max value.
-    // if ( newX > gset.barGut * 8 ) {
-    //   newX = gset.barGut * 8;
-    // }
-    // // If new position is farther left than the left-most position, set it to the min value.
-    // if ( newX < 0 ) {
-    //   newX = 0;
-    // }
-    // newX = Math.round( newX / gset.barGut ) * ( gset.barGut ) + gset.indicatorLeftSet;
-    // // graphView.indicator.transform( 't' + newX + ',0' );
-    // if ( graphView.selectedAge !== Math.round( newX / gset.barGut ) ) {
-    //   graphView.selectedAge = 62 + Math.round( newX / gset.barGut );
-    //   // Don't let the user select an age younger than they are now
-    //   if ( graphView.selectedAge < SSData.currentAge ) {
-    //     graphView.selectedAge = SSData.currentAge;
-    //     newX = graphView.ages.indexOf( SSData.currentAge ) * gset.barGut + gset.indicatorLeftSet;
-    //   }
-    //   graphView.drawBars();
-    //   graphView.setTextByAge();
-    // }
-    // $indicator.css( 'left', newX );
   },
 
   /*
@@ -476,13 +448,7 @@ var graphView = {
     gutterWidth = Math.floor( graphWidth / 17 );
     this.changeGraphSetting( 'gutterWidth', gutterWidth );
 
-    // indicatorWidth = 30;
-    // this.changeGraphSetting( 'indicatorWidth', indicatorWidth );
-
     this.changeGraphSetting( 'barGut', barWidth + gutterWidth );
-
-    // indicatorLeftSet = Math.ceil( ( barWidth - indicatorWidth ) / 2 );
-    // this.changeGraphSetting( 'indicatorLeftSet', indicatorLeftSet );
 
     heightRatio = ( graphHeight - barOffset ) / SSData.age70;
     this.changeGraphSetting( 'heightRatio', heightRatio );
@@ -544,21 +510,6 @@ var graphView = {
 
       yCoord = gset.graphHeight - Math.round( barInterval * count ) + 1;
     } );
-
-    // remove existing slider line
-    if ( typeof this.sliderLine === 'object' && typeof this.sliderLine.remove !== 'undefined' ) {
-      this.sliderLine.remove();
-    }
-
-    // draw a new slider line
-    sliderLineTop = gset.graphHeight - 21;
-    if ($(window).width() < 850) {
-      sliderLineTop = gset.graphHeight - 11;
-    }
-    $sliderLine.css( {
-      'top': sliderLineTop,
-      'width': totalWidth
-    } );
   },
 
   /**
@@ -591,11 +542,6 @@ var graphView = {
       }
       leftOffset += gset.barGut;
     } );
-
-    // var minAgeLeft = Math.ceil( gset.indicatorLeftSet + ( gset.indicatorWidth - $( '#min-age-text' ).width() ) / 2 );
-    // $( '#min-age-text' ).css( 'left', minAgeLeft );
-    // var minAgeRight = Math.ceil( ( this.ages.length - 1 ) * gset.barGut + gset.indicatorLeftSet + ( gset.indicatorWidth - $( '#max-age-text' ).width() ) / 2 );
-    // $( '#max-age-text' ).css( 'left', minAgeRight );
   },
 
   /**
