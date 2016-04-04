@@ -1,12 +1,10 @@
 {% extends base_template %}
-<!--HOWDY from CLAIMING.html-->
-<!--Spanish context is {{es}} -->
 {% load staticfiles %}
 {% load static from staticfiles %}
 {% load i18n %}
 {% block title %} {% trans page.title %} {% endblock %}
 {% if es %}
-{% block languge %}es{% endblock %}
+  {% block languge %}es{% endblock %}
 {% endif %}
 
 {% block app_css %}
@@ -414,7 +412,7 @@
       <div class="content">content</div>
     </div>
   </div>
-</div>
+
 
 
 
@@ -521,6 +519,7 @@
             </nav>
           </section>
         </div>
+</main>
 {% endblock %}
 {% block app_js %}
   <script src="{% static "retirement/js/main.js" %}"></script>
