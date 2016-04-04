@@ -11,6 +11,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Add 'about' page content
 - Fixed additional claiming phrasing errors
 - Removed final references to raphael-min.js and fixed spinner direction
+- Replace custom slider with a standard range input
 
 ## 0.4.58
 - switch back to ssa.gov for our requests, after SSA started redirecting calls to socialsecurity.gov

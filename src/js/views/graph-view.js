@@ -257,7 +257,6 @@ var graphView = {
   setTextByAge: function() {
     var gset = this.graphSettings,
         SSData = getModelValues.benefits(),
-        // x = this.ages.indexOf( this.selectedAge ) * gset.barGut + gset.indicatorLeftSet,
         lifetimeBenefits = numToMoney( ( 85 - this.selectedAge ) * 12 * SSData['age' + this.selectedAge] ),
         fullAgeBenefitsValue = SSData['age' + SSData.fullAge],
         benefitsValue = SSData['age' + this.selectedAge],
@@ -417,8 +416,6 @@ var graphView = {
         barWidth,
         barOffset,
         gutterWidth,
-        // indicatorWidth,
-        // indicatorLeftSet,
         heightRatio,
         SSData = getModelValues.benefits();
 
