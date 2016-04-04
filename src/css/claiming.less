@@ -32,8 +32,11 @@ form {
 }
 
 #maincontent {
-  width: 1168px;
   padding-top: 0px;
+}
+
+.content_wrapper {
+  width: 1168px;
 }
 
 #claiming-social-security h2,
@@ -103,9 +106,20 @@ form {
 
 #claiming-social-security .claiming-hero {
   background-color: #FFCE8D;
+}
 
-#claiming-social-security .version-b {
-  display:none;
+#claiming-social-security .claiming-hero .content-l_col {
+  border: none;
+  border-width: 0;
+  margin: 0;
+}
+
+#claiming-social-security .claiming-hero .content-l_col + .content-l_col {
+  margin-top: 0.55em;
+}
+
+#claiming-social-security .claiming-hero h1 span.header-line {
+  display: block;
 }
 
 #claiming-social-security .step-one {
@@ -464,6 +478,10 @@ form {
   opacity: .35;
 }
 
+#claiming-social-security .step-three {
+  margin-bottom: 60px;
+}
+
 #claiming-social-security .step-three h2 {
   margin-bottom: 30px;
 }
@@ -652,14 +670,18 @@ form {
   }
 }
 
+
 @media (max-width: 940px) {
-  [data-lang="en"] #claiming-social-security .claiming-hero {
-    background-image: none;
-  }
-  [data-lang="es"] #claiming-social-security .claiming-hero {
-    background-image: none;
+  #claiming-social-security .hero_image,
+  [data-lang="en"] #claiming-social-security .hero_image,
+  [data-lang="es"] #claiming-social-security .hero_image {
+    display: none;
   }
 
+  claiming-social-security .claiming-hero h1,
+  #claiming-social-security .claiming-hero p {
+    width: 100%;
+  }
 }
 
 
@@ -668,7 +690,6 @@ form {
 ==================================================================== */
 
 @media (max-width: 1190px) and (min-width: 1100px) {
-
   #claiming-social-security p.y-axis-label {
     top: 310px;
   }
@@ -798,6 +819,10 @@ form {
     border: none;
     display: block;
     width: auto;
+  }
+
+  #claiming-social-security .claiming-hero p {
+    margin-bottom: 0px;
   }
 
   #claiming-social-security .step-one {
@@ -960,7 +985,6 @@ form {
     width: 100%;
     padding: 0 15px 2em;
   }
-
 }
 
 /* TOOLTIPS */
@@ -1039,6 +1063,7 @@ form {
   user-select: none;
 }
 
+
 .cf-icon {
   font-family: 'CFPB Minicons';
   display: inline-block;
@@ -1094,36 +1119,3 @@ form {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e631');
 }
 */
-
-/* Spinning icons for loading indicators */
-
-.cf-icon__spin {
-  -webkit-animation: cf-spin 2s infinite linear;
-  animation: cf-spin 2s infinite linear;
-}
-.cf-icon__pulse {
-  -webkit-animation: cf-spin 1s infinite steps(8);
-  animation: cf-spin 1s infinite steps(8);
-}
-@-webkit-keyframes cf-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-    transform: rotate(359deg);
-  }
-}
-@keyframes cf-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
-    transform: rotate(359deg);
-  }
-}

@@ -39,13 +39,13 @@
 {% trans "Step" as STEP %}
 <main class="content" role="main">
 <div id="claiming-social-security" class="claiming-social-security">
-  <section class="content_hero hero claiming-hero" style="background: #FFCE8D">
+  <section class="content_hero hero claiming-hero">
       <div class="hero_wrapper wrapper">
           <div class="hero_text">
-              <h1 class="hero_heading content-l_col content-l_col-2-3">
+              <h1 class="hero_heading">
                   {% trans page.h1|safe %}
               </h1>
-              <p class="hero_subhead content-l_col content-l_col-2-3">
+              <p class="hero_subhead">
                   {% trans page.intro %}
               </p>
           </div>
@@ -53,364 +53,366 @@
       </div>
   </section>
 
-  <div class="content-l step-one">
-    <h2 class="content-l_col content-l_col-2-3"><strong>{{STEP}} 1: </strong>{% trans page.step1.title %}</h2>
-    <form id="step-one-form" name="step-one-form" action="#" class="content-l_col content-l_col-2-3">
-      <p class="h3 step-one-instructions">{% trans page.step1.instructions %}</p>
-      <div class="cf-notification cf-notification__warning">
-        <span class="cf-notification_icon cf-notification_icon__warning cf-icon cf-icon-error-round"></span>
-        <p class="cf-notification_text">Error message</p>
-      </div>
-      <div class="content-l">
-        <div class="content-l_col content-l_col-1-3 birthdate-inputs">
-          <p>{% trans "Date of birth" %}</p>
-          <label for="bd-month" class="input-labels"><input id="bd-month" type="text" maxlength="2" placeholder={% trans "MM" %} value="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"></label>
-          <label for="bd-day" class="input-labels"><input id="bd-day" type="text" maxlength="2" placeholder={% trans "DD" %} value="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"></label>
-          <label for="bd-year" class="input-labels"><input id="bd-year" type="text" maxlength="4" placeholder={% trans "YYYY" %} value="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"></label>
+  <div class="content_wrapper">
+    <div class="content-l step-one">
+      <h2 class="content-l_col content-l_col-2-3"><strong>{{STEP}} 1: </strong>{% trans page.step1.title %}</h2>
+      <form id="step-one-form" name="step-one-form" action="#" class="content-l_col content-l_col-2-3">
+        <p class="h3 step-one-instructions">{% trans page.step1.instructions %}</p>
+        <div class="cf-notification cf-notification__warning">
+          <span class="cf-notification_icon cf-notification_icon__warning cf-icon cf-icon-error-round"></span>
+          <p class="cf-notification_text">Error message</p>
         </div>
-        <div class="content-l_col content-l_col-1-3">
-          <label for="salary-input" class="input-labels"><p>{% trans "Highest annual work income" %} <span data-tooltip-target="salary" aria-describedby="salary" class="cf-icon cf-icon-help-round"></span></p><input id="salary-input" type="text" maxlength="" placeholder="$" value="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"></label>
-          <div class="tooltip-content" data-tooltip-name="salary" role="tooltip" aria-haspopup="true">
-            <p>{% trans tips.salary %}</p>
+        <div class="content-l">
+          <div class="content-l_col content-l_col-1-3 birthdate-inputs">
+            <p>{% trans "Date of birth" %}</p>
+            <label for="bd-month" class="input-labels"><input id="bd-month" type="text" maxlength="2" placeholder={% trans "MM" %} value="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"></label>
+            <label for="bd-day" class="input-labels"><input id="bd-day" type="text" maxlength="2" placeholder={% trans "DD" %} value="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"></label>
+            <label for="bd-year" class="input-labels"><input id="bd-year" type="text" maxlength="4" placeholder={% trans "YYYY" %} value="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"></label>
+          </div>
+          <div class="content-l_col content-l_col-1-3">
+            <label for="salary-input" class="input-labels"><p>{% trans "Highest annual work income" %} <span data-tooltip-target="salary" aria-describedby="salary" class="cf-icon cf-icon-help-round"></span></p><input id="salary-input" type="text" maxlength="" placeholder="$" value="" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false"></label>
+            <div class="tooltip-content" data-tooltip-name="salary" role="tooltip" aria-haspopup="true">
+              <p>{% trans tips.salary %}</p>
+            </div>
+          </div>
+          <div class="content-l_col content-l_col-1-3">
+            <button type="submit" id="get-your-estimates" class="get-your-estimates btn btn__disabled" disabled>{% trans "Get your estimates" %}<span id="api-data-loading-indicator" class="cf-icon cf-icon-update cf-icon__spin" ></span></button>
           </div>
         </div>
-        <div class="content-l_col content-l_col-1-3">
-          <button type="submit" id="get-your-estimates" class="get-your-estimates btn btn__disabled" disabled>{% trans "Get your estimates" %}<span id="api-data-loading-indicator" class="cf-icon cf-icon-update cf-icon__spin" ></span></button>
-        </div>
+      </form>
+      <div class="content-l_col content-l_col-1-3 estimate-info">
+        <p>{% trans page.step1.note|safe %}</p>
       </div>
-    </form>
-    <div class="content-l_col content-l_col-1-3 estimate-info">
-      <p>{% trans page.step1.note|safe %}</p>
     </div>
-  </div>
 
-  <div id="estimated-benefits-description" class="estimated-benefits-description h3 step-one-hidden">
-    <p><strong>{% trans "Your estimated benefits:" %}</strong></p>
-    <p>{% trans "Select claiming ages on the graph to see how your estimated benefit changes." %}</p>
-  </div>
+    <div id="estimated-benefits-description" class="estimated-benefits-description h3 step-one-hidden">
+      <p><strong>{% trans "Your estimated benefits:" %}</strong></p>
+      <p>{% trans "Select claiming ages on the graph to see how your estimated benefit changes." %}</p>
+    </div>
 
-  <div id="graph-container" class="content-l step-one-hidden">
-    <div class="content-l_col content-l_col-1-3">
-      <div class="selected-retirement-age-container">
-        <p class="h3 selected-retirement-age">{% trans "Age" %}
-          <span id="selected-retirement-age-value" class="selected-retirement-age-value">67</span> <span class="benefit-modification-text">
-          {% trans "is your full benefit claiming age." %}</span>
-          <p class="compared-to-full explainer">{% trans "Compared to claiming at your full benefit claiming age." %}</p>
-        </p>
-      </div>
-      <div class="total-benefits-container">
-        <p class="total-benefits-text h4"><strong>{% trans "By age 85, an average lifespan, your total benefits will be" %}</strong></p>
-        <p>
-          <span id="lifetime-benefits-value" class="lifetime-benefits-value h3"></span>&nbsp;<span class="todays-dollars explainer">({% trans "in today's dollars" %})</span>
-        </p>
-      </div>
-      <div class="graph-content">
-        <div class="content-container">
-          <p>{% trans tips.sole_source %}<p>
+    <div id="graph-container" class="content-l step-one-hidden">
+      <div class="content-l_col content-l_col-1-3">
+        <div class="selected-retirement-age-container">
+          <p class="h3 selected-retirement-age">{% trans "Age" %}
+            <span id="selected-retirement-age-value" class="selected-retirement-age-value">67</span> <span class="benefit-modification-text">
+            {% trans "is your full benefit claiming age." %}</span>
+            <p class="compared-to-full explainer">{% trans "Compared to claiming at your full benefit claiming age." %}</p>
+          </p>
         </div>
-        <div class="content-container max-retirement">
-          <h3 class="retirement-age">{% trans "About your maximum benefit claiming age:" %}</h3>
-          <ul>
-            <li>{% trans "Always 70." %}</li>
-            <li>{% trans "At this age, you will get the maximum possible monthly benefit." %}</li>
-          </ul>
+        <div class="total-benefits-container">
+          <p class="total-benefits-text h4"><strong>{% trans "By age 85, an average lifespan, your total benefits will be" %}</strong></p>
+          <p>
+            <span id="lifetime-benefits-value" class="lifetime-benefits-value h3"></span>&nbsp;<span class="todays-dollars explainer">({% trans "in today's dollars" %})</span>
+          </p>
         </div>
-        <div class="content-container full-retirement">
-          <h3 class="retirement-age">{% trans "About your full benefit claiming age:" %}</h3>
-          <ul>
-            <li>{% trans "It is based on the year you were born." %}</li>
-            <li>{% trans "At this age, you will receive your full benefit with no reductions." %}</li>
-          </ul>
+        <div class="graph-content">
+          <div class="content-container">
+            <p>{% trans tips.sole_source %}<p>
+          </div>
+          <div class="content-container max-retirement">
+            <h3 class="retirement-age">{% trans "About your maximum benefit claiming age:" %}</h3>
+            <ul>
+              <li>{% trans "Always 70." %}</li>
+              <li>{% trans "At this age, you will get the maximum possible monthly benefit." %}</li>
+            </ul>
+          </div>
+          <div class="content-container full-retirement">
+            <h3 class="retirement-age">{% trans "About your full benefit claiming age:" %}</h3>
+            <ul>
+              <li>{% trans "It is based on the year you were born." %}</li>
+              <li>{% trans "At this age, you will receive your full benefit with no reductions." %}</li>
+            </ul>
+          </div>
+          <div class="content-container early-retirement">
+            <h3 class="retirement-age">{% trans "About your early benefit claiming age:" %}</h3>
+            <ul>
+              <li>{% trans "Earliest age you can claim your benefit is 62." %}</li>
+              <li>{% trans "If you claim your benefit before your full claiming age, it will be reduced." %}</li>
+            </ul>
+          </div>
+          <p>{% trans "Remember, claiming age here refers only to your Social Security retirement benefit, and not when you decide to stop working or apply for Medicare." %}</p>
         </div>
-        <div class="content-container early-retirement">
-          <h3 class="retirement-age">{% trans "About your early benefit claiming age:" %}</h3>
-          <ul>
-            <li>{% trans "Earliest age you can claim your benefit is 62." %}</li>
-            <li>{% trans "If you claim your benefit before your full claiming age, it will be reduced." %}</li>
-          </ul>
-        </div>
-        <p>{% trans "Remember, claiming age here refers only to your Social Security retirement benefit, and not when you decide to stop working or apply for Medicare." %}</p>
-      </div>
 
-      <p class="learn-how"><a href="about/" target="_blank">{% trans "Learn how estimates are calculated." %}</a></p>
+        <p class="learn-how"><a href="about/" target="_blank">{% trans "Learn how estimates are calculated." %}</a></p>
 
-    </div>
-    <div class="content-l_col content-l_col-2-3 canvas-container">
-      <div id="estimated-benefits-input" class="estimated-benefits-input h4 step-one-hidden">
-        <span>{% trans "View estimated benefits as:" %}</span><span><label><input type="radio" name="benefits-display" value="monthly" checked> {% trans "monthly income" %}</label> <label><input type="radio" name="benefits-display" value="annual"> {% trans "annual income" %}</label> </span>
       </div>
-      <div id="claim-canvas" class="claim-canvas">
-        <div id="graph__indicator" class="graph__element graph__indicator"></div>
-        <div id="graph__slider-line" class="graph__element graph__slider-line"></div>
-        <div class="graph__element graph__background" data-bg-bar-number="1"></div>
-        <div class="graph__element graph__background" data-bg-bar-number="2"></div>
-        <div class="graph__element graph__background" data-bg-bar-number="3"></div>
-        <div class="graph__element graph__background" data-bg-bar-number="4"></div>
-        <div class="graph__element graph__background" data-bg-bar-number="5"></div>
-        <div class="graph__element graph__bar" data-bar_age="62"></div>
-        <div class="graph__element graph__bar" data-bar_age="63"></div>
-        <div class="graph__element graph__bar" data-bar_age="64"></div>
-        <div class="graph__element graph__bar" data-bar_age="65"></div>
-        <div class="graph__element graph__bar" data-bar_age="66"></div>
-        <div class="graph__element graph__bar" data-bar_age="67"></div>
-        <div class="graph__element graph__bar" data-bar_age="68"></div>
-        <div class="graph__element graph__bar" data-bar_age="69"></div>
-        <div class="graph__element graph__bar" data-bar_age="70"></div>
-        <div id="benefits-text" class="h3">
+      <div class="content-l_col content-l_col-2-3 canvas-container">
+        <div id="estimated-benefits-input" class="estimated-benefits-input h4 step-one-hidden">
+          <span>{% trans "View estimated benefits as:" %}</span><span><label><input type="radio" name="benefits-display" value="monthly" checked> {% trans "monthly income" %}</label> <label><input type="radio" name="benefits-display" value="annual"> {% trans "annual income" %}</label> </span>
         </div>
-        <div id="full-age-benefits-text" class="h3">
+        <div id="claim-canvas" class="claim-canvas">
+          <div id="graph__indicator" class="graph__element graph__indicator"></div>
+          <div id="graph__slider-line" class="graph__element graph__slider-line"></div>
+          <div class="graph__element graph__background" data-bg-bar-number="1"></div>
+          <div class="graph__element graph__background" data-bg-bar-number="2"></div>
+          <div class="graph__element graph__background" data-bg-bar-number="3"></div>
+          <div class="graph__element graph__background" data-bg-bar-number="4"></div>
+          <div class="graph__element graph__background" data-bg-bar-number="5"></div>
+          <div class="graph__element graph__bar" data-bar_age="62"></div>
+          <div class="graph__element graph__bar" data-bar_age="63"></div>
+          <div class="graph__element graph__bar" data-bar_age="64"></div>
+          <div class="graph__element graph__bar" data-bar_age="65"></div>
+          <div class="graph__element graph__bar" data-bar_age="66"></div>
+          <div class="graph__element graph__bar" data-bar_age="67"></div>
+          <div class="graph__element graph__bar" data-bar_age="68"></div>
+          <div class="graph__element graph__bar" data-bar_age="69"></div>
+          <div class="graph__element graph__bar" data-bar_age="70"></div>
+          <div id="benefits-text" class="h3">
+          </div>
+          <div id="full-age-benefits-text" class="h3">
+          </div>
         </div>
-      </div>
-      <p class="y-axis-label">{% trans "Estimated benefits" %}</p>
-      <p class="x-axis-label">{% trans "Claiming age" %}</p>
-    </div>
-  </div>
-  <hr class="before-step-two">
-  <div class="content-l step-two">
-    <div class="content-l_col content-l_col-1-3">
-      <h2><strong>{{STEP}} 2: </strong>{% trans page.step2.title %}</h2>
-      <p class="question h3">{% trans page.step2.instructions %}</p>
-    </div>
-    <div class="content-l_col content-l_col-1-3 question question-married">
-      <img src="{% static "retirement/images/lifestyle-married.png" %}" class="lifestyle-img">
-      <div class="lifestyle-question_container">
-        <hr>
-        <h3 class="lifestyle-question">{% trans questions.marriage.question %}</h3>
-        <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
-        <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">{{NO}}</button>
-        <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="widowed">{% trans "Widowed" %}</button>
-      </div>
-      <div class="lifestyle-response" data-responds-to="yes">
-        <h4>{% trans questions.marriage.answer_yes_a_subhed|safe %}</h4>
-        <p>{% trans questions.marriage.answer_yes_a|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="no">
-        <h4>{% trans questions.marriage.answer_no_a_subhed|safe %}</h4>
-        <p>{% trans questions.marriage.answer_no_a|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="widowed">
-        <h4>{% trans questions.marriage.answer_unsure_a_subhed|safe %}</h4>
-        <p>{% trans questions.marriage.answer_unsure_a|safe %}</p>
+        <p class="y-axis-label">{% trans "Estimated benefits" %}</p>
+        <p class="x-axis-label">{% trans "Claiming age" %}</p>
       </div>
     </div>
-    <div class="content-l_col content-l_col-1-3 question question-working age-split">
-      <img src="{% static "retirement/images/lifestyle-working.png" %}" class="lifestyle-img">
-      <div class="lifestyle-question_container">
-        <hr>
-        <h3 class="lifestyle-question">{% trans questions.sixties.question %}</h3>
-        <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
-        <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
-        <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+    <hr class="before-step-two">
+    <div class="content-l step-two">
+      <div class="content-l_col content-l_col-1-3">
+        <h2><strong>{{STEP}} 2: </strong>{% trans page.step2.title %}</h2>
+        <p class="question h3">{% trans page.step2.instructions %}</p>
       </div>
-      <div class="lifestyle-response" data-responds-to="yes-under50">
-        <h4>{% trans questions.sixties.answer_yes_a_subhed|safe %}</h4>
-        <p>{% trans questions.sixties.answer_yes_a|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="yes-over50">
-        <h4>{% trans questions.sixties.answer_yes_b_subhed|safe %}</h4>
-        <p>{% trans questions.sixties.answer_yes_b|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="no-under50">
-        <h4>{% trans questions.sixties.answer_no_a_subhed|safe %}</h4>
-        <p>{% trans questions.sixties.answer_no_a|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="no-over50">
-        <h4>{% trans questions.sixties.answer_no_b_subhed|safe %}</h4>
-        <p>{% trans questions.sixties.answer_no_a|safe %}</p>
-        <p><a href="https://www.socialsecurity.gov/planners/retire/stopwork.html" class="external-link" target="_blank"></a></p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="notsure-under50">
-        <h4>{% trans questions.sixties.answer_unsure_a_subhed|safe %}</h4>
-        <p>{% trans questions.sixties.answer_unsure_a|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="notsure-over50">
-        <h4>{% trans questions.sixties.answer_unsure_b_subhed|safe %}</h4>
-        <p>{% trans questions.sixties.answer_unsure_b|safe %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="working-longer" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.working_longer %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="401k" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.401k %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="iras" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.iras %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="myra" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.myra %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="claim_early_and_work" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.claim_early_and_work %}</p>
-      </div>
-    </div>
-  </div>
-  <div class="content-l step-two">
-    <div class="content-l_col content-l_col-1-3 question question-expenses age-split">
-      <img src="{% static "retirement/images/lifestyle-expenses.png" %}" class="lifestyle-img">
-      <div class="lifestyle-question_container">
-        <hr>
-        <h3 class="lifestyle-question">{% trans questions.expenses.question %}</h3>
-        <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
-        <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
-        <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
-      </div>
-      <div class="lifestyle-response" data-responds-to="yes-under50">
-        <h4>{% trans questions.expenses.answer_yes_a_subhed|safe %}</h4>
-        <p>{% trans questions.expenses.answer_yes_a|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="yes-over50">
-        <h4>{% trans questions.expenses.answer_yes_b_subhed|safe %}</h4>
-        <p>{% trans questions.expenses.answer_yes_b|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="no-under50">
-        <h4>{% trans questions.expenses.answer_no_a_subhed|safe %}</h4>
-        <p>{% trans questions.expenses.answer_no_a|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="no-over50">
-        <h4>{% trans questions.expenses.answer_no_b_subhed|safe %}</h4>
-        <p>{% trans questions.expenses.answer_no_b|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="notsure-under50">
-        <h4>{% trans questions.expenses.answer_unsure_a_subhed|safe %}</h4>
-        <p>{% trans questions.expenses.answer_unsure_a|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="notsure-over50">
-        <h4>{% trans questions.expenses.answer_unsure_b_subhed|safe %}</h4>
-        <p>{% trans questions.expenses.answer_unsure_b|safe %}</p>
-      </div>
-    </div>
-    <div class="content-l_col content-l_col-1-3 question question-income age-split">
-      <img src="{% static "retirement/images/lifestyle-income.png" %}" class="lifestyle-img">
-      <div class="lifestyle-question_container">
-        <hr>
-        <h3 class="lifestyle-question">{% trans questions.income.question %}</h3>
-        <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
-        <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
-        <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
-      </div>
-      <div class="lifestyle-response" data-responds-to="yes-under50">
-        <h4>{% trans questions.income.answer_yes_a_subhed|safe %}</h4>
-        <p>{% trans questions.income.answer_yes_a|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="yes-over50">
-        <h4>{% trans questions.income.answer_yes_b_subhed|safe %}</h4>
-        <p>{% trans questions.income.answer_yes_b|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="no-under50">
-        <h4>{% trans questions.income.answer_no_a_subhed %}</h4>
-        <p>{% trans questions.income.answer_no_a|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="no-over50">
-        <h4>{% trans questions.income.answer_no_b_subhed|safe %}</h4>
-        <p>{% trans questions.income.answer_no_b|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="notsure-under50">
-        <h4>{% trans questions.income.answer_unsure_a_subhed|safe %}</h4>
-        <p>{% trans questions.income.answer_unsure_a|safe %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="notsure-over50">
-        <h4>{% trans questions.income.answer_unsure_b_subhed|safe %}</h4>
-        <p>{% trans questions.income.answer_unsure_b|safe %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="working-longer" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.working_longer %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="pensions" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.pensions %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="401k" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.401k %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="iras" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.iras %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="myra" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.myra %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="catchup-contributions" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.catchup_contributions %}</p>
-      </div>
-      <div class="tooltip-content" data-tooltip-name="myra" role="tooltip" aria-haspopup="true">
-        <p>{% trans tips.myra|safe %}</p>
-      </div>
-    </div>
-    <div class="content-l_col content-l_col-1-3 question question-longevity">
-      <img src="{% static "retirement/images/lifestyle-longevity.png" %}" class="lifestyle-img">
-      <div class="lifestyle-question_container">
-        <hr>
-        <h3 class="lifestyle-question">{% trans questions.longlife.question %}</h3>
-        <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
-        <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">{{NO}}</button>
-        <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
-      </div>
-      <div class="lifestyle-response" data-responds-to="yes">
-        <h4>{% trans questions.longlife.answer_yes_a_subhed %}</h4>
-        <p>{% trans questions.longlife.answer_yes_a %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="no">
-        <h4>{% trans questions.longlife.answer_no_a_subhed %}</h4>
-        <p>{% trans questions.longlife.answer_no_a %}</p>
-      </div>
-      <div class="lifestyle-response" data-responds-to="notsure">
-        <h4>{% trans questions.longlife.answer_unsure_a_subhed %}</h4>
-        <p>{% trans questions.longlife.answer_unsure_a %}</p>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="step-three">
-    <h2><strong>{{STEP}} 3: </strong>{% trans page.step3.title %}</h2>
-    <div class="hidden-content">
-      <h3>{% trans page.step3.instructions %}</h3>
-        <p class="explainer step-three-note">{% trans page.step3.note %}</p>
-        <div class="selector-container">
-          <select id="retirement-age-selector">
-            <option value="">{% trans "Choose age" %}</option>
-            <option value="62">62</option>
-            <option value="63">63</option>
-            <option value="64">64</option>
-            <option value="65">65</option>
-            <option value="66">66</option>
-            <option value="67">67</option>
-            <option value="68">68</option>
-            <option value="69">69</option>
-            <option value="70">70</option>
-          </select>
-        </div>
-        <div id="age-selector-response">
+      <div class="content-l_col content-l_col-1-3 question question-married">
+        <img src="{% static "retirement/images/lifestyle-married.png" %}" class="lifestyle-img">
+        <div class="lifestyle-question_container">
           <hr>
-          <div class="next-step-description next-step-two_over">
-            <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>{% trans ", which is later than your Social Security full retirement claiming age." %}</h3>
-            <p>{% trans "This means you will get an increase in your monthly benefits!  Here are steps to help you in the next few years." %}</p>
-          </div>
-          <div class="next-step-description next-step-two_equal">
-            <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>{% trans ", which is your Social Security full retirement claiming age." %}</h3>
-            <p>{% trans "That means you’ll receive your full benefit with no reductions! Here are steps to help you in the next few years." %}</p>
-          </div>
-          <div class="next-step-description next-step-two_under">
-            <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>{% trans ", which is earlier than your Social Security full retirement claiming age." %}</h3>
-            <p>{% trans "At this age you will receive less than your full benefit amount. Here are steps to help you in the next few years." %}</p>
-          </div>
-          <ol class="next-steps content-l">
-            <li class="content-l_col content-l_col-1-3 next-step-one">{% autoescape off %}{% trans final_steps.final_step_1.instructions %}</li>
-            <li class="content-l_col content-l_col-1-3 next-step-two">
-              <span class="step-two_option next-step-two_under">{% trans final_steps.final_step_2_under.instructions %}</span>
-              <span class="step-two_option next-step-two_equal">{% trans final_steps.final_step_2_equal.instructions %}</span>
-              <span class="step-two_option next-step-two_over">{% trans final_steps.final_step_2_over.instructions %}</span>
-            </li>
-            <li class="content-l_col content-l_col-1-3 next-step-three">{% trans final_steps.final_step_3.instructions %}{% endautoescape %}</li>
-          </ol>
-          <p class="h3">{% trans final_steps.final_step_4.instructions %}</p>
-              <button class="helpful-btn btn btn__grouped-first" value="yes">{{YES}}</button>
-              <button class="helpful-btn btn btn__grouped-last" value="no">{{NO}}</button>
-          <p class="thank-you">{% trans "Thank you for your feedback!" %}</p>
+          <h3 class="lifestyle-question">{% trans questions.marriage.question %}</h3>
+          <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
+          <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">{{NO}}</button>
+          <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="widowed">{% trans "Widowed" %}</button>
         </div>
+        <div class="lifestyle-response" data-responds-to="yes">
+          <h4>{% trans questions.marriage.answer_yes_a_subhed|safe %}</h4>
+          <p>{% trans questions.marriage.answer_yes_a|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="no">
+          <h4>{% trans questions.marriage.answer_no_a_subhed|safe %}</h4>
+          <p>{% trans questions.marriage.answer_no_a|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="widowed">
+          <h4>{% trans questions.marriage.answer_unsure_a_subhed|safe %}</h4>
+          <p>{% trans questions.marriage.answer_unsure_a|safe %}</p>
+        </div>
+      </div>
+      <div class="content-l_col content-l_col-1-3 question question-working age-split">
+        <img src="{% static "retirement/images/lifestyle-working.png" %}" class="lifestyle-img">
+        <div class="lifestyle-question_container">
+          <hr>
+          <h3 class="lifestyle-question">{% trans questions.sixties.question %}</h3>
+          <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
+          <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
+          <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+        </div>
+        <div class="lifestyle-response" data-responds-to="yes-under50">
+          <h4>{% trans questions.sixties.answer_yes_a_subhed|safe %}</h4>
+          <p>{% trans questions.sixties.answer_yes_a|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="yes-over50">
+          <h4>{% trans questions.sixties.answer_yes_b_subhed|safe %}</h4>
+          <p>{% trans questions.sixties.answer_yes_b|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="no-under50">
+          <h4>{% trans questions.sixties.answer_no_a_subhed|safe %}</h4>
+          <p>{% trans questions.sixties.answer_no_a|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="no-over50">
+          <h4>{% trans questions.sixties.answer_no_b_subhed|safe %}</h4>
+          <p>{% trans questions.sixties.answer_no_a|safe %}</p>
+          <p><a href="https://www.socialsecurity.gov/planners/retire/stopwork.html" class="external-link" target="_blank"></a></p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="notsure-under50">
+          <h4>{% trans questions.sixties.answer_unsure_a_subhed|safe %}</h4>
+          <p>{% trans questions.sixties.answer_unsure_a|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="notsure-over50">
+          <h4>{% trans questions.sixties.answer_unsure_b_subhed|safe %}</h4>
+          <p>{% trans questions.sixties.answer_unsure_b|safe %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="working-longer" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.working_longer %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="401k" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.401k %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="iras" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.iras %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="myra" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.myra %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="claim_early_and_work" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.claim_early_and_work %}</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div id="tooltip-container">
-    <div class="outertip"> </div>
-    <div class="innertip"> </div>
-    <div class="content">content</div>
+    <div class="content-l step-two">
+      <div class="content-l_col content-l_col-1-3 question question-expenses age-split">
+        <img src="{% static "retirement/images/lifestyle-expenses.png" %}" class="lifestyle-img">
+        <div class="lifestyle-question_container">
+          <hr>
+          <h3 class="lifestyle-question">{% trans questions.expenses.question %}</h3>
+          <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
+          <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
+          <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+        </div>
+        <div class="lifestyle-response" data-responds-to="yes-under50">
+          <h4>{% trans questions.expenses.answer_yes_a_subhed|safe %}</h4>
+          <p>{% trans questions.expenses.answer_yes_a|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="yes-over50">
+          <h4>{% trans questions.expenses.answer_yes_b_subhed|safe %}</h4>
+          <p>{% trans questions.expenses.answer_yes_b|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="no-under50">
+          <h4>{% trans questions.expenses.answer_no_a_subhed|safe %}</h4>
+          <p>{% trans questions.expenses.answer_no_a|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="no-over50">
+          <h4>{% trans questions.expenses.answer_no_b_subhed|safe %}</h4>
+          <p>{% trans questions.expenses.answer_no_b|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="notsure-under50">
+          <h4>{% trans questions.expenses.answer_unsure_a_subhed|safe %}</h4>
+          <p>{% trans questions.expenses.answer_unsure_a|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="notsure-over50">
+          <h4>{% trans questions.expenses.answer_unsure_b_subhed|safe %}</h4>
+          <p>{% trans questions.expenses.answer_unsure_b|safe %}</p>
+        </div>
+      </div>
+      <div class="content-l_col content-l_col-1-3 question question-income age-split">
+        <img src="{% static "retirement/images/lifestyle-income.png" %}" class="lifestyle-img">
+        <div class="lifestyle-question_container">
+          <hr>
+          <h3 class="lifestyle-question">{% trans questions.income.question %}</h3>
+          <button class="lifestyle-btn btn btn__grouped-first age-split" data-base-value="yes" value="yes">{{YES}}</button>
+          <button class="lifestyle-btn btn btn__grouped age-split" data-base-value="no" value="no">{{NO}}</button>
+          <button class="lifestyle-btn btn btn__grouped-last age-split" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+        </div>
+        <div class="lifestyle-response" data-responds-to="yes-under50">
+          <h4>{% trans questions.income.answer_yes_a_subhed|safe %}</h4>
+          <p>{% trans questions.income.answer_yes_a|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="yes-over50">
+          <h4>{% trans questions.income.answer_yes_b_subhed|safe %}</h4>
+          <p>{% trans questions.income.answer_yes_b|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="no-under50">
+          <h4>{% trans questions.income.answer_no_a_subhed %}</h4>
+          <p>{% trans questions.income.answer_no_a|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="no-over50">
+          <h4>{% trans questions.income.answer_no_b_subhed|safe %}</h4>
+          <p>{% trans questions.income.answer_no_b|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="notsure-under50">
+          <h4>{% trans questions.income.answer_unsure_a_subhed|safe %}</h4>
+          <p>{% trans questions.income.answer_unsure_a|safe %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="notsure-over50">
+          <h4>{% trans questions.income.answer_unsure_b_subhed|safe %}</h4>
+          <p>{% trans questions.income.answer_unsure_b|safe %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="working-longer" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.working_longer %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="pensions" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.pensions %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="401k" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.401k %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="iras" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.iras %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="myra" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.myra %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="catchup-contributions" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.catchup_contributions %}</p>
+        </div>
+        <div class="tooltip-content" data-tooltip-name="myra" role="tooltip" aria-haspopup="true">
+          <p>{% trans tips.myra|safe %}</p>
+        </div>
+      </div>
+      <div class="content-l_col content-l_col-1-3 question question-longevity">
+        <img src="{% static "retirement/images/lifestyle-longevity.png" %}" class="lifestyle-img">
+        <div class="lifestyle-question_container">
+          <hr>
+          <h3 class="lifestyle-question">{% trans questions.longlife.question %}</h3>
+          <button class="lifestyle-btn btn btn__grouped-first" data-base-value="yes" value="yes">{{YES}}</button>
+          <button class="lifestyle-btn btn btn__grouped" data-base-value="no" value="no">{{NO}}</button>
+          <button class="lifestyle-btn btn btn__grouped-last" data-base-value="notsure" value="notsure">{{NOTSURE}}</button>
+        </div>
+        <div class="lifestyle-response" data-responds-to="yes">
+          <h4>{% trans questions.longlife.answer_yes_a_subhed %}</h4>
+          <p>{% trans questions.longlife.answer_yes_a %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="no">
+          <h4>{% trans questions.longlife.answer_no_a_subhed %}</h4>
+          <p>{% trans questions.longlife.answer_no_a %}</p>
+        </div>
+        <div class="lifestyle-response" data-responds-to="notsure">
+          <h4>{% trans questions.longlife.answer_unsure_a_subhed %}</h4>
+          <p>{% trans questions.longlife.answer_unsure_a %}</p>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="step-three">
+      <h2><strong>{{STEP}} 3: </strong>{% trans page.step3.title %}</h2>
+      <div class="hidden-content">
+        <h3>{% trans page.step3.instructions %}</h3>
+          <p class="explainer step-three-note">{% trans page.step3.note %}</p>
+          <div class="selector-container">
+            <select id="retirement-age-selector">
+              <option value="">{% trans "Choose age" %}</option>
+              <option value="62">62</option>
+              <option value="63">63</option>
+              <option value="64">64</option>
+              <option value="65">65</option>
+              <option value="66">66</option>
+              <option value="67">67</option>
+              <option value="68">68</option>
+              <option value="69">69</option>
+              <option value="70">70</option>
+            </select>
+          </div>
+          <div id="age-selector-response">
+            <hr>
+            <div class="next-step-description next-step-two_over">
+              <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>{% trans ", which is later than your Social Security full retirement claiming age." %}</h3>
+              <p>{% trans "This means you will get an increase in your monthly benefits!  Here are steps to help you in the next few years." %}</p>
+            </div>
+            <div class="next-step-description next-step-two_equal">
+              <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>{% trans ", which is your Social Security full retirement claiming age." %}</h3>
+              <p>{% trans "That means you’ll receive your full benefit with no reductions! Here are steps to help you in the next few years." %}</p>
+            </div>
+            <div class="next-step-description next-step-two_under">
+              <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>{% trans ", which is earlier than your Social Security full retirement claiming age." %}</h3>
+              <p>{% trans "At this age you will receive less than your full benefit amount. Here are steps to help you in the next few years." %}</p>
+            </div>
+            <ol class="next-steps content-l">
+              <li class="content-l_col content-l_col-1-3 next-step-one">{% autoescape off %}{% trans final_steps.final_step_1.instructions %}</li>
+              <li class="content-l_col content-l_col-1-3 next-step-two">
+                <span class="step-two_option next-step-two_under">{% trans final_steps.final_step_2_under.instructions %}</span>
+                <span class="step-two_option next-step-two_equal">{% trans final_steps.final_step_2_equal.instructions %}</span>
+                <span class="step-two_option next-step-two_over">{% trans final_steps.final_step_2_over.instructions %}</span>
+              </li>
+              <li class="content-l_col content-l_col-1-3 next-step-three">{% trans final_steps.final_step_3.instructions %}{% endautoescape %}</li>
+            </ol>
+            <p class="h3">{% trans final_steps.final_step_4.instructions %}</p>
+                <button class="helpful-btn btn btn__grouped-first" value="yes">{{YES}}</button>
+                <button class="helpful-btn btn btn__grouped-last" value="no">{{NO}}</button>
+            <p class="thank-you">{% trans "Thank you for your feedback!" %}</p>
+          </div>
+      </div>
+    </div>
+    <div id="tooltip-container">
+      <div class="outertip"> </div>
+      <div class="innertip"> </div>
+      <div class="content">content</div>
+    </div>
   </div>
 </div>
 

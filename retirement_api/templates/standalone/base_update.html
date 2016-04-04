@@ -46,19 +46,6 @@
     <!--[if lt IE 9]>
     <script src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/js/html5shim.js"></script>
     <![endif]-->
-
-    {% block nemo_styles %}
-    <!-- Styles -->
-
-    <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/c/woff.css">
-    <!--<![endif]-->
-    <!--[if lt IE 9]>
-    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/eot.css">
-    <![endif]-->
-    <link rel="stylesheet" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/c/styles.css">
-    {% endblock %}
-
     {% block app_css %}
     {% endblock %}
 
@@ -195,9 +182,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 {% endblock %}
             </ul> <!-- /class=bread -->
                 {% block content %}
-                {% endblock %}
-                {% block share_box %}
-            {% include "standalone/share_box.html" %}
                 {% endblock %}
         </section><!--/main_content-->
         </div><!-- /wrapper -->
