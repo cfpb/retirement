@@ -11,6 +11,8 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Add 'about' page content
 - Fixed additional claiming phrasing errors
 - Removed final references to raphael-min.js and fixed spinner direction
+- added Calibration model to support SSA value checks
+- added ssa_check.py utility for monitoring SSA Quick Calculator values
 
 ## 0.4.58
 - switch back to ssa.gov for our requests, after SSA started redirecting calls to socialsecurity.gov

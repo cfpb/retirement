@@ -15,7 +15,7 @@ timestamp = datetime.datetime.now()
 default_base = 'build'
 
 # rolling dob to guarantee subject is 44 and full retirement age is 67
-dob = timestamp.replace(year=timestamp.year-44).date()
+dob = timestamp.date().replace(year=timestamp.year-44)
 timeout_seconds = 20
 
 API_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))

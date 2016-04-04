@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import sys
 import json
@@ -8,11 +9,10 @@ import csv
 import datetime
 import lxml
 
-TODAY = datetime.datetime.now().date()
-
 from bs4 import BeautifulSoup as bs
 import requests
 import mock
+from django.test import TestCase
 
 # if __name__ == '__main__':
 #     BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
@@ -21,18 +21,20 @@ import mock
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-sys.path.append("%s/retirement_api" % BASE_DIR)
+sys.path.append("{0}/retirement_api".format(BASE_DIR))
 import utils
-from django.test import TestCase
 from utils import ss_update_stats
 from utils.ss_update_stats import output_csv, output_json, make_soup, update_life, update_cola, ss_table_urls, requests
-mock_data_path = "%s/retirement_api/data/mock_data" % BASE_DIR
+
+TODAY = datetime.date.today()
+mock_data_path = "{0}/retirement_api/data/mock_data".format(BASE_DIR)
+
 
 class UpdateSsStatsTests(TestCase):
-    cola_page = "%s/ssa_cola.html" % mock_data_path
-    awi_page = "%s/ssa_awi_series.html" % mock_data_path
-    life_page = "%s/ssa_life.html" % mock_data_path
-    earlyretire_page = "%s/ssa_earlyretire.html" % mock_data_path
+    cola_page = "{0}/ssa_cola.html".format(mock_data_path)
+    awi_page = "{0}/ssa_awi_series.html".format(mock_data_path)
+    life_page = "{0}/ssa_life.html".format(mock_data_path)
+    earlyretire_page = "{0}/ssa_earlyretire.html".format(mock_data_path)
     life_headings = [
         'exact_age',
         'male_death_probability',
@@ -59,7 +61,7 @@ class UpdateSsStatsTests(TestCase):
         """ outputs csv based on inputs of 
             headings and beautiful_soup rows
         """
-        mockpath = "%s/mock_life.csv" % self.tempdir
+        mockpath = "{0}/mock_life.csv".format(self.tempdir)
         with open(self.life_page, 'r') as f:
             mockpage = f.read()
         table = bs(mockpage, 'lxml').find('table').find('table')
@@ -77,7 +79,7 @@ class UpdateSsStatsTests(TestCase):
         """ outputs json to file based on inputs of 
             path, headings and beautiful_soup rows
         """
-        mockpath = "%s/mock_life.json" % self.tempdir
+        mockpath = "{0}/mock_life.json".format(self.tempdir)
         sample_json_results = {
             '0': {'female_life_expectancy': '80.94', 'male_life_expectancy': '76.10'},
             '57': {'female_life_expectancy': '26.91', 'male_life_expectancy': '23.69'},
@@ -156,7 +158,7 @@ class UpdateSsStatsTests(TestCase):
 
         # action
         msg = utils.ss_update_stats.update_life()
-        print msg
+        print(msg)
 
         # assert
 
