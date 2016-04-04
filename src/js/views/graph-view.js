@@ -489,7 +489,7 @@ var graphView = {
 
     $( '#claim-canvas, .x-axis-label' ).width( graphWidth );
     $( '#claim-canvas').height( graphHeight );
-    $( '#graph_slider-input' ).width( ( barWidth * 9 ) + ( gutterWidth * 8 ) + 5 );
+    $( '#graph_slider-input' ).width( ( barWidth * 9 ) + ( gutterWidth * 8 ) + 8 );
   },
 
   /*
