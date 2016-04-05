@@ -111,6 +111,22 @@ form {
   top: 0;
   right: 0;
   padding: 15px 60px 30px 0;
+
+  a {
+    color: @black;
+    border-color: @black;
+    border-style: solid;
+
+    &:visited,
+    &.visited,
+    &:hover,
+    &.hover,
+    &:active,
+    &.active {
+        border-color: @black;
+        color: @black;
+    }
+  }
 }
 
 #claiming-social-security .step-one {
