@@ -46,16 +46,16 @@ class ViewModels(TestCase):
                      'answer_unsure_a_subhed']:
             self.assertTrue(term in tlist)
 
-    def test_quesiton_dump(self):
+    def test_question_dump(self):
         dumplist = self.testquestion.dump_translation_text()
         self.assertTrue(type(dumplist) == list)
-        outfile = "/tmp/%s.po" % self.testquestion.slug
+        outfile = "/tmp/{0}.po".format(self.testquestion.slug)
         self.testquestion.dump_translation_text(output=True)
         self.assertTrue(os.path.isfile(outfile))
         subprocess.call(["rm", "outfile"])
 
     def test_question_dump_mock_output(self):
-        open_name = '%s.open' % __name__
+        open_name = '{0}.open'.format(__name__)
         with mock.patch(open_name, create=True) as mock_open:
             mock_open.return_value = mock.MagicMock(spec=file)
             self.testquestion.dump_translation_text(output=True)
