@@ -13,6 +13,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Removed final references to raphael-min.js and fixed spinner direction
 - Switch to a CFPB common navigation header
 - Update hero treatment and page spacing
+- Add toggle to switch between languages
 
 ## 0.4.58
 - switch back to ssa.gov for our requests, after SSA started redirecting calls to socialsecurity.gov
