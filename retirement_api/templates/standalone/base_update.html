@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 {% load staticfiles %}
 {% load static from staticfiles %}
 {% load i18n %}
-
+<!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" dir="ltr" lang="{% trans "en-US" %}"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" dir="ltr" lang="{% trans "en-US" %}"> <![endif]-->
@@ -116,7 +115,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       <span class="official-website">An official website of the United States Government</span>
                       <div class="split-right">
                         <a href="/es/" hreflang="es" class="espanol-link">Español</a>
-                        {% if IS_REMIT %}
                         <a href="/lang/#zh" hreflang="zh">中文</a>
                         <a href="/lang/#vi" hreflang="vi">Tiếng Việt</a>
                         <a href="/lang/#ko" hreflang="ko">한국어</a>
@@ -124,7 +122,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <a href="/lang/#ru" hreflang="ru">Pусский</a>
                         <a href="/lang/#ar" hreflang="ar">العربية</a>
                         <a href="/lang/#ht" hreflang="ht">Kreyòl Ayisyen</a>
-                        {% endif %}
                     </div>
                   </span>
               </div>
