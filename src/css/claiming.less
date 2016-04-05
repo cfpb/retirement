@@ -98,8 +98,19 @@ form {
   background-color: #FFCE8D;
 }
 
+#claiming-social-security .claiming-hero .hero_wrapper {
+  position: relative;
+}
+
 #claiming-social-security .claiming-hero h1 span.header-line {
   display: block;
+}
+
+#claiming-social-security .claiming-hero p.hero_translation-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px 60px 30px 0;
 }
 
 #claiming-social-security .step-one {
@@ -656,9 +667,17 @@ form {
     display: none;
   }
 
-  claiming-social-security .claiming-hero h1,
+  #claiming-social-security .claiming-hero h1,
   #claiming-social-security .claiming-hero p {
     width: 100%;
+  }
+
+  #claiming-social-security .claiming-hero p.hero_translation-link {
+    position: absolute;
+    width: auto;
+    top: 0;
+    right: 0;
+    padding: 15px 60px 30px 0;
   }
 }
 
@@ -952,6 +971,17 @@ form {
   .content_wrapper {
     padding-left: 15px;
     padding-right: 15px;
+  }
+
+  #claiming-social-security .claiming-hero p.hero_translation-link {
+    position: absolute;
+    width: auto;
+    top: 0;
+    left: 15px;
+  }
+
+  #claiming-social-security .claiming-hero .hero_text {
+    padding-top: 30px;
   }
 }
 
