@@ -129,10 +129,15 @@ def get_full_retirement_age(request, birth_year):
 
 def about(request, language='en'):
     """Return our 'about' calculation-explainer page in Engish or Spanish"""
+    if language == 'es':
+        activate('es')
+        es = True
+    else:
+        deactivate_all()
+        es = False
     cdict = {
         'base_template': base_template,
+        'available_languages': ['en', 'es'],
+        'es': es
         }
-    if language == 'en':
-        return render_to_response('about.html', cdict)
-    else:
-        return render_to_response('about-es.html', cdict)
+    return render_to_response('about.html', cdict)
