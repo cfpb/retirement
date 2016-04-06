@@ -23,6 +23,7 @@ SSA_PARAMS = {
 
 
 def get_test_params(age, dob_day, dob_year=None, income=40000):
+    """return test params for one edge case, based on today's date"""
     params = copy(SSA_PARAMS)
     today = datetime.date.today()
     dob = today.replace(year=(today.year - age), day=dob_day)
@@ -40,30 +41,21 @@ def get_test_params(age, dob_day, dob_year=None, income=40000):
     return params
 
 
-TESTS = {
-    'born-on-1st-age-46': get_test_params(46, 1),
-    'born-on-2nd-age-46': get_test_params(46, 2),
-    'born-on-3rd-age-46': get_test_params(46, 3),
-    'born_on_3rd_in_1946': get_test_params(46, 3, dob_year=1946),
-    'born_on_3rd_in_1947': get_test_params(46, 3, dob_year=1947),
-    'born_on_3rd_in_1948': get_test_params(46, 3, dob_year=1948),
-    'born_on_3rd_in_1949': get_test_params(46, 3, dob_year=1949),
-    'born_on_3rd_in_1950': get_test_params(46, 3, dob_year=1950),
-    'born_on_3rd_in_1951': get_test_params(46, 3, dob_year=1951),
-    'born_on_3rd_in_1952': get_test_params(46, 3, dob_year=1952),
-    'born_on_3rd_in_1953': get_test_params(46, 3, dob_year=1953),
-    'born_on_3rd_in_1954': get_test_params(46, 3, dob_year=1954),
-    'born_on_3rd_in_1955': get_test_params(46, 3, dob_year=1955),
-    'born_on_3rd_in_1956': get_test_params(46, 3, dob_year=1956),
-    'born_on_3rd_in_1957': get_test_params(46, 3, dob_year=1957),
-    'born_on_3rd_in_1958': get_test_params(46, 3, dob_year=1958),
-    'born_on_3rd_in_1959': get_test_params(46, 3, dob_year=1959),
-    'born_on_3rd_in_1960': get_test_params(46, 3, dob_year=1960),
-    'born_on_3rd_in_1970': get_test_params(46, 3, dob_year=1970),
-}
+def assemble_test_params():
+    """build a set of edge-case test parameters"""
+    tests = {
+        'born-on-1st-age-46': get_test_params(46, 1),
+        'born-on-2nd-age-46': get_test_params(46, 2),
+        'born-on-3rd-age-46': get_test_params(46, 3)
+        }
+    for year in range(1946, 1961):
+        tests['born_on_3rd_in_{0}'.format(year)] = get_test_params(46, 3, dob_year=year)
+
+    tests['born_on_3rd_in_1970'] = get_test_params(46, 3, dob_year=1970)
+    return tests
 
 
-def check_results(test_data):
+def check_results(test_data, TESTS):
     """Ensure test results match expectations saved in latest Calibration"""
     today = datetime.date.today()
     error_msg = "Mismatches found on {0}".format(today)
@@ -114,6 +106,7 @@ def check_results(test_data):
 
 def run_tests(recalibrate=False):
     collector = {}
+    TESTS = assemble_test_params()
     tstamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')
     for test in TESTS:
         sys.stdout.write('.')
@@ -126,4 +119,4 @@ def run_tests(recalibrate=False):
         #     f.write(json.dumps(collector, indent=4, sort_keys=True))
         return "New Calibration set saved: {0}".format(new_calibration)
     else:
-        return check_results(collector)
+        return check_results(collector, TESTS)
