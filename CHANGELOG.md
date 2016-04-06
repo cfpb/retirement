@@ -4,7 +4,8 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 ## Unreleased
 -
 
-## 0.4.6
+## 0.4.61
+- Blanked out `about` page content pending clearance
 - Switched to `merge=union` for CHANGELOG.md in .gitattributes
 - Fixed 'claiming at 68' phrasing error
 - Fixed handling of birth dates on the first of a month
