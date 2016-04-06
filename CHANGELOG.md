@@ -11,6 +11,9 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Add 'about' page content
 - Fixed additional claiming phrasing errors
 - Removed final references to raphael-min.js and fixed spinner direction
+- Switch to a CFPB common navigation header
+- Update hero treatment and page spacing
+- Add toggle to switch between languages
 - added Calibration model to support SSA value checks
 - added ssa_check.py utility for monitoring SSA Quick Calculator values
 
