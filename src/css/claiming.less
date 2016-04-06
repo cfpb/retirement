@@ -32,20 +32,13 @@ form {
 }
 
 #maincontent {
-  width: 1168px;
   padding-top: 0px;
 }
 
-#claiming-social-security h2,
-#claiming-social-security_about .content_main h2,
-#claiming-social-security h4,
-#claiming-social-security h6 {
-  text-transform: none;
-  letter-spacing: 0em;
-}
-
-#claiming-social-security hr {
-
+.content_wrapper {
+  max-width: 1168px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 #claiming-social-security .canvas-container {
@@ -93,84 +86,53 @@ form {
   font-weight: normal;
 }
 
-#claiming-social-security #claiming-hero-bg {
-  background-color: #FFCE8D;
-  height: 300px;
-  width: 100%;
-  position: absolute;
-  z-index: 0;
-  /*background-image: url('../images/retirement-hero.png');
-  background-position: 700px 65px;
-  background-repeat: no-repeat;
-  background-size: 665px auto;*/
-}
-
-[data-lang="es"] #claiming-social-security .claiming-hero  {
+[data-lang="es"] #claiming-social-security .hero_image  {
   background-image: url('../images/retirement-hero_spanish.png');
 }
 
-[data-lang="en"] #claiming-social-security .claiming-hero  {
+[data-lang="en"] #claiming-social-security .hero_image  {
   background-image: url('../images/retirement-hero.png');
 }
 
 #claiming-social-security .claiming-hero {
-  margin-bottom: 0px;
-  padding: 60px 0px;
-  width: 100%;
-  position: relative;
   background-color: #FFCE8D;
-  background-origin: content-box;
-  background-position: right top;
-  background-repeat: no-repeat;
-  background-size: auto 180px;
 }
 
-#claiming-social-security .claiming-hero .content-l_col {
-  border: none;
-  border-width: 0;
-  margin: 0;
-}
-
-#claiming-social-security .claiming-hero .content-l_col + .content-l_col {
-  margin-top: 0.55em;
-}
-
-#claiming-social-security .claiming-hero h1 {
-  font-size: 2.125em;
+#claiming-social-security .claiming-hero .hero_wrapper {
+  position: relative;
 }
 
 #claiming-social-security .claiming-hero h1 span.header-line {
   display: block;
 }
 
-#claiming-social-security .claiming-hero p {
-  font-size: 1.625em;
-}
+#claiming-social-security .claiming-hero p.hero_translation-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px 60px 30px 0;
 
-#claiming-social-security .claiming-hero h1,
-#claiming-social-security .claiming-hero p {
-  font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
-}
+  a {
+    color: @black;
+    border-color: @black;
+    border-style: solid;
 
-#claiming-social-security .claiming-hero-b h1 {
-  font-size: 1.8em;
-}
-
-#claiming-social-security .claiming-hero-b h1,
-#claiming-social-security .claiming-hero-b p {
-  width: 600px;
-}
-#claiming-social-security .claiming-hero-b p {
-  font-size: 1.2em;
-}
-
-#claiming-social-security .version-b {
-  display:none;
+    &:visited,
+    &.visited,
+    &:hover,
+    &.hover,
+    &:active,
+    &.active {
+        border-color: @black;
+        color: @black;
+    }
+  }
 }
 
 #claiming-social-security .step-one {
   padding-top: 60px;
   padding-bottom: 14px;
+
 }
 
 #claiming-social-security .step-one-hidden {
@@ -178,7 +140,6 @@ form {
 }
 
 #claiming-social-security .step-one h2 {
-  border-left: 15px solid rgba(0, 0, 0, 0);
   margin-bottom: 30px;
 }
 
@@ -326,13 +287,6 @@ form {
 
 #claiming-social-security input[type="text"] {
   border-color: #BABBBD;
-}
-
-#claiming-social-security #graph-container .content-l_col.benefits-comparison {
-  background-color: #f8f8f8;
-  border-left: 1px solid #e3e3e1;
-  min-height: 100%;
-  padding-left: 10px;
 }
 
 #claiming-social-security .input-labels {
@@ -524,6 +478,10 @@ form {
   opacity: .35;
 }
 
+#claiming-social-security .step-three {
+  margin-bottom: 60px;
+}
+
 #claiming-social-security .step-three h2 {
   margin-bottom: 30px;
 }
@@ -675,14 +633,9 @@ form {
     padding: 0 30px 2em;
   }
 
-  #claiming-social-security #claiming-hero-bg {
-    display: none;
-  }
-
-  #claiming-social-security .claiming-hero {
-    margin: 0 -30px 0px -30px;
-    padding: 60px 30px;
-    width: auto;
+  .content_wrapper {
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   #claiming-social-security .birthdate-inputs {
@@ -722,37 +675,24 @@ form {
   }
 }
 
-@media (max-width: 1130px) {
-  #claiming-social-security .claiming-hero {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    background-size: auto 145px;
-  }
-
-  /* Reduce font size for small and medium screens, for spacing and readability. H1->H2, H2->H3, H3->H4. */
-  #claiming-social-security #maincontent h1 {
-    font-size: 1.625em;
-  }
-  #claiming-social-security #maincontent h2, #claiming-social-security .claiming-hero p {
-    font-size: 1.375em;
-  }
-  #claiming-social-security #maincontent .h3 {
-    font-size: 1.125em;
-  }
-}
-
 
 @media (max-width: 940px) {
-  [data-lang="en"] #claiming-social-security .claiming-hero {
-    background-image: none;
-  }
-  [data-lang="es"] #claiming-social-security .claiming-hero {
-    background-image: none;
+  #claiming-social-security .hero_image,
+  [data-lang="en"] #claiming-social-security .hero_image,
+  [data-lang="es"] #claiming-social-security .hero_image {
+    display: none;
   }
 
-  claiming-social-security .claiming-hero h1,
-  #claiming-social-security .claiming-hero p {
+  #claiming-social-security .claiming-hero .hero_text {
     width: 100%;
+  }
+
+  #claiming-social-security .claiming-hero p.hero_translation-link {
+    position: absolute;
+    width: auto;
+    top: 0;
+    right: 0;
+    padding: 15px 60px 30px 0;
   }
 }
 
@@ -761,20 +701,18 @@ form {
    Medium screens
 ==================================================================== */
 
-@media (max-width: 1190px) and (min-width: 1100px) {
-  #claiming-social-security .claiming-hero h1,
-  #claiming-social-security .claiming-hero p {
-    padding-right: 375px;
-    width: auto;
-  }
-
+@media (max-width: 1190px) and (min-width: 1100px) {\
   #claiming-social-security p.y-axis-label {
     top: 310px;
   }
+
+  #claiming-social-security .claiming-hero p {
+    margin-bottom: 0px;
+  }
+
 }
 
 @media (max-width: 1100px) and (min-width: 850px) {
-
   #claiming-social-security .step-one {
     padding-top: 30px;
   }
@@ -782,11 +720,6 @@ form {
   #claiming-social-security .step-one .content-l_col-2-3,
   #claiming-social-security .estimate-info {
     width: 100%;
-  }
-
-  #claiming-social-security .step-one h2 {
-    border-right: 15px solid transparent;
-    border-left: 15px solid transparent;
   }
 
   #claiming-social-security #graph-container .content-l_col-1-3 {
@@ -812,8 +745,6 @@ form {
   }
 
   #claiming-social-security .step-two .content-l_col {
-    border-right: none;
-    border-left: none;
     margin-right: 0;
     width: 100%;
   }
@@ -829,8 +760,6 @@ form {
 
   #claiming-social-security div.question {
     border-top: 1px solid #ccc;
-    border-left: none;
-    border-right: none;
     margin-right: 25px;
     margin-left: 15px;
     padding-top: 30px;
@@ -905,10 +834,6 @@ form {
 
   #claiming-social-security .step-one {
     padding-top: 30px;
-  }
-
-  #claiming-social-security .step-one h2 {
-    border-left: none;
   }
 
   #claiming-social-security #step-one-form .content-l_col-1-3 {
@@ -1057,16 +982,29 @@ form {
   }
 }
 
+@media (max-width: 600px) {
+  .content_wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  #claiming-social-security .claiming-hero p.hero_translation-link {
+    position: absolute;
+    width: auto;
+    top: 0;
+    left: 15px;
+  }
+
+  #claiming-social-security .claiming-hero .hero_text {
+    padding-top: 30px;
+  }
+}
+
 @media (max-width: 480px) {
   #claiming-social-security #maincontent {
     box-sizing: border-box;
     width: 100%;
     padding: 0 15px 2em;
-  }
-
-  #claiming-social-security .claiming-hero {
-    margin: 0 -15px 0px -30px;
-    width: auto;
   }
 }
 
@@ -1147,855 +1085,6 @@ form {
 }
 
 
-/* Responsive menu for medium and smaller screens!
-   Woo-hoo! */
-
-.nemo article,
-.nemo aside,
-.nemo figure,
-.nemo footer,
-.nemo header,
-.nemo hgroup,
-.nemo nav,
-.nemo section {
-  display: block;
-}
-.nemo img,
-.nemo object,
-.nemo embed {
-  max-width: 100%;
-}
-.nemo html {
-  overflow-y: scroll;
-}
-.nemo blockquote,
-.nemo q {
-  quotes: none;
-}
-.nemo blockquote:before,
-.nemo blockquote:after,
-.nemo q:before,
-.nemo q:after {
-  content: '';
-  content: none;
-}
-.nemo a {
-  margin: 0;
-  padding: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
-}
-.nemo del {
-  text-decoration: line-through;
-}
-.nemo abbr[title],
-.nemo dfn[title] {
-  border-bottom: 1px dotted #000;
-  cursor: help;
-}
-.nemo table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-.nemo th {
-  font-weight: bold;
-  vertical-align: bottom;
-}
-.nemo td {
-  font-weight: normal;
-  vertical-align: top;
-}
-.nemo hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
-}
-.nemo input,
-.nemo select {
-  vertical-align: middle;
-}
-.nemo pre {
-  white-space: pre;
-  /* CSS2 */
-  white-space: pre-wrap;
-  /* CSS 2.1 */
-  white-space: pre-line;
-  /* CSS 3 (and 2.1 as well, actually) */
-  word-wrap: break-word;
-  /* IE */
-}
-.nemo input[type="radio"] {
-  vertical-align: text-bottom;
-}
-.nemo input[type="checkbox"] {
-  vertical-align: bottom;
-  *vertical-align: baseline;
-}
-.nemo .ie6 input {
-  vertical-align: text-bottom;
-}
-.nemo select,
-.nemo input,
-.nemo textarea {
-  font: 99% sans-serif;
-}
-.nemo table {
-  font-size: inherit;
-  font: 100%;
-}
-.nemo a:hover,
-.nemo a:active {
-  outline: none;
-}
-.nemo small {
-  font-size: 85%;
-}
-.nemo strong,
-.nemo th {
-  font-weight: bold;
-}
-.nemo td,
-.nemo td img {
-  vertical-align: top;
-}
-.nemo sub,
-.nemo sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-}
-.nemo sup {
-  top: -0.5em;
-}
-.nemo sub {
-  bottom: -0.25em;
-}
-.nemo pre,
-.nemo code,
-.nemo kbd,
-.nemo samp {
-  font-family: monospace, sans-serif;
-}
-.nemo .clickable,
-.nemo label,
-.nemo input[type=button],
-.nemo input[type=submit],
-.nemo button {
-  cursor: pointer;
-}
-.nemo button,
-.nemo input,
-.nemo select,
-.nemo textarea {
-  margin: 0;
-}
-.nemo button {
-  width: auto;
-  overflow: visible;
-}
-.nemo p {
-  margin: 1em 0;
-}
-.nemo h1,
-.nemo h2,
-.nemo h3,
-.nemo h4,
-.nemo h5,
-.nemo h6 {
-  font-family: "Avenir Next", Verdana, sans-serif;
-}
-.nemo .lt-ie9 h1,
-.nemo .lt-ie9 h2,
-.nemo .lt-ie9 h3,
-.nemo .lt-ie9 h4,
-.nemo .lt-ie9 h5,
-.nemo .lt-ie9 h6 {
-  font-family: "Avenir Next Demi", Verdana, sans-serif;
-}
-.nemo .lt-ie9 h1 em,
-.nemo .lt-ie9 h1 i,
-.nemo .lt-ie9 h2 em,
-.nemo .lt-ie9 h2 i,
-.nemo .lt-ie9 h3 em,
-.nemo .lt-ie9 h3 i,
-.nemo .lt-ie9 h4 em,
-.nemo .lt-ie9 h4 i,
-.nemo .lt-ie9 h5 em,
-.nemo .lt-ie9 h5 i,
-.nemo .lt-ie9 h6 em,
-.nemo .lt-ie9 h6 i {
-  font-family: "Avenir Next Demi Italic", Verdana, sans-serif;
-}
-.nemo h1 {
-  font-size: 2em;
-  font-weight: 600;
-  line-height: 1.375;
-}
-.nemo h2 {
-  font-size: 1.25em;
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-}
-.nemo h3 {
-  font-size: 1.25em;
-  font-weight: 600;
-  line-height: 1.2em;
-}
-.nemo h4 {
-  font-size: 1.0em;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.nemo h5 {
-  font-size: 1em;
-  font-weight: 600;
-}
-.nemo h6 {
-  font-size: 1em;
-  font-weight: 600;
-}
-.nemo a {
-  text-decoration: none;
-  color: #4d819a;
-  padding-bottom: 0.1em;
-  border-bottom: 1px dotted #4d819a;
-}
-.nemo blockquote {
-  background-color: #e5dfd6;
-  padding: 1em 3.0em 0.5em;
-  font-family: "Avenir Next", Verdana, sans-serif;
-  margin-bottom: 1em;
-  border-left: 5px solid #beb099;
-}
-.nemo input {
-  font-size: 1em;
-  border: 1px inset #afafb3;
-  border-radius: 0.25em;
-  -webkit-box-shadow: inset 2px 1px 2px -3px #aaaaaa;
-  box-shadow: inset 2px 1px 2px -3px #aaaaaa;
-  padding: .25em .5em;
-  background-color: #fff;
-}
-.nemo input[type='radio'],
-.nemo input[type='checkbox'] {
-  border: none;
-  padding: none;
-}
-.nemo textarea {
-  font-size: 1em;
-  border: 1px inset #afafb3;
-  -webkit-box-shadow: inset 2px 1px 2px -3px #aaaaaa;
-  box-shadow: inset 2px 1px 2px -3px #aaaaaa;
-  padding: .25em .5em;
-}
-.nemo button {
-  color: #fff;
-  background-color: #50a748;
-  font-family: "Avenir Next", Verdana, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-radius: 0.35em;
-  font-size: .875em;
-  border: 1px outset #afafb3;
-  position: relative;
-  top: -1px;
-  padding: .45em .75em;
-  -webkit-transition: all 700ms ease;
-  transition: all 700ms ease;
-}
-.nemo button:disabled {
-  background-color: #a9dc93;
-}
-.nemo select {
-  font-size: 1em;
-}
-.nemo fieldset {
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-.nemo legend {
-  padding: 0;
-  max-width: 100%;
-}
-.nemo #header {
-  background-color: #fff;
-  padding: 1em 0 0;
-  border-bottom: 1px solid #333;
-}
-.nemo #header a {
-  padding: 0;
-  border: none;
-  color: #333;
-  background-color: #fff;
-}
-.nemo #header #logo {
-  margin-top: 0.5em;
-}
-.nemo #header > div {
-  width: auto;
-  max-width: 976px;
-  height: auto;
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
-}
-.nemo #header h1 {
-  margin: 0;
-  padding: 0;
-  font-size: 1em;
-}
-.nemo #header nav {
-  border-top: 1px solid #333;
-  margin: 1em 0 0;
-}
-.nemo #header nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0 auto;
-  width: auto;
-  max-width: 1060px;
-  display: table;
-}
-.nemo #header nav ul li {
-  font-family: "Avenir Next", Verdana, sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  font-size: 1em;
-  display: table-cell;
-  width: auto;
-  letter-spacing: 0.08em;
-  margin: 0;
-}
-.nemo .lt-ie8 #header nav ul li {
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-}
-.nemo .lt-ie9 #header nav ul li {
-  font-family: "Avenir Next Demi", Verdana, sans-serif;
-}
-.nemo #header nav ul li a {
-  -webkit-transition: background-color ease 1000ms;
-  transition: background-color ease 1000ms;
-  display: block;
-  width: auto;
-  height: auto;
-  padding: 0.5em 0.85em 0.25em 0.85em;
-  color: #333;
-  text-align: center;
-  background-color: #fff;
-}
-.nemo #header nav ul li a:visited {
-  color: #333;
-}
-.nemo #header nav ul li a:hover {
-  background-color: #dbe6eb;
-  color: #333;
-}
-.nemo #header nav ul li a:focus {
-  background-color: #fff;
-}
-.nemo #header nav ul li a.active {
-  background-color: #dbe6eb;
-}
-.nemo #header nav ul li a.complaint {
-  color: #50a748;
-}
-.nemo #subnav {
-  max-width: 976px;
-  margin: 0 auto;
-  padding: 1em 20px;
-  background-color: #fff;
-}
-.nemo .js #subnav {
-  width: auto;
-  padding: 0;
-  background-color: transparent;
-}
-.nemo #subnav nav {
-  display: inline-block;
-  /* IE7 hack to mimic inline-block on block elements */
-  *display: inline;
-  *zoom: 1;
-  vertical-align: top;
-  border: 1px solid #333;
-  padding: 0 1em;
-  background-color: #dbe6eb;
-  z-index: 100;
-}
-.nemo #subnav nav a {
-  color: #333;
-  border: none;
-}
-.nemo #subnav nav h4 {
-  display: none;
-}
-.nemo #subnav nav ul {
-  margin: 1em 0;
-  width: 13em;
-  padding: 0;
-  list-style-type: none;
-}
-.nemo #subnav nav {
-  position: absolute;
-  top: 10.25em;
-  display: none;
-  border-top: none;
-}
-.nemo #subnav nav ul li {
-  border-bottom: 1px solid #afafb3;
-  padding: 0.5em;
-  -webkit-column-break-inside: avoid;
-  -moz-column-break-inside: avoid;
-  column-break-inside: avoid;
-}
-.nemo #subnav nav ul li:last-child {
-  border-bottom: none;
-}
-.nemo #subnav nav ul li h5 {
-  margin: 0;
-}
-.nemo #subnav nav ul li p {
-  margin: 0;
-  font-size: 0.8333em;
-  color: #626263;
-}
-.nemo #subnav nav ul li ul li {
-  border-bottom: none;
-  padding: 0;
-  margin-top: 0.5em;
-  font-family: "Avenir Next", Verdana, sans-serif;
-  word-wrap: normal;
-}
-.nemo #subnav .close {
-  font-size: 0.625em;
-  font-family: "Avenir Next", Verdana, sans-serif;
-  display: block;
-  text-align: right;
-  padding-bottom: 1em;
-}
-.nemo #subnav a:hover,
-.nemo #subnav a:focus {
-  background-color: inherit;
-}
-.nemo #footer {
-  width: auto;
-  font-size: 0.833333333em;
-  padding: 2em 0;
-  background-color: #fff;
-  border-top: 1px solid #333;
-}
-.nemo #footer > div > a {
-  display: inline-block;
-  /* IE7 hack to mimic inline-block on block elements */
-  *display: inline;
-  *zoom: 1;
-  margin: 1em 1.9685% 0 1.9685%;
-  width: 22.53937%;
-}
-.nemo #footer > div > nav {
-  border-left: 1px solid #afafb3;
-  display: inline-block;
-  /* IE7 hack to mimic inline-block on block elements */
-  *display: inline;
-  *zoom: 1;
-  width: 18.50393%;
-  padding: 0 1.5%;
-  margin-left: 1.9685%;
-  vertical-align: top;
-  min-height: 12.5em;
-}
-.nemo #footer > div, #footer > div {
-  width: auto;
-  max-width: 1060px;
-  padding: 0;
-  margin: 0 auto;
-  position: relative;
-}
-.nemo #footer > div > a:link {
-  padding: 0;
-  border: none;
-}
-.nemo #footer > div > nav > ul {
-  width: auto;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-.nemo #footer > div > nav > ul li {
-  margin: 0.75em 0 0;
-}
-.nemo #search_form {
-  position: absolute;
-  top: 2.35em;
-  right: 0;
-  text-align: right;
-  width: 40%;
-}
-.nemo #search_form button {
-  background: #50b948 url(http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/search_bg.png) no-repeat center left;
-  text-indent: -9999px;
-  width: 3em;
-}
-.nemo .single .inf {
-  display: inline-block;
-  /* IE7 hack to mimic inline-block on block elements */
-  *display: inline;
-  *zoom: 1;
-}
-.nemo .single input {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  font-size: 1em;
-}
-.nemo .single button {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  display: inline-block;
-  /* IE7 hack to mimic inline-block on block elements */
-  *display: inline;
-  *zoom: 1;
-  line-height: 1.95;
-  padding: 0 0.5em;
-  position: relative;
-  top: 1px;
-  left: -3px;
-}
-.nemo .lt-ie8 .single button {
-  line-height: 1.6;
-  top: 4px;
-}
-.nemo .inf {
-  position: relative;
-}
-.nemo .inf > label {
-  position: absolute;
-  padding: 0 0.5em;
-  top: 0.25em;
-  z-index: 10;
-  background-color: #fff;
-  color: #444;
-  font-family: "Avenir Next", Verdana, sans-serif;
-}
-.nemo .inf > input {
-  position: relative;
-  z-index: 20;
-  background: transparent;
-  background: rgba(255, 255, 255, 0.25);
-  -webkit-transition: background 700ms ease;
-  transition: background 700ms ease;
-  width: 210px;
-}
-.nemo .inf .filled {
-  background: #fff;
-}
-.nemo .lang {
-  color: #626263;
-  font-family: "Avenir Next", Verdana, sans-serif;
-  font-size: 13px;
-  position: absolute;
-  top: 16px;
-  right: 0;
-  margin: 0;
-}
-.nemo .govt {
-  color: #626263;
-  font-family: "Avenir Next", Verdana, sans-serif;
-  font-size: 0.83333333em;
-  position: absolute;
-  top: 0px;
-  right: 2em;
-  margin: 0;
-  background: transparent url("../img/us_flag_small.png") right center no-repeat;
-  padding-right: 24px;
-}
-.nemo #footer aside {
-  display: inline-block;
-}
-.nemo #footer button a {
-  color: white;
-  border-bottom: none;
-}
-.nemo #footer button a:hover {
-  background: transparent;
-}
-.nemo #footer > div > nav > div > p {
-  padding-top: 1em;
-}
-.nemo .check ul {
-  list-style-type: none;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-.nemo .bottom {
-  display: block;
-  width: auto;
-  max-width: 976px;
-  border: none;
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
-}
-.nemo .bottom > ul {
-  width: auto;
-  list-style-type: none;
-  margin: 1em 0;
-  padding: 1em 1.9685%;
-  border-top: 1px solid #afafb3;
-}
-.nemo .bottom > ul > li {
-  display: inline-block;
-  /* IE7 hack to mimic inline-block on block elements */
-  *display: inline;
-  *zoom: 1;
-  margin-right: 1em;
-}
-.nemo .bottom > ul > li + li {
-  border-left: 1px solid #afafb3;
-  padding-left: 1em;
-}
-.nemo .bottom img {
-  position: absolute;
-  right: 1.9685%;
-  top: 0.75em;
-}
-.nemo .lt-ie9 .bottom img {
-  top: 2.75em;
-}
-.nemo a:hover,
-.nemo a:focus {
-  background-color: #dbe6eb;
-  border-bottom-style: solid;
-}
-.nemo footer > div > a:hover,
-.nemo header > div > a:hover {
-  background-color: transparent;
-}
-.nemo .share a:hover,
-.nemo .share a:focus {
-  background-color: transparent;
-  border: none;
-}
-.nemo .share a:hover img,
-.nemo .share a:focus img {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-}
-.nemo input:focus {
-  border: 1px solid #50a748;
-}
-.nemo .inf input:focus {
-  background: #fff;
-  background: rgba(255, 255, 255, 0.85);
-}
-.nemo button:hover,
-.nemo button:focus {
-  cursor: pointer;
-  outline: 2px;
-}
-.nemo button:disabled:hover,
-.nemo button:disabled:focus {
-  cursor: default;
-}
-.nemo .wrapper-banner,
-.nemo .wrapper-header {
-  color: #101820;
-  font-family: "Avenir Next", Arial, sans-serif;
-  font-size: 75%;
-  font-weight: 400;
-}
-.nemo .wrapper-banner {
-  background-color: #f7f5f4;
-  padding: 4px 0;
-  text-align: center;
-  width: 100%;
-}
-.nemo .wrapper-banner a {
-  background: none;
-  border-bottom: none;
-  margin: 0 6px;
-  padding-bottom: none;
-}
-.nemo .wrapper-container {
-  font-size: 93%;
-  line-height: 1.25em;
-  margin: 0 auto;
-  text-align: left;
-  width: 1016px;
-}
-.nemo .small {
-  font-size: 0.625em;
-}
-.nemo .split {
-  display: block;
-  line-height: 1.25;
-  overflow: hidden;
-  width: 1016px;
-}
-.nemo .split-right {
-  float: right;
-  margin-right: 1.9685%;
-  text-align: right;
-}
-.nemo .official-website {
-  background: transparent url("http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/us_flag_small.png") left center no-repeat;
-  float: left;
-  margin-left: 1.9685%;
-  padding-left: 24px;
-}
-.nemo .noStyles,
-.nemo a.noStyles:hover {
-  color: #333;
-  border: none;
-  padding: 0;
-  background: none;
-}
-.nemo .toggle-menu {
-  display: none;
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  font-size: 18px;
-  height: 40px;
-  width: 40px;
-  line-height: 40px;
-  text-align: center;
-}
-.nemo #subnav {
-  padding: 0;
-}
-.nemo #subnav nav h5 {
-  text-transform: none;
-}
-.nemo #header nav a {
-  font-family: "AvenirNextLTW01-Medium", Arial, sans-serif;
-  font-style: normal;
-  font-weight: 500;
-}
-.lt-ie9 .nemo #header nav a {
-  font-weight: normal !important;
-}
-.lt-ie9 .nemo #header nav a {
-  font-weight: normal !important;
-}
-.nemo #subnav nav h5,
-.nemo strong {
-  font-family: "AvenirNextLTW01-Demi", Arial, sans-serif;
-  font-style: normal;
-  font-weight: bold;
-}
-.lt-ie9 .nemo #subnav nav h5,
-.lt-ie9 .nemo strong {
-  font-weight: normal !important;
-}
-.lt-ie9 .nemo #subnav nav h5,
-.lt-ie9 .nemo strong {
-  font-weight: normal !important;
-}
-.nemo #header {
-  border-bottom: 5px solid #333;
-}
-.nemo #header nav {
-  margin: 10px 0 0;
-}
-@media screen and (max-width: 1060px) {
-  .nemo #header > div {
-    margin-left: 15px;
-  }
-  .nemo #header nav {
-    font-size: 80%;
-  }
-  .nemo .wrapper-container,
-  .nemo .split {
-    width: 100%;
-    max-width: 100%;
-  }
-  .nemo .wrapper-container .language-banner {
-    display: none;
-  }
-}
-@media screen and (max-width: 865px) {
-  .nemo .horizontal-list-item {
-    display: inline-block;
-    vertical-align: top;
-  }
-  .nemo #header nav ul li a {
-    text-align: left;
-  }
-}
-@media screen and (max-width: 720px) {
-  .nemo #header h1 {
-    margin-left: 60px;
-  }
-  .nemo .toggle-menu {
-    display: block;
-  }
-  .nemo #header .toggle-menu,
-  .nemo #header .toggle-menu:link,
-  .nemo #header .toggle-menu:visited {
-    color: #75787B;
-  }
-  .nemo #header .toggle-menu:hover,
-  .nemo #header .toggle-menu:active,
-  .nemo #header .toggle-menu:focus {
-    color: #75787B;
-    background: #E3E4E4;
-  }
-  .nemo #header nav {
-    font-size: 100%;
-  }
-  .nemo #subnav nav {
-    border: 0;
-    box-sizing: border-box;
-    width: 100%;
-  }
-  .nemo #subnav nav ul {
-    margin: 0;
-    width: auto;
-  }
-  .nemo #header nav ul {
-    display: none;
-  }
-  .nemo #header nav ul.vis {
-    display: block;
-  }
-  .nemo #header nav ul li {
-    display: block;
-  }
-  .nemo p.lang,
-  .nemo #search_form {
-    display: none;
-    position: relative;
-    top: 0;
-    right: 0;
-    width: 100%;
-    text-align: center;
-  }
-  .nemo .official-website {
-    padding-right: 0;
-    background: none;
-  }
-  .nemo #footer > div > a,
-  .nemo #footer > div > nav {
-    width: auto;
-    display: block;
-    min-height: 0;
-  }
-  .nemo .split-right {
-    position: static;
-    margin-right: 0;
-    margin-left: 10px;
-    text-align: right;
-  }
-}
 .cf-icon {
   font-family: 'CFPB Minicons';
   display: inline-block;
@@ -2051,36 +1140,3 @@ form {
   *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\e631');
 }
 */
-
-/* Spinning icons for loading indicators */
-
-.cf-icon__spin {
-  -webkit-animation: cf-spin 2s infinite linear;
-  animation: cf-spin 2s infinite linear;
-}
-.cf-icon__pulse {
-  -webkit-animation: cf-spin 1s infinite steps(8);
-  animation: cf-spin 1s infinite steps(8);
-}
-@-webkit-keyframes cf-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-    transform: rotate(359deg);
-  }
-}
-@keyframes cf-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-    -ms-transform: rotate(359deg);
-    transform: rotate(359deg);
-  }
-}

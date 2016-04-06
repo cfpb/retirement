@@ -341,6 +341,11 @@ def set_up_runvars(params, language='en'):
         else:
             ssa_params['dobmon'] = params['dobmon'] - 1
     fra_tuple = get_retirement_age(yobstring)  # returns tuple: (year, months)
+    if fra_tuple[1]:
+        FRA = "{0} and {1} months".format(fra_tuple[0], fra_tuple[1])
+    else:
+        FRA = "{0}".format(fra_tuple[0])
+    results['data']['full retirement age'] = FRA
     if past_fra is True:
         ssa_params['retireyear'] = today.year
         ssa_params['retiremonth'] = today.month
@@ -354,13 +359,6 @@ def set_up_runvars(params, language='en'):
             retire_year += 1
         ssa_params['retireyear'] = retire_year
         ssa_params['retiremonth'] = retire_month
-    fra_tuple = get_retirement_age(yobstring)  # returns tuple: (year, months)
-    if isinstance(fra_tuple, tuple):
-        if fra_tuple[1]:
-            FRA = "{0} and {1} months".format(fra_tuple[0], fra_tuple[1])
-        else:
-            FRA = "{0}".format(fra_tuple[0])
-        results['data']['full retirement age'] = FRA
     return (dob, dobstring, current_age, fra_tuple, past_fra, results)
 
 
