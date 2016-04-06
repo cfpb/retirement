@@ -29,7 +29,7 @@ class build_frontend(Command):
 
     def run(self):
         print __file__
-        call(['./frontendbuild.sh'], 
+        call(['./frontendbuild.sh'],
                 cwd=os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -48,7 +48,7 @@ class bdist_egg(_bdist_egg):
 
 setup(
     name='retirement',
-    version='0.4.6',
+    version='0.4.61',
     author='CFPB',
     author_email='tech@cfpb.gov',
     maintainer='cfpb',
