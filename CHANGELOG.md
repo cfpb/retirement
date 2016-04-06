@@ -2,21 +2,24 @@ Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
+-
+
+## 0.4.6
 - Switched to `merge=union` for CHANGELOG.md in .gitattributes
-- fix 'claiming at 68' phrasing error
-- Fix handling of birth dates on the first of a month
-- Fixes error message for ages over 70
-- translate date placeholders and explanatory text for folks past FRA
-- added urls, view and empty templates for 'about' pages in English and Spanish
-- Add 'about' page content
+- Fixed 'claiming at 68' phrasing error
+- Fixed handling of birth dates on the first of a month
+- Fixed error message for ages over 70
+- Translated date placeholders and explanatory text for folks past FRA
+- Added urls, view and empty templates for 'about' pages in English and Spanish
+- Added 'about' page content
 - Fixed additional claiming phrasing errors
 - Removed final references to raphael-min.js and fixed spinner direction
-- Replace custom slider with a standard range input
-- Switch to a CFPB common navigation header
-- Update hero treatment and page spacing
-- Add toggle to switch between languages
-- added Calibration model to support SSA value checks
-- added ssa_check.py utility for monitoring SSA Quick Calculator values
+- Replaced custom slider with a standard range input
+- Switched to a CFPB common navigation header
+- Updated hero treatment and page spacing
+- Added toggle link to switch between languages
+- Added Calibration model to support SSA value checks
+- Added ssa_check.py utility for monitoring SSA Quick Calculator values
 
 ## 0.4.58
 - switch back to ssa.gov for our requests, after SSA started redirecting calls to socialsecurity.gov
