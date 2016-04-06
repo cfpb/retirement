@@ -14,6 +14,8 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Switch to a CFPB common navigation header
 - Update hero treatment and page spacing
 - Add toggle to switch between languages
+- added Calibration model to support SSA value checks
+- added ssa_check.py utility for monitoring SSA Quick Calculator values
 
 ## 0.4.58
 - switch back to ssa.gov for our requests, after SSA started redirecting calls to socialsecurity.gov
