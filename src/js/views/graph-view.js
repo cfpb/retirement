@@ -2,6 +2,7 @@
 
 var numToMoney = require( '../utils/num-to-money' );
 var validDates = require( '../utils/valid-dates' );
+var strToNum = require( '../utils/handle-string-input' );
 var getModelValues = require( '../wizards/get-model-values' );
 var questionsView = require( './questions-view' );
 var fetch = require( '../wizards/fetch-api-data' );
@@ -97,7 +98,8 @@ var graphView = {
 
     // reformat salary
     $( '#salary-input' ).blur( function() {
-      var salary = numToMoney( $( '#salary-input' ).val().replace( /\D/g, '' ) );
+      var salaryNumber = strToNum( $( '#salary-input' ).val() ),
+          salary = numToMoney( salaryNumber );
       $( '#salary-input' ).val( salary );
     } );
 
@@ -203,7 +205,7 @@ var graphView = {
   getYourEstimates: function() {
     var dataLang = $( 'body' ).attr('data-lang'),
         dates = this.validateBirthdayFields(),
-        salary = $( '#salary-input' ).val().replace( /\D/g, '' ),
+        salary = strToNum( $( '#salary-input' ).val() ),
         SSData;
 
     // Hide warnings, show loading indicator
