@@ -10,6 +10,7 @@ import unittest
 from ..check_api import Collector, print_msg, check_data, run, TimeoutError
 timestamp = datetime.datetime.now()
 
+
 class TestApi(unittest.TestCase):
     """test the tester"""
     test_collector = Collector()
@@ -58,10 +59,8 @@ class TestApi(unittest.TestCase):
         self.assertTrue(msg == 'OK')
 
     def test_print_msg(self):
-        target_text = ',%s,,,,,' % self.test_collector.date
+        target_text = ',{0},,,,,'.format(self.test_collector.date)
         test_text = print_msg(self.test_collector)
-        print "test_text: %s" % test_text
-        print "target_text: %s" % target_text
         self.assertTrue(test_text == target_text)
 
     @mock.patch('retirement.retirement_api.utils.check_api.requests.get')
