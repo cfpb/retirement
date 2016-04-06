@@ -72,31 +72,35 @@ def check_results(test_data, TESTS):
                     'error']:
             if test_results[key] != target_results[key]:
                 OK = False
-                error_msg += "\n{0}: base param {1} did not match {2}".format(
+                error_msg += "\n{0}: base param {1} did not match; expected {2} but found {3}".format(
                                 slug,
                                 key,
-                                target_results[key])
+                                target_results[key],  
+                                test_results[key])
         for data_key in ['months_past_birthday', 'full retirement age']:
             if test_results['data'][data_key] != target_results['data'][data_key]:
                 OK = False
-                error_msg += "\n{0}: data param {1} did not match {2}".format(
+                error_msg += "\n{0}: data param {1} did not match; expected {2} but found {3}".format(
                                 slug,
                                 data_key,
-                                target_results['data'][data_key])
+                                target_results['data'][data_key],
+                                test_results['data'][data_key])
         for benefit_key in target_results['data']['benefits'].keys():
             if test_results['data']['benefits'][benefit_key] != target_results['data']['benefits'][benefit_key]:
                 OK = False
-                error_msg += "\n{0}: benefit param {1} did not match {2}".format(
+                error_msg += "\n{0}: benefit param {1} did not match; expected {2} but found {3}".format(
                                slug,
                                benefit_key,
-                               target_results['data']['benefits'][benefit_key])
+                               target_results['data']['benefits'][benefit_key],
+                               test_results['data']['benefits'][benefit_key])
         for ssa_param_key in target_results['data']['params'].keys():
             if test_results['data']['params'][ssa_param_key] != target_results['data']['params'][ssa_param_key]:
                 OK = False
-                error_msg += "\n{0}: ssa param {1} did not match {2}".format(
+                error_msg += "\n{0}: ssa param {1} did not match; expected {2} but found {3}".format(
                                 slug,
                                 ssa_param_key,
-                                target_results['data']['params'][ssa_param_key])
+                                target_results['data']['params'][ssa_param_key],
+                                test_results['data']['params'][ssa_param_key])
     if OK:
         return "All tests pass on {0}".format(today)
     else:
