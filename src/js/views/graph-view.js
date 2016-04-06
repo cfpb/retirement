@@ -340,7 +340,7 @@ var graphView = {
     } else {
       $( '.graph-content .content-container.full-retirement' ).show();
     }
-    if ( this.selectedAge === SSData.fullAge || this.selectedAge === SSData.currentAge ) {
+    if ( this.selectedAge === SSData.fullAge || ( this.selectedAge === SSData.currentAge && SSData.past_fra ) ) {
       if ( SSData.past_fra ) {
         if ( SSData.currentAge === 70 ) {
           $( '.benefit-modification-text' ).html( window.gettext('is your maximum benefit claiming age.') );
