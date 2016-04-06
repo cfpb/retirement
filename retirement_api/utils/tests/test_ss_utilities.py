@@ -31,7 +31,10 @@ from ..ss_calculator import (num_test,
                              get_retire_data,
                              set_up_runvars)
 from ..check_api import TimeoutError
-from ..ssa_check import (TESTS, get_test_params, check_results, run_tests)
+from ..ssa_check import (assemble_test_params,
+                         get_test_params,
+                         check_results,
+                         run_tests)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 sys.path.append(BASE_DIR)
@@ -43,6 +46,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 class SSACheckTests(django.test.TestCase):
     fixtures = ['test_calibration.json']
+    TESTS = assemble_test_params()
     sample_params = {
         'dobmon': 1,
         'dobday': 3,
@@ -56,18 +60,22 @@ class SSACheckTests(django.test.TestCase):
         'prgf': 2
     }
 
+    def test_assemble_test_params(self):
+        test_set = assemble_test_params()
+        self.assertTrue(type(test_set) == dict)
+        self.assertTrue(len(test_set) == len(self.TESTS))
+
     def test_check_results(self):
-        test_results = json.loads(Calibration.objects.first().results_json)
-        test_data = test_results
-        test_msg = check_results(test_data)
+        test_data = json.loads(Calibration.objects.first().results_json)
+        test_msg = check_results(test_data, self.TESTS)
         self.assertTrue("pass" in test_msg)
-        slug = test_results.keys()[0]
+        slug = test_data.keys()[0]
         test_data[slug]['current_age'] = 99
         test_data[slug]['current_age'] = 99
         test_data[slug]['data']['months_past_birthday'] = 13
         test_data[slug]['data']['benefits']['age 70'] = 0
         test_data[slug]['data']['params']['yob'] = 0
-        test_msg2 = check_results(test_data)
+        test_msg2 = check_results(test_data, self.TESTS)
         self.assertTrue("Mismatches" in test_msg2)
 
     @mock.patch('retirement_api.utils.ssa_check.get_retire_data')
@@ -76,10 +84,10 @@ class SSACheckTests(django.test.TestCase):
         mock_get_retire_data.return_value = Calibration.objects.first().results_json
         mock_check_results.return_value = "All pass"
         test1 = utils.ssa_check.run_tests()
-        self.assertTrue(mock_get_retire_data.call_count == len(TESTS))
+        self.assertTrue(mock_get_retire_data.call_count == len(self.TESTS))
         self.assertTrue(mock_check_results.call_count == 1)
         self.assertTrue('pass' in test1)
-        test2 = run_tests(recalibrate=True)
+        test2 = utils.ssa_check.run_tests(recalibrate=True)
         self.assertTrue(Calibration.objects.count() == 2)
 
 
