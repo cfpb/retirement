@@ -8,6 +8,15 @@ WORKFLOW_STATE = [
 ]
 
 
+class Calibration(models.Model):
+    """Graph values for SSA test cases"""
+    created = models.DateTimeField(auto_now_add=True)
+    results_json = models.TextField()
+
+    def __unicode__(self):
+        return "calibration {0}".format(self.created)
+
+
 class Step(models.Model):
     title = models.CharField(max_length=500)
     instructions = models.TextField(max_length=255, blank=True)

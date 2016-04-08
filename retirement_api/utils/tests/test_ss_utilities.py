@@ -10,6 +10,10 @@ import requests
 import mock
 import unittest
 
+import django
+from retirement_api.models import Calibration
+from retirement_api import utils
+
 from ..ss_utilities import (get_retirement_age,
                             get_months_until_next_birthday,
                             past_fra_test,
@@ -27,6 +31,10 @@ from ..ss_calculator import (num_test,
                              get_retire_data,
                              set_up_runvars)
 from ..check_api import TimeoutError
+from ..ssa_check import (assemble_test_params,
+                         get_test_params,
+                         check_results,
+                         run_tests)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 sys.path.append(BASE_DIR)
@@ -36,9 +44,56 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 # from retirement_api import utils
 
 
+class SSACheckTests(django.test.TestCase):
+    fixtures = ['test_calibration.json']
+    TESTS = assemble_test_params()
+    sample_params = {
+        'dobmon': 1,
+        'dobday': 3,
+        'yob': 1970,
+        'earnings': 40000,
+        'lastYearEarn': '',
+        'lastEarn': '',
+        'retiremonth': 1,
+        'retireyear': 2037,
+        'dollars': 1,
+        'prgf': 2
+    }
+
+    def test_assemble_test_params(self):
+        test_set = assemble_test_params()
+        self.assertTrue(type(test_set) == dict)
+        self.assertTrue(len(test_set) == len(self.TESTS))
+
+    def test_check_results(self):
+        test_data = json.loads(Calibration.objects.first().results_json)
+        test_msg = check_results(test_data, self.TESTS)
+        self.assertTrue("pass" in test_msg)
+        slug = test_data.keys()[0]
+        test_data[slug]['current_age'] = 99
+        test_data[slug]['current_age'] = 99
+        test_data[slug]['data']['months_past_birthday'] = 13
+        test_data[slug]['data']['benefits']['age 70'] = 0
+        test_data[slug]['data']['params']['yob'] = 0
+        test_msg2 = check_results(test_data, self.TESTS)
+        self.assertTrue("Mismatches" in test_msg2)
+
+    @mock.patch('retirement_api.utils.ssa_check.get_retire_data')
+    @mock.patch('retirement_api.utils.ssa_check.check_results')
+    def test_run_tests(self, mock_check_results, mock_get_retire_data):
+        mock_get_retire_data.return_value = Calibration.objects.first().results_json
+        mock_check_results.return_value = "All pass"
+        test1 = utils.ssa_check.run_tests()
+        self.assertTrue(mock_get_retire_data.call_count == len(self.TESTS))
+        self.assertTrue(mock_check_results.call_count == 1)
+        self.assertTrue('pass' in test1)
+        test2 = utils.ssa_check.run_tests(recalibrate=True)
+        self.assertTrue(Calibration.objects.count() == 2)
+
+
 class UtilitiesTests(unittest.TestCase):
     today = datetime.date.today()
-    if today.day == 29:
+    if today.day == 29:  # in case this test runs in Feb. in a leap year
         today = today.replace(day=today.day - 1)
     sample_params = {
         'dobmon': 1,
@@ -52,6 +107,23 @@ class UtilitiesTests(unittest.TestCase):
         'dollars': 1,
         'prgf': 2
     }
+
+    def test_get_test_params(self):
+        test_params = get_test_params(46, 3)
+        self.assertTrue(test_params['dobday'] == 3)
+        test_params = get_test_params(46, self.today.day + 1)
+        self.assertTrue(test_params['dobday'] == self.today.day + 1)
+        test_params = get_test_params(46, 3, dob_year=1950)
+        self.assertTrue(test_params['yob'] == 1950)
+        test_params = get_test_params(46, 3, dob_year=1950)
+        self.assertTrue(test_params['yob'] == 1950)
+
+    @mock.patch('retirement_api.utils.ssa_check.datetime.date')
+    def test_get_test_params_jan(self, mock_date):
+        mock_date.today.return_value = self.today.replace(month=1, day=2)
+        test_params = get_test_params(46, 3)
+        print "\n\n\nYOB OUTPUT IS {0}\n\n\n".format(test_params['yob'])
+        self.assertTrue(test_params['yob'] == 1969)
 
     def test_clean_comment(self):
         test_comment = '<!-- This is a test comment    -->'
@@ -475,4 +547,3 @@ class UtilitiesTests(unittest.TestCase):
         mock_requests.side_effect = ValueError
         mock_results = get_retire_data(params, language='en')
         self.assertTrue('SSA' in mock_results['error'])
-

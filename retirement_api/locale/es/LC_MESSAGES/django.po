@@ -715,3 +715,11 @@ msgstr "DD"
 msgid "MM"
 msgstr "MM"
 
+#: 
+msgid "en-US"
+msgstr "es"
+
+#: 
+msgid "en"
+msgstr "es"
+
