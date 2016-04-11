@@ -2,6 +2,9 @@ Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
+-
+
+## 0.4.62
 - Changed the url namespace for the 'about' page to be specific to retirement
 
 ## 0.4.61
