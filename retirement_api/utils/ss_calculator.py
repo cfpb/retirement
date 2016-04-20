@@ -1,4 +1,4 @@
-# coding: utf-8 
+# coding: utf-8
 """
 A utility to get benefit data from SSA and handle errors.
 
@@ -59,6 +59,10 @@ ERROR_NOTES = {
     'earnings': {'en': no_earnings_note, 'es': no_earnings_note_es}
 }
 
+PAST_NOTE = "Age {0} is past your full benefit claiming age."
+NO_DISABILITY_NOTE = "You have reached full retirement age \
+and are not eligible for disability benefits."
+
 
 def get_note(note_type, language):
     """return language_specific error"""
@@ -111,6 +115,39 @@ def parse_details(rows):
         outer['AIME'] = rows[1]
         outer['COLA'] = rows[2]
     return datad
+
+
+def calculate_lifetime_benefits(results, base, fra_tuple, dob, past_fra):
+    """Add lifetime benefit values for each year shown in bar graph"""
+    AGE = results['current_age']
+    BENS = results['data']['benefits']
+    LIFE = results['data']['lifetime'] = {}
+    for year in range(62, 71):
+        benkey = "age {0}".format(year)
+        lifekey = "age{0}".format(year)
+        if BENS[benkey] == 0:
+            LIFE[lifekey] = 0
+        else:
+            bar_value = BENS[benkey]
+            max_months = (85 - year) * 12
+            max_benefit = max_months * bar_value
+            if year == AGE:
+                month_adjustment = results['data']['months_past_birthday']
+                if year == 62 and month_adjustment == 0:
+                    month_adjustment = 1
+                life_benefit = max_benefit - (month_adjustment * bar_value)
+            elif year == 62:
+                if dob.day == 2:  # born-on-2nd edge case
+                    life_benefit = max_benefit
+                else:
+                    life_benefit = max_benefit - bar_value
+            elif year == fra_tuple[0]:
+                month_adjustment = fra_tuple[1]
+                life_benefit = max_benefit - (month_adjustment * bar_value)
+            else:
+                life_benefit = max_benefit
+            LIFE[lifekey] = life_benefit
+    return results
 
 
 def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
@@ -234,7 +271,7 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
 def interpolate_for_past_fra(results, base, current_age, dob):
     """
     Calculate future benefits people who have passed full retirement age.
-    Handles edge case when subject is born on 1st and birthday is in the same month.
+    Handles edge case when subject's born on 1st and birthday is in same month.
     """
     today = datetime.date.today()
     BENS = results['data']['benefits']
@@ -245,7 +282,7 @@ def interpolate_for_past_fra(results, base, current_age, dob):
         results['params_adjusted'] = True
         current_age = current_age + 1
         results['current_age'] = current_age
-        results['note'] = "Age {0} is past your full benefit claiming age.".format(current_age)
+        results['note'] = PAST_NOTE.format(current_age)
         results['data']['months_past_birthday'] = 0
         first_bump = annual_bump
     if current_age == 66:
@@ -278,8 +315,8 @@ def interpolate_for_past_fra(results, base, current_age, dob):
 #     'earnings': 70000,
 #     'lastYearEarn': '',  # possible use for unemployed or already retired
 #     'lastEarn': '',  # possible use for unemployed or already retired
-#     'retiremonth': '',  # leve blank to get triple calculation -- 62, 67 and 70
-#     'retireyear': '',  # leve blank to get triple calculation -- 62, 67 and 70
+#     'retiremonth': '',  # used to get consistent results from calculator
+#     'retireyear': '',  # used to get consistent results from calculator
 #     'dollars': 1,  # benefits to be calculated in current-year dollars
 #     'prgf': 2
 # }
@@ -349,8 +386,8 @@ def set_up_runvars(params, language='en'):
     if past_fra is True:
         ssa_params['retireyear'] = today.year
         ssa_params['retiremonth'] = today.month
-        results['note'] = "Age {0} is past your full benefit claiming age.".format(current_age)
-        results['data']['disability'] = "You have reached full retirement age and are not eligible for disability benefits."
+        results['note'] = PAST_NOTE.format(current_age)
+        results['data']['disability'] = NO_DISABILITY_NOTE
     else:
         retire_year = ssa_params['yob'] + fra_tuple[0]
         retire_month = ssa_params['dobmon'] + fra_tuple[1]
@@ -441,16 +478,21 @@ def get_retire_data(params, language):
     if results['error']:
         return results
     if past_fra is True:
-        final_results = interpolate_for_past_fra(results,
-                                                 base_benefit,
-                                                 current_age,
-                                                 dob)
+        results = interpolate_for_past_fra(results,
+                                           base_benefit,
+                                           current_age,
+                                           dob)
     else:
         results['data']['benefits']['age {0}'.format(fra_tuple[0])] = base_benefit
-        final_results = interpolate_benefits(results,
-                                             base_benefit,
-                                             fra_tuple,
-                                             current_age,
-                                             dob)
+        results = interpolate_benefits(results,
+                                       base_benefit,
+                                       fra_tuple,
+                                       current_age,
+                                       dob)
+    final_results = calculate_lifetime_benefits(results,
+                                                base_benefit,
+                                                fra_tuple,
+                                                dob,
+                                                past_fra)
     print "script took {0} to run".format((datetime.datetime.now() - starter))
     return final_results
