@@ -91,7 +91,7 @@ The "Before You Claim" page should load at `localhost:8000/before-you-claim/`.
 - You can use nose to run the Python test suite and see code coverage information:
 
   ```bash
-  nosetests --with-coverage --config=.coveragerc --cover-package retirement_api
+  ./pytest.sh
   ```
 - You can run the JavaScript tests with:
 
