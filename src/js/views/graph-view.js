@@ -27,6 +27,7 @@ var graphView = {
 
   init: function() {
     var SSData = getModelValues.benefits();
+    var lifetimeData = getModelValues.lifetime();
 
     $( 'input[name="benefits-display"]' ).click( function() {
       graphView.setTextByAge();
@@ -200,6 +201,7 @@ var graphView = {
     var dataLang = $( 'body' ).attr('data-lang'),
         dates = this.validateBirthdayFields(),
         salary = strToNum( $( '#salary-input' ).val() ),
+        lifetimeData,
         SSData;
 
     // Hide warnings, show loading indicator
@@ -209,6 +211,7 @@ var graphView = {
     $.when( fetch.apiData( dates.concat, salary, dataLang ) ).done( function( resp ) {
       if ( resp.error === '' ) {
         SSData = getModelValues.benefits();
+        lifetimeData = getModelValues.lifetime();
 
         $( '.step-two, #estimated-benefits-input, #graph-container' ).css( 'opacity', 1);
         $( '.step-two .question' ).css( 'display', 'inline-block' );
@@ -259,7 +262,8 @@ var graphView = {
   setTextByAge: function() {
     var gset = this.graphSettings,
         SSData = getModelValues.benefits(),
-        lifetimeBenefits = numToMoney( ( 85 - this.selectedAge ) * 12 * SSData['age' + this.selectedAge] ),
+        lifetimeData = getModelValues.lifetime(),
+        lifetimeBenefits = numToMoney( lifetimeData['age' + this.selectedAge] ),
         fullAgeBenefitsValue = SSData['age' + SSData.fullAge],
         benefitsValue = SSData['age' + this.selectedAge],
         $selectedBar,
@@ -269,11 +273,6 @@ var graphView = {
         fullAgeLeft,
         fullAgeTop,
         percent;
-
-    if ( SSData.currentAge > 62 ) {
-      lifetimeBenefits = numToMoney( ( ( 85 - this.selectedAge ) * 12 - SSData.monthsPastBirthday ) *
-        SSData['age' + this.selectedAge] );
-    }
 
     if ( $( '#estimated-benefits-input [name="benefits-display"]:checked' ).val() === 'annual' ) {
       benefitsValue *= 12;
