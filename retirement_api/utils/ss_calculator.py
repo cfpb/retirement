@@ -133,7 +133,7 @@ def calculate_lifetime_benefits(results, base, fra_tuple, dob, past_fra):
             max_benefit = max_months * bar_value
             if year == AGE:
                 month_adjustment = results['data']['months_past_birthday']
-                if year == 62 and month_adjustment == 0:
+                if year == 62 and month_adjustment == 0 and dob.day != 2:
                     month_adjustment = 1
                 life_benefit = max_benefit - (month_adjustment * bar_value)
             elif year == 62:
