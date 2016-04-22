@@ -6,6 +6,7 @@ from distutils.command.build_ext import build_ext as _build_ext
 from setuptools.command.bdist_egg import bdist_egg as _bdist_egg
 from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
 
+
 def read_file(filename):
     """Read a file into a string"""
     path = os.path.abspath(os.path.dirname(__file__))
@@ -30,7 +31,7 @@ class build_frontend(Command):
     def run(self):
         print __file__
         call(['./frontendbuild.sh'],
-                cwd=os.path.dirname(os.path.abspath(__file__)))
+             cwd=os.path.dirname(os.path.abspath(__file__)))
 
 
 class build_ext(_build_ext):
@@ -55,12 +56,12 @@ class bdist_wheel(_bdist_wheel):
 
 setup(
     name='retirement',
-    version='0.4.62',
+    version='0.4.7',
     author='CFPB',
     author_email='tech@cfpb.gov',
     maintainer='cfpb',
     maintainer_email='tech@cfpb.gov',
-    packages=['retirement_api','retirement_api.utils'],
+    packages=['retirement_api', 'retirement_api.utils'],
     include_package_data=True,
     description=u'Retirement app and api',
     classifiers=[
