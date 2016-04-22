@@ -2,7 +2,8 @@ Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
-- Remove redundant cf-icon CSS code
+- Added lifetime calculations to api and removed from js
+- Removed redundant cf-icon CSS code
 
 ## 0.4.62
 - Changed the url namespace for the 'about' page to be specific to retirement
