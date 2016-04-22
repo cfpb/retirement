@@ -4,7 +4,7 @@ from subprocess import call
 from setuptools import Command
 from distutils.command.build_ext import build_ext as _build_ext
 from setuptools.command.bdist_egg import bdist_egg as _bdist_egg
-
+from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
 
 def read_file(filename):
     """Read a file into a string"""
@@ -46,6 +46,13 @@ class bdist_egg(_bdist_egg):
         self.run_command('build_frontend')
         _bdist_egg.run(self)
 
+
+class bdist_wheel(_bdist_wheel):
+    """ A bdist_wheel subclass that runs build_frontend """
+    def run(self):
+        self.run_command('build_frontend')
+        _bdist_wheel.run(self)
+
 setup(
     name='retirement',
     version='0.4.62',
@@ -53,7 +60,7 @@ setup(
     author_email='tech@cfpb.gov',
     maintainer='cfpb',
     maintainer_email='tech@cfpb.gov',
-    packages=['retirement_api'],
+    packages=['retirement_api','retirement_api.utils'],
     include_package_data=True,
     description=u'Retirement app and api',
     classifiers=[
@@ -72,5 +79,6 @@ setup(
         'build_frontend': build_frontend,
         'build_ext': build_ext,
         'bdist_egg': bdist_egg,
+        'bdist_wheel': bdist_wheel,
     },
 )
