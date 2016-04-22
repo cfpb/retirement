@@ -2,6 +2,8 @@ Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
+- Deleted unneeded grunt packages
+- Added `.npmrc` and `npm-shrinkwrap.json` files
 - Added lifetime calculations to api and removed from js
 - Removed redundant cf-icon CSS code
 
