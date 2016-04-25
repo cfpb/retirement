@@ -63,8 +63,8 @@ class TestApi(unittest.TestCase):
         test_text = print_msg(self.test_collector)
         self.assertTrue(test_text == target_text)
 
-    @mock.patch('retirement.retirement_api.utils.check_api.requests.get')
-    @mock.patch('retirement.retirement_api.utils.check_api.print_msg')
+    @mock.patch('retirement_api.utils.check_api.requests.get')
+    @mock.patch('retirement_api.utils.check_api.print_msg')
     def test_run(self, mock_print_msg, mock_requests):
         mock_requests.return_value.text = json.dumps(self.test_data)
         mock_requests.return_value.status_code = 200
