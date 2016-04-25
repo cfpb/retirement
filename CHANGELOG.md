@@ -9,6 +9,8 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Deleted unneeded grunt packages
 - Added `.npmrc` and `npm-shrinkwrap.json` files
 - Removed redundant cf-icon CSS code
+- Pinned and shrinkwrapped NPM dependencies
+- Added `snyk` to monitor for known NPM package vulnerabilities.
 
 ## 0.4.62
 - Changed the url namespace for the 'about' page to be specific to retirement
