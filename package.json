@@ -1,7 +1,7 @@
 {
   "name": "retirement",
-  "version": "0.0.1",
-  "description": "Retirement project",
+  "version": "0.4.7",
+  "description": "Helping Americans make choices about retirement, including when to claim Social Security benefits",
   "main": "index.js",
   "scripts": {
     "test": "snyk test && mocha test"

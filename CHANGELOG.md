@@ -6,6 +6,8 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Added `.npmrc` and `npm-shrinkwrap.json` files
 - Added lifetime calculations to api and removed from js
 - Removed redundant cf-icon CSS code
+- Pinned and shrinkwrapped NPM dependencies
+- Added `snyk` to monitor for known NPM package vulnerabilities.
 
 ## 0.4.62
 - Changed the url namespace for the 'about' page to be specific to retirement
