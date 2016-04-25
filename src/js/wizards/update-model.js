@@ -4,10 +4,20 @@ var benefitsModel = require( '../models/benefits-model' );
 
 var update = {
 
+  /**
+   * This function updates properties of the benefits model
+   * @param {string} prop         The property to be updated
+   * @param {number|string} val   The new value of the property
+   */
   benefits: function( prop, val ) {
     benefitsModel.values[prop] = val;
   },
 
+  /**
+   * This function takes a response from an AJAX call and processes
+   * the response into the benefits model.
+   * @param {object} resp   The AJAX response object
+   */
   processApiData: function( resp ) {
     var data = resp.data,
         fullAge = Number( data['full retirement age'].substr( 0, 2 ) );

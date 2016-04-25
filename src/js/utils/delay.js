@@ -1,6 +1,8 @@
 'use strict';
 
-/***-- delay(): Delay a function ---**/
+/**
+ * This function can be used to call another function with a delay.
+ */
 var delay = (function(){
   var t = 0;
   return function(callback, delay) {

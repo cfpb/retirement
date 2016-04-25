@@ -20,6 +20,11 @@ var questionsView = {
     } );
   },
 
+  /*
+   * This function updates the text in the "questions" in Part 2
+   * based on the user's current age
+   * @param {number} currentAge   The user's current age
+   */
   update: function( currentAge ) {
     var $ageSplits = $( '.lifestyle-btn.age-split' );
     if ( currentAge < 50 ) {
