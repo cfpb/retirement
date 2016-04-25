@@ -52,3 +52,7 @@ bower_components/
 retirement_api/static/retirement/js/
 retirement_api/static/retirement/css/
 src/vendor
+
+# NPM Security #
+################
+.snyk
