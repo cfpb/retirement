@@ -6,6 +6,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Fix HTML validation errors
 - Removed calculate-age.js (unused)
 - Changed initial interaction for steps 2 and 3
+- Update the <select> in step 3 to use cf-select styles
 
 ## 0.4.7
 - Added lifetime calculations to api and removed from js
