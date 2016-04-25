@@ -2,7 +2,7 @@ import os
 import sys
 import json
 import datetime
-from copy import copy
+import copy
 from datetime import timedelta
 from datetime import date
 
@@ -28,6 +28,7 @@ from ..ss_calculator import (num_test,
                              clean_comment,
                              interpolate_benefits,
                              interpolate_for_past_fra,
+                             calculate_lifetime_benefits,
                              get_retire_data,
                              set_up_runvars)
 from ..check_api import TimeoutError
@@ -107,6 +108,85 @@ class UtilitiesTests(unittest.TestCase):
         'dollars': 1,
         'prgf': 2
     }
+    sample_results = {'data': {'early retirement age': '',
+                               'full retirement age': '',
+                               'benefits': {'age 62': 0,
+                                            'age 63': 0,
+                                            'age 64': 0,
+                                            'age 65': 0,
+                                            'age 66': 0,
+                                            'age 67': 2176,
+                                            'age 68': 0,
+                                            'age 69': 0,
+                                            'age 70': 0,
+                                            },
+                               'params': {'dobmon': 1,
+                                          'dobday': 5,
+                                          'yob': 1970,
+                                          'earnings': 40000,
+                                          'lastYearEarn': '',
+                                          'lastEarn': '',
+                                          'retiremonth': 1,
+                                          'retireyear': 2037,
+                                          'dollars': 1,
+                                          'prgf': 2},
+                               'disability': '',
+                               'months_past_birthday': 0,
+                               'survivor benefits': {
+                                      'child': '',
+                                      'spouse caring for child': '',
+                                      'spouse at full retirement age': '',
+                                      'family maximum': ''
+                                      }
+                               },
+                      'current_age': 44,
+                      'error': '',
+                      'note': '',
+                      'past_fra': False,
+                      }
+
+    sample_lifetime_benefits = {'age62': 261800,  # born in 1957, 40K
+                                'age63': 267168,
+                                'age64': 274176,
+                                'age65': 282000,
+                                'age66': 289932,
+                                'age67': 293328,
+                                'age68': 298248,
+                                'age69': 300672,
+                                'age70': 300600}
+
+    def test_calculate_lifetime_benefits(self):
+        results = copy.deepcopy(self.sample_results)
+        results['data']['benefits'] = {'age 62': 952,
+                                       'age 63': 1012,
+                                       'age 64': 1088,
+                                       'age 65': 1175,
+                                       'age 66': 1306,
+                                       'age 67': 1358,
+                                       'age 68': 1462,
+                                       'age 69': 1566,
+                                       'age 70': 1670}
+        results['current_age'] = 59
+        base_benefit = 1306
+        fra_tuple = (66, 6)
+        dob = datetime.date(1957, 1, 3)
+        past_fra = False
+        test_results = calculate_lifetime_benefits(results,
+                                                   base_benefit,
+                                                   fra_tuple,
+                                                   dob,
+                                                   past_fra)
+        for key in results['data']['benefits']:
+            lifekey = key.replace('age ', 'age')
+            self.assertTrue(self.sample_lifetime_benefits[lifekey] ==
+                            test_results['data']['lifetime'][lifekey])
+        dob = dob.replace(day=2)
+        test_results = calculate_lifetime_benefits(results,
+                                                   base_benefit,
+                                                   fra_tuple,
+                                                   dob,
+                                                   past_fra)
+        self.assertTrue(test_results['data']['lifetime']['age62'] == 262752)
 
     def test_get_test_params(self):
         test_params = get_test_params(46, 3)
@@ -122,7 +202,6 @@ class UtilitiesTests(unittest.TestCase):
     def test_get_test_params_jan(self, mock_date):
         mock_date.today.return_value = self.today.replace(month=1, day=2)
         test_params = get_test_params(46, 3)
-        print "\n\n\nYOB OUTPUT IS {0}\n\n\n".format(test_params['yob'])
         self.assertTrue(test_params['yob'] == 1969)
 
     def test_clean_comment(self):
@@ -131,7 +210,7 @@ class UtilitiesTests(unittest.TestCase):
         self.assertTrue(clean_comment(test_comment) == expected_comment)
 
     def test_set_up_runvars(self):
-        mock_params = copy(self.sample_params)
+        mock_params = copy.copy(self.sample_params)
         (test_dob,
          test_dobstring,
          test_current_age,
@@ -186,35 +265,8 @@ class UtilitiesTests(unittest.TestCase):
         self.assertEqual(get_current_age(age_pair[0]), age_pair[1])
 
     def test_interpolate_benefits(self):
-        params = copy(self.sample_params)
-        mock_results = {'data': {'early retirement age': '',
-                                 'full retirement age': '',
-                                 'benefits': {'age 62': 0,
-                                              'age 63': 0,
-                                              'age 64': 0,
-                                              'age 65': 0,
-                                              'age 66': 0,
-                                              'age 67': 2176,
-                                              'age 68': 0,
-                                              'age 69': 0,
-                                              'age 70': 0,
-                                              },
-                                 'params': self.sample_params,
-                                 'disability': '',
-                                 'months_past_birthday': 0,
-                                 'survivor benefits': {
-                                        'child': '',
-                                        'spouse caring for child': '',
-                                        'spouse at full retirement age': '',
-                                        'family maximum': ''
-                                        }
-                                 },
-                        'current_age': 44,
-                        'error': '',
-                        'note': '',
-                        'past_fra': False,
-                        }
-        benefits = {
+        mock_results = copy.deepcopy(self.sample_results)
+        expected_benefits = {
             'age 62': 1532,
             'age 63': 1632,
             'age 64': 1741,
@@ -225,14 +277,14 @@ class UtilitiesTests(unittest.TestCase):
             'age 69': 2524,
             'age 70': 2698
             }
-        dob = self.today - datetime.timedelta(days=365*44)
-        # results, base, fra_tuple, current_age, DOB
+        dob = self.today.replace(year=self.today.year-44)
+        # need to pass results, base, fra_tuple, current_age, DOB
         results = interpolate_benefits(mock_results, 2176, (67, 0), 44, dob)
         for key in results['data']['benefits'].keys():
-            self.assertEqual(results['data']['benefits'][key], benefits[key])
-        mock_results['data']['benefits']['age 66'] = mock_results['data']['benefits']['age 67'] 
+            self.assertEqual(results['data']['benefits'][key], expected_benefits[key])
+        mock_results['data']['benefits']['age 66'] = mock_results['data']['benefits']['age 67']
         mock_results['data']['benefits']['age 67'] = 0
-        dob = self.today - datetime.timedelta(days=365*55)
+        dob = self.today - datetime.timedelta(days=365*55) - datetime.timedelta(days=14)
         results = interpolate_benefits(mock_results, 2176, (66, 0), 55, dob)
         for key in sorted(results['data']['benefits'].keys()):
             self.assertTrue(results['data']['benefits'][key] != 0)
@@ -449,14 +501,15 @@ class UtilitiesTests(unittest.TestCase):
         """ given a birth date and annual pay value,
         return a dictionary of social security values
         """
-        params = copy(self.sample_params)
-        data_keys = [u'early retirement age',
-                     u'full retirement age',
-                     u'benefits',
-                     u'params',
-                     u'disability',
-                     u'months_past_birthday',
-                     u'survivor benefits']
+        params = copy.copy(self.sample_params)
+        data_keys = ['early retirement age',
+                     'full retirement age',
+                     'lifetime',
+                     'benefits',
+                     'params',
+                     'disability',
+                     'months_past_birthday',
+                     'survivor benefits']
         benefit_keys = ['age 62',
                         'age 63',
                         'age 64',
@@ -530,7 +583,7 @@ class UtilitiesTests(unittest.TestCase):
 
     @mock.patch('retirement_api.utils.ss_calculator.requests.post')
     def test_bad_calculator_requests(self, mock_requests):
-        params = copy(self.sample_params)
+        params = copy.copy(self.sample_params)
         mock_requests.return_value.ok = False
         mock_results = get_retire_data(params, language='en')
         self.assertTrue('not responding' in mock_results['error'])

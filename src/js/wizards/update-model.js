@@ -1,6 +1,7 @@
 'use strict';
 
 var benefitsModel = require( '../models/benefits-model' );
+var lifetimeModel = require( '../models/lifetime-model' );
 
 var update = {
 
@@ -12,7 +13,9 @@ var update = {
   benefits: function( prop, val ) {
     benefitsModel.values[prop] = val;
   },
-
+  lifetime: function( prop, val ) {
+    lifetimeModel.values[prop] = val;
+  },
   /**
    * This function takes a response from an AJAX call and processes
    * the response into the benefits model.
@@ -29,6 +32,9 @@ var update = {
         var prop = i.replace( ' ', '' );
         update.benefits( prop, val );
       }
+    } );
+    $.each( resp.data.lifetime, function( prop, val ) {
+        update.lifetime( prop, val );
     } );
     update.benefits( 'currentAge', resp.current_age );
     update.benefits( 'past_fra', resp.past_fra );

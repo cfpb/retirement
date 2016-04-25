@@ -6,6 +6,7 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+npm-debug.log
 
 # Vim swap files #
 ##################
