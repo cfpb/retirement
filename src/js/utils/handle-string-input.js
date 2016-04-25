@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * This function turns a string into a number. We assume each number in the string
- * should be preserved (unlike parseInt). We also assume the first instance of a
- * decimal point is the intended placement.
+ * This function turns a string into a number. We assume each number in the
+ * string should be preserved (unlike parseInt). We also assume the first
+ * instance of a decimal point is the intended placement.
  * @param  {string} numberString  A string representing a number
  * @returns {number} The assumed numeric value of numberString
  */
@@ -13,10 +13,11 @@ function handleStringInput( numberString ) {
   }
   var signMaker = 1,
       minusPosition = numberString.indexOf( numberString.match( '-' ) ),
-      digitPosition = numberString.indexOf( numberString.match( /\d/ ) );
+      digitPosition = numberString.indexOf( numberString.match( /\d/ ) ),
+      dashPosition = numberString.indexOf( numberString.match( '-' ) );
 
   // If a '-' appears before the first digit, we assume numberString is negative
-  if ( numberString.indexOf( numberString.match( '-' ) ) !== -1 && minusPosition < digitPosition ) {
+  if ( dashPosition !== -1 && minusPosition < digitPosition ) {
     signMaker = -1;
   }
 

@@ -16,6 +16,7 @@ var update = {
   lifetime: function( prop, val ) {
     lifetimeModel.values[prop] = val;
   },
+
   /**
    * This function takes a response from an AJAX call and processes
    * the response into the benefits model.
@@ -34,7 +35,7 @@ var update = {
       }
     } );
     $.each( resp.data.lifetime, function( prop, val ) {
-        update.lifetime( prop, val );
+      update.lifetime( prop, val );
     } );
     update.benefits( 'currentAge', resp.current_age );
     update.benefits( 'past_fra', resp.past_fra );
