@@ -3,6 +3,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
 - Updated the standalone version to Django 1.8
+- Removed calculate-age.js (unused)
 
 ## 0.4.7
 - Added lifetime calculations to api and removed from js
