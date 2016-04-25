@@ -1,7 +1,3 @@
-"""
-test settings
-"""
-
 import os
 from django.utils.translation import ugettext_lazy as _
 BASE_DIR = os.path.dirname(__file__)
