@@ -8,8 +8,8 @@ install:
   - pip install -r requirements.txt --use-mirrors
   - pip install coveralls
 script: 
-  # - nosetests --with-coverage --cover-erase --config=.coveragerc --cover-package retirement_api
   - cp test_settings.py settings.py
+  - ./manage.py migrate
   - coverage run --source='.' manage.py test
 after_success:
   - coveralls
