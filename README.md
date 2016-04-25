@@ -60,7 +60,7 @@ grunt build
 
 (You can also run `grunt watch` to have the build run automatically after edits to JavaScript source files, HTML templates, and assets in `retirement_api/static/retirement`. `livereload` is turned on if you have a [LiveReload browser extension](http://livereload.com/extensions/).)
 
-Create a standalone database and Load the app's tables and content.
+Create a standalone database and load the app's tables and content.
 ```bash
 python manage.py migrate
 python manage.py loaddata retiredata.json
