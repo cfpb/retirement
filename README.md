@@ -24,14 +24,13 @@ Tú puedes ver este app en español por poner `/es` al parte final del url.
  * [Grunt](http://gruntjs.com/)
 
 ### Code dependencies
- * [Django 1.6.11](https://docs.djangoproject.com/en/1.6/)
+ * [Django 1.8](https://docs.djangoproject.com/en/1.8/)
  * [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)
  * [Python-dateutil](https://dateutil.readthedocs.org/en/latest/)
  * [Requests](http://docs.python-requests.org/en/latest/)
  * [lxml](http://lxml.de/installation.html)
 
 ### For Python testing
- * [nose](https://nose.readthedocs.org/en/latest/)
  * [mock](https://mock.readthedocs.org/en/latest/)
  * [coverage](http://nedbatchelder.com/code/coverage/)
 
@@ -39,15 +38,6 @@ Tú puedes ver este app en español por poner `/es` al parte final del url.
 * [selenium](http://selenium.googlecode.com/svn/trunk/docs/api/py/index.html)
 * [behave](http://pythonhosted.org/behave/)
 * [pyhamcrest](https://pyhamcrest.readthedocs.org/)
-
-<!--
- * [Homebrew](http://brew.sh)
- * [Django localflavor](https://github.com/django/django-localflavor)
- * [Django Rest Framework](http://www.django-rest-framework.org)
- * [MySQL Python](http://mysql-python.sourceforge.net/)
- * [South](http://south.aeracode.org)
- * [django-cors-headers](https://github.com/ottoyiu/django-cors-headers)
--->
 
 ### Installation
 The tool is a Django module, intended to be installed in a larger Django project. But it can run on its own in a Mac or Linux environment, assuming you have the setup dependencies of pip, virtualenv and virtualenvwrapper installed. Here's how:
@@ -70,9 +60,9 @@ grunt build
 
 (You can also run `grunt watch` to have the build run automatically after edits to JavaScript source files, HTML templates, and assets in `retirement_api/static/retirement`. `livereload` is turned on if you have a [LiveReload browser extension](http://livereload.com/extensions/).)
 
-Load the app's database tables and content.
+Create a standalone database and Load the app's tables and content.
 ```bash
-python manage.py syncdb --noinput
+python manage.py migrate
 python manage.py loaddata retiredata.json
 ```
 
