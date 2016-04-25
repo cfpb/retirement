@@ -5,12 +5,23 @@ var lifetimeModel = require( '../models/lifetime-model' );
 
 var update = {
 
+  /**
+   * This function updates properties of the benefits model
+   * @param {string} prop         The property to be updated
+   * @param {number|string} val   The new value of the property
+   */
   benefits: function( prop, val ) {
     benefitsModel.values[prop] = val;
   },
   lifetime: function( prop, val ) {
     lifetimeModel.values[prop] = val;
   },
+
+  /**
+   * This function takes a response from an AJAX call and processes
+   * the response into the benefits model.
+   * @param {object} resp   The AJAX response object
+   */
   processApiData: function( resp ) {
     var data = resp.data,
         fullAge = Number( data['full retirement age'].substr( 0, 2 ) );
@@ -24,7 +35,7 @@ var update = {
       }
     } );
     $.each( resp.data.lifetime, function( prop, val ) {
-        update.lifetime( prop, val );
+      update.lifetime( prop, val );
     } );
     update.benefits( 'currentAge', resp.current_age );
     update.benefits( 'past_fra', resp.past_fra );

@@ -1,9 +1,15 @@
 'use strict';
 
-/***-- enforceRange(n, min, max): ensures ( min <= n <= max ) is true
-  NOTE: If min or max is 'false' then that min or max is not enforced
-  ---**/
-function enforceRange(n, min, max) {
+/**
+ * This function ensures ( min <= n <= max ) by setting n to the min
+ * or the max if it falls outside the range. If min or max is set to
+ * false, then that limit is not enforced.
+ * @param {number} n The number to be forced into the range
+ * @param {number|bool} min The minimum value, or false if not enforced
+ * @param {number|bool} max The maximum value, or false if not enforced
+ * @returns {number} The number after range is enforced
+*/
+function enforceRange( n, min, max ) {
   if ( max < min || typeof n !== typeof min ) {
     return false;
   }

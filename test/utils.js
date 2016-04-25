@@ -3,7 +3,6 @@ var chai = require('chai');
 var expect = require('chai').expect;
 
 var numToMoney = require( '../src/js/utils/num-to-money' );
-var calculateAge = require( '../src/js/utils/calculate-age' );
 var enforceRange = require( '../src/js/utils/enforce-range' );
 var validDates = require( '../src/js/utils/valid-dates' );
 var handleStringInput = require( '../src/js/utils/handle-string-input' );
@@ -28,25 +27,6 @@ describe( 'numToMoney...', function() {
 
   it( '...should turn OBJECT into $0', function() {
     expect( numToMoney( { 'testObject': true } )).to.equal( '$0' );
-  });
-
-});
-
-describe( 'calculateAge...', function() {
-  var now = new Date('January 1, 2015 01:23:00');
-
-  it( '...should return 65 if birthday is 1/1/1950 and today is 1/1/2015', function() {
-    expect( calculateAge( 1, 1, 1950, now ) ).to.equal( 65 );
-  });
-
-  it( '...should return 64 if birthday is 1/2/1950 and today is 1/1/2015', function() {
-    expect( calculateAge( 1, 2, 1950, now ) ).to.equal( 64 );
-  });
-
-  it( '...should return false on any NaN age result', function() {
-    expect( calculateAge( 'a', 2, 1950, now ) ).to.equal( false );
-    expect( calculateAge( 1, 2, [ 3, 4, 5 ], now ) ).to.equal( false );
-    expect( calculateAge( 1, 2, 999999, now ) ).to.equal( false );
   });
 
 });
