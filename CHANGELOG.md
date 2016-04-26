@@ -3,6 +3,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
 - Removed calculate-age.js (unused)
+- Change button text to the standard typeface (Avenir Next Medium)
 
 ## 0.4.7
 - Added lifetime calculations to api and removed from js
