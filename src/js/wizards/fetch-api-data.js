@@ -6,9 +6,11 @@ var fetch = {
   apiData: function( birthdate, salary, dataLang ) {
     var url;
     if ( dataLang === 'es' ) {
-      url = '/retirement/retirement-api/estimator/' + birthdate + '/' + Number(salary) + '/es/';
+      url = '/retirement/retirement-api/estimator/' +
+        birthdate + '/' + Number( salary ) + '/es/';
     } else {
-      url = '/retirement/retirement-api/estimator/' + birthdate + '/' + Number(salary) + '/';
+      url = '/retirement/retirement-api/estimator/' +
+        birthdate + '/' + Number( salary ) + '/';
     }
 
     var apiDataRequest = $.ajax( {
@@ -19,11 +21,7 @@ var fetch = {
           update.processApiData( resp );
         }
         return resp;
-      },
-      error: function( req, status, err ) {
-
       }
-
     } );
 
     return apiDataRequest;
