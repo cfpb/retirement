@@ -21,7 +21,7 @@ Tú puedes ver este app en español por poner `/es` al parte final del url.
  * [virtualenv](https://virtualenv.pypa.io/en/latest/)
  * [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/)
  * [Node](http://nodejs.org/)
- * [Grunt](http://gruntjs.com/)
+ * [Gulp](http://gulpjs.com/)
 
 ### Code dependencies
  * [Django 1.8](https://docs.djangoproject.com/en/1.8/)
@@ -53,12 +53,9 @@ cp test_settings.py settings.py
 ```
 
 Build the front-end requirements and the JavaScript files.
-```bash
-npm install
-grunt build
-```
-
-(You can also run `grunt watch` to have the build run automatically after edits to JavaScript source files, HTML templates, and assets in `retirement_api/static/retirement`. `livereload` is turned on if you have a [LiveReload browser extension](http://livereload.com/extensions/).)
+  ```bash
+  ./frontendbuild.sh
+  ```
 
 Create a standalone database and load the app's tables and content.
 ```bash
