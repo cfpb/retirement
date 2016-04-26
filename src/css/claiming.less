@@ -63,13 +63,19 @@ form {
   /* Firefox */
   -moz-transform: rotate(-90deg);
 
-  /* IE */
-  -ms-transform: rotate(-90deg);
-
   /* Opera */
   -o-transform: rotate(-90deg);
 
-  /* Internet Explorer */
+  /* CSS3 */
+  transform: rotate(-90deg);
+
+  /* IE9 (this must come after the pure CSS3 to prevent autoprefixer from stripping it out) */
+  -ms-transform: rotate(-90deg);
+}
+
+.lt-ie9 #claiming-social-security p.y-axis-label {
+  top: 240px;
+  left: 0;
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
