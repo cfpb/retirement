@@ -141,9 +141,9 @@ class ViewTests(TestCase):
         self.assertTrue(response.status_code == 400)
 
     def test_about_pages(self):
-        url = reverse('about')
+        url = reverse('retirement_about')
         response = client.get(url)
         self.assertTrue(response.status_code == 200)
-        url = reverse('about_es', kwargs={'language': 'es'})
+        url = reverse('retirement_about_es', kwargs={'language': 'es'})
         response = client.get(url)
         self.assertTrue(response.status_code == 200)

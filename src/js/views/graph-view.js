@@ -27,6 +27,7 @@ var graphView = {
 
   init: function() {
     var SSData = getModelValues.benefits();
+    var lifetimeData = getModelValues.lifetime();
 
     $( 'input[name="benefits-display"]' ).click( function() {
       graphView.setTextByAge();
@@ -132,14 +133,17 @@ var graphView = {
   },
 
   /*
-   * The preferred method of changing graph settings
+   * This method is the preferred way of changing the graphSettings property
+   * @param {string} setting - The property name of the setting to be changed
+   * @param {string|number} value - The new value of the setting
    */
   changeGraphSetting: function( setting, value ) {
     this.graphSettings[setting] = value;
   },
 
   /*
-   * checkEstimateReady(): checks if the page is ready for the Estimate button to be hit.
+   * This function checks if the page is ready for the Estimate button to be hit.
+   * "Ready" means that the inputs have values typed into them
    */
   checkEstimateReady: function() {
     var $button = $( '#get-your-estimates' ),
@@ -167,6 +171,10 @@ var graphView = {
     });
   },
 
+  /*
+   * This function toggles the highlighting of the date of birth fields
+   * @param {boolean}   Whether the fields should be highlighted (true|false)
+   */
   highlightAgeFields: function( bool ) {
     var $ageFields = $( '#bd-day, #bd-month, #bd-year' );
     if ( bool ) {
@@ -176,6 +184,11 @@ var graphView = {
     }
   },
 
+  /*
+   * This function determins if the element specified is currently in the
+   * browser window (i.e. "in view")
+   * @param {string} selector   The selector for the element specified
+   */
   isElementInView: function( selector ) {
     var $ele = $( selector ),
         target;
@@ -185,6 +198,10 @@ var graphView = {
     return true;
   },
 
+  /*
+   * This function validates the numbers in the date of birth fields as
+   * valid dates
+   */
   validateBirthdayFields: function() {
     var day = $( '#bd-day' ).val(),
         month = $( '#bd-month' ).val(),
@@ -196,10 +213,16 @@ var graphView = {
     return dates;
   },
 
+  /*
+   * This is the main function in the graph view. It hits the API with the birth
+   * date and salary values, then updates the graph view with the returned data
+   * using a variety of view-updating functions
+   */
   getYourEstimates: function() {
     var dataLang = $( 'body' ).attr('data-lang'),
         dates = this.validateBirthdayFields(),
         salary = strToNum( $( '#salary-input' ).val() ),
+        lifetimeData,
         SSData;
 
     // Hide warnings, show loading indicator
@@ -209,6 +232,7 @@ var graphView = {
     $.when( fetch.apiData( dates.concat, salary, dataLang ) ).done( function( resp ) {
       if ( resp.error === '' ) {
         SSData = getModelValues.benefits();
+        lifetimeData = getModelValues.lifetime();
 
         $( '.step-two, #estimated-benefits-input, #graph-container' ).css( 'opacity', 1);
         $( '.step-two .question' ).css( 'display', 'inline-block' );
@@ -238,7 +262,9 @@ var graphView = {
   },
 
   /*
-   * toggleMonthlyAnnual(): toggles the graph text between monthly view and annual view
+   * This function toggles the graph text between monthly view and annual view.
+   * It has no parameters, but it uses the selector to determine which values to
+   * show
    */
   toggleMonthlyAnnual: function () {
     var SSData = getModelValues.benefits(),
@@ -254,12 +280,13 @@ var graphView = {
   },
 
   /*
-   * setTextByAge(): Changes text of benefits and age fields based on this.selectedAge
+   * This function changes the text of benefits elements based on selectedAge
    */
   setTextByAge: function() {
     var gset = this.graphSettings,
         SSData = getModelValues.benefits(),
-        lifetimeBenefits = numToMoney( ( 85 - this.selectedAge ) * 12 * SSData['age' + this.selectedAge] ),
+        lifetimeData = getModelValues.lifetime(),
+        lifetimeBenefits = numToMoney( lifetimeData['age' + this.selectedAge] ),
         fullAgeBenefitsValue = SSData['age' + SSData.fullAge],
         benefitsValue = SSData['age' + this.selectedAge],
         $selectedBar,
@@ -269,11 +296,6 @@ var graphView = {
         fullAgeLeft,
         fullAgeTop,
         percent;
-
-    if ( SSData.currentAge > 62 ) {
-      lifetimeBenefits = numToMoney( ( ( 85 - this.selectedAge ) * 12 - SSData.monthsPastBirthday ) *
-        SSData['age' + this.selectedAge] );
-    }
 
     if ( $( '#estimated-benefits-input [name="benefits-display"]:checked' ).val() === 'annual' ) {
       benefitsValue *= 12;
@@ -395,6 +417,7 @@ var graphView = {
   /*
    * Uses setAgeWithIndicator to move the indicator to age
    * NOTE: This function is all that's require to change the chart to a different age
+   * @param {number} age  The age for the indicator to be set to
    */
   moveIndicatorToAge: function( age ) {
     var gset = this.graphSettings,
@@ -409,7 +432,8 @@ var graphView = {
   },
 
   /**
-    * update graph settings
+    * This function updates the  graphSettings object based on window size
+    * and the position of various elements
     */
   setGraphDimensions: function() {
     var canvasLeft,
@@ -458,7 +482,7 @@ var graphView = {
   },
 
   /*
-   * drawBars(): draws and redraws the indicator bars for each age
+   * This helper function draws and redraws the indicator bars for each age
    */
   drawBars: function() {
     var SSData = getModelValues.benefits(),
@@ -487,7 +511,7 @@ var graphView = {
   },
 
   /*
-   * drawGraphBackground(): draws the background lines for the chart
+   * This helper function draws the background lines for the chart
    */
   drawGraphBackground: function() {
     var gset = this.graphSettings,
@@ -512,7 +536,7 @@ var graphView = {
   },
 
   /**
-    *
+    * This helper functions draws the age text boxes on the graph
     */
   drawAgeBoxes: function() {
     var leftOffset = 0,
@@ -544,7 +568,7 @@ var graphView = {
   },
 
   /**
-    * redrawGraph(): Iterates each drawing function
+    * This function iterates through each drawing helper function
     */
   redrawGraph: function() {
     var SSData = getModelValues.benefits();
@@ -554,7 +578,10 @@ var graphView = {
     this.drawAgeBoxes();
   },
 
-  /***-- resetView(): Draws new bars and updates text. For use after new data is received. --***/
+  /**
+   * This function draws new bars and updates text. It is primarily for use
+   * after new data is received.
+   */
   resetView: function() {
     var SSData = getModelValues.benefits();
     this.drawBars();

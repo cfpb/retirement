@@ -1,7 +1,11 @@
 'use strict';
 
 
-/***-- numToMoney(n): Convert from number to money string ---**/
+/*
+ * Converts a number to a money string
+ * @param {number} n A number to be converted
+ * @returns {string} money A string representing currency
+ */
 function numToMoney(n) {
   var money;
   // When n is a string, we should, ironically, strip its numbers first.
