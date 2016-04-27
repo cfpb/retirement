@@ -1,7 +1,3 @@
-"""
-test settings
-"""
-
 import os
 from django.utils.translation import ugettext_lazy as _
 BASE_DIR = os.path.dirname(__file__)
@@ -37,7 +33,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'south',
     'retirement_api',
 )
 
