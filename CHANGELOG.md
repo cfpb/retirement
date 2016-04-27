@@ -2,6 +2,7 @@ Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
+- Fix HTML validation errors
 - Removed calculate-age.js (unused)
 
 ## 0.4.7
