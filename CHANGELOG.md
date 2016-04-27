@@ -5,6 +5,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Updated the standalone version to Django 1.8
 - Fix HTML validation errors
 - Removed calculate-age.js (unused)
+- Changed initial interaction for steps 2 and 3
 
 ## 0.4.7
 - Added lifetime calculations to api and removed from js
