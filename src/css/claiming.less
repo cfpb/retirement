@@ -39,6 +39,7 @@ form {
   max-width: 1168px;
   padding-left: 30px;
   padding-right: 30px;
+  margin-bottom: 60px;
 }
 
 #claiming-social-security .canvas-container {
@@ -135,8 +136,11 @@ form {
 
 }
 
-#claiming-social-security .step-one-hidden {
-  display: none;
+#claiming-social-security {
+  .step-one-hidden, .before-step-two, .step-two,
+  .step-two + hr, .step-three {
+    display: none;
+  }
 }
 
 #claiming-social-security .step-one h2 {
@@ -151,13 +155,17 @@ form {
   margin-right: 0px;
 }
 
+#claiming-social-security .step-one label.input-labels .input-labels_block {
+  display: block;
+  margin-bottom: 8px;
+}
+
 #claiming-social-security .step-one .input-labels input {
   height: 32px;
   padding-left: 10px;
 }
 
-#claiming-social-security .birthdate-inputs p,
-#claiming-social-security label[for="salary-input"] p {
+#claiming-social-security .birthdate-inputs p {
   margin-bottom: 8px;
 }
 
@@ -480,17 +488,6 @@ form {
 #claiming-social-security .step-two .question,
 #claiming-social-security .step-three .hidden-content {
   display: none;
-}
-
-#claiming-social-security #estimated-benefits-input,
-#claiming-social-security #graph-container,
-#claiming-social-security .step-two,
-#claiming-social-security .step-three {
-  opacity: .35;
-}
-
-#claiming-social-security .step-three {
-  margin-bottom: 60px;
 }
 
 #claiming-social-security .step-three h2 {
@@ -860,7 +857,7 @@ form {
   }
 
   #claiming-social-security .birthdate-inputs p,
-  #claiming-social-security label[for="salary-input"] p {
+  #claiming-social-security .step-one label.input-labels .input-labels_block {
     margin-bottom: 0;
   }
 

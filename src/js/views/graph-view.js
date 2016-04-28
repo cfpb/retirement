@@ -239,11 +239,13 @@ var graphView = {
         SSData = getModelValues.benefits();
         lifetimeData = getModelValues.lifetime();
 
-        $( '.step-two, #estimated-benefits-input, #graph-container' )
-          .css( 'opacity', 1 );
         $( '.step-two .question' ).css( 'display', 'inline-block' );
-        $( '.step-three' ).css( 'opacity', 1 );
-        $( '.step-one-hidden, .step-three .hidden-content' ).show();
+        $( '.step-one-hidden,
+            .before-step-two,
+            .step-two,
+            .before-step-three,
+            .step-three,
+            .step-three .hidden-content' ).show();
 
         questionsView.update( SSData.currentAge );
         graphView.redrawGraph();
