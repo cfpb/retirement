@@ -60,17 +60,17 @@ being calculated in the backend and passed along as well.
 
 As of `0.4.7` (4/28/2016), there are three views in the front-end:
 
-* __Graph View__ (`src/views/graph-view.js) - This view does a majority of the
+* __Graph View__ (`src/views/graph-view.js`) - This view does a majority of the
 work on the page, since the most complexity exists in the display of the graph
 elements and their interactions. More information is available in the JSDoc
 comments for the individual functions inside this view.
 
-* __Questions View__ (`src/views/questions-view.js) - This view handles the
+* __Questions View__ (`src/views/questions-view.js`) - This view handles the
 questions in Step 2, including insuring the user sees the appropriate
 responses based on their age. More information is available in the JSDoc
 comments for the individual functions inside this view.
 
-* __tooltips__ (`src/views/tooltips-view.js) - Lacking a standard package for
+* __tooltips__ (`src/views/tooltips-view.js`) - Lacking a standard package for
 tooltips, this view provides the code necessary for the tooltips found
 throughout the page.
 
