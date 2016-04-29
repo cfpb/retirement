@@ -7,6 +7,14 @@ framework, etc.
 
 __This document is current as of 4/28/2016.__
 
+## Contributing Developers
+
+This document currently refers to front-end work done by:
+* Bill Higgins (@higs4281)
+* Chuck Werner (@mistergone)
+* Marteki Reed (@marteki)
+* Nicholas Johnson (@niqjohnson)
+
 ## Simplicity Is Our Preference
 
 This front-end attempts to be exceedingly simple. It does not rely on a
@@ -66,7 +74,7 @@ elements and their interactions. More information is available in the JSDoc
 comments for the individual functions inside this view.
 
 * __Questions View__ (`src/views/questions-view.js`) - This view handles the
-questions in Step 2, including insuring the user sees the appropriate
+questions in Step 2, including ensuring the user sees the appropriate
 responses based on their age. More information is available in the JSDoc
 comments for the individual functions inside this view.
 
@@ -88,7 +96,7 @@ determine when to display the incoming data.
 views want that precious data from the models, and this is the standard
 helper. This wizard returns objects based on the model data requested.
 
-* __Update Model__ (`src/wizards/update-model.js) - Inevitably, the view wants
+* __Update Model__ (`src/wizards/update-model.js`) - Inevitably, the view wants
 to send data back to the models. This wizard does just that - it has two main
 functions to update each of the two models, as well as a function that
 interprets the API data into data the models and views can use.
