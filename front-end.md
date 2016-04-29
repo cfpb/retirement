@@ -110,20 +110,20 @@ yet.
 
 As of `0.4.7` (4/28/2016), there are four utilities in the front-end:
 
-* Enforce Range (`/src/utils/enforce-range.js`) - This is a very simple
+* __Enforce Range__ (`/src/utils/enforce-range.js`) - This is a very simple
 utility that ensures a number falls within a range, and changes the number to
 the max or min value if it falls outside that range. It's very useful for
 `valid-dates.js`.
 
-* Handle String Input (`/src/utils/handle-string-input.js`) - This is
+* __Handle String Input__ (`/src/utils/handle-string-input.js`) - This is
 hopefully a more elegant way to take in a string and interpet the Number
 intended by the user than alternatives like `parseInt`. It tries hard to
 determine decimal placement and whether the intended Number is negative.
 
-* Number to Money (`/src/utils/num-to-money.js`) - A simple function that
+* __Number to Money__ (`/src/utils/num-to-money.js`) - A simple function that
 takes a Number and formats it into a currency String.
 
-* Valid Dates (`/src/utils/valid-dates.js`) - A function that determines
+* __Valid Dates__ (`/src/utils/valid-dates.js`) - A function that determines
 whether a given date combination is valid. Dates of birth are validated
 before they're sent off to the API.
 
