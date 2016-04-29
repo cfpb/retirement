@@ -39,6 +39,7 @@ form {
   max-width: 1168px;
   padding-left: 30px;
   padding-right: 30px;
+  margin-bottom: 60px;
 }
 
 #claiming-social-security .canvas-container {
@@ -135,8 +136,11 @@ form {
 
 }
 
-#claiming-social-security .step-one-hidden {
-  display: none;
+#claiming-social-security {
+  .step-one-hidden, .before-step-two, .step-two,
+  .step-two + hr, .step-three {
+    display: none;
+  }
 }
 
 #claiming-social-security .step-one h2 {
@@ -484,17 +488,6 @@ form {
 #claiming-social-security .step-two .question,
 #claiming-social-security .step-three .hidden-content {
   display: none;
-}
-
-#claiming-social-security #estimated-benefits-input,
-#claiming-social-security #graph-container,
-#claiming-social-security .step-two,
-#claiming-social-security .step-three {
-  opacity: .35;
-}
-
-#claiming-social-security .step-three {
-  margin-bottom: 60px;
 }
 
 #claiming-social-security .step-three h2 {
