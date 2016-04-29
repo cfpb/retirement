@@ -12,15 +12,13 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('--recalibrate',
-                            # action='store_true',
-                            # dest='delete',
-                            default=False,
+                            action='store_true',
                             help='Create a new calibration file')
 
     def handle(self, *args, **options):
         if options['recalibrate']:
-            ssa_check(recalibrate=True)
-            self.stdout.write('Created a new calibration to test against')
+            endmsg = ssa_check.run_tests(recalibrate=True)
+            self.stdout.write(endmsg)
         else:
-            ssa_check()
-            self.stdout.write(END_NOTE.format(LOGFILE))
+            endmsg = ssa_check.run_tests()
+            self.stdout.write(endmsg)
