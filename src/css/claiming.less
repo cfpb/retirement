@@ -12,10 +12,6 @@ form {
   padding: 0;
 }
 
-#claiming-social-security button {
-  letter-spacing: 0;
-}
-
 #claiming-social-security .cf-icon.cf-icon-help-round {
   color: #0072CD;
   font-size: .8em;
@@ -24,11 +20,6 @@ form {
 #claiming-social-security input[type='text'],
 #claiming-social-security select {
   font-family: 'AvenirNextLTW01-Regular', Arial, sans-serif;
-}
-
-#claiming-social-security .btn {
-  font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
-  font-weight: normal;
 }
 
 #maincontent {
@@ -63,13 +54,19 @@ form {
   /* Firefox */
   -moz-transform: rotate(-90deg);
 
-  /* IE */
-  -ms-transform: rotate(-90deg);
-
   /* Opera */
   -o-transform: rotate(-90deg);
 
-  /* Internet Explorer */
+  /* CSS3 */
+  transform: rotate(-90deg);
+
+  /* IE9 (this must come after the pure CSS3 to prevent autoprefixer from stripping it out) */
+  -ms-transform: rotate(-90deg);
+}
+
+.lt-ie9 #claiming-social-security p.y-axis-label {
+  top: 240px;
+  left: 0;
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
