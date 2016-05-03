@@ -25,7 +25,7 @@ var questionsView = {
   },
 
   /*
-   * This function updates the text in the "questions" in Part 2
+   * This function updates the text in the "questions" in Step 2
    * based on the user's current age
    * @param {number} currentAge   The user's current age
    */
@@ -44,6 +44,24 @@ var questionsView = {
         );
       } );
     }
+    this.limitAgeSelector( currentAge );
+  },
+
+  /*
+   * This function limits the age selector in Step 3 to
+   * the user's current age or higher
+   * @param {number} currentAge   The user's current age
+   */
+  limitAgeSelector: function( currentAge ) {
+    $( '#retirement-age-selector option' ).each( function() {
+      var value = Number( $( this ).val() );
+      console.log( value );
+      if ( currentAge > value ) {
+        $( this ).hide();
+      } else {
+        $( this ).show();
+      }
+    } );
   }
 
 };
