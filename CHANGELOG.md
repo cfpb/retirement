@@ -10,6 +10,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Changed initial interaction for steps 2 and 3
 - Fix y-axis label in IE 8 and IE 9
 - updated utils tests so they don't bomb when run on the 2nd of a month
+- Fix for the retirement-age-selector when currentAge > 62
 
 ## 0.4.7
 - Added lifetime calculations to api and removed from js
