@@ -8,6 +8,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Change button text to the standard typeface (Avenir Next Medium)
 - Added a custom management command for running SSA checks
 - Changed initial interaction for steps 2 and 3
+- Update the <select> in step 3 to use cf-select styles
 - Fix y-axis label in IE 8 and IE 9
 - updated utils tests so they don't bomb when run on the 2nd of a month
 
