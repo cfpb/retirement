@@ -53,14 +53,22 @@ var questionsView = {
    * @param {number} currentAge   The user's current age
    */
   limitAgeSelector: function( currentAge ) {
-    $( '#retirement-age-selector option' ).each( function() {
-      var value = Number( $( this ).val() );
-      if ( currentAge > value ) {
-        $( this ).hide();
-      } else {
-        $( this ).show();
-      }
-    } );
+    var $select = $( '#retirement-age-selector' ),
+        firstOption = $select.find( 'option' )[0],
+        retirementAge = 62;
+
+    $select.empty();
+    // We save and append the first OPTION, "Choose age"
+    $select.append( firstOption );
+    if ( retirementAge < currentAge ) {
+      retirementAge = currentAge;
+    }
+
+    for ( var x = retirementAge; x <= 70; x++ ) {
+      var elem = '<option value="' + x;
+      elem += '">' + x + '</option>';
+      $select.append( elem );
+    }
   }
 
 };
