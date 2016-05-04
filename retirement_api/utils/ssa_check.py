@@ -3,13 +3,11 @@ import sys
 import datetime
 from copy import copy
 import json
-import logging
 
 from django.http import HttpRequest
 from .ss_calculator import get_retire_data
 from ..models import Calibration
 
-LOGGER = logging.getLogger(__name__)
 SSA_PARAMS = {
     'dobmon': 0,
     'dobday': 0,
@@ -77,7 +75,7 @@ def check_results(test_data, TESTS):
                 error_msg += "\n{0}: base param {1} did not match; expected {2} but found {3}".format(
                                 slug,
                                 key,
-                                target_results[key],  
+                                target_results[key],
                                 test_results[key])
         for data_key in ['months_past_birthday', 'full retirement age']:
             if test_results['data'][data_key] != target_results['data'][data_key]:
