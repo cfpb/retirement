@@ -3,11 +3,13 @@ import sys
 import datetime
 from copy import copy
 import json
+import logging
 
 from django.http import HttpRequest
 from .ss_calculator import get_retire_data
 from ..models import Calibration
 
+LOGGER = logging.getLogger(__name__)
 SSA_PARAMS = {
     'dobmon': 0,
     'dobday': 0,
@@ -113,8 +115,8 @@ def run_tests(recalibrate=False):
     TESTS = assemble_test_params()
     tstamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')
     for test in TESTS:
-        sys.stdout.write('.')
-        sys.stdout.flush()
+        # sys.stdout.write('.')
+        # sys.stdout.flush()
         collector[test] = get_retire_data(TESTS[test], language='en')
     if recalibrate:
         new_calibration = Calibration(results_json=json.dumps(collector))

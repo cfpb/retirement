@@ -28,6 +28,7 @@ import time
 import signal
 import datetime
 from datetime import date
+import logging
 
 import dateutil
 from bs4 import BeautifulSoup as bs
@@ -36,6 +37,7 @@ from .ss_utilities import (get_retirement_age, get_current_age, past_fra_test,
                            get_months_past_birthday)
 
 TIMEOUT_SECONDS = 20
+LOGGER = logging.getLogger(__name__)
 
 down_note = """<span class="h4">Sorry, the Social Security website \
 is not responding, so we can't estimate your benefits.</span> \
@@ -494,5 +496,5 @@ def get_retire_data(params, language):
                                                 fra_tuple,
                                                 dob,
                                                 past_fra)
-    print "script took {0} to run".format((datetime.datetime.now() - starter))
+    LOGGER.info("script took {0} to run".format((datetime.datetime.now() - starter)))
     return final_results

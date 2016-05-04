@@ -1,6 +1,7 @@
 import mock
 import unittest
 
+from django.core.management.base import CommandError
 from django.core.management import call_command
 
 from retirement_api.management.commands import check_ssa_values
@@ -15,3 +16,6 @@ class CommandTests(unittest.TestCase):
         test_run2 = call_command('check_ssa_values',
                                  '--recalibrate')
         self.assertTrue(mock_run_tests.call_count == 2)
+        mock_run_tests.return_value = 'Mismatches'
+        with self.assertRaises(CommandError):
+            call_command('check_ssa_values')
