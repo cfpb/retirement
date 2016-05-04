@@ -69,7 +69,7 @@ msgstr "ingreso anual"
 
 #: templates/claiming.html:250
 msgid "is your full benefit claiming age."
-msgstr "es su plena edad de jubilación."
+msgstr "años de edad es su plena edad de jubilación."
 
 #: templates/claiming.html:251
 msgid "Total lifetime benefits at age 85"
@@ -324,7 +324,7 @@ msgstr "Si usted y su cónyuge son plena edad de jubilación, usted puede solici
 
 #: 
 msgid "Age"
-msgstr "A los "
+msgstr " "
 
 #: 
 msgid "Compared to your full retirement age."
@@ -722,4 +722,8 @@ msgstr "es"
 #: 
 msgid "en"
 msgstr "es"
+
+#: 
+msgid "Claiming at age"
+msgstr "A los"
 
