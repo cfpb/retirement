@@ -86,6 +86,8 @@ The "Before You Claim" page should load at `localhost:8000/retirement/before-you
   npm test
   ```
 
+## Additional documentation
+* [Front-end documentation](front-end.md)
 
 ## Getting involved
 If you find a bug or see a way to improve the project, we'd love to hear from you.
