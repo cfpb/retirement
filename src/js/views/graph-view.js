@@ -378,6 +378,8 @@ var graphView = {
       if ( SSData.past_fra ) {
         if ( SSData.currentAge === 70 ) {
           text = window.gettext( 'is your maximum benefit claiming age.' );
+          var translatedCurrentAge = window.gettext( SSData.currentAge );
+          $( '.selected-retirement-age-value' ).html( translatedCurrentAge );
           $( '.benefit-modification-text' ).html( text );
           $( '.compared-to-full' ).hide();
         } else {
@@ -386,6 +388,8 @@ var graphView = {
           $( '.compared-to-full' ).hide();
         }
       } else {
+        var translatedFRA = window.gettext( SSData.fullRetirementAge );
+        $( '.selected-retirement-age-value' ).html( translatedFRA );
         $( '.benefit-modification-text' ).html(
           window.gettext( 'is your full benefit claiming age.' )
         );
