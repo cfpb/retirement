@@ -350,16 +350,16 @@ var graphView = {
 
     // Set extra text for early and full retirement ages
     if ( this.selectedAge === 70 ) {
-      text = window.gettext( '70' );
+      text = this.selectedAge;
       $( '#selected-retirement-age-value' ).text( text );
     } else if ( this.selectedAge === SSData.earlyAge ) {
-      text = window.gettext( SSData.earlyRetirementAge );
+      text = SSData.earlyRetirementAge;
       $( '#selected-retirement-age-value' ).text( text );
     } else if ( isSelectedFRA && isYoungerThanFRA ) {
-      text = window.gettext( SSData.fullRetirementAge );
+      text = SSData.fullRetirementAge;
       $( '#selected-retirement-age-value' ).text( text );
     } else {
-      text = window.gettext( this.selectedAge );
+      text = this.selectedAge;
       $( '#selected-retirement-age-value' ).text( text );
     }
 
