@@ -75,7 +75,7 @@ api_string = 'retirement-api/estimator/{0}-{1}-{2}/{3}/'.format(dob.month,
                                                            random.randrange(20000, 100000))
 BASES = {
     'unitybox': 'http://localhost:8080/retirement',
-    'standalone': 'http://localhost:8000',
+    'standalone': 'http://localhost:8000/retirement',
     default_base: '{0}{1}{2}'.format(prefix, default_base, suffix),
     'prod': '{0}www{1}'.format(prefix, suffix),
     }

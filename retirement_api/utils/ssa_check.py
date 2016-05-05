@@ -75,7 +75,7 @@ def check_results(test_data, TESTS):
                 error_msg += "\n{0}: base param {1} did not match; expected {2} but found {3}".format(
                                 slug,
                                 key,
-                                target_results[key],  
+                                target_results[key],
                                 test_results[key])
         for data_key in ['months_past_birthday', 'full retirement age']:
             if test_results['data'][data_key] != target_results['data'][data_key]:
@@ -113,8 +113,8 @@ def run_tests(recalibrate=False):
     TESTS = assemble_test_params()
     tstamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')
     for test in TESTS:
-        sys.stdout.write('.')
-        sys.stdout.flush()
+        # sys.stdout.write('.')
+        # sys.stdout.flush()
         collector[test] = get_retire_data(TESTS[test], language='en')
     if recalibrate:
         new_calibration = Calibration(results_json=json.dumps(collector))
