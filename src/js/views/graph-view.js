@@ -70,15 +70,15 @@ var graphView = {
       var age = $( this ).find( 'option:selected' ).val();
 
       $( '.next-step-description' ).hide();
-      $( '.next-step-two .step-two_option' ).hide();
+      $( '.next-steps .step-two_option' ).hide();
       $( '#age-selector-response' ).show();
       $( '#age-selector-response .age-response-value' ).text( age );
       if ( $( this ).find( 'option:selected' ).val() < SSData.fullAge ) {
-        $( '.next-step-two_under' ).show();
+        $( '.next-steps_under' ).show();
       } else if ( $( this ).find( 'option:selected' ).val() > SSData.fullAge ) {
-        $( '.next-step-two_over' ).show();
+        $( '.next-steps_over' ).show();
       } else {
-        $( '.next-step-two_equal' ).show();
+        $( '.next-steps_equal' ).show();
       }
 
       // Scroll response into view if it's not visible
