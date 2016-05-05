@@ -17,11 +17,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if options['recalibrate']:
             endmsg = ssa_check.run_tests(recalibrate=True)
-            self.stdout.write(endmsg)
         else:
             endmsg = ssa_check.run_tests()
-            if 'Mismatches' in endmsg:
-                self.stdout.write(endmsg)
-                raise CommandError('Mismatches found in SSA values')
-            else:
-                self.stdout.write(endmsg)
+        self.stdout.write(endmsg)
