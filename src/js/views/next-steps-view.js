@@ -25,29 +25,34 @@ var nextStepsView = {
    */
   chooseClaimingAge: function() {
 
-    var age = parseInt(
-      $( '#retirement-age-selector' ).find( 'option:selected' ).val(), 10 );
-
-    $( '.next-step-description' ).hide();
-    $( '.next-steps .step-two_option' ).hide();
-    $( '#age-selector-response' ).show();
-    $( '#age-selector-response .age-response-value' ).text( age );
-
-    if ( age < nextStepsView.fullAge ) {
-      $( '.next-steps_under' ).show();
-    } else if ( age === nextStepsView.fullAge ) {
-      $( '.next-steps_equal' ).show();
-    } else if ( age === 70 ) {
-      $( '.next-steps_max' ).show();
+    if ( $( '#retirement-age-selector' )
+    .find( 'option:selected' ).val() === '' ) {
+      $( '#age-selector-response' ).hide();
     } else {
-      $( '.next-steps_over' ).show();
-    }
+      var age = parseInt(
+        $( '#retirement-age-selector' ).find( 'option:selected' ).val(), 10 );
 
-    // Scroll response into view if it's not visible
-    if ( isElementInView( '#age-selector-response' ) === false ) {
-      $( 'html, body' ).animate( {
-        scrollTop: $( '#retirement-age-selector' ).offset().top - 20
-      }, 300 );
+      $( '.next-step-description' ).hide();
+      $( '.next-steps .step-two_option' ).hide();
+      $( '#age-selector-response' ).show();
+      $( '#age-selector-response .age-response-value' ).text( age );
+
+      if ( age < nextStepsView.fullAge ) {
+        $( '.next-steps_under' ).show();
+      } else if ( age === nextStepsView.fullAge ) {
+        $( '.next-steps_equal' ).show();
+      } else if ( age === 70 ) {
+        $( '.next-steps_max' ).show();
+      } else {
+        $( '.next-steps_over' ).show();
+      }
+
+      // Scroll response into view if it's not visible
+      if ( isElementInView( '#age-selector-response' ) === false ) {
+        $( 'html, body' ).animate( {
+          scrollTop: $( '#retirement-age-selector' ).offset().top - 20
+        }, 300 );
+      }
     }
 
   },
