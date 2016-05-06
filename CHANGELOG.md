@@ -16,6 +16,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Update the <select> in step 3 to use cf-select styles
 - added error-handling and logging to ssa_check command
 - added front-end.md documentation file
+- Update Step 3 content and interactions for a planned claiming age of 70
 
 ## 0.4.7
 - Added lifetime calculations to api and removed from js
