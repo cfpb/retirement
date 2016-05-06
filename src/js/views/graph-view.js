@@ -3,8 +3,10 @@
 var numToMoney = require( '../utils/num-to-money' );
 var validDates = require( '../utils/valid-dates' );
 var strToNum = require( '../utils/handle-string-input' );
+var isElementInView = require( '../utils/is-element-in-view' );
 var getModelValues = require( '../wizards/get-model-values' );
 var questionsView = require( './questions-view' );
+var nextStepsView = require( './next-steps-view' );
 var fetch = require( '../wizards/fetch-api-data' );
 
 var graphView = {
@@ -63,39 +65,6 @@ var graphView = {
         $( '#salary-input' ).val( '70000' );
         $( '#step-one-form' ).submit();
       }
-    } );
-
-    // Retirement age selector handler
-    $( '#retirement-age-selector' ).change( function() {
-      var age = $( this ).find( 'option:selected' ).val();
-
-      $( '.next-step-description' ).hide();
-      $( '.next-step-two .step-two_option' ).hide();
-      $( '#age-selector-response' ).show();
-      $( '#age-selector-response .age-response-value' ).text( age );
-      if ( $( this ).find( 'option:selected' ).val() < SSData.fullAge ) {
-        $( '.next-step-two_under' ).show();
-      } else if ( $( this ).find( 'option:selected' ).val() > SSData.fullAge ) {
-        $( '.next-step-two_over' ).show();
-      } else {
-        $( '.next-step-two_equal' ).show();
-      }
-
-      // Scroll response into view if it's not visible
-      if ( graphView.isElementInView( '#age-selector-response' ) === false ) {
-        $( 'html, body' ).animate( {
-          scrollTop: $( '#retirement-age-selector' ).offset().top - 20
-        }, 300 );
-      }
-
-    } );
-
-    // Helpful button
-    $( '#age-selector-response .helpful-btn' ).click( function() {
-      $( '#age-selector-response .thank-you' ).show();
-      $( '#age-selector-response .helpful-btn' )
-        .attr( 'disabled', true )
-        .addClass( 'btn__disabled' ).hide();
     } );
 
     // reformat salary
@@ -189,21 +158,6 @@ var graphView = {
   },
 
   /*
-   * This function determins if the element specified is currently in the
-   * browser window (i.e. "in view")
-   * @param {string} selector   The selector for the element specified
-   */
-  isElementInView: function( selector ) {
-    var $ele = $( selector ),
-        target;
-    target = $( window ).scrollTop() + $( window ).height() - 150;
-    if ( $ele.offset().top > target ) {
-      return false;
-    }
-    return true;
-  },
-
-  /*
    * This function validates the numbers in the date of birth fields as
    * valid dates
    */
@@ -247,11 +201,12 @@ var graphView = {
             '.step-three .hidden-content' ).show();
 
         questionsView.update( SSData.currentAge );
+        nextStepsView.init( SSData.currentAge, SSData.fullAge );
         graphView.redrawGraph();
         graphView.resetView();
 
         // Scroll graph into view if it's not visible
-        if ( graphView.isElementInView( '#claim-canvas' ) === false ) {
+        if ( isElementInView( '#claim-canvas' ) === false ) {
           $( 'html, body' ).animate( {
             scrollTop: $( '#estimated-benefits-description' ).offset().top - 20
           }, 300 );
