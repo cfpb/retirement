@@ -44,31 +44,6 @@ var questionsView = {
         );
       } );
     }
-    this.limitAgeSelector( currentAge );
-  },
-
-  /*
-   * This function limits the age selector in Step 3 to
-   * the user's current age or higher
-   * @param {number} currentAge   The user's current age
-   */
-  limitAgeSelector: function( currentAge ) {
-    var $select = $( '#retirement-age-selector' ),
-        firstOption = $select.find( 'option' )[0],
-        retirementAge = 62;
-
-    $select.empty();
-    // We save and append the first OPTION, "Choose age"
-    $select.append( firstOption );
-    if ( retirementAge < currentAge ) {
-      retirementAge = currentAge;
-    }
-
-    for ( var x = retirementAge; x <= 70; x++ ) {
-      var elem = '<option value="' + x;
-      elem += '">' + x + '</option>';
-      $select.append( elem );
-    }
   }
 
 };
