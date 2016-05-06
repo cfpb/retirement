@@ -16,6 +16,10 @@ var nextStepsView = {
     $( '#retirement-age-selector' ).change( function() {
       nextStepsView.chooseClaimingAge();
     } );
+
+    $( '#age-selector-response .helpful-btn' ).click( function() {
+      nextStepsView.feedbackButton();
+    } );
   },
 
   /*
@@ -85,13 +89,10 @@ var nextStepsView = {
    * This function defines the feedback button interactions in Step 3.
    */
   feedbackButton: function() {
-    // Helpful button
-    $( '#age-selector-response .helpful-btn' ).click( function() {
-      $( '#age-selector-response .thank-you' ).show();
-      $( '#age-selector-response .helpful-btn' )
-        .attr( 'disabled', true )
-        .addClass( 'btn__disabled' ).hide();
-    } );
+    $( '#age-selector-response .thank-you' ).show();
+    $( '#age-selector-response .helpful-btn' )
+      .attr( 'disabled', true )
+      .addClass( 'btn__disabled' ).hide();
   }
 
 };
