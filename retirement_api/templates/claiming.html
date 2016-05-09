@@ -101,9 +101,19 @@
       <div id="graph-container" class="content-l step-one-hidden">
         <div class="content-l_col content-l_col-1-3">
           <div class="selected-retirement-age-container">
-            <p class="h3 selected-retirement-age">{% trans "Age" %}
-              <span id="selected-retirement-age-value" class="selected-retirement-age-value">67</span> <span class="benefit-modification-text">
-              {% trans "is your full benefit claiming age." %}</span>
+            <p class="h3 selected-retirement-age">
+              <span class="selected-retirement-age__not-fra">
+                {% trans "Claiming at age" %}
+              </span>
+              <span class="selected-retirement-age__fra">
+                {% trans "Age" %}
+              </span>
+              <span id="selected-retirement-age-value" class="selected-retirement-age-value">
+                67
+              </span>
+              <span class="benefit-modification-text">
+                {% trans "is your full benefit claiming age." %}
+              </span>
             </p>
             <p class="compared-to-full explainer">{% trans "Compared to claiming at your full benefit claiming age." %}</p>
           </div>

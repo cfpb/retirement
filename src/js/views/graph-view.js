@@ -305,16 +305,16 @@ var graphView = {
 
     // Set extra text for early and full retirement ages
     if ( this.selectedAge === 70 ) {
-      text = window.gettext( '70' );
+      text = this.selectedAge;
       $( '#selected-retirement-age-value' ).text( text );
     } else if ( this.selectedAge === SSData.earlyAge ) {
-      text = window.gettext( SSData.earlyRetirementAge );
+      text = SSData.earlyRetirementAge;
       $( '#selected-retirement-age-value' ).text( text );
     } else if ( isSelectedFRA && isYoungerThanFRA ) {
-      text = window.gettext( SSData.fullRetirementAge );
+      text = SSData.fullRetirementAge;
       $( '#selected-retirement-age-value' ).text( text );
     } else {
-      text = window.gettext( this.selectedAge );
+      text = this.selectedAge;
       $( '#selected-retirement-age-value' ).text( text );
     }
 
@@ -333,6 +333,8 @@ var graphView = {
       if ( SSData.past_fra ) {
         if ( SSData.currentAge === 70 ) {
           text = window.gettext( 'is your maximum benefit claiming age.' );
+          var translatedCurrentAge = window.gettext( SSData.currentAge );
+          $( '.selected-retirement-age-value' ).html( translatedCurrentAge );
           $( '.benefit-modification-text' ).html( text );
           $( '.compared-to-full' ).hide();
         } else {
@@ -341,11 +343,15 @@ var graphView = {
           $( '.compared-to-full' ).hide();
         }
       } else {
+        var translatedFRA = window.gettext( SSData.fullRetirementAge );
+        $( '.selected-retirement-age-value' ).html( translatedFRA );
         $( '.benefit-modification-text' ).html(
           window.gettext( 'is your full benefit claiming age.' )
         );
         $( '.compared-to-full' ).hide();
       }
+      $( '.selected-retirement-age__fra' ).show();
+      $( '.selected-retirement-age__not-fra' ).hide();
     } else if ( this.selectedAge < SSData.fullAge ) {
       percent =
         ( SSData['age' + SSData.fullAge] -
@@ -361,6 +367,8 @@ var graphView = {
       );
       $( '.compared-to-full' ).html( text );
       $( '.compared-to-full' ).show();
+      $( '.selected-retirement-age__fra' ).hide();
+      $( '.selected-retirement-age__not-fra' ).show();
     } else if ( this.selectedAge > SSData.fullAge ) {
       percent =
         ( SSData['age' + SSData.fullAge] - SSData['age' + this.selectedAge] ) /
@@ -397,6 +405,8 @@ var graphView = {
       );
       $( '.benefit-modification-text' ).html( text + percent + '</strong>%' );
       $( '.compared-to-full' ).show();
+      $( '.selected-retirement-age__fra' ).hide();
+      $( '.selected-retirement-age__not-fra' ).show();
     }
   },
 
