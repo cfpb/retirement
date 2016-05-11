@@ -69,7 +69,7 @@ msgstr "ingreso anual"
 
 #: templates/claiming.html:250
 msgid "is your full benefit claiming age."
-msgstr "es su plena edad de jubilación."
+msgstr "años de edad es su plena edad de jubilación."
 
 #: templates/claiming.html:251
 msgid "Total lifetime benefits at age 85"
@@ -324,7 +324,7 @@ msgstr "Si usted y su cónyuge son plena edad de jubilación, usted puede solici
 
 #: 
 msgid "Age"
-msgstr "A los "
+msgstr " "
 
 #: 
 msgid "Compared to your full retirement age."
@@ -467,7 +467,7 @@ msgid "Working in your 60s will help you maximize your income and savings."
 msgstr "Trabajar en sus sesentas le ayudará a aumentar sus ingresos y sus ahorros."
 
 #: 
-msgid ", which is earlier than your Social Security full retirement claiming age."
+msgid "which is earlier than your Social Security full retirement claiming age."
 msgstr " años, que es antes de su edad de plena jubilación."
 
 #: 
@@ -487,7 +487,7 @@ msgid "If your income, employment, or marital status changes, you may need to re
 msgstr "Si sus ingresos, situación laboral o estado civil cambian, es posible que deba reconsiderar la edad en la que solicitará sus beneficios de Seguro Social. ¡Vuelva a visitarnos!"
 
 #: 
-msgid ", which is your Social Security full retirement claiming age."
+msgid "which is your Social Security full retirement claiming age."
 msgstr " años, que es su plena edad de jubilación."
 
 #: 
@@ -625,11 +625,7 @@ msgstr "Eso significa que recibirá sus beneficios de Seguro Social completos, s
 
 #: 
 msgid "This means you will get an increase in your monthly benefits!  Here are steps to help you in the next few years."
-msgstr "Por lo tanto la cantidad de sus beneficios será reducida. Estos son pasos que le ayudarán en los próximos años:"
-
-#: 
-msgid "This means you will get an increase in your monthly benefits! Here are steps to help you in the next few years."
-msgstr "Por lo tanto la cantidad de sus beneficios será reducida. Estos son pasos que le ayudarán en los próximos años:"
+msgstr "Eso significa que recibirá sus beneficios de Seguro Social completos, sin ninguna reducción. Estos son pasos que le ayudarán en los próximos años:"
 
 #: 
 msgid "Remember, claiming age here refers only to your Social Security retirement benefit, and not when you decide to stop working or apply for Medicare."
@@ -722,4 +718,108 @@ msgstr "es"
 #: 
 msgid "en"
 msgstr "es"
+
+#: 
+msgid "Claiming at age"
+msgstr "A los"
+
+#: 
+msgid "Where do these numbers come from?"
+msgstr "¿De dónde salen estos números?"
+
+#: 
+msgid "We generate your estimates by applying current Social Security formulas based on the numbers you enter for your date of birth and for your “highest annual work income.” We use the Social Security Administration’s (SSA) Quick Calculator to produce a rough estimate of your benefit at your “full retirement age,” which ranges from age 66 to 67, depending on the year you were born. This is the age at which you would receive 100 percent of your scheduled Social Security benefit under current law. If you start claiming your Social Security retirement benefits after you reach your “full retirement age, ” you will receive an increased benefit, and if you start claiming Social Security before you reach your “full retirement age,” you will receive a reduced benefit. You will not receive any additional increases for claiming after age 70, and age 62 is the earliest age you can claim your benefits."
+msgstr "Obtenemos un cálculo aproximado de sus beneficios mediante la aplicación de fórmulas actuales del Seguro Social  y basado en la fecha de nacimiento y el \"ingreso anual de trabajo” que usted ha introducido. Utilizamos la Calculadora Rápida de la Administración del Seguro Social (SSA) para producir una estimación aproximada de su beneficio a lo que se conoce como su \"plena edad de jubilación,\" que va desde los 66 años a 67 años, dependiendo del año en que usted nació. Esta es la edad en la que usted recibiría 100 por ciento de su beneficio de Seguro Social previsto por la ley vigente. Si usted comienza a reclamar su beneficio de jubilación después de cumplir su \"plena edad de jubilación,\" usted recibirá un beneficio mayor, y si comienza a reclamar su beneficio antes de cumplir su \"plena edad de jubilación,\" usted recibirá un beneficio menor. No recibirá ningún incremento adicional si decide reclamar después de los 70 años de edad, y los 62 años de edad es la edad más temprana que puede reclamar sus beneficios."
+
+#: 
+msgid "Based on the numbers you enter for your date of birth and “highest annual work income,” our tool uses SSA’s Quick Calculator to estimate your benefit at “full retirement age” and your Social Security earnings record.  Our tool then applies the appropriate monthly credits for claiming after your “full retirement age” and the appropriate monthly reductions for claiming before your “full retirement age.”  The amounts of these credits and reductions are set by SSA."
+msgstr "Según los números que usted introduce para su fecha de nacimiento y su \" ingreso anual de trabajo,\" nuestra herramienta utiliza la Calculadora Rápida de la Administración del Seguro Social (SSA) para estimar su beneficio a la \"plena edad de jubilación \" y su registro de ingresos del Seguro Social. Nuestra herramienta aplica los créditos mensuales correspondientes para estimar los beneficios si reclama después de su \"plena edad de jubilación \" y las reducciones mensuales correspondientes para estimar los beneficios si reclama antes de su \"plena edad de jubilación.\" Las cantidades de estos créditos y reducciones son establecidas por la Administración del Seguro Social."
+
+#: 
+msgid "How do we generate your estimates?"
+msgstr "¿Cómo obtenemos su cálculo aproximado?"
+
+#: 
+msgid "We use the same estimated earnings record to estimate your benefit at each age. In real life, your earnings record could be the same or different at each age, depending on whether you keep working until your “full retirement age,” and whether additional years of work replace earlier years of lower earnings in your record."
+msgstr "Usamos el mismo registro de ingresos para calcular su beneficio en cada edad. En la vida real, su registro de ingresos podría ser el mismo o diferente en cada edad, dependiendo de si se sigue trabajando hasta cumplir su \"plena edad de jubilación,\" y si los años adicionales de trabajo reemplazan años anteriores de menores ingresos en su registro."
+
+#: 
+msgid "<strong>These are rough estimates.</strong> We do not access any of your actual Social Security benefit information, and the information you provide in our tool is anonymous. Therefore, your actual benefits are likely to be different from the estimate if you have had large changes in work income throughout your career, or if you had several years when you did not work."
+msgstr "<strong>Estos son cálculos aproximados.</strong> No accedemos a ninguna información de su registro real de beneficios del Seguro Social, y la información que usted proporciona en nuestra herramienta es anónima. Por lo tanto, sus beneficios reales son probablemente diferentes de la estimación que le proveemos, especialmente si ha tenido grandes cambios en sus ingresos de trabajo a lo largo de su carrera, o si  tenía varios años en los que no trabajó."
+
+#: 
+msgid "<strong>Your lifetime benefits are also a rough estimate.</strong> We provide a lifetime estimate of your benefits based on the average life expectancy of a 65-year-old today, which is age 85.  Assuming a life expectancy of age 85, this rough lifetime estimate of benefits changes as your claiming age changes. This feature shows how claiming at different ages would affect the cumulative amount you will receive if you live to that expected age. If you live longer than the average person, your estimated lifetime benefits will be higher for all claiming ages. We do not apply any discount rate or make any assumptions about how different people may value money differently than others over time. In addition, all estimates are given in today’s dollars (without adjusting for inflation)."
+msgstr "<strong>El total cumulativo de sus beneficios también es un cálculo aproximado.</strong> Proporcionamos un estimado de la cantidad total de beneficios en base a la esperanza de vida media de una persona de 65 años, hoy en día, actualmente 85 años. Suponiendo una esperanza de vida de 85 años, esta estimación aproximada de beneficios de por vida cambiará a medida que su edad de reclamo de beneficios cambia. Este cálculo muestra cómo al reclamar a diferentes edades afectar la cantidad total que recibirá si alcanza  esa edad promedio. Si usted vive más tiempo que la persona promedio, sus beneficios estimados de por vida serán mayores para todas las  edades de reclamo. Al generar estos estimados no aplicamos ninguna tasa de descuento ni hicimos suposiciones acerca de cómo diferentes personas pueden valorar el dinero de manera diferente a los demás a través del tiempo. Además, todas las estimaciones se dan en dólares actuales (sin ajustar por inflación)."
+
+#: 
+msgid "<strong>Your estimates from this tool may also be different from estimates SSA’s tools provide.</strong> The estimates that you see in our tool may be different from the estimates shown in the Social Security Administration’s “my Social Security” accounts, “Retirement Estimator,” or the paper statements that you receive from the Social Security Administration. The reason for the difference may be that these tools use your actual earnings record to generate an estimate."
+msgstr "<strong>Las estimaciones de esta herramienta también pueden ser diferentes de las estimaciones de las herramientas que la Administración del Seguro Social proporciona.</strong> Las estimaciones que se ven en nuestra herramienta pueden ser diferentes de las estimaciones que se muestran en las cuentas de la Administración del Seguridad Social  llamadas \"my Social Security\",  \"Calculador de Beneficios de Jubilación \", o los estados de cuenta en papel que recibe de la Administración del Seguro Social. La razón por la diferencia puede ser que estas herramientas utilizan sus ingresos reales  para generar una estimación."
+
+#: 
+msgid "<strong>We show monthly and annualized benefits.</strong> The monthly and annual benefit amounts that are shown in the tool represent what we estimate you will get for the rest of your life on a monthly and annual basis from each claiming age moving forward."
+msgstr "<strong>Mostramos los beneficios mensuales y anuales.</strong> El total de los beneficios mensuales y anuales que se muestran en la herramienta representan lo que se estima que usted obtendrá mensualmente y anualmente durante el resto de su vida a partir de cada edad."
+
+#: 
+msgid "<strong>Our tool applies increases in your estimated benefits immediately.</strong> In reality, if you claim after your “full retirement age” but before you turn 70 years old, SSA will begin applying the monthly credits in January of the year after you claim. Until then, you receive the monthly amount that you would have received if you claimed at “full retirement age.”  If you claim at age 70 or later, however, your credits are applied immediately when you claim."
+msgstr "<strong>Nuestra herramienta aplica aumentos en sus beneficios estimados inmediatamente.</strong> En realidad, si usted reclama sus beneficios después de su \"plena edad de jubilación\", pero antes de cumplir los 70 años de edad, la Administración del Seguro Social comenzará la aplicación de los créditos en enero del año siguiente al que reclama. Hasta entonces, usted recibirá la cantidad mensual que habría recibido si reclamó en \"plena edad de jubilación.\" Si por otro lado usted reclama a los 70 años o después, sus créditos se aplican inmediatamente al reclamar."
+
+#: 
+msgid "<strong>The tool gives estimates for people ages 22 to 70.</strong> The tool does not provide estimates of retirement benefits for consumers under age 22 or over age 70 (i.e., the claiming age at which you get the maximum possible benefit). Additionally, the tool cannot provide an estimate if the amount entered under “highest annual work income” is too low to generate an estimate."
+msgstr "<strong>La herramienta proporciona estimaciones para las personas entre las edades de 22 a 70 años.</strong> La herramienta no proporciona estimaciones de los beneficios de retiro para los consumidores menores de 22 años o mayores de 70 años (es decir, la edad en el que se obtiene el beneficio máximo posible). Además, la herramienta no puede proporcionar una estimación si la cantidad que introduce bajo \"ingreso anual de trabajo” es demasiado baja para generar una estimación."
+
+#: 
+msgid "<strong>As you approach retirement, we recommend that you contact the Social Security Administration for an estimate based on your actual earnings history.</strong> Your estimate will be more accurate if it is based on your own actual earnings record, especially if you have had fluctuations in your income or gaps in employment over your career. To get an estimate based on your actual earnings record, you may want to open a “my Social Security” account or visit the Social Security Administration’s Retirement Estimator."
+msgstr "<strong>Al acercarse a su jubilación, le recomendamos que se comunique con la Administración del Seguro Social para obtener una estimación de sus beneficios basada en su registro real de ingresos.</strong> Su estimación será más precisa si se basa en su propio registro de ingresos, especialmente si ha tenido fluctuaciones en sus ingresos o si hubo años a lo largo de su carrera en los que no trabajó. Para obtener una estimación basada en su registro de ingresos reales , es posible que desee acceder al Calculador de Beneficios de Jubilación de la Administración del Seguro Social o abrir una cuenta de “my Social Security” (disponibles en inglés solamente)."
+
+#: 
+msgid "Other things to know:"
+msgstr "Otras cosas que debe saber:"
+
+#: 
+msgid "Our tool does not show other Social Security benefits, like spousal benefits, survivors’ benefits, or disability benefits that can be paid on your earnings record. You can get estimates for these benefits at the Social Security Administration’s Retirement Estimator or by opening or accessing your “my Social Security” account."
+msgstr "Nuestra herramienta no muestra los otros beneficios del Seguro Social, tales como los beneficios conyugales, beneficios para sobrevivientes, y beneficios de incapacidad que se pueden pagar bajo su registro de ingresos. Usted puede obtener un cálculo aproximado de estos beneficios a través del Calculador de Beneficios de Jubilación de la Administración del Seguro Social o abriendo una cuenta de “my Social Security” (disponibles en inglés solamente)."
+
+#: 
+msgid "You must meet some minimum working and age requirements to be eligible to receive retirement benefits from your own working record."
+msgstr "Usted debe cumplir con ciertos requisitos de trabajo y tener la edad mínima para ser elegible para recibir los beneficios de jubilación bajo su propio registro de trabajo."
+
+#: 
+msgid "Other sources of retirement income like a pension from a state or local government for which you did not pay Social Security taxes may affect the amount of benefits that you will receive."
+msgstr "Otras fuentes de ingresos de jubilación, tales como una pensión de un gobierno estatal o local para el cual usted no pagó impuestos de Seguro Social, pueden afectar la cantidad de beneficios que recibirá."
+
+#: 
+msgid "You’ve chosen age 70, which is your maximum Social Security benefit claiming age."
+msgstr "Usted seleccionó 70, que es la edad máxima para reclamar sus beneficios de Seguro Social."
+
+#: 
+msgid "This means you will get your maximum possible monthly benefit! Here are steps to help you in the next few years."
+msgstr "Eso significa que obtendrá el beneficio mensual más alto. Estos son pasos que le ayudarán en los próximos años:"
+
+#: 
+msgid "You've chosen"
+msgstr "Usted seleccionó"
+
+#: 
+msgid "which is later than your Social Security full retirement claiming age."
+msgstr "que es después de su plena edad de jubilación."
+
+#: 
+msgid "which is your maximum Social Security benefit claiming age."
+msgstr "que es la edad máxima para reclamar sus beneficios de Seguro Social."
+
+#: 
+msgid "Visit my Social Security"
+msgstr "Visite my Social Security"
+
+#: 
+msgid "GET IN TOUCH"
+msgstr "MANTÉNGASE EN CONTACTO"
+
+#: 
+msgid "Create a my Social Security account to review your expected benefits based on your actual Social Security record."
+msgstr "Abra una cuenta de my Social Security para ver un estimado de sus beneficios basados en su propio registro de ganancias del Seguro Social."
+
+#: 
+msgid "You can send feedback or questions to"
+msgstr "Envíe sus comentarios o preguntas a"
 
