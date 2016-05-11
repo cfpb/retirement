@@ -761,7 +761,7 @@ msgstr "El total de los beneficios mensuales y anuales que se muestran en la her
 
 #: 
 msgid "In reality, if you claim after your “full retirement age” but before you turn 70 years old, SSA will begin applying the monthly credits <a href=\"https://www.ssa.gov/oact/quickcalc/early_late.html\">in January of the year after you claim</a>.  Until then, you receive the monthly amount that you would have received if you claimed at “full retirement age.” If you claim at age 70 or later, however, your credits are applied immediately when you claim."
-msgstr "En realidad, si usted reclama sus beneficios después de su \"plena edad de jubilación\", pero antes de cumplir los 70 años de edad, la Administración del Seguro Social comenzará la aplicación de los créditos en enero del año siguiente al que reclama. Hasta entonces, usted recibirá la cantidad mensual que habría recibido si reclamó en \"plena edad de jubilación.\" Si por otro lado usted reclama a los 70 años o después, sus créditos se aplican inmediatamente al reclamar."
+msgstr "En realidad, si usted reclama sus beneficios después de su \"plena edad de jubilación\", pero antes de cumplir los 70 años de edad, la Administración del Seguro Social comenzará la aplicación de los créditos <a href=\"https://www.ssa.gov/oact/quickcalc/early_late.html\">en enero del año siguiente al que reclama</a>. Hasta entonces, usted recibirá la cantidad mensual que habría recibido si reclamó en \"plena edad de jubilación.\" Si por otro lado usted reclama a los 70 años o después, sus créditos se aplican inmediatamente al reclamar."
 
 #: 
 msgid "The tool does not provide estimates of retirement benefits for consumers under age 22 or over age 70 (i.e., the claiming age at which you get the maximum possible benefit). Additionally, the tool cannot provide an estimate if the amount entered under “highest annual work income” is too low to generate an estimate."
@@ -812,7 +812,6 @@ msgid "Visit my Social Security"
 msgstr "Visite my Social Security"
 
 #: 
-#, fuzzy
 msgid "Get in touch"
 msgstr "MANTÉNGASE EN CONTACTO"
 
@@ -841,7 +840,7 @@ msgid "Your lifetime benefits are also a rough estimate"
 msgstr "El total cumulativo de sus beneficios también es un cálculo aproximado"
 
 #: 
-msgid "Your estimates from this tool may also be different from estimates SSA’s tools provide"
+msgid "Your estimates from this tool may also be different from estimates that SSA’s tools provide"
 msgstr "Las estimaciones de esta herramienta también pueden ser diferentes de las estimaciones de las herramientas que la Administración del Seguro Social proporciona"
 
 #: 
@@ -855,4 +854,8 @@ msgstr "Nuestra herramienta aplica aumentos en sus beneficios estimados inmediat
 #: 
 msgid "The tool gives estimates for people ages 22 to 70"
 msgstr "La herramienta proporciona estimaciones para las personas entre las edades de 22 a 70 años"
+
+#: 
+msgid "about"
+msgstr "/retirement/before-you-claim/about/es/"
 
