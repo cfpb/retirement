@@ -230,24 +230,6 @@ var graphView = {
     } );
   },
 
-  /*
-   * This function toggles the graph text between monthly view and annual view.
-   * It has no parameters, but it uses the selector to determine which values to
-   * show
-   */
-  updateMonthlyAnnual: function() {
-    var SSData = getModelValues.benefits(),
-        benefitsValue = SSData['age' + this.selectedAge];
-    if ( $( 'input[name="benefits-display"]:checked' ).val() === 'annual' ) {
-      benefitsValue *= 12;
-      $( '#graph-container .monthly-view' ).hide();
-      $( '#graph-container .annual-view' ).show();
-    } else {
-      $( '#graph-container .monthly-view' ).show();
-      $( '#graph-container .annual-view' ).hide();
-    }
-  },
-
   /**
    * This function updates the placement of the benfits text boxes
    */
@@ -263,6 +245,11 @@ var graphView = {
         fullAgeLeft,
         fullAgeTop,
         $fullAgeBenefits = $( '#full-age-benefits-text' );
+
+    if ( $( '[name="benefits-display"]:checked' ).val() === 'annual' ) {
+      benefitsValue *= 12;
+      fullAgeBenefitsValue *= 12;
+    }
 
     // set text and position for #benefits-text div
     $( '#benefits-text' ).text( numToMoney( benefitsValue ) );
@@ -311,12 +298,6 @@ var graphView = {
         $selectedAgeText = $( '#selected-retirement-age-value' ),
         $fullAgeBenefits = $( '#full-age-benefits-text' ),
         $comparedToFull = $( '.compared-to-full' );
-
-    if ( $( '[name="benefits-display"]:checked' ).val() === 'annual' ) {
-      selectedAgeValue *= 12;
-      fullAgeValue *= 12;
-    }
-    graphView.updateMonthlyAnnual();
 
     // Set default state
     $fullAgeBenefits.show();
