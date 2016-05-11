@@ -28,7 +28,7 @@ var graphView = {
   selectedAge: 0,
   textlets: {
     currentAge: 0,
-    fullAge: 0,
+    fullRetirementAge: 0,
     yourMax: 'is your maximum benefit claiming age.',
     pastFull: 'is past your full benefit claiming age.',
     yourFull: 'is your full benefit claiming age.',
@@ -40,8 +40,6 @@ var graphView = {
 
   init: function() {
     var SSData = getModelValues.benefits();
-    this.textlets.currentAge = SSData.currentAge;
-    this.textlets.fullAge = SSData.fullAge;
     this.getTranslations();
 
     $( 'input[name="benefits-display"]' ).click( function() {
@@ -207,6 +205,8 @@ var graphView = {
             '.step-three,' +
             '.step-three .hidden-content' ).show();
 
+        graphView.textlets.currentAge = window.gettext( SSData.currentAge );
+        graphView.textlets.fullRetirementAge = window.gettext( SSData.fullRetirementAge );
         questionsView.update( SSData.currentAge );
         nextStepsView.init( SSData.currentAge, SSData.fullAge );
         graphView.redrawGraph();
@@ -360,7 +360,7 @@ var graphView = {
     // The user has selected FRA, or current age if past FRA
     if ( selectedFRA || ( selectedCurrent && SSData.past_fra ) ) {
       $fullAgeBenefits.hide();
-      $selectedAgeText.html( SSData.fullRetirementAge );
+      $selectedAgeText.html( textlets.fullRetirementAge );
       $( '.graph-content .content-container.full-retirement' ).show();
       $benefitsMod.html( textlets.yourFull );
 
@@ -422,6 +422,7 @@ var graphView = {
     var SSData = getModelValues.benefits(),
         $indicator = $( '#graph_slider-input' );
     graphView.selectedAge = indicatorValue;
+    graphView.textlets.selectedAge = gettext( graphView.selectedAge );
     // Don't let the user select an age younger than they are now
     if ( graphView.selectedAge < SSData.currentAge ) {
       graphView.selectedAge = SSData.currentAge;
