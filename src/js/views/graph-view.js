@@ -26,9 +26,21 @@ var graphView = {
   },
   ages: [ 62, 63, 64, 65, 66, 67, 68, 69, 70 ],
   selectedAge: 0,
+  textlets: {
+    currentAge: 0,
+    fullRetirementAge: 0,
+    yourMax: 'is your maximum benefit claiming age.',
+    pastFull: 'is past your full benefit claiming age.',
+    yourFull: 'is your full benefit claiming age.',
+    reduces: '<strong>reduces</strong> your monthly benefit by&nbsp;<strong>',
+    increases: '<strong>increases</strong> your benefit by&nbsp;<strong>',
+    comparedFull: 'Compared to claiming at your full benefit claiming age.',
+    comparedAt: 'Compared to claiming at'
+  },
 
   init: function() {
     var SSData = getModelValues.benefits();
+    this.getTranslations();
 
     $( 'input[name="benefits-display"]' ).click( function() {
       graphView.setTextByAge();
@@ -54,7 +66,7 @@ var graphView = {
       if ( ev.which === 57 && ev.ctrlKey === true ) {
         $( '#bd-day' ).val( '1' );
         $( '#bd-month' ).val( '1' );
-        $( '#bd-year' ).val( '1949' );
+        $( '#bd-year' ).val( '1948' );
         $( '#salary-input' ).val( '40000' );
         $( '#step-one-form' ).submit();
       }
@@ -72,13 +84,6 @@ var graphView = {
       var salaryNumber = strToNum( $( '#salary-input' ).val() ),
           salary = numToMoney( salaryNumber );
       $( '#salary-input' ).val( salary );
-    } );
-
-    // reformat date fields
-    $( '.birthdate-inputs' ).blur( function() {
-      var month = $( '#bd-month' ).val().replace( /\D/g, '' ),
-          day = $( '#bd-day' ).val().replace( /\D/g, '' ),
-          year = $( '#bd-year' ).val().replace( /\D/g, '' );
     } );
 
     // Check if the estimate is ready
@@ -200,6 +205,8 @@ var graphView = {
             '.step-three,' +
             '.step-three .hidden-content' ).show();
 
+        graphView.textlets.currentAge = window.gettext( SSData.currentAge );
+        graphView.textlets.fullRetirementAge = window.gettext( SSData.fullRetirementAge );
         questionsView.update( SSData.currentAge );
         nextStepsView.init( SSData.currentAge, SSData.fullAge );
         graphView.redrawGraph();
@@ -211,7 +218,7 @@ var graphView = {
             scrollTop: $( '#estimated-benefits-description' ).offset().top - 20
           }, 300 );
         }
-        graphView.selectedAge = SSData.fullAge;
+
       } else {
         $( '.cf-notification' ).slideDown();
         $( '.cf-notification .cf-notification_text' ).html( resp.note );
@@ -223,56 +230,26 @@ var graphView = {
     } );
   },
 
-  /*
-   * This function toggles the graph text between monthly view and annual view.
-   * It has no parameters, but it uses the selector to determine which values to
-   * show
+  /**
+   * This function updates the placement of the benfits text boxes
    */
-  toggleMonthlyAnnual: function() {
+  placeBenefitsText: function() {
     var SSData = getModelValues.benefits(),
-        benefitsValue = SSData['age' + this.selectedAge];
-    if ( $( 'input[name="benefits-display"]:checked' ).val() === 'annual' ) {
-      benefitsValue *= 12;
-      $( '#graph-container .monthly-view' ).hide();
-      $( '#graph-container .annual-view' ).show();
-    } else {
-      $( '#graph-container .monthly-view' ).show();
-      $( '#graph-container .annual-view' ).hide();
-    }
-  },
-
-  /*
-   * This function changes the text of benefits elements based on selectedAge
-   */
-  setTextByAge: function() {
-    var gset = this.graphSettings,
-        SSData = getModelValues.benefits(),
-        lifetimeData = getModelValues.lifetime(),
-        lifetimeBenefits = numToMoney( lifetimeData['age' + this.selectedAge] ),
+        gset = this.graphSettings,
         fullAgeBenefitsValue = SSData['age' + SSData.fullAge],
         benefitsValue = SSData['age' + this.selectedAge],
-        $selectedBar,
+        $selectedBar = 5,
         benefitsTop,
         benefitsLeft,
         $fullAgeBar,
         fullAgeLeft,
         fullAgeTop,
-        percent,
-        text,
-        isSelectedFRA = this.selectedAge === SSData.fullAge,
-        isOlderThanFRA = SSData.currentAge > SSData.fullAge,
-        isYoungerThanFRA = SSData.currentAge < SSData.fullAge;
+        $fullAgeBenefits = $( '#full-age-benefits-text' );
 
     if ( $( '[name="benefits-display"]:checked' ).val() === 'annual' ) {
       benefitsValue *= 12;
       fullAgeBenefitsValue *= 12;
     }
-    this.toggleMonthlyAnnual();
-
-    $( '#claim-canvas .age-text' ).removeClass( 'selected-age' );
-    // Set selected-age
-    $( '[data-age-value="' + graphView.selectedAge + '"]' )
-      .addClass( 'selected-age' );
 
     // set text and position for #benefits-text div
     $( '#benefits-text' ).text( numToMoney( benefitsValue ) );
@@ -285,128 +262,136 @@ var graphView = {
     $( '#benefits-text' ).css( 'left', benefitsLeft );
 
     // set text, position and visibility of #full-age-benefits-text
-    $( '#full-age-benefits-text' ).text( numToMoney( fullAgeBenefitsValue ) );
+    $fullAgeBenefits.text( numToMoney( fullAgeBenefitsValue ) );
     $fullAgeBar = $( '[data-bar_age="' + SSData.fullAge + '"]' );
     fullAgeTop = parseInt( $fullAgeBar.css( 'top' ), 10 );
-    fullAgeTop -= $( '#full-age-benefits-text' ).height() + 10;
+    fullAgeTop -= $fullAgeBenefits.height() + 10;
     fullAgeLeft = parseInt( $fullAgeBar.css( 'left' ), 10 );
-    fullAgeLeft -= $( '#full-age-benefits-text' ).width() / 2 -
+    fullAgeLeft -= $fullAgeBenefits.width() / 2 -
       gset.barWidth / 2;
-    $( '#full-age-benefits-text' ).css( 'top', fullAgeTop );
-    $( '#full-age-benefits-text' ).css( 'left', fullAgeLeft );
-    if ( isSelectedFRA || isOlderThanFRA ) {
-      $( '#full-age-benefits-text' ).hide();
-    } else {
-      $( '#full-age-benefits-text' ).show();
-    }
+    $fullAgeBenefits.css( 'top', fullAgeTop );
+    $fullAgeBenefits.css( 'left', fullAgeLeft );
 
-    // set lifetime benefits text
+  },
+
+  /*
+   * This function changes the text of benefits elements based on selectedAge
+   */
+  setTextByAge: function() {
+    var gset = this.graphSettings,
+        textlets = this.textlets,
+        SSData = getModelValues.benefits(),
+        lifetimeData = getModelValues.lifetime(),
+        lifetimeBenefits = numToMoney( lifetimeData['age' + this.selectedAge] ),
+        fullAgeValue = Number( SSData['age' + SSData.fullAge] ),
+        currentAgeValue = Number( SSData['age' + SSData.currentAge]),
+        selectedAgeValue = Number( SSData['age' + this.selectedAge] ),
+        percent,
+        text,
+        selectedBelowFRA = this.selectedAge < SSData.fullAge,
+        selectedFRA = this.selectedAge === SSData.fullAge,
+        selectedAboveFRA = this.selectedAge > SSData.fullAge,
+        selectedCurrent = this.selectedAge === SSData.currentAge,
+        isFRA = SSData.currentAge === SSData.fullAge,
+        isYoungerThanFRA = SSData.currentAge < SSData.fullAge,
+        $benefitsMod = $( '.benefit-modification-text' ),
+        $selectedAgeText = $( '#selected-retirement-age-value' ),
+        $fullAgeBenefits = $( '#full-age-benefits-text' ),
+        $comparedToFull = $( '.compared-to-full' );
+
+    // Set default state
+    $fullAgeBenefits.show();
+
+    // Put the benefits text in the right place
+    graphView.placeBenefitsText();
+
+    // Set selected-age class on correct age
+    $( '#claim-canvas .age-text' ).removeClass( 'selected-age' );
+    $( '[data-age-value="' + graphView.selectedAge + '"]' )
+      .addClass( 'selected-age' );
+
+    // Set lifetime benefits text
     $( '#lifetime-benefits-value' ).text( lifetimeBenefits );
 
-    // Set extra text for early and full retirement ages
-    if ( this.selectedAge === 70 ) {
-      text = this.selectedAge;
-      $( '#selected-retirement-age-value' ).text( text );
-    } else if ( this.selectedAge === SSData.earlyAge ) {
-      text = SSData.earlyRetirementAge;
-      $( '#selected-retirement-age-value' ).text( text );
-    } else if ( isSelectedFRA && isYoungerThanFRA ) {
-      text = SSData.fullRetirementAge;
-      $( '#selected-retirement-age-value' ).text( text );
-    } else {
-      text = this.selectedAge;
-      $( '#selected-retirement-age-value' ).text( text );
+    // Set the selected retirement age text
+    $selectedAgeText.text( this.selectedAge );
+
+    // The user is older than FRA
+    if ( SSData.past_fra ) {
+      $fullAgeBenefits.hide();
     }
 
-    // Graph content
+    // !! Now we update text based on the age selected !! //
+    // XXXXX //
+    // Clear the content container
     $( '.graph-content .content-container' ).hide();
-    if ( this.selectedAge === 70 ) {
-      $( '.graph-content .content-container.max-retirement' ).show();
-    } else if ( this.selectedAge < SSData.fullAge ) {
+
+    // The user has selected an age below FRA
+
+    if ( selectedBelowFRA ) {
       $( '.graph-content .content-container.early-retirement' ).show();
-    } else {
-      $( '.graph-content .content-container.full-retirement' ).show();
+      percent = ( fullAgeValue - selectedAgeValue ) / fullAgeValue;
+      percent = Math.abs( Math.round( percent * 100 ) );
+      $benefitsMod.html( textlets.reduces + percent + '</strong>%' );
+      $comparedToFull.html( textlets.comparedFull ).show();
+      $( '.selected-retirement-age__fra' ).hide();
+      $( '.selected-retirement-age__not-fra' ).show();
     }
-    if ( this.selectedAge === SSData.fullAge ||
-        this.selectedAge === SSData.currentAge && SSData.past_fra
-      ) {
+
+    // The user has selected FRA, or current age if past FRA
+    if ( selectedFRA || ( selectedCurrent && SSData.past_fra ) ) {
+      $fullAgeBenefits.hide();
+      $selectedAgeText.html( textlets.fullRetirementAge );
+      $( '.graph-content .content-container.full-retirement' ).show();
+      $benefitsMod.html( textlets.yourFull );
+
+      // If the user is past FRA, display pastFull
       if ( SSData.past_fra ) {
-        if ( SSData.currentAge === 70 ) {
-          text = window.gettext( 'is your maximum benefit claiming age.' );
-          var translatedCurrentAge = window.gettext( SSData.currentAge );
-          $( '.selected-retirement-age-value' ).html( translatedCurrentAge );
-          $( '.benefit-modification-text' ).html( text );
-          $( '.compared-to-full' ).hide();
-        } else {
-          text = window.gettext( 'is past your full benefit claiming age.' );
-          $( '.benefit-modification-text' ).html( text );
-          $( '.compared-to-full' ).hide();
-        }
-      } else {
-        var translatedFRA = window.gettext( SSData.fullRetirementAge );
-        $( '.selected-retirement-age-value' ).html( translatedFRA );
-        $( '.benefit-modification-text' ).html(
-          window.gettext( 'is your full benefit claiming age.' )
-        );
-        $( '.compared-to-full' ).hide();
+        $benefitsMod.html( textlets.pastFull );
+        $selectedAgeText.html( SSData.currentAge );
       }
+
+      $comparedToFull.hide();
       $( '.selected-retirement-age__fra' ).show();
       $( '.selected-retirement-age__not-fra' ).hide();
-    } else if ( this.selectedAge < SSData.fullAge ) {
-      percent =
-        ( SSData['age' + SSData.fullAge] -
-          SSData['age' + this.selectedAge] ) /
-        SSData['age' + SSData.fullAge];
-      percent = Math.abs( Math.round( percent * 100 ) );
-      text = window.gettext(
-        '<strong>reduces</strong> your monthly benefit by&nbsp;<strong>'
-      );
-      $( '.benefit-modification-text' ).html( text + percent + '</strong>%' );
-      text = window.gettext(
-        'Compared to claiming at your full benefit claiming age.'
-      );
-      $( '.compared-to-full' ).html( text );
-      $( '.compared-to-full' ).show();
-      $( '.selected-retirement-age__fra' ).hide();
-      $( '.selected-retirement-age__not-fra' ).show();
-    } else if ( this.selectedAge > SSData.fullAge ) {
-      percent =
-        ( SSData['age' + SSData.fullAge] - SSData['age' + this.selectedAge] ) /
-        SSData['age' + SSData.fullAge];
+    }
+
+    // The user has selected an age above FRA, but it's not their current age
+    if ( selectedAboveFRA && !selectedCurrent ) {
+      $( '.graph-content .content-container.full-retirement' ).show();
+      percent = ( fullAgeValue - selectedAgeValue ) / fullAgeValue;
+
+      // If user is past FRA, percent is compared to current Age instead
       if ( SSData.past_fra ) {
-        percent =
-          ( SSData['age' + SSData.currentAge] -
-            SSData['age' + this.selectedAge]
-          ) / SSData['age' + SSData.currentAge];
-        var comparedToClaimingFullEs =
-          window.gettext( 'Compared to claiming at' );
-        var comparedToClaimingEsSplit = comparedToClaimingFullEs.split( 'XXX' );
-        if ( typeof comparedToClaimingEsSplit !== 'undefined' ) {
-          if ( comparedToClaimingEsSplit.length === 2 ) {
-            $( '.compared-to-full' ).html(
-              comparedToClaimingEsSplit[0] + ' ' +
-              SSData.currentAge + ' ' + comparedToClaimingEsSplit[1]
-            );
-          } else {
-            $( '.compared-to-full' ).html(
-              comparedToClaimingEsSplit[0] + ' ' + SSData.currentAge + '.'
-            );
-          }
+        percent = ( currentAgeValue - selectedAgeValue ) / currentAgeValue;
+        text = textlets.comparedAt;
+        // Text replace for Spanish version
+        if ( text.indexOf( 'XXX' ) !== -1 ) {
+          text = text.replace( /XXX/i, SSData.currentAge );
+        } else {
+          text += ' ' + SSData.currentAge + '.';
         }
       } else {
-        text = window.gettext(
-          'Compared to claiming at your full benefit claiming age.'
-        );
-        $( '.compared-to-full' ).html( text );
+        text = textlets.comparedFull;
       }
+      $comparedToFull.html( text );
       percent = Math.abs( Math.round( percent * 100 ) );
-      text = window.gettext(
-        '<strong>increases</strong> your benefit by&nbsp;<strong>'
-      );
-      $( '.benefit-modification-text' ).html( text + percent + '</strong>%' );
-      $( '.compared-to-full' ).show();
+      $benefitsMod.html( textlets.increases + percent + '</strong>%' );
+      $comparedToFull.show();
       $( '.selected-retirement-age__fra' ).hide();
       $( '.selected-retirement-age__not-fra' ).show();
+    }
+
+    // The user has selected age 70
+    if ( this.selectedAge === 70 ) {
+      $( '.graph-content .content-container' ).hide();
+      $( '.graph-content .content-container.max-retirement' ).show();
+    }
+
+    // If the user is 70, override other content
+    if ( SSData.currentAge === 70 ) {
+      $selectedAgeText.html( textlets.selectedAge );
+      $benefitsMod.html( textlets.yourMax );
     }
   },
 
@@ -418,6 +403,7 @@ var graphView = {
     var SSData = getModelValues.benefits(),
         $indicator = $( '#graph_slider-input' );
     graphView.selectedAge = indicatorValue;
+    graphView.textlets.selectedAge = gettext( graphView.selectedAge );
     // Don't let the user select an age younger than they are now
     if ( graphView.selectedAge < SSData.currentAge ) {
       graphView.selectedAge = SSData.currentAge;
@@ -441,7 +427,7 @@ var graphView = {
     }
     age = Number( age );
     $indicator.val( age );
-    this.setAgeWithIndicator( age );
+    graphView.setAgeWithIndicator( age );
   },
 
   /**
@@ -470,7 +456,7 @@ var graphView = {
     if ( graphWidth > ( $( window ).width() - canvasLeft ) * 0.95 ) {
       graphWidth = ( $( window ).width() - canvasLeft ) * 0.95;
     }
-    this.changeGraphSetting( 'graphWidth', graphWidth );
+    graphView.changeGraphSetting( 'graphWidth', graphWidth );
 
     barOffset = 94;
     graphHeight = 380;
@@ -479,19 +465,19 @@ var graphView = {
       graphHeight = 210;
       $( '#claim-canvas svg' ).css( 'overflow', 'visible' );
     }
-    this.changeGraphSetting( 'graphHeight', graphHeight );
-    this.changeGraphSetting( 'barOffset', barOffset );
+    graphView.changeGraphSetting( 'graphHeight', graphHeight );
+    graphView.changeGraphSetting( 'barOffset', barOffset );
 
     barWidth = Math.floor( graphWidth / 17 );
-    this.changeGraphSetting( 'barWidth', barWidth );
+    graphView.changeGraphSetting( 'barWidth', barWidth );
 
     gutterWidth = Math.floor( graphWidth / 17 );
-    this.changeGraphSetting( 'gutterWidth', gutterWidth );
+    graphView.changeGraphSetting( 'gutterWidth', gutterWidth );
 
-    this.changeGraphSetting( 'barGut', barWidth + gutterWidth );
+    graphView.changeGraphSetting( 'barGut', barWidth + gutterWidth );
 
     heightRatio = ( graphHeight - barOffset ) / SSData.age70;
-    this.changeGraphSetting( 'heightRatio', heightRatio );
+    graphView.changeGraphSetting( 'heightRatio', heightRatio );
 
     $( '#claim-canvas, .x-axis-label' ).width( graphWidth );
     $( '#claim-canvas' ).height( graphHeight );
@@ -530,7 +516,7 @@ var graphView = {
    * This helper function draws the background lines for the chart
    */
   drawGraphBackground: function() {
-    var gset = this.graphSettings,
+    var gset = graphView.graphSettings,
         barInterval = gset.graphHeight / 4,
         totalWidth = gset.barWidth * 9 + gset.gutterWidth * 8,
         yCoord = gset.graphHeight - barInterval,
@@ -554,10 +540,10 @@ var graphView = {
     */
   drawAgeBoxes: function() {
     var leftOffset = 0,
-        gset = this.graphSettings;
+        gset = graphView.graphSettings;
     // remove existing boxes
     $( '#claim-canvas .age-text' ).remove();
-    $.each( this.ages, function( i, val ) {
+    $.each( graphView.ages, function( i, val ) {
       var ageDiv;
       $( '#claim-canvas' )
         .append(
@@ -587,10 +573,10 @@ var graphView = {
     * This function iterates through each drawing helper function
     */
   redrawGraph: function() {
-    this.setGraphDimensions();
-    this.drawGraphBackground();
-    this.drawBars();
-    this.drawAgeBoxes();
+    graphView.setGraphDimensions();
+    graphView.drawGraphBackground();
+    graphView.drawBars();
+    graphView.drawAgeBoxes();
   },
 
   /**
@@ -599,12 +585,17 @@ var graphView = {
    */
   resetView: function() {
     var SSData = getModelValues.benefits();
-    this.drawBars();
-    this.setTextByAge();
-    this.moveIndicatorToAge( SSData.fullAge );
+    graphView.drawBars();
+    graphView.setTextByAge();
+    graphView.moveIndicatorToAge( SSData.fullAge );
     $( '.benefit-selections-area' ).empty();
-  }
+  },
 
+  getTranslations: function() {
+    for ( var key in this.textlets ) {
+      this.textlets[key] = window.gettext( this.textlets[key] );
+    }
+  }
 };
 
 module.exports = graphView;
