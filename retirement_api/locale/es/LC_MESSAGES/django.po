@@ -807,3 +807,19 @@ msgstr "que es después de su plena edad de jubilación."
 msgid "which is your maximum Social Security benefit claiming age."
 msgstr "que es la edad máxima para reclamar sus beneficios de Seguro Social."
 
+#: 
+msgid "Visit my Social Security"
+msgstr "Visite my Social Security"
+
+#: 
+msgid "GET IN TOUCH"
+msgstr "MANTÉNGASE EN CONTACTO"
+
+#: 
+msgid "Create a my Social Security account to review your expected benefits based on your actual Social Security record."
+msgstr "Abra una cuenta de my Social Security para ver un estimado de sus beneficios basados en su propio registro de ganancias del Seguro Social."
+
+#: 
+msgid "You can send feedback or questions to"
+msgstr "Envíe sus comentarios o preguntas a"
+
