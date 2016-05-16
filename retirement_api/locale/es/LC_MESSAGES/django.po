@@ -859,3 +859,11 @@ msgstr "La herramienta proporciona estimaciones para las personas entre las edad
 msgid "about"
 msgstr "/retirement/before-you-claim/about/es/"
 
+#: 
+msgid "Planning for Retirement: Before you claim"
+msgstr "Planifique para su Jubilación: Antes de solicitar"
+
+#: 
+msgid "About this tool"
+msgstr "Acerca de esta herramienta"
+
