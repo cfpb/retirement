@@ -1,8 +1,8 @@
 from django.core.management.base import BaseCommand, CommandError
 from retirement_api.utils import ssa_check
 
-HELP_NOTE = "Checks a ragne of results from SSA's Quick Calculator \
-to detect whether benefit formulas have changed."
+HELP_NOTE = """Checks a range of results from SSA's Quick Calculator \
+to detect whether benefit formulas have changed."""
 END_NOTE = "Checked SSA values; see results at {0}"
 
 
