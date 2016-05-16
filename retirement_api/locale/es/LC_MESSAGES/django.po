@@ -865,5 +865,5 @@ msgstr "Planifique para su Jubilación: Antes de solicitar"
 
 #: 
 msgid "About this tool"
-msgstr "Acerca de esta herramienta"
+msgstr "Más sobre esta herramienta"
 
