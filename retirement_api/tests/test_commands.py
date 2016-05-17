@@ -4,7 +4,8 @@ import unittest
 from django.core.management.base import CommandError
 from django.core.management import call_command
 
-from retirement_api.management.commands import check_ssa_values
+from retirement_api.management.commands import check_ssa_values, check_ssa
+from retirement_api.utils.check_api import collector
 
 
 class CommandTests(unittest.TestCase):
@@ -19,3 +20,9 @@ class CommandTests(unittest.TestCase):
         # mock_run_tests.return_value = 'Mismatches'
         # with self.assertRaises(CommandError):
         #     call_command('check_ssa_values')
+
+    @mock.patch('retirement_api.management.commands.check_ssa.check_api.run')
+    def test_check_ssa(self, mock_run):
+        mock_run.return_value = collector
+        test_run = call_command('check_ssa')
+        self.assertTrue(mock_run.call_count == 1)

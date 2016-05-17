@@ -32,7 +32,7 @@ def handler(signum, frame):
 class Collector(object):
     data = ''
     date = ("{0}".format(timestamp))[:16]
-    domain = ''
+    domain = 'build'
     status = ''
     error = ''
     note = ''
@@ -49,9 +49,8 @@ log_header = ['data',
               'timer']
 
 
-def print_msg(collector):
+def build_msg(collector):
     msg = ",".join([collector.__getattribute__(key) for key in log_header])
-    print msg
     return msg
 
 
@@ -86,7 +85,7 @@ def run(base):
     signal.signal(signal.SIGALRM, handler)
     signal.alarm(timeout_seconds)
     start = time.time()
-    print "trying request at {0}".format(url)
+    # print "trying request at {0}".format(url)
     try:
         test_request = requests.get(url)
     except requests.ConnectionError:
@@ -118,9 +117,10 @@ def run(base):
             if collector.data == "BAD DATA":
                 collector.api_fail = 'FAIL'
     collector.timer = "%s" % round(end - start, 1)
-    msg = print_msg(collector)
-    with open('%s/tests/logs/api_check.log' % API_ROOT, 'a') as f:
-        f.write("%s\n" % msg)
+    msg = build_msg(collector)
+    # print msg
+    # with open('%s/tests/logs/api_check.log' % API_ROOT, 'a') as f:
+    #     f.write("%s\n" % msg)
     return collector
 
 if __name__ == '__main__':

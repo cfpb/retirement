@@ -7,7 +7,7 @@ import requests
 import mock
 import unittest
 
-from ..check_api import Collector, print_msg, check_data, run, TimeoutError
+from ..check_api import Collector, build_msg, check_data, run, TimeoutError
 timestamp = datetime.datetime.now()
 
 
@@ -58,19 +58,19 @@ class TestApi(unittest.TestCase):
         msg = check_data(self.test_data)
         self.assertTrue(msg == 'OK')
 
-    def test_print_msg(self):
-        target_text = ',{0},,,,,'.format(self.test_collector.date)
-        test_text = print_msg(self.test_collector)
+    def test_build_msg(self):
+        target_text = ',{0},build,,,,'.format(self.test_collector.date)
+        test_text = build_msg(self.test_collector)
         self.assertTrue(test_text == target_text)
 
     @mock.patch('retirement_api.utils.check_api.requests.get')
-    @mock.patch('retirement_api.utils.check_api.print_msg')
-    def test_run(self, mock_print_msg, mock_requests):
+    @mock.patch('retirement_api.utils.check_api.build_msg')
+    def test_run(self, mock_build_msg, mock_requests):
         mock_requests.return_value.text = json.dumps(self.test_data)
         mock_requests.return_value.status_code = 200
-        mock_print_msg.return_value = ',%s,,,mock error,,,' % self.test_collector.date
+        mock_build_msg.return_value = ',%s,,,mock error,,,' % self.test_collector.date
         run('fakeplaceholder.com')
-        self.assertTrue(mock_print_msg.call_count == 1)
+        self.assertTrue(mock_build_msg.call_count == 1)
         mock_requests.return_value.status_code = 404
         collector = run('fakeplaceholder.com')
         self.assertTrue(collector.api_fail == 'FAIL')

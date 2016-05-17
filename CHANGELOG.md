@@ -20,6 +20,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Fix a Spanish translation error at the beginning of the graph text
 - Update Step 3 content and interactions for a planned claiming age of 70
 - Add "about this tool" page
+- Added a manage.py script for checking Quick Calculator results
 
 ## 0.4.7
 - Added lifetime calculations to api and removed from js
