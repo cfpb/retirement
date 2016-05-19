@@ -405,9 +405,34 @@ a.btn__full-small.btn__link {
     background-color: @gray-5;
   }
 
+  .content_sidebar {
+    background-color: @gray-5;
+
+    .respond-to-min(801px, {
+      background-color: transparent;
+    });
+  }
+
   .header-slug {
     border-color: @gray-40;
   }
+}
+
+/* ==========================================================================
+   Full-width-on-small-screen buttons
+   ========================================================================== */
+
+.btn__full {
+
+    .respond-to-max(@bp-xs-max, {
+        display: block;
+        width: 100%;
+        text-align: center;
+
+        + .btn__full {
+            margin-left: initial;
+        }
+    });
 }
 
 /* ==========================================================================
