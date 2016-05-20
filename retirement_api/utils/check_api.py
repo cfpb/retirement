@@ -104,14 +104,14 @@ def run(base):
             signal.alarm(0)
             end = time.time()
             collector.status = "%s" % test_request.status_code
-            collector.error = test_request.reason
+            collector.error = test_request.reason.replace(',', ';')
             collector.api_fail = 'FAIL'
         else:
             end = time.time()
             signal.alarm(0)
             data = json.loads(test_request.text)
             collector.status = "%s" % test_request.status_code
-            collector.error = data['error']
+            collector.error = data['error'].replace(',', ';')
             collector.note = data['note']
             collector.data = check_data(data)
             if collector.data == "BAD DATA":
