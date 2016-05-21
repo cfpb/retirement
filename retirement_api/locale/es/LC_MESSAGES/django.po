@@ -761,7 +761,7 @@ msgstr "El total de los beneficios mensuales y anuales que se muestran en la her
 
 #: 
 msgid "In reality, if you claim after your “full retirement age” but before you turn 70 years old, SSA will begin applying the monthly credits <a href=\"https://www.ssa.gov/oact/quickcalc/early_late.html\">in January of the year after you claim</a>.  Until then, you receive the monthly amount that you would have received if you claimed at “full retirement age.” If you claim at age 70 or later, however, your credits are applied immediately when you claim."
-msgstr "En realidad, si usted reclama sus beneficios después de su \"plena edad de jubilación\", pero antes de cumplir los 70 años de edad, la Administración del Seguro Social comenzará la aplicación de los créditos <a href=\"https://www.ssa.gov/oact/quickcalc/early_late.html\">en enero del año siguiente al que reclama</a>. Hasta entonces, usted recibirá la cantidad mensual que habría recibido si reclamó en \"plena edad de jubilación.\" Si por otro lado usted reclama a los 70 años o después, sus créditos se aplican inmediatamente al reclamar."
+msgstr "En realidad, si usted reclama sus beneficios después de su \"plena edad de jubilación\", pero antes de cumplir los 70 años de edad, la Administración del Seguro Social comenzará la aplicación de los créditos <a href=\"https://www.ssa.gov/oact/quickcalc/early_late.html\">en enero del año siguiente al que reclama</a> (disponible en ingles solamente). Hasta entonces, usted recibirá la cantidad mensual que habría recibido si reclamó en \"plena edad de jubilación.\" Si por otro lado usted reclama a los 70 años o después, sus créditos se aplican inmediatamente al reclamar."
 
 #: 
 msgid "The tool does not provide estimates of retirement benefits for consumers under age 22 or over age 70 (i.e., the claiming age at which you get the maximum possible benefit). Additionally, the tool cannot provide an estimate if the amount entered under “highest annual work income” is too low to generate an estimate."
@@ -769,7 +769,7 @@ msgstr "La herramienta no proporciona estimaciones de los beneficios de retiro p
 
 #: 
 msgid "Your estimate will be more accurate if it is based on your own actual earnings record, especially if you have had fluctuations in your income or gaps in employment over your career. To get an estimate based on your actual earnings record, you may want to open a <a href=\"https://www.ssa.gov/myaccount/\">“<em>my</em> Social Security” account</a> or visit the <a href=\"https://www.ssa.gov/retire/estimator.html\">Social Security Administration’s Retirement Estimator</a>."
-msgstr "Su estimación será más precisa si se basa en su propio registro de ingresos, especialmente si ha tenido fluctuaciones en sus ingresos o si hubo años a lo largo de su carrera en los que no trabajó. Para obtener una estimación basada en su registro de ingresos reales, es posible que desee acceder al <a href=\"https://www.ssa.gov/retire/estimator.html\">Calculador de Beneficios de Jubilación</a> de la Administración del Seguro Social o abrir una cuenta de <a href=\"https://www.ssa.gov/myaccount/\">“<em>my</em> Social Security”</a> (disponibles en inglés solamente)."
+msgstr "Su estimación será más precisa si se basa en su propio registro de ingresos, especialmente si ha tenido fluctuaciones en sus ingresos o si hubo años a lo largo de su carrera en los que no trabajó. Para obtener una estimación basada en su registro de ingresos reales, es posible que desee acceder al <a href=\"https://www.ssa.gov/espanol/jubilacion2/calculadora.html\">Calculador de Beneficios de Jubilación</a> de la Administración del Seguro Social o abrir una cuenta de <a href=\"https://www.ssa.gov/myaccount/\">“<em>my</em> Social Security”</a> (disponible en inglés solamente)."
 
 #: 
 msgid "Other things to know"
@@ -777,15 +777,15 @@ msgstr "Otras cosas que debe saber"
 
 #: 
 msgid "Our tool does not show other Social Security benefits, like spousal benefits, survivors’ benefits, or disability benefits that can be paid on your earnings record. You can get estimates for these benefits at the Social Security Administration’s <a href=\"https://www.ssa.gov/retire/estimator.html\">Retirement Estimator</a> or by opening or accessing your <a href=\"https://www.ssa.gov/myaccount/\">“<em>my</em> Social Security ” account</a>."
-msgstr "Nuestra herramienta no muestra los otros beneficios del Seguro Social, tales como los beneficios conyugales, beneficios para sobrevivientes, y beneficios de incapacidad que se pueden pagar bajo su registro de ingresos. Usted puede obtener un cálculo aproximado de estos beneficios a través del <a href=\"https://www.ssa.gov/retire/estimator.html\">Calculador de Beneficios de Jubilación</a> de la Administración del Seguro Social o abriendo una cuenta de <a href=\"https://www.ssa.gov/myaccount/\">“<em>my</em> Social Security”</a> (disponibles en inglés solamente)."
+msgstr "Nuestra herramienta no muestra los otros beneficios del Seguro Social, tales como los beneficios conyugales, beneficios para sobrevivientes, y beneficios de incapacidad que se pueden pagar bajo su registro de ingresos. Usted puede obtener un cálculo aproximado de estos beneficios a través del <a href=\"https://www.ssa.gov/espanol/jubilacion2/calculadora.html\">Calculador de Beneficios de Jubilación</a> de la Administración del Seguro Social o abriendo una cuenta de <a href=\"https://www.ssa.gov/myaccount/\">“<em>my</em> Social Security”</a> (disponible en inglés solamente)."
 
 #: 
 msgid "You must meet some <a href=\"https://www.ssa.gov/planners/retire/creditsa.html\">minimum working and age requirements</a> to be eligible to receive retirement benefits from your own working record."
-msgstr "Usted debe cumplir con <a href=\"https://www.ssa.gov/planners/retire/creditsa.html\">ciertos requisitos</a> de trabajo y tener la edad mínima para ser elegible para recibir los beneficios de jubilación bajo su propio registro de trabajo."
+msgstr "Usted debe cumplir con <a href=\"https://www.ssa.gov/espanol/jubilacion2/creditosa.htm\">ciertos requisitos</a> de trabajo y tener la edad mínima para ser elegible para recibir los beneficios de jubilación bajo su propio registro de trabajo."
 
 #: 
 msgid "Other sources of retirement income like a <a href=\"https://www.ssa.gov/planners/retire/wep.html\">pension from a state or local government for which you did not pay Social Security taxes</a> may affect the amount of benefits that you will receive."
-msgstr "Otras <a href=\"https://www.ssa.gov/planners/retire/wep.html\">fuentes de ingresos de jubilación</a>, tales como una pensión de un gobierno estatal o local para el cual usted no pagó impuestos de Seguro Social, pueden afectar la cantidad de beneficios que recibirá."
+msgstr "Otras <a href=\"https://www.ssa.gov/espanol/jubilacion2/eliminacion.htm\">fuentes de ingresos de jubilación</a>, tales como una pensión de un gobierno estatal o local para el cual usted no pagó impuestos de Seguro Social, pueden afectar la cantidad de beneficios que recibirá."
 
 #: 
 msgid "You’ve chosen age 70, which is your maximum Social Security benefit claiming age."
