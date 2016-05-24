@@ -21,6 +21,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Update Step 3 content and interactions for a planned claiming age of 70
 - Add "about this tool" page
 - Added a manage.py script for checking Quick Calculator results
+- Add a '--server' option for the check_ssa command
 
 ## 0.4.7
 - Added lifetime calculations to api and removed from js
