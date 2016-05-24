@@ -471,9 +471,8 @@ def get_retire_data(params, language):
         results['note'] = get_note('down', language)
         return results
     if not req.ok:
-        results['error'] = "SSA's website is not responding.\
-                            Status code: {0} ({1})".format(req.status_code,
-                                                           req.reason)
+        ok_msg = "SSA's website is not responding. Status code: {0} ({1})"
+        results['error'] = ok_msg.format(req.status_code, req.reason)
         results['note'] = get_note('down', language)
         return results
     (results, base_benefit) = parse_response(results, req.text, language)

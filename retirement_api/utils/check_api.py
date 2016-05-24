@@ -103,7 +103,7 @@ def run(base):
         if test_request.status_code != 200:
             signal.alarm(0)
             end = time.time()
-            collector.status = "%s" % test_request.status_code
+            collector.status = "{0}".format(test_request.status_code)
             collector.error = test_request.reason.replace(',', ';')
             collector.api_fail = 'FAIL'
         else:
