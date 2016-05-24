@@ -32,7 +32,7 @@ def handler(signum, frame):
 class Collector(object):
     data = ''
     date = ("{0}".format(timestamp))[:16]
-    domain = 'build'
+    domain = ''
     status = ''
     error = ''
     note = ''
@@ -81,7 +81,11 @@ BASES = {
 
 
 def run(base):
-    url = "{0}/{1}".format(base, api_string)
+    if base not in BASES:
+        collector.error = "Server '{0}' isn't recognized".format(base)
+        return collector
+    url = "{0}/{1}".format(BASES[base], api_string)
+    collector.domain = base
     signal.signal(signal.SIGALRM, handler)
     signal.alarm(timeout_seconds)
     start = time.time()
@@ -133,12 +137,10 @@ if __name__ == '__main__':
     try:
         BASE = sys.argv[1]
     except:
-        collector.domain = default_base
-        run(BASES[default_base])
+        run(default_base)
     else:
         if BASE in BASES:
-            collector.domain = BASE
-            run(BASES[BASE])
+            run(BASE)
         else:
             print helpmsg
             sys.exit()

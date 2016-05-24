@@ -3,15 +3,21 @@ import datetime
 from django.core.management.base import BaseCommand, CommandError
 from retirement_api.utils import check_api
 
-DAYSTAMP = datetime.date.today()
-HELP_NOTE = """Sends a test post to SSA's Quick Calculator \
+COMMAND_HELP = """Sends a test post to SSA's Quick Calculator \
 and checks the results to make sure we're getting valid results."""
-END_NOTE = "Checked Quick Calculator"
+PARSER_HELP = """Specify server to use; default is 'build', \
+options are 'prod' and 'content'
+"""
 
 
 class Command(BaseCommand):
-    help = HELP_NOTE
+    help = COMMAND_HELP
+
+    def add_arguments(self, parser):
+        parser.add_argument('--server',
+                            default='build',
+                            help=PARSER_HELP)
 
     def handle(self, *args, **options):
-        result = check_api.run(check_api.BASES['build'])
+        result = check_api.run(options['server'])
         self.stdout.write(check_api.build_msg(result))
