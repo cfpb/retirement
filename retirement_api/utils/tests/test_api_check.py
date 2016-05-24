@@ -14,6 +14,7 @@ timestamp = datetime.datetime.now()
 class TestApi(unittest.TestCase):
     """test the tester"""
     test_collector = Collector()
+    test_collector.domain = 'build'
     test_data = {
         'current_age': 44,
         'note': "",
@@ -69,14 +70,16 @@ class TestApi(unittest.TestCase):
         mock_requests.return_value.text = json.dumps(self.test_data)
         mock_requests.return_value.status_code = 200
         mock_build_msg.return_value = ',%s,,,mock error,,,' % self.test_collector.date
-        run('fakeplaceholder.com')
+        run('build')
         self.assertTrue(mock_build_msg.call_count == 1)
-        mock_requests.return_value.status_code = 404
+        mock_requests.return_value.status_code = 400
+        collector = run('build')
+        self.assertTrue('FAIL' in collector.api_fail)
         collector = run('fakeplaceholder.com')
-        self.assertTrue(collector.api_fail == 'FAIL')
+        self.assertTrue('recognized' in collector.error)
         mock_requests.side_effect = requests.ConnectionError
-        collector = run('fakeplaceholder.com')
+        collector = run('build')
         self.assertTrue(collector.status == 'ABORTED')
         mock_requests.side_effect = TimeoutError
-        collector = run('fakeplaceholder.com')
+        collector = run('prod')
         self.assertTrue(collector.status == "TIMEDOUT")
