@@ -5,8 +5,8 @@ from retirement_api.utils import check_api
 
 COMMAND_HELP = """Sends a test post to SSA's Quick Calculator \
 and checks the results to make sure we're getting valid results."""
-PARSER_HELP = """Specify server to use; default is 'build', \
-options are 'prod' and 'content'
+PARSER_HELP = """Specify server to use. default is 'build', \
+only current option is 'prod'
 """
 
 
