@@ -2,26 +2,28 @@ Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
-- Updated the standalone version to Django 1.8
-- Fix HTML validation errors
+
+## 0.5.0
+- Updated the Django version to 1.8
+- Fixed HTML validation errors
 - Removed calculate-age.js (unused)
 - Removed delay.js (unused)
-- Change button text to the standard typeface (Avenir Next Medium)
+- Changed button text to the standard typeface (Avenir Next Medium)
 - Added a custom management command for running SSA checks
 - Changed initial interaction for steps 2 and 3
-- Update the <select> in step 3 to use cf-select styles
-- Fix y-axis label in IE 8 and IE 9
-- updated utils tests so they don't bomb when run on the 2nd of a month
-- Fix for the retirement-age-selector when currentAge > 62
-- Update the <select> in step 3 to use cf-select styles
-- added error-handling and logging to ssa_check command
-- added front-end.md documentation file
-- Add "claiming at" to the beginning of the graph text
-- Fix a Spanish translation error at the beginning of the graph text
-- Update Step 3 content and interactions for a planned claiming age of 70
-- Add "about this tool" page
+- Updated the <select> in step 3 to use cf-select styles
+- Fixed y-axis label in IE 8 and IE 9
+- Updated utils tests so they don't bomb when run on the 2nd of a month
+- Fixed for the retirement-age-selector when currentAge > 62
+- Updated the <select> in step 3 to use cf-select styles
+- Added error-handling and logging to ssa_check command
+- Added front-end.md documentation file
+- Added "claiming at" to the beginning of the graph text
+- Fixed a Spanish translation error at the beginning of the graph text
+- Updated Step 3 content and interactions for a planned claiming age of 70
+- Added "about this tool" page
 - Added a manage.py script for checking Quick Calculator results
-- Add a '--server' option for the check_ssa command
+- Added a '--server' option for the check_ssa command
 
 ## 0.4.7
 - Added lifetime calculations to api and removed from js

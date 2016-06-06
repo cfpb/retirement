@@ -56,7 +56,7 @@ class bdist_wheel(_bdist_wheel):
 
 setup(
     name='retirement',
-    version='0.4.7',
+    version='0.5.0',
     author='CFPB',
     author_email='tech@cfpb.gov',
     maintainer='cfpb',
