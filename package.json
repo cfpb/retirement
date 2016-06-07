@@ -1,6 +1,6 @@
 {
   "name": "retirement",
-  "version": "0.4.7",
+  "version": "0.5.0",
   "description": "Helping Americans make choices about retirement, including when to claim Social Security benefits",
   "main": "index.js",
   "scripts": {
