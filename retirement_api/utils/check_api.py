@@ -115,7 +115,7 @@ def run(base):
             signal.alarm(0)
             data = json.loads(test_request.text)
             collector.status = "%s" % test_request.status_code
-            collector.error = "{0}".format(data['error']).replace(',', ';')
+            collector.error = "{0}".format(data['error']).replace(',', ';').replace("'", '').replace('"', '')
             collector.note = data['note']
             collector.data = check_data(data)
             if collector.data == "BAD DATA":
