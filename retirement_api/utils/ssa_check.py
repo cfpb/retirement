@@ -104,7 +104,6 @@ def check_results(test_data, TESTS):
     if OK:
         return "All tests pass on {0}".format(today)
     else:
-        print error_msg
         return error_msg
 
 
