@@ -102,7 +102,8 @@ def check_results(test_data, TESTS):
                                 target_results['data']['params'][ssa_param_key],
                                 test_results['data']['params'][ssa_param_key])
     if OK:
-        return "All tests pass on {0}".format(today)
+        return ("All tests pass on {0}; "
+                "last recalibrated on {1}".format(today, calibration.created.date()))
     else:
         print error_msg
         return error_msg

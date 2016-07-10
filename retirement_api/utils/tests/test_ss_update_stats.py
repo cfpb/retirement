@@ -105,7 +105,7 @@ class UpdateSsStatsTests(TestCase):
         """
         url = 'http://www.socialsecurity.gov/OACT/ProgData/nra.html'
         soup = make_soup(url)
-        self.assertEqual(soup.find('h1').text, 'Social Security')
+        self.assertTrue('Social Security' in soup.find('h1').text)
 
     @mock.patch('requests.get')
     def test_make_soup_error(self, mock_requests):
