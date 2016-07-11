@@ -94,7 +94,8 @@ class SSACheckTests(django.test.TestCase):
 
 class UtilitiesTests(unittest.TestCase):
     today = datetime.date.today()
-    if today.day == 29:  # in case this test runs in Feb. in a leap year
+    # in case this test happens to run on a leap day; and yes, this happened
+    if today.day == 29 and today.month == 2:  # pragma: no cover
         today = today.replace(day=today.day - 1)
     sample_params = {
         'dobmon': 1,
@@ -278,7 +279,7 @@ class UtilitiesTests(unittest.TestCase):
             'age 70': 2698
             }
         dob = self.today.replace(year=self.today.year-44)
-        if dob.day == 2:
+        if dob.day == 2:  # pragma: no cover
             expected_benefits['age 62'] = 1523
         # need to pass results, base, fra_tuple, current_age, DOB
         results = interpolate_benefits(mock_results, 2176, (67, 0), 44, dob)
