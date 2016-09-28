@@ -177,8 +177,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="shareavatar">
             <img alt="" class="shareavatar" height=0 width=0 src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/facebookshareavatar.png" />
         </div> <!-- Avatar for Facebook, hidden by CSS -->
-    <script src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/js/functions.js?ver=v4.2.10v4.2.24"></script>
-    <script type="text/javascript" src="http://www.consumerfinance.gov/static/agreements/js/chosen.jquery.js?ver=v4.2.10v4.2.24"></script>
+    <script src="{% static 'nemo/_/js/functions.js' %}"></script>
+    <script type="text/javascript" src="{% static 'agreements/js/chosen.jquery.js' %}"></script>
 
 {% block foot_js %}{% endblock %}
 

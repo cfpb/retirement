@@ -150,10 +150,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 {% block nemo_js %}
-<script src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/js/functions.js?ver=all"></script>
-<script type="text/javascript" src="http://www.consumerfinance.gov/static/agreements/js/chosen.jquery.js?ver=all"></script>
+<script type="text/javascript" src="{% static 'agreements/js/chosen.jquery.js' %}"></script>
 {% endblock %}
-<script src="http://www.consumerfinance.gov/static/nemo/_/js/functions.js?ver="></script>
+<script src="{% static 'nemo/_/js/functions.js' %}"></script>
 {% block app_js %}
 {% endblock %}
 
@@ -170,7 +169,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
     });
 </script>
-<script type="text/javascript" src="http://www.consumerfinance.gov/static/js/atomic/header.js"></script>
-<script type="text/javascript" src="http://www.consumerfinance.gov/static/js/atomic/footer.js"></script>
+<script type="text/javascript" src="{% static 'js/atomic/header.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/atomic/footer.js' %}"></script>
 </body>
 </html>
