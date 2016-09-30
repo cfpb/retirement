@@ -26,6 +26,8 @@ def get_test_params(age, dob_day, dob_year=None, income=40000):
     """return test params for one edge case, based on today's date"""
     params = copy(SSA_PARAMS)
     today = datetime.date.today()
+    if today.day > 27:
+        today.replace(day=27)
     dob = today.replace(year=(today.year - age), day=dob_day)
     if dob_year:
         dob = dob.replace(year=dob_year)
