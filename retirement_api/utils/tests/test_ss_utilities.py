@@ -97,6 +97,7 @@ class UtilitiesTests(unittest.TestCase):
     # in case this test happens to run on a leap day; and yes, this happened
     if today.day == 29 and today.month == 2:  # pragma: no cover
         today = today.replace(day=today.day - 1)
+
     sample_params = {
         'dobmon': 1,
         'dobday': 5,
@@ -191,19 +192,27 @@ class UtilitiesTests(unittest.TestCase):
 
     def test_get_test_params(self):
         test_params = get_test_params(46, 3)
-        self.assertTrue(test_params['dobday'] == 3)
-        test_params = get_test_params(46, self.today.day + 1)
-        self.assertTrue(test_params['dobday'] == self.today.day + 1)
+        self.assertEqual(test_params['dobday'], 3)
         test_params = get_test_params(46, 3, dob_year=1950)
-        self.assertTrue(test_params['yob'] == 1950)
+        self.assertEqual(test_params['yob'], 1950)
         test_params = get_test_params(46, 3, dob_year=1950)
-        self.assertTrue(test_params['yob'] == 1950)
+        self.assertEqual(test_params['yob'], 1950)
+        if self.today.day > 27:
+             test_today = self.today.replace(day=27)
+        test_params = get_test_params(46, test_today.day + 1)
+        self.assertEqual(test_params['dobday'], test_today.day + 1)
 
     @mock.patch('retirement_api.utils.ssa_check.datetime.date')
-    def test_get_test_params_jan(self, mock_date):
+    def test_get_test_params_in_january(self, mock_date):
         mock_date.today.return_value = self.today.replace(month=1, day=2)
         test_params = get_test_params(46, 3)
-        self.assertTrue(test_params['yob'] == 1969)
+        self.assertEqual(test_params['yob'], 1969)
+        mock_date.today.return_value = self.today.replace(month=1, day=27)
+        test_params = get_test_params(46, 28)
+        self.assertEqual(test_params['yob'], 1969)
+        mock_date.today.return_value = self.today.replace(month=2, day=27)
+        test_params = get_test_params(46, 28)
+        self.assertEqual(test_params['yob'], 1970)
 
     def test_clean_comment(self):
         test_comment = '<!-- This is a test comment    -->'
