@@ -198,7 +198,9 @@ class UtilitiesTests(unittest.TestCase):
         test_params = get_test_params(46, 3, dob_year=1950)
         self.assertEqual(test_params['yob'], 1950)
         if self.today.day > 27:
-             test_today = self.today.replace(day=27)
+            test_today = self.today.replace(day=27)
+        else:
+            test_today = self.today            
         test_params = get_test_params(46, test_today.day + 1)
         self.assertEqual(test_params['dobday'], test_today.day + 1)
 
