@@ -1,4 +1,7 @@
 [run]
+source = 
+    .
+
 omit = 
     ../*admin*
     ../*urls*

@@ -52,7 +52,7 @@ class ViewModels(TestCase):
         outfile = "/tmp/{0}.po".format(self.testquestion.slug)
         self.testquestion.dump_translation_text(output=True)
         self.assertTrue(os.path.isfile(outfile))
-        subprocess.call(["rm", "outfile"])
+        subprocess.call(["rm", outfile])
 
     def test_question_dump_mock_output(self):
         open_name = '{0}.open'.format(__name__)
