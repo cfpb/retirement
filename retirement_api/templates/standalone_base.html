@@ -96,18 +96,7 @@ And by the way, there’s another hidden message somewhere on the following page
  {% else %}
      <script src="{% static "retirement/jsi18n/en/djangojs.js" %}"></script>
  {% endif %}
-    <script src="http://www.consumerfinance.gov/static/js/analytics.js?ver=v4.2.10v4.2.24"></script>
-
-    <!-- this is where we put our custom analytics -->
-    <script src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/js/analytics-global.js?ver=v4.2.10v4.2.24"></script>
-
-    <!-- H5BP's Asynchronous Google Analytics snippet. -->
-    <script>
-      var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
+   
 
 {% block head_css %}{% endblock %}
 {% block head_js %}{% endblock %}
