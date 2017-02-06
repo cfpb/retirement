@@ -1,10 +1,7 @@
 # coding: utf-8
 import os
-import math
-# import sys
 import json
 import datetime
-# from datetime import timedelta
 from dateutil import parser
 
 TODAY = datetime.datetime.now().date()
@@ -170,7 +167,6 @@ def past_fra_test(dob=None, language='en'):
         return 'invalid birth date entered'
     today = datetime.date.today()
     current_age = get_current_age(dob)
-    months_plus = get_months_past_birthday(DOB)
     if DOB >= today:
         return get_note('too_young', language)
     # SSA has a special rule for people born on Jan. 1
@@ -179,8 +175,6 @@ def past_fra_test(dob=None, language='en'):
         fra_tuple = get_retirement_age(DOB.year-1)
     else:
         fra_tuple = get_retirement_age(DOB.year)
-    fra_year = fra_tuple[0]
-    fra_month = fra_tuple[1]
     age_tuple = (current_age, get_months_past_birthday(DOB))
     # print "age_tuple: %s; fra_tuple: %s" % (age_tuple, fra_tuple)
     if age_tuple[0] < 22:
