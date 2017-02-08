@@ -1,7 +1,6 @@
 import os
 import sys
 import datetime
-import subprocess
 from retirement_api.models import (AgeChoice,
                                    Question,
                                    Step,
@@ -54,6 +53,10 @@ class ViewModels(TestCase):
             mock_open.return_value = mock.MagicMock(spec=file)
             self.testquestion.dump_translation_text(output=True)
         self.assertTrue(m.call_count == 1)
+
+    def test_question_dump_no_output(self):
+        dump = self.testquestion.dump_translation_text()
+        self.assertEqual('Test question.', dump[0])
 
     def test_agechoice_translist(self):
         tlist = self.testagechoice.translist()

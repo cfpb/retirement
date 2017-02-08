@@ -4,6 +4,7 @@ omit =
     ../*urls*
     retirement_api/migrations/*
     setup.py
+    retirement_api/settings.py
 
 [report]
 

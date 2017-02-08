@@ -1,9 +1,9 @@
 import os
 import json
 
+from django.conf import settings
 from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.http import Http404, HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest
 from .utils.ss_calculator import get_retire_data
 from .utils.ss_utilities import get_retirement_age
 from dateutil import parser
@@ -13,22 +13,12 @@ from django.utils.translation import ugettext as _
 from django.utils.translation import activate, deactivate_all
 BASEDIR = os.path.dirname(__file__)
 
-try:
-    import settings
-    standalone = settings.STANDALONE
-except:  # pragma: no cover
-    standalone = False
+standalone = getattr(settings, 'STANDALONE', False)
 
 if standalone:
     base_template = "standalone/base_update.html"
 else:  # pragma: no cover
     base_template = "front/base_update.html"
-
-
-# if standalone:
-#     base_template = "standalone_base.html"
-# else:
-#     base_template = "%s/templates/base.html" % BASEDIR
 
 
 def claiming(request, es=False):
@@ -81,7 +71,6 @@ def income_check(param):
 
 
 def estimator(request, dob=None, income=None, language='en'):
-    today = datetime.datetime.now().date()
     ssa_params = {
         'dobmon': 0,
         'dobday': 0,
