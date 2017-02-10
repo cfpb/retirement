@@ -420,11 +420,9 @@ def validate_date(params):
                                      params['dobmon'],
                                      params['dobday'])
     try:
-        dob = parser.parse(dobstring).date()
-        LOGGER.info("{} is valid".format(dob))
+        parser.parse(dobstring).date()
         return True
     except ValueError:
-        LOGGER.info("{} doess not result in a valid date".format(dobstring))
         return False
 
 
