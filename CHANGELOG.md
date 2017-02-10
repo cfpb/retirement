@@ -1,7 +1,9 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
-## Unreleased
+## 0.5.4
+- Fixed problem with leap-year dates
+- Removed Google analytics code
 
 ## 0.5.0
 - Updated the Django version to 1.8

@@ -30,14 +30,17 @@ from ..ss_calculator import (num_test,
                              interpolate_for_past_fra,
                              calculate_lifetime_benefits,
                              get_retire_data,
-                             set_up_runvars)
-from ..check_api import TimeoutError
+                             set_up_runvars,
+                             validate_date)
+# from ..check_api import TimeoutError
 from ..ssa_check import (assemble_test_params,
                          get_test_params,
-                         check_results,
-                         run_tests)
+                         check_results)
+# ,
+#                          run_tests)
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
@@ -82,13 +85,14 @@ class SSACheckTests(django.test.TestCase):
     @mock.patch('retirement_api.utils.ssa_check.get_retire_data')
     @mock.patch('retirement_api.utils.ssa_check.check_results')
     def test_run_tests(self, mock_check_results, mock_get_retire_data):
-        mock_get_retire_data.return_value = Calibration.objects.first().results_json
+        mock_get_retire_data.return_value = (
+          Calibration.objects.first().results_json)
         mock_check_results.return_value = "All pass"
         test1 = utils.ssa_check.run_tests()
         self.assertTrue(mock_get_retire_data.call_count == len(self.TESTS))
         self.assertTrue(mock_check_results.call_count == 1)
         self.assertTrue('pass' in test1)
-        test2 = utils.ssa_check.run_tests(recalibrate=True)
+        utils.ssa_check.run_tests(recalibrate=True)
         self.assertTrue(Calibration.objects.count() == 2)
 
 
@@ -198,9 +202,9 @@ class UtilitiesTests(unittest.TestCase):
         test_params = get_test_params(46, 3, dob_year=1950)
         self.assertEqual(test_params['yob'], 1950)
         if self.today.day > 27:
-            test_today = self.today.replace(day=27)
+            test_today = self.today.replace(day=27)  # pragma: no cover
         else:
-            test_today = self.today            
+            test_today = self.today
         test_params = get_test_params(46, test_today.day + 1)
         self.assertEqual(test_params['dobday'], test_today.day + 1)
 
@@ -208,13 +212,13 @@ class UtilitiesTests(unittest.TestCase):
     def test_get_test_params_in_january(self, mock_date):
         mock_date.today.return_value = self.today.replace(month=1, day=2)
         test_params = get_test_params(46, 3)
-        self.assertEqual(test_params['yob'], 1969)
+        self.assertEqual(test_params['yob'], 1970)
         mock_date.today.return_value = self.today.replace(month=1, day=27)
         test_params = get_test_params(46, 28)
-        self.assertEqual(test_params['yob'], 1969)
+        self.assertEqual(test_params['yob'], 1970)
         mock_date.today.return_value = self.today.replace(month=2, day=27)
         test_params = get_test_params(46, 28)
-        self.assertEqual(test_params['yob'], 1970)
+        self.assertEqual(test_params['yob'], 1971)
 
     def test_clean_comment(self):
         test_comment = '<!-- This is a test comment    -->'
@@ -371,9 +375,22 @@ class UtilitiesTests(unittest.TestCase):
                         'note': '',
                         'past_fra': True,
                         }
-        eleven_month_edge = self.today.replace(day=1).replace(year=self.today.year-69).replace(month=self.today.month + 1)
-        results = interpolate_for_past_fra(mock_results, 1431, 68, eleven_month_edge)
+        eleven_month_edge = self.today.replace(
+            day=1).replace(
+            year=self.today.year-69).replace(month=self.today.month + 1)
+        results = interpolate_for_past_fra(
+            mock_results, 1431, 68, eleven_month_edge)
         self.assertTrue(results['data']['benefits']['age 70'] == 1545)
+
+    def test_validate_date_invalid(self):
+        test_params = {'yob': 1952, 'dobmon': 2, 'dobday': 30}
+        validate = validate_date(test_params)
+        self.assertIs(validate, False)
+
+    def test_validate_date_valid(self):
+        test_params = {'yob': 1952, 'dobmon': 2, 'dobday': 29}
+        validate = validate_date(test_params)
+        self.assertIs(validate, True)
 
     def test_num_test(self):
         inputs = [

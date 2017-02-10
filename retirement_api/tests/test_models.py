@@ -1,7 +1,6 @@
 import os
 import sys
 import datetime
-import subprocess
 from retirement_api.models import (AgeChoice,
                                    Question,
                                    Step,
@@ -9,6 +8,7 @@ from retirement_api.models import (AgeChoice,
                                    Tooltip,
                                    Calibration)
 import mock
+from mock import patch, mock_open
 
 from django.test import TestCase
 
@@ -20,7 +20,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 class ViewModels(TestCase):
 
     testagechoice = AgeChoice(age=62, aside="Aside.")
-    testquestion = Question(title="Test Question", slug='', question="Test question.")
+    testquestion = Question(
+        title="Test Question", slug='', question="Test question.")
     teststep = Step(title="Test Step")
     testpage = Page(title="Page title", intro="Intro")
     testtip = Tooltip(title="Test Tooltip")
@@ -47,20 +48,15 @@ class ViewModels(TestCase):
             self.assertTrue(term in tlist)
 
     def test_question_dump(self):
-        dumplist = self.testquestion.dump_translation_text()
-        self.assertTrue(type(dumplist) == list)
-        outfile = "/tmp/{0}.po".format(self.testquestion.slug)
-        self.testquestion.dump_translation_text(output=True)
-        self.assertTrue(os.path.isfile(outfile))
-        subprocess.call(["rm", "outfile"])
-
-    def test_question_dump_mock_output(self):
-        open_name = '{0}.open'.format(__name__)
-        with mock.patch(open_name, create=True) as mock_open:
+        m = mock_open()
+        with patch("__builtin__.open", m, create=True):
             mock_open.return_value = mock.MagicMock(spec=file)
             self.testquestion.dump_translation_text(output=True)
-            file_handle = mock_open.return_value.__enter__.return_value
-            file_handle.write.assert_call_count == 5
+        self.assertTrue(m.call_count == 1)
+
+    def test_question_dump_no_output(self):
+        dump = self.testquestion.dump_translation_text()
+        self.assertEqual('Test question.', dump[0])
 
     def test_agechoice_translist(self):
         tlist = self.testagechoice.translist()

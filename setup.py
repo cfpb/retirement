@@ -1,5 +1,5 @@
 import os
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 def read_file(filename):
@@ -12,10 +12,9 @@ def read_file(filename):
         return ''
 
 
-
 setup(
     name='retirement',
-    version='0.5.0',
+    version='0.5.4',
     author='CFPB',
     author_email='tech@cfpb.gov',
     maintainer='cfpb',
@@ -35,7 +34,7 @@ setup(
     ],
     long_description=read_file('README.md'),
     zip_safe=False,
-    setup_requires=['cfgov-setup==1.2',],
+    setup_requires=['cfgov-setup==1.2', ],
     frontend_build_script='frontendbuild.sh',
 
 )
