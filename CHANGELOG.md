@@ -1,6 +1,9 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 0.5.5
+- Regenerate shrinkwrap file to remove optional dependencies
+
 ## 0.5.4
 - Fixed problem with leap-year dates
 - Removed Google analytics code
