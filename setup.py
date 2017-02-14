@@ -14,7 +14,7 @@ def read_file(filename):
 
 setup(
     name='retirement',
-    version='0.5.4',
+    version='0.5.5',
     author='CFPB',
     author_email='tech@cfpb.gov',
     maintainer='cfpb',
