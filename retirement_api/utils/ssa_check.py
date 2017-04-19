@@ -107,7 +107,6 @@ def check_results(test_data, TESTS):
         return ("All tests pass on {0}; "
                 "last recalibrated on {1}".format(today, calibration.created.date()))
     else:
-        print error_msg
         return error_msg
 
 
