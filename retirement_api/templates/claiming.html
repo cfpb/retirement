@@ -430,6 +430,8 @@
                   <button class="helpful-btn btn btn__grouped-first" value="yes">{{YES}}</button>
                   <button class="helpful-btn btn btn__grouped-last" value="no">{{NO}}</button>
               <p class="thank-you">{% trans "Thank you for your feedback!" %}</p>
+              <h5>{% trans "Legal Disclaimer:" %}</h5>
+              <p>{% trans "The content on this page provides general consumer information. It is not legal advice or regulatory guidance. The CFPB updates this information periodically. This information may include links or references to third-party resources or content. We do not endorse the third-party or guarantee the accuracy of this third-party information. There may be other resources that also serve your needs." %}</p>
             </div>
         </div>
       </div>
@@ -442,6 +444,7 @@
   </div>
 </main>
 {% endblock %}
+
 {% block share_box %}{% endblock %}
 {% block app_js %}
   <script src="{% static "retirement/js/main.js" %}"></script>

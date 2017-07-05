@@ -7,6 +7,14 @@ msgstr ""
 "Project-Id-Version: retirement\n"
 "Language: es\n"
 
+#: footer legal disclaimer heading
+msgid "Legal Disclaimer:"
+msgstr "Aviso legal:"
+
+#: footer legal disclaimer text
+msgid "The content on this page provides general consumer information. It is not legal advice or regulatory guidance. The CFPB updates this information periodically. This information may include links or references to third-party resources or content. We do not endorse the third-party or guarantee the accuracy of this third-party information. There may be other resources that also serve your needs."
+msgstr "El contenido en esta página proporciona información general sobre asuntos del consumidor. Dicha información no constituye consejo legal ni orientación sobre las normas. El CFPB actualiza esta información periódicamente. La información puede incluir enlaces o referencias a recursos o contenido de terceros. No avalamos a terceros ni garantizamos la exactitud de esta información de terceros. Puede haber otros recursos que también satisfagan sus necesidades."
+
 #: templates/claiming.html:4
 msgid "Yes"
 msgstr "Sí"
