@@ -25,6 +25,15 @@
 {% endif %}
 {% endblock %}
 
+{% block page_meta %}
+{{ block.super }}
+ {% if not es %}
+  <meta name="description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
+
+  <meta property="og:description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
+{% endif %}
+{% endblock %}
+
 {% block page_viewport %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% endblock %}
