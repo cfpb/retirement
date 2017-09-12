@@ -84,20 +84,37 @@ form {
   font-weight: normal;
 }
 
+[data-lang="es"] #claiming-social-security .intro  {
+    margin-top: 30px;
+}
+
+[data-lang="en"] #claiming-social-security .intro  {
+    margin-top: 15px;
+}
+
 @media (min-width: 850px) {
-  #claiming-social-security .intro .img {
-    height: 200px;
-    width: 200px;
-    background-size: 200px;
-    background-repeat: no-repeat;
+  #claiming-social-security .intro {
+    margin-bottom: 45px;
+
+    .img {
+      height: 200px;
+      width: 200px;
+      background-size: 200px;
+      background-repeat: no-repeat;
+    }
   }
 
-  [data-lang="es"] #claiming-social-security .intro .img  {
-    background-image: url('../images/before-you-claim-es.png');
+  [data-lang="es"] #claiming-social-security .intro  {
+    margin-top: 60px;
+    .img {
+      background-image: url('../images/before-you-claim-es.png');
+    }
   }
 
-  [data-lang="en"] #claiming-social-security .intro .img  {
-    background-image: url('../images/before-you-claim.png');
+  [data-lang="en"] #claiming-social-security .intro  {
+    .img {
+      background-image: url('../images/before-you-claim.png');
+    }
   }
 }
 

@@ -51,18 +51,15 @@
 <main class="content" role="main">
   <div id="claiming-social-security" class="claiming-social-security">
     <div class="content_wrapper">
+      {% if not es %}
       <nav class="breadcrumbs" aria-label="Breadcrumbs">
         <a href="/consumer-tools/retirement/" class="breadcrumbs_link">
-          {% if es %}
-           Jubilación
-           {% else %}
-           Retirement
-           {% endif %}
+           Planning for Retirement      
         </a>
      </nav>
+     {% endif %}
      
-     
-      <div class="intro block u-mt15 u-mb45">
+      <div class="intro block">
         <div class="content-l">
           <div class="content-l_col content-l_col-2-3">
             <h1>{% trans page.h1|safe %}</h1>
