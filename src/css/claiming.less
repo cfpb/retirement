@@ -84,53 +84,58 @@ form {
   font-weight: normal;
 }
 
-[data-lang="es"] #claiming-social-security .hero_image  {
-  background-image: url('../images/retirement-hero_spanish.png');
+#claiming-social-security .intro {
+  margin-bottom: 30px;
+  .content-l_col + .content-l_col {
+    margin-top: 0;
+  }
 }
 
-[data-lang="en"] #claiming-social-security .hero_image  {
-  background-image: url('../images/retirement-hero.png');
+[data-lang="es"] #claiming-social-security .intro  {
+    margin-top: 30px;
 }
 
-#claiming-social-security .claiming-hero {
-  background-color: #FFCE8D;
+[data-lang="en"] #claiming-social-security .intro  {
+    margin-top: 15px;
 }
 
-#claiming-social-security .claiming-hero .hero_wrapper {
-  position: relative;
-}
+@media (min-width: 850px) {
+  #claiming-social-security .intro {
+    margin-bottom: 45px;
 
-#claiming-social-security .claiming-hero h1 span.header-line {
-  display: block;
-}
+    .img {
+      height: 200px;
+      width: 200px;
+      background-size: 200px;
+      background-repeat: no-repeat;
+    }
+  }
 
-#claiming-social-security .claiming-hero p.hero_translation-link {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 15px 60px 30px 0;
+  [data-lang="es"] #claiming-social-security .intro  {
+    margin-top: 60px;
+    .img {
+      background-image: url('../images/before-you-claim-es.png');
+    }
+  }
 
-  a {
-    color: @black;
-    border-color: @black;
-    border-style: solid;
-
-    &:visited,
-    &.visited,
-    &:hover,
-    &.hover,
-    &:active,
-    &.active {
-        border-color: @black;
-        color: @black;
+  [data-lang="en"] #claiming-social-security .intro  {
+    .img {
+      background-image: url('../images/before-you-claim.png');
     }
   }
 }
 
-#claiming-social-security .step-one {
-  padding-top: 60px;
-  padding-bottom: 14px;
+#claiming-social-security h1 span.header-line {
+  display: block;
+}
 
+#claiming-social-security .intro p {
+  max-width: 41.875rem;
+}
+
+#claiming-social-security .step-one {
+  padding-bottom: 14px;
+  padding-top: 45px;
 }
 
 #claiming-social-security {
