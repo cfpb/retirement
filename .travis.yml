@@ -15,6 +15,7 @@ script:
 - ./manage.py migrate
 - coverage run --source='.' manage.py test
 - python2.7 setup.py bdist_wheel
+- ls dist/*
 after_success:
 - coveralls
 deploy:
