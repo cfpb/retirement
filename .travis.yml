@@ -20,6 +20,7 @@ after_success:
 - coveralls
 deploy:
   provider: releases
+  skip_cleanup: true
   api_key:
     secure: e24xlCO9zGNwFqicknFg/HAqui5duz2aQM2ruPFDpPbmw4rMD9ABYMq9DUqu/o4bXQMtCqH32fgaKnz6j4LYoMHEedPYpPuluszqXj2coHUoE+p93w/AYrGFiGfMukUtcW8xBxJnLJi4HOovKdSKqaravb7BCCtc/OjfcrPOn+g=
   file: 'dist/*.whl'
