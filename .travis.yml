@@ -1,14 +1,29 @@
 language: python
 python:
-  - "2.7"
+- '2.7'
+nodejs: 6
 cache: pip
 env: DJ_KEY=testkey
 install:
-  - pip install -r requirements.txt
-  - pip install coveralls
-script: 
-  - cp test_settings.py settings.py
-  - ./manage.py migrate
-  - coverage run --source='.' manage.py test
+- pip install -r requirements.txt
+- pip install coveralls
+before_script:
+    - npm install -g bower gulp-cli
+    - bower install
+script:
+- cp test_settings.py settings.py
+- ./manage.py migrate
+- coverage run --source='.' manage.py test
+- python2.7 setup.py bdist_wheel
+- ls dist/*
 after_success:
-  - coveralls
+- coveralls
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: e24xlCO9zGNwFqicknFg/HAqui5duz2aQM2ruPFDpPbmw4rMD9ABYMq9DUqu/o4bXQMtCqH32fgaKnz6j4LYoMHEedPYpPuluszqXj2coHUoE+p93w/AYrGFiGfMukUtcW8xBxJnLJi4HOovKdSKqaravb7BCCtc/OjfcrPOn+g=
+  file_glob: true
+  file: 'dist/*.whl'
+  on:
+      tags: true

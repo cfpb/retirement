@@ -14,9 +14,9 @@ def read_file(filename):
 
 setup(
     name='retirement',
-    version='0.5.6',
     author='CFPB',
     author_email='tech@cfpb.gov',
+    version_format='{tag}.dev{commitcount}+{gitsha}',
     maintainer='cfpb',
     maintainer_email='tech@cfpb.gov',
     packages=['retirement_api', 'retirement_api.utils'],
@@ -34,7 +34,7 @@ setup(
     ],
     long_description=read_file('README.md'),
     zip_safe=False,
-    setup_requires=['cfgov-setup==1.2', ],
+    setup_requires=['cfgov-setup==1.2', 'setuptools-git-version==1.0.3'],
     frontend_build_script='frontendbuild.sh',
 
 )
