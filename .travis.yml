@@ -7,6 +7,9 @@ env: DJ_KEY=testkey
 install:
 - pip install -r requirements.txt
 - pip install coveralls
+before_script:
+    - npm install -g bower gulp-cli
+    - bower install
 script:
 - cp test_settings.py settings.py
 - ./manage.py migrate
