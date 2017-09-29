@@ -3,6 +3,7 @@
 {% load static from staticfiles %}
 {% load i18n %}
 {% block title %} {% trans "About this tool" %} {% endblock %}
+{% trans page.title as TITLE %}
 {% block nemo_styles %}{% endblock %}
 {% block app_css %}
   <!--[if lt IE 9]>
@@ -25,6 +26,21 @@
 {% block responsive_nav %}
 <a class="toggle-menu" href="#"><i class="cf-icon cf-icon-menu"></i>
     <span class="u-visually-hidden">Menu</span></a>
+{% endblock %}
+
+{% block page_meta %}
+  <meta property="og:title" content="{{ TITLE }} &gt; Consumer Financial Protection Bureau"/>
+  <meta property="og:url" content="{{ URL }}"/>
+
+  <meta name="description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
+
+  <meta property="og:description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
+{% endblock %}
+{% block open_graph_image %}
+  <meta property="og:image"
+        content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-retirement.original.png">
+  <meta property="twitter:image"
+        content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-retirement.original.png">
 {% endblock %}
 
 {% block content %}
