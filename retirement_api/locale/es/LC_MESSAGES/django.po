@@ -487,7 +487,7 @@ msgid "Create a <a href=\"http://www.ssa.gov/myaccount/\" target=\"_blank\"><em>
 msgstr "Visite el <a href=\"http://www.ssa.gov/espanol/jubilacion2/calculadora.html\" target=\"_blank\">Calculador del Seguro Social</a> para ver la cantidad aproximada de sus beneficios basados en su propio registro de ganancias del Seguro Social. También encontrará información adicional sobre otros beneficios, incluyendo los beneficios por discapacidad y para sobrevivientes."
 
 #:
-msgid "Your retirement income outside of Social Security will help you cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a>."
+msgid "Your retirement income outside of Social Security will help you cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> plan."
 msgstr "Sus ahorros le ayudarán a cubrir sus gastos durante su jubilación. Usted puede aumentar sus contribuciones a sus planes de jubilación, o abrir una <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">cuenta IRA</a> (en inglés) y hacer contribuciones a estas cuentas."
 
 #:
