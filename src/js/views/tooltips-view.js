@@ -16,7 +16,7 @@ var tooltipsView = {
     var $ttc = $( '#tooltip-container' ),
         $target = $( '[data-tooltip-current-target]' ),
         name = $elem.attr( 'data-tooltip-target' ),
-        content = $( '[data-tooltip-name="' + name + '"]' ).html(),
+        content = escape( $( '[data-tooltip-name="' + name + '"]' ).html() ),
         innerTip = $ttc.find( '.innertip' ),
         outerTip = $ttc.find( '.outertip' ),
         pagePadding = parseInt( $( '#maincontent' ).css( 'padding-left' ), 10 ),
