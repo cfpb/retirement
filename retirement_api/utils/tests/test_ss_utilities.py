@@ -375,9 +375,10 @@ class UtilitiesTests(unittest.TestCase):
                         'note': '',
                         'past_fra': True,
                         }
+        new_year = self.today.year - 69 + int(self.today.month/12)
+        new_month = (self.today.month + 1) % 12
         eleven_month_edge = self.today.replace(
-            day=1).replace(
-            year=self.today.year-69).replace(month=self.today.month + 1)
+            day=1).replace(year=new_year).replace(month=new_month)
         results = interpolate_for_past_fra(
             mock_results, 1431, 68, eleven_month_edge)
         self.assertTrue(results['data']['benefits']['age 70'] == 1545)
