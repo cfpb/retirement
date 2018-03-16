@@ -210,13 +210,13 @@ class UtilitiesTests(unittest.TestCase):
 
     @mock.patch('retirement_api.utils.ssa_check.datetime.date')
     def test_get_test_params_in_january(self, mock_date):
-        mock_date.today.return_value = self.today.replace(month=1, day=2)
+        mock_date.today.return_value = date(2017, 1, 2)
         test_params = get_test_params(46, 3)
         self.assertEqual(test_params['yob'], 1970)
-        mock_date.today.return_value = self.today.replace(month=1, day=27)
+        mock_date.today.return_value = date(2017, 1, 27)
         test_params = get_test_params(46, 28)
         self.assertEqual(test_params['yob'], 1970)
-        mock_date.today.return_value = self.today.replace(month=2, day=27)
+        mock_date.today.return_value = date(2017, 2, 27)
         test_params = get_test_params(46, 28)
         self.assertEqual(test_params['yob'], 1971)
 
