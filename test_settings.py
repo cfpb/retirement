@@ -8,6 +8,8 @@ LANGUAGES = (
     ('en', _('English')),
 )
 
+import dj_database_url
+
 FIXTURE_DIRS = (
    '%s/retirement_api/fixtures/' % BASE_DIR,
 )
@@ -54,6 +56,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config()
 
 LANGUAGE_CODE = 'en-us'
 
