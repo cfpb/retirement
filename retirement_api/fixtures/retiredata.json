@@ -70,7 +70,7 @@
 {
     "fields": {
         "note": "",
-        "instructions": "Your retirement income outside of Social Security will help you cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> plan.",
+        "instructions": "Your retirement income outside of Social Security will help you cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\">IRA</a> plan.",
         "title": "final_step_2_under"
     },
     "model": "retirement_api.step",
@@ -97,7 +97,7 @@
 {
     "fields": {
         "note": "",
-        "instructions": "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"http://www.irs.gov/Retirement-Plans/Plan-Participant,-Employee/Retirement-Topics-Catch-Up-Contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able to open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a>.",
+        "instructions": "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-catch-up-contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able to open and contribute to an <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\">IRA</a>.",
         "title": "final_step_2_equal"
     },
     "model": "retirement_api.step",
@@ -106,7 +106,7 @@
 {
     "fields": {
         "note": "",
-        "instructions": "While you let your benefits continue to grow, you can keep working if you want. You can also stop working and use a portion of your savings to cover your needs. <a href=\"http://www.irs.gov/Retirement-Plans/Retirement-Plans-FAQs-regarding-IRAs-Distributions-(Withdrawals)\" target=\"_blank\">Learn the rules about withdrawing money</a> from your retirement accounts.",
+        "instructions": "While you let your benefits continue to grow, you can keep working if you want. You can also stop working and use a portion of your savings to cover your needs. <a href=\"https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-required-minimum-distributions-rmds\" target=\"_blank\">Learn the rules about withdrawing money</a> from your retirement accounts.",
         "title": "final_step_2_over"
     },
     "model": "retirement_api.step",
