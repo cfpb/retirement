@@ -487,8 +487,8 @@ msgid "Create a <a href=\"http://www.ssa.gov/myaccount/\" target=\"_blank\"><em>
 msgstr "Visite el <a href=\"http://www.ssa.gov/espanol/jubilacion2/calculadora.html\" target=\"_blank\">Calculador del Seguro Social</a> para ver la cantidad aproximada de sus beneficios basados en su propio registro de ganancias del Seguro Social. También encontrará información adicional sobre otros beneficios, incluyendo los beneficios por discapacidad y para sobrevivientes."
 
 #:
-msgid "Your retirement income outside of Social Security will help you cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a> plan."
-msgstr "Sus ahorros le ayudarán a cubrir sus gastos durante su jubilación. Usted puede aumentar sus contribuciones a sus planes de jubilación, o abrir una <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">cuenta IRA</a> (en inglés) y hacer contribuciones a estas cuentas."
+msgid "Your retirement income outside of Social Security will help you cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\">IRA</a> plan."
+msgstr "Sus ahorros le ayudarán a cubrir sus gastos durante su jubilación. Usted puede aumentar sus contribuciones a sus planes de jubilación, o abrir una <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\">cuenta IRA</a> (en inglés) y hacer contribuciones a estas cuentas."
 
 #:
 msgid "If your income, employment, or marital status changes, you may need to reconsider your claiming age. Visit us again!"
@@ -499,16 +499,16 @@ msgid "which is your Social Security full retirement claiming age."
 msgstr " años, que es su plena edad de jubilación."
 
 #:
-msgid "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"http://www.irs.gov/Retirement-Plans/Plan-Participant,-Employee/Retirement-Topics-Catch-Up-Contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able to open and contribute to an <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">IRA</a>."
-msgstr "Puede seguir aumentando sus ahorros y hacer contribuciones adicionales a las cuentas que ya tiene mientras espera para solicitar sus beneficios. También podría abrir una <a href=\"http://www.irs.gov/Retirement-Plans/Individuals-Retirement-Arrangements---Getting-Started\" target=\"_blank\">cuenta IRA</a> (en inglés) y hacer contribuciones a esta cuenta."
+msgid "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-catch-up-contributions" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able to open and contribute to an <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\">IRA</a>."
+msgstr "Puede seguir aumentando sus ahorros y hacer contribuciones adicionales a las cuentas que ya tiene mientras espera para solicitar sus beneficios. También podría abrir una <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\">cuenta IRA</a> (en inglés) y hacer contribuciones a esta cuenta."
 
 #:
 msgid ", which is later than your Social Security full retirement claiming age."
 msgstr ", que es la edad máxima para reclamar sus beneficios de Seguro Social."
 
 #:
-msgid "While you let your benefits continue to grow, you can keep working if you want. You can also stop working and use a portion of your savings to cover your needs. <a href=\"http://www.irs.gov/Retirement-Plans/Retirement-Plans-FAQs-regarding-IRAs-Distributions-(Withdrawals)\" target=\"_blank\">Learn the rules about withdrawing money</a> from your retirement accounts."
-msgstr "Si lo desea, usted puede seguir trabajando mientras sus beneficios siguen aumentando. También puede dejar de trabajar y utilizar una parte de sus ahorros para cubrir sus necesidades económicas. Infórmese mejor sobre las normas para <a href=\"http://www.irs.gov/Retirement-Plans/Retirement-Plans-FAQs-regarding-IRAs-Distributions-(Withdrawals)\" target=\"_blank\">retirar dinero</a> (en inglés) de sus cuentas para la jubilación."
+msgid "While you let your benefits continue to grow, you can keep working if you want. You can also stop working and use a portion of your savings to cover your needs. <a href=\"https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-required-minimum-distributions-rmds\" target=\"_blank\">Learn the rules about withdrawing money</a> from your retirement accounts."
+msgstr "Si lo desea, usted puede seguir trabajando mientras sus beneficios siguen aumentando. También puede dejar de trabajar y utilizar una parte de sus ahorros para cubrir sus necesidades económicas. Infórmese mejor sobre las normas para <a href=\"https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-required-minimum-distributions-rmds\" target=\"_blank\">retirar dinero</a> (en inglés) de sus cuentas para la jubilación."
 
 #:
 msgid "Working in your 60s may increase your monthly benefit in a few ways. Because your benefits are based on your highest 35 years of earnings, each year of work can add higher earnings to your record by replacing years with low earnings, such as those when you were a student, were unemployed, or took time off. When you work and wait to claim until age 70, you can increase your monthly benefit by more than 75 percent!<span data-tooltip-target=\"claim_early_and_work\" class=\"cf-icon cf-icon-help-round\"></span> Working in your 60s also gives you more time to save on your own for retirement."
