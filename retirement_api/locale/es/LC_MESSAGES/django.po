@@ -499,7 +499,7 @@ msgid "which is your Social Security full retirement claiming age."
 msgstr " años, que es su plena edad de jubilación."
 
 #:
-msgid "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-catch-up-contributions" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able to open and contribute to an <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\">IRA</a>."
+msgid "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-catch-up-contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able to open and contribute to an <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\">IRA</a>."
 msgstr "Puede seguir aumentando sus ahorros y hacer contribuciones adicionales a las cuentas que ya tiene mientras espera para solicitar sus beneficios. También podría abrir una <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\">cuenta IRA</a> (en inglés) y hacer contribuciones a esta cuenta."
 
 #:
