@@ -1,4 +1,7 @@
 import os
+
+import dj_database_url
+
 from django.utils.translation import ugettext_lazy as _
 BASE_DIR = os.path.dirname(__file__)
 
@@ -6,12 +9,6 @@ SECRET_KEY = 'secret_for_testing_only'
 LANGUAGES = (
     ('es', _('Spanish')),
     ('en', _('English')),
-)
-
-import dj_database_url
-
-FIXTURE_DIRS = (
-   '%s/retirement_api/fixtures/' % BASE_DIR,
 )
 
 STANDALONE = True
@@ -24,7 +21,7 @@ ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
     '%s/retirement_api/templates' % BASE_DIR,
-    )
+)
 
 # Application definition
 
