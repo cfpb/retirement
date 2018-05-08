@@ -1,6 +1,13 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 0.6.0
+- Update to frontend to gulp 4.
+- Update linter to ESLint 4.
+- Add rel attribute to links with target blank.
+- Change from npm-shrinkwrap to package-lock.
+- Remove gulp watch task.
+
 ## 0.5.14
 - Removing MyRa references
 
