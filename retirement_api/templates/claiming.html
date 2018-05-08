@@ -181,7 +181,11 @@
             <p>{% trans "Remember, claiming age here refers only to your Social Security retirement benefit, and not when you decide to stop working or apply for Medicare." %}</p>
           </div>
 
-          <p class="learn-how"><a href="{% trans "about" %}" target="_blank">{% trans "Where do these numbers come from?" %}</a></p>
+          <p class="learn-how">
+            <a href="{% trans "about" %}" target="_blank" rel="noopener noreferrer">
+              {% trans "Where do these numbers come from?" %}
+            </a>
+          </p>
 
         </div>
         <div class="content-l_col content-l_col-2-3 canvas-container">
@@ -269,7 +273,7 @@
           <div class="lifestyle-response" data-responds-to="no-over50">
             <h4>{% trans questions.sixties.answer_no_b_subhed|safe %}</h4>
             <p>{% trans questions.sixties.answer_no_a|safe %}</p>
-            <p><a href="https://www.socialsecurity.gov/planners/retire/stopwork.html" class="external-link" target="_blank"></a></p>
+            <p><a href="https://www.socialsecurity.gov/planners/retire/stopwork.html" class="external-link" target="_blank" rel="noopener noreferrer"></a></p>
           </div>
           <div class="lifestyle-response" data-responds-to="notsure-under50">
             <h4>{% trans questions.sixties.answer_unsure_a_subhed|safe %}</h4>

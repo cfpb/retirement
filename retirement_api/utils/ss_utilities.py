@@ -11,13 +11,15 @@ TOO_YOUNG = """\
 if you are under 22 years of age.</span> Please visit the \
 Social Security Administration's \
 <a href="http://www.ssa.gov/people/youngpeople/" \
-target="blank">advice page</a> for students and younger workers.\
+target="_blank" rel="noopener noreferrer">advice page</a> \
+for students and younger workers.\
 """
 TOO_YOUNG_ES = """\
 Lo sentimos. No podemos estimar sus beneficios si usted \
 es menor de 22 años de edad.</span> \
 Visite <a href="http://www.ssa.gov/people/youngpeople/" \
-target="_blank">la página</a> (en inglés) de la Administración \
+target="_blank" rel="noopener noreferrer">la página</a> \
+(en inglés) de la Administración \
 del Seguro Social para estudiantes y trabajadores jóvenes.\
 """
 TOO_OLD = """\
@@ -25,8 +27,9 @@ TOO_OLD = """\
 your birthdate, {0}, means you are older than 70 and may already be receiving \
 benefits.</span> To check your benefits based on your actual \
 earnings record, contact the Social Security Administration or \
-open a <a href="http://www.socialsecurity.gov/myaccount/" target="_blank">\
-<em>my</em> Social Security</a> account.
+open a <a href="http://www.socialsecurity.gov/myaccount/" \
+target="_blank" rel="noopener noreferrer">\
+<em>my</em> Social Security</a> account.\
 """
 TOO_OLD_ES = """\
 <span class="h4">Lo sentimos. No podemos estimar sus beneficios ya que \
@@ -35,9 +38,10 @@ es mayor de 70 años de edad y posiblemente ya recibe beneficios. </span>\
 Verifique sus beneficios basados en su propio registro de ingresos \
 del Seguro Social \
 <a href="http://www.ssa.gov/espanol/jubilacion2/calculadora.html" \
-target="_blank">aquí</a> o \
+target="_blank" rel="noopener noreferrer">aquí</a> o \
 <a href="http://www.socialsecurity.gov/espanol/agencia/contacto/" \
-target="_blank">comuníquese</a> con la Administración del Seguro Social.\
+target="_blank" rel="noopener noreferrer">comuníquese</a> \
+con la Administración del Seguro Social.\
 """
 
 AGE_ERROR_NOTES = {

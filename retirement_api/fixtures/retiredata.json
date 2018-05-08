@@ -61,7 +61,7 @@
 {
     "fields": {
         "note": "",
-        "instructions": "Create a <a href=\"http://www.ssa.gov/myaccount/\" target=\"_blank\"><em>my</em> Social Security account</a> to review your expected benefits based on your actual Social Security record. You will also find additional information about your eligibility and other benefits including disability and survivor benefits.",
+        "instructions": "Create a <a href=\"http://www.ssa.gov/myaccount/\" target=\"_blank\" rel=\"noopener noreferrer\"><em>my</em> Social Security account</a> to review your expected benefits based on your actual Social Security record. You will also find additional information about your eligibility and other benefits including disability and survivor benefits.",
         "title": "final_step_1"
     },
     "model": "retirement_api.step",
@@ -70,7 +70,7 @@
 {
     "fields": {
         "note": "",
-        "instructions": "Your retirement income outside of Social Security will help you cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\">IRA</a> plan.",
+        "instructions": "Your retirement income outside of Social Security will help you cover your expenses. You can increase your contributions to your retirement savings plans, or open and contribute to an <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\" rel=\"noopener noreferrer\">IRA</a> plan.",
         "title": "final_step_2_under"
     },
     "model": "retirement_api.step",
@@ -97,7 +97,7 @@
 {
     "fields": {
         "note": "",
-        "instructions": "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-catch-up-contributions\" target=\"_blank\">catchup contributions</a> to your existing accounts. You may also be able to open and contribute to an <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\">IRA</a>.",
+        "instructions": "While you wait to claim your benefits, you can continue growing your savings by making <a href=\"https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-catch-up-contributions\" target=\"_blank\" rel=\"noopener noreferrer\">catchup contributions</a> to your existing accounts. You may also be able to open and contribute to an <a href=\"https://www.irs.gov/retirement-plans/individuals-retirement-arrangements-getting-started\" target=\"_blank\" rel=\"noopener noreferrer\">IRA</a>.",
         "title": "final_step_2_equal"
     },
     "model": "retirement_api.step",
@@ -106,7 +106,7 @@
 {
     "fields": {
         "note": "",
-        "instructions": "While you let your benefits continue to grow, you can keep working if you want. You can also stop working and use a portion of your savings to cover your needs. <a href=\"https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-required-minimum-distributions-rmds\" target=\"_blank\">Learn the rules about withdrawing money</a> from your retirement accounts.",
+        "instructions": "While you let your benefits continue to grow, you can keep working if you want. You can also stop working and use a portion of your savings to cover your needs. <a href=\"https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-required-minimum-distributions-rmds\" target=\"_blank\" rel=\"noopener noreferrer\">Learn the rules about withdrawing money</a> from your retirement accounts.",
         "title": "final_step_2_over"
     },
     "model": "retirement_api.step",
@@ -258,7 +258,7 @@
 },
 {
     "fields": {
-        "text": "If you and your spouse are full retirement age, you can apply for benefits but have the payments suspended. This allows your spouse to file for spousal benefits without affecting your personal benefits. For details, see <a href=\"http://www.socialsecurity.gov/planners/retire/suspend.html\" target=\"_blank\">Social Security's guide</a>.",
+        "text": "If you and your spouse are full retirement age, you can apply for benefits but have the payments suspended. This allows your spouse to file for spousal benefits without affecting your personal benefits. For details, see <a href=\"http://www.socialsecurity.gov/planners/retire/suspend.html\" target=\"_blank\" rel=\"noopener noreferrer\">Social Security's guide</a>.",
         "title": "file_and_suspend"
     },
     "model": "retirement_api.tooltip",
@@ -266,7 +266,7 @@
 },
 {
     "fields": {
-        "text": "If both spouses are full retirement age, you can apply for spousal benefits if you haven't filed before and if your spouse has already filed (regardless of your spouse's suspension status). For details, see <a href=\"\" target=\"_blank\">Social Security's guide</a>.",
+        "text": "If both spouses are full retirement age, you can apply for spousal benefits if you haven't filed before and if your spouse has already filed (regardless of your spouse's suspension status). For details, see <a href=\"\" target=\"_blank\" rel=\"noopener noreferrer\">Social Security's guide</a>.",
         "title": "restricted_application"
     },
     "model": "retirement_api.tooltip",
