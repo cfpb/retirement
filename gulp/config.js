@@ -1,11 +1,9 @@
-'use strict';
-
-var fs = require( 'fs' );
+const fs = require( 'fs' );
 
 /**
  * Set up file paths
  */
-var loc = {
+const loc = {
   src:  './src/',
   dist: './retirement_api/static/retirement/',
   lib:  JSON.parse( fs.readFileSync( './.bowerrc' ) ).directory, // eslint-disable-line no-sync, no-inline-comments, max-len
@@ -59,7 +57,7 @@ module.exports = {
       loc.lib + '/cf-*/src/js/*.js',
       loc.src + '/js/**/*.js',
       loc.src + '/js/*/*.js',
-      loc.src + '/js/*.js',
+      loc.src + '/js/*.js'
     ],
     dest: loc.dist + '/js/',
     name: 'main.js'
@@ -83,8 +81,6 @@ module.exports = {
         loc.src + '/**/*.html',
         loc.src + '/**/*.pdf',
         loc.src + '/_*/**/*',
-        loc.src + '/robots.txt',
-        loc.src + '/favicon.ico',
         '!' + loc.lib + '/**/*.html'
       ],
       dest: loc.dist

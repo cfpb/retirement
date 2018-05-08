@@ -1,35 +1,35 @@
-'use strict';
-
 /* bundleLogger
    ------------
    Provides gulp style logs to the bundle method in browserify.js
 */
 
-var gutil = require( 'gulp-util' );
-var prettyHrtime = require( 'pretty-hrtime' );
-var startTime;
+const ansiColors = require( 'ansi-colors' );
+const fancyLog = require( 'fancy-log' );
+const prettyHrtime = require( 'pretty-hrtime' );
+
+let startTime;
 
 module.exports = {
   start: function( filepath ) {
     startTime = process.hrtime();
-    gutil.log(
+    fancyLog(
       'Bundling',
-      gutil.colors.green( filepath ) + '...'
+      ansiColors.green( filepath ) + '...'
     );
   },
   watch: function( bundleName ) {
-    gutil.log(
+    fancyLog(
       'Watching files required by',
-      gutil.colors.yellow( bundleName )
+      ansiColors.yellow( bundleName )
     );
   },
   end: function( filepath ) {
-    var taskTime = process.hrtime( startTime );
-    var prettyTime = prettyHrtime( taskTime );
-    gutil.log(
+    const taskTime = process.hrtime( startTime );
+    const prettyTime = prettyHrtime( taskTime );
+    fancyLog(
       'Bundled',
-      gutil.colors.green( filepath ),
-      'in', gutil.colors.magenta( prettyTime )
+      ansiColors.green( filepath ),
+      'in', ansiColors.magenta( prettyTime )
     );
   }
 };

@@ -1,35 +1,33 @@
-'use strict';
-
-var gulp = require( 'gulp' );
-var $ = require( 'gulp-load-plugins' )();
-var config = require( '../config' ).copy;
-var handleErrors = require( '../utils/handleErrors' );
+const gulp = require( 'gulp' );
+const gulpChanged = require( 'gulp-changed' );
+const configCopy = require( '../config' ).copy;
+const handleErrors = require( '../utils/handleErrors' );
 
 gulp.task( 'copy:files', function() {
-  return gulp.src( config.files.src )
-    .pipe( $.changed( config.files.dest ) )
+  return gulp.src( configCopy.files.src )
+    .pipe( gulpChanged( configCopy.files.dest ) )
     .on( 'error', handleErrors )
-    .pipe( gulp.dest( config.files.dest ) );
+    .pipe( gulp.dest( configCopy.files.dest ) );
 } );
 
 gulp.task( 'copy:icons', function() {
-  return gulp.src( config.icons.src )
-    .pipe( $.changed( config.icons.dest ) )
+  return gulp.src( configCopy.icons.src )
+    .pipe( gulpChanged( configCopy.icons.dest ) )
     .on( 'error', handleErrors )
-    .pipe( gulp.dest( config.icons.dest ) );
+    .pipe( gulp.dest( configCopy.icons.dest ) );
 } );
 
 gulp.task( 'copy:vendorjs', function() {
-  return gulp.src( config.vendorjs.src )
-    .pipe( $.changed( config.vendorjs.dest ) )
+  return gulp.src( configCopy.vendorjs.src )
+    .pipe( gulpChanged( configCopy.vendorjs.dest ) )
     .on( 'error', handleErrors )
-    .pipe( gulp.dest( config.vendorjs.dest ) );
+    .pipe( gulp.dest( configCopy.vendorjs.dest ) );
 } );
 
 gulp.task( 'copy',
-  [
+  gulp.parallel(
     'copy:files',
     'copy:icons',
     'copy:vendorjs'
-  ]
+  )
 );
