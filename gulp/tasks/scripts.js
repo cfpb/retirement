@@ -1,24 +1,23 @@
-'use strict';
-
-var gulp = require( 'gulp' );
-var $ = require( 'gulp-load-plugins' )();
-var browserify = require( 'browserify' );
-var source = require( 'vinyl-source-stream' );
-var buffer = require( 'vinyl-buffer' );
-var config = require( '../config' ).scripts;
-var handleErrors = require( '../utils/handleErrors' );
+const gulp = require( 'gulp' );
+const gulpSourcemaps = require( 'gulp-sourcemaps' );
+const gulpUglify = require( 'gulp-uglify' );
+const browserify = require( 'browserify' );
+const source = require( 'vinyl-source-stream' );
+const buffer = require( 'vinyl-buffer' );
+const configScripts = require( '../config' ).scripts;
+const handleErrors = require( '../utils/handleErrors' );
 
 gulp.task( 'scripts', function() {
-  var b = browserify( {
-    entries: config.entrypoint,
+  const b = browserify( {
+    entries: configScripts.entrypoint,
     debug: true
   } );
 
-  b.bundle()
+  return b.bundle()
     .pipe( source( 'main.js' ) )
     .pipe( buffer().on( 'error', handleErrors ) )
-    .pipe( $.sourcemaps.init( { loadMaps: true } ) )
-    .pipe( $.uglify() )
-    .pipe( $.sourcemaps.write( './' ) )
-    .pipe( gulp.dest( config.dest ) );
+    .pipe( gulpSourcemaps.init( { loadMaps: true } ) )
+    .pipe( gulpUglify() )
+    .pipe( gulpSourcemaps.write( './' ) )
+    .pipe( gulp.dest( configScripts.dest ) );
 } );
