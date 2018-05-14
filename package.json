@@ -1,6 +1,6 @@
 {
   "name": "retirement",
-  "version": "0.5.5",
+  "version": "0.6.1",
   "description": "Helping Americans make choices about retirement, including when to claim Social Security benefits",
   "main": "index.js",
   "scripts": {
@@ -17,17 +17,15 @@
     "del": "3.0.0",
     "fs": "0.0.2",
     "gulp": "4.0.0",
-    "gulp-concat": "2.6.0",
+    "gulp-concat": "2.6.1",
     "gulp-header": "2.0.5",
-    "gulp-less": "3.0.5",
+    "gulp-less": "3.5.0",
     "gulp-mq-remove": "0.0.2",
     "gulp-rename": "1.2.2",
     "gulp-sourcemaps": "1.6.0",
     "jquery": "1.12.2",
-    "jsdom": "8.2.0",
     "pretty-hrtime": "1.0.3",
     "require-dir": "1.0.0",
-    "snyk": "1.14.1",
     "vinyl-buffer": "1.0.1",
     "vinyl-source-stream": "2.0.0"
   },
@@ -50,8 +48,8 @@
     "imagemin-svgo": "5.2.4",
     "minimist": "1.2.0",
     "mocha": "2.4.5",
-    "mocha-jsdom": "1.1.0",
     "protractor": "3.2.2",
-    "through2": "2.0.3"
+    "through2": "2.0.3",
+    "snyk": "^1.80.0"
   }
 }

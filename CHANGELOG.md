@@ -1,6 +1,11 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 0.6.1
+- Fix handling of Leap Day birthdays
+- Used Snyk to walk through updating some dependencies with vulnerabilities
+- Added `npm install -g snyk` to `frontendbuild.sh` to ensure `npm test` runs
+
 ## 0.6.0
 - Update to frontend to gulp 4.
 - Update linter to ESLint 4.
