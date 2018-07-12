@@ -1,9 +1,9 @@
-'use strict';
+const isElementInView = require( '../utils/is-element-in-view' );
 
-var isElementInView = require( '../utils/is-element-in-view' );
+// TODO: remove jquery.
+import $ from 'jquery';
 
-
-var nextStepsView = {
+const nextStepsView = {
   currentAge: 0,
   fullAge: 0,
 
@@ -22,18 +22,16 @@ var nextStepsView = {
     } );
   },
 
-  /*
-   * This function updates the text in Step 3
-   * based on the user's chosen retirement age
-   * @param {number} fullAge   The user's full retirement age
-   */
+  /* This function updates the text in Step 3
+     based on the user's chosen retirement age
+     @param {number} fullAge   The user's full retirement age */
   chooseClaimingAge: function() {
 
     if ( $( '#retirement-age-selector' )
-    .find( 'option:selected' ).val() === '' ) {
+      .find( 'option:selected' ).val() === '' ) {
       $( '#age-selector-response' ).hide();
     } else {
-      var age = parseInt(
+      const age = parseInt(
         $( '#retirement-age-selector' ).find( 'option:selected' ).val(), 10 );
 
       $( '.next-step-description' ).hide();
@@ -61,13 +59,11 @@ var nextStepsView = {
 
   },
 
-  /*
-   * This function limits the age selector in Step 3 to
-   * the user's current age or higher
-   * @param {number} currentAge   The user's current age
-   */
+  /* This function limits the age selector in Step 3 to
+     the user's current age or higher
+     @param {number} currentAge   The user's current age */
   limitAgeSelector: function( currentAge ) {
-    var $select = $( '#retirement-age-selector' ),
+    let $select = $( '#retirement-age-selector' ),
         firstOption = $select.find( 'option' )[0],
         retirementAge = 62;
 
@@ -78,16 +74,14 @@ var nextStepsView = {
       retirementAge = currentAge;
     }
 
-    for ( var x = retirementAge; x <= 70; x++ ) {
-      var elem = '<option value="' + x;
+    for ( let x = retirementAge; x <= 70; x++ ) {
+      let elem = '<option value="' + x;
       elem += '">' + x + '</option>';
       $select.append( elem );
     }
   },
 
-  /*
-   * This function defines the feedback button interactions in Step 3.
-   */
+  /* This function defines the feedback button interactions in Step 3. */
   feedbackButton: function() {
     $( '#age-selector-response .thank-you' ).show();
     $( '#age-selector-response .helpful-btn' )

@@ -1,37 +1,38 @@
-'use strict';
-
-
-/*
- * Converts a number to a money string
- * @param {number} n A number to be converted
- * @returns {string} money A string representing currency
+/**
+ * Converts a number to a money string.
+ * @param {number} num - A number to be converted.
+ * @returns {string} money A string representing currency.
  */
-function numToMoney(n) {
-  var money;
-  // When n is a string, we should, ironically, strip its numbers first.
-  if (typeof n === 'string') {
-      n =  Number(n.replace(/[^0-9\.]+/g,""));
+function numToMoney( num ) {
+  let money;
+  // When num is a string, we should, ironically, strip its numbers first.
+  if ( typeof num === 'string' ) {
+    num = Number( num.replace( /[^0-9\.]+/g, '' ) );
   }
-  if ( typeof n === 'object' ) {
-    n = 0;
+  if ( typeof num === 'object' ) {
+    num = 0;
   }
-  var t = ",";
-  if (n < 0) {
-    var s = "-";
+
+  // Whether amount is negative or not.
+  const sign = num < 0 ? '-' : '';
+
+  const numProc = String(
+    parseInt( num = Math.abs( Number( num ) || 0 ).toFixed( 0 ), 10 )
+  );
+  let groups = 0;
+  if ( numProc.length > 3 ) {
+    groups = numProc.length % 3;
   }
-  else {
-    var s = "";
+
+  money = sign + '$';
+
+  const separator = ',';
+  if ( groups > 0 ) {
+    money += numProc.substr( 0, groups ) + separator;
   }
-  var i = parseInt(n = Math.abs(+n || 0).toFixed(0)) + "";
-  var j = 0;
-  if (i.length > 3) {
-    j = ((i.length) % 3);
-  }
-  money = s + "$";
-  if (j > 0) {
-    money += i.substr(0,j) + t;
-  }
-  money += i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t);
+  money += numProc.substr( groups )
+    .replace( /(\d{3})(?=\d)/g, '$1' + separator );
+
   return money;
 }
 

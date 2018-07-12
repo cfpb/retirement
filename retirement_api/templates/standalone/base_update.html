@@ -35,27 +35,12 @@
     <meta name="viewport" content="width=1016">
     {% endblock %}
 
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-precomposed.png">
-    <link rel="apple-touch-icon" size="72x72" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" size="114x114" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" size="144x144" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/img/apple-touch-icon-144x144-precomposed.png">
-
-    <script src="http://www.consumerfinance.gov/static/nemo/_/js/jquery-1.9.1.min.js"></script>
     <!--[if lt IE 9]>
-    <script src="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/js/html5shim.js"></script>
+    <script src="{% static "retirement/js/html5shiv-printshiv.min.js" %}"></script>
     <![endif]-->
 
     {% block nemo_styles %}
     <!-- Styles -->
-
-    <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/c/woff.css{{ STATIC_VERSION }}">
-    <!--<![endif]-->
-    <!--[if lt IE 9]>
-    <link rel="stylesheet" href="/wp-content/themes/cfpb_nemo/_/c/eot.css">
-    <![endif]-->
-    <link rel="stylesheet" href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/c/styles.css{{ STATIC_VERSION }}">
 
     {% endblock %}
 
@@ -65,33 +50,18 @@
     {% block page_css %}
     {% endblock %}
 
-    <link rel="stylesheet" href="http://www.consumerfinance.gov/static/css/header.css"/>
-    <link rel="stylesheet" href="http://www.consumerfinance.gov/static/css/footer.css"/>
-
     <!-- Feeds -->
-    <link rel="alternate" type="application/rss+xml" title="Consumer Financial Protection Bureau &raquo; Feed" href="/feed/" />
-    <link rel="alternate" type="application/rss+xml" title="Consumer Financial Protection Bureau &raquo; Comments Feed" href="/comments/feed/" />
     {% block page_feeds %}
     {% endblock %}
 
     {% block analytics_js %}
-    
+
 
     {% endblock %}
 </head>
 
 <body class="{% block body_class %}page{% endblock %}" data-lang="{% trans "en" %}">
 {% block gtm_js %}
-<!-- Google Tag Manager -->
-{# Should always be included immediately after the opening <body> tag #}
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KMMLRS"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KMMLRS');</script>
-<!-- End Google Tag Manager -->
 {% endblock %}
 <script>
   if(document.getElementsByTagName("body")) {
@@ -104,7 +74,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     htmlTag.className = classes.replace("no-js", "");
   }
 </script>
-        {% include "standalone/on-demand/header.html" %}
     <div id="page">
         {% block app_notification %}
         {% endblock %}
@@ -123,25 +92,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </section><!--/main_content-->
         </div><!-- /wrapper -->
     </div><!-- /#page -->
-    {% include "standalone/on-demand/footer.html" %}
-<script type='text/javascript'>
-//<![CDATA[
-    var usasearch_config = { siteHandle: 'cfpb' };
 
-    var script = document.createElement( 'script' );
-    script.type = 'text/javascript';
-    script.src = 'http://search.usa.gov/javascripts/remote.loader.js';
-    document.getElementsByTagName( 'head' )[0].appendChild( script );
-//]]>
-</script>
-    {% block app_modal %}
-    {% endblock %}
-
+{% block app_modal %}
+{% endblock %}
 
 {% block nemo_js %}
-<script type="text/javascript" src="{% static 'agreements/js/chosen.jquery.js' %}"></script>
 {% endblock %}
-<script src="{% static 'nemo/_/js/functions.js' %}"></script>
+
 {% block app_js %}
 {% endblock %}
 
@@ -151,14 +108,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript">
     // If there are no breadcrumbs on this page, remove the ul tag so that screen
     // readers don't read it (since the ul has nothing in it).
-    $(function(){
-        var numBreadCrumbs = $("ul.bread").children("li").length;
-        if(numBreadCrumbs == 0){
-            $("ul.bread").remove();
-        }
-    });
+    (function(){
+      var numBreadCrumbs = document.querySelector("ul.bread");
+      if(numBreadCrumbs.children.length == 0){
+        numBreadCrumbs.parentNode.removeChild(numBreadCrumbs);
+      }
+    })();
 </script>
-<script type="text/javascript" src="{% static 'js/atomic/header.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/atomic/footer.js' %}"></script>
 </body>
 </html>
