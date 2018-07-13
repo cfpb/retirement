@@ -18,7 +18,6 @@ const fetch = {
       url: url,
       dataType: 'json',
       success: function( resp ) {
-        console.log( 'ajax success!' );
         if ( resp.error === '' ) {
           update.processApiData( resp );
         }
