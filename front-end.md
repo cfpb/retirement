@@ -15,19 +15,6 @@ This document currently refers to front-end work done by:
 * Marteki Reed (@marteki)
 * Nicholas Johnson (@niqjohnson)
 
-## Simplicity Is Our Preference
-
-This front-end attempts to be exceedingly simple. It does not rely on a
-framework, or libraries other than widely-established standard choices, e.g.
-jQuery. In fact, the client's front-end only relies on jQuery, which is, of
-course, compiled into the final JS file. This hopefully makes the application
-resilient against disappearing dependencies and major version changes to
-dependencies in the future.
-
-The front-end build is a different animal, reliant on things like `gulp`
-and `browserify`. Again, it sticks to widely-established standard choices
-here, and only choices that have been established as CFPB standards.
-
 ## Following the CFPB Front-End Standards
 
 This front-end attempts to follow the [CFPB Front-End
@@ -49,7 +36,7 @@ individual view's JS file.
 
 ### The Models
 
-As of `0.4.7` (4/28/2016), there are two models in the front-end:
+As of `0.6.2` (7/12/2018), there are two models in the front-end:
 
 * __(Monthly) Benefits Model__ (`src/models/benefits-model.js`) - This model
 contains the monthly benefit of the user at any given retirement age, based on
@@ -66,12 +53,15 @@ being calculated in the backend and passed along as well.
 
 ### The Views
 
-As of `0.4.7` (4/28/2016), there are three views in the front-end:
+As of `0.6.2` (7/12/2018), there are four views in the front-end:
 
 * __Graph View__ (`src/views/graph-view.js`) - This view does a majority of the
 work on the page, since the most complexity exists in the display of the graph
 elements and their interactions. More information is available in the JSDoc
 comments for the individual functions inside this view.
+
+* __Next Steps View__ (`src/views/next-steps-view.js`) - This view handles the
+feedback form and such at the bottom of the form.
 
 * __Questions View__ (`src/views/questions-view.js`) - This view handles the
 questions in Step 2, including ensuring the user sees the appropriate
@@ -84,7 +74,7 @@ throughout the page.
 
 ### The Wizards
 
-As of `0.4.7` (4/28/2016), there are three wizards in the front-end:
+As of `0.6.2` (7/12/2018), there are three wizards in the front-end:
 
 * __Fetch API Data__ (`/src/wizards/fetch-api-data.js`) - This wizard handles
 the interaction when a user uses the graph view's form to request Social
@@ -108,7 +98,7 @@ contained functions that are used by the views and models. These utilities are
 generally akin to npm packages, but haven't quite made the jump to primetime
 yet.
 
-As of `0.4.7` (4/28/2016), there are four utilities in the front-end:
+As of `0.6.2` (7/12/2018), there are five utilities in the front-end:
 
 * __Enforce Range__ (`/src/utils/enforce-range.js`) - This is a very simple
 utility that ensures a number falls within a range, and changes the number to
@@ -116,12 +106,15 @@ the max or min value if it falls outside that range. It's very useful for
 `valid-dates.js`.
 
 * __Handle String Input__ (`/src/utils/handle-string-input.js`) - This is
-hopefully a more elegant way to take in a string and interpet the Number
+hopefully a more elegant way to take in a string and interpet the number
 intended by the user than alternatives like `parseInt`. It tries hard to
 determine decimal placement and whether the intended Number is negative.
 
+* __Is element in View__ (`/src/utils/is-element-in-view.js`) - Returns true
+or false on the question of whether an element is in the user's browser view.
+
 * __Number to Money__ (`/src/utils/num-to-money.js`) - A simple function that
-takes a Number and formats it into a currency String.
+takes a number and formats it into a currency String.
 
 * __Valid Dates__ (`/src/utils/valid-dates.js`) - A function that determines
 whether a given date combination is valid. Dates of birth are validated
@@ -131,10 +124,10 @@ before they're sent off to the API.
 ## gettext and Translation
 
 The application makes use of `gettext()`, a function created by Django
-for use in Javascript to retrieve translations of text elements. For the
-most part, this function is called as `window.gettext` and doesn't really
-interact with the rest of the front-end, instead simply providing translated
-Strings in places.
+for use in JavaScript to retrieve translations of text elements.
+This function is called as `window.gettext` and doesn't really
+interact with the rest of the front-end,
+instead simply providing translated strings in places.
 
 ## Graph and visualization choices
 
@@ -142,7 +135,7 @@ Originally, this application used the Raphael graphics library to provide
 SVGs and support for older browsers which do not render SVGs. However, Raphael
 was much more complexity than was required.
 
-Since all but one of the shapes in the graph are simple rectangles, we decided
-to remove Raphael and instead use styled HTML elements. This gave us the distinct
-advantage of complete functionality in older browsers as well as easy fidelity
-in mobile browsers. 
+Since all but one of the shapes in the graph are simple rectangles,
+we decided to remove Raphael and instead use styled HTML elements.
+This gave us the distinct advantage of complete functionality
+in older browsers as well as easy fidelity in mobile browsers.

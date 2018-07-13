@@ -1,20 +1,20 @@
 
-var chai = require('chai');
-var expect = require('chai').expect;
+const chai = require('chai');
+const expect = require('chai').expect;
 
-var numToMoney = require( '../src/js/utils/num-to-money' );
-var enforceRange = require( '../src/js/utils/enforce-range' );
-var validDates = require( '../src/js/utils/valid-dates' );
-var handleStringInput = require( '../src/js/utils/handle-string-input' );
+const numToMoney = require( '../src/js/utils/num-to-money' );
+const enforceRange = require( '../src/js/utils/enforce-range' );
+const validDates = require( '../src/js/utils/valid-dates' );
+const handleStringInput = require( '../src/js/utils/handle-string-input' );
 
 
 describe( 'numToMoney...', function() {
-  it( '...turn 5 into $5', function() {
-    expect( numToMoney( 5 )).to.equal( '$5' );
+  it( '...turn 5000000 into $5,000,000', function() {
+    expect( numToMoney( 5000000 )).to.equal( '$5,000,000' );
   });
 
-  it( '...should turn -5 into -$5', function() {
-    expect( numToMoney( -5 )).to.equal( '-$5' );
+  it( '...should turn -5000000 into -$5,000,000', function() {
+    expect( numToMoney( -5000000 )).to.equal( '-$5,000,000' );
   });
 
   it( '...should turn _undefined_ into $0', function() {
@@ -83,7 +83,7 @@ describe( 'validDates...', function() {
 
   it( '...should change two-digit years to be 19XX', function() {
     expect( validDates( 13, 31, 55 )['concat'] ).to.equal( '12-31-1955' );
-    expect( validDates( 0, 31, 00 )['concat'] ).to.equal( '1-31-1900' );
+    expect( validDates( 0, 31, 0 )['concat'] ).to.equal( '1-31-1900' );
   });
 
   it( '...should understand leap years', function() {

@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * This function turns a string into a number. We assume each number in the
  * string should be preserved (unlike parseInt). We also assume the first
@@ -11,10 +9,10 @@ function handleStringInput( numberString ) {
   if ( typeof numberString === 'number' ) {
     return numberString;
   }
-  var signMaker = 1,
-      minusPosition = numberString.indexOf( numberString.match( '-' ) ),
-      digitPosition = numberString.indexOf( numberString.match( /\d/ ) ),
-      dashPosition = numberString.indexOf( numberString.match( '-' ) );
+  let signMaker = 1;
+  const minusPosition = numberString.indexOf( numberString.match( '-' ) );
+  const digitPosition = numberString.indexOf( numberString.match( /\d/ ) );
+  const dashPosition = numberString.indexOf( numberString.match( '-' ) );
 
   // If a '-' appears before the first digit, we assume numberString is negative
   if ( dashPosition !== -1 && minusPosition < digitPosition ) {

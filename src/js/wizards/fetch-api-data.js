@@ -1,10 +1,11 @@
-'use strict';
+import update from './update-model';
 
-var update = require( './update-model' );
+// TODO: remove jquery.
+import $ from 'jquery';
 
-var fetch = {
+const fetch = {
   apiData: function( birthdate, salary, dataLang ) {
-    var url;
+    let url;
     if ( dataLang === 'es' ) {
       url = '/retirement/retirement-api/estimator/' +
         birthdate + '/' + Number( salary ) + '/es/';
@@ -13,7 +14,7 @@ var fetch = {
         birthdate + '/' + Number( salary ) + '/';
     }
 
-    var apiDataRequest = $.ajax( {
+    const apiDataRequest = $.ajax( {
       url: url,
       dataType: 'json',
       success: function( resp ) {

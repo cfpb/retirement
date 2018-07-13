@@ -1,15 +1,9 @@
-'use strict';
+import benefitsModel from '../models/benefits-model';
+import lifetimeModel from '../models/lifetime-model';
 
-var benefitsModel = require( '../models/benefits-model' );
-var lifetimeModel = require( '../models/lifetime-model' );
-
-var getModel = {
-  benefits: function() {
-    return benefitsModel.values;
-  },
-  lifetime: function() {
-    return lifetimeModel.values;
-  }
+const getModel = {
+  benefits: () => benefitsModel.values,
+  lifetime: () => lifetimeModel.values
 };
 
 module.exports = getModel;

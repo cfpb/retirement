@@ -1,6 +1,18 @@
 Notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## UNRELEASED
+- Convert browserify config to webpack.
+- Remove unused dependencies.
+- Remove dependency on consumerfinance.gov in standalone mode.
+- Remove header and footer in standalone mode.
+- Update ESLint config to version 5.
+- Fix linter errors.
+- Convert to ES6 syntax.
+- Minor code comment cleanup.
+- Update test to test additional number formatting condition.
+- Remove global install of snyk.
+
 ## 0.6.1
 - Fix handling of Leap Day birthdays
 - Used Snyk to walk through updating some dependencies with vulnerabilities

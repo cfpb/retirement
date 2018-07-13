@@ -1,10 +1,8 @@
-'use strict';
-
 /*
-  lifetimeModel is a class that stores lifetime benefit values for each
+  lifetimeModel is an object that stores lifetime benefit values for each
   claiming age.
   */
-var lifetimeModel = {
+const lifetimeModel = {
   values: {
     age62: 1,
     age63: 1,
@@ -20,4 +18,3 @@ var lifetimeModel = {
 
 
 module.exports = lifetimeModel;
-

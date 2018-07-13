@@ -91,7 +91,6 @@ module.exports = {
     },
     vendorjs: {
       src: [
-        loc.lib + '/box-sizing-polyfill/boxsizing.htc',
         loc.lib + '/html5shiv/dist/html5shiv-printshiv.min.js'
       ],
       dest: loc.dist + '/js/'

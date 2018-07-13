@@ -1,9 +1,10 @@
-'use strict';
+import benefitsModel from '../models/benefits-model';
+import lifetimeModel from '../models/lifetime-model';
 
-var benefitsModel = require( '../models/benefits-model' );
-var lifetimeModel = require( '../models/lifetime-model' );
+// TODO: remove jquery.
+import $ from 'jquery';
 
-var update = {
+const update = {
 
   /**
    * This function updates properties of the benefits model
@@ -23,14 +24,14 @@ var update = {
    * @param {object} resp   The AJAX response object
    */
   processApiData: function( resp ) {
-    var data = resp.data,
-        fullAge = Number( data['full retirement age'].substr( 0, 2 ) );
+    const data = resp.data;
+    let fullAge = Number( data['full retirement age'].substr( 0, 2 ) );
     if ( resp.currentAge > fullAge ) {
       fullAge = resp.currentAge;
     }
     $.each( resp.data.benefits, function( i, val ) {
       if ( i.substr( 0, 3 ) === 'age' ) {
-        var prop = i.replace( ' ', '' );
+        const prop = i.replace( ' ', '' );
         update.benefits( prop, val );
       }
     } );

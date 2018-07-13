@@ -1,10 +1,8 @@
-'use strict';
-
 /*
-  benefitsModel is a class that stores values for benefits and
+  benefitsModel is an object that stores values for benefits and
   performs operations on those values.
   */
-var benefitsModel = {
+const benefitsModel = {
   values: {
     fullAge: 67,
     age62: 1515,

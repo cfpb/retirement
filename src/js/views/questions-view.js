@@ -1,12 +1,13 @@
-'use strict';
+// TODO: remove jquery.
+import $ from 'jquery';
 
-var questionsView = {
+const questionsView = {
 
   init: function() {
-    var $buttons = $( '.step-two .question .lifestyle-btn' );
+    const $buttons = $( '.step-two .question .lifestyle-btn' );
 
     $buttons.click( function() {
-      var $container = $( this ).closest( '.question' ),
+      let $container = $( this ).closest( '.question' ),
           respTo = $( this ).val(),
           selector;
       $container.find( '.lifestyle-btn' )
@@ -24,13 +25,11 @@ var questionsView = {
     } );
   },
 
-  /*
-   * This function updates the text in the "questions" in Step 2
-   * based on the user's current age
-   * @param {number} currentAge   The user's current age
-   */
+  /* This function updates the text in the "questions" in Step 2
+     based on the user's current age
+     @param {number} currentAge   The user's current age */
   update: function( currentAge ) {
-    var $ageSplits = $( '.lifestyle-btn.age-split' );
+    const $ageSplits = $( '.lifestyle-btn.age-split' );
     if ( currentAge < 50 ) {
       $ageSplits.each( function() {
         $( this ).val(

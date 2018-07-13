@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * This function ensures ( min <= n <= max ) by setting n to the min
  * or the max if it falls outside the range. If min or max is set to
