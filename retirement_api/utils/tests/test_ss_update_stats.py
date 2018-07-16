@@ -7,7 +7,6 @@ import shutil
 import tempfile
 import csv
 import datetime
-import lxml
 
 from bs4 import BeautifulSoup as bs
 import requests
@@ -64,7 +63,7 @@ class UpdateSsStatsTests(TestCase):
         mockpath = "{0}/mock_life.csv".format(self.tempdir)
         with open(self.life_page, 'r') as f:
             mockpage = f.read()
-        table = bs(mockpage, 'lxml').find('table').find('table')
+        table = bs(mockpage, 'html.parser').find('table').find('table')
         rows = table.findAll('tr')[2:]
         output_csv(mockpath, self.life_headings, rows)
         self.assertTrue(os.path.isfile(mockpath))
@@ -87,7 +86,7 @@ class UpdateSsStatsTests(TestCase):
         }
         with open(self.life_page, 'r') as f:
             mockpage = f.read()
-        table = bs(mockpage, 'lxml').find('table').find('table')
+        table = bs(mockpage, 'html.parser').find('table').find('table')
         rows = table.findAll('tr')[2:]
         output_json(mockpath, self.life_headings, rows)
         self.assertTrue(os.path.isfile(mockpath))
@@ -135,7 +134,7 @@ class UpdateSsStatsTests(TestCase):
         # arrange
         with open(self.earlyretire_page, 'r') as f:
             mockpage = f.read()
-        mock_soup.return_value = bs(mockpage, 'lxml')
+        mock_soup.return_value = bs(mockpage, 'html.parser')
 
         # action
         utils.ss_update_stats.update_example_reduction()
@@ -154,7 +153,7 @@ class UpdateSsStatsTests(TestCase):
         # arrange
         with open(self.life_page, 'r') as f:
             mockpage = f.read()
-        mock_soup.return_value = bs(mockpage, 'lxml')
+        mock_soup.return_value = bs(mockpage, 'html.parser')
 
         # action
         msg = utils.ss_update_stats.update_life()
@@ -174,7 +173,7 @@ class UpdateSsStatsTests(TestCase):
         # arrange
         with open(self.cola_page, 'r') as f:
             mockpage = f.read()
-        mock_soup.return_value = bs(mockpage, 'lxml')
+        mock_soup.return_value = bs(mockpage, 'html.parser')
 
         # action
         utils.ss_update_stats.update_cola()
@@ -191,7 +190,7 @@ class UpdateSsStatsTests(TestCase):
         # arrange
         with open(self.awi_page, 'r') as f:
             mockpage = f.read()
-        mock_soup.return_value = bs(mockpage, 'lxml')
+        mock_soup.return_value = bs(mockpage, 'html.parser')
 
         # action
         utils.ss_update_stats.update_awi_series()

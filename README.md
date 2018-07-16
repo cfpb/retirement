@@ -28,7 +28,6 @@ Tú puedes ver este app en español por poner `/es` al parte final del url.
  * [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)
  * [Python-dateutil](https://dateutil.readthedocs.org/en/latest/)
  * [Requests](http://docs.python-requests.org/en/latest/)
- * [lxml](http://lxml.de/installation.html)
 
 ### For Python testing
  * [mock](https://mock.readthedocs.org/en/latest/)
@@ -49,18 +48,17 @@ git clone https://github.com/cfpb/retirement.git
 cd retirement
 setvirtualenvproject
 pip install -r requirements.txt
-cp test_settings.py settings.py
 ```
 
 Build the front-end requirements and the JavaScript files.
-  ```bash
-  ./frontendbuild.sh
-  ```
+```bash
+./frontendbuild.sh
+```
 
 Create a standalone database and load the app's tables and content.
 ```bash
 python manage.py migrate
-python manage.py loaddata retiredata.json
+python manage.py loaddata retirement_api/fixtures/retiredata.json
 ```
 
 Fire up a development server.
