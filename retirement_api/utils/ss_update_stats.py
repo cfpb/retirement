@@ -3,7 +3,6 @@ import sys
 import datetime
 import json
 import csv
-import lxml
 
 """
 terms:
@@ -82,7 +81,7 @@ def make_soup(url):
                                                req.reason)
         return ''
     else:
-        soup = bs(req.text, 'lxml')
+        soup = bs(req.text, 'html.parser')
         return soup
 
 

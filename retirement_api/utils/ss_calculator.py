@@ -399,7 +399,7 @@ def set_up_runvars(params, language='en'):
 
 
 def parse_response(results, html, language):
-    soup = bs(html, 'lxml')
+    soup = bs(html, 'html.parser')
     if soup.find('p') and 'insufficient to receive' in soup.find('p').text:
         results['error'] = "benefit is zero"
         results['note'] = get_note('earnings', language)
