@@ -24,7 +24,7 @@ Tú puedes ver este app en español por poner `/es` al parte final del url.
  * [Gulp](http://gulpjs.com/)
 
 ### Code dependencies
- * [Django 1.8](https://docs.djangoproject.com/en/1.8/)
+ * [Django 1.8-1.11](https://docs.djangoproject.com/en/1.11/)
  * [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)
  * [Python-dateutil](https://dateutil.readthedocs.org/en/latest/)
  * [Requests](http://docs.python-requests.org/en/latest/)
@@ -47,7 +47,7 @@ mkvirtualenv retirement
 git clone https://github.com/cfpb/retirement.git
 cd retirement
 setvirtualenvproject
-pip install -r requirements.txt
+pip install -e '.[testing]'
 ```
 
 Build the front-end requirements and the JavaScript files.
@@ -66,23 +66,24 @@ Fire up a development server.
 python manage.py runserver
 ```
 
-The "Before You Claim" page should load at `localhost:8000/retirement/before-you-claim/`.
+The "Before You Claim" page should load at `localhost:8000/before-you-claim/`.
 
 ### Usage notes
 - The app is set up to run inside [consumerfinance.gov](http://www.consumerfinance.gov), so if you run it locally, some fonts may not load because of [Cross-Origin Resource Sharing](http://www.w3.org/TR/cors/) policies.
 - The app sends http requests to the Social Security Administration's [Quick Calculator](http://www.ssa.gov/OACT/quickcalc/index.html) to get benefit estimates for the chart.
 
 ### How to run software tests
-- You can use nose to run the Python test suite and see code coverage information:
+- To run the Python tests, install [tox](https://tox.readthedocs.io/en/latest/) and then run it:
 
-  ```bash
-  ./pytest.sh
-  ```
+```bash
+tox
+```
+
 - You can run the JavaScript tests with:
 
-  ```bash
-  npm test
-  ```
+```bash
+npm test
+```
 
 ## Additional documentation
 * [Front-end documentation](front-end.md)

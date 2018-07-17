@@ -1,14 +1,8 @@
 [run]
-omit = 
-    ../*admin*
-    ../*urls*
-    retirement_api/migrations/*
-    setup.py
-    retirement_api/settings.py
+source=retirement_api
 
 [report]
-
-exclude_lines = 
+exclude_lines=
     pragma: no cover
     def __unicode__
     if __name__ == .__main__.:

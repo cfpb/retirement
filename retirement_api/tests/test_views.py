@@ -5,23 +5,13 @@ import json
 
 import mock
 
-from django.test import Client
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.test import TestCase
 # import unittest
 from django.http import HttpRequest
-from django.conf import settings
 
-client = Client()
-# if __name__ == '__main__':
-#     BASE_DIR = '~/Projects/retirement1.6/retirement/retirement_api'
-# else:
-#     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-sys.path.append(BASE_DIR)
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 from retirement_api.views import (param_check,
                                   income_check,
@@ -62,11 +52,11 @@ class ViewTests(TestCase):
     return_keys = ['data', 'error']
 
     def test_base_view(self):
-        url = reverse('claiming')
-        response = client.get(url)
+        url = reverse('retirement_api:claiming')
+        response = self.client.get(url)
         self.assertTrue(response.status_code == 200)
-        url = reverse('claiming_es')
-        response = client.get(url)
+        url = reverse('retirement_api:claiming_es')
+        response = self.client.get(url)
         self.assertTrue(response.status_code == 200)
 
     def test_param_check(self):
@@ -141,9 +131,9 @@ class ViewTests(TestCase):
         self.assertTrue(response.status_code == 400)
 
     def test_about_pages(self):
-        url = reverse('retirement_about')
-        response = client.get(url)
+        url = reverse('retirement_api:about')
+        response = self.client.get(url)
         self.assertTrue(response.status_code == 200)
-        url = reverse('retirement_about_es', kwargs={'language': 'es'})
-        response = client.get(url)
+        url = reverse('retirement_api:about_es', kwargs={'language': 'es'})
+        response = self.client.get(url)
         self.assertTrue(response.status_code == 200)

@@ -7,10 +7,10 @@ const fetch = {
   apiData: function( birthdate, salary, dataLang ) {
     let url;
     if ( dataLang === 'es' ) {
-      url = '/retirement/retirement-api/estimator/' +
+      url = '../../retirement-api/estimator/' +
         birthdate + '/' + Number( salary ) + '/es/';
     } else {
-      url = '/retirement/retirement-api/estimator/' +
+      url = '../retirement-api/estimator/' +
         birthdate + '/' + Number( salary ) + '/';
     }
 
