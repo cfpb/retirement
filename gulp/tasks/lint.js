@@ -1,7 +1,7 @@
 const gulp = require( 'gulp' );
 const gulpEslint = require( 'gulp-eslint' );
 const configLint = require( '../config' ).lint;
-const handleErrors = require( '../utils/handleErrors' );
+const handleErrors = require( '../utils/handle-errors' );
 const minimist = require( 'minimist' );
 const through2 = require( 'through2' );
 

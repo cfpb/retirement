@@ -9,7 +9,7 @@ const mqr = require( 'gulp-mq-remove' );
 const pkg = require( '../config' ).pkg;
 const banner = require( '../config' ).banner;
 const configStyles = require( '../config' ).styles;
-const handleErrors = require( '../utils/handleErrors' );
+const handleErrors = require( '../utils/handle-errors' );
 
 gulp.task( 'styles:modern', function() {
   return gulp.src( configStyles.cwd + configStyles.src )

@@ -1,7 +1,7 @@
 const gulp = require( 'gulp' );
 const gulpChanged = require( 'gulp-changed' );
 const configCopy = require( '../config' ).copy;
-const handleErrors = require( '../utils/handleErrors' );
+const handleErrors = require( '../utils/handle-errors' );
 
 gulp.task( 'copy:files', function() {
   return gulp.src( configCopy.files.src )
