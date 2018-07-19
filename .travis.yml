@@ -3,8 +3,6 @@ python:
 - '2.7'
 cache: pip
 env: DJ_KEY=testkey
-before_install:
-- nvm use 6
 install:
 - pip install coveralls tox
 before_script:
