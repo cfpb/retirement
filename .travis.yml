@@ -3,18 +3,13 @@ python:
 - '2.7'
 cache: pip
 env: DJ_KEY=testkey
-before_install:
-- nvm use 6
 install:
-- pip install -r requirements.txt
-- pip install coveralls
+- pip install coveralls tox
 before_script:
-    - npm install -g bower gulp-cli
-    - bower install
+  - npm install -g bower gulp-cli
+  - bower install
 script:
-- cp test_settings.py settings.py
-- ./manage.py migrate
-- coverage run --source='.' manage.py test
+- tox
 - python2.7 setup.py bdist_wheel
 - ls dist/*
 after_success:

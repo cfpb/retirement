@@ -2,6 +2,30 @@ import os
 from setuptools import setup
 
 
+
+install_requires = [
+    'beautifulsoup4==4.3.2',
+    'Django>=1.8,<1.12',
+    'django-filter==0.9.2',
+    'dj-database-url==0.4.2',
+    'python-dateutil==2.2',
+    'requests==2.9.1',
+    'six==1.9.0',
+]
+
+
+setup_requires=[
+    'cfgov-setup==1.2',
+    'setuptools-git-version==1.0.3',
+]
+
+
+testing_extras = [
+    'coverage==4.2',
+    'mock==1.0.1',
+]
+
+
 def read_file(filename):
     """Read a file into a string"""
     path = os.path.abspath(os.path.dirname(__file__))
@@ -34,7 +58,10 @@ setup(
     ],
     long_description=read_file('README.md'),
     zip_safe=False,
-    setup_requires=['cfgov-setup==1.2', 'setuptools-git-version==1.0.3'],
-    frontend_build_script='frontendbuild.sh',
-
+    install_requires=install_requires,
+    setup_requires=setup_requires,
+    extras_require={
+        'testing': testing_extras,
+    },
+    frontend_build_script='frontendbuild.sh'
 )

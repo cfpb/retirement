@@ -2,7 +2,7 @@ import os
 import json
 
 from django.conf import settings
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest
 from .utils.ss_calculator import get_retire_data
 from .utils.ss_utilities import get_retirement_age
@@ -16,7 +16,7 @@ BASEDIR = os.path.dirname(__file__)
 standalone = getattr(settings, 'STANDALONE', False)
 
 if standalone:
-    base_template = "standalone/base_update.html"
+    base_template = "retirement_api/standalone/base_update.html"
 else:  # pragma: no cover
     base_template = "front/base_update.html"
 
@@ -39,6 +39,7 @@ def claiming(request, es=False):
     final_steps = {}
     for step in Step.objects.filter(title__contains='final_'):
         final_steps[step.title] = step
+
     cdict = {
         'tstamp': datetime.datetime.now(),
         'final_steps': final_steps,
@@ -49,8 +50,10 @@ def claiming(request, es=False):
         'base_template': base_template,
         'available_languages': ['en', 'es'],
         'es': es,
-        }
-    return render_to_response('claiming.html', cdict)
+        'about_view_name': 'retirement_api:' + ('about_es' if es else 'about'),
+    }
+
+    return render(request, 'retirement_api/claiming.html', cdict)
 
 
 def param_check(request, param):
@@ -135,4 +138,4 @@ def about(request, language='en'):
         'available_languages': ['en', 'es'],
         'es': es
         }
-    return render_to_response('about.html', cdict)
+    return render(request, 'retirement_api/about.html', cdict)
