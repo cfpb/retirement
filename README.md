@@ -22,6 +22,7 @@ Tú puedes ver este app en español por poner `/es` al parte final del url.
  * [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/)
  * [Node](http://nodejs.org/)
  * [Gulp](http://gulpjs.com/)
+ * [Bower](https://bower.io/)
 
 ### Code dependencies
  * [Django 1.8-1.11](https://docs.djangoproject.com/en/1.11/)
