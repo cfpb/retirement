@@ -62,12 +62,6 @@ module.exports = {
     dest: loc.dist + '/js/',
     name: 'main.js'
   },
-  browserify: {
-    paths: {
-      scripts: 'retirement_api/static/retirement/js/claiming-social-security.js',
-      dest: 'dist/scripts/'
-    }
-  },
   images: {
     src:  loc.src + '/img/**',
     dest: loc.dist + '/images'

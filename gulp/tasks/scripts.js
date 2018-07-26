@@ -1,7 +1,7 @@
 const gulp = require( 'gulp' );
 const gulpRename = require( 'gulp-rename' );
 const configScripts = require( '../config' ).scripts;
-const handleErrors = require( '../utils/handleErrors' );
+const handleErrors = require( '../utils/handle-errors' );
 const webpack = require( 'webpack' );
 const webpackConfig = require( '../../config/webpack-config.js' );
 const webpackStream = require( 'webpack-stream' );
