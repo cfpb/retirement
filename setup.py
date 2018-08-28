@@ -6,7 +6,6 @@ from setuptools import setup
 install_requires = [
     'beautifulsoup4==4.3.2',
     'Django>=1.8,<1.12',
-    'django-filter==0.9.2',
     'dj-database-url==0.4.2',
     'python-dateutil==2.2',
     'requests==2.9.1',
