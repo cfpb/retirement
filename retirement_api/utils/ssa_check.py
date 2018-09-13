@@ -1,11 +1,9 @@
 # utilities for checking results from SSA's Quick Calculator
-import sys
 import datetime
 from copy import copy
 import json
 import logging
 
-from django.http import HttpRequest
 from .ss_calculator import get_retire_data
 from ..models import Calibration
 
@@ -117,7 +115,6 @@ def check_results(test_data, TESTS):
 def run_tests(recalibrate=False):
     collector = {}
     TESTS = assemble_test_params()
-    tstamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')
     for test in TESTS:
         # sys.stdout.write('.')
         # sys.stdout.flush()

@@ -6,11 +6,10 @@ import sys
 import requests
 import datetime
 import json
-import time
 import logging
 import random
 import signal
-from urlparse import urlparse
+import time
 
 timestamp = datetime.datetime.now()
 default_base = 'build'
@@ -127,6 +126,7 @@ def run(base):
     # with open('%s/tests/logs/api_check.log' % API_ROOT, 'a') as f:
     #     f.write("%s\n" % msg)
     return collector
+
 
 if __name__ == '__main__':
     """

@@ -1,12 +1,10 @@
 import mock
 import unittest
 
-from django.core.management.base import CommandError
 from six import StringIO
 
 from django.core.management import call_command
 
-from retirement_api.management.commands import check_ssa_values, check_ssa
 from retirement_api.utils.check_api import collector
 
 
@@ -32,4 +30,4 @@ class CommandTests(unittest.TestCase):
     def test_check_ssa(self, mock_run):
         mock_run.return_value = collector
         call_command('check_ssa', stdout=out)
-        self.assertTrue(mock_run.call_count == 1)
+        self.assertEqual(mock_run.call_count, 1)

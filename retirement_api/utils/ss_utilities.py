@@ -58,6 +58,7 @@ def get_note(note_type, language):
     else:
         return AGE_ERROR_NOTES[note_type]['en']
 
+
 # this datafile specifies years that have unique retirement age values
 # since this may change, it is maintained in an external file
 datafile = "{0}\
