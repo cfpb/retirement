@@ -3,6 +3,7 @@ import sys
 import datetime
 import json
 import csv
+import logging
 
 """
 terms:
@@ -45,6 +46,9 @@ ss_table_urls = {
     }
 
 
+log = logging.getLogger(__name__)
+
+
 def output_csv(filepath, headings, bs_rows):
     with open(filepath, 'w') as f:
         writer = csv.writer(f)
@@ -76,9 +80,9 @@ def output_json(filepath, headings, bs_rows):
 def make_soup(url):
     req = requests.get(url)
     if req.reason != 'OK':
-        print "request to %s failed: %s %s" % (url,
-                                               req.status_code,
-                                               req.reason)
+        log.warn("request to %s failed: %s %s" % (url,
+                                                  req.status_code,
+                                                  req.reason))
         return ''
     else:
         soup = bs(req.text, 'html.parser')
@@ -105,9 +109,9 @@ def update_example_reduction():
         table = soup.findAll('table')[5].find('table')
         rows = [row for row in table.findAll('tr') if row.findAll('td')]
         output_csv(outcsv, headings, rows)
-        print "updated %s with %s rows" % (outcsv, len(rows))
+        log.info("updated %s with %s rows" % (outcsv, len(rows)))
         output_json(outjson, headings, rows)
-        print "updated %s with %s entries" % (outjson, len(rows))
+        log.info("updated %s with %s entries" % (outjson, len(rows)))
 
 
 def update_awi_series():
@@ -119,14 +123,14 @@ def update_awi_series():
     if soup:
         tables = soup.findAll('table')[1].findAll('table')
         rows = []
-        print "found %s tables" % len(tables)
+        log.info("found %s tables" % len(tables))
         for table in tables:
             rows.extend([row for row in table.findAll('tr')
                         if row.findAll('td')])
         output_csv(outcsv, headings, rows)
-        print "updated %s with %s rows" % (outcsv, len(rows))
+        log.info("updated %s with %s rows" % (outcsv, len(rows)))
         output_json(outjson, headings, rows)
-        print "updated %s with %s entries" % (outjson, len(rows))
+        log.info("updated %s with %s entries" % (outjson, len(rows)))
 
 
 def update_cola():
@@ -139,13 +143,13 @@ def update_cola():
         [s.extract() for s in soup('small')]
         tables = soup.findAll('table')[-3:]
     rows = []
-    print "found %s tables" % len(tables)
+    log.info("found %s tables" % len(tables))
     for table in tables:
         rows.extend([row for row in table.findAll('tr') if row.findAll('td')])
     output_csv(outcsv, headings, rows)
-    print "updated %s with %s rows" % (outcsv, len(rows))
+    log.info("updated %s with %s rows" % (outcsv, len(rows)))
     output_json(outjson, headings, rows)
-    print "updated %s with %s entries" % (outjson, len(rows))
+    log.info("updated %s with %s entries" % (outjson, len(rows)))
 
 
 def update_life():
@@ -167,7 +171,7 @@ def update_life():
     if soup:
         table = soup.find('table').find('table')
         if not table:
-            print "couldn't find table at %s" % url
+            log.info("couldn't find table at %s" % url)
         else:
             rows = table.findAll('tr')[2:]
             if len(rows) > 100:
@@ -177,7 +181,7 @@ def update_life():
                 msg += "updated {0} with {1} entries".format(outjson, len(rows))
             else:
                 msg += "didn't find more than 100 rows at {0}".format(url)
-    print msg
+    log.info(msg)
     return msg
 
 
@@ -190,4 +194,4 @@ def harvest_all():
 if __name__ == "__main__":
     starter = datetime.datetime.now()
     harvest_all()
-    print("update took {0} to update four data stores".format((datetime.datetime.now()-starter)))
+    log.info("update took {0} to update four data stores".format((datetime.datetime.now()-starter)))

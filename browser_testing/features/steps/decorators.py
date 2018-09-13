@@ -1,5 +1,10 @@
 from datetime import datetime
+import logging
 import sys
+
+
+logger = logging.getLogger(__name__)
+
 
 def handle_error(fn):
     """
@@ -13,11 +18,11 @@ def handle_error(fn):
             return fn(*args, **kwargs)
         except Exception:
             filename = datetime.now().isoformat()
-            print("kwargs: %s" % kwargs)
+            logger.exception("kwargs: %s" % kwargs)
             try:
                 args[0].base.get_screenshot(filename)
             except Exception:
-                print ("HANDLER FAILURE:", sys.exc_info())
+                logger.exception("HANDLER FAILURE:", sys.exc_info())
 
             raise
 

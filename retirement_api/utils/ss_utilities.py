@@ -3,6 +3,7 @@ import os
 import json
 import datetime
 from dateutil import parser
+import logging
 
 TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
@@ -123,21 +124,22 @@ def yob_test(yob=None):
     tests to make sure suppied birth year is valid;
     returns valid birth year as a string or None
     """
+    log = logging.getLogger(__name__)
     today = datetime.datetime.now().date()
     if not yob:
         return None
     try:
         birth_year = int(yob)
     except:
-        print "birth year should be a number"
+        log.warn("birth year should be a number")
         return None
     else:
         b_string = str(birth_year)
         if birth_year > today.year:
-            print "can't work with birth dates in the future"
+            log.warn("can't work with birth dates in the future")
             return None
         elif len(b_string) != 4:
-            print "please supply a 4-digit birth year"
+            log.warn("please supply a 4-digit birth year")
             return None
         else:
             return b_string

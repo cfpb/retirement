@@ -53,6 +53,22 @@ if 'DATABASE_URL' in os.environ:
 
 LANGUAGE_CODE = 'en-us'
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'CRITICAL',
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+        }
+    }
+}
+
 TIME_ZONE = 'America/New_York'
 
 USE_I18N = True

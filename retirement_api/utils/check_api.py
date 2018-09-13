@@ -7,6 +7,7 @@ import requests
 import datetime
 import json
 import time
+import logging
 import random
 import signal
 from urlparse import urlparse
@@ -142,5 +143,5 @@ if __name__ == '__main__':
         if BASE in BASES:
             run(BASE)
         else:
-            print helpmsg
+            logging.getLogger(__name__).info(helpmsg)
             sys.exit()
