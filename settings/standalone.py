@@ -3,7 +3,9 @@ import os
 import dj_database_url
 
 from django.utils.translation import ugettext_lazy as _
-BASE_DIR = os.path.dirname(__file__)
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = 'secret_for_testing_only'
 LANGUAGES = (
@@ -52,6 +54,22 @@ if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config()
 
 LANGUAGE_CODE = 'en-us'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+        }
+    }
+}
 
 TIME_ZONE = 'America/New_York'
 

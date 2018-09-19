@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from retirement_api.utils import ssa_check
 
 HELP_NOTE = """Checks a range of results from SSA's Quick Calculator \

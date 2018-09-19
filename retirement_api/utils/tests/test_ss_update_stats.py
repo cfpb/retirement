@@ -1,4 +1,3 @@
-from __future__ import print_function
 import os
 import sys
 import json
@@ -6,7 +5,6 @@ import datetime
 import shutil
 import tempfile
 import csv
-import datetime
 
 from bs4 import BeautifulSoup as bs
 import requests
@@ -156,8 +154,7 @@ class UpdateSsStatsTests(TestCase):
         mock_soup.return_value = bs(mockpage, 'html.parser')
 
         # action
-        msg = utils.ss_update_stats.update_life()
-        print(msg)
+        utils.ss_update_stats.update_life()
 
         # assert
 

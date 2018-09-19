@@ -1,10 +1,9 @@
 # utilities for checking results from SSA's Quick Calculator
-import sys
 import datetime
 from copy import copy
 import json
+import logging
 
-from django.http import HttpRequest
 from .ss_calculator import get_retire_data
 from ..models import Calibration
 
@@ -20,6 +19,8 @@ SSA_PARAMS = {
     'dollars': 1,
     'prgf': 2
 }
+
+logger = logging.getLogger(__name__)
 
 
 def get_test_params(age, dob_day, dob_year=None, income=40000):
@@ -107,14 +108,13 @@ def check_results(test_data, TESTS):
         return ("All tests pass on {0}; "
                 "last recalibrated on {1}".format(today, calibration.created.date()))
     else:
-        print error_msg
+        logger.warn(error_msg)
         return error_msg
 
 
 def run_tests(recalibrate=False):
     collector = {}
     TESTS = assemble_test_params()
-    tstamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')
     for test in TESTS:
         # sys.stdout.write('.')
         # sys.stdout.flush()

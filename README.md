@@ -67,7 +67,7 @@ Fire up a development server.
 python manage.py runserver
 ```
 
-The "Before You Claim" page should load at `localhost:8000/before-you-claim/`.
+The "Before You Claim" page should load at [localhost:8000/before-you-claim/](http://localhost:8000/before-you-claim).
 
 ### Usage notes
 - The app is set up to run inside [consumerfinance.gov](http://www.consumerfinance.gov), so if you run it locally, some fonts may not load because of [Cross-Origin Resource Sharing](http://www.w3.org/TR/cors/) policies.

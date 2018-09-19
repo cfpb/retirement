@@ -2,26 +2,24 @@ import os
 from setuptools import setup
 
 
-
 install_requires = [
-    'beautifulsoup4==4.3.2',
+    'beautifulsoup4>=4.5.0,<4.7',
     'Django>=1.8,<1.12',
-    'dj-database-url==0.4.2',
-    'python-dateutil==2.2',
-    'requests==2.9.1',
-    'six==1.9.0',
+    'dj-database-url>=0.4.2,<1',
+    'python-dateutil>=2.1<3',
+    'requests>=2.18,<3',
 ]
 
 
-setup_requires=[
+setup_requires = [
     'cfgov-setup==1.2',
     'setuptools-git-version==1.0.3',
 ]
 
 
 testing_extras = [
-    'coverage==4.2',
-    'mock==1.0.1',
+    'coverage>=4.5.1,<5',
+    'mock==2.0.0',
 ]
 
 

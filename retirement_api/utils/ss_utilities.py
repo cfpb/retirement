@@ -3,6 +3,7 @@ import os
 import json
 import datetime
 from dateutil import parser
+import logging
 
 TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
@@ -57,6 +58,7 @@ def get_note(note_type, language):
     else:
         return AGE_ERROR_NOTES[note_type]['en']
 
+
 # this datafile specifies years that have unique retirement age values
 # since this may change, it is maintained in an external file
 datafile = "{0}\
@@ -75,7 +77,7 @@ def get_current_age(dob):
     else:
         try:
             DOB = parser.parse(dob).date()
-        except:
+        except (TypeError, ValueError):
             return None
     if DOB < today:
         try:  # when dob is 2/29 and the current year is not a leap year
@@ -123,21 +125,22 @@ def yob_test(yob=None):
     tests to make sure suppied birth year is valid;
     returns valid birth year as a string or None
     """
+    log = logging.getLogger(__name__)
     today = datetime.datetime.now().date()
     if not yob:
         return None
     try:
         birth_year = int(yob)
-    except:
-        print "birth year should be a number"
+    except (TypeError, ValueError):
+        log.warn("birth year should be a number")
         return None
     else:
         b_string = str(birth_year)
         if birth_year > today.year:
-            print "can't work with birth dates in the future"
+            log.warn("can't work with birth dates in the future")
             return None
         elif len(b_string) != 4:
-            print "please supply a 4-digit birth year"
+            log.warn("please supply a 4-digit birth year")
             return None
         else:
             return b_string
@@ -172,7 +175,7 @@ def past_fra_test(dob=None, language='en'):
         return 'invalid birth date entered'
     try:
         DOB = parser.parse(dob).date()
-    except:
+    except (TypeError, ValueError):
         return 'invalid birth date entered'
     today = datetime.date.today()
     current_age = get_current_age(dob)

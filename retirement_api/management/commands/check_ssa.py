@@ -1,6 +1,4 @@
-import datetime
-
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from retirement_api.utils import check_api
 
 COMMAND_HELP = """Sends a test post to SSA's Quick Calculator \
