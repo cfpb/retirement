@@ -3,7 +3,9 @@ import os
 import dj_database_url
 
 from django.utils.translation import ugettext_lazy as _
-BASE_DIR = os.path.dirname(__file__)
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = 'secret_for_testing_only'
 LANGUAGES = (
@@ -58,7 +60,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'console': {
-            'level': 'CRITICAL',
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
         }
     },
