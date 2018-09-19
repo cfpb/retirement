@@ -77,7 +77,7 @@ def get_current_age(dob):
     else:
         try:
             DOB = parser.parse(dob).date()
-        except:
+        except (TypeError, ValueError):
             return None
     if DOB < today:
         try:  # when dob is 2/29 and the current year is not a leap year
@@ -131,7 +131,7 @@ def yob_test(yob=None):
         return None
     try:
         birth_year = int(yob)
-    except:
+    except (TypeError, ValueError):
         log.warn("birth year should be a number")
         return None
     else:
@@ -175,7 +175,7 @@ def past_fra_test(dob=None, language='en'):
         return 'invalid birth date entered'
     try:
         DOB = parser.parse(dob).date()
-    except:
+    except (TypeError, ValueError):
         return 'invalid birth date entered'
     today = datetime.date.today()
     current_age = get_current_age(dob)
