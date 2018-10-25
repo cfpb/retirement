@@ -4,14 +4,15 @@ const fs = require( 'fs' );
  * Set up file paths
  */
 const loc = {
-  src:  './src/',
-  dist: './retirement_api/static/retirement/',
-  lib:  JSON.parse( fs.readFileSync( './.bowerrc' ) ).directory, // eslint-disable-line no-sync, no-inline-comments, max-len
+  src:  './src',
+  dist: './retirement_api/static/retirement',
+  lib:  './node_modules',
   test: './test'
 };
 
 module.exports = {
-  pkg:    JSON.parse( fs.readFileSync( 'bower.json' ) ), // eslint-disable-line no-sync, no-inline-comments, max-len
+  // eslint-disable-next-line no-sync
+  pkg: JSON.parse( fs.readFileSync( 'package.json' ) ),
   banner:
       '/*!\n' +
       ' *  <%= pkg.name %> - v<%= pkg.version %>\n' +
@@ -79,9 +80,13 @@ module.exports = {
       ],
       dest: loc.dist
     },
-    icons: {
+    fonts: {
       src:  loc.lib + '/cf-icons/src/fonts/*',
       dest: loc.dist + '/fonts/'
+    },
+    icons: {
+      src:  loc.lib + '/cf-icons/src/icons/*',
+      dest: loc.dist + '/icons/'
     },
     vendorjs: {
       src: [
