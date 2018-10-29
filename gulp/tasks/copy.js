@@ -4,31 +4,35 @@ const configCopy = require( '../config' ).copy;
 const handleErrors = require( '../utils/handle-errors' );
 
 gulp.task( 'copy:files', () => {
-  return gulp.src( configCopy.files.src )
+  const pipe = gulp.src( configCopy.files.src )
     .pipe( gulpChanged( configCopy.files.dest ) )
     .on( 'error', handleErrors )
     .pipe( gulp.dest( configCopy.files.dest ) );
+  return pipe;
 } );
 
 gulp.task( 'copy:fonts', () => {
-  return gulp.src( configCopy.fonts.src )
+  const pipe = gulp.src( configCopy.fonts.src )
     .pipe( gulpChanged( configCopy.fonts.dest ) )
     .on( 'error', handleErrors )
     .pipe( gulp.dest( configCopy.fonts.dest ) );
+  return pipe;
 } );
 
 gulp.task( 'copy:icons', () => {
-  return gulp.src( configCopy.icons.src )
+  const pipe = gulp.src( configCopy.icons.src )
     .pipe( gulpChanged( configCopy.icons.dest ) )
     .on( 'error', handleErrors )
     .pipe( gulp.dest( configCopy.icons.dest ) );
+  return pipe;
 } );
 
 gulp.task( 'copy:vendorjs', () => {
-  return gulp.src( configCopy.vendorjs.src )
+  const pipe = gulp.src( configCopy.vendorjs.src )
     .pipe( gulpChanged( configCopy.vendorjs.dest ) )
     .on( 'error', handleErrors )
     .pipe( gulp.dest( configCopy.vendorjs.dest ) );
+  return pipe;
 } );
 
 gulp.task( 'copy',
