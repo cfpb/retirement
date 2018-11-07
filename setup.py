@@ -19,6 +19,7 @@ setup_requires = [
 
 testing_extras = [
     'coverage>=4.5.1,<5',
+    'freezegun>=0.3.1,<1',
     'mock==2.0.0',
 ]
 

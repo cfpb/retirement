@@ -6,6 +6,8 @@ import copy
 from datetime import timedelta
 from datetime import date
 
+from dateutil.relativedelta import relativedelta
+from freezegun import freeze_time
 import requests
 import mock
 import unittest
@@ -347,41 +349,63 @@ class UtilitiesTests(unittest.TestCase):
         self.assertTrue('respondiendo' in result[0]['note'])
         self.assertTrue(result[1] == 0)
 
-    def test_interpolate_for_past_fra(self):
-        mock_results = {'data': {'early retirement age': '',
-                                 'full retirement age': '',
-                                 'benefits': {'age 62': 0,
-                                              'age 63': 0,
-                                              'age 64': 0,
-                                              'age 65': 0,
-                                              'age 66': 0,
-                                              'age 67': 0,
-                                              'age 68': 0,
-                                              'age 69': 1431,
-                                              'age 70': 1545,
-                                              },
-                                 'params': self.sample_params,
-                                 'disability': '',
-                                 'months_past_birthday': 0,
-                                 'survivor benefits': {
-                                        'child': '',
-                                        'spouse caring for child': '',
-                                        'spouse at full retirement age': '',
-                                        'family maximum': ''
-                                        }
-                                 },
-                        'current_age': 68,
-                        'error': '',
-                        'note': '',
-                        'past_fra': True,
-                        }
-        new_year = self.today.year - 69 + int(self.today.month/12)
-        new_month = (self.today.month + 1) % 12
-        eleven_month_edge = self.today.replace(
-            day=1).replace(year=new_year).replace(month=new_month)
-        results = interpolate_for_past_fra(
-            mock_results, 1431, 68, eleven_month_edge)
-        self.assertTrue(results['data']['benefits']['age 70'] == 1545)
+    def check_interpolate_for_past_fra(self, today, dob, base_benefit,
+                                       expected_benefits):
+        """Tests benefits of retirees past full retirement age."""
+        mock_results = {'data': {'benefits': {}}}
+
+        current_age = relativedelta(today, dob).years
+
+        with freeze_time(today):
+            results = interpolate_for_past_fra(
+                results=mock_results,
+                base=base_benefit,
+                current_age=relativedelta(today, dob).years,
+                dob=dob
+            )
+
+        self.assertEqual(results['data']['benefits'], expected_benefits)
+
+    def test_interpolate_for_past_fra_68(self):
+        self.check_interpolate_for_past_fra(
+            today=date(2018, 6, 15),
+            dob=date(1949, 12, 15),
+            base_benefit=1431,
+            expected_benefits={
+                # Benefit at current age should equal base benefit.
+                'age 68': 1431,
+                # Turning 69 in 6 months. Waiting to retire until age 69
+                # should equal base benefit plus a bump equal to 6 * .667%.
+                # 1431 * (1 + (.00667 * 6)) =  1488
+                'age 69': 1488,
+                # Turning 70 in one year plus six months. Waiting to retire
+                # until then adds another 8% of base benefit.
+                # 1431 * (1 + (.00667 * 6) + (.08)) = 1602
+                'age 70': 1602,
+            }
+        )
+
+    def test_interpolate_for_past_fra_68_born_on_the_1st_next_month(self):
+        # Per ssa.gov, "if your birthday is on the 1st of the month, we
+        # compute your benefit as if your birthday were in the previous month."
+        # https://www.ssa.gov/planners/retire/1943-delay.html
+        #
+        # Calculator thus treats someone turning 69 on the 1st next month
+        # as if they were turning 69 this month, i.e that there are no months
+        # left until they are 69. So "current age" is treated as 69.
+        self.check_interpolate_for_past_fra(
+            today=date(2018, 5, 15),
+            dob=date(1949, 6, 1),
+            base_benefit=1431,
+            expected_benefits={
+                # Benefit at "current age" should equal base benefit.
+                'age 69': 1431,
+                # Turning 70 in one year. Waiting to retire until then adds
+                # another 8% of base benefit.
+                # 1431 * (1 + .08) = 1545
+                'age 70': 1545,
+            }
+        )
 
     def test_validate_date_invalid(self):
         test_params = {'yob': 1952, 'dobmon': 2, 'dobday': 30}
