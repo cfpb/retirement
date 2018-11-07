@@ -127,9 +127,9 @@ const graphView = {
         y = $( '#bd-year' ).val() !== '',
         s = $( '#salary-input' ).val() !== '';
     if ( m && d && y && s ) {
-      $button.attr( 'disabled', false ).removeClass( 'btn__disabled' );
+      $button.attr( 'disabled', false ).removeClass( 'a-btn__disabled' );
     } else {
-      $button.attr( 'disabled', true ).addClass( 'btn__disabled' );
+      $button.attr( 'disabled', true ).addClass( 'a-btn__disabled' );
     }
   },
 
@@ -180,7 +180,7 @@ const graphView = {
         SSData;
 
     // Hide warnings, show loading indicator
-    $( '.cf-notification' ).slideUp();
+    $( '.m-notification' ).slideUp();
     this.highlightAgeFields( false );
     $( '#api-data-loading-indicator' ).css( 'display', 'inline-block' );
     $.when( fetch.apiData( dates.concat, salary, dataLang ) ).done( function( resp ) {
@@ -210,8 +210,8 @@ const graphView = {
         }
 
       } else {
-        $( '.cf-notification' ).slideDown();
-        $( '.cf-notification .cf-notification_text' ).html( resp.note );
+        $( '.m-notification' ).slideDown();
+        $( '.m-notification .m-notification_content' ).html( resp.note );
         if ( resp.current_age >= 71 || resp.current_age < 21 ) {
           graphView.highlightAgeFields( true );
         }

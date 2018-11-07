@@ -12,14 +12,14 @@ form {
   padding: 0;
 }
 
-#claiming-social-security .cf-icon.cf-icon-help-round {
-  color: #0072CD;
-  font-size: .8em;
+#claiming-social-security .cf-icon-svg.cf-icon-help-round {
+  color: @pacific;
+  font-size: 0.8em;
+  margin-top: 3px;
 }
 
-#claiming-social-security input[type='text'],
-#claiming-social-security select {
-  font-family: 'AvenirNextLTW01-Regular', Arial, sans-serif;
+#claiming-social-security input[type='text'] {
+  border: 1px solid @gray-80;
 }
 
 #maincontent {
@@ -270,7 +270,7 @@ form {
     z-index: 100;
   }
 
-  input[type="range"] {
+  input[type='range'] {
     height: 49px;
     padding: 0;
     margin: 0;
@@ -306,7 +306,8 @@ form {
   margin-left: 15px;
 }
 
-#claiming-social-security input[type="text"] {
+#claiming-social-security input[type='text'] {
+  // TODO: Replace hardcoded color with a color variable for Capital Framework.
   border-color: #BABBBD;
 }
 
@@ -377,7 +378,6 @@ form {
 }
 
 #claiming-social-security .total-benefits-text {
-  font-family: 'AvenirNextLTW01-Regular', 'Arial', sans-serif;
   font-weight: normal;
   line-height: 24px;
 }
@@ -417,7 +417,6 @@ form {
 
 #claiming-social-security .graph-content h3.retirement-age {
   font-size: 1em;
-  font-family: 'AvenirNextLTW01-Demi', 'Arial', sans-serif;
   font-weight: 500;
   margin: 0px;
 }
@@ -444,6 +443,7 @@ form {
 }
 
 #claiming-social-security .step-two .lifestyle-btn__active {
+  // TODO: Replace hardcoded color with color variable from Capital Framework.
   background-color: #33578e;
 }
 
@@ -462,10 +462,6 @@ form {
 .step-two .lifestyle-question_container hr {
     margin-top: 0;
 }
-
-/*#claiming-social-security .step-two .question {
-  padding-bottom: 10em;
-}*/
 
 [data-lang="es"] #claiming-social-security .step-two .question-working img {
   display: block;
@@ -543,72 +539,13 @@ form {
 }
 
 /* cf-notification */
-#claiming-social-security .cf-notification {
-  display: none;
-  position: relative;
-  padding: 15px;
-  padding-left: 40px;
+#claiming-social-security .m-notification {
   margin-bottom: 20px;
-  margin-top: -40px;
-  background: #e3e4e5;
-  border: 1px solid #75787b;
-}
-
-#claiming-social-security .cf-notification__error {
-  background: #f6d9d3;
-  border-color: #d12124;
-}
-
-#claiming-social-security .cf-notification__success {
-  background: #dbedd4;
-  border-color: #2cb34a;
-}
-
-#claiming-social-security .cf-notification__warning {
-  background: #ffecd1;
-  border-color: #ff9e1b;
-}
-
-#claiming-social-security .cf-notification_icon {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  color: #e3e4e5;
-  font-size: 1.125em;
-}
-
-#claiming-social-security .cf-notification_icon__error {
-  color: #d14327;
-}
-
-#claiming-social-security .cf-notification_icon__success {
-  color: #2cb34a;
-}
-
-#claiming-social-security .cf-notification_icon__warning {
-  color: #ff931b;
-}
-
-#claiming-social-security .cf-notification_text {
-  margin: 0;
-  padding: 0;
-}
-
-#claiming-social-security .cf-notification_text span {
-  display: block;
-  margin: 0;
-  padding-bottom: 10px;
-}
-
-#claiming-social-security .cf-notification_text .short-desc {
-  display: block;
-  font-size: 16px;
 }
 
 #claiming-social-security .step-one .notification-input__warning {
-  border-color: #FF921B;
+  border-color: @gold;
 }
-
 
 /* ====================================================================
    Medium and small screens
@@ -638,7 +575,7 @@ form {
     margin-bottom: 30px;
   }
 
-  #claiming-social-security .cf-notification {
+  #claiming-social-security .m-notification {
     margin-top: -10px;
   }
 
@@ -1112,6 +1049,19 @@ form {
   content: "\e630";
 }
 
+.cf-icon.cf-icon__spin {
+  animation: cf-spin 2s infinite linear;
+}
+
+@keyframes cf-spin {
+    0% {
+        transform: rotate( 0deg );
+    }
+    100% {
+        transform: rotate( 359deg );
+    }
+}
+
 /* ====================================================================
    About page
 ==================================================================== */
@@ -1119,18 +1069,18 @@ form {
 #claiming-social-security_about .content_wrapper {
   margin-bottom: 0;
 
-  .respond-to-max(800px, {
+  .respond-to-max( 800px, {
     padding-left: 0;
     padding-right: 0;
-  });
+  } );
 }
 
 #claiming-social-security_about .about-subhead {
   .h2;
   margin-bottom: unit(60px / @font-size, em);
 
-  .respond-to-max(@bp-sm-min, {
-     .h3;
-     margin-bottom: unit(45px / @font-size, em);
-  });
+  .respond-to-max( @bp-sm-min, {
+   .h3;
+   margin-bottom: unit(45px / @font-size, em);
+  } );
 }
