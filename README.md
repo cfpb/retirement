@@ -69,8 +69,25 @@ python manage.py runserver
 
 The "Before You Claim" page should load at [localhost:8000/before-you-claim/](http://localhost:8000/before-you-claim).
 
+### Fonts
+This application uses a proprietary licensed font (Avenir Next) that is not included in this repository.
+
+If you want to pull this font from a content delivery network (CDN), you can set
+[`@use-font-cdn`](https://github.com/cfpb/retirement/blob/master/src/css/main.less#L29)
+to `true` and rebuild the assets with `gulp build`.
+
+If you instead want to install self-hosted fonts locally, you can place the font files
+in `retirement_api/static/retirement/webfonts/` and restart the local web server.
+
+For Bureau employees or others with access to our private fonts repository,
+you can perform this step by creating a symbolic link to your local copy of
+the font files:
+
+```sh
+ln -s /path/to/cfgov-fonts/fonts/ retirement_api/static/retirement/webfonts
+```
+
 ### Usage notes
-- The app is set up to run inside [consumerfinance.gov](http://www.consumerfinance.gov), so if you run it locally, some fonts may not load because of [Cross-Origin Resource Sharing](http://www.w3.org/TR/cors/) policies.
 - The app sends http requests to the Social Security Administration's [Quick Calculator](http://www.ssa.gov/OACT/quickcalc/index.html) to get benefit estimates for the chart.
 
 ### How to run software tests
