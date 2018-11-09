@@ -80,10 +80,11 @@ If you instead want to install self-hosted fonts locally, you can place the font
 in `retirement_api/static/retirement/webfonts/` and restart the local web server.
 
 For Bureau employees or others with access to our private fonts repository,
-you can perform this step by creating a symbolic link to the font files:
+you can perform this step by creating a symbolic link to your local copy of
+the font files:
 
 ```sh
-ln -s ~/Projects/cfgov-fonts/fonts/ retirement_api/static/retirement/webfonts
+ln -s /path/to/cfgov-fonts/fonts/ retirement_api/static/retirement/webfonts
 ```
 
 ### Usage notes
