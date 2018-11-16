@@ -72,12 +72,12 @@ The "Before You Claim" page should load at [localhost:8000/before-you-claim/](ht
 ### Fonts
 This application uses a proprietary licensed font (Avenir Next) that is not included in this repository.
 
-If you want to pull this font from a content delivery network (CDN), you can set
+By default it will try to load this font from the Fonts.com content delivery network (CDN).
+This behavior can be modified to instead try to load the font locally from
+the `retirement_api/static/retirement/webfonts/` directory by setting
 [`@use-font-cdn`](https://github.com/cfpb/retirement/blob/master/src/css/main.less#L29)
-to `true` and rebuild the assets with `gulp build`.
-
-If you instead want to install self-hosted fonts locally, you can place the font files
-in `retirement_api/static/retirement/webfonts/` and restart the local web server.
+to `false` and rebuilding the assets with `gulp build`. Restart the local web server
+once you've made this change.
 
 For Bureau employees or others with access to our private fonts repository,
 you can perform this step by creating a symbolic link to your local copy of
