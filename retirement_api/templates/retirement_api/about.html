@@ -24,22 +24,24 @@
 {% endblock %}
 
 {% block responsive_nav %}
-<a class="toggle-menu" href="#"><i class="cf-icon cf-icon-menu"></i>
-    <span class="u-visually-hidden">Menu</span></a>
+<a class="toggle-menu" href="#">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.5 1200" class="cf-icon-svg"><path d="M65 370.5h654.5c35.9 0 65-29.1 65-65s-29.1-65-65-65H65c-35.9 0-65 29.1-65 65s29.1 65 65 65zM719.5 515H65c-35.9 0-65 29.1-65 65s29.1 65 65 65h654.5c35.9 0 65-29.1 65-65s-29.1-65-65-65zM719.5 789.4H65c-35.9 0-65 29.1-65 65s29.1 65 65 65h654.5c35.9 0 65-29.1 65-65s-29.1-65-65-65z"></path></svg>
+    <span class="u-visually-hidden">Menu</span>
+</a>
 {% endblock %}
 
 {% block page_meta %}
-  <meta property="og:title" content="{{ TITLE }} &gt; Consumer Financial Protection Bureau"/>
-  <meta property="og:url" content="{{ URL }}"/>
+    <meta property="og:title" content="{{ TITLE }} &gt; Consumer Financial Protection Bureau"/>
+    <meta property="og:url" content="{{ URL }}"/>
 
-  <meta name="description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
+    <meta name="description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
 
-  <meta property="og:description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
+    <meta property="og:description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
 {% endblock %}
 {% block open_graph_image %}
-  <meta property="og:image"
+    <meta property="og:image"
         content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-retirement.original.png">
-  <meta property="twitter:image"
+    <meta property="twitter:image"
         content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-retirement.original.png">
 {% endblock %}
 
