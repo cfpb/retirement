@@ -24,7 +24,9 @@ else:  # pragma: no cover
 def claiming(request, es=False):
     if es is True:
         activate('es')
+        language = 'es'
     else:
+        language = 'en'
         deactivate_all()
     ages = {}
     for age in AgeChoice.objects.all():
@@ -36,13 +38,13 @@ def claiming(request, es=False):
     questions = {}
     for q in Question.objects.all():
         questions[q.slug] = q
-    final_steps = {}
-    for step in Step.objects.filter(title__contains='final_'):
-        final_steps[step.title] = step
+    steps = {}
+    for step in Step.objects.all():
+        steps[step.title] = step.trans_instructions(language=language)
 
     cdict = {
         'tstamp': datetime.datetime.now(),
-        'final_steps': final_steps,
+        'steps': steps,
         'questions': questions,
         'tips': tips,
         'ages': ages,
@@ -67,7 +69,7 @@ def income_check(param):
     cleaned = param.replace('$', '').replace(',', '').partition('.')[0]
     try:
         clean_income = int(cleaned)
-    except:
+    except ValueError:
         return None
     else:
         return clean_income
@@ -104,7 +106,7 @@ def estimator(request, dob=None, income=None, language='en'):
             return HttpResponseBadRequest("invalid income")
     try:
         dob_parsed = parser.parse(dob)
-    except:
+    except ValueError:
         return HttpResponseBadRequest("invalid date of birth")
     else:
         DOB = dob_parsed.date()
@@ -137,5 +139,5 @@ def about(request, language='en'):
         'base_template': base_template,
         'available_languages': ['en', 'es'],
         'es': es
-        }
+    }
     return render(request, 'retirement_api/about.html', cdict)
