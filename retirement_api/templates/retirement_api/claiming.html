@@ -126,7 +126,7 @@
             </div>
           </form>
           <div class="content-l_col content-l_col-1-3 estimate-info">
-            <p>{% trans page.step1.note|safe %}</p>
+            <p>{{ steps.explore_note|safe }}</p>
           </div>
         </div>
       </div>
@@ -427,7 +427,7 @@
         <h2><strong>{{STEP}} 3: </strong>{% trans page.step3.title %}</h2>
         <div class="hidden-content">
           <h3>{% trans page.step3.instructions %}</h3>
-            <p class="explainer step-three-note">{% trans page.step3.note %}</p>
+            <p class="explainer step-three-note">{{ steps.learn_your_next_steps_note }}</p>
 
             <div class="m-form-field m-form-field__select">
               <div class="a-select">
@@ -465,15 +465,15 @@
                 <p>{% trans "At this age you will receive less than your full benefit amount. Here are steps to help you in the next few years." %}</p>
               </div>
               <ol class="next-steps content-l">
-                <li class="content-l_col content-l_col-1-3 next-step-one">{% autoescape off %}{% trans final_steps.final_step_1.instructions %}</li>
+                <li class="content-l_col content-l_col-1-3 next-step-one">{% autoescape off %}{{ steps.final_step_1 }}</li>
                 <li class="content-l_col content-l_col-1-3 next-step-two">
-                  <span class="step-two_option next-steps_under">{% trans final_steps.final_step_2_under.instructions %}</span>
-                  <span class="step-two_option next-steps_equal">{% trans final_steps.final_step_2_equal.instructions %}</span>
-                  <span class="step-two_option next-steps_over next-steps_max">{% trans final_steps.final_step_2_over.instructions %}</span>
+                  <span class="step-two_option next-steps_under">{{ steps.final_step_2_under }}</span>
+                  <span class="step-two_option next-steps_equal">{{ steps.final_step_2_equal }}</span>
+                  <span class="step-two_option next-steps_over next-steps_max">{{ steps.final_step_2_over }}</span>
                 </li>
-                <li class="content-l_col content-l_col-1-3 next-step-three">{% trans final_steps.final_step_3.instructions %}{% endautoescape %}</li>
+                <li class="content-l_col content-l_col-1-3 next-step-three">{{ steps.final_step_3 }}{% endautoescape %}</li>
               </ol>
-              <p class="h3">{% trans final_steps.final_step_4.instructions %}</p>
+              <p class="h3">{{ steps.final_step_4 }}</p>
                 <div class="m-btn-group">
                   <button class="helpful-btn a-btn" value="yes">{{YES}}</button>
                   <button class="helpful-btn a-btn" value="no">{{NO}}</button>

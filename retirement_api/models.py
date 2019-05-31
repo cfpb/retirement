@@ -19,15 +19,21 @@ class Calibration(models.Model):
 
 class Step(models.Model):
     title = models.CharField(max_length=500)
-    instructions = models.TextField(max_length=255, blank=True)
-    note = models.TextField(max_length=255, blank=True)
+    instructions = models.TextField(blank=True)
+    instructions_es = models.TextField(blank=True)
 
     def __unicode__(self):
         return self.title
 
+    def trans_instructions(self, language='en'):
+        if language == 'es':
+            return self.instructions_es
+        else:
+            return self.instructions
+
     def translist(self):
         """returns list of fields that should be translated"""
-        return ['title', 'instructions', 'note']
+        return ['title', 'instructions']
 
 
 class AgeChoice(models.Model):
@@ -80,6 +86,7 @@ class Tooltip(models.Model):
     def __unicode__(self):
         return self.title
 
+
 POHEADER = [
     'msgid ""\n',
     'msgstr ""\n',
@@ -88,7 +95,7 @@ POHEADER = [
     '"Content-Transfer-Encoding: 8bit\\n"\n',
     '"Project-Id-Version: retirement\\n"\n',
     '"Language: es\\n"\n\n'
-    ]
+]
 
 
 class Question(models.Model):
@@ -140,7 +147,7 @@ class Question(models.Model):
             "answer_unsure_a",
             "answer_unsure_b_subhed",
             "answer_unsure_b",
-            ]
+        ]
         return fieldlist
 
     def dump_translation_text(self, output=False):
