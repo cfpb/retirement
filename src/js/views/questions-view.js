@@ -7,9 +7,9 @@ const questionsView = {
     const $buttons = $( '.step-two .question .lifestyle-btn' );
 
     $buttons.click( function() {
-      let $container = $( this ).closest( '.question' ),
-          respTo = $( this ).val(),
-          selector;
+      const $container = $( this ).closest( '.question' );
+      const respTo = $( this ).val();
+
       $container.find( '.lifestyle-btn' )
         .removeClass( 'lifestyle-btn__active' );
       $( this ).addClass( 'lifestyle-btn__active' );
@@ -17,7 +17,7 @@ const questionsView = {
       $container.find( '.lifestyle-img' ).slideUp();
       $container.find( '.lifestyle-response' )
         .not( '[data-responds-to="' + respTo + '"]' ).slideUp();
-      selector = '.lifestyle-response[data-responds-to="' + respTo + '"]';
+      const selector = '.lifestyle-response[data-responds-to="' + respTo + '"]';
       $container.find( selector ).slideDown();
 
       $container.attr( 'data-answered', 'yes' );
@@ -47,4 +47,4 @@ const questionsView = {
 
 };
 
-module.exports = questionsView;
+export default questionsView;

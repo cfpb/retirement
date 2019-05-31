@@ -36,4 +36,4 @@ function numToMoney( num ) {
   return money;
 }
 
-module.exports = numToMoney;
+export default numToMoney;

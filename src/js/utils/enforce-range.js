@@ -20,4 +20,4 @@ function enforceRange( n, min, max ) {
   return n;
 }
 
-module.exports = enforceRange;
+export default enforceRange;

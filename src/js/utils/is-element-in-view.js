@@ -16,4 +16,4 @@ function isElementInView( selector ) {
   return true;
 }
 
-module.exports = isElementInView;
+export default isElementInView;

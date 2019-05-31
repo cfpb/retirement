@@ -22,4 +22,4 @@ const benefitsModel = {
 };
 
 
-module.exports = benefitsModel;
+export default benefitsModel;

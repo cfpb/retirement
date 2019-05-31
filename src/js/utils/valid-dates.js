@@ -1,4 +1,4 @@
-const enforceRange = require( './enforce-range' );
+import enforceRange from './enforce-range';
 
 /**
  * Checks if the given date is valid
@@ -9,7 +9,8 @@ const enforceRange = require( './enforce-range' );
  */
 function validDates( month, day, year ) {
   // get parts of birthday and salary, strip non-numeric strings
-  const monthMaxes = { 1: 31,
+  const monthMaxes = {
+    1: 31,
     2: 28,
     3: 31,
     4: 30,
@@ -20,7 +21,9 @@ function validDates( month, day, year ) {
     9: 30,
     10: 31,
     11: 30,
-    12: 31 };
+    12: 31
+  };
+
   if ( new Date( year, 1, 29 ).getMonth() === 1 ) {
     monthMaxes['2'] = 29;
   }
@@ -50,4 +53,4 @@ function validDates( month, day, year ) {
   };
 }
 
-module.exports = validDates;
+export default validDates;

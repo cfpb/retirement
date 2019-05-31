@@ -43,4 +43,4 @@ function handleStringInput( numberString ) {
 
 }
 
-module.exports = handleStringInput;
+export default handleStringInput;

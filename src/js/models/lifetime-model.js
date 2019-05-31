@@ -17,4 +17,4 @@ const lifetimeModel = {
 };
 
 
-module.exports = lifetimeModel;
+export default lifetimeModel;
