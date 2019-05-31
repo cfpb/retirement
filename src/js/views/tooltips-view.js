@@ -21,7 +21,6 @@ const tooltipsView = {
     const innerTip = $ttc.find( '.innertip' );
     const outerTip = $ttc.find( '.outertip' );
     const pagePadding = parseInt( $( '#maincontent' ).css( 'padding-left' ), 10 );
-    let newTop;
     let newLeft;
     let elemCenter;
     let elemRightOffset;
@@ -33,7 +32,7 @@ const tooltipsView = {
     $elem.attr( 'data-tooltip-current-target', true );
 
     $ttc.show();
-    newTop = $elem.offset().top + $elem.outerHeight() + 10;
+    const newTop = $elem.offset().top + $elem.outerHeight() + 10;
     newLeft = $elem.offset().left + $elem.outerWidth() / 2 -
       $ttc.outerWidth( true ) / 2;
     $ttc.css( { top: newTop, left: newLeft } );
@@ -95,4 +94,4 @@ const tooltipsView = {
   }
 };
 
-module.exports = tooltipsView;
+export default tooltipsView;

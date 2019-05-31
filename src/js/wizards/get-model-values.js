@@ -6,4 +6,4 @@ const getModel = {
   lifetime: () => lifetimeModel.values
 };
 
-module.exports = getModel;
+export default getModel;

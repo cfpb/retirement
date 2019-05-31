@@ -12,7 +12,11 @@ const COMMON_MODULE_CONFIG = {
     use: {
       loader: 'babel-loader?cacheDirectory=true',
       options: {
-        presets: [ [ 'babel-preset-env', {
+        presets: [ [ '@babel/preset-env', {
+          targets: [
+            'last 2 versions',
+            'ie >= 8'
+          ],
           configPath: __dirname,
           /* Use useBuiltIns: 'usage' and set `debug: true` to see what
              scripts require polyfilling. */

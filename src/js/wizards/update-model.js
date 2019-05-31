@@ -1,9 +1,6 @@
 import benefitsModel from '../models/benefits-model';
 import lifetimeModel from '../models/lifetime-model';
 
-// TODO: remove jquery.
-import $ from 'jquery';
-
 const update = {
 
   /**
@@ -29,22 +26,29 @@ const update = {
     if ( resp.currentAge > fullAge ) {
       fullAge = resp.currentAge;
     }
-    $.each( resp.data.benefits, function( i, val ) {
-      if ( i.substr( 0, 3 ) === 'age' ) {
-        const prop = i.replace( ' ', '' );
-        update.benefits( prop, val );
+
+    for ( const benKey in resp.data.benefits ) {
+      if ( {}.hasOwnProperty.call( resp.data.benefits, benKey ) &&
+           benKey.substr( 0, 3 ) === 'age' ) {
+        const prop = benKey.replace( ' ', '' );
+        update.benefits( prop, resp.data.benefits[benKey] );
       }
-    } );
-    $.each( resp.data.lifetime, function( prop, val ) {
-      update.lifetime( prop, val );
-    } );
+    }
+    for ( const lifeKey in resp.data.lifetime ) {
+      if ( {}.hasOwnProperty.call( resp.data.lifetime, lifeKey ) ) {
+        update.lifetime( lifeKey, resp.data.lifetime[lifeKey] );
+      }
+    }
+
     update.benefits( 'currentAge', resp.current_age );
     update.benefits( 'past_fra', resp.past_fra );
     update.benefits( 'fullRetirementAge', data['full retirement age'] );
     update.benefits( 'earlyRetirementAge', data['early retirement age'] );
     update.benefits( 'fullAge', fullAge );
-    update.benefits( 'earlyAge', Number( data['early retirement age']
-      .substr( 0, 2 ) ) );
+    update.benefits(
+      'earlyAge',
+      Number( data['early retirement age'].substr( 0, 2 ) )
+    );
     update.benefits(
       'monthsPastBirthday',
       Number( data.months_past_birthday )
@@ -53,4 +57,4 @@ const update = {
 
 };
 
-module.exports = update;
+export default update;

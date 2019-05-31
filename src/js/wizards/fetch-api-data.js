@@ -29,4 +29,4 @@ const fetch = {
   }
 };
 
-module.exports = fetch;
+export default fetch;

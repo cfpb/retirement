@@ -1,11 +1,11 @@
-import numToMoney from '../utils/num-to-money';
-import validDates from '../utils/valid-dates';
-import strToNum from '../utils/handle-string-input';
-import isElementInView from '../utils/is-element-in-view';
-import getModelValues from '../wizards/get-model-values';
-import questionsView from './questions-view';
-import nextStepsView from './next-steps-view';
 import fetch from '../wizards/fetch-api-data';
+import getModelValues from '../wizards/get-model-values';
+import isElementInView from '../utils/is-element-in-view';
+import nextStepsView from './next-steps-view';
+import numToMoney from '../utils/num-to-money';
+import questionsView from './questions-view';
+import strToNum from '../utils/handle-string-input';
+import validDates from '../utils/valid-dates';
 
 // TODO: remove jquery.
 import $ from 'jquery';
@@ -82,8 +82,8 @@ const graphView = {
 
     // reformat salary
     $( '#salary-input' ).blur( function() {
-      let salaryNumber = strToNum( $( '#salary-input' ).val() ),
-          salary = numToMoney( salaryNumber );
+      const salaryNumber = strToNum( $( '#salary-input' ).val() ),
+            salary = numToMoney( salaryNumber );
       $( '#salary-input' ).val( salary );
     } );
 
@@ -121,11 +121,12 @@ const graphView = {
   /* This function checks if the page is ready for the Estimate button to be
      hit. "Ready" means that the inputs have values typed into them. */
   checkEstimateReady: function() {
-    let $button = $( '#get-your-estimates' ),
-        m = $( '#bd-month' ).val() !== '',
-        d = $( '#bd-day' ).val() !== '',
-        y = $( '#bd-year' ).val() !== '',
-        s = $( '#salary-input' ).val() !== '';
+    const $button = $( '#get-your-estimates' );
+    const m = $( '#bd-month' ).val() !== '';
+    const d = $( '#bd-day' ).val() !== '';
+    const y = $( '#bd-year' ).val() !== '';
+    const s = $( '#salary-input' ).val() !== '';
+
     if ( m && d && y && s ) {
       $button.attr( 'disabled', false ).removeClass( 'a-btn__disabled' );
     } else {
@@ -159,13 +160,17 @@ const graphView = {
   /* This function validates the numbers in the date of birth fields as
      valid dates */
   validateBirthdayFields: function() {
-    let day = $( '#bd-day' ).val(),
-        month = $( '#bd-month' ).val(),
-        year = $( '#bd-year' ).val(),
-        dates = validDates( month, day, year );
-    $( '#bd-day' ).val( dates.day );
-    $( '#bd-month' ).val( dates.month );
-    $( '#bd-year' ).val( dates.year );
+    const dayDom = document.querySelector( '#bd-day' );
+    const monthDom = document.querySelector( '#bd-month' );
+    const yearDom = document.querySelector( '#bd-year' );
+    const day = dayDom.value;
+    const month = monthDom.value;
+    const year = yearDom.value;
+    const dates = validDates( month, day, year );
+    dayDom.value = dates.day;
+    monthDom.value = dates.month;
+    yearDom.value = dates.year;
+
     return dates;
   },
 
@@ -173,17 +178,20 @@ const graphView = {
      date and salary values, then updates the graph view with the returned data
      using a variety of view-updating functions */
   getYourEstimates: function() {
-    let dataLang = $( 'body' ).attr( 'data-lang' ),
-        dates = this.validateBirthdayFields(),
-        salary = strToNum( $( '#salary-input' ).val() ),
-        lifetimeData,
-        SSData;
+    const dataLang = document.body.getAttribute( 'data-lang' );
+    const dates = this.validateBirthdayFields();
+    const salary = strToNum( $( '#salary-input' ).val() );
+    let lifetimeData;
+    let SSData;
 
     // Hide warnings, show loading indicator
     $( '.m-notification' ).slideUp();
     this.highlightAgeFields( false );
-    $( '#api-data-loading-indicator' ).css( 'display', 'inline-block' );
-    $.when( fetch.apiData( dates.concat, salary, dataLang ) ).done( function( resp ) {
+    const loadIndDom = document.querySelector( '#api-data-loading-indicator' );
+    loadIndDom.style.display = 'inline-block';
+    $.when(
+      fetch.apiData( dates.concat, salary, dataLang )
+    ).done( function( resp ) {
       if ( resp.error === '' ) {
         SSData = getModelValues.benefits();
         lifetimeData = getModelValues.lifetime();
@@ -196,7 +204,9 @@ const graphView = {
             '.step-three .hidden-content' ).show();
 
         graphView.textlets.currentAge = window.gettext( SSData.currentAge );
-        graphView.textlets.fullRetirementAge = window.gettext( SSData.fullRetirementAge );
+        graphView.textlets.fullRetirementAge = window.gettext(
+          SSData.fullRetirementAge
+        );
         questionsView.update( SSData.currentAge );
         nextStepsView.init( SSData.currentAge, SSData.fullAge );
         graphView.redrawGraph();
@@ -224,17 +234,16 @@ const graphView = {
    * This function updates the placement of the benfits text boxes
    */
   placeBenefitsText: function() {
-    let SSData = getModelValues.benefits(),
-        gset = this.graphSettings,
-        fullAgeBenefitsValue = SSData['age' + SSData.fullAge],
-        benefitsValue = SSData['age' + this.selectedAge],
-        $selectedBar = 5,
-        benefitsTop,
-        benefitsLeft,
-        $fullAgeBar,
-        fullAgeLeft,
-        fullAgeTop,
-        $fullAgeBenefits = $( '#full-age-benefits-text' );
+    const SSData = getModelValues.benefits();
+    const gset = this.graphSettings;
+    let fullAgeBenefitsValue = SSData['age' + SSData.fullAge];
+    let benefitsValue = SSData['age' + this.selectedAge];
+    let $selectedBar = 5;
+    let benefitsTop;
+    let benefitsLeft;
+    let fullAgeLeft;
+    let fullAgeTop;
+    const $fullAgeBenefits = $( '#full-age-benefits-text' );
 
     if ( $( '[name="benefits-display"]:checked' ).val() === 'annual' ) {
       benefitsValue *= 12;
@@ -253,7 +262,7 @@ const graphView = {
 
     // set text, position and visibility of #full-age-benefits-text
     $fullAgeBenefits.text( numToMoney( fullAgeBenefitsValue ) );
-    $fullAgeBar = $( '[data-bar_age="' + SSData.fullAge + '"]' );
+    const $fullAgeBar = $( '[data-bar_age="' + SSData.fullAge + '"]' );
     fullAgeTop = parseInt( $fullAgeBar.css( 'top' ), 10 );
     fullAgeTop -= $fullAgeBenefits.height() + 10;
     fullAgeLeft = parseInt( $fullAgeBar.css( 'left' ), 10 );
@@ -266,26 +275,26 @@ const graphView = {
 
   /* This function changes the text of benefits elements based on selectedAge */
   setTextByAge: function() {
-    let gset = this.graphSettings,
-        textlets = this.textlets,
-        SSData = getModelValues.benefits(),
-        lifetimeData = getModelValues.lifetime(),
-        lifetimeBenefits = numToMoney( lifetimeData['age' + this.selectedAge] ),
-        fullAgeValue = Number( SSData['age' + SSData.fullAge] ),
-        currentAgeValue = Number( SSData['age' + SSData.currentAge] ),
-        selectedAgeValue = Number( SSData['age' + this.selectedAge] ),
-        percent,
-        text,
-        selectedBelowFRA = this.selectedAge < SSData.fullAge,
-        selectedFRA = this.selectedAge === SSData.fullAge,
-        selectedAboveFRA = this.selectedAge > SSData.fullAge,
-        selectedCurrent = this.selectedAge === SSData.currentAge,
-        isFRA = SSData.currentAge === SSData.fullAge,
-        isYoungerThanFRA = SSData.currentAge < SSData.fullAge,
-        $benefitsMod = $( '.benefit-modification-text' ),
-        $selectedAgeText = $( '#selected-retirement-age-value' ),
-        $fullAgeBenefits = $( '#full-age-benefits-text' ),
-        $comparedToFull = $( '.compared-to-full' );
+    const gset = this.graphSettings;
+    const textlets = this.textlets;
+    const SSData = getModelValues.benefits();
+    const lifetimeData = getModelValues.lifetime();
+    const lifetimeBenefits = numToMoney( lifetimeData['age' + this.selectedAge] );
+    const fullAgeValue = Number( SSData['age' + SSData.fullAge] );
+    const currentAgeValue = Number( SSData['age' + SSData.currentAge] );
+    const selectedAgeValue = Number( SSData['age' + this.selectedAge] );
+    let percent;
+    let text;
+    const selectedBelowFRA = this.selectedAge < SSData.fullAge;
+    const selectedFRA = this.selectedAge === SSData.fullAge;
+    const selectedAboveFRA = this.selectedAge > SSData.fullAge;
+    const selectedCurrent = this.selectedAge === SSData.currentAge;
+    const isFRA = SSData.currentAge === SSData.fullAge;
+    const isYoungerThanFRA = SSData.currentAge < SSData.fullAge;
+    const $benefitsMod = $( '.benefit-modification-text' );
+    const $selectedAgeText = $( '#selected-retirement-age-value' );
+    const $fullAgeBenefits = $( '#full-age-benefits-text' );
+    const $comparedToFull = $( '.compared-to-full' );
 
     // Set default state
     $fullAgeBenefits.show();
@@ -386,8 +395,8 @@ const graphView = {
   /* Sets an age on the graph when the indicator is moved
      @param {number} indicatorValue Value of the range slider */
   setAgeWithIndicator: function( indicatorValue ) {
-    let SSData = getModelValues.benefits(),
-        $indicator = $( '#graph_slider-input' );
+    const SSData = getModelValues.benefits();
+    const $indicator = $( '#graph_slider-input' );
     graphView.selectedAge = indicatorValue;
     graphView.textlets.selectedAge = window.gettext( graphView.selectedAge );
     // Don't let the user select an age younger than they are now
@@ -404,13 +413,13 @@ const graphView = {
      different age
      @param {number} age  The age for the indicator to be set to */
   moveIndicatorToAge: function( age ) {
-    let SSData = getModelValues.benefits(),
-        $indicator = $( '#graph_slider-input' );
+    const SSData = getModelValues.benefits();
+    const indicatorDom = document.querySelector( '#graph_slider-input' );
     if ( age < SSData.currentAge ) {
       age = SSData.currentAge;
     }
     age = Number( age );
-    $indicator.val( age );
+    indicatorDom.value = age;
     graphView.setAgeWithIndicator( age );
   },
 
@@ -419,14 +428,11 @@ const graphView = {
     * and the position of various elements
     */
   setGraphDimensions: function() {
-    let canvasLeft,
-        graphWidth,
-        graphHeight,
-        barWidth,
-        barOffset,
-        gutterWidth,
-        heightRatio,
-        SSData = getModelValues.benefits();
+    let canvasLeft;
+    let graphWidth;
+    let graphHeight;
+    let barOffset;
+    const SSData = getModelValues.benefits();
 
     // Update width settings
     canvasLeft = Number(
@@ -452,15 +458,15 @@ const graphView = {
     graphView.changeGraphSetting( 'graphHeight', graphHeight );
     graphView.changeGraphSetting( 'barOffset', barOffset );
 
-    barWidth = Math.floor( graphWidth / 17 );
+    const barWidth = Math.floor( graphWidth / 17 );
     graphView.changeGraphSetting( 'barWidth', barWidth );
 
-    gutterWidth = Math.floor( graphWidth / 17 );
+    const gutterWidth = Math.floor( graphWidth / 17 );
     graphView.changeGraphSetting( 'gutterWidth', gutterWidth );
 
     graphView.changeGraphSetting( 'barGut', barWidth + gutterWidth );
 
-    heightRatio = ( graphHeight - barOffset ) / SSData.age70;
+    const heightRatio = ( graphHeight - barOffset ) / SSData.age70;
     graphView.changeGraphSetting( 'heightRatio', heightRatio );
 
     $( '#claim-canvas, .x-axis-label' ).width( graphWidth );
@@ -470,15 +476,15 @@ const graphView = {
 
   /* This helper function draws and redraws the indicator bars for each age */
   drawBars: function() {
-    let SSData = getModelValues.benefits(),
-        leftOffset = 0;
+    const SSData = getModelValues.benefits();
+    let leftOffset = 0;
 
     $.each( this.ages, function( i, val ) {
-      let color = '#e3e4e5',
-          key = 'age' + val,
-          gset = graphView.graphSettings,
-          height = gset.heightRatio * SSData[key],
-          $bar = $( '[data-bar_age="' + val + '"]' );
+      const color = '#e3e4e5';
+      const key = 'age' + val;
+      const gset = graphView.graphSettings;
+      const height = gset.heightRatio * SSData[key];
+      const $bar = $( '[data-bar_age="' + val + '"]' );
       $bar.css( {
         left: leftOffset,
         top: gset.graphHeight - gset.barOffset - height,
@@ -496,16 +502,16 @@ const graphView = {
 
   /* This helper function draws the background lines for the chart */
   drawGraphBackground: function() {
-    let gset = graphView.graphSettings,
-        barInterval = gset.graphHeight / 4,
-        totalWidth = gset.barWidth * 9 + gset.gutterWidth * 8,
-        yCoord = gset.graphHeight - barInterval,
-        $backgroundBars = $( '[data-bg-bar-number]' );
+    const gset = graphView.graphSettings;
+    const barInterval = gset.graphHeight / 4;
+    const totalWidth = gset.barWidth * 9 + gset.gutterWidth * 8;
+    let yCoord = gset.graphHeight - barInterval;
+    const $backgroundBars = $( '[data-bg-bar-number]' );
 
     $backgroundBars.css( 'width', totalWidth );
     $backgroundBars.each( function() {
-      let $ele = $( this ),
-          count = $ele.attr( 'data-bg-bar-number' );
+      const $ele = $( this );
+      const count = $ele.attr( 'data-bg-bar-number' );
       $ele.css( {
         width: totalWidth,
         top: yCoord
@@ -519,17 +525,16 @@ const graphView = {
     * This helper functions draws the age text boxes on the graph
     */
   drawAgeBoxes: function() {
-    let leftOffset = 0,
-        gset = graphView.graphSettings;
+    let leftOffset = 0;
+    const gset = graphView.graphSettings;
     // remove existing boxes
     $( '#claim-canvas .age-text' ).remove();
     $.each( graphView.ages, function( i, val ) {
-      let ageDiv;
       $( '#claim-canvas' )
         .append(
           '<div class="age-text"><p class="h3">' + val + '</p></div>'
         );
-      ageDiv = $( '#claim-canvas .age-text:last' );
+      const ageDiv = $( '#claim-canvas .age-text:last' );
       ageDiv.attr( 'data-age-value', val );
 
       // set width to bar width (minus stroke width x2)
@@ -573,9 +578,11 @@ const graphView = {
 
   getTranslations: function() {
     for ( const key in this.textlets ) {
-      this.textlets[key] = window.gettext( this.textlets[key] );
+      if ( {}.hasOwnProperty.call( this.textlets, key ) ) {
+        this.textlets[key] = window.gettext( this.textlets[key] );
+      }
     }
   }
 };
 
-module.exports = graphView;
+export default graphView;

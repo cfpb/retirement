@@ -63,9 +63,9 @@ const nextStepsView = {
      the user's current age or higher
      @param {number} currentAge   The user's current age */
   limitAgeSelector: function( currentAge ) {
-    let $select = $( '#retirement-age-selector' ),
-        firstOption = $select.find( 'option' )[0],
-        retirementAge = 62;
+    const $select = $( '#retirement-age-selector' );
+    const firstOption = $select.find( 'option' )[0];
+    let retirementAge = 62;
 
     $select.empty();
     // We save and append the first OPTION, "Choose age"
@@ -91,4 +91,4 @@ const nextStepsView = {
 
 };
 
-module.exports = nextStepsView;
+export default nextStepsView;
