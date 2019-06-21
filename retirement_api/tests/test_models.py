@@ -1,6 +1,8 @@
 import os
 import sys
 import datetime
+import tempfile
+
 from retirement_api.models import (AgeChoice,
                                    Question,
                                    Step,
@@ -48,11 +50,29 @@ class ViewModels(TestCase):
             self.assertTrue(term in tlist)
 
     def test_question_dump(self):
-        m = mock_open()
-        with patch("__builtin__.open", m, create=True):
-            mock_open.return_value = mock.MagicMock(spec=file)
-            self.testquestion.dump_translation_text(output=True)
-        self.assertTrue(m.call_count == 1)
+        with tempfile.NamedTemporaryFile() as f:
+            self.testquestion.dump_translation_text(
+                output=True,
+                outfile=f.name
+            )
+
+            f.seek(0)
+            translation_po_file_content = f.read()
+
+            self.assertEqual(translation_po_file_content, (b'''\
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\\n"
+"Content-Type: text/plain; charset=UTF-8\\n"
+"Content-Transfer-Encoding: 8bit\\n"
+"Project-Id-Version: retirement\\n"
+"Language: es\\n"
+
+#: templates/claiming.html
+msgid "Test question."
+msgstr ""
+
+'''))
 
     def test_question_dump_no_output(self):
         dump = self.testquestion.dump_translation_text()

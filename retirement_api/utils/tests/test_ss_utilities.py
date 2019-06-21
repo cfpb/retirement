@@ -75,7 +75,7 @@ class SSACheckTests(django.test.TestCase):
         test_data = json.loads(Calibration.objects.first().results_json)
         test_msg = check_results(test_data, self.TESTS)
         self.assertTrue("pass" in test_msg)
-        slug = test_data.keys()[0]
+        slug = list(test_data.keys())[0]
         test_data[slug]['current_age'] = 99
         test_data[slug]['current_age'] = 99
         test_data[slug]['data']['months_past_birthday'] = 13

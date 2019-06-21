@@ -8,6 +8,7 @@ install_requires = [
     'dj-database-url>=0.4.2,<1',
     'python-dateutil>=2.1<3',
     'requests>=2.18,<3',
+    'six>=1.11.0,<2',
 ]
 
 

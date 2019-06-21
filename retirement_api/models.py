@@ -1,6 +1,9 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 
+from six import text_type
+
+
 WORKFLOW_STATE = [
     ('APPROVED', 'Approved'),
     ('REVISED', 'Revised'),
@@ -150,7 +153,7 @@ class Question(models.Model):
         ]
         return fieldlist
 
-    def dump_translation_text(self, output=False):
+    def dump_translation_text(self, output=False, outfile=None):
         """
         translation utility
 
@@ -158,17 +161,17 @@ class Question(models.Model):
         or outputs a utf-8 .po file to /tmp/
         """
         fieldlist = self.translist()
-        outfile = "/tmp/%s.po" % self.slug
         phrases = [self.__getattribute__(attr) for attr in fieldlist if
                    self.__getattribute__(attr)]
+
         if output is True:
-            with open(outfile, 'w') as f:
+            outfile = outfile or "/tmp/%s.po" % self.slug
+            with open(outfile, 'wb') as f:
                 for line in POHEADER:
                     f.write(line.encode('utf-8'))
                 for phrase in phrases:
                     f.write('#: templates/claiming.html\n'.encode('utf-8'))
-                    f.write(unicode('msgid "%s"\n' % phrase).encode('utf-8'))
-                    f.write('msgstr ""\n'.encode('utf-8'))
-                    f.write("\n")
+                    f.write(text_type('msgid "%s"\n' % phrase).encode('utf-8'))
+                    f.write('msgstr ""\n\n'.encode('utf-8'))
         else:
             return phrases

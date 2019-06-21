@@ -449,12 +449,12 @@ def get_retire_data(params, language):
      fra_tuple, past_fra, results) = set_up_runvars(params, language=language)
     if isinstance(past_fra, bool) is False:
         # if past_fra is neither False nor True, there's an error and we bail
-        if current_age > 70:
+        if current_age and current_age > 70:
             results['past_fra'] = True
             results['note'] = past_fra
             results['error'] = "visitor too old for tool"
             return results
-        elif current_age < 22:
+        elif current_age is None or current_age < 22:
             results['note'] = past_fra
             results['error'] = "visitor too young for tool"
             return results

@@ -12,6 +12,7 @@ from django.test import TestCase
 # import unittest
 from django.http import HttpRequest
 
+from six import binary_type
 
 from retirement_api.views import (param_check,
                                   income_check,
@@ -86,7 +87,7 @@ class ViewTests(TestCase):
     def test_estimator_url_data(self):
         request = self.req_blank
         response = estimator(request, dob='1955-05-05', income='40000')
-        self.assertTrue(type(response.content) == str)
+        self.assertIsInstance(response.content, binary_type)
         rdata = json.loads(response.content)
         for each in self.return_keys:
             self.assertTrue(each in rdata.keys())
@@ -105,7 +106,7 @@ class ViewTests(TestCase):
         request = self.req_good
         response = estimator(request)
         self.assertTrue(response.status_code == 200)
-        self.assertTrue(type(response.content) == str)
+        self.assertIsInstance(response.content, binary_type)
         rdata = json.loads(response.content)
         for each in self.return_keys:
             self.assertTrue(each in rdata.keys())
