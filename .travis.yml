@@ -1,17 +1,16 @@
 language: python
 python:
-- '2.7'
+- 2.7
+- 3.6
 cache: pip
-env: DJ_KEY=testkey
 install:
-- pip install coveralls tox
+- pip install coveralls tox-travis
 before_script:
-  - npm install -g gulp-cli
-script:
+- npm install -g gulp-cli
 - npm config set package-lock false
+script:
 - tox
-- python2.7 setup.py bdist_wheel
-- ls dist/*
+- python2.7 setup.py bdist_wheel --universal
 after_success:
 - coveralls
 deploy:
