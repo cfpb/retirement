@@ -19,6 +19,9 @@ npm-debug.log
 __pycache__/
 *.py[cod]
 .eggs/
+.python-version
+build
+dist
 
 # Django #
 #################
