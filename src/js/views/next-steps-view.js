@@ -26,8 +26,9 @@ function init( ageRightNow, fullRetirementAge ) {
     @param {number} fullAge   The user's full retirement age */
 function chooseClaimingAge() {
 
-  if ( $( '#retirement-age-selector' )
-       .find( 'option:selected' ).val() === '' ) {
+  if ( $( '#retirement-age-selector' ).find(
+    'option:selected'
+  ).val() === '' ) {
     $( '#age-selector-response' ).hide();
   } else {
     const age = parseInt(

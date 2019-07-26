@@ -20,7 +20,7 @@ const graphSettings = {
   barOffset: 0
 };
 
-let ages = [ 62, 63, 64, 65, 66, 67, 68, 69, 70 ];
+const ages = [ 62, 63, 64, 65, 66, 67, 68, 69, 70 ];
 
 let selectedAge = 0;
 
