@@ -31,12 +31,17 @@
 {% endblock %}
 
 {% block page_meta %}
+    {% if es %}
+      <link rel="canonical" href="https://www.consumerfinance.gov/consumer-tools/retirement/before-you-claim/about/es/">
+    {% else %}
+      <link rel="canonical" href="https://www.consumerfinance.gov/consumer-tools/retirement/before-you-claim/about/">
+    {% endif %}
     <meta property="og:title" content="{{ TITLE }} &gt; Consumer Financial Protection Bureau"/>
     <meta property="og:url" content="{{ URL }}"/>
 
-    <meta name="description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
+    <meta name="description" content="The age you start collecting Social Security affects your income in retirement. You need more than a calculator! This online tool will help you think through this decision."/>
 
-    <meta property="og:description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
+    <meta property="og:description" content="The age you start collecting Social Security affects your income in retirement. You need more than a calculator! This online tool will help you think through this decision."/>
 {% endblock %}
 {% block open_graph_image %}
     <meta property="og:image"
