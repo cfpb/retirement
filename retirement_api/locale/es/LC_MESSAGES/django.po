@@ -700,7 +700,7 @@ msgstr "https://www.ssa.gov/OACT/quickcalc/faqs-esp.html"
 
 #:
 msgid "Planning your Social Security claiming age"
-msgstr "Antes de solicitar"
+msgstr "Planifique para su Jubilación: Antes de solicitar"
 
 #:
 msgid "YYYY"
