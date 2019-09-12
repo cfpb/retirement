@@ -31,7 +31,7 @@ def claiming(request, es=False):
     ages = {}
     for age in AgeChoice.objects.all():
         ages[age.age] = _(age.aside)
-    page = Page.objects.get(title='Before You Claim')
+    page = Page.objects.get(title='Planning your Social Security claiming age')
     tips = {}
     for tooltip in Tooltip.objects.all():
         tips[tooltip.title] = tooltip.text

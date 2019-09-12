@@ -26,9 +26,13 @@
 {% endblock %}
 
 {% block page_meta %}
+{% if es %}
+<link rel="canonical" href="https://www.consumerfinance.gov/consumer-tools/retirement/before-you-claim/es/">
+{% endif %}
 {% if not es %}
-<meta name="description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
-<meta property="og:description" content="The age you claim Social Security affects your lifetime income. Our Planning for Retirement tool helps you think through this decision."/>
+<meta name="description" content="The age you start collecting Social Security affects your income in retirement. You need more than a calculator! This online tool will help you think through this decision."/>
+<meta property="og:description" content="The age you start collecting Social Security affects your income in retirement. You need more than a calculator! This online tool will help you think through this decision."/>
+<link rel="canonical" href="https://www.consumerfinance.gov/consumer-tools/retirement/before-you-claim/">
 {% endif %}
 <meta property="og:title" content="{% trans page.title %} &gt; Consumer Financial Protection Bureau"/>
 <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
@@ -408,16 +412,16 @@
             </div>
           </div>
           <div class="lifestyle-response" data-responds-to="yes">
-            <h4>{% trans questions.longlife.answer_yes_a_subhed %}</h4>
-            <p>{% trans questions.longlife.answer_yes_a %}</p>
+            <h4>{% trans questions.longlife.answer_yes_a_subhed|safe %}</h4>
+            <p>{% trans questions.longlife.answer_yes_a|safe %}</p>
           </div>
           <div class="lifestyle-response" data-responds-to="no">
-            <h4>{% trans questions.longlife.answer_no_a_subhed %}</h4>
-            <p>{% trans questions.longlife.answer_no_a %}</p>
+            <h4>{% trans questions.longlife.answer_no_a_subhed|safe %}</h4>
+            <p>{% trans questions.longlife.answer_no_a|safe %}</p>
           </div>
           <div class="lifestyle-response" data-responds-to="notsure">
-            <h4>{% trans questions.longlife.answer_unsure_a_subhed %}</h4>
-            <p>{% trans questions.longlife.answer_unsure_a %}</p>
+            <h4>{% trans questions.longlife.answer_unsure_a_subhed|safe %}</h4>
+            <p>{% trans questions.longlife.answer_unsure_a|safe %}</p>
           </div>
         </div>
       </div>
@@ -449,27 +453,22 @@
               <hr>
               <div class="next-step-description next-steps_max">
                 <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, {% trans "which is your maximum Social Security benefit claiming age." %}</h3>
-                <p>{% trans "This means you will get your maximum possible monthly benefit! Here are steps to help you in the next few years." %}</p>
+                <p>{% trans "This means you will get your maximum possible monthly benefit! Here are a few things to keep in mind in the next few years." %}</p>
               </div>
               <div class="next-step-description next-steps_over">
                 <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, {% trans "which is later than your Social Security full retirement claiming age." %}</h3>
-                <p>{% trans "This means you will get an increase in your monthly benefits!  Here are steps to help you in the next few years." %}</p>
+                <p>{% trans "This means you will get an increase in your monthly benefits!  Here are a few things to keep in mind in the next few years." %}</p>
               </div>
               <div class="next-step-description next-steps_equal">
                 <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, {% trans "which is your Social Security full retirement claiming age." %}</h3>
-                <p>{% trans "That means you’ll receive your full benefit with no reductions! Here are steps to help you in the next few years." %}</p>
+                <p>{% trans "That means you’ll receive your full benefit with no reductions! Here are a few things to keep in mind in the next few years." %}</p>
               </div>
               <div class="next-step-description next-steps_under">
                 <h3>{% trans "You’ve chosen age" %} <span class="age-response-value"></span>, {% trans "which is earlier than your Social Security full retirement claiming age." %}</h3>
-                <p>{% trans "At this age you will receive less than your full benefit amount. Here are steps to help you in the next few years." %}</p>
+                <p>{% trans "If you start collecting at this age you will receive less than your full benefit amount. Here are a few things to keep in mind in the next few years." %}</p>
               </div>
               <ol class="next-steps content-l">
                 <li class="content-l_col content-l_col-1-3 next-step-one">{% autoescape off %}{{ steps.final_step_1 }}</li>
-                <li class="content-l_col content-l_col-1-3 next-step-two">
-                  <span class="step-two_option next-steps_under">{{ steps.final_step_2_under }}</span>
-                  <span class="step-two_option next-steps_equal">{{ steps.final_step_2_equal }}</span>
-                  <span class="step-two_option next-steps_over next-steps_max">{{ steps.final_step_2_over }}</span>
-                </li>
                 <li class="content-l_col content-l_col-1-3 next-step-three">{{ steps.final_step_3 }}{% endautoescape %}</li>
               </ol>
               <p class="h3">{{ steps.final_step_4 }}</p>
