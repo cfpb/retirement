@@ -1,8 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 
-from six import text_type
-
 
 WORKFLOW_STATE = [
     ('APPROVED', 'Approved'),
@@ -171,7 +169,7 @@ class Question(models.Model):
                     f.write(line.encode('utf-8'))
                 for phrase in phrases:
                     f.write('#: templates/claiming.html\n'.encode('utf-8'))
-                    f.write(text_type('msgid "%s"\n' % phrase).encode('utf-8'))
+                    f.write(str('msgid "%s"\n' % phrase).encode('utf-8'))
                     f.write('msgstr ""\n\n'.encode('utf-8'))
         else:
             return phrases

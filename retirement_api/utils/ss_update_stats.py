@@ -14,7 +14,7 @@ terms:
 import requests
 # from django.template.defaultfilters import slugify
 from bs4 import BeautifulSoup as bs
-from six import StringIO
+from io import StringIO
 
 TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
