@@ -8,7 +8,6 @@ install_requires = [
     'dj-database-url>=0.4.2,<1',
     'python-dateutil>=2.1<3',
     'requests>=2.18,<3',
-    'six>=1.11.0,<2',
 ]
 
 
@@ -49,7 +48,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Intended Audience :: Developers',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.6',
         'Framework :: Django',
         'Development Status :: 4 - Beta',
