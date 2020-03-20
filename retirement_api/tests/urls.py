@@ -1,10 +1,16 @@
-from django.conf.urls import include, url
-from django.contrib import admin 
+from django.contrib import admin
 
 import retirement_api.urls
 
 
+try:
+    from django.urls import include, re_path
+except ImportError:
+    from django.conf.urls import include
+    from django.conf.urls import url as re_path
+
+
 urlpatterns = [
-    url(r'^', include(retirement_api.urls, 'retirement_api')),
-    url(r'^admin/', include(admin.site.urls)),
+    re_path(r'^admin/', include(admin.site.urls)),
+    re_path(r'^', include(retirement_api.urls)),
 ]

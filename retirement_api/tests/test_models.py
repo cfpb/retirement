@@ -9,9 +9,6 @@ from retirement_api.models import (AgeChoice,
                                    Page,
                                    Tooltip,
                                    Calibration)
-import mock
-from mock import patch, mock_open
-
 from django.test import TestCase
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))

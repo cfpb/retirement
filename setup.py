@@ -4,7 +4,7 @@ from setuptools import setup
 
 install_requires = [
     'beautifulsoup4>=4.5.0,<4.7',
-    'Django>=1.11,<1.12',
+    'Django>=1.11,<2.3',
     'dj-database-url>=0.4.2,<1',
     'python-dateutil>=2.1<3',
     'requests>=2.18,<3',
@@ -48,7 +48,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Intended Audience :: Developers',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3',
         'Framework :: Django',
         'Development Status :: 4 - Beta',
         'Operating System :: OS Independent',

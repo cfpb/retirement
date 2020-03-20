@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+import django
 
 from django.db import models, migrations
 
@@ -84,16 +84,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='page',
             name='step1',
-            field=models.ForeignKey(related_name='step1', blank=True, to='retirement_api.Step', null=True),
+            field=models.ForeignKey(related_name='step1', blank=True, to='retirement_api.Step', null=True, on_delete=django.db.models.deletion.CASCADE),
         ),
         migrations.AddField(
             model_name='page',
             name='step2',
-            field=models.ForeignKey(related_name='step2', blank=True, to='retirement_api.Step', null=True),
+            field=models.ForeignKey(related_name='step2', blank=True, to='retirement_api.Step', null=True, on_delete=django.db.models.deletion.CASCADE),
         ),
         migrations.AddField(
             model_name='page',
             name='step3',
-            field=models.ForeignKey(related_name='step3', blank=True, to='retirement_api.Step', null=True),
+            field=models.ForeignKey(related_name='step3', blank=True, to='retirement_api.Step', null=True, on_delete=django.db.models.deletion.CASCADE),
         ),
     ]

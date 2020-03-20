@@ -1,7 +1,3 @@
-from __future__ import absolute_import
-
-from .standalone import *
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

@@ -15,7 +15,7 @@ timestamp = datetime.datetime.now()
 default_base = 'build'
 
 # rolling dob to guarantee subject is 44 and full retirement age is 67
-dob = timestamp.date().replace(year=timestamp.year-44)
+dob = timestamp.date().replace(year=timestamp.year - 44)
 timeout_seconds = 20
 
 API_ROOT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -39,7 +39,9 @@ class Collector(object):
     api_fail = ''
     timer = ''
 
+
 collector = Collector()
+
 log_header = ['data',
               'date',
               'domain',
@@ -66,18 +68,20 @@ def check_data(data):
     else:
         return "BAD DATA"
 
+
 prefix = 'http://'
 suffix = '.consumerfinance.gov/retirement'
-api_string = 'retirement-api/estimator/{0}-{1}-{2}/{3}/'.format(dob.month,
-                                                           dob.day,
-                                                           dob.year,
-                                                           random.randrange(20000, 100000))
+api_string = 'retirement-api/estimator/{0}-{1}-{2}/{3}/'.format(
+    dob.month,
+    dob.day,
+    dob.year,
+    random.randrange(20000, 100000))
 BASES = {
     'unitybox': 'http://localhost:8080/retirement',
     'standalone': 'http://localhost:8000/retirement',
     default_base: '{0}{1}{2}'.format(prefix, default_base, suffix),
     'prod': '{0}www{1}'.format(prefix, suffix),
-    }
+}
 
 
 def run(base):
@@ -102,7 +106,8 @@ def run(base):
         end = time.time()
         signal.alarm(0)
         collector.status = "TIMEDOUT"
-        collector.error = 'SSA request exceeded {0} sec'.format(timeout_seconds)
+        collector.error = \
+            'SSA request exceeded {0} sec'.format(timeout_seconds)
     else:
         if test_request.status_code != 200:
             signal.alarm(0)
@@ -115,13 +120,14 @@ def run(base):
             signal.alarm(0)
             data = json.loads(test_request.text)
             collector.status = "%s" % test_request.status_code
-            collector.error = "{0}".format(data['error']).replace(',', ';').replace("'", '').replace('"', '')
+            collector.error = "{0}".format(data['error']).replace(
+                ',', ';').replace("'", '').replace('"', '')
             collector.note = data['note']
             collector.data = check_data(data)
             if collector.data == "BAD DATA":
                 collector.api_fail = 'FAIL'
     collector.timer = "%s" % round(end - start, 1)
-    msg = build_msg(collector)
+    # msg = build_msg(collector)
     # print msg
     # with open('%s/tests/logs/api_check.log' % API_ROOT, 'a') as f:
     #     f.write("%s\n" % msg)

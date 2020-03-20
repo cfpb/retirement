@@ -61,11 +61,14 @@ class Page(models.Model):
     h3 = models.CharField(max_length=255, blank=True)
     h4 = models.CharField(max_length=255, blank=True)
     step1 = models.ForeignKey(Step, related_name='step1',
-                              blank=True, null=True)
+                              blank=True, null=True,
+                              on_delete=models.CASCADE)
     step2 = models.ForeignKey(Step, related_name='step2',
-                              blank=True, null=True)
+                              blank=True, null=True,
+                              on_delete=models.CASCADE)
     step3 = models.ForeignKey(Step, related_name='step3',
-                              blank=True, null=True)
+                              blank=True, null=True,
+                              on_delete=models.CASCADE)
     final_steps = models.TextField(blank=True)
 
     def translist(self):

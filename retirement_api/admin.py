@@ -19,6 +19,7 @@ class QuestionAdmin(admin.ModelAdmin):
 class TooltipAdmin(admin.ModelAdmin):
     list_display = ('title', 'text')
 
+
 admin.site.register(Page, PageAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Step)

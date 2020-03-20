@@ -25,7 +25,7 @@ Tú puedes ver este app en español por poner `/es` al parte final del url.
  * [Bower](https://bower.io/)
 
 ### Code dependencies
- * [Django 1.11](https://docs.djangoproject.com/en/1.11/)
+ * [Django 2.2](https://docs.djangoproject.com/en/2.2/)
  * [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)
  * [Python-dateutil](https://dateutil.readthedocs.org/en/latest/)
  * [Requests](http://docs.python-requests.org/en/latest/)

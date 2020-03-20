@@ -83,7 +83,7 @@ def get_current_age(dob):
         try:  # when dob is 2/29 and the current year is not a leap year
             birthday = DOB.replace(year=today.year)
         except ValueError:
-            birthday = DOB.replace(year=today.year, day=DOB.day-1)
+            birthday = DOB.replace(year=today.year, day=DOB.day - 1)
         if birthday > today:
             return today.year - DOB.year - 1
         else:
@@ -95,8 +95,8 @@ def get_current_age(dob):
 def get_months_past_birthday(dob):
     """return the number of months a person is past their last birthday"""
     today = datetime.date.today()
-    months_at_birth = dob.year*12 + dob.month - 1
-    months_today = today.year*12 + today.month - 1
+    months_at_birth = dob.year * 12 + dob.month - 1
+    months_today = today.year * 12 + today.month - 1
     delta = months_today - months_at_birth
     return delta % 12
 
@@ -184,7 +184,7 @@ def past_fra_test(dob=None, language='en'):
     # SSA has a special rule for people born on Jan. 1
     # http://www.socialsecurity.gov/OACT/ProgData/nra.html
     if DOB.month == 1 and DOB.day == 1:
-        fra_tuple = get_retirement_age(DOB.year-1)
+        fra_tuple = get_retirement_age(DOB.year - 1)
     else:
         fra_tuple = get_retirement_age(DOB.year)
     age_tuple = (current_age, get_months_past_birthday(DOB))

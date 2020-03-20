@@ -1,5 +1,3 @@
-import os
-import sys
 import json
 import datetime
 
@@ -29,7 +27,7 @@ class TestApi(unittest.TestCase):
                 'age 69': 2479,
                 'age 68': 2308,
                 'age 70': 2650
-                },
+            },
             'disability': "$1,899",
             'early retirement age': "62 and 1 month",
             'params': {
@@ -43,17 +41,17 @@ class TestApi(unittest.TestCase):
                 'yob': 1970,
                 'lastEarn': "",
                 'earnings': 70000
-                },
+            },
             'full retirement age': "67",
             'survivor benefits': {
                 'spouse at full retirement age': "$1,912",
                 'family maximum': "$3,377",
                 'spouse caring for child': "$1,434",
                 'child': "$1,434"
-                }
-            },
+            }
+        },
         'error': ""
-        }
+    }
 
     def test_check_data(self):
         msg = check_data(self.test_data)
@@ -69,7 +67,8 @@ class TestApi(unittest.TestCase):
     def test_run(self, mock_build_msg, mock_requests):
         mock_requests.return_value.text = json.dumps(self.test_data)
         mock_requests.return_value.status_code = 200
-        mock_build_msg.return_value = ',%s,,,mock error,,,' % self.test_collector.date
+        mock_build_msg.return_value = ',%s,,,mock error,,,'\
+                                      % self.test_collector.date
         run('build')
         self.assertTrue(mock_build_msg.call_count == 1)
         mock_requests.return_value.status_code = 400

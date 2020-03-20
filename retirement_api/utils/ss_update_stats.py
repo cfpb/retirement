@@ -14,7 +14,6 @@ terms:
 import requests
 # from django.template.defaultfilters import slugify
 from bs4 import BeautifulSoup as bs
-from io import StringIO
 
 TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
@@ -28,21 +27,49 @@ outcsv = "%s/early_penalty_%s.csv" % (data_dir, TODAY.year)
 outjson = "%s/early_penalty_%s.json" % (data_dir, TODAY.year)
 
 ss_table_urls = {
-    'cola': "http://www.socialsecurity.gov/OACT/COLA/colaseries.html",
-    'actuarial_life': "http://www.socialsecurity.gov/OACT/STATS/table4c6.html",
-    'retirement_ages': "http://www.socialsecurity.gov/OACT/ProgData/nra.html",# handled by get_retirement_age()
-    'benefit_bases': 'http://www.socialsecurity.gov/OACT/COLA/cbb.html',# not needed if we use SS calculator
-    'delay_credits': "http://www.socialsecurity.gov/retire2/delayret.htm",
-    'awi_series': 'http://www.socialsecurity.gov/OACT/COLA/AWI.html',
-    'bend_points': 'http://www.socialsecurity.gov/OACT/COLA/bendpoints.html',# not needed if we use SS calculator
-    'early_retirement_example': 'http://www.socialsecurity.gov/OACT/quickcalc/earlyretire.html',# useful as viz
-    'explainer of AMI calculations': 'http://www.socialsecurity.gov/OACT/COLA/piaformula.html',# info only
-    'benefit_terms': 'http://www.socialsecurity.gov/OACT/COLA/Benefits.html#aime',# explanation of terms; info only
-    'credit_rules': 'http://www.socialsecurity.gov/planners/retire/credits2.html',# out of scope: rules for achieving 40 work credits (10 years of work); not envisioned for app
-    'quarter_of_coverage': 'http://www.socialsecurity.gov/OACT/COLA/QC.html',# out of scope: basic work-credit unit to determine whether a worker is covered by SS; you can earn 4 credits a year
-    'death_probabilities': 'http://www.socialsecurity.gov/OACT/HistEst/DeathProbabilities2014.html',# out of scope: historical and projected male/female death probability tables
-    'automatic_values': 'http://www.socialsecurity.gov/OACT/COLA/autoAdj.html',# out of scope: compendium of bend points, COlA and other adjustment values used in SS calculations
-    }
+    'cola':
+        "http://www.socialsecurity.gov/OACT/COLA/colaseries.html",
+    'actuarial_life':
+        "http://www.socialsecurity.gov/OACT/STATS/table4c6.html",
+    # handled by get_retirement_age()
+    'retirement_ages':
+        "http://www.socialsecurity.gov/OACT/ProgData/nra.html",
+    # not needed if we use SS calculator
+    'benefit_bases':
+        'http://www.socialsecurity.gov/OACT/COLA/cbb.html',
+    'delay_credits':
+        "http://www.socialsecurity.gov/retire2/delayret.htm",
+    'awi_series':
+        'http://www.socialsecurity.gov/OACT/COLA/AWI.html',
+    # not needed if we use SS calculator
+    'bend_points':
+        'http://www.socialsecurity.gov/OACT/COLA/bendpoints.html',
+    # useful as viz
+    'early_retirement_example':
+        'http://www.socialsecurity.gov/OACT/quickcalc/earlyretire.html',
+    # info only
+    'explainer of AMI calculations':
+        'http://www.socialsecurity.gov/OACT/COLA/piaformula.html',
+    # explanation of terms; info only
+    'benefit_terms':
+        'http://www.socialsecurity.gov/OACT/COLA/Benefits.html#aime',
+    # out of scope: rules for achieving 40 work credits (10 years of work);
+    # not envisioned for app
+    'credit_rules':
+        'http://www.socialsecurity.gov/planners/retire/credits2.html',
+    # out of scope: basic work-credit unit to determine whether a worker is
+    # covered by SS; you can earn 4 credits a year
+    'quarter_of_coverage':
+        'http://www.socialsecurity.gov/OACT/COLA/QC.html',
+    # out of scope:
+    # historical and projected male/female death probability tables
+    'death_probabilities':
+        'http://www.socialsecurity.gov/OACT/HistEst/DeathProbabilities2014.html',
+    # out of scope: compendium of bend points,
+    # COlA and other adjustment values used in SS calculations
+    'automatic_values':
+        'http://www.socialsecurity.gov/OACT/COLA/autoAdj.html',
+}
 
 
 log = logging.getLogger(__name__)
@@ -95,14 +122,14 @@ def update_example_reduction():
     """
     url = ss_table_urls['early_retirement_example']
     headings = [
-            'YOB',
-            'FRA',
-            'reduction_months',
-            'primary_pia',
-            'primary_pct_reduction',
-            'spouse_pia',
-            'spouse_pct_reduction'
-            ]
+        'YOB',
+        'FRA',
+        'reduction_months',
+        'primary_pia',
+        'primary_pct_reduction',
+        'spouse_pia',
+        'spouse_pct_reduction'
+    ]
     soup = make_soup(url)
     if soup:
         table = soup.findAll('table')[5].find('table')
@@ -177,7 +204,8 @@ def update_life():
                 output_csv(outcsv, headings, rows)
                 msg += "updated %s with %s rows" % (outcsv, len(rows))
                 output_json(outjson, headings, rows)
-                msg += "updated {0} with {1} entries".format(outjson, len(rows))
+                msg += "updated {0} with {1} entries".format(
+                    outjson, len(rows))
             else:
                 msg += "didn't find more than 100 rows at {0}".format(url)
     log.info(msg)
@@ -190,7 +218,9 @@ def harvest_all():
     update_awi_series()
     update_example_reduction()
 
+
 if __name__ == "__main__":
     starter = datetime.datetime.now()
     harvest_all()
-    log.info("update took {0} to update four data stores".format((datetime.datetime.now()-starter)))
+    log.info("update took {0} to update four data stores".format(
+        (datetime.datetime.now() - starter)))

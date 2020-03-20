@@ -1,24 +1,14 @@
-import sys
-import os
 import datetime
 import json
 
-import mock
-
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 from django.test import TestCase
 # import unittest
 from django.http import HttpRequest
 
-from retirement_api.views import (param_check,
-                                  income_check,
-                                  estimator,
-                                  get_full_retirement_age,
-                                  claiming,
-                                  about)
-from retirement_api.utils.ss_calculator import get_retire_data
+from retirement_api.views import (
+    param_check, income_check, estimator, get_full_retirement_age
+)
 
 today = datetime.datetime.now().date()
 

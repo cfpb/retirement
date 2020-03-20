@@ -50,9 +50,10 @@ def assemble_test_params():
         'born-on-1st-age-46': get_test_params(46, 1),
         'born-on-2nd-age-46': get_test_params(46, 2),
         'born-on-3rd-age-46': get_test_params(46, 3)
-        }
+    }
     for year in range(1946, 1961):
-        tests['born_on_3rd_in_{0}'.format(year)] = get_test_params(46, 3, dob_year=year)
+        tests['born_on_3rd_in_{0}'.format(year)] =\
+            get_test_params(46, 3, dob_year=year)
 
     tests['born_on_3rd_in_1970'] = get_test_params(46, 3, dob_year=1970)
     return tests
@@ -75,38 +76,50 @@ def check_results(test_data, TESTS):
                     'error']:
             if test_results[key] != target_results[key]:
                 OK = False
-                error_msg += "\n{0}: base param {1} did not match; expected {2} but found {3}".format(
-                                slug,
-                                key,
-                                target_results[key],
-                                test_results[key])
+                error_msg +=\
+                    "\n{0}: base param {1} did not match; "\
+                    "expected {2} but found {3}".format(
+                        slug,
+                        key,
+                        target_results[key],
+                        test_results[key])
         for data_key in ['months_past_birthday', 'full retirement age']:
-            if test_results['data'][data_key] != target_results['data'][data_key]:
+            if test_results['data'][data_key] !=\
+                    target_results['data'][data_key]:
                 OK = False
-                error_msg += "\n{0}: data param {1} did not match; expected {2} but found {3}".format(
-                                slug,
-                                data_key,
-                                target_results['data'][data_key],
-                                test_results['data'][data_key])
+                error_msg +=\
+                    "\n{0}: data param {1} did not match; "\
+                    "expected {2} but found {3}".format(
+                        slug,
+                        data_key,
+                        target_results['data'][data_key],
+                        test_results['data'][data_key])
         for benefit_key in target_results['data']['benefits'].keys():
-            if test_results['data']['benefits'][benefit_key] != target_results['data']['benefits'][benefit_key]:
+            if test_results['data']['benefits'][benefit_key] !=\
+                    target_results['data']['benefits'][benefit_key]:
                 OK = False
-                error_msg += "\n{0}: benefit param {1} did not match; expected {2} but found {3}".format(
-                               slug,
-                               benefit_key,
-                               target_results['data']['benefits'][benefit_key],
-                               test_results['data']['benefits'][benefit_key])
+                error_msg +=\
+                    "\n{0}: benefit param {1} did not match; "\
+                    "expected {2} but found {3}".format(
+                        slug,
+                        benefit_key,
+                        target_results['data']['benefits'][benefit_key],
+                        test_results['data']['benefits'][benefit_key])
         for ssa_param_key in target_results['data']['params'].keys():
-            if test_results['data']['params'][ssa_param_key] != target_results['data']['params'][ssa_param_key]:
+            if test_results['data']['params'][ssa_param_key] !=\
+                    target_results['data']['params'][ssa_param_key]:
                 OK = False
-                error_msg += "\n{0}: ssa param {1} did not match; expected {2} but found {3}".format(
-                                slug,
-                                ssa_param_key,
-                                target_results['data']['params'][ssa_param_key],
-                                test_results['data']['params'][ssa_param_key])
+                error_msg +=\
+                    "\n{0}: ssa param {1} did not match; "\
+                    "expected {2} but found {3}".format(
+                        slug,
+                        ssa_param_key,
+                        target_results['data']['params'][ssa_param_key],
+                        test_results['data']['params'][ssa_param_key])
     if OK:
         return ("All tests pass on {0}; "
-                "last recalibrated on {1}".format(today, calibration.created.date()))
+                "last recalibrated on {1}".format(today,
+                                                  calibration.created.date()))
     else:
         logger.warn(error_msg)
         return error_msg

@@ -69,6 +69,7 @@ def get_note(note_type, language):
     else:
         return ERROR_NOTES[note_type]['en']
 
+
 # ORIGINAL_BASE_URL = "https://www.socialsecurity.gov  # NOW REDIRECTED"
 # QUICK_URL = "{0}/OACT/quickcalc/".format(BASE_URL)  # where users go
 BASE_URL = "https://www.ssa.gov"
@@ -80,6 +81,7 @@ comment = re.compile(r"<!--[\s\S]*?-->")  # regex for parsing indexing data
 
 def clean_comment(comment):
     return comment.replace('<!--', '').replace('-->', '').strip()
+
 
 # calculation constants
 EARLY_PENALTY = 0.00555555  # monthly penalty for months closest to FRA
@@ -258,8 +260,7 @@ def interpolate_benefits(results, base, fra_tuple, current_age, DOB):
                 base - first_penalty -
                 (12 * monthly_penalty) -
                 ((12 - fra_months) * monthly_penalty) -
-                (fra_months * earlier_monthly_penalty)
-                ))
+                (fra_months * earlier_monthly_penalty)))
             BENS['age 64'] = int(round(
                 base - first_penalty -
                 (12 * monthly_penalty)))
@@ -341,25 +342,25 @@ def set_up_runvars(params, language='en'):
     for age in CHART_AGES:
         benefits["age {0}".format(age)] = 0
     results = {'data': {
-                    'months_past_birthday': get_months_past_birthday(dob),
-                    'early retirement age': '',
-                    'full retirement age': '',
-                    'benefits': benefits,
-                    'params': params,
-                    'disability': '',
-                    'survivor benefits': {
-                                    'child': '',
-                                    'spouse caring for child': '',
-                                    'spouse at full retirement age': '',
-                                    'family maximum': ''
-                                    }
-                    },
-               'current_age': current_age,
-               'error': '',
-               'note': '',
-               'past_fra': '',
-               'params_adjusted': False,
-               }
+        'months_past_birthday': get_months_past_birthday(dob),
+        'early retirement age': '',
+        'full retirement age': '',
+        'benefits': benefits,
+        'params': params,
+        'disability': '',
+        'survivor benefits': {
+            'child': '',
+            'spouse caring for child': '',
+            'spouse at full retirement age': '',
+            'family maximum': ''
+        }
+    },
+        'current_age': current_age,
+        'error': '',
+        'note': '',
+        'past_fra': '',
+        'params_adjusted': False,
+    }
     past_fra = past_fra_test(dobstring, language=language)
     if isinstance(past_fra, bool) is False:
         return (dob, dobstring, current_age, (0, 0), past_fra, results)
