@@ -11,6 +11,6 @@ except ImportError:
 
 
 urlpatterns = [
-    re_path(r'^admin/', include(admin.site.urls)),
+    re_path(r'^admin/', admin.site.urls),
     re_path(r'^', include(retirement_api.urls)),
 ]
