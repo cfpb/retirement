@@ -1,7 +1,6 @@
 import datetime
 import json
 
-from django.core.urlresolvers import reverse
 from django.test import TestCase
 # import unittest
 from django.http import HttpRequest
@@ -9,6 +8,12 @@ from django.http import HttpRequest
 from retirement_api.views import (
     param_check, income_check, estimator, get_full_retirement_age
 )
+
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
+
 
 today = datetime.datetime.now().date()
 
