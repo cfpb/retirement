@@ -1,9 +1,11 @@
 # coding: utf-8
-import os
-import json
 import datetime
-from dateutil import parser
+import json
 import logging
+import os
+
+from dateutil import parser
+
 
 TODAY = datetime.datetime.now().date()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
@@ -46,25 +48,27 @@ con la Administración del Seguro Social.\
 """
 
 AGE_ERROR_NOTES = {
-    'too_old': {'en': TOO_OLD, 'es': TOO_OLD_ES},
-    'too_young': {'en': TOO_YOUNG, 'es': TOO_YOUNG_ES}
+    "too_old": {"en": TOO_OLD, "es": TOO_OLD_ES},
+    "too_young": {"en": TOO_YOUNG, "es": TOO_YOUNG_ES},
 }
 
 
 def get_note(note_type, language):
     """return language_specific error"""
-    if language == 'es':
-        return AGE_ERROR_NOTES[note_type]['es']
+    if language == "es":
+        return AGE_ERROR_NOTES[note_type]["es"]
     else:
-        return AGE_ERROR_NOTES[note_type]['en']
+        return AGE_ERROR_NOTES[note_type]["en"]
 
 
 # this datafile specifies years that have unique retirement age values
 # since this may change, it is maintained in an external file
 datafile = "{0}\
-/retirement_api/data/unique_retirement_ages.json".format(BASE_DIR)
+/retirement_api/data/unique_retirement_ages.json".format(
+    BASE_DIR
+)
 
-with open(datafile, 'r') as f:
+with open(datafile, "r") as f:
     age_map = json.loads(f.read())
     for year in age_map:
         age_map[year] = tuple(age_map[year])
@@ -167,20 +171,20 @@ def get_retirement_age(birth_year):
         return None
 
 
-def past_fra_test(dob=None, language='en'):
+def past_fra_test(dob=None, language="en"):
     """
     tests whether a person is past his/her full retirement age
     """
     if not dob:
-        return 'invalid birth date entered'
+        return "invalid birth date entered"
     try:
         DOB = parser.parse(dob).date()
     except (TypeError, ValueError):
-        return 'invalid birth date entered'
+        return "invalid birth date entered"
     today = datetime.date.today()
     current_age = get_current_age(dob)
     if DOB >= today:
-        return get_note('too_young', language)
+        return get_note("too_young", language)
     # SSA has a special rule for people born on Jan. 1
     # http://www.socialsecurity.gov/OACT/ProgData/nra.html
     if DOB.month == 1 and DOB.day == 1:
@@ -190,9 +194,9 @@ def past_fra_test(dob=None, language='en'):
     age_tuple = (current_age, get_months_past_birthday(DOB))
     # print "age_tuple: %s; fra_tuple: %s" % (age_tuple, fra_tuple)
     if age_tuple[0] < 22:
-        return get_note('too_young', language)
+        return get_note("too_young", language)
     if age_tuple[0] > 70:
-        return get_note('too_old', language).format(DOB.strftime("%m/%d/%Y"))
+        return get_note("too_old", language).format(DOB.strftime("%m/%d/%Y"))
     if age_tuple[0] > fra_tuple[0]:
         return True
     elif age_tuple[0] < fra_tuple[0]:

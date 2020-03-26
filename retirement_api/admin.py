@@ -1,23 +1,30 @@
 #!/usr/bin/env python
 from django.contrib import admin
-from retirement_api.models import (Page, Question, Step,
-                                   Calibration, AgeChoice, Tooltip)
+
+from retirement_api.models import (
+    AgeChoice,
+    Calibration,
+    Page,
+    Question,
+    Step,
+    Tooltip,
+)
 
 
 class PageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'h1', 'intro')
+    list_display = ("title", "h1", "intro")
 
 
 class AgeChoiceAdmin(admin.ModelAdmin):
-    list_display = ('age', 'aside')
+    list_display = ("age", "aside")
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'question', 'workflow_state')
+    list_display = ("title", "question", "workflow_state")
 
 
 class TooltipAdmin(admin.ModelAdmin):
-    list_display = ('title', 'text')
+    list_display = ("title", "text")
 
 
 admin.site.register(Page, PageAdmin)

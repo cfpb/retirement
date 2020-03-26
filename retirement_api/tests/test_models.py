@@ -1,15 +1,19 @@
+import datetime
 import os
 import sys
-import datetime
 import tempfile
 
-from retirement_api.models import (AgeChoice,
-                                   Question,
-                                   Step,
-                                   Page,
-                                   Tooltip,
-                                   Calibration)
 from django.test import TestCase
+
+from retirement_api.models import (
+    AgeChoice,
+    Calibration,
+    Page,
+    Question,
+    Step,
+    Tooltip,
+)
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(BASE_DIR)
@@ -20,14 +24,15 @@ class ViewModels(TestCase):
 
     testagechoice = AgeChoice(age=62, aside="Aside.")
     testquestion = Question(
-        title="Test Question", slug='', question="Test question.")
+        title="Test Question", slug="", question="Test question."
+    )
     teststep = Step(title="Test Step")
     testpage = Page(title="Page title", intro="Intro")
     testtip = Tooltip(title="Test Tooltip")
     testcalibration = Calibration(created=datetime.datetime.now())
 
     def test_calibration(self):
-        self.assertTrue('calibration' in self.testcalibration.__unicode__())
+        self.assertTrue("calibration" in self.testcalibration.__unicode__())
 
     def test_get_subhed(self):
         tc = self.testagechoice
@@ -35,28 +40,32 @@ class ViewModels(TestCase):
 
     def test_question_slug(self):
         self.testquestion.save()
-        self.assertTrue(self.testquestion.slug != '')
+        self.assertTrue(self.testquestion.slug != "")
 
     def test_question_translist(self):
         tlist = self.testquestion.translist()
         self.assertTrue(type(tlist) == list)
-        for term in ['question',
-                     'answer_yes_a',
-                     'answer_no_b',
-                     'answer_unsure_a_subhed']:
+        for term in [
+            "question",
+            "answer_yes_a",
+            "answer_no_b",
+            "answer_unsure_a_subhed",
+        ]:
             self.assertTrue(term in tlist)
 
     def test_question_dump(self):
         with tempfile.NamedTemporaryFile() as f:
             self.testquestion.dump_translation_text(
-                output=True,
-                outfile=f.name
+                output=True, outfile=f.name
             )
 
             f.seek(0)
             translation_po_file_content = f.read()
 
-            self.assertEqual(translation_po_file_content, (b'''\
+            self.assertEqual(
+                translation_po_file_content,
+                (
+                    b"""\
 msgid ""
 msgstr ""
 "MIME-Version: 1.0\\n"
@@ -69,11 +78,13 @@ msgstr ""
 msgid "Test question."
 msgstr ""
 
-'''))
+"""
+                ),
+            )
 
     def test_question_dump_no_output(self):
         dump = self.testquestion.dump_translation_text()
-        self.assertEqual('Test question.', dump[0])
+        self.assertEqual("Test question.", dump[0])
 
     def test_agechoice_translist(self):
         tlist = self.testagechoice.translist()

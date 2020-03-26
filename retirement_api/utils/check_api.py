@@ -1,15 +1,17 @@
 # script to check the retirement api to make sure
 # the SSA Quick Calculator is operational
 # and to log the result to a csv
-import os
-import sys
-import requests
 import datetime
 import json
 import logging
+import os
 import random
 import signal
+import sys
 import time
+
+import requests
+
 
 timestamp = datetime.datetime.now()
 default_base = "build"
