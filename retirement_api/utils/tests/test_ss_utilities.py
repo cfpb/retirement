@@ -340,8 +340,8 @@ class UtilitiesTests(unittest.TestCase):
         ]
         output = {'EARLY':
                   {'AIME': 'AIME = 2930 & PIA in 2018 is 1416.6.',
-                   'Bend points': 'Base year for indexing is 2013. "'
-                                  '"Bend points are 826 & 4980',
+                   'Bend points': 'Base year for indexing is 2013. '
+                                  'Bend points are 826 & 4980',
                    'COLA': 'PIA in 2018 after COLAs is $1,416.60.'}}
         self.assertEqual(parse_details(sample_rows), output)
 
