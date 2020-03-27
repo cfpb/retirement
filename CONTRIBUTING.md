@@ -89,3 +89,22 @@ information visit the [Autoprefixer documentation site]
 - Icons: We currently use icon fonts to deliver scalable icons. Browsers that
   do not support icon fonts unfortunately do not receive backups but we try to
   always pair icons with text.
+
+## Style
+
+This project uses [`black`](https://github.com/psf/black) to format code, 
+[`isort`](https://github.com/timothycrosley/isort) to format imports, 
+and [`flake8`](https://gitlab.com/pycqa/flake8).
+
+You can format code and imports by calling:
+
+```
+black retirement_api
+isort --recursive retirement_api
+```
+
+And you can check for style, import order, and other linting by using:
+
+```
+tox -e lint
+```
