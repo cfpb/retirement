@@ -44,7 +44,7 @@
     "gulp-notify": "3.2.0",
     "gulp-rename": "1.4.0",
     "gulp-sourcemaps": "2.6.5",
-    "jquery": "1.12.2",
+    "jquery": "3.5.0",
     "minimist": "1.2.0",
     "mocha": "5.2.0",
     "protractor": "5.4.2",
