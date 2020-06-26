@@ -22,7 +22,7 @@ jobs:
           npm install
 
       - name: Lint front-end code
-        run: npm run lint
+        run: gulp lint
 
       - name: Run front-end unit tests
         run: npm test
