@@ -1,0 +1,81 @@
+name: ci
+
+on: pull_request
+
+jobs:
+
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      - name: Install Node dependencies
+        run: |
+          npm install -g gulp-cli jest
+          npm config set package-lock false
+          npm install
+
+      - name: Lint front-end code
+        run: gulp lint
+
+      - name: Run front-end unit tests
+        run: npm test
+
+  backend:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        # https://help.github.com/en/actions/configuring-and-managing-workflows/creating-postgresql-service-containers
+        # https://github.com/actions/example-services/blob/master/.github/workflows/postgres-service.yml
+        image: postgres
+        env:
+          POSTGRES_USER: cfpb
+          POSTGRES_PASSWORD: cfpb
+          POSTGRES_DB: cfgov
+        ports:
+        - 5432:5432
+        # Needed because the Postgres container does not provide a health check.
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Fetch tags and commits needed for setuptools-git-version
+        run: |
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          git fetch origin ${{ github.head_ref }} && git checkout ${{ github.head_ref }}
+          git describe --tags --long --dirty
+        # If the above git describe command doesn't work,
+        # then setuptools-git-version will also fail.
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+        env:
+          RUNNER_TEMP: /tmp
+
+      - name: Install Node dependencies
+        run: |
+          npm install -g gulp-cli
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install tox
+
+      - name: Run back-end tests
+        run: |
+          tox
