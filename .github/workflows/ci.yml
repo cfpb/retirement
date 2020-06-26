@@ -22,27 +22,18 @@ jobs:
           npm install
 
       - name: Lint front-end code
-        run: gulp lint
+        run: npm run lint
 
       - name: Run front-end unit tests
         run: npm test
 
+      - name: Update Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
   backend:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        # https://help.github.com/en/actions/configuring-and-managing-workflows/creating-postgresql-service-containers
-        # https://github.com/actions/example-services/blob/master/.github/workflows/postgres-service.yml
-        image: postgres
-        env:
-          POSTGRES_USER: cfpb
-          POSTGRES_PASSWORD: cfpb
-          POSTGRES_DB: cfgov
-        ports:
-        - 5432:5432
-        # Needed because the Postgres container does not provide a health check.
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
       - uses: actions/checkout@v2
@@ -54,17 +45,6 @@ jobs:
           git describe --tags --long --dirty
         # If the above git describe command doesn't work,
         # then setuptools-git-version will also fail.
-
-      - name: Set up Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10.x
-        env:
-          RUNNER_TEMP: /tmp
-
-      - name: Install Node dependencies
-        run: |
-          npm install -g gulp-cli
 
       - name: Set up Python
         uses: actions/setup-python@v1
