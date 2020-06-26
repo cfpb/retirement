@@ -17,7 +17,7 @@ jobs:
 
       - name: Install Node dependencies
         run: |
-          npm install -g gulp-cli jest
+          npm install -g gulp-cli
           npm config set package-lock false
           npm install
 
