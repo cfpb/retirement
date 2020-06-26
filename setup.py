@@ -3,10 +3,10 @@ from setuptools import setup
 
 
 install_requires = [
-    "beautifulsoup4>=4.5.0,<4.7",
+    "beautifulsoup4>=4.5.0,<4.9",
     "Django>=1.11,<2.3",
     "dj-database-url>=0.4.2,<1",
-    "python-dateutil>=2.1<3",
+    "python-dateutil>=2.1,<3",
     "requests>=2.18,<3",
 ]
 
