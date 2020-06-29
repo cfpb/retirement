@@ -24,11 +24,6 @@ jobs:
       - name: Lint front-end code
         run: gulp lint
 
-      - name: Update Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
   backend:
     runs-on: ubuntu-latest
 
