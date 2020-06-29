@@ -24,9 +24,6 @@ jobs:
       - name: Lint front-end code
         run: gulp lint
 
-      - name: Run front-end unit tests
-        run: npm test
-
       - name: Update Coveralls
         uses: coverallsapp/github-action@master
         with:
