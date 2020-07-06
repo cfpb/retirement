@@ -17,12 +17,11 @@ jobs:
 
       - name: Install Node dependencies
         run: |
-          npm install -g gulp-cli
           npm config set package-lock false
           npm install
 
       - name: Lint front-end code
-        run: gulp lint
+        run: npx gulp lint
 
   backend:
     runs-on: ubuntu-latest
