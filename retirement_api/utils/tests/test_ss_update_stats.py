@@ -10,6 +10,7 @@ from django.test import TestCase
 
 import mock
 from bs4 import BeautifulSoup as bs
+
 from retirement_api import utils
 from retirement_api.utils.ss_update_stats import (
     make_soup,

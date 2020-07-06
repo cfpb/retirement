@@ -4,6 +4,7 @@ from io import StringIO
 from django.core.management import call_command
 
 import mock
+
 from retirement_api.utils.check_api import collector
 
 

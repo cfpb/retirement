@@ -12,6 +12,7 @@ import mock
 import requests
 from dateutil.relativedelta import relativedelta
 from freezegun import freeze_time
+
 from retirement_api import utils
 from retirement_api.models import Calibration
 from retirement_api.utils.ss_calculator import (
