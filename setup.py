@@ -55,7 +55,7 @@ setup(
     ],
     long_description=read_file("README.md"),
     zip_safe=False,
-    python_requires=">=3",
+    python_requires=">=3.6",
     install_requires=install_requires,
     setup_requires=setup_requires,
     extras_require={"testing": testing_extras,},
