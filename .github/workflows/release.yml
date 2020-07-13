@@ -1,0 +1,39 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install wheel
+
+      - name: Build the packages
+        id: build
+        run: |
+          python setup.py bdist_wheel
+          # Get the name of the .whl file and set them as
+          # "outputs" of this step so we can upload them
+          echo "::set-output name=bdist_wheel::$(cd dist && ls *.whl)"
+
+      - name: Upload the wheel
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: dist/${{ steps.build.outputs.bdist_wheel }}
+          asset_name: ${{ steps.build.outputs.bdist_wheel }}
+          asset_content_type: application/zip

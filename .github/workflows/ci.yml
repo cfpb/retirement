@@ -1,0 +1,52 @@
+name: ci
+
+on: pull_request
+
+jobs:
+
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      - name: Install Node dependencies
+        run: |
+          npm config set package-lock false
+          npm install
+
+      - name: Lint front-end code
+        run: npx gulp lint
+
+  backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Fetch tags and commits needed for setuptools-git-version
+        run: |
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          git fetch origin ${{ github.head_ref }} && git checkout ${{ github.head_ref }}
+          git describe --tags --long --dirty
+        # If the above git describe command doesn't work,
+        # then setuptools-git-version will also fail.
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install tox
+
+      - name: Run back-end tests
+        run: |
+          tox
