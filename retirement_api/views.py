@@ -19,6 +19,7 @@ BASEDIR = os.path.dirname(__file__)
 
 standalone = getattr(settings, "STANDALONE", False)
 
+
 if standalone:
     base_template = "retirement_api/standalone/base_update.html"
 else:  # pragma: no cover
