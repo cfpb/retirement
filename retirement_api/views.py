@@ -56,8 +56,11 @@ def claiming(request, es=False):
         "base_template": base_template,
         "available_languages": ["en", "es"],
         "es": es,
+        "language": language,
         "about_view_name": "retirement_api:" + ("about_es" if es else "about"),
     }
+
+    print("Hello world")
 
     return render(request, "retirement_api/claiming.html", cdict)
 
