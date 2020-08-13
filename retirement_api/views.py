@@ -60,8 +60,6 @@ def claiming(request, es=False):
         "about_view_name": "retirement_api:" + ("about_es" if es else "about"),
     }
 
-    print("Hello world")
-
     return render(request, "retirement_api/claiming.html", cdict)
 
 
