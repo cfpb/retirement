@@ -75,7 +75,7 @@ This application uses a proprietary licensed font (Avenir Next) that is not incl
 By default it will try to load this font from the Fonts.com content delivery network (CDN).
 This behavior can be modified to instead try to load the font locally from
 the `retirement_api/static/retirement/webfonts/` directory by setting
-[`@use-font-cdn`](https://github.com/cfpb/retirement/blob/master/src/css/main.less#L29)
+[`@use-font-cdn`](https://github.com/cfpb/retirement/blob/main/src/css/main.less#L29)
 to `false` and rebuilding the assets with `gulp build`. Restart the local web server
 once you've made this change.
 
