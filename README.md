@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/cfpb/retirement.png)](https://travis-ci.org/cfpb/retirement) [![Coverage Status](https://coveralls.io/repos/cfpb/retirement/badge.svg)](https://coveralls.io/r/cfpb/retirement)
+![Build Status](https://github.com/cfpb/retirement/workflows/ci/badge.svg)[![Coverage Status](https://coveralls.io/repos/cfpb/retirement/badge.svg)](https://coveralls.io/r/cfpb/retirement)
 
 # Retirement: Before You Claim
 
