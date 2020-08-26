@@ -302,10 +302,6 @@ msgid "Contact us"
 msgstr "Contáctenos"
 
 #:
-msgid "Search"
-msgstr "búsqueda"
-
-#:
 msgid "We calculate benefit estimates based on the Social Security Administration's <a href=\"http://www.socialsecurity.gov/OACT/quickcalc/index.html\">Quick Calculator</a>. The SSA uses the date of birth and current income values to build an average lifetime earnings history and calculate benefits. The benefit estimates we provide are only approximations, and are intended solely as a way to show how different claiming dates can affect monthly benefits. Social Security will calculate more accurate benefits estimates based on your actual lifetime earnings if you go to <a href=\"https://secure.ssa.gov/RIL/SiView.do\">Social Security's sign-up page</a> and create an account."
 msgstr "Calculamos beneficio estimaciones basadas en la administración de la Seguridad Social <a href=\"http://www.socialsecurity.gov/OACT/quickcalc/index.html\">Calculadora rápida</a>. La SSA utiliza la fecha de nacimiento y los valores actuales de ingreso a construir un historial de ganancias promedio de por vida y calcular beneficios. Las estimaciones de beneficios que ofrecemos son sólo aproximaciones y están destinadas únicamente como una manera de demostrar cómo diferentes fechas de reclamación puede afectar beneficios mensuales.\n"
 "Seguridad social calculará beneficios más precisas las estimaciones se basan en sus ganancias de por vida real si ir a la  <a href=\"https://secure.ssa.gov/RIL/SiView.do\">página de inscripción de la Seguridad Social</a> y crear una cuenta."
