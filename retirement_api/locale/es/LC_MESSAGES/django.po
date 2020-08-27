@@ -6,6 +6,8 @@ msgstr ""
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: retirement\n"
 "Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 
 #: footer legal disclaimer heading
 msgid "Legal Disclaimer:"
