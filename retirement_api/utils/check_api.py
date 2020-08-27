@@ -53,9 +53,9 @@ def build_msg(collector):
 
 
 def check_data(data):
-    """ For a 44-year-old, the api should
-        always return an age, a full retirement age
-        and a value for benefits at age 70
+    """For a 44-year-old, the api should
+    always return an age, a full retirement age
+    and a value for benefits at age 70
     """
     if (
         data["current_age"] == 44

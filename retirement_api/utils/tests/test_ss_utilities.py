@@ -591,7 +591,7 @@ class UtilitiesTests(unittest.TestCase):
     """
 
     def test_get_retire_data(self):
-        """ given a birth date and annual pay value,
+        """given a birth date and annual pay value,
         return a dictionary of social security values
         """
         params = copy.copy(self.sample_params)

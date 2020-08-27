@@ -58,6 +58,8 @@ setup(
     python_requires=">=3.6",
     install_requires=install_requires,
     setup_requires=setup_requires,
-    extras_require={"testing": testing_extras,},
+    extras_require={
+        "testing": testing_extras,
+    },
     frontend_build_script="frontendbuild.sh",
 )

@@ -58,8 +58,8 @@ class UpdateSsStatsTests(TestCase):
 
     # def output_csv(filepath, headings, bs_rows):
     def test_output_csv(self):
-        """ outputs csv based on inputs of
-            headings and beautiful_soup rows
+        """outputs csv based on inputs of
+        headings and beautiful_soup rows
         """
         mockpath = "{0}/mock_life.csv".format(self.tempdir)
         with open(self.life_page, "r") as f:
@@ -78,8 +78,8 @@ class UpdateSsStatsTests(TestCase):
 
     # def output_json(filepath, headings, bs_rows):
     def test_output_json(self):
-        """ outputs json to file based on inputs of
-            path, headings and beautiful_soup rows
+        """outputs json to file based on inputs of
+        path, headings and beautiful_soup rows
         """
         mockpath = "{0}/mock_life.json".format(self.tempdir)
         sample_json_results = {
@@ -112,8 +112,7 @@ class UpdateSsStatsTests(TestCase):
                 self.assertEqual(sample_json_results[age][key], data[age][key])
 
     def test_make_soup(self):
-        """ given a url, makes a request and returns beautifulsoup for parsing
-        """
+        """Given a url, make a request and return beautifulsoup for parsing."""
         url = "http://www.socialsecurity.gov/OACT/ProgData/nra.html"
         soup = make_soup(url)
         self.assertTrue("Social Security" in soup.find("h1").text)
