@@ -144,5 +144,6 @@ def about(request, language="en"):
         "base_template": base_template,
         "available_languages": ["en", "es"],
         "es": es,
+        "language": language,
     }
     return render(request, "retirement_api/about.html", cdict)
