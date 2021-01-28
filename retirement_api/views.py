@@ -57,6 +57,8 @@ def claiming(request, es=False):
         "available_languages": ["en", "es"],
         "es": es,
         "language": language,
+        "show_banner": True,
+        "show_mega_menu": True,
         "about_view_name": "retirement_api:" + ("about_es" if es else "about"),
     }
 
@@ -145,5 +147,7 @@ def about(request, language="en"):
         "available_languages": ["en", "es"],
         "es": es,
         "language": language,
+        "show_banner": True,
+        "show_mega_menu": True,
     }
     return render(request, "retirement_api/about.html", cdict)
