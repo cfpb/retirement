@@ -3,4 +3,4 @@
 set -ev
 
 npm install
-gulp
+npx gulp
