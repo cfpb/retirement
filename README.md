@@ -1,3 +1,9 @@
+# :warning: THIS REPO IS DEPRECATED (June 3, 2021) :warning:
+
+Please find the source code moved to https://github.com/cfpb/consumerfinance.gov/tree/main/cfgov/retirement_api
+
+---
+
 ![Build Status](https://github.com/cfpb/retirement/workflows/ci/badge.svg)[![Coverage Status](https://coveralls.io/repos/cfpb/retirement/badge.svg)](https://coveralls.io/r/cfpb/retirement)
 
 # Retirement: Before You Claim
